@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>glossary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0c0e14; --s1:#12151e; --s2:#181c27; --s3:#1e2330; --s4:#242b3a;
+  --ln:#272e40; --ln2:#323b52;
+  --tx:#cdd5e8; --tx2:#7a889f; --tx3:#434f67;
+  --ac:#4d9ef6; --ac-bg:#0e1f38;
+  --gr:#3cb96b; --gr-bg:#0c2219;
+  --rd:#f06060; --rd-bg:#220e0e;
+  --yl:#d4983a; --yl-bg:#201808;
+  --pu:#a07fef;
+  --mono:'JetBrains Mono',monospace;
+  --body:'Pretendard',sans-serif;
+  --r:3px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--body);background:var(--bg);color:var(--tx);font-size:13px;line-height:1.5}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--ln2);border-radius:3px}
+button{cursor:pointer;border:none;outline:none;background:none;font-family:var(--mono)}
+input,select,textarea{outline:none}
+
+/* LAYOUT */
+#app{display:grid;grid-template-rows:46px 1fr;height:100vh}
+
+/* TOPBAR */
+#topbar{display:flex;align-items:center;gap:10px;padding:0 16px;background:var(--s1);border-bottom:1px solid var(--ln);z-index:30}
+.logo{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--ac);letter-spacing:.06em;flex-shrink:0}
+.logo em{color:var(--tx3);font-style:normal;font-weight:400}
+#tb-stats{font-family:var(--mono);font-size:10px;color:var(--tx3);flex-shrink:0}
+#branch-pill{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;background:var(--s2);border:1px solid var(--ln);font-family:var(--mono);font-size:10px;color:var(--tx3);flex-shrink:0}
+#branch-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--gr);flex-shrink:0;transition:background .3s}
+#branch-pill.dirty .dot{background:var(--yl)}
+.gap{flex:1}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:var(--r);font-size:11px;font-weight:600;letter-spacing:.03em;transition:all .12s;white-space:nowrap;flex-shrink:0}
+.btn-ghost{color:var(--tx2);border:1px solid var(--ln)}
+.btn-ghost:hover{border-color:var(--tx2);color:var(--tx)}
+.btn-ac{background:var(--ac);color:#0c0e14}
+.btn-ac:hover{background:#6fb5ff}
+.btn-gr{background:var(--gr-bg);color:var(--gr);border:1px solid var(--gr)}
+.btn-gr:hover{background:var(--gr);color:#0c0e14}
+.btn-rd{color:var(--rd);border:1px solid var(--rd-bg)}
+.btn-rd:hover{background:var(--rd-bg)}
+.btn:disabled{opacity:.35;pointer-events:none}
+
+/* TOOLBAR */
+#toolbar{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--ln);background:var(--s1);flex-shrink:0}
+.sw{position:relative;flex:1;max-width:300px}
+.sw-ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--tx3);font-size:12px;pointer-events:none}
+#search{width:100%;background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 10px 5px 27px;color:var(--tx);font-size:12px;font-family:var(--mono);transition:border-color .15s}
+#search:focus{border-color:var(--ac)}
+#search::placeholder{color:var(--tx3)}
+#cat-sel{background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 10px;color:var(--tx2);font-size:11px;font-family:var(--mono);cursor:pointer}
+#cat-sel option{background:var(--s2)}
+#row-count{font-family:var(--mono);font-size:10px;color:var(--tx3);margin-left:auto;white-space:nowrap}
+.tb-div{width:1px;height:20px;background:var(--ln);flex-shrink:0}
+
+/* MAIN */
+#main-area{display:flex;flex-direction:column;height:100%;overflow:hidden}
+#table-wrap{flex:1;overflow:auto}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+col.c-ko{width:110px}col.c-en{width:155px}col.c-long{width:140px}
+col.c-short{width:88px}col.c-cats{width:165px}col.c-desc{min-width:180px}col.c-act{width:36px}
+thead{position:sticky;top:0;z-index:10;background:var(--s2)}
+thead th{padding:8px 10px;text-align:left;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--tx3);letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--ln);border-right:1px solid var(--ln);user-select:none;white-space:nowrap}
+thead th:last-child{border-right:none}
+thead th.sortable{cursor:pointer}
+thead th.sortable:hover{color:var(--tx)}
+thead th .si{margin-left:4px;opacity:.3;font-size:9px}
+thead th.asc .si::after{content:'↑';opacity:1;color:var(--ac)}
+thead th.desc .si::after{content:'↓';opacity:1;color:var(--ac)}
+thead th:not(.asc):not(.desc) .si::after{content:'↕'}
+tbody tr{border-bottom:1px solid var(--ln);transition:background .06s}
+tbody tr:hover{background:var(--s2)}
+tbody tr.editing{background:var(--ac-bg)!important;outline:1px solid var(--ac);outline-offset:-1px;z-index:2;position:relative}
+tbody tr.flash{animation:flash .5s ease}
+@keyframes flash{0%{background:var(--gr-bg)}100%{background:transparent}}
+tbody td{padding:0;vertical-align:middle;border-right:1px solid var(--ln);position:relative}
+tbody td:last-child{border-right:none}
+
+/* CELL VIEW */
+.cv{display:flex;align-items:center;padding:7px 10px;min-height:34px;cursor:text;width:100%;overflow:hidden}
+.cv:hover{background:rgba(77,158,246,.07)}
+.cv-ko{font-weight:500;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv-en{color:var(--tx2);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv-long{font-family:var(--mono);font-size:11px;color:var(--gr);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv-short-td{padding:7px 10px}
+.cv-short{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ac);background:var(--ac-bg);padding:1px 6px;border-radius:2px;display:inline-block;cursor:text}
+.cv-cats{display:flex;flex-wrap:wrap;gap:2px;padding:5px 10px;align-items:center;cursor:pointer;min-height:34px;width:100%}
+.cv-cats:hover{background:rgba(77,158,246,.07)}
+.cv-cat{font-family:var(--mono);font-size:9px;padding:1px 5px;border-radius:2px;background:var(--s3);border:1px solid var(--ln2);color:var(--tx3)}
+.cats-edit-ico{color:var(--tx3);font-size:10px;margin-left:3px;opacity:0;transition:opacity .1s;flex-shrink:0}
+tbody tr:hover .cats-edit-ico,.cv-cats:hover .cats-edit-ico{opacity:1}
+.cv-desc{color:var(--tx2);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* CELL INPUT */
+.ci{width:100%;height:100%;min-height:34px;background:transparent;border:none;padding:7px 10px;color:var(--tx);font-family:var(--mono);font-size:12px;caret-color:var(--ac);display:block}
+.ci:focus{outline:none}
+.ci-ko{font-family:var(--body);font-weight:500}
+.ci-en{color:var(--tx2)}
+.ci-long{color:var(--gr)}
+.ci-short{color:var(--ac);font-weight:700}
+.ci-desc{font-family:var(--body);color:var(--tx2)}
+
+/* ACT */
+.act-cell{display:flex;align-items:center;justify-content:center;height:34px}
+.rmb{color:var(--tx3);font-size:13px;padding:3px 5px;border-radius:var(--r);transition:all .1s;opacity:0}
+tbody tr:hover .rmb,tbody tr.editing .rmb{opacity:1}
+.rmb:hover{background:var(--s4);color:var(--tx)}
+
+/* POPOVER */
+.pop{position:fixed;z-index:200;background:var(--s2);border:1px solid var(--ln2);border-radius:5px;box-shadow:0 8px 32px rgba(0,0,0,.5);animation:pop .12s ease}
+@keyframes pop{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+#cat-pop{width:224px;padding:8px}
+.cat-grid{display:flex;flex-wrap:wrap;gap:4px}
+.cat-chip{font-family:var(--mono);font-size:9px;padding:3px 8px;border-radius:2px;background:var(--s3);border:1px solid var(--ln);color:var(--tx3);cursor:pointer;transition:all .1s}
+.cat-chip:hover{border-color:var(--ac);color:var(--ac)}
+.cat-chip.on{background:var(--ac-bg);border-color:var(--ac);color:var(--ac)}
+.pop-ft{display:flex;justify-content:flex-end;margin-top:8px;padding-top:7px;border-top:1px solid var(--ln)}
+#row-pop{width:156px;padding:4px}
+.rpi{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:var(--r);font-family:var(--mono);font-size:11px;color:var(--tx2);cursor:pointer;transition:background .08s}
+.rpi:hover{background:var(--s3);color:var(--tx)}
+.rpi.danger{color:var(--rd)}
+.rpi.danger:hover{background:var(--rd-bg)}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;align-items:center;justify-content:center}
+.overlay.open{display:flex}
+.modal{background:var(--s1);border:1px solid var(--ln2);border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.6);display:flex;flex-direction:column;animation:mop .14s ease;max-height:90vh}
+@keyframes mop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.mhd{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--ln);flex-shrink:0}
+.mhd-t{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--tx)}
+.mbd{padding:16px;overflow-y:auto;flex:1}
+.mft{padding:11px 16px;border-top:1px solid var(--ln);display:flex;justify-content:flex-end;gap:7px;flex-shrink:0}
+.ico-btn{color:var(--tx3);border:1px solid transparent;border-radius:var(--r);padding:4px 6px;font-size:13px;transition:all .1s}
+.ico-btn:hover{background:var(--s3);color:var(--tx);border-color:var(--ln)}
+
+/* FORM */
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.fg.full{grid-column:1/-1}
+.fl{font-family:var(--mono);font-size:9px;color:var(--tx3);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.fl .req{color:var(--rd);margin-left:2px}
+.fi,.fta{background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:7px 9px;color:var(--tx);font-size:12px;font-family:var(--mono);width:100%;transition:border-color .15s}
+.fi:focus,.fta:focus{border-color:var(--ac)}
+.fi::placeholder,.fta::placeholder{color:var(--tx3)}
+.fta{resize:vertical;min-height:56px;font-family:var(--body)}
+.cc-wrap{display:flex;flex-wrap:wrap;gap:4px}
+.cc{display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:9px;padding:3px 7px;border-radius:2px;border:1px solid var(--ln);background:var(--s2);color:var(--tx3);cursor:pointer;transition:all .1s;user-select:none}
+.cc:hover{border-color:var(--ac);color:var(--ac)}
+.cc.on{background:var(--ac-bg);border-color:var(--ac);color:var(--ac)}
+.cc input{display:none}
+
+/* GIT */
+.git-sec{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--tx3);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px 4px;border-bottom:1px solid var(--ln)}
+.git-file{display:flex;align-items:center;gap:8px;padding:5px 10px;font-family:var(--mono);font-size:11px}
+.git-file:nth-child(odd){background:var(--s2)}
+.gf-flag{width:14px;font-weight:700;text-align:center}
+.gf-flag.M{color:var(--yl)}.gf-flag.A{color:var(--gr)}.gf-flag.D{color:var(--rd)}.gf-flag.R{color:var(--ac)}
+.gf-path{color:var(--tx2);flex:1}
+.git-none{font-family:var(--mono);font-size:11px;color:var(--tx3);padding:10px;text-align:center}
+.git-log-row{display:grid;grid-template-columns:50px 1fr 80px;gap:6px;padding:5px 10px;font-family:var(--mono);font-size:10px;border-bottom:1px solid var(--ln);align-items:center}
+.gl-h{color:var(--pu)}.gl-m{color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.gl-w{color:var(--tx3);text-align:right}
+#commit-msg{width:100%;background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:8px 10px;color:var(--tx);font-size:12px;font-family:var(--mono);resize:none;height:56px;transition:border-color .15s}
+#commit-msg:focus{border-color:var(--ac)}
+#commit-msg::placeholder{color:var(--tx3)}
+.msg-tmpls{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.msg-tmpl{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:2px;background:var(--s2);border:1px solid var(--ln);color:var(--tx3);cursor:pointer;transition:all .1s}
+.msg-tmpl:hover{border-color:var(--ac);color:var(--ac)}
+.step-row{display:flex;align-items:center;gap:10px;padding:7px 12px;font-family:var(--mono);font-size:11px}
+.s-ico{width:14px;text-align:center;flex-shrink:0}
+.s-ok{color:var(--gr)}.s-fail{color:var(--rd)}.s-pend{color:var(--tx3)}
+.s-name{color:var(--tx2);flex:1}
+.spin{animation:spin 1s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+#run-out{font-family:var(--mono);font-size:11px;line-height:1.8;white-space:pre-wrap;max-height:340px;overflow-y:auto;background:var(--bg);padding:14px;border-radius:var(--r)}
+
+/* TOAST */
+#toasts{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:999;display:flex;flex-direction:column;gap:4px;pointer-events:none;align-items:center}
+.toast{font-family:var(--mono);font-size:11px;padding:7px 14px;border-radius:var(--r);border-left:3px solid;white-space:nowrap;animation:tin .15s ease}
+@keyframes tin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.t-ok{background:var(--gr-bg);border-color:var(--gr);color:var(--gr)}
+.t-err{background:var(--rd-bg);border-color:var(--rd);color:var(--rd)}
+.t-inf{background:var(--ac-bg);border-color:var(--ac);color:var(--ac)}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- TOPBAR -->
+<header id="topbar">
+  <div class="logo">glossary<em>.json</em></div>
+  <div id="tb-stats">—</div>
+  <div id="branch-pill"><span class="dot"></span><span id="branch-name">—</span></div>
+  <div class="gap"></div>
+  <button class="btn btn-ghost" onclick="runCmd('check')">▷ check</button>
+  <button class="btn btn-ghost" onclick="runCmd('default')">▷ generate</button>
+  <button class="btn btn-gr" onclick="openGitModal()" id="git-btn">⎇ commit &amp; push</button>
+  <button class="btn btn-ac" onclick="openAddModal()">+ 추가</button>
+</header>
+
+<!-- MAIN -->
+<div id="main-area">
+  <div id="toolbar">
+    <div class="sw">
+      <span class="sw-ico">⌕</span>
+      <input id="search" type="text" placeholder="검색 (Ctrl+K)  —  한글 · 영문 · 약어 · 설명" oninput="applyFilter()">
+    </div>
+    <select id="cat-sel" onchange="applyFilter()"><option value="">전체 카테고리</option></select>
+    <div class="tb-div"></div>
+    <button class="btn btn-ghost" onclick="runCmd('force')" title="validate 실패해도 generate 강행">▷ force</button>
+    <div id="row-count" style="margin-left:6px">—</div>
+  </div>
+
+  <div id="table-wrap">
+    <table id="tbl">
+      <colgroup>
+        <col class="c-ko"><col class="c-en"><col class="c-long">
+        <col class="c-short"><col class="c-cats"><col class="c-desc"><col class="c-act">
+      </colgroup>
+      <thead>
+        <tr>
+          <th class="sortable" data-col="ko">한글명<span class="si"></span></th>
+          <th class="sortable" data-col="en">영문명<span class="si"></span></th>
+          <th class="sortable" data-col="abbr_long">abbr_long<span class="si"></span></th>
+          <th class="sortable" data-col="abbr_short">abbr_short<span class="si"></span></th>
+          <th>categories</th>
+          <th class="sortable" data-col="description">설명<span class="si"></span></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- 카테고리 팝오버 -->
+<div class="pop" id="cat-pop" style="display:none">
+  <div class="cat-grid" id="cat-grid"></div>
+  <div class="pop-ft">
+    <button class="btn btn-ac" style="font-size:10px;padding:4px 10px" onclick="saveCatPop()">적용</button>
+  </div>
+</div>
+
+<!-- 행 메뉴 팝오버 -->
+<div class="pop" id="row-pop" style="display:none">
+  <div class="rpi" onclick="menuAction('note')">📝 note 편집</div>
+  <div class="rpi" onclick="menuAction('not')">⛔ NOT 편집</div>
+  <div class="rpi danger" onclick="menuAction('delete')">🗑 삭제</div>
+</div>
+
+<!-- ADD MODAL -->
+<div class="overlay" id="add-modal">
+  <div class="modal" style="width:520px">
+    <div class="mhd"><div class="mhd-t">+ 용어 추가</div><button class="ico-btn" onclick="closeOverlay('add-modal')">✕</button></div>
+    <div class="mbd">
+      <div class="fg2">
+        <div class="fg"><div class="fl">id<span class="req">*</span></div><input class="fi" id="a-id" placeholder="fx_futures"></div>
+        <div class="fg"><div class="fl">한글명<span class="req">*</span></div><input class="fi" id="a-ko" placeholder="외환선물"></div>
+        <div class="fg"><div class="fl">영문명<span class="req">*</span></div><input class="fi" id="a-en" placeholder="FX Futures"></div>
+        <div class="fg"><div class="fl">abbr_long<span class="req">*</span></div><input class="fi" id="a-long" placeholder="fxFutures"></div>
+        <div class="fg"><div class="fl">abbr_short<span class="req">*</span></div><input class="fi" id="a-short" placeholder="FX_FUT"></div>
+      </div>
+      <div class="fg"><div class="fl">설명<span class="req">*</span></div><textarea class="fta" id="a-desc" placeholder="용어에 대한 설명"></textarea></div>
+      <div class="fg"><div class="fl">categories<span class="req">*</span></div><div class="cc-wrap" id="a-cats"></div></div>
+      <div class="fg2">
+        <div class="fg"><div class="fl">NOT (쉼표 구분)</div><input class="fi" id="a-not" placeholder="MT5, mt5Futures"></div>
+        <div class="fg"><div class="fl">note</div><input class="fi" id="a-note" placeholder="주의사항"></div>
+      </div>
+    </div>
+    <div class="mft">
+      <button class="btn btn-ghost" onclick="closeOverlay('add-modal')">취소</button>
+      <button class="btn btn-ac" onclick="doAdd()">추가</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXTRA (note / NOT) MODAL -->
+<div class="overlay" id="extra-modal">
+  <div class="modal" style="width:420px">
+    <div class="mhd"><div class="mhd-t" id="extra-title">편집</div><button class="ico-btn" onclick="closeOverlay('extra-modal')">✕</button></div>
+    <div class="mbd">
+      <div class="fg"><div class="fl" id="extra-lbl">값</div><textarea class="fta" id="extra-val" style="min-height:80px"></textarea><div style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-top:5px" id="extra-hint"></div></div>
+    </div>
+    <div class="mft">
+      <button class="btn btn-ghost" onclick="closeOverlay('extra-modal')">취소</button>
+      <button class="btn btn-ac" onclick="saveExtra()">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- GIT MODAL -->
+<div class="overlay" id="git-modal">
+  <div class="modal" style="width:520px">
+    <div class="mhd"><div class="mhd-t">⎇ commit &amp; push</div><button class="ico-btn" onclick="closeOverlay('git-modal')">✕</button></div>
+    <div class="mbd" id="git-mbd" style="padding:0">로딩 중...</div>
+    <div class="mft" id="git-mft">
+      <button class="btn btn-ghost" onclick="closeOverlay('git-modal')">닫기</button>
+      <button class="btn btn-gr" id="commit-btn" onclick="doCommit()">commit + push</button>
+    </div>
+  </div>
+</div>
+
+<!-- RUN MODAL -->
+<div class="overlay" id="run-modal">
+  <div class="modal" style="width:500px">
+    <div class="mhd"><div class="mhd-t" id="run-title">run.py</div><button class="ico-btn" onclick="closeOverlay('run-modal')">✕</button></div>
+    <div class="mbd" style="padding:0"><pre id="run-out" style="padding:14px">실행 중...</pre></div>
+    <div class="mft"><button class="btn btn-ghost" onclick="closeOverlay('run-modal')">닫기</button></div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM -->
+<div class="overlay" id="del-modal">
+  <div class="modal" style="width:340px">
+    <div class="mhd"><div class="mhd-t">용어 삭제</div><button class="ico-btn" onclick="closeOverlay('del-modal')">✕</button></div>
+    <div class="mbd">
+      <p><code id="del-name" style="color:var(--rd);font-family:var(--mono)"></code> 를 삭제합니까?</p>
+      <p style="margin-top:6px;font-family:var(--mono);font-size:10px;color:var(--tx3)">terms.json에 즉시 반영됩니다.</p>
+    </div>
+    <div class="mft">
+      <button class="btn btn-ghost" onclick="closeOverlay('del-modal')">취소</button>
+      <button class="btn btn-rd" id="del-confirm">삭제</button>
+    </div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<script>
+/* ═══ STATE ═══ */
+let all=[], cats={}, filtered=[];
+let sortCol='ko', sortDir=1;
+let editId=null, editRow=null, editBuf={};
+let catPopId=null, rowPopId=null, extraId=null, extraField=null;
+
+/* ═══ BOOT ═══ */
+async function boot() {
+  try {
+    const [td,cd]=await Promise.all([fetch('/api/terms'),fetch('/api/categories')]);
+    const td2=await td.json(); cats=await cd.json();
+    all=td2.terms;
+    buildCatSel(); buildAddCats(); applyFilter(); updateStats(); loadGitStatus();
+  } catch(e){toast('서버 연결 실패','err')}
+}
+
+/* ═══ GIT STATUS ═══ */
+async function loadGitStatus() {
+  try {
+    const r=await fetch('/api/git/status'), d=await r.json();
+    document.getElementById('branch-name').textContent=d.branch||'—';
+    document.getElementById('branch-pill').classList.toggle('dirty',d.has_changes);
+    document.getElementById('git-btn').textContent=
+      d.has_changes?`⎇ commit & push (${d.changed.length})`:'⎇ commit & push';
+  } catch(e){}
+}
+function updateStats(){document.getElementById('tb-stats').textContent=`${all.length}개 · ${Object.keys(cats).length}cat`}
+
+/* ═══ FILTER / SORT ═══ */
+function buildCatSel(){const s=document.getElementById('cat-sel');Object.keys(cats).forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;s.appendChild(o)})}
+
+function applyFilter(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  const cat=document.getElementById('cat-sel').value;
+  filtered=all.filter(t=>{
+    if(cat&&!(t.categories||[]).includes(cat))return false;
+    if(!q)return true;
+    return[t.ko,t.en,t.abbr_long,t.abbr_short,t.id,t.description].some(v=>v&&v.toLowerCase().includes(q));
+  });
+  doSort(); renderTable();
+  document.getElementById('row-count').textContent=filtered.length===all.length?`${all.length}개`:`${filtered.length}/${all.length}개`;
+}
+function doSort(){filtered.sort((a,b)=>{const av=(a[sortCol]||'').toString().toLowerCase(),bv=(b[sortCol]||'').toString().toLowerCase();return av<bv?-sortDir:av>bv?sortDir:0})}
+
+document.querySelectorAll('thead th.sortable').forEach(th=>{
+  th.addEventListener('click',()=>{
+    if(editId)commitEdit();
+    const col=th.dataset.col;
+    sortDir=sortCol===col?-sortDir:1; sortCol=col;
+    document.querySelectorAll('thead th').forEach(h=>h.classList.remove('asc','desc'));
+    th.classList.add(sortDir===1?'asc':'desc');
+    doSort(); renderTable();
+  });
+});
+document.querySelector(`th[data-col="${sortCol}"]`).classList.add('asc');
+
+/* ═══ RENDER ═══ */
+function renderTable(){
+  const tbody=document.getElementById('tbody'); tbody.innerHTML='';
+  filtered.forEach(t=>tbody.appendChild(makeRow(t)));
+}
+function makeRow(t){
+  const tr=document.createElement('tr'); tr.dataset.id=t.id;
+  const catsHtml=(t.categories||[]).map(c=>`<span class="cv-cat">${esc(c)}</span>`).join('');
+  tr.innerHTML=`
+    <td><div class="cv cv-ko" data-field="ko" onclick="startEdit('${t.id}','ko',this)">${esc(t.ko)}</div></td>
+    <td><div class="cv cv-en" data-field="en" onclick="startEdit('${t.id}','en',this)">${esc(t.en)}</div></td>
+    <td><div class="cv cv-long" data-field="abbr_long" onclick="startEdit('${t.id}','abbr_long',this)">${esc(t.abbr_long)}</div></td>
+    <td class="cv-short-td"><span class="cv-short" data-field="abbr_short" onclick="startEdit('${t.id}','abbr_short',this)">${esc(t.abbr_short)}</span></td>
+    <td><div class="cv-cats" onclick="openCatPop('${t.id}',this)">${catsHtml}<span class="cats-edit-ico">✎</span></div></td>
+    <td><div class="cv cv-desc" data-field="description" title="${esc(t.description||'')}" onclick="startEdit('${t.id}','description',this)">${esc(t.description||'')}</div></td>
+    <td><div class="act-cell"><button class="rmb" onclick="openRowPop('${t.id}',event)">⋯</button></div></td>`;
+  return tr;
+}
+
+/* ═══ INLINE EDIT ═══ */
+const FIELDS=['ko','en','abbr_long','abbr_short','description'];
+
+function startEdit(id, field, el) {
+  if(editId && editId!==id) commitEdit();
+  const t=all.find(x=>x.id===id); if(!t) return;
+  const tr=el.closest('tr');
+  tr.classList.add('editing'); editRow=tr; editId=id;
+  if(!editBuf._id) editBuf={_id:id};
+
+  const val=editBuf[field]!==undefined?editBuf[field]:(t[field]||'');
+  const td=el.closest('td');
+  const input=document.createElement('input');
+
+  // css class map
+  const cls={ko:'ci-ko',en:'ci-en',abbr_long:'ci-long',abbr_short:'ci-short',description:'ci-desc'};
+  input.className=`ci ${cls[field]||''}`;
+  td.innerHTML=''; td.appendChild(input);
+  input.value=val; input.focus(); input.select();
+
+  input.addEventListener('input',()=>editBuf[field]=input.value);
+  input.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();commitEdit()}
+    if(e.key==='Escape'){e.preventDefault();cancelEdit()}
+    if(e.key==='Tab'){e.preventDefault();commitEdit();const idx=FIELDS.indexOf(field);const nf=FIELDS[idx+(e.shiftKey?-1:1)];if(nf){const nel=tr.querySelector(`[data-field="${nf}"]`);if(nel)startEdit(editId,nf,nel)}}
+  });
+  input.addEventListener('blur',()=>setTimeout(()=>{
+    if(!document.activeElement?.closest('tr[data-id="'+id+'"]')&&!document.activeElement?.closest('.pop')&&!document.activeElement?.closest('.overlay'))commitEdit();
+  },130));
+}
+
+async function commitEdit(){
+  if(!editId||!editBuf._id){resetEdit();return}
+  const t=all.find(x=>x.id===editId); if(!t){resetEdit();return}
+  const{_id,...changes}=editBuf;
+  const updated={...t,...changes};
+  resetEdit();
+  try{
+    const res=await fetch(`/api/terms/${t.id}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(updated)});
+    const d=await res.json();
+    if(!res.ok){toast(d.error||'저장 실패','err');await reload();return}
+    const idx=all.findIndex(x=>x.id===t.id);if(idx!==-1)all[idx]=updated;
+    applyFilter(); toast('저장','ok');
+  }catch(e){toast('서버 오류','err');await reload()}
+}
+function cancelEdit(){resetEdit();applyFilter()}
+function resetEdit(){if(editRow)editRow.classList.remove('editing');editRow=null;editId=null;editBuf={}}
+
+/* ═══ CAT POPOVER ═══ */
+function openCatPop(id,anchor){
+  if(editId)commitEdit(); catPopId=id;
+  const t=all.find(x=>x.id===id); if(!t)return;
+  const grid=document.getElementById('cat-grid'); grid.innerHTML='';
+  Object.keys(cats).forEach(c=>{
+    const chip=document.createElement('div'); chip.className='cat-chip'+(( t.categories||[]).includes(c)?' on':'');
+    chip.textContent=c; chip.onclick=()=>chip.classList.toggle('on'); grid.appendChild(chip);
+  });
+  positionPop('cat-pop',anchor);
+}
+async function saveCatPop(){
+  const sel=[...document.querySelectorAll('#cat-grid .cat-chip.on')].map(c=>c.textContent);
+  if(!sel.length){toast('카테고리를 선택하세요','err');return}
+  const t=all.find(x=>x.id===catPopId); if(!t){closePop('cat-pop');return}
+  const updated={...t,categories:sel};
+  try{
+    const res=await fetch(`/api/terms/${t.id}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(updated)});
+    if(!res.ok){toast('저장 실패','err');return}
+    const idx=all.findIndex(x=>x.id===t.id);if(idx!==-1)all[idx]=updated;
+    closePop('cat-pop'); applyFilter(); toast('카테고리 저장','ok');
+  }catch(e){toast('서버 오류','err')}
+}
+
+/* ═══ ROW MENU ═══ */
+function openRowPop(id,event){event.stopPropagation();if(editId)commitEdit();rowPopId=id;positionPop('row-pop',event.currentTarget)}
+function menuAction(action){
+  const id=rowPopId; closePop('row-pop');
+  if(action==='delete'){const t=all.find(x=>x.id===id);document.getElementById('del-name').textContent=t?.ko||id;document.getElementById('del-confirm').onclick=()=>doDelete(id);openOverlay('del-modal');return}
+  const t=all.find(x=>x.id===id); if(!t)return;
+  extraId=id; extraField=action;
+  if(action==='note'){document.getElementById('extra-title').textContent='📝 note 편집';document.getElementById('extra-lbl').textContent='note';document.getElementById('extra-hint').textContent='주의사항, 보충 설명 등';document.getElementById('extra-val').value=t.note||''}
+  else{document.getElementById('extra-title').textContent='⛔ NOT 편집';document.getElementById('extra-lbl').textContent='NOT (쉼표 구분)';document.getElementById('extra-hint').textContent='혼동하지 말아야 할 약어. 예: MT5, mt5Futures';document.getElementById('extra-val').value=(t.NOT||[]).join(', ')}
+  openOverlay('extra-modal');
+}
+async function saveExtra(){
+  const t=all.find(x=>x.id===extraId); if(!t){closeOverlay('extra-modal');return}
+  const val=document.getElementById('extra-val').value.trim();
+  let updated={...t};
+  if(extraField==='note'){if(val)updated.note=val;else delete updated.note}
+  else{const arr=val?val.split(',').map(s=>s.trim()).filter(Boolean):[];if(arr.length)updated.NOT=arr;else delete updated.NOT}
+  try{
+    const res=await fetch(`/api/terms/${t.id}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(updated)});
+    if(!res.ok){toast('저장 실패','err');return}
+    const idx=all.findIndex(x=>x.id===t.id);if(idx!==-1)all[idx]=updated;
+    closeOverlay('extra-modal'); toast('저장','ok');
+  }catch(e){toast('서버 오류','err')}
+}
+
+/* ═══ ADD ═══ */
+function buildAddCats(){
+  const w=document.getElementById('a-cats'); w.innerHTML='';
+  Object.keys(cats).forEach(c=>{const l=document.createElement('label');l.className='cc';l.innerHTML=`<input type="checkbox" value="${c}">${c}`;l.querySelector('input').addEventListener('change',e=>l.classList.toggle('on',e.target.checked));w.appendChild(l)});
+}
+function openAddModal(){
+  if(editId)commitEdit();
+  ['a-id','a-ko','a-en','a-long','a-short','a-desc','a-not','a-note'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
+  document.querySelectorAll('#a-cats input').forEach(cb=>{cb.checked=false;cb.closest('label').classList.remove('on')});
+  openOverlay('add-modal'); setTimeout(()=>document.getElementById('a-id').focus(),80);
+}
+async function doAdd(){
+  const id=document.getElementById('a-id').value.trim();
+  const ko=document.getElementById('a-ko').value.trim();
+  const en=document.getElementById('a-en').value.trim();
+  const long=document.getElementById('a-long').value.trim();
+  const shrt=document.getElementById('a-short').value.trim();
+  const desc=document.getElementById('a-desc').value.trim();
+  const notV=document.getElementById('a-not').value.trim();
+  const note=document.getElementById('a-note').value.trim();
+  const sel=[...document.querySelectorAll('#a-cats input:checked')].map(e=>e.value);
+  if(!id||!ko||!en||!long||!shrt||!desc||!sel.length){toast('필수 항목을 모두 입력하세요','err');return}
+  const term={id,ko,en,abbr_long:long,abbr_short:shrt,categories:sel,description:desc,...(notV?{NOT:notV.split(',').map(s=>s.trim()).filter(Boolean)}:{}),...(note?{note}:{})};
+  try{
+    const res=await fetch('/api/terms',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(term)});
+    const d=await res.json();
+    if(!res.ok){toast(d.error||'추가 실패','err');return}
+    all.push(term); closeOverlay('add-modal'); applyFilter(); updateStats();
+    setTimeout(()=>{const tr=document.querySelector(`tr[data-id="${id}"]`);if(tr){tr.classList.add('flash');tr.scrollIntoView({block:'center'})}},60);
+    toast(`'${ko}' 추가 완료`,'ok');
+  }catch(e){toast('서버 오류','err')}
+}
+
+/* ═══ DELETE ═══ */
+async function doDelete(id){
+  try{
+    const res=await fetch(`/api/terms/${id}`,{method:'DELETE'}); const d=await res.json();
+    if(!res.ok){toast(d.error||'삭제 실패','err');return}
+    all=all.filter(x=>x.id!==id); closeOverlay('del-modal'); applyFilter(); updateStats(); toast('삭제 완료','ok');
+  }catch(e){toast('서버 오류','err')}
+}
+
+/* ═══ RUN ═══ */
+const RL={default:'validate + generate',check:'--check',force:'--force'};
+async function runCmd(mode){
+  if(editId)await commitEdit();
+  document.getElementById('run-title').textContent=`▷ run.py  ${RL[mode]}`;
+  document.getElementById('run-out').textContent='실행 중...'; openOverlay('run-modal');
+  try{
+    const res=await fetch('/api/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode})});
+    const d=await res.json();
+    const raw=(d.stdout+(d.stderr?'\n'+d.stderr:'')).trim();
+    document.getElementById('run-out').innerHTML=colorize(raw);
+    document.getElementById('run-title').textContent=(d.ok?'✅ ':'❌ ')+`run.py  ${RL[mode]}`;
+    toast(d.ok?'완료':'실패',d.ok?'ok':'err');
+  }catch(e){document.getElementById('run-out').textContent='오류: '+e.message}
+}
+function colorize(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/(✅[^\n]*)/g,'<span style="color:var(--gr)">$1</span>').replace(/(❌[^\n]*)/g,'<span style="color:var(--rd)">$1</span>').replace(/(⚠️[^\n]*)/g,'<span style="color:var(--yl)">$1</span>')}
+
+/* ═══ GIT ═══ */
+async function openGitModal(){
+  if(editId)await commitEdit(); openOverlay('git-modal');
+  document.getElementById('git-mbd').innerHTML='<div style="padding:14px;font-family:var(--mono);font-size:11px;color:var(--tx3)">로딩 중...</div>';
+  document.getElementById('git-mft').innerHTML=`<button class="btn btn-ghost" onclick="closeOverlay('git-modal')">닫기</button><button class="btn btn-gr" id="commit-btn" onclick="doCommit()">commit + push</button>`;
+  try{
+    const[sr,lr]=await Promise.all([fetch('/api/git/status'),fetch('/api/git/log?limit=5')]);
+    const status=await sr.json(), log=await lr.json();
+    renderGitBody(status,log);
+  }catch(e){document.getElementById('git-mbd').innerHTML=`<div style="padding:14px;color:var(--rd);font-family:var(--mono);font-size:11px">오류: ${e.message}</div>`}
+}
+function renderGitBody(status,log){
+  const fh=status.changed.length?status.changed.map(f=>`<div class="git-file"><span class="gf-flag ${f.flag}">${f.flag}</span><span class="gf-path">${esc(f.path)}</span></div>`).join(''):`<div class="git-none">변경된 파일 없음</div>`;
+  const lh=log.entries.length?log.entries.map(e=>`<div class="git-log-row"><span class="gl-h">${esc(e.hash)}</span><span class="gl-m">${esc(e.subject)}</span><span class="gl-w">${esc(e.when)}</span></div>`).join(''):`<div class="git-none">커밋 이력 없음</div>`;
+  const tmpls=['feat: 용어 추가','fix: 약어 수정','fix: 설명 수정','docs: 용어 정리','chore: 카테고리 정리'];
+  document.getElementById('git-mbd').innerHTML=`
+    <div class="git-sec">변경 파일 (${status.changed.length})</div>${fh}
+    <div class="git-sec" style="margin-top:4px">커밋 메시지</div>
+    <div style="padding:10px"><textarea id="commit-msg" placeholder="feat: 용어 추가 (예: 외환선물)"></textarea><div class="msg-tmpls">${tmpls.map(t=>`<button class="msg-tmpl" onclick="setMsg('${t}')">${t}</button>`).join('')}</div></div>
+    <div class="git-sec" style="margin-top:4px">최근 커밋</div>${lh}`;
+  document.getElementById('commit-btn').disabled=!status.has_changes;
+}
+function setMsg(t){document.getElementById('commit-msg').value=t}
+
+async function doCommit(){
+  const msg=document.getElementById('commit-msg')?.value.trim();
+  if(!msg){toast('커밋 메시지를 입력하세요','err');return}
+  document.getElementById('commit-btn').disabled=true;
+  const steps=['validate + generate','git add','git commit','git push'];
+  document.getElementById('git-mbd').innerHTML=`<div style="padding:6px 0">${steps.map((s,i)=>`<div class="step-row" id="st${i}"><span class="s-ico s-pend">○</span><span class="s-name">${s}</span></div>`).join('')}<div id="cerr" style="margin:8px 12px;font-family:var(--mono);font-size:11px;color:var(--rd);display:none"></div></div>`;
+  document.getElementById('git-mft').innerHTML=''; setStepRun(0);
+  try{
+    const res=await fetch('/api/git/commit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});
+    const d=await res.json();
+    (d.steps||[]).forEach((s,i)=>setStepDone(i,s.ok));
+    document.getElementById('git-mft').innerHTML=`<button class="btn btn-ghost" onclick="closeOverlay('git-modal')">닫기</button>`;
+    if(d.ok){toast('commit & push 완료 ✓','ok');loadGitStatus()}
+    else{const e=document.getElementById('cerr');e.style.display='block';e.textContent=d.error||'오류 발생';toast('실패 — 상세 확인','err')}
+  }catch(e){document.getElementById('git-mft').innerHTML=`<button class="btn btn-ghost" onclick="closeOverlay('git-modal')">닫기</button>`;toast('서버 오류','err')}
+}
+function setStepRun(i){const el=document.getElementById(`st${i}`);if(!el)return;el.querySelector('.s-ico').innerHTML='<span class="spin">◌</span>'}
+function setStepDone(i,ok){const el=document.getElementById(`st${i}`);if(!el)return;const ico=el.querySelector('.s-ico');ico.className=`s-ico ${ok?'s-ok':'s-fail'}`;ico.textContent=ok?'✓':'✗';if(i+1<4)setStepRun(i+1)}
+
+/* ═══ POPOVER UTILS ═══ */
+function positionPop(id,anchor){
+  const pop=document.getElementById(id); const rect=anchor.getBoundingClientRect();
+  pop.style.display='block';
+  const pw=pop.offsetWidth,ph=pop.offsetHeight;
+  let top=rect.bottom+4,left=rect.left;
+  if(left+pw>window.innerWidth-8)left=window.innerWidth-pw-8;
+  if(top+ph>window.innerHeight-8)top=rect.top-ph-4;
+  pop.style.top=top+'px'; pop.style.left=left+'px';
+}
+function closePop(id){document.getElementById(id).style.display='none'}
+
+document.addEventListener('click',e=>{
+  if(!e.target.closest('#cat-pop')&&!e.target.closest('.cv-cats'))closePop('cat-pop');
+  if(!e.target.closest('#row-pop')&&!e.target.closest('.rmb'))closePop('row-pop');
+});
+
+/* ═══ OVERLAY ═══ */
+function openOverlay(id){document.getElementById(id).classList.add('open')}
+function closeOverlay(id){document.getElementById(id).classList.remove('open')}
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open')}));
+
+/* ═══ RELOAD / UTILS ═══ */
+async function reload(){const r=await fetch('/api/terms');const d=await r.json();all=d.terms;applyFilter();updateStats()}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function toast(msg,type='inf',ms=2400){const c=document.getElementById('toasts');const d=document.createElement('div');d.className=`toast t-${type}`;d.textContent=msg;c.appendChild(d);setTimeout(()=>d.remove(),ms)}
+
+/* ═══ KEYBOARD ═══ */
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){if(editId){cancelEdit();return}['git-modal','run-modal','del-modal','add-modal','extra-modal'].forEach(closeOverlay);closePop('cat-pop');closePop('row-pop')}
+  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();document.getElementById('search').focus()}
+  if((e.ctrlKey||e.metaKey)&&e.key==='n'){e.preventDefault();openAddModal()}
+});
+
+boot();
+</script>
+</body>
+</html>
