@@ -19,7 +19,14 @@ import sys
 import os
 import time
 import argparse
+import io
 from pathlib import Path
+
+# ── Windows cp949 인코딩 오류 방지 — stdout을 UTF-8로 강제 ──────────────
+if sys.stdout.encoding and sys.stdout.encoding.lower() not in ('utf-8', 'utf8'):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+if sys.stderr.encoding and sys.stderr.encoding.lower() not in ('utf-8', 'utf8'):
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 # ── bin/ 기준으로 glossary 루트 경로 계산 ──────────────────────────────
 BIN_DIR    = Path(__file__).parent.resolve()   # glossary/bin/
@@ -39,28 +46,29 @@ from generate_glossary import load_terms, generate_md
 # 출력 헬퍼
 # ══════════════════════════════════════════════════════════════════════
 
-def _sep(char="─", width=52):
+def _sep(char="-", width=52):
     print(char * width)
 
 def _header(text: str):
-    _sep()
+    _sep("=")
     print(f"  {text}")
-    _sep()
+    _sep("=")
 
 def _step(icon: str, text: str):
-    print(f"\n{icon}  {text}")
+    # icon 인자는 무시하고 ASCII로만 출력 (Windows 인코딩 안전)
+    print(f"\n>>  {text}")
 
 def _ok(text: str):
-    print(f"  ✅  {text}")
+    print(f"  [OK]   {text}")
 
 def _fail(text: str):
-    print(f"  ❌  {text}")
+    print(f"  [FAIL] {text}")
 
 def _info(text: str):
-    print(f"  ℹ️   {text}")
+    print(f"  [..]   {text}")
 
 def _warn(text: str):
-    print(f"  ⚠️   {text}")
+    print(f"  [WARN] {text}")
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -159,7 +167,7 @@ def run_watch(terms_path: Path, glossary_path: Path,
     Ctrl+C 로 종료.
     """
     print()
-    _header("👀  watch 모드 시작")
+    _header("watch 모드 시작")
     _info(f"감시 파일 : {terms_path}")
     _info(f"종료      : Ctrl+C")
     _sep()
@@ -177,7 +185,7 @@ def run_watch(terms_path: Path, glossary_path: Path,
 
             if current_mtime != last_mtime:
                 last_mtime = current_mtime
-                print(f"\n🔔  변경 감지 — terms.json")
+                print(f"\n[변경 감지]  terms.json")
                 run_once(terms_path, glossary_path, check_only, force)
 
     except KeyboardInterrupt:

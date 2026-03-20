@@ -206,6 +206,7 @@ tbody tr:hover .rmb,tbody tr.editing .rmb{opacity:1}
   <div class="gap"></div>
   <button class="btn btn-ghost" onclick="runCmd('check')">▷ check</button>
   <button class="btn btn-ghost" onclick="runCmd('default')">▷ generate</button>
+  <button class="btn btn-ghost" onclick="openLogModal()" title="서버 로그 보기">📋 logs</button>
   <button class="btn btn-gr" onclick="openGitModal()" id="git-btn">⎇ commit &amp; push</button>
   <button class="btn btn-ac" onclick="openAddModal()">+ 추가</button>
 </header>
@@ -333,6 +334,42 @@ tbody tr:hover .rmb,tbody tr.editing .rmb{opacity:1}
     <div class="mft">
       <button class="btn btn-ghost" onclick="closeOverlay('del-modal')">취소</button>
       <button class="btn btn-rd" id="del-confirm">삭제</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOG VIEWER MODAL -->
+<div class="overlay" id="log-modal">
+  <div class="modal" style="width:700px;max-height:80vh">
+    <div class="mhd">
+      <div class="mhd-t">📋 서버 로그</div>
+      <div style="display:flex;gap:6px;align-items:center">
+        <span id="log-total" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span>
+        <button class="btn btn-ghost" style="padding:3px 8px;font-size:9px" onclick="loadLogs()" title="새로고침">↺</button>
+        <button class="btn btn-re"   style="padding:3px 8px;font-size:9px" onclick="clearLogs()" title="로그 초기화">초기화</button>
+        <button class="ico-btn" onclick="closeOverlay('log-modal')">✕</button>
+      </div>
+    </div>
+    <div class="mbd" style="padding:0;background:var(--bg)">
+      <div style="display:flex;gap:8px;padding:8px 12px;border-bottom:1px solid var(--ln);background:var(--s2)">
+        <input id="log-filter" type="text" placeholder="필터링…" oninput="filterLogs()"
+          style="flex:1;background:var(--s1);border:1px solid var(--ln);border-radius:var(--r);padding:4px 8px;color:var(--tx);font-family:var(--mono);font-size:11px;outline:none">
+        <select id="log-level-sel" onchange="filterLogs()"
+          style="background:var(--s1);border:1px solid var(--ln);border-radius:var(--r);padding:4px 8px;color:var(--tx2);font-family:var(--mono);font-size:10px">
+          <option value="">전체 레벨</option>
+          <option value="INFO">INFO</option>
+          <option value="WARNING">WARN</option>
+          <option value="ERROR">ERROR</option>
+          <option value="DEBUG">DEBUG</option>
+        </select>
+        <label style="display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:10px;color:var(--tx3);cursor:pointer">
+          <input type="checkbox" id="log-tail" checked onchange="filterLogs()"> 최신 고정
+        </label>
+      </div>
+      <pre id="log-content" style="font-family:var(--mono);font-size:10px;line-height:1.65;padding:10px 14px;margin:0;overflow:auto;max-height:480px;white-space:pre-wrap;word-break:break-all;color:var(--tx2)">로딩 중…</pre>
+    </div>
+    <div class="mft">
+      <button class="btn btn-ghost" onclick="closeOverlay('log-modal')">닫기</button>
     </div>
   </div>
 </div>
@@ -569,7 +606,7 @@ async function runCmd(mode){
     toast(d.ok?'완료':'실패',d.ok?'ok':'err');
   }catch(e){document.getElementById('run-out').textContent='오류: '+e.message}
 }
-function colorize(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/(✅[^\n]*)/g,'<span style="color:var(--gr)">$1</span>').replace(/(❌[^\n]*)/g,'<span style="color:var(--rd)">$1</span>').replace(/(⚠️[^\n]*)/g,'<span style="color:var(--yl)">$1</span>')}
+function colorize(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/(\[OK\][^\n]*)/g,'<span style="color:var(--gr)">$1</span>').replace(/(\[FAIL\][^\n]*)/g,'<span style="color:var(--re)">$1</span>').replace(/(\[WARN\][^\n]*)/g,'<span style="color:var(--ye)">$1</span>').replace(/(\[변경 감지\][^\n]*)/g,'<span style="color:var(--ac)">$1</span>')}
 
 /* ═══ GIT ═══ */
 async function openGitModal(){
@@ -639,14 +676,72 @@ document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{
 /* ═══ RELOAD / UTILS ═══ */
 async function reload(){const r=await fetch('/api/terms');const d=await r.json();all=d.terms;applyFilter();updateStats()}
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function toast(msg,type='inf',ms=2400){const c=document.getElementById('toasts');const d=document.createElement('div');d.className=`toast t-${type}`;d.textContent=msg;c.appendChild(d);setTimeout(()=>d.remove(),ms)}
+function toast(msg,type='inf',ms=3200){const c=document.getElementById('toasts');const d=document.createElement('div');d.className=`toast t-${type}`;d.textContent=msg;c.appendChild(d);setTimeout(()=>d.remove(),ms)}
 
 /* ═══ KEYBOARD ═══ */
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){if(editId){cancelEdit();return}['git-modal','run-modal','del-modal','add-modal','extra-modal'].forEach(closeOverlay);closePop('cat-pop');closePop('row-pop')}
+  if(e.key==='Escape'){if(editId){cancelEdit();return}['git-modal','run-modal','del-modal','add-modal','extra-modal','log-modal'].forEach(closeOverlay);closePop('cat-pop');closePop('row-pop')}
   if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();document.getElementById('search').focus()}
   if((e.ctrlKey||e.metaKey)&&e.key==='n'){e.preventDefault();openAddModal()}
 });
+
+// ════════════════════════════════════════
+// LOG VIEWER
+// ════════════════════════════════════════
+let _allLogLines = [];
+
+async function openLogModal() {
+  openOverlay('log-modal');
+  await loadLogs();
+}
+
+async function loadLogs() {
+  try {
+    const res = await fetch('/api/logs?lines=300');
+    const d   = await res.json();
+    _allLogLines = d.lines || [];
+    document.getElementById('log-total').textContent =
+      `총 ${d.total}줄 (최근 ${_allLogLines.length}줄 표시)`;
+    filterLogs();
+  } catch(e) {
+    document.getElementById('log-content').textContent = '로그 조회 실패: ' + e.message;
+  }
+}
+
+function filterLogs() {
+  const q     = (document.getElementById('log-filter')?.value||'').toLowerCase();
+  const level = document.getElementById('log-level-sel')?.value||'';
+  const tail  = document.getElementById('log-tail')?.checked;
+
+  let lines = _allLogLines;
+  if(level) lines = lines.filter(l => l.includes(`| ${level}`));
+  if(q)     lines = lines.filter(l => l.toLowerCase().includes(q));
+
+  const el = document.getElementById('log-content');
+  if(!lines.length){ el.textContent = '표시할 로그가 없습니다.'; return; }
+
+  // 레벨별 색상 적용
+  el.innerHTML = lines.map(l => {
+    const esc = l.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    if(esc.includes('| ERROR')) return `<span style="color:var(--re)">${esc}</span>`;
+    if(esc.includes('| WARNING')) return `<span style="color:var(--ye)">${esc}</span>`;
+    if(esc.includes('| INFO') && esc.includes('[OK]')) return `<span style="color:var(--gr)">${esc}</span>`;
+    if(esc.includes('[commit]') || esc.includes('[run]')) return `<span style="color:var(--ac)">${esc}</span>`;
+    return `<span style="color:var(--tx3)">${esc}</span>`;
+  }).join('\n');
+
+  // 최신 고정
+  if(tail) el.scrollTop = el.scrollHeight;
+}
+
+async function clearLogs() {
+  if(!confirm('로그를 초기화하시겠습니까?')) return;
+  await fetch('/api/logs/clear', {method:'POST'});
+  _allLogLines = [];
+  document.getElementById('log-content').textContent = '로그가 초기화되었습니다.';
+  document.getElementById('log-total').textContent = '';
+  toast('로그 초기화 완료','ok');
+}
 
 boot();
 </script>

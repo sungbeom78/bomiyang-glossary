@@ -10,7 +10,15 @@ terms.json 유효성 검사 스크립트
 
 import json
 import argparse
+import io
+import sys
 from collections import defaultdict
+
+# ── Windows cp949 인코딩 오류 방지 ─────────────────────────────────────
+if sys.stdout.encoding and sys.stdout.encoding.lower() not in ('utf-8', 'utf8'):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+if sys.stderr.encoding and sys.stderr.encoding.lower() not in ('utf-8', 'utf8'):
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 REQUIRED_FIELDS = ["id", "ko", "en", "abbr_long", "abbr_short", "categories", "description"]
 
@@ -79,19 +87,19 @@ def validate(path: str) -> bool:
 
     # 결과 출력
     print(f"\n{'='*50}")
-    print(f"📋 validate.py — {path}")
+    print(f"[validate]  {path}")
     print(f"{'='*50}")
     print(f"총 용어 수: {len(terms)}개")
 
     if errors:
-        print(f"\n❌ 오류 {len(errors)}건:")
+        print(f"\n[FAIL] 오류 {len(errors)}건:")
         for e in errors:
             print(f"  • {e}")
     else:
-        print("\n✅ 오류 없음")
+        print("\n[OK] 오류 없음")
 
     if warnings:
-        print(f"\n⚠️  경고 {len(warnings)}건:")
+        print(f"\n[WARN] 경고 {len(warnings)}건:")
         for w in warnings:
             print(f"  • {w}")
 
