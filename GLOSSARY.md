@@ -200,7 +200,7 @@
 | 봉 (1분봉) | `Bar (1-min)` | `bar` | `BAR` | `data`, `class` | 일정 시간 단위(기본 1분)로 집계된 OHLCV 데이터 |
 | 상장일 | `listing_date` | `listingDate` | `LSTD` | `data` | 종목 상장 날짜 |
 | 상장주수 | `listed_shares` | `listedShares` | `LSHR` | `data` | 상장된 전체 주식 수 |
-| 섹터 랭킹 | `sector_rankings` | `sectorRankings` | `SR` | `data`, `infra`, `selector` | 섹터 랭킹 결과 저장 테이블로 사용됨 |
+| 섹터 랭킹 | `sector_rankings` | `sectorRankings` | `SR` | `data`, `infra`, `selector` | 섹터 랭킹 결과 저장 테이블 |
 | 시가 | `Open` | `open` | `O` | `data` | 봉의 시작 가격 |
 | 시가총액 | `market_cap` | `marketCap` | `MCAP` | `data` | 종목의 시가총액 |
 | 시그널 (DB) | `signals` | `signals` | `SIG` | `data`, `infra` | 생성된 시그널 이력 저장 테이블 |
@@ -226,7 +226,7 @@
 
 | 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
 |--------|--------|-----------|------------|----------|------|
-| 계좌번호 | `Account Number` | `accountNo` | `ACCT` | `account`, `config` | 브로커 계좌 번호, 일반적인 계좌번호 의미 |
+| 계좌번호 | `Account Number` | `accountNo` | `ACCT` | `account`, `config` | 브로커 계좌 번호 |
 | 모의투자 | `Mock Trading` | `mockTrading` | `MOCK` | `account`, `system` | 실제 자금 없이 시뮬레이션하는 거래 모드 ❌ NOT: `liveTrading` |
 | 미실현 손익 | `Unrealized P&L` | `unrealizedPnl` | `UR_PNL` | `account` | 보유 포지션의 평가 손익 (아직 청산 전) |
 | 상품코드 | `Account Product` | `accountProduct` | `APROD` | `account`, `config` | 계좌 상품 유형 코드 |
@@ -276,7 +276,6 @@
 | 한국시장 활성 | `ENABLE_KR` | `enableKr` | `E_KR` | `config`, `market` | 한국주식 시장 활성화 여부 환경변수 |
 | 한국주식 셀렉터 | `kr_selector` | `krSelector` | `KR_SEL` | `config`, `selector` | 한국주식 종목 선정 설정 섹션 |
 | 한국주식 전략 | `kr_strategy` | `krStrategy` | `KR_STR` | `config`, `domain` | 한국주식 매매 전략 설정 섹션 |
-| 확장장 시작 | `Extended Market Start` | `extendedMarketStart` | `EXT_START` | `config`, `session` | 프리마켓·애프터마켓·대체거래소를 포함한 확장 거래 시간 시작 |
 
 ---
 
@@ -364,6 +363,8 @@
 | 장 시작 | `Market Open` | `marketOpen` | `MO` | `session`, `domain` | 거래소 장 시작 시각 |
 | 진입 금지 시간 | `No Entry After` | `noEntryAfter` | `NEA` | `session`, `risk` | 이 시각 이후 신규 진입 금지 |
 | 추적 시작 | `Tracking Start` | `trackingStart` | `TRK_ST` | `session`, `system` | 종목 추적 시작 시각 *(⚠️ abbr_short TS는 trailingStop과 동일. 컨텍스트로 구분. [수정: TS → TRK_ST])* |
+| 확장장 시작 | `Extended Market Start` | `extendedMarketStart` | `EXT_START` | `session`, `config` | 프리마켓·애프터마켓·대체거래소(ATS)를 포함한 확장 거래 시간 시작 ❌ NOT: `marketOpen`, `MO` *(⚠️ 정규장 시작(marketOpen)과 구분. settings.yaml 키: extended_market_start)* |
+| 확장장 종료 | `Extended Market End` | `extendedMarketEnd` | `EXT_END` | `session`, `config` | 프리마켓·애프터마켓·대체거래소(ATS)를 포함한 확장 거래 시간 종료 ❌ NOT: `marketClose`, `MC` *(⚠️ 정규장 종료(marketClose)와 구분. settings.yaml 키: extended_market_end)* |
 
 ---
 
@@ -461,6 +462,7 @@
 | `EXEC` | `execution` | 실행 엔진 | `execution` |
 | `EXEC_ENG` | `ExecutionEngine` | 실행 엔진 | `ExecutionEngine` |
 | `EXIT` | `exit` | 청산 | `Exit / Close` |
+| `EXT_END` | `extendedMarketEnd` | 확장장 종료 | `Extended Market End` |
 | `EXT_START` | `extendedMarketStart` | 확장장 시작 | `Extended Market Start` |
 | `E_KR` | `enableKr` | 한국시장 활성 | `ENABLE_KR` |
 | `E_MT5` | `enableMt5` | MT5 활성 | `ENABLE_MT5` |
