@@ -636,20 +636,54 @@ async function doCommit(){
   const msg=document.getElementById('commit-msg')?.value.trim();
   if(!msg){toast('커밋 메시지를 입력하세요','err');return}
   document.getElementById('commit-btn').disabled=true;
-  const steps=['validate + generate','git add','git commit','git push'];
-  document.getElementById('git-mbd').innerHTML=`<div style="padding:6px 0">${steps.map((s,i)=>`<div class="step-row" id="st${i}"><span class="s-ico s-pend">○</span><span class="s-name">${s}</span></div>`).join('')}<div id="cerr" style="margin:8px 12px;font-family:var(--mono);font-size:11px;color:var(--rd);display:none"></div></div>`;
-  document.getElementById('git-mft').innerHTML=''; setStepRun(0);
+
+  // 초기 4개 스텝만 미리 표시 (rebase 스텝은 서버 응답 후 동적 추가)
+  const initSteps=['validate + generate','git add','git commit','git push'];
+  document.getElementById('git-mbd').innerHTML=`
+    <div id="step-wrap" style="padding:6px 0">
+      ${initSteps.map((s,i)=>`<div class="step-row" id="st${i}"><span class="s-ico s-pend">○</span><span class="s-name">${s}</span></div>`).join('')}
+    </div>
+    <div id="cerr" style="margin:8px 12px;font-family:var(--mono);font-size:11px;color:var(--rd);display:none"></div>`;
+  document.getElementById('git-mft').innerHTML='';
+  setStepRun(0);
+
   try{
     const res=await fetch('/api/git/commit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});
     const d=await res.json();
-    (d.steps||[]).forEach((s,i)=>setStepDone(i,s.ok));
+    const wrap=document.getElementById('step-wrap');
+
+    // 서버 응답 스텝 수가 초기 4개보다 많으면 동적으로 행 추가
+    (d.steps||[]).forEach((s,i)=>{
+      let el=document.getElementById(`st${i}`);
+      if(!el){
+        // pull --rebase / 재시도 등 추가 스텝
+        el=document.createElement('div');
+        el.className='step-row'; el.id=`st${i}`;
+        el.innerHTML=`<span class="s-ico s-pend">○</span><span class="s-name">${s.step}</span>`;
+        wrap.appendChild(el);
+      } else {
+        // 스텝명 업데이트 (재시도 등 이름 변경 반영)
+        el.querySelector('.s-name').textContent=s.step;
+      }
+      setStepDone(i, s.ok);
+    });
+
     document.getElementById('git-mft').innerHTML=`<button class="btn btn-ghost" onclick="closeOverlay('git-modal')">닫기</button>`;
     if(d.ok){toast('commit & push 완료 ✓','ok');loadGitStatus()}
-    else{const e=document.getElementById('cerr');e.style.display='block';e.textContent=d.error||'오류 발생';toast('실패 — 상세 확인','err')}
-  }catch(e){document.getElementById('git-mft').innerHTML=`<button class="btn btn-ghost" onclick="closeOverlay('git-modal')">닫기</button>`;toast('서버 오류','err')}
+    else{
+      const e=document.getElementById('cerr');
+      e.style.display='block';
+      // pull --rebase 실패 시 상세 안내 추가
+      e.innerHTML=`${d.error||'오류 발생'}${d.error&&d.error.includes('rebase')?'<br><span style="color:var(--tx3);font-size:10px">터미널에서 git pull --rebase 후 다시 시도하세요.</span>':''}`;
+      toast('실패 — 로그 확인','err');
+    }
+  }catch(e){
+    document.getElementById('git-mft').innerHTML=`<button class="btn btn-ghost" onclick="closeOverlay('git-modal')">닫기</button>`;
+    toast('서버 오류','err');
+  }
 }
 function setStepRun(i){const el=document.getElementById(`st${i}`);if(!el)return;el.querySelector('.s-ico').innerHTML='<span class="spin">◌</span>'}
-function setStepDone(i,ok){const el=document.getElementById(`st${i}`);if(!el)return;const ico=el.querySelector('.s-ico');ico.className=`s-ico ${ok?'s-ok':'s-fail'}`;ico.textContent=ok?'✓':'✗';if(i+1<4)setStepRun(i+1)}
+function setStepDone(i,ok){const el=document.getElementById(`st${i}`);if(!el)return;const ico=el.querySelector('.s-ico');ico.className=`s-ico ${ok?'s-ok':'s-fail'}`;ico.textContent=ok?'✓':'✗'}
 
 /* ═══ POPOVER UTILS ═══ */
 function positionPop(id,anchor){

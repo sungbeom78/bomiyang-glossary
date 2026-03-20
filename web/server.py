@@ -358,9 +358,48 @@ def git_commit_push():
         log.warning(f"[commit] git commit error: {commit['stderr']}")
         return jsonify({"ok": False, "steps": steps, "error": "git commit 실패"})
 
-    # ── Step 4: git push ──────────────────────────────────────────────
+    # ── Step 4: git push (실패 시 pull --rebase 후 재시도) ───────────────
+    REJECT_SIGNALS = ("rejected", "fetch first", "non-fast-forward", "tip of your current branch is behind")
+
     push = run_git("push", timeout=30)
-    steps.append({"step": "git push", "ok": push["ok"], "output": push["stdout"] or push["stderr"]})
+    push_out = (push["stdout"] + push["stderr"]).lower()
+
+    if not push["ok"] and any(sig in push_out for sig in REJECT_SIGNALS):
+        # remote에 앞선 커밋이 있는 상황 → pull --rebase 후 재push
+        log.info("[commit] push rejected — trying git pull --rebase")
+
+        pull = run_git("pull", "--rebase", timeout=30)
+        pull_output = pull["stdout"] or pull["stderr"]
+        log.info(f"[commit] git pull --rebase ok={pull['ok']}")
+
+        steps.append({
+            "step":   "git pull --rebase",
+            "ok":     pull["ok"],
+            "output": pull_output,
+        })
+
+        if not pull["ok"]:
+            log.warning(f"[commit] git pull --rebase error: {pull['stderr']}")
+            return jsonify({
+                "ok": False, "steps": steps,
+                "error": "git pull --rebase 실패 — 충돌이 있을 수 있습니다. 수동으로 해결하세요.",
+            })
+
+        # rebase 성공 → 재push
+        push = run_git("push", timeout=30)
+        log.info(f"[commit] retry push ok={push['ok']}")
+        steps.append({
+            "step":   "git push (재시도)",
+            "ok":     push["ok"],
+            "output": push["stdout"] or push["stderr"],
+        })
+    else:
+        steps.append({
+            "step":   "git push",
+            "ok":     push["ok"],
+            "output": push["stdout"] or push["stderr"],
+        })
+
     log.info(f"[commit] step4 git push ok={push['ok']}")
     if not push["ok"]:
         log.warning(f"[commit] git push error: {push['stderr']}")
