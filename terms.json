@@ -946,9 +946,6 @@
       "description": "전체 시장의 상승/하락 강도 지표"
     },
     {
-      "id": "sector_score",
-      "ko": "섹터 점수",
-      "en": "Sector Score",
       "abbr_long": "sectorScore",
       "abbr_short": "SS",
       "categories": [
@@ -956,7 +953,10 @@
         "data",
         "class"
       ],
-      "description": "개별 섹터의 종합 점수"
+      "description": "개별 섹터의 종합 점수",
+      "en": "Sector Score",
+      "id": "sector_score",
+      "ko": "섹터 점수"
     },
     {
       "id": "stock_score",
@@ -1405,9 +1405,6 @@
       "description": "체결 틱 데이터 테이블"
     },
     {
-      "id": "db_sector_rankings",
-      "ko": "섹터 랭킹",
-      "en": "sector_rankings",
       "abbr_long": "sectorRankings",
       "abbr_short": "SR",
       "categories": [
@@ -1415,7 +1412,10 @@
         "infra",
         "selector"
       ],
-      "description": "섹터 랭킹 결과 저장 테이블"
+      "description": "섹터 랭킹 결과 저장 테이블로 사용됨",
+      "en": "sector_rankings",
+      "id": "db_sector_rankings",
+      "ko": "섹터 랭킹"
     },
     {
       "id": "db_signals",

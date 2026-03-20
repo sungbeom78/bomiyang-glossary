@@ -2,7 +2,7 @@
 
 > 프로젝트 전체 용어 사전. 코드·DB·설정·문서에서 용어 통일의 기준.
 >
-> **버전:** 1.0.0  |  **최종 수정:** 2026-03-19
+> **버전:** 1.0.0  |  **최종 수정:** 2026-03-20
 >
 > ⚠️  이 파일은 `terms.json`으로부터 자동 생성됩니다. 직접 편집하지 마세요.
 
@@ -200,7 +200,7 @@
 | 봉 (1분봉) | `Bar (1-min)` | `bar` | `BAR` | `data`, `class` | 일정 시간 단위(기본 1분)로 집계된 OHLCV 데이터 |
 | 상장일 | `listing_date` | `listingDate` | `LSTD` | `data` | 종목 상장 날짜 |
 | 상장주수 | `listed_shares` | `listedShares` | `LSHR` | `data` | 상장된 전체 주식 수 |
-| 섹터 랭킹 | `sector_rankings` | `sectorRankings` | `SR` | `data`, `infra`, `selector` | 섹터 랭킹 결과 저장 테이블 |
+| 섹터 랭킹 | `sector_rankings` | `sectorRankings` | `SR` | `data`, `infra`, `selector` | 섹터 랭킹 결과 저장 테이블로 사용됨 |
 | 시가 | `Open` | `open` | `O` | `data` | 봉의 시작 가격 |
 | 시가총액 | `market_cap` | `marketCap` | `MCAP` | `data` | 종목의 시가총액 |
 | 시그널 (DB) | `signals` | `signals` | `SIG` | `data`, `infra` | 생성된 시그널 이력 저장 테이블 |
