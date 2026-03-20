@@ -2872,6 +2872,18 @@
       "id": "cls_db_engine",
       "ko": "DB 엔진",
       "module": "storage/"
+    },
+    {
+      "id": "extendedMarketStart",
+      "ko": "확장장 시작",
+      "en": "Extended Market Start",
+      "abbr_long": "extendedMarketStart",
+      "abbr_short": "EXT_START",
+      "categories": [
+        "config",
+        "session"
+      ],
+      "description": "프리마켓·애프터마켓·대체거래소를 포함한 확장 거래 시간 시작"
     }
   ]
 }

@@ -276,6 +276,7 @@
 | 한국시장 활성 | `ENABLE_KR` | `enableKr` | `E_KR` | `config`, `market` | 한국주식 시장 활성화 여부 환경변수 |
 | 한국주식 셀렉터 | `kr_selector` | `krSelector` | `KR_SEL` | `config`, `selector` | 한국주식 종목 선정 설정 섹션 |
 | 한국주식 전략 | `kr_strategy` | `krStrategy` | `KR_STR` | `config`, `domain` | 한국주식 매매 전략 설정 섹션 |
+| 확장장 시작 | `Extended Market Start` | `extendedMarketStart` | `EXT_START` | `config`, `session` | 프리마켓·애프터마켓·대체거래소를 포함한 확장 거래 시간 시작 |
 
 ---
 
@@ -460,6 +461,7 @@
 | `EXEC` | `execution` | 실행 엔진 | `execution` |
 | `EXEC_ENG` | `ExecutionEngine` | 실행 엔진 | `ExecutionEngine` |
 | `EXIT` | `exit` | 청산 | `Exit / Close` |
+| `EXT_START` | `extendedMarketStart` | 확장장 시작 | `Extended Market Start` |
 | `E_KR` | `enableKr` | 한국시장 활성 | `ENABLE_KR` |
 | `E_MT5` | `enableMt5` | MT5 활성 | `ENABLE_MT5` |
 | `E_US` | `enableUs` | 미국시장 활성 | `ENABLE_US` |
