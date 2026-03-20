@@ -984,16 +984,16 @@
       "description": "가격 추세 강도를 수치화한 점수"
     },
     {
-      "id": "trading_value_score",
-      "ko": "거래대금 점수",
-      "en": "Trading Value Score",
       "abbr_long": "tradingValueScore",
       "abbr_short": "TVS",
       "categories": [
         "selector",
         "data"
       ],
-      "description": "거래대금 수준을 수치화한 점수"
+      "description": "거래대금 수준을 수치화한 점수",
+      "en": "Trading Value Score",
+      "id": "trading_value_score",
+      "ko": "거래대금 점수"
     },
     {
       "id": "exec_strength_score",
@@ -1151,15 +1151,15 @@
       "note": "abbr_short VOL은 volatilityScore와 혼동 주의. 컨텍스트로 구분."
     },
     {
-      "id": "trading_value",
-      "ko": "거래대금",
-      "en": "Trading Value",
       "abbr_long": "tradingValue",
       "abbr_short": "TV",
       "categories": [
         "data"
       ],
-      "description": "봉 기간 내 체결된 금액 (가격 × 거래량)"
+      "description": "봉 기간 내 체결된 금액 (가격 × 거래량)",
+      "en": "Trading Value",
+      "id": "trading_value",
+      "ko": "거래대금"
     },
     {
       "id": "vwap",
@@ -1381,16 +1381,16 @@
       "description": "업종 분류 마스터 테이블"
     },
     {
-      "id": "db_bars_1m",
-      "ko": "1분봉",
-      "en": "bars_1m",
       "abbr_long": "bars1m",
       "abbr_short": "B1M",
       "categories": [
         "data",
         "infra"
       ],
-      "description": "1분봉 OHLCV 데이터 테이블"
+      "description": "1분봉 OHLCV 데이터 테이블",
+      "en": "bars_1m",
+      "id": "db_bars_1m",
+      "ko": "1분봉"
     },
     {
       "id": "db_ticks",
@@ -1694,16 +1694,16 @@
       "description": "API 애플리케이션 시크릿 키"
     },
     {
-      "id": "account_no",
-      "ko": "계좌번호",
-      "en": "Account Number",
       "abbr_long": "accountNo",
       "abbr_short": "ACCT",
       "categories": [
         "account",
         "config"
       ],
-      "description": "브로커 계좌 번호"
+      "description": "브로커 계좌 번호, 일반적인 계좌번호 의미",
+      "en": "Account Number",
+      "id": "account_no",
+      "ko": "계좌번호"
     },
     {
       "id": "account_product",
@@ -1789,15 +1789,15 @@
       "description": "월간 거래 결과 요약 리포트"
     },
     {
-      "id": "ai_evaluation",
-      "ko": "AI 평가",
-      "en": "AI Evaluation",
       "abbr_long": "aiEvaluation",
       "abbr_short": "AI_EVAL",
       "categories": [
         "report"
       ],
-      "description": "AI가 생성한 거래 전략 평가 및 개선 제안"
+      "description": "AI가 생성한 거래 전략 평가 및 개선 제안",
+      "en": "AI Evaluation",
+      "id": "ai_evaluation",
+      "ko": "AI 평가"
     },
     {
       "id": "telegram_bot",
@@ -1825,16 +1825,16 @@
       "description": "시스템 이벤트(에러, 경고 등) 알림 발송"
     },
     {
-      "id": "trade_notifier",
-      "ko": "거래 알림",
-      "en": "Trade Notification",
       "abbr_long": "tradeNotifier",
       "abbr_short": "TRD_NTF",
       "categories": [
         "report",
         "order"
       ],
-      "description": "주문·체결 이벤트 알림 발송"
+      "description": "주문·체결 이벤트 알림 발송",
+      "en": "Trade Notification",
+      "id": "trade_notifier",
+      "ko": "거래 알림"
     },
     {
       "id": "mod_common",
@@ -2860,17 +2860,17 @@
       "module": "notifications/"
     },
     {
-      "id": "cls_db_engine",
-      "ko": "DB 엔진",
-      "en": "DBEngine",
       "abbr_long": "DBEngine",
       "abbr_short": "DB_ENG",
       "categories": [
         "class",
         "infra"
       ],
-      "description": "DB 연결 및 쿼리 추상화 Class (storage/)",
       "class_type": "Class",
+      "description": "DB 연결 및 쿼리 추상화 Class (storage/)",
+      "en": "DBEngine",
+      "id": "cls_db_engine",
+      "ko": "DB 엔진",
       "module": "storage/"
     }
   ]

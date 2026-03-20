@@ -226,7 +226,7 @@
 
 | 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
 |--------|--------|-----------|------------|----------|------|
-| 계좌번호 | `Account Number` | `accountNo` | `ACCT` | `account`, `config` | 브로커 계좌 번호 |
+| 계좌번호 | `Account Number` | `accountNo` | `ACCT` | `account`, `config` | 브로커 계좌 번호, 일반적인 계좌번호 의미 |
 | 모의투자 | `Mock Trading` | `mockTrading` | `MOCK` | `account`, `system` | 실제 자금 없이 시뮬레이션하는 거래 모드 ❌ NOT: `liveTrading` |
 | 미실현 손익 | `Unrealized P&L` | `unrealizedPnl` | `UR_PNL` | `account` | 보유 포지션의 평가 손익 (아직 청산 전) |
 | 상품코드 | `Account Product` | `accountProduct` | `APROD` | `account`, `config` | 계좌 상품 유형 코드 |
