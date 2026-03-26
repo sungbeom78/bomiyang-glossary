@@ -68,20 +68,20 @@
       "NOT": []
     },
     {
-      "id": "fx_futures",
-      "ko": "외환선물",
-      "en": "FX Futures",
+      "NOT": [
+        "MT5",
+        "mt5Futures",
+        "MT5_FUT"
+      ],
       "abbr_long": "fxFutures",
       "abbr_short": "FX_FUT",
       "categories": [
         "market"
       ],
       "description": "외환을 기초자산으로 하는 선물 상품. 접근 툴은 MT5이나, 시장 자체는 MT5가 아님.",
-      "NOT": [
-        "MT5",
-        "mt5Futures",
-        "MT5_FUT"
-      ],
+      "en": "FX Futures",
+      "id": "fx_futures",
+      "ko": "외환선물",
       "note": "기존 glossary.md의 mt5Futures/MT5_FUT는 툴명이 혼입된 것으로 fxFutures/FX_FUT로 정정"
     },
     {
@@ -2387,7 +2387,10 @@
         "config"
       ],
       "description": "프리마켓·애프터마켓·대체거래소(ATS)를 포함한 확장 거래 시간 시작",
-      "NOT": ["marketOpen", "MO"],
+      "NOT": [
+        "marketOpen",
+        "MO"
+      ],
       "note": "정규장 시작(marketOpen)과 구분. settings.yaml 키: extended_market_start"
     },
     {
@@ -2401,7 +2404,10 @@
         "config"
       ],
       "description": "프리마켓·애프터마켓·대체거래소(ATS)를 포함한 확장 거래 시간 종료",
-      "NOT": ["marketClose", "MC"],
+      "NOT": [
+        "marketClose",
+        "MC"
+      ],
       "note": "정규장 종료(marketClose)와 구분. settings.yaml 키: extended_market_end"
     },
     {
