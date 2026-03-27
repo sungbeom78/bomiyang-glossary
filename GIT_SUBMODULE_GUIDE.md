@@ -2,6 +2,7 @@
 ## — glossary 레포를 여러 프로젝트에서 공유하는 방법
 
 > Git을 처음 사용하시는 분을 위한 단계별 완전 가이드입니다.
+https://github.com/[내계정]/glossary.git
 
 ---
 
@@ -57,7 +58,7 @@ git config --global user.email "your@email.com"
 cd ~/projects
 
 # GitHub에서 클론
-git clone https://github.com/[내계정]/glossary.git
+git clone https://github.com/sungbeom78/bomiyang-glossary
 cd glossary
 ```
 
@@ -94,7 +95,7 @@ cd ~/projects/antigravity
 
 # submodule 추가
 # 형식: git submodule add [레포URL] [폴더명]
-git submodule add https://github.com/[내계정]/glossary.git glossary
+git submodule add https://github.com/sungbeom78/bomiyang-glossary glossary
 
 # 이제 폴더 구조:
 # antigravity/
@@ -265,3 +266,11 @@ chore: validate.py 검사 조건 추가
 ⚠️  terms.json은 항상 valid한 JSON이어야 합니다.
     편집 후 반드시 python3 validate.py 실행하세요.
 ```
+
+
+## 참고 - 잘못 추가한 sub module 삭제하기
+git rm -f [폴더명] ## 서브모듈 정보 제거 및 파일 삭제
+rm -rf .git/modules/[폴더명] ## Git 내부 설정 디렉토리 삭제 // Git은 서브모듈의 기록을 .git/modules 폴더 안에 보관합니다. 이 부분까지 지워야 나중에 같은 이름으로 서브모듈을 추가할 때 충돌이 발생하지 않습니다.
+git commit -m "Remove unwanted submodule: [폴더명]"
+#### 경로 끝에 슬래시(/)를 붙이지 마세요. 예를 들어 git rm -f folder/가 아니라 git rm -f folder와 같이 입력해야 정확히 인식됩니다.
+#### 복구 불가: git rm으로 삭제한 후 커밋하면 해당 서브모듈의 이력이 현재 브랜치에서 제거됩니다. 필요한 데이터가 있다면 미리 백업해 두세요.
