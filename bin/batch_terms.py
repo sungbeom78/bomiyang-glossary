@@ -243,7 +243,7 @@ def main():
 
     # ── 스캔 ──────────────────────────────────────────────────────
     exclude_dirs = parse_list(env.get('EXCLUDE_DIRS',
-        'backup,data,tests,tmp,glossary,.git,__pycache__,node_modules,.venv,venv'))
+        'backup,data,tests,lib_test,tmp,glossary,.git,__pycache__,node_modules,.venv,venv'))
     content_skip = parse_list(env.get('EXCLUDE_FILE_CONTENT', 'cache,doc,logs'))
     exclude_exts = {e if e.startswith('.') else f'.{e}'
                     for e in parse_list(env.get('EXCLUDE_EXTENSIONS', '.md,.txt,.log,.csv,.png,.jpg,.pdf'))}
