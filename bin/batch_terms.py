@@ -111,7 +111,7 @@ DEFAULT_MODELS = {
 }
 
 
-def _http_post(url: str, body: bytes, headers: dict, timeout: int = 60) -> dict:
+def _http_post(url: str, body: bytes, headers: dict, timeout: int = 120) -> dict:
     """HTTP POST 공통 함수. 503/429는 자동 재시도(최대 3회). 그 외 HTTPError는 상세 메시지 포함 예외."""
     import urllib.request
     import urllib.error
