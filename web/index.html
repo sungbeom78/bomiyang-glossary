@@ -413,6 +413,28 @@ tbody tr:hover .rmb,tbody tr.editing .rmb{opacity:1}
 
         <hr style="border:none;border-top:1px solid var(--ln);margin:14px 0">
         <p style="font-size:12px;color:var(--tx2);margin-bottom:10px">API 분석 실행 (스캔 후 진행하세요)</p>
+
+        <!-- API 종류 + 모델 선택 -->
+        <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:3px">
+            <label style="font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacing:.06em">API 종류</label>
+            <select id="batch-api-type" onchange="onBatchApiChange()"
+              style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 9px;color:var(--tx);font-family:var(--mono);font-size:11px">
+              <option value="">-- .env 설정 사용 --</option>
+              <option value="claude">Claude (Anthropic)</option>
+              <option value="openai">OpenAI</option>
+              <option value="google">Google (Gemini)</option>
+            </select>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:3px">
+            <label style="font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacing:.06em">모델</label>
+            <select id="batch-model"
+              style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 9px;color:var(--tx);font-family:var(--mono);font-size:11px;min-width:220px">
+              <option value="">-- .env 설정 사용 --</option>
+            </select>
+          </div>
+        </div>
+
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
           <button class="btn btn-ghost" onclick="doBatchDryRun()" id="dry-btn">▷ dry-run (토큰 예상치)</button>
           <button class="btn btn-ac"    onclick="doBatchRun()"    id="run-btn">▷ API 분석 실행</button>
@@ -856,6 +878,38 @@ async function clearLogs() {
 // ════════════════════════════════════════
 // BATCH
 // ════════════════════════════════════════
+const BATCH_MODELS = {
+  claude: [
+    {v:'claude-sonnet-4-20250514',  l:'Claude Sonnet 4 (기본)'},
+    {v:'claude-opus-4-6',           l:'Claude Opus 4.6'},
+    {v:'claude-haiku-4-5-20251001', l:'Claude Haiku 4.5'},
+  ],
+  openai: [
+    {v:'gpt-4o',      l:'GPT-4o (기본)'},
+    {v:'gpt-4o-mini', l:'GPT-4o mini'},
+    {v:'gpt-4-turbo', l:'GPT-4 Turbo'},
+  ],
+  google: [
+    {v:'gemini-2.0-flash',             l:'Gemini 2.0 Flash (기본)'},
+    {v:'gemini-1.5-pro',               l:'Gemini 1.5 Pro'},
+    {v:'gemini-1.5-flash',             l:'Gemini 1.5 Flash'},
+    {v:'gemini-2.5-pro-preview-03-25', l:'Gemini 2.5 Pro Preview'},
+  ],
+};
+
+function onBatchApiChange() {
+  const apiType  = document.getElementById('batch-api-type').value;
+  const modelSel = document.getElementById('batch-model');
+  modelSel.innerHTML = '<option value="">-- .env 설정 사용 --</option>';
+  if (apiType && BATCH_MODELS[apiType]) {
+    BATCH_MODELS[apiType].forEach(m => {
+      const o = document.createElement('option');
+      o.value = m.v; o.textContent = m.l;
+      modelSel.appendChild(o);
+    });
+  }
+}
+
 let _batchSelFile = null;   // 선택된 결과 파일명
 let _batchTerms   = [];     // 미리보기용 용어 목록
 
@@ -909,17 +963,24 @@ async function doBatchRun() {
 }
 
 async function _runBatch(dryRun) {
-  const outEl = document.getElementById('batch-output');
-  const runBtn = document.getElementById('run-btn');
-  const dryBtn = document.getElementById('dry-btn');
+  const outEl   = document.getElementById('batch-output');
+  const runBtn  = document.getElementById('run-btn');
+  const dryBtn  = document.getElementById('dry-btn');
+  const apiType = document.getElementById('batch-api-type')?.value || '';
+  const model   = document.getElementById('batch-model')?.value   || '';
+
   outEl.style.display = 'block';
   outEl.textContent = dryRun ? 'dry-run 중…' : 'API 분석 중… (시간이 걸릴 수 있습니다)';
   runBtn.disabled = dryBtn.disabled = true;
 
+  const payload = {dry_run: dryRun};
+  if (apiType) payload.api_type = apiType;
+  if (model)   payload.model    = model;
+
   try {
     const res = await fetch('/api/batch/run', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({dry_run: dryRun}),
+      body: JSON.stringify(payload),
     });
     const d = await res.json();
     outEl.textContent = d.output || '(출력 없음)';

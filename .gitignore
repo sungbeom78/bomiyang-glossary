@@ -1,5 +1,13 @@
 logs/
 *.log
 
+# ─── 환경 파일 및 민감 정보 ───────────────────────────────
+.env
+.env.*
+*.env
+!.env.example
+!.env.linux_main.example
+!.env.mt5_node.example
+
 # ─── Python ───────────────────────────────────────────────
 __pycache__/

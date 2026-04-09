@@ -34,11 +34,18 @@ from scan_terms import load_env, resolve_proj_root, parse_list, load_existing_te
 # .env 로드
 # ════════════════════════════════════════════════════════════════════
 
-def get_env() -> dict:
-    env_path = GLOSSARY_DIR.parent / ".env"
-    if not env_path.exists():
-        env_path = GLOSSARY_DIR / ".env"
-    return load_env(env_path)
+def get_env(env_arg: str = None) -> tuple:
+    """(.env 내용 dict, 로드한 경로 str) 반환."""
+    if env_arg:
+        env_path = Path(env_arg)
+    else:
+        # 프로젝트 루트(glossary 상위) 우선 → 없으면 glossary/ 안
+        env_path = GLOSSARY_DIR.parent / ".env"
+        if not env_path.exists():
+            env_path = GLOSSARY_DIR / ".env"
+
+    env = load_env(env_path)
+    return env, str(env_path)
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -96,10 +103,18 @@ def estimate_tokens(text: str) -> int:
 # API 호출
 # ════════════════════════════════════════════════════════════════════
 
-def call_claude(prompt: str, api_key: str, max_tokens: int) -> str:
+# API별 기본 모델
+DEFAULT_MODELS = {
+    "claude": "claude-sonnet-4-20250514",
+    "openai": "gpt-4o",
+    "google": "gemini-2.0-flash",
+}
+
+
+def call_claude(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
     import urllib.request
     body = json.dumps({
-        "model":      "claude-sonnet-4-20250514",
+        "model":      model,
         "max_tokens": max_tokens,
         "system":     SYSTEM_PROMPT,
         "messages":   [{"role": "user", "content": prompt}],
@@ -120,10 +135,10 @@ def call_claude(prompt: str, api_key: str, max_tokens: int) -> str:
     return data["content"][0]["text"]
 
 
-def call_openai(prompt: str, api_key: str, max_tokens: int) -> str:
+def call_openai(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
     import urllib.request
     body = json.dumps({
-        "model":      "gpt-4o",
+        "model":      model,
         "max_tokens": max_tokens,
         "messages": [
             {"role": "system",  "content": SYSTEM_PROMPT},
@@ -142,9 +157,8 @@ def call_openai(prompt: str, api_key: str, max_tokens: int) -> str:
     return data["choices"][0]["message"]["content"]
 
 
-def call_google(prompt: str, api_key: str, max_tokens: int) -> str:
+def call_google(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
     import urllib.request
-    model = "gemini-1.5-pro"
     body  = json.dumps({
         "contents": [{"parts": [{"text": SYSTEM_PROMPT + "\n\n" + prompt}]}],
         "generationConfig": {"maxOutputTokens": max_tokens},
@@ -159,21 +173,22 @@ def call_google(prompt: str, api_key: str, max_tokens: int) -> str:
 
 def call_api(prompt: str, env: dict, max_tokens: int) -> str:
     api_type = env.get("API_KEY_TYPE", "claude").lower()
+    model    = env.get("API_MODEL", "").strip() or DEFAULT_MODELS.get(api_type, "")
 
     if api_type == "claude":
-        key = env.get("ANTHROPIC_API_KEY","")
+        key = env.get("ANTHROPIC_API_KEY", "")
         if not key: raise ValueError("ANTHROPIC_API_KEY 가 .env에 없습니다")
-        return call_claude(prompt, key, max_tokens)
+        return call_claude(prompt, key, max_tokens, model)
 
     elif api_type == "openai":
-        key = env.get("OPENAI_API_KEY","")
+        key = env.get("OPENAI_API_KEY", "")
         if not key: raise ValueError("OPENAI_API_KEY 가 .env에 없습니다")
-        return call_openai(prompt, key, max_tokens)
+        return call_openai(prompt, key, max_tokens, model)
 
     elif api_type == "google":
-        key = env.get("GOOGLE_API_KEY","")
+        key = env.get("GOOGLE_API_KEY", "")
         if not key: raise ValueError("GOOGLE_API_KEY 가 .env에 없습니다")
-        return call_google(prompt, key, max_tokens)
+        return call_google(prompt, key, max_tokens, model)
 
     else:
         raise ValueError(f"지원하지 않는 API_KEY_TYPE: {api_type}")
@@ -236,10 +251,13 @@ def main():
     parser.add_argument("--env",     default=None,           help=".env 경로 직접 지정")
     args = parser.parse_args()
 
-    env = get_env()
+    env, env_loaded = get_env(args.env)
     proj_root  = resolve_proj_root(BIN_DIR, env)
     chunk_size = args.chunk or int(env.get("BATCH_CHUNK_SIZE", 300))
     max_tokens = int(env.get("MAX_OUTPUT_TOKENS", 4000))
+
+    api_type = env.get("API_KEY_TYPE", "claude").lower()
+    model    = env.get("API_MODEL", "").strip() or DEFAULT_MODELS.get(api_type, "")
 
     # ── 스캔 ──────────────────────────────────────────────────────
     exclude_dirs = parse_list(env.get('EXCLUDE_DIRS',
@@ -278,7 +296,9 @@ def main():
     est_out  = max_tokens * n_chunks
 
     print(f"\n[2/3] API 호출 계획")
-    print(f"      API 종류     : {env.get('API_KEY_TYPE','claude').upper()}")
+    print(f"      .env 경로    : {env_loaded}")
+    print(f"      API 종류     : {api_type.upper()}")
+    print(f"      모델         : {model}")
     print(f"      청크 수      : {n_chunks}개 ({chunk_size}개/청크)")
     print(f"      예상 입력    : ~{est_in:,} 토큰")
     print(f"      예상 출력(최대): ~{est_out:,} 토큰")

@@ -500,6 +500,8 @@ def batch_run():
     body     = request.get_json() or {}
     dry_run  = body.get("dry_run", False)
     chunk    = body.get("chunk", None)
+    api_type = body.get("api_type", "").strip()   # UI에서 선택한 API 종류
+    model    = body.get("model",    "").strip()   # UI에서 선택한 모델
 
     cmd_args = [sys.executable, str(BIN_DIR / "batch_terms.py")]
     if dry_run:
@@ -507,17 +509,46 @@ def batch_run():
     if chunk:
         cmd_args += ["--chunk", str(chunk)]
 
-    log.info(f"[batch] run 시작 dry_run={dry_run}")
-    result = run_subprocess(*cmd_args, timeout=300)
+    # UI 선택값을 환경변수로 주입 (비어있으면 .env 값 그대로 사용)
+    import os
+    extra_env = os.environ.copy()
+    extra_env['PYTHONIOENCODING'] = 'utf-8'
+    extra_env['PYTHONUTF8']       = '1'
+    if api_type:
+        extra_env['API_KEY_TYPE'] = api_type
+        log.info(f"[batch] API_KEY_TYPE 오버라이드: {api_type}")
+    if model:
+        extra_env['API_MODEL'] = model
+        log.info(f"[batch] API_MODEL 오버라이드: {model}")
 
-    combined = result["stdout"]
-    if result["stderr"]:
-        combined += "\n" + result["stderr"]
+    log.info(f"[batch] run 시작 dry_run={dry_run} api={api_type or '(.env)'} model={model or '(.env)'}")
 
-    log.info(f"[batch] run 완료 ok={result['ok']}")
+    import subprocess as _sp
+    try:
+        proc = _sp.run(
+            cmd_args,
+            cwd=str(REPO_ROOT),
+            capture_output=True,
+            encoding='utf-8',
+            errors='replace',
+            timeout=300,
+            env=extra_env,
+        )
+        combined = proc.stdout or ""
+        if proc.stderr:
+            combined += "\n" + proc.stderr
+        ok = proc.returncode == 0
+    except _sp.TimeoutExpired:
+        combined = "타임아웃 (300초 초과)"
+        ok = False
+    except Exception as e:
+        combined = str(e)
+        ok = False
+
+    log.info(f"[batch] run 완료 ok={ok}")
     return jsonify({
-        "ok":     result["ok"],
-        "output": combined or f"(returncode={result['code']})",
+        "ok":     ok,
+        "output": combined.strip() or f"(출력 없음)",
     })
 
 
