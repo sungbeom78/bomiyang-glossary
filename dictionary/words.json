@@ -1,0 +1,2467 @@
+{
+  "$schema": "schema/word.schema.json",
+  "version": "1.0.0",
+  "description": "BOM_TS 단어 사전 — 식별자의 최소 단위",
+  "words": [
+    {
+      "id": "1m",
+      "en": "1m",
+      "ko": "1분",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "1분 단위 시간 간격",
+      "not": []
+    },
+    {
+      "id": "account",
+      "en": "account",
+      "ko": "계좌",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "투자 계좌 정보",
+      "not": []
+    },
+    {
+      "id": "active",
+      "en": "active",
+      "ko": "활성",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "trading",
+      "description": "현재 진행 중이거나 활성화된 상태",
+      "not": []
+    },
+    {
+      "id": "adapter",
+      "en": "adapter",
+      "ko": "어댑터",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "외부 API 연결 어댑터",
+      "not": []
+    },
+    {
+      "id": "adapters",
+      "en": "adapters",
+      "ko": "어댑터들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "브로커 연결 어댑터 모음",
+      "not": []
+    },
+    {
+      "id": "after",
+      "en": "after",
+      "ko": "이후",
+      "abbr": null,
+      "pos": "adv",
+      "domain": "system",
+      "description": "특정 시각 이후",
+      "not": []
+    },
+    {
+      "id": "app",
+      "en": "app",
+      "ko": "앱",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "애플리케이션 키",
+      "not": []
+    },
+    {
+      "id": "auth",
+      "en": "authentication",
+      "ko": "인증",
+      "abbr": "AUTH",
+      "pos": "noun",
+      "domain": "infra",
+      "description": "브로커 API 인증 토큰 발급·갱신 (KIS OAuth, Upbit JWT 등)",
+      "not": []
+    },
+    {
+      "id": "backtest",
+      "en": "backtest",
+      "ko": "백테스트",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "과거 데이터 기반 전략 검증",
+      "not": []
+    },
+    {
+      "id": "balance",
+      "en": "balance",
+      "ko": "잔고",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "계좌의 현재 자산 잔고",
+      "not": []
+    },
+    {
+      "id": "bar",
+      "en": "bar",
+      "ko": "봉",
+      "abbr": "BAR",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "OHLCV 캔들(봉) 데이터. M1 기준.",
+      "not": []
+    },
+    {
+      "id": "bars",
+      "en": "bars",
+      "ko": "캔들 데이터",
+      "abbr": "BARS",
+      "pos": "noun",
+      "domain": "market",
+      "description": "시계열 가격 데이터 (시가, 고가, 저가, 종가)",
+      "not": []
+    },
+    {
+      "id": "bot",
+      "en": "bot",
+      "ko": "봇",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "자동화 프로그램",
+      "not": []
+    },
+    {
+      "id": "bounce",
+      "en": "bounce",
+      "ko": "반등",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "하락 후 일시적 상승",
+      "not": []
+    },
+    {
+      "id": "breakout",
+      "en": "breakout",
+      "ko": "돌파",
+      "abbr": "BRK",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "직전 N봉 고가를 현재가가 상향 돌파하는 진입 패턴",
+      "not": []
+    },
+    {
+      "id": "bridge",
+      "en": "bridge",
+      "ko": "브릿지",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "두 시스템을 연결하는 컴포넌트",
+      "not": []
+    },
+    {
+      "id": "buy",
+      "en": "buy",
+      "ko": "매수",
+      "abbr": "BUY",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "매수 주문",
+      "not": []
+    },
+    {
+      "id": "cancelled",
+      "en": "cancelled",
+      "ko": "취소",
+      "abbr": "CNCL",
+      "pos": "noun",
+      "domain": "system",
+      "description": "주문 취소됨",
+      "not": []
+    },
+    {
+      "id": "candidates",
+      "en": "candidates",
+      "ko": "후보들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "general",
+      "description": "선정 대상 후보 목록",
+      "not": []
+    },
+    {
+      "id": "candle",
+      "en": "candle",
+      "ko": "캔들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "캔들스틱 차트 봉",
+      "not": []
+    },
+    {
+      "id": "capital",
+      "en": "capital",
+      "ko": "자본금",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "투자 시스템의 총 자본금",
+      "not": []
+    },
+    {
+      "id": "categories",
+      "en": "categories",
+      "ko": "분류",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "종목 또는 테마의 분류 정보",
+      "not": []
+    },
+    {
+      "id": "cfg",
+      "en": "cfg",
+      "ko": "설정",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "설정 키 접두사",
+      "not": []
+    },
+    {
+      "id": "chart",
+      "en": "chart",
+      "ko": "차트",
+      "abbr": "CHART",
+      "pos": "noun",
+      "domain": "system",
+      "description": "시각화를 위한 차트 설정",
+      "not": []
+    },
+    {
+      "id": "classification",
+      "en": "classification",
+      "ko": "분류",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "종목 또는 시장 상황에 대한 분류 결과",
+      "not": []
+    },
+    {
+      "id": "classify",
+      "en": "classify",
+      "ko": "분류",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "데이터를 분류하는 기능",
+      "not": []
+    },
+    {
+      "id": "close",
+      "en": "close",
+      "ko": "종가",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "봉의 마지막 가격",
+      "not": []
+    },
+    {
+      "id": "closed",
+      "en": "closed",
+      "ko": "종료됨",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "주문, 거래 또는 프로세스가 종료되었음을 나타내는 상태",
+      "not": []
+    },
+    {
+      "id": "cls",
+      "en": "cls",
+      "ko": "클래스",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "클래스 정의 접두사",
+      "not": []
+    },
+    {
+      "id": "cluster",
+      "en": "cluster",
+      "ko": "클러스터",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "데이터 클러스터링 결과 또는 구조",
+      "not": []
+    },
+    {
+      "id": "clustering",
+      "en": "clustering",
+      "ko": "클러스터링",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "데이터를 클러스터로 그룹화하는 설정",
+      "not": []
+    },
+    {
+      "id": "code",
+      "en": "code",
+      "ko": "코드",
+      "abbr": "CODE",
+      "pos": "noun",
+      "domain": "market",
+      "description": "종목 코드 또는 기타 식별 코드",
+      "not": []
+    },
+    {
+      "id": "collector",
+      "en": "collector",
+      "ko": "수집기",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "데이터를 수집하는 컴포넌트",
+      "not": []
+    },
+    {
+      "id": "collectors",
+      "en": "collectors",
+      "ko": "수집기들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "데이터 수집 컴포넌트 모음",
+      "not": []
+    },
+    {
+      "id": "colors",
+      "en": "colors",
+      "ko": "색상",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "UI 또는 보고서에 사용되는 색상 설정",
+      "not": []
+    },
+    {
+      "id": "command",
+      "en": "command",
+      "ko": "명령어",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시스템 제어를 위한 명령어 설정",
+      "not": []
+    },
+    {
+      "id": "commission",
+      "en": "commission",
+      "ko": "수수료",
+      "abbr": "COMM",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "거래 수수료 (거래당 비용)",
+      "not": []
+    },
+    {
+      "id": "common",
+      "en": "common",
+      "ko": "공통",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "infra",
+      "description": "전 모듈 공유 공통 코드",
+      "not": []
+    },
+    {
+      "id": "complete",
+      "en": "complete",
+      "ko": "완료",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "작업 또는 프로세스가 완료되었음을 나타내는 상태",
+      "not": []
+    },
+    {
+      "id": "completed",
+      "en": "completed",
+      "ko": "완료됨",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "주문, 작업 또는 프로세스가 완료되었음을 나타내는 상태",
+      "not": []
+    },
+    {
+      "id": "condition",
+      "en": "condition",
+      "ko": "조건",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "매매 진입/청산 또는 필터링에 사용되는 조건",
+      "not": []
+    },
+    {
+      "id": "confidence",
+      "en": "confidence",
+      "ko": "신뢰도",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "신호 또는 예측의 신뢰 수준",
+      "not": []
+    },
+    {
+      "id": "config",
+      "en": "config",
+      "ko": "설정",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시스템 설정값",
+      "not": []
+    },
+    {
+      "id": "confirmed",
+      "en": "confirmed",
+      "ko": "확인됨",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "어떤 이벤트나 상태가 최종적으로 확인되었음을 나타내는 플래그",
+      "not": []
+    },
+    {
+      "id": "connected",
+      "en": "connected",
+      "ko": "연결됨",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "서비스 또는 시스템과의 연결 상태",
+      "not": []
+    },
+    {
+      "id": "consecutive",
+      "en": "consecutive",
+      "ko": "연속",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "trading",
+      "description": "연속으로 발생하는",
+      "not": []
+    },
+    {
+      "id": "crypto",
+      "en": "cryptocurrency",
+      "ko": "코인거래",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "암호화폐 거래 시장 (업비트 KRW 마켓)",
+      "not": []
+    },
+    {
+      "id": "daily",
+      "en": "daily",
+      "ko": "일간",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "general",
+      "description": "하루 단위",
+      "not": []
+    },
+    {
+      "id": "dashboard",
+      "en": "dashboard",
+      "ko": "대시보드",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "모니터링 UI",
+      "not": []
+    },
+    {
+      "id": "db",
+      "en": "db",
+      "ko": "데이터베이스",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "데이터베이스 접두사",
+      "not": []
+    },
+    {
+      "id": "deny",
+      "en": "deny",
+      "ko": "거부",
+      "abbr": null,
+      "pos": "verb",
+      "domain": "system",
+      "description": "진입 조건 불충족으로 거부",
+      "not": []
+    },
+    {
+      "id": "direction",
+      "en": "direction",
+      "ko": "방향",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "시그널의 매수/매도 방향",
+      "not": []
+    },
+    {
+      "id": "disabled",
+      "en": "disabled",
+      "ko": "비활성화",
+      "abbr": "OFF",
+      "pos": "noun",
+      "domain": "system",
+      "description": "기능 비활성화 상태",
+      "not": []
+    },
+    {
+      "id": "dsn",
+      "en": "dsn",
+      "ko": "접속 문자열",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "Database Source Name",
+      "not": []
+    },
+    {
+      "id": "enable",
+      "en": "enable",
+      "ko": "활성화",
+      "abbr": null,
+      "pos": "verb",
+      "domain": "infra",
+      "description": "기능을 켜는 설정",
+      "not": []
+    },
+    {
+      "id": "enabled",
+      "en": "enabled",
+      "ko": "활성화",
+      "abbr": "ON",
+      "pos": "noun",
+      "domain": "system",
+      "description": "기능 활성화 상태",
+      "not": []
+    },
+    {
+      "id": "end",
+      "en": "end",
+      "ko": "종료",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "종료 시각 또는 동작",
+      "not": []
+    },
+    {
+      "id": "engine",
+      "en": "engine",
+      "ko": "엔진",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시스템의 핵심 처리 로직을 담당하는 부분",
+      "not": []
+    },
+    {
+      "id": "entry",
+      "en": "entry",
+      "ko": "진입",
+      "abbr": "ENT",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "포지션 진입 (매수/매도 시작)",
+      "not": []
+    },
+    {
+      "id": "env",
+      "en": "env",
+      "ko": "환경변수",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "환경변수 접두사",
+      "not": []
+    },
+    {
+      "id": "eod",
+      "en": "eod",
+      "ko": "장마감",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "End of Day 장 마감 시점",
+      "not": []
+    },
+    {
+      "id": "equity",
+      "en": "equity",
+      "ko": "자본",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "계좌의 현재 자본 값",
+      "not": []
+    },
+    {
+      "id": "error",
+      "en": "error",
+      "ko": "오류",
+      "abbr": "ERR",
+      "pos": "noun",
+      "domain": "system",
+      "description": "오류 발생 상태",
+      "not": []
+    },
+    {
+      "id": "event",
+      "en": "event",
+      "ko": "이벤트",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시스템 내 발생 사건",
+      "not": []
+    },
+    {
+      "id": "events",
+      "en": "events",
+      "ko": "이벤트들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "복수의 이벤트",
+      "not": []
+    },
+    {
+      "id": "exchange",
+      "en": "exchange",
+      "ko": "거래소",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "거래가 이루어지는 금융 거래소",
+      "not": []
+    },
+    {
+      "id": "exec",
+      "en": "exec",
+      "ko": "실행",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "실행 또는 체결 강도",
+      "not": []
+    },
+    {
+      "id": "execution",
+      "en": "execution",
+      "ko": "실행",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "주문 실행 및 관리 관련 시스템",
+      "not": []
+    },
+    {
+      "id": "exit",
+      "en": "exit",
+      "ko": "청산",
+      "abbr": "EXIT",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "포지션 청산 (반대매매로 종료)",
+      "not": []
+    },
+    {
+      "id": "extended",
+      "en": "extended",
+      "ko": "확장",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "system",
+      "description": "기본 범위를 넘어 확장된",
+      "not": []
+    },
+    {
+      "id": "failed",
+      "en": "failed",
+      "ko": "실패",
+      "abbr": "FAIL",
+      "pos": "noun",
+      "domain": "system",
+      "description": "시스템 오류로 처리 실패",
+      "not": []
+    },
+    {
+      "id": "fill",
+      "en": "fill",
+      "ko": "체결",
+      "abbr": "FILL",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "주문이 실제 체결된 결과 (가격·수량·시간 포함)",
+      "not": []
+    },
+    {
+      "id": "filled",
+      "en": "filled",
+      "ko": "체결 완료",
+      "abbr": "FLLD",
+      "pos": "noun",
+      "domain": "system",
+      "description": "주문 전량 체결 완료",
+      "not": []
+    },
+    {
+      "id": "fills",
+      "en": "fills",
+      "ko": "체결들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "체결 이력 테이블",
+      "not": []
+    },
+    {
+      "id": "filter",
+      "en": "filter",
+      "ko": "필터",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "조건에 맞게 거르는 컴포넌트",
+      "not": []
+    },
+    {
+      "id": "flat",
+      "en": "flat",
+      "ko": "플랫",
+      "abbr": "FLAT",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "포지션 없음 (현금 보유 상태)",
+      "not": []
+    },
+    {
+      "id": "flatten",
+      "en": "flatten",
+      "ko": "청산",
+      "abbr": null,
+      "pos": "verb",
+      "domain": "trading",
+      "description": "모든 포지션을 닫는 행위",
+      "not": []
+    },
+    {
+      "id": "force",
+      "en": "force",
+      "ko": "강제",
+      "abbr": null,
+      "pos": "verb",
+      "domain": "general",
+      "description": "조건과 무관하게 강제 실행",
+      "not": []
+    },
+    {
+      "id": "futures",
+      "en": "futures",
+      "ko": "선물",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "선물 상품",
+      "not": []
+    },
+    {
+      "id": "fx",
+      "en": "fx",
+      "ko": "외환",
+      "abbr": null,
+      "pos": "prefix",
+      "domain": "market",
+      "description": "외환 시장 prefix",
+      "not": []
+    },
+    {
+      "id": "generator",
+      "en": "generator",
+      "ko": "생성기",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "결과물을 생성하는 컴포넌트",
+      "not": []
+    },
+    {
+      "id": "goldenkey",
+      "en": "goldenkey",
+      "ko": "골든키",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "특정 종목 선정 기준 또는 신호",
+      "not": []
+    },
+    {
+      "id": "guard",
+      "en": "guard",
+      "ko": "가드",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "프로세스 보호 컴포넌트",
+      "not": []
+    },
+    {
+      "id": "halted",
+      "en": "halted",
+      "ko": "중단됨",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "거래 또는 시스템이 일시적으로 중단된 상태",
+      "not": []
+    },
+    {
+      "id": "handlers",
+      "en": "handlers",
+      "ko": "핸들러",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "특정 이벤트를 처리하는 객체 또는 함수들의 집합",
+      "not": []
+    },
+    {
+      "id": "health",
+      "en": "health",
+      "ko": "상태",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시스템 컴포넌트의 정상 작동 여부 (헬스 체크)",
+      "not": []
+    },
+    {
+      "id": "heartbeat",
+      "en": "heartbeat",
+      "ko": "하트비트",
+      "abbr": "HB",
+      "pos": "noun",
+      "domain": "infra",
+      "description": "시스템 생존 신호. 주기적으로 Telegram system 봇에 전송.",
+      "not": []
+    },
+    {
+      "id": "history",
+      "en": "history",
+      "ko": "히스토리",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "과거 데이터 또는 이벤트 기록",
+      "not": []
+    },
+    {
+      "id": "id",
+      "en": "id",
+      "ko": "식별자",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "고유 식별자",
+      "not": []
+    },
+    {
+      "id": "in",
+      "en": "in",
+      "ko": "내에서",
+      "abbr": null,
+      "pos": "adv",
+      "domain": "general",
+      "description": "시간 내, 범위 내",
+      "not": []
+    },
+    {
+      "id": "info",
+      "en": "info",
+      "ko": "정보",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "메타 정보",
+      "not": []
+    },
+    {
+      "id": "intent",
+      "en": "intent",
+      "ko": "의도",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "실행 전 주문 의사결정 객체",
+      "not": []
+    },
+    {
+      "id": "interval",
+      "en": "interval",
+      "ko": "간격",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "데이터 수집, 분석 또는 작업 실행 간격",
+      "not": []
+    },
+    {
+      "id": "intraday",
+      "en": "intraday",
+      "ko": "당일 거래",
+      "abbr": "INTRA",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "당일 내 진입·청산을 완료하는 거래 (데이트레이딩)",
+      "not": []
+    },
+    {
+      "id": "key",
+      "en": "key",
+      "ko": "키",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "인증 키",
+      "not": []
+    },
+    {
+      "id": "kill",
+      "en": "kill",
+      "ko": "킬",
+      "abbr": null,
+      "pos": "verb",
+      "domain": "system",
+      "description": "강제 종료 또는 비활성화",
+      "not": []
+    },
+    {
+      "id": "kis",
+      "en": "korea investment & securities api",
+      "ko": "KIS API",
+      "abbr": "KIS",
+      "pos": "noun",
+      "domain": "infra",
+      "description": "한국투자증권 REST API. 한국주식·미국주식 주문/시세 브로커.",
+      "not": [
+        "KR_STOCK",
+        "krStock"
+      ]
+    },
+    {
+      "id": "kosdaq",
+      "en": "kosdaq",
+      "ko": "코스닥",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "한국 코스닥 시장",
+      "not": [
+        "KOSPI"
+      ]
+    },
+    {
+      "id": "kospi",
+      "en": "kospi",
+      "ko": "코스피",
+      "abbr": "KOSPI",
+      "pos": "noun",
+      "domain": "market",
+      "description": "한국 종합주가지수 (Korea Composite Stock Price Index)",
+      "not": [
+        "KOSDAQ"
+      ]
+    },
+    {
+      "id": "kr",
+      "en": "kr",
+      "ko": "한국",
+      "abbr": null,
+      "pos": "prefix",
+      "domain": "market",
+      "description": "한국 시장 prefix",
+      "not": []
+    },
+    {
+      "id": "leader",
+      "en": "leader",
+      "ko": "대장",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "섹터를 주도하는 종목",
+      "not": []
+    },
+    {
+      "id": "limit",
+      "en": "limit",
+      "ko": "한도/지정가",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "가격 제한 또는 지정가 주문",
+      "not": []
+    },
+    {
+      "id": "live",
+      "en": "live",
+      "ko": "실전",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "trading",
+      "description": "실제 자금으로 진행하는",
+      "not": []
+    },
+    {
+      "id": "local",
+      "en": "local",
+      "ko": "로컬",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "system",
+      "description": "원격이 아닌 로컬 환경",
+      "not": []
+    },
+    {
+      "id": "log",
+      "en": "log",
+      "ko": "로그",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시스템 이벤트 기록",
+      "not": []
+    },
+    {
+      "id": "logs",
+      "en": "logs",
+      "ko": "로그들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "로그 저장 폴더",
+      "not": []
+    },
+    {
+      "id": "long",
+      "en": "long",
+      "ko": "롱",
+      "abbr": "LONG",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "매수 포지션 방향 (가격 상승 기대)",
+      "not": []
+    },
+    {
+      "id": "loss",
+      "en": "loss",
+      "ko": "손실",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "거래에서 발생한 손실",
+      "not": []
+    },
+    {
+      "id": "lower",
+      "en": "lower",
+      "ko": "아래",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "market",
+      "description": "아래쪽에 위치한",
+      "not": []
+    },
+    {
+      "id": "main",
+      "en": "main execution",
+      "ko": "메인 실행",
+      "abbr": "MAIN",
+      "pos": "noun",
+      "domain": "system",
+      "description": "",
+      "not": []
+    },
+    {
+      "id": "manager",
+      "en": "manager",
+      "ko": "관리자",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "",
+      "not": []
+    },
+    {
+      "id": "manual",
+      "en": "manual",
+      "ko": "수동",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "",
+      "not": []
+    },
+    {
+      "id": "margin",
+      "en": "margin",
+      "ko": "증거금",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "포지션 유지를 위한 담보금",
+      "not": []
+    },
+    {
+      "id": "market",
+      "en": "market",
+      "ko": "시장",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "거래가 이루어지는 시장",
+      "not": []
+    },
+    {
+      "id": "master",
+      "en": "master",
+      "ko": "마스터",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "기준 데이터 테이블",
+      "not": []
+    },
+    {
+      "id": "max",
+      "en": "max",
+      "ko": "최대",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "general",
+      "description": "최대값",
+      "not": []
+    },
+    {
+      "id": "meta",
+      "en": "meta information",
+      "ko": "메타 정보",
+      "abbr": "META",
+      "pos": "noun",
+      "domain": "market",
+      "description": "",
+      "not": []
+    },
+    {
+      "id": "method",
+      "en": "method",
+      "ko": "방법",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "",
+      "not": []
+    },
+    {
+      "id": "mock",
+      "en": "mock",
+      "ko": "모의",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "trading",
+      "description": "실제 자금 없이 시뮬레이션하는",
+      "not": []
+    },
+    {
+      "id": "mod",
+      "en": "mod",
+      "ko": "모듈",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "모듈/폴더 접두사",
+      "not": []
+    },
+    {
+      "id": "momentum",
+      "en": "momentum",
+      "ko": "모멘텀",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "가격 추세의 강도",
+      "not": []
+    },
+    {
+      "id": "mt5",
+      "en": "metatrader 5",
+      "ko": "MT5",
+      "abbr": "MT5",
+      "pos": "noun",
+      "domain": "infra",
+      "description": "해외선물 접근 플랫폼. Windows 전용. 시장명이 아닌 툴명.",
+      "not": [
+        "fxFutures",
+        "FX_FUT"
+      ]
+    },
+    {
+      "id": "name",
+      "en": "name",
+      "ko": "이름",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "식별 이름",
+      "not": []
+    },
+    {
+      "id": "no",
+      "en": "no",
+      "ko": "금지",
+      "abbr": null,
+      "pos": "prefix",
+      "domain": "system",
+      "description": "부정 또는 금지를 나타내는 접두사",
+      "not": []
+    },
+    {
+      "id": "node",
+      "en": "node",
+      "ko": "노드",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "분산 환경의 개별 머신/컨테이너",
+      "not": []
+    },
+    {
+      "id": "notifications",
+      "en": "notifications",
+      "ko": "알림들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "알림 발송 컴포넌트 모음",
+      "not": []
+    },
+    {
+      "id": "notifier",
+      "en": "notifier",
+      "ko": "알리미",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "알림 발송 컴포넌트",
+      "not": []
+    },
+    {
+      "id": "offline",
+      "en": "offline",
+      "ko": "오프라인",
+      "abbr": "OFLN",
+      "pos": "noun",
+      "domain": "system",
+      "description": "네트워크/서비스 미연결 상태",
+      "not": []
+    },
+    {
+      "id": "online",
+      "en": "online",
+      "ko": "온라인",
+      "abbr": "ONLN",
+      "pos": "noun",
+      "domain": "system",
+      "description": "네트워크/서비스 연결 상태",
+      "not": []
+    },
+    {
+      "id": "open",
+      "en": "open",
+      "ko": "시가",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "봉의 시작 가격",
+      "not": []
+    },
+    {
+      "id": "orchestrator",
+      "en": "orchestrator",
+      "ko": "오케스트레이터",
+      "abbr": "ORCH",
+      "pos": "noun",
+      "domain": "infra",
+      "description": "전체 거래 루프를 조율하는 최상위 실행 컨트롤러",
+      "not": []
+    },
+    {
+      "id": "order",
+      "en": "order",
+      "ko": "주문",
+      "abbr": "ORD",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "브로커에 전송된 실제 주문 객체",
+      "not": []
+    },
+    {
+      "id": "orderbook",
+      "en": "orderbook",
+      "ko": "호가",
+      "abbr": "OB",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "매수·매도 호가창 스냅샷",
+      "not": []
+    },
+    {
+      "id": "orders",
+      "en": "orders",
+      "ko": "주문들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "주문 이력 테이블",
+      "not": []
+    },
+    {
+      "id": "overnight",
+      "en": "overnight",
+      "ko": "오버나이트",
+      "abbr": "OVNT",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "당일 청산하지 않고 다음날까지 보유하는 거래",
+      "not": []
+    },
+    {
+      "id": "partial",
+      "en": "partial",
+      "ko": "부분",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "trading",
+      "description": "전체 중 일부만 처리된",
+      "not": []
+    },
+    {
+      "id": "pending",
+      "en": "pending",
+      "ko": "대기",
+      "abbr": "PEND",
+      "pos": "noun",
+      "domain": "system",
+      "description": "주문 생성 후 브로커 전송 전 대기 상태",
+      "not": []
+    },
+    {
+      "id": "personality",
+      "en": "personality",
+      "ko": "성격",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "봉의 형태적 특성",
+      "not": []
+    },
+    {
+      "id": "pg",
+      "en": "pg",
+      "ko": "PostgreSQL",
+      "abbr": null,
+      "pos": "proper",
+      "domain": "infra",
+      "description": "PostgreSQL 데이터베이스",
+      "not": []
+    },
+    {
+      "id": "pnl",
+      "en": "pnl",
+      "ko": "손익",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "Profit and Loss 손익",
+      "not": []
+    },
+    {
+      "id": "port",
+      "en": "port",
+      "ko": "포트",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "네트워크 포트 번호",
+      "not": []
+    },
+    {
+      "id": "position",
+      "en": "position",
+      "ko": "포지션",
+      "abbr": "POS",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "현재 보유 중인 종목/계약 상태 (수량, 평균단가, 미실현손익)",
+      "not": []
+    },
+    {
+      "id": "positions",
+      "en": "positions",
+      "ko": "포지션들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "복수의 포지션",
+      "not": []
+    },
+    {
+      "id": "postgresql",
+      "en": "postgresql",
+      "ko": "PostgreSQL",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "System of Record. 모든 거래·시세·계좌 데이터의 최종 진실 저장소.",
+      "not": []
+    },
+    {
+      "id": "process",
+      "en": "process",
+      "ko": "프로세스",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "실행 중인 프로그램",
+      "not": []
+    },
+    {
+      "id": "profit",
+      "en": "profit",
+      "ko": "수익",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "거래에서 발생한 이익",
+      "not": []
+    },
+    {
+      "id": "project",
+      "en": "project",
+      "ko": "프로젝트",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "프로젝트 루트",
+      "not": []
+    },
+    {
+      "id": "proxy",
+      "en": "proxy",
+      "ko": "프록시",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "통신을 중계하는 서버",
+      "not": []
+    },
+    {
+      "id": "pullback",
+      "en": "pullback",
+      "ko": "눌림",
+      "abbr": "PB",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "상승 추세 중 일시적으로 되돌리는 구간에서 진입하는 패턴",
+      "not": []
+    },
+    {
+      "id": "ranker",
+      "en": "ranker",
+      "ko": "랭커",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "순위를 산정하는 컴포넌트",
+      "not": []
+    },
+    {
+      "id": "ranking",
+      "en": "ranking",
+      "ko": "랭킹",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "순위 결과",
+      "not": []
+    },
+    {
+      "id": "rankings",
+      "en": "rankings",
+      "ko": "랭킹들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "복수의 순위 결과",
+      "not": []
+    },
+    {
+      "id": "realized",
+      "en": "realized",
+      "ko": "실현",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "trading",
+      "description": "청산 완료되어 확정된",
+      "not": []
+    },
+    {
+      "id": "realtime",
+      "en": "realtime",
+      "ko": "실시간",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "market",
+      "description": "실시간으로 처리되는",
+      "not": []
+    },
+    {
+      "id": "reboot",
+      "en": "reboot",
+      "ko": "재시작",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시스템 정기 재시작",
+      "not": []
+    },
+    {
+      "id": "record",
+      "en": "record",
+      "ko": "기록",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "개별 거래 이력",
+      "not": []
+    },
+    {
+      "id": "redis",
+      "en": "redis",
+      "ko": "Redis",
+      "abbr": "REDIS",
+      "pos": "noun",
+      "domain": "infra",
+      "description": "실시간 캐시 + 이벤트 스트림. DB가 원본이며 Redis는 파생값.",
+      "not": []
+    },
+    {
+      "id": "reentry",
+      "en": "re-entry",
+      "ko": "재진입",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "거래에서 재진입할 수 있는지 여부를 결정하는 설정.",
+      "not": []
+    },
+    {
+      "id": "rejected",
+      "en": "rejected",
+      "ko": "거절",
+      "abbr": "RJCT",
+      "pos": "noun",
+      "domain": "system",
+      "description": "브로커에 의해 주문 거절됨",
+      "not": []
+    },
+    {
+      "id": "relaxed",
+      "en": "relaxed",
+      "ko": "완화된",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "특정 조건을 완화하여 적용하는 설정.",
+      "not": []
+    },
+    {
+      "id": "replay",
+      "en": "replay",
+      "ko": "리플레이",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "과거 데이터 재생 시뮬레이션",
+      "not": []
+    },
+    {
+      "id": "report",
+      "en": "report",
+      "ko": "리포트",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "보고서",
+      "not": []
+    },
+    {
+      "id": "reporting",
+      "en": "reporting",
+      "ko": "리포팅",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "보고서 생성 설정",
+      "not": []
+    },
+    {
+      "id": "risk",
+      "en": "risk",
+      "ko": "리스크",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "손실 가능성 또는 위험도",
+      "not": []
+    },
+    {
+      "id": "role",
+      "en": "role",
+      "ko": "역할",
+      "abbr": "ROLE",
+      "pos": "noun",
+      "domain": "system",
+      "description": "서비스 또는 노드의 역할 (primary/replica 등)",
+      "not": []
+    },
+    {
+      "id": "root",
+      "en": "root",
+      "ko": "루트",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "최상위 경로",
+      "not": []
+    },
+    {
+      "id": "runner",
+      "en": "replay",
+      "ko": "실행기",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "작업을 실행하는 컴포넌트",
+      "not": []
+    },
+    {
+      "id": "running",
+      "en": "running",
+      "ko": "실행 중",
+      "abbr": "RUN",
+      "pos": "noun",
+      "domain": "system",
+      "description": "서비스 실행 중 상태",
+      "not": []
+    },
+    {
+      "id": "runtime",
+      "en": "runtime",
+      "ko": "런타임",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "프로그램이 실행되는 환경 또는 시간.",
+      "not": []
+    },
+    {
+      "id": "scanner",
+      "en": "scanner",
+      "ko": "스캐너",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시장이나 종목을 탐색하고 분석하는 모듈 또는 기능.",
+      "not": []
+    },
+    {
+      "id": "scheduler",
+      "en": "scheduler",
+      "ko": "스케줄러",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "작업 예약 및 관리를 담당하는 시스템 컴포넌트 또는 설정.",
+      "not": []
+    },
+    {
+      "id": "scope",
+      "en": "scope",
+      "ko": "범위",
+      "abbr": "SCOPE",
+      "pos": "noun",
+      "domain": "system",
+      "description": "설정이나 작업이 적용되는 범위를 정의하는 설정.",
+      "not": []
+    },
+    {
+      "id": "score",
+      "en": "score",
+      "ko": "점수",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "특정 지표의 수치화 결과",
+      "not": []
+    },
+    {
+      "id": "scorer",
+      "en": "scorer",
+      "ko": "스코어러",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "종목 또는 신호에 점수를 부여하는 모듈.",
+      "not": []
+    },
+    {
+      "id": "scoring",
+      "en": "scoring",
+      "ko": "스코어링",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "점수 산정 로직",
+      "not": []
+    },
+    {
+      "id": "secret",
+      "en": "secret",
+      "ko": "시크릿",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "비밀 인증 키",
+      "not": []
+    },
+    {
+      "id": "sector",
+      "en": "sector",
+      "ko": "섹터",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "산업 분류 업종",
+      "not": []
+    },
+    {
+      "id": "selector",
+      "en": "selector",
+      "ko": "셀렉터",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "종목 선정 컴포넌트",
+      "not": []
+    },
+    {
+      "id": "sell",
+      "en": "sell",
+      "ko": "매도",
+      "abbr": "SELL",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "매도 주문",
+      "not": []
+    },
+    {
+      "id": "server",
+      "en": "server",
+      "ko": "서버",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "서버 프로세스",
+      "not": []
+    },
+    {
+      "id": "service",
+      "en": "service",
+      "ko": "서비스",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "독립적으로 실행되는 프로세스",
+      "not": []
+    },
+    {
+      "id": "sessions",
+      "en": "sessions",
+      "ko": "세션들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시장 세션 설정 모음",
+      "not": []
+    },
+    {
+      "id": "settings",
+      "en": "settings",
+      "ko": "설정들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시스템 설정값 모음",
+      "not": []
+    },
+    {
+      "id": "short",
+      "en": "short",
+      "ko": "숏",
+      "abbr": "SHORT",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "매도 포지션 방향 (가격 하락 기대)",
+      "not": []
+    },
+    {
+      "id": "side",
+      "en": "side",
+      "ko": "방향",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "매수/매도 방향",
+      "not": []
+    },
+    {
+      "id": "signal",
+      "en": "signal",
+      "ko": "시그널",
+      "abbr": "SIG",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "진입 또는 청산 판단 결과. signals 모듈만 생성 가능.",
+      "not": []
+    },
+    {
+      "id": "signals",
+      "en": "signals",
+      "ko": "시그널들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "시그널 이력 테이블",
+      "not": []
+    },
+    {
+      "id": "size",
+      "en": "size",
+      "ko": "크기",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "general",
+      "description": "수량 또는 비중",
+      "not": []
+    },
+    {
+      "id": "slippage",
+      "en": "slippage",
+      "ko": "슬리피지",
+      "abbr": "SLIP",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "주문 가격과 실제 체결 가격의 차이",
+      "not": []
+    },
+    {
+      "id": "snapshot",
+      "en": "snapshot",
+      "ko": "스냅샷",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "특정 시점의 상태 저장본",
+      "not": []
+    },
+    {
+      "id": "snapshots",
+      "en": "snapshots",
+      "ko": "스냅샷들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "복수의 스냅샷",
+      "not": []
+    },
+    {
+      "id": "split",
+      "en": "split",
+      "ko": "분할",
+      "abbr": null,
+      "pos": "verb",
+      "domain": "trading",
+      "description": "수량을 여러 번에 나눠 처리",
+      "not": []
+    },
+    {
+      "id": "start",
+      "en": "start",
+      "ko": "시작",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시작 시각 또는 동작",
+      "not": []
+    },
+    {
+      "id": "starting",
+      "en": "starting",
+      "ko": "시작 중",
+      "abbr": "START",
+      "pos": "noun",
+      "domain": "system",
+      "description": "서비스 시작 중 (초기화 진행 중)",
+      "not": []
+    },
+    {
+      "id": "status",
+      "en": "status",
+      "ko": "상태",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "현재 처리 상태",
+      "not": []
+    },
+    {
+      "id": "stock",
+      "en": "stock",
+      "ko": "주식",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "주식 종목",
+      "not": []
+    },
+    {
+      "id": "stop",
+      "en": "stop",
+      "ko": "정지/손절",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "손실 한도 도달 시 포지션 청산",
+      "not": []
+    },
+    {
+      "id": "stopped",
+      "en": "stopped",
+      "ko": "중지",
+      "abbr": "STOP",
+      "pos": "noun",
+      "domain": "system",
+      "description": "서비스 중지 상태",
+      "not": []
+    },
+    {
+      "id": "stops",
+      "en": "stops",
+      "ko": "손절들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "복수의 손절 조건",
+      "not": []
+    },
+    {
+      "id": "storage",
+      "en": "storage",
+      "ko": "저장소",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "데이터 저장 추상화 레이어",
+      "not": []
+    },
+    {
+      "id": "strategy",
+      "en": "strategy",
+      "ko": "전략",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "매매 전략 설정",
+      "not": []
+    },
+    {
+      "id": "strength",
+      "en": "strength",
+      "ko": "강도",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "시장 또는 종목의 상승/하락 강도",
+      "not": []
+    },
+    {
+      "id": "submitted",
+      "en": "submitted",
+      "ko": "접수",
+      "abbr": "SUBM",
+      "pos": "noun",
+      "domain": "system",
+      "description": "브로커에 주문 전송 완료",
+      "not": []
+    },
+    {
+      "id": "swing",
+      "en": "swing",
+      "ko": "스윙",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "수일~수주에 걸친 중기 매매",
+      "not": []
+    },
+    {
+      "id": "switch",
+      "en": "switch",
+      "ko": "스위치",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "기능 활성화/비활성화 제어",
+      "not": []
+    },
+    {
+      "id": "symbol",
+      "en": "symbol",
+      "ko": "종목",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "거래 종목 코드",
+      "not": []
+    },
+    {
+      "id": "symbols",
+      "en": "symbols",
+      "ko": "종목들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "종목 전체 테이블",
+      "not": []
+    },
+    {
+      "id": "system",
+      "en": "system",
+      "ko": "시스템",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "전체 소프트웨어 시스템",
+      "not": []
+    },
+    {
+      "id": "take",
+      "en": "take",
+      "ko": "취득",
+      "abbr": null,
+      "pos": "verb",
+      "domain": "trading",
+      "description": "목표 수익을 달성하여 청산",
+      "not": []
+    },
+    {
+      "id": "task",
+      "en": "task",
+      "ko": "작업",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "스케줄링되는 실행 단위",
+      "not": []
+    },
+    {
+      "id": "telegram",
+      "en": "telegram",
+      "ko": "텔레그램",
+      "abbr": null,
+      "pos": "proper",
+      "domain": "infra",
+      "description": "텔레그램 메시징 서비스",
+      "not": []
+    },
+    {
+      "id": "themes",
+      "en": "themes",
+      "ko": "테마 목록",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "시스템에서 관리되는 전체 테마 목록을 나타내는 테이블입니다.",
+      "not": []
+    },
+    {
+      "id": "tick",
+      "en": "tick",
+      "ko": "틱",
+      "abbr": "TK",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "최소 가격 변동 단위 또는 실시간 시세 스트림",
+      "not": []
+    },
+    {
+      "id": "ticks",
+      "en": "ticks",
+      "ko": "틱들",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "틱 데이터 테이블",
+      "not": []
+    },
+    {
+      "id": "time",
+      "en": "time",
+      "ko": "시각",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "특정 시점",
+      "not": []
+    },
+    {
+      "id": "timeframe",
+      "en": "timeframe",
+      "ko": "타임프레임",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "차트 또는 데이터 분석에서 사용되는 시간 단위 (예: 1분, 5분, 1시간).",
+      "not": []
+    },
+    {
+      "id": "timeframes",
+      "en": "timeframes",
+      "ko": "타임프레임 목록",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시스템에서 지원하거나 사용되는 다양한 시간대 목록입니다.",
+      "not": []
+    },
+    {
+      "id": "timezone",
+      "en": "timezone",
+      "ko": "시간대",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "시스템 또는 특정 작업에서 사용되는 표준 시간대 설정입니다.",
+      "not": []
+    },
+    {
+      "id": "token",
+      "en": "token",
+      "ko": "토큰",
+      "abbr": "TOKEN",
+      "pos": "noun",
+      "domain": "system",
+      "description": "인증 또는 세션 관리에 사용되는 보안 토큰입니다.",
+      "not": []
+    },
+    {
+      "id": "top_n",
+      "en": "top n",
+      "ko": "상위 N개",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "데이터 목록에서 상위 N개의 항목을 선택하거나 필터링할 때 사용되는 파라미터입니다.",
+      "not": []
+    },
+    {
+      "id": "tracking",
+      "en": "tracking",
+      "ko": "추적",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "종목 모니터링 시작 시각",
+      "not": []
+    },
+    {
+      "id": "tradability",
+      "en": "tradability",
+      "ko": "거래 가능성",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "종목이나 상품의 거래 가능 여부 또는 수준을 나타내는 지표입니다.",
+      "not": []
+    },
+    {
+      "id": "trade",
+      "en": "trade",
+      "ko": "거래",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "개별 매매 거래",
+      "not": []
+    },
+    {
+      "id": "trades",
+      "en": "trades",
+      "ko": "거래 목록",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "시스템에서 발생한 거래들의 목록입니다.",
+      "not": []
+    },
+    {
+      "id": "trading",
+      "en": "trading",
+      "ko": "거래",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "매매 거래 행위 또는 거래 관련",
+      "not": []
+    },
+    {
+      "id": "trailing",
+      "en": "trailing",
+      "ko": "추적",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "trading",
+      "description": "수익에 따라 이동하는",
+      "not": []
+    },
+    {
+      "id": "transaction",
+      "en": "transaction",
+      "ko": "거래 ID",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "API 요청 식별자",
+      "not": []
+    },
+    {
+      "id": "transition",
+      "en": "transition",
+      "ko": "전환",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "상태 머신 등에서 한 상태에서 다른 상태로의 변화를 나타냅니다.",
+      "not": []
+    },
+    {
+      "id": "transitions",
+      "en": "transitions",
+      "ko": "전환 목록",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "가능한 모든 상태 변화의 목록입니다.",
+      "not": []
+    },
+    {
+      "id": "trend",
+      "en": "trend",
+      "ko": "추세",
+      "abbr": "TREND",
+      "pos": "noun",
+      "domain": "system",
+      "description": "시장 가격의 전반적인 방향성을 나타냅니다.",
+      "not": []
+    },
+    {
+      "id": "type",
+      "en": "type",
+      "ko": "유형",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "분류 유형",
+      "not": []
+    },
+    {
+      "id": "universe",
+      "en": "universe",
+      "ko": "유니버스",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "거래 대상이 되는 종목 또는 자산의 집합입니다.",
+      "not": []
+    },
+    {
+      "id": "unrealized",
+      "en": "unrealized",
+      "ko": "미실현",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "trading",
+      "description": "아직 청산되지 않은",
+      "not": []
+    },
+    {
+      "id": "upbit",
+      "en": "upbit",
+      "ko": "업비트",
+      "abbr": "UPBIT",
+      "pos": "noun",
+      "domain": "infra",
+      "description": "암호화폐 거래소. crypto 마켓의 브로커.",
+      "not": []
+    },
+    {
+      "id": "upper",
+      "en": "upper",
+      "ko": "위",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "market",
+      "description": "위쪽에 위치한",
+      "not": []
+    },
+    {
+      "id": "url",
+      "en": "url",
+      "ko": "URL",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "infra",
+      "description": "Uniform Resource Locator",
+      "not": []
+    },
+    {
+      "id": "us",
+      "en": "us",
+      "ko": "미국",
+      "abbr": null,
+      "pos": "prefix",
+      "domain": "market",
+      "description": "미국 시장 prefix",
+      "not": []
+    },
+    {
+      "id": "used",
+      "en": "used",
+      "ko": "사용됨",
+      "abbr": null,
+      "pos": "adj",
+      "domain": "system",
+      "description": "현재 사용 중인",
+      "not": []
+    },
+    {
+      "id": "value",
+      "en": "value",
+      "ko": "거래대금",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "가격×수량의 거래 금액",
+      "not": []
+    },
+    {
+      "id": "var",
+      "en": "var",
+      "ko": "변수",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "환경변수",
+      "not": []
+    },
+    {
+      "id": "volatility",
+      "en": "volatility",
+      "ko": "변동성",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "trading",
+      "description": "가격 변동의 폭",
+      "not": []
+    },
+    {
+      "id": "vwap",
+      "en": "vwap",
+      "ko": "거래량 가중 평균가",
+      "abbr": "VWAP",
+      "pos": "noun",
+      "domain": "trading",
+      "description": "Volume Weighted Average Price. 시가총액 가중 평균 체결가.",
+      "not": []
+    },
+    {
+      "id": "watchdog",
+      "en": "watchdog",
+      "ko": "워치독",
+      "abbr": "WDG",
+      "pos": "noun",
+      "domain": "infra",
+      "description": "서비스 비정상 종료 감지 및 자동 재시작",
+      "not": []
+    },
+    {
+      "id": "wick",
+      "en": "wick",
+      "ko": "꼬리",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "캔들의 몸통 밖 선",
+      "not": []
+    },
+    {
+      "id": "work",
+      "en": "work",
+      "ko": "작업",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "일과 시작",
+      "not": []
+    }
+  ]
+}

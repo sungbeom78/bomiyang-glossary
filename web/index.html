@@ -3,1087 +3,404 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>glossary</title>
+<title>BOM_TS Glossary</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#0c0e14; --s1:#12151e; --s2:#181c27; --s3:#1e2330; --s4:#242b3a;
-  --ln:#272e40; --ln2:#323b52;
-  --tx:#cdd5e8; --tx2:#7a889f; --tx3:#434f67;
-  --ac:#4d9ef6; --ac-bg:#0e1f38;
-  --gr:#3cb96b; --gr-bg:#0c2219;
-  --rd:#f06060; --rd-bg:#220e0e;
-  --yl:#d4983a; --yl-bg:#201808;
-  --pu:#a07fef;
-  --mono:'JetBrains Mono',monospace;
-  --body:'Pretendard',sans-serif;
-  --r:3px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden}
-body{font-family:var(--body);background:var(--bg);color:var(--tx);font-size:13px;line-height:1.5}
-::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--ln2);border-radius:3px}
-button{cursor:pointer;border:none;outline:none;background:none;font-family:var(--mono)}
-input,select,textarea{outline:none}
-
-/* LAYOUT */
-#app{display:grid;grid-template-rows:46px 1fr;height:100vh}
-
-/* TOPBAR */
-#topbar{display:flex;align-items:center;gap:10px;padding:0 16px;background:var(--s1);border-bottom:1px solid var(--ln);z-index:30}
-.logo{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--ac);letter-spacing:.06em;flex-shrink:0}
-.logo em{color:var(--tx3);font-style:normal;font-weight:400}
-#tb-stats{font-family:var(--mono);font-size:10px;color:var(--tx3);flex-shrink:0}
-#branch-pill{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;background:var(--s2);border:1px solid var(--ln);font-family:var(--mono);font-size:10px;color:var(--tx3);flex-shrink:0}
-#branch-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--gr);flex-shrink:0;transition:background .3s}
-#branch-pill.dirty .dot{background:var(--yl)}
-.gap{flex:1}
-.btn{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:var(--r);font-size:11px;font-weight:600;letter-spacing:.03em;transition:all .12s;white-space:nowrap;flex-shrink:0}
-.btn-ghost{color:var(--tx2);border:1px solid var(--ln)}
-.btn-ghost:hover{border-color:var(--tx2);color:var(--tx)}
-.btn-ac{background:var(--ac);color:#0c0e14}
-.btn-ac:hover{background:#6fb5ff}
-.btn-gr{background:var(--gr-bg);color:var(--gr);border:1px solid var(--gr)}
-.btn-gr:hover{background:var(--gr);color:#0c0e14}
-.btn-rd{color:var(--rd);border:1px solid var(--rd-bg)}
-.btn-rd:hover{background:var(--rd-bg)}
-.btn:disabled{opacity:.35;pointer-events:none}
-
-/* TOOLBAR */
-#toolbar{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--ln);background:var(--s1);flex-shrink:0}
-.sw{position:relative;flex:1;max-width:300px}
-.sw-ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--tx3);font-size:12px;pointer-events:none}
-#search{width:100%;background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 10px 5px 27px;color:var(--tx);font-size:12px;font-family:var(--mono);transition:border-color .15s}
-#search:focus{border-color:var(--ac)}
-#search::placeholder{color:var(--tx3)}
-#cat-sel{background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 10px;color:var(--tx2);font-size:11px;font-family:var(--mono);cursor:pointer}
-#cat-sel option{background:var(--s2)}
-#row-count{font-family:var(--mono);font-size:10px;color:var(--tx3);margin-left:auto;white-space:nowrap}
-.tb-div{width:1px;height:20px;background:var(--ln);flex-shrink:0}
-
-/* MAIN */
-#main-area{display:flex;flex-direction:column;height:100%;overflow:hidden}
-#table-wrap{flex:1;overflow:auto}
-
-/* TABLE */
-table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
-col.c-ko{width:110px}col.c-en{width:155px}col.c-long{width:140px}
-col.c-short{width:88px}col.c-cats{width:165px}col.c-desc{min-width:180px}col.c-act{width:36px}
-thead{position:sticky;top:0;z-index:10;background:var(--s2)}
-thead th{padding:8px 10px;text-align:left;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--tx3);letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--ln);border-right:1px solid var(--ln);user-select:none;white-space:nowrap}
-thead th:last-child{border-right:none}
-thead th.sortable{cursor:pointer}
-thead th.sortable:hover{color:var(--tx)}
-thead th .si{margin-left:4px;opacity:.3;font-size:9px}
-thead th.asc .si::after{content:'↑';opacity:1;color:var(--ac)}
-thead th.desc .si::after{content:'↓';opacity:1;color:var(--ac)}
-thead th:not(.asc):not(.desc) .si::after{content:'↕'}
-tbody tr{border-bottom:1px solid var(--ln);transition:background .06s}
-tbody tr:hover{background:var(--s2)}
-tbody tr.editing{background:var(--ac-bg)!important;outline:1px solid var(--ac);outline-offset:-1px;z-index:2;position:relative}
-tbody tr.flash{animation:flash .5s ease}
-@keyframes flash{0%{background:var(--gr-bg)}100%{background:transparent}}
-tbody td{padding:0;vertical-align:middle;border-right:1px solid var(--ln);position:relative}
-tbody td:last-child{border-right:none}
-
-/* CELL VIEW */
-.cv{display:flex;align-items:center;padding:7px 10px;min-height:34px;cursor:text;width:100%;overflow:hidden}
-.cv:hover{background:rgba(77,158,246,.07)}
-.cv-ko{font-weight:500;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cv-en{color:var(--tx2);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cv-long{font-family:var(--mono);font-size:11px;color:var(--gr);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cv-short-td{padding:7px 10px}
-.cv-short{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ac);background:var(--ac-bg);padding:1px 6px;border-radius:2px;display:inline-block;cursor:text}
-.cv-cats{display:flex;flex-wrap:wrap;gap:2px;padding:5px 10px;align-items:center;cursor:pointer;min-height:34px;width:100%}
-.cv-cats:hover{background:rgba(77,158,246,.07)}
-.cv-cat{font-family:var(--mono);font-size:9px;padding:1px 5px;border-radius:2px;background:var(--s3);border:1px solid var(--ln2);color:var(--tx3)}
-.cats-edit-ico{color:var(--tx3);font-size:10px;margin-left:3px;opacity:0;transition:opacity .1s;flex-shrink:0}
-tbody tr:hover .cats-edit-ico,.cv-cats:hover .cats-edit-ico{opacity:1}
-.cv-desc{color:var(--tx2);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-/* CELL INPUT */
-.ci{width:100%;height:100%;min-height:34px;background:transparent;border:none;padding:7px 10px;color:var(--tx);font-family:var(--mono);font-size:12px;caret-color:var(--ac);display:block}
-.ci:focus{outline:none}
-.ci-ko{font-family:var(--body);font-weight:500}
-.ci-en{color:var(--tx2)}
-.ci-long{color:var(--gr)}
-.ci-short{color:var(--ac);font-weight:700}
-.ci-desc{font-family:var(--body);color:var(--tx2)}
-
-/* ACT */
-.act-cell{display:flex;align-items:center;justify-content:center;height:34px}
-.rmb{color:var(--tx3);font-size:13px;padding:3px 5px;border-radius:var(--r);transition:all .1s;opacity:0}
-tbody tr:hover .rmb,tbody tr.editing .rmb{opacity:1}
-.rmb:hover{background:var(--s4);color:var(--tx)}
-
-/* POPOVER */
-.pop{position:fixed;z-index:200;background:var(--s2);border:1px solid var(--ln2);border-radius:5px;box-shadow:0 8px 32px rgba(0,0,0,.5);animation:pop .12s ease}
-@keyframes pop{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
-#cat-pop{width:224px;padding:8px}
-.cat-grid{display:flex;flex-wrap:wrap;gap:4px}
-.cat-chip{font-family:var(--mono);font-size:9px;padding:3px 8px;border-radius:2px;background:var(--s3);border:1px solid var(--ln);color:var(--tx3);cursor:pointer;transition:all .1s}
-.cat-chip:hover{border-color:var(--ac);color:var(--ac)}
-.cat-chip.on{background:var(--ac-bg);border-color:var(--ac);color:var(--ac)}
-.pop-ft{display:flex;justify-content:flex-end;margin-top:8px;padding-top:7px;border-top:1px solid var(--ln)}
-#row-pop{width:156px;padding:4px}
-.rpi{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:var(--r);font-family:var(--mono);font-size:11px;color:var(--tx2);cursor:pointer;transition:background .08s}
-.rpi:hover{background:var(--s3);color:var(--tx)}
-.rpi.danger{color:var(--rd)}
-.rpi.danger:hover{background:var(--rd-bg)}
-
-/* MODAL */
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;align-items:center;justify-content:center}
-.overlay.open{display:flex}
-.modal{background:var(--s1);border:1px solid var(--ln2);border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.6);display:flex;flex-direction:column;animation:mop .14s ease;max-height:90vh}
-@keyframes mop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
-.mhd{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--ln);flex-shrink:0}
-.mhd-t{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--tx)}
-.mbd{padding:16px;overflow-y:auto;flex:1}
-.mft{padding:11px 16px;border-top:1px solid var(--ln);display:flex;justify-content:flex-end;gap:7px;flex-shrink:0}
-.ico-btn{color:var(--tx3);border:1px solid transparent;border-radius:var(--r);padding:4px 6px;font-size:13px;transition:all .1s}
-.ico-btn:hover{background:var(--s3);color:var(--tx);border-color:var(--ln)}
-
-/* FORM */
-.fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
-.fg.full{grid-column:1/-1}
-.fl{font-family:var(--mono);font-size:9px;color:var(--tx3);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.fl .req{color:var(--rd);margin-left:2px}
-.fi,.fta{background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:7px 9px;color:var(--tx);font-size:12px;font-family:var(--mono);width:100%;transition:border-color .15s}
-.fi:focus,.fta:focus{border-color:var(--ac)}
-.fi::placeholder,.fta::placeholder{color:var(--tx3)}
-.fta{resize:vertical;min-height:56px;font-family:var(--body)}
-.cc-wrap{display:flex;flex-wrap:wrap;gap:4px}
-.cc{display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:9px;padding:3px 7px;border-radius:2px;border:1px solid var(--ln);background:var(--s2);color:var(--tx3);cursor:pointer;transition:all .1s;user-select:none}
-.cc:hover{border-color:var(--ac);color:var(--ac)}
-.cc.on{background:var(--ac-bg);border-color:var(--ac);color:var(--ac)}
-.cc input{display:none}
-
-/* GIT */
-.git-sec{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--tx3);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px 4px;border-bottom:1px solid var(--ln)}
-.git-file{display:flex;align-items:center;gap:8px;padding:5px 10px;font-family:var(--mono);font-size:11px}
-.git-file:nth-child(odd){background:var(--s2)}
-.gf-flag{width:14px;font-weight:700;text-align:center}
-.gf-flag.M{color:var(--yl)}.gf-flag.A{color:var(--gr)}.gf-flag.D{color:var(--rd)}.gf-flag.R{color:var(--ac)}
-.gf-path{color:var(--tx2);flex:1}
-.git-none{font-family:var(--mono);font-size:11px;color:var(--tx3);padding:10px;text-align:center}
-.git-log-row{display:grid;grid-template-columns:50px 1fr 80px;gap:6px;padding:5px 10px;font-family:var(--mono);font-size:10px;border-bottom:1px solid var(--ln);align-items:center}
-.gl-h{color:var(--pu)}.gl-m{color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.gl-w{color:var(--tx3);text-align:right}
-#commit-msg{width:100%;background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:8px 10px;color:var(--tx);font-size:12px;font-family:var(--mono);resize:none;height:56px;transition:border-color .15s}
-#commit-msg:focus{border-color:var(--ac)}
-#commit-msg::placeholder{color:var(--tx3)}
-.msg-tmpls{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
-.msg-tmpl{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:2px;background:var(--s2);border:1px solid var(--ln);color:var(--tx3);cursor:pointer;transition:all .1s}
-.msg-tmpl:hover{border-color:var(--ac);color:var(--ac)}
-.step-row{display:flex;align-items:center;gap:10px;padding:7px 12px;font-family:var(--mono);font-size:11px}
-.s-ico{width:14px;text-align:center;flex-shrink:0}
-.s-ok{color:var(--gr)}.s-fail{color:var(--rd)}.s-pend{color:var(--tx3)}
-.s-name{color:var(--tx2);flex:1}
-.spin{animation:spin 1s linear infinite;display:inline-block}
-@keyframes spin{to{transform:rotate(360deg)}}
-#run-out{font-family:var(--mono);font-size:11px;line-height:1.8;white-space:pre-wrap;max-height:340px;overflow-y:auto;background:var(--bg);padding:14px;border-radius:var(--r)}
-
-/* TOAST */
-#toasts{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:999;display:flex;flex-direction:column;gap:4px;pointer-events:none;align-items:center}
-.toast{font-family:var(--mono);font-size:11px;padding:7px 14px;border-radius:var(--r);border-left:3px solid;white-space:nowrap;animation:tin .15s ease}
-.batch-tab{background:transparent;color:var(--tx3);border:none;border-bottom:2px solid transparent;padding:9px 16px;font-family:var(--mono);font-size:10px;font-weight:700;cursor:pointer;transition:all .12s;letter-spacing:.04em}
-.batch-tab:hover{color:var(--tx)}
-.batch-tab.active{color:var(--ac);border-bottom-color:var(--ac)}
-.batch-file-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-bottom:1px solid var(--ln);cursor:pointer;transition:background .08s;font-size:12px}
-.batch-file-row:hover{background:var(--s2)}
-.batch-file-row.sel{background:var(--ac-bg)}
-.merge-item{display:flex;align-items:flex-start;gap:8px;padding:7px 8px;border-bottom:1px solid var(--ln);font-size:11px}
-.merge-item:nth-child(odd){background:var(--s2)}
-.merge-item input[type=checkbox]{margin-top:2px;flex-shrink:0;accent-color:var(--ac)}
-@keyframes tin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.t-ok{background:var(--gr-bg);border-color:var(--gr);color:var(--gr)}
-.t-err{background:var(--rd-bg);border-color:var(--rd);color:var(--rd)}
-.t-inf{background:var(--ac-bg);border-color:var(--ac);color:var(--ac)}
+:root{--bg:#0d1117;--s1:#161b22;--s2:#1c2230;--s3:#21273a;--ln:#263044;--ln2:#30394f;--tx:#cdd9f0;--tx2:#7d8fa8;--tx3:#48576e;--ac:#4d9cf8;--ac-bg:#0f2240;--gr:#3fb950;--gr-bg:#0c2418;--re:#f85149;--re-bg:#1e0e0d;--ye:#d29922;--ye-bg:#1c1608;--pu:#bc8cff;--or:#e8832a;--mono:'JetBrains Mono',monospace;--body:'Pretendard','Noto Sans KR',sans-serif;--r:4px;--rh:38px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden}body{font-family:var(--body);background:var(--bg);color:var(--tx);font-size:13px;line-height:1.5}::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--ln2);border-radius:3px}button{cursor:pointer;border:none;outline:none;font-family:var(--mono)}input,select,textarea{outline:none;font-family:var(--body)}input::placeholder,textarea::placeholder{color:var(--tx3)}
+#app{display:grid;grid-template-rows:44px 42px 1fr;height:100vh}
+#topbar{display:flex;align-items:center;gap:10px;padding:0 16px;background:var(--s1);border-bottom:1px solid var(--ln);z-index:20}
+.logo{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--ac);letter-spacing:.06em}.logo em{color:var(--tx3);font-style:normal;font-weight:400}
+#tb-stats{font-family:var(--mono);font-size:10px;color:var(--tx3)}
+#tb-branch{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;color:var(--tx3);padding:2px 8px;background:var(--s2);border:1px solid var(--ln);border-radius:var(--r)}#tb-branch .dot{width:6px;height:6px;border-radius:50%;background:var(--gr)}#tb-branch.dirty .dot{background:var(--ye)}.tbsp{flex:1}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:var(--r);font-size:10px;font-weight:700;letter-spacing:.04em;transition:all .12s;white-space:nowrap;flex-shrink:0}
+.btn-gh{background:transparent;color:var(--tx2);border:1px solid var(--ln)}.btn-gh:hover{border-color:var(--tx2);color:var(--tx)}.btn-ac{background:var(--ac);color:#0d1117}.btn-ac:hover{background:#70b8ff}.btn-gr{background:var(--gr-bg);color:var(--gr);border:1px solid var(--gr)}.btn-gr:hover{background:var(--gr);color:#0d1117}.btn-re{background:transparent;color:var(--re);border:1px solid var(--re-bg)}.btn-re:hover{background:var(--re-bg)}.btn:disabled{opacity:.3;pointer-events:none}
+#tabs{display:flex;align-items:center;background:var(--s1);border-bottom:1px solid var(--ln);padding:0 16px;gap:2px}
+.tab{background:transparent;color:var(--tx3);border:none;border-bottom:2px solid transparent;padding:10px 14px;font-family:var(--mono);font-size:10px;font-weight:700;cursor:pointer;transition:all .12s;letter-spacing:.04em;white-space:nowrap}.tab:hover{color:var(--tx)}.tab.active{color:var(--ac);border-bottom-color:var(--ac)}.tab .badge{display:inline-block;margin-left:5px;background:var(--s2);color:var(--tx3);border-radius:8px;padding:0 5px;font-size:9px}.tab.active .badge{background:var(--ac-bg);color:var(--ac)}#tab-actions{margin-left:auto;display:flex;gap:6px;align-items:center}
+#content{overflow:hidden;display:flex;flex-direction:column}.view{display:none;flex-direction:column;height:100%;overflow:hidden}.view.active{display:flex}
+.toolbar{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--ln);flex-shrink:0;background:var(--s1)}.sw{position:relative;flex:1;max-width:280px}.si-s{position:absolute;left:8px;top:50%;transform:translateY(-50%);color:var(--tx3);font-size:12px;pointer-events:none}.search-inp{width:100%;background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 8px 5px 26px;color:var(--tx);font-size:11px;font-family:var(--mono);transition:border-color .15s}.search-inp:focus{border-color:var(--ac)}.fsel{background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 9px;color:var(--tx2);font-size:10px;cursor:pointer;font-family:var(--mono)}.row-cnt{font-family:var(--mono);font-size:10px;color:var(--tx3);margin-left:auto}
+.tw{flex:1;overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}thead{position:sticky;top:0;z-index:5;background:var(--s2)}thead th{padding:8px 10px;text-align:left;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--tx3);letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--ln);user-select:none;white-space:nowrap}th.srt{cursor:pointer}.si2{margin-left:3px;opacity:.3;font-size:9px}th.sa .si2::after{content:'↑';opacity:1;color:var(--ac)}th.sd .si2::after{content:'↓';opacity:1;color:var(--ac)}th:not(.sa):not(.sd) .si2::after{content:'⇅'}
+tbody tr{border-bottom:1px solid var(--ln);cursor:pointer;transition:background .07s}tbody tr:hover{background:var(--s2)}tbody tr.sel{background:var(--ac-bg);border-left:2px solid var(--ac)}tbody td{padding:0 10px;height:var(--rh);vertical-align:middle;overflow:hidden}
+.c-id{font-family:var(--mono);font-size:10px;color:var(--tx3)}.c-en{font-family:var(--mono);font-size:11px;color:var(--gr)}.c-ko{font-weight:600;color:var(--tx)}.c-abbr{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ac);background:var(--ac-bg);padding:2px 6px;border-radius:2px;display:inline-block}.c-pos{font-family:var(--mono);font-size:9px;padding:1px 5px;border-radius:2px;background:var(--s3);border:1px solid var(--ln2);color:var(--tx3)}.c-domain{font-family:var(--mono);font-size:9px;padding:1px 5px;border-radius:2px}.d-trading{background:#1a1208;border:1px solid var(--ye);color:var(--ye)}.d-market{background:#0d1f1a;border:1px solid var(--gr);color:var(--gr)}.d-system{background:#0f2240;border:1px solid var(--ac);color:var(--ac)}.d-infra{background:#1a1220;border:1px solid var(--pu);color:var(--pu)}.d-ui{background:#1a0e1a;border:1px solid #e879f9;color:#e879f9}.d-general{background:var(--s3);border:1px solid var(--ln2);color:var(--tx2)}.d-proper{background:#1a1008;border:1px solid var(--or);color:var(--or)}.c-words{display:flex;flex-wrap:nowrap;gap:3px;overflow:hidden}.c-word-chip{font-family:var(--mono);font-size:9px;padding:1px 5px;border-radius:2px;background:var(--s3);border:1px solid var(--ln2);color:var(--tx3);white-space:nowrap}.c-desc{color:var(--tx2);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.c-expr{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--re)}.c-correct{font-family:var(--mono);font-size:11px;color:var(--gr)}.del-btn{background:transparent;color:var(--tx3);padding:3px 6px;border-radius:var(--r);font-size:11px;opacity:0;transition:all .1s}tr:hover .del-btn,.del-btn:focus{opacity:1}.del-btn:hover{background:var(--re-bg);color:var(--re)}
+tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{padding:12px 14px 14px 40px;font-size:11px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px 18px}.xf{display:flex;flex-direction:column;gap:3px}.xf.full{grid-column:1/-1}.xf label{font-family:var(--mono);font-size:9px;color:var(--tx3);font-weight:700;letter-spacing:.07em;text-transform:uppercase}.xf .xv{color:var(--tx2);line-height:1.55}.not-chip{font-family:var(--mono);font-size:9px;padding:1px 6px;border-radius:2px;background:var(--re-bg);border:1px solid var(--re);color:var(--re);display:inline-block;margin:1px}.xf .edit-link{font-family:var(--mono);font-size:9px;color:var(--ac);cursor:pointer;text-decoration:underline;margin-top:4px;display:inline-block}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:100;align-items:center;justify-content:center}.ov.open{display:flex}.modal{background:var(--s1);border:1px solid var(--ln2);border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.5);display:flex;flex-direction:column;max-height:88vh;animation:mIn .15s ease}@keyframes mIn{from{opacity:0;transform:translateY(-8px) scale(.97)}to{opacity:1;transform:none}}.mh{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--ln);flex-shrink:0}.mt{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--tx)}.mb{overflow-y:auto;flex:1}.mf{padding:11px 16px;border-top:1px solid var(--ln);display:flex;justify-content:flex-end;gap:7px;flex-shrink:0}.ico{background:transparent;color:var(--tx3);border:1px solid transparent;border-radius:var(--r);padding:3px 6px;font-size:12px;transition:all .1s}.ico:hover{background:var(--s3);color:var(--tx);border-color:var(--ln)}
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}.fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.fl{font-family:var(--mono);font-size:9px;color:var(--tx3);font-weight:700;letter-spacing:.08em;text-transform:uppercase}.fl .req{color:var(--re);margin-left:2px}.fi,.fsel,.fta{background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:7px 10px;color:var(--tx);font-size:12px;font-family:var(--mono);transition:border-color .15s;width:100%}.fi:focus,.fsel:focus,.fta:focus{border-color:var(--ac)}.fta{resize:vertical;min-height:56px;font-family:var(--body)}.fsel{cursor:pointer}.fsel option{background:var(--s2)}
+.gsec{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--tx3);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px 4px;border-bottom:1px solid var(--ln)}.gfile{display:flex;align-items:center;gap:8px;padding:5px 10px;font-family:var(--mono);font-size:10px}.gfile:nth-child(odd){background:var(--s2)}.gflag{width:16px;text-align:center;font-weight:700;color:var(--ye)}.gflag.A{color:var(--gr)}.gflag.D{color:var(--re)}.gpath{color:var(--tx2);flex:1}.gempty{font-family:var(--mono);font-size:10px;color:var(--tx3);padding:10px;text-align:center}.glog{display:grid;grid-template-columns:52px 1fr 76px;gap:8px;padding:5px 10px;font-family:var(--mono);font-size:10px;border-bottom:1px solid var(--ln);align-items:center}.gh{color:var(--pu)}.gs{color:var(--tx);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gw{color:var(--tx3);text-align:right}#cmsg{width:100%;background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:7px 10px;color:var(--tx);font-family:var(--mono);font-size:11px;resize:none;height:58px;transition:border-color .15s}#cmsg:focus{border-color:var(--ac)}.tmpls{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}.tmpl{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:2px;background:var(--s2);border:1px solid var(--ln);color:var(--tx3);cursor:pointer;transition:all .1s}.tmpl:hover{border-color:var(--ac);color:var(--ac)}.srow{display:flex;align-items:center;gap:10px;padding:7px 12px;font-family:var(--mono);font-size:11px}.sic{width:16px;text-align:center;flex-shrink:0}.sok{color:var(--gr)}.sfail{color:var(--re)}.spen{color:var(--tx3)}.spin{animation:sp 1s linear infinite;display:inline-block}@keyframes sp{to{transform:rotate(360deg)}}.cerr{margin:8px 12px;font-family:var(--mono);font-size:10px;color:var(--re)}
+.out-pre{font-family:var(--mono);font-size:10px;color:var(--tx);white-space:pre-wrap;line-height:1.7;max-height:380px;overflow-y:auto;background:var(--bg);padding:12px;border-radius:var(--r)}
+.batch-tab-bar{display:flex;border-bottom:1px solid var(--ln);background:var(--s2)}.btab-btn{background:transparent;color:var(--tx3);border:none;border-bottom:2px solid transparent;padding:9px 14px;font-family:var(--mono);font-size:10px;font-weight:700;cursor:pointer;transition:all .12s}.btab-btn:hover{color:var(--tx)}.btab-btn.active{color:var(--ac);border-bottom-color:var(--ac)}.btab-pane{display:none;padding:16px}.btab-pane.active{display:block}.batch-file-row{display:flex;align-items:center;gap:10px;padding:7px 10px;border-bottom:1px solid var(--ln);cursor:pointer;font-size:12px}.batch-file-row:hover{background:var(--s2)}.batch-file-row.sel{background:var(--ac-bg)}.merge-item{display:flex;align-items:flex-start;gap:8px;padding:6px 8px;border-bottom:1px solid var(--ln);font-size:11px}.merge-item:nth-child(odd){background:var(--s2)}.merge-item input[type=checkbox]{margin-top:2px;flex-shrink:0;accent-color:var(--ac)}
+.check-result{font-family:var(--mono);font-size:11px;line-height:1.8;padding:10px;background:var(--bg);border-radius:var(--r);white-space:pre-wrap}
+#toasts{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:4px;pointer-events:none;align-items:center}.toast{font-family:var(--mono);font-size:10px;padding:7px 14px;border-radius:var(--r);border-left:3px solid;white-space:nowrap;animation:tIn .15s ease;pointer-events:none}@keyframes tIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}.tok{background:var(--gr-bg);border-color:var(--gr);color:var(--gr)}.ter{background:var(--re-bg);border-color:var(--re);color:var(--re)}.tin{background:var(--ac-bg);border-color:var(--ac);color:var(--ac)}
 </style>
 </head>
 <body>
 <div id="app">
-
-<!-- TOPBAR -->
 <header id="topbar">
-  <div class="logo">glossary<em>.json</em></div>
-  <div id="tb-stats">—</div>
-  <div id="branch-pill"><span class="dot"></span><span id="branch-name">—</span></div>
-  <div class="gap"></div>
-  <button class="btn btn-ghost" onclick="runCmd('check')">▷ check</button>
-  <button class="btn btn-ghost" onclick="runCmd('default')">▷ generate</button>
-  <button class="btn btn-ghost" onclick="openLogModal()" title="서버 로그 보기">📋 logs</button>
-  <button class="btn btn-ghost" onclick="openBatchModal()" title="용어 배치 추출">⚙ batch</button>
-  <button class="btn btn-gr" onclick="openGitModal()" id="git-btn">⎇ commit &amp; push</button>
-  <button class="btn btn-ac" onclick="openAddModal()">+ 추가</button>
+  <div class="logo">BOM_TS <em>glossary</em></div>
+  <div id="tb-stats"></div>
+  <div id="tb-branch"><span class="dot"></span><span id="br-nm">—</span></div>
+  <div class="tbsp"></div>
+  <button class="btn btn-gh" onclick="openCheckId()" title="식별자 단어 분해">⊙ check-id</button>
+  <button class="btn btn-gh" onclick="openLogModal()">📋 log</button>
+  <button class="btn btn-gh" onclick="openBatchModal()">⚙ batch</button>
+  <button class="btn btn-gr" id="git-btn" onclick="openGit()">⎇ commit &amp; push</button>
 </header>
-
-<!-- MAIN -->
-<div id="main-area">
-  <div id="toolbar">
-    <div class="sw">
-      <span class="sw-ico">⌕</span>
-      <input id="search" type="text" placeholder="검색 (Ctrl+K)  —  한글 · 영문 · 약어 · 설명" oninput="applyFilter()">
+<div id="tabs">
+  <button class="tab active" data-tab="words"     onclick="switchTab('words')">단어<span class="badge" id="badge-words">0</span></button>
+  <button class="tab"        data-tab="compounds" onclick="switchTab('compounds')">복합어<span class="badge" id="badge-compounds">0</span></button>
+  <button class="tab"        data-tab="banned"    onclick="switchTab('banned')">금지표현<span class="badge" id="badge-banned">0</span></button>
+  <div id="tab-actions"></div>
+</div>
+<div id="content">
+  <!-- WORDS -->
+  <div class="view active" id="view-words">
+    <div class="toolbar">
+      <div class="sw"><span class="si-s">⌕</span><input class="search-inp" id="w-search" type="text" placeholder="검색 — id, 영문, 한글, 약어…" oninput="wFilter()"></div>
+      <select class="fsel" id="w-domain" onchange="wFilter()"><option value="">전체 domain</option><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select>
+      <select class="fsel" id="w-pos" onchange="wFilter()"><option value="">전체 품사</option><option value="noun">noun</option><option value="verb">verb</option><option value="adj">adj</option><option value="adv">adv</option><option value="prefix">prefix</option><option value="suffix">suffix</option><option value="proper">proper</option></select>
+      <div class="row-cnt" id="w-cnt"></div>
+      <button class="btn btn-ac" onclick="openWordForm(null)">+ 단어 추가</button>
     </div>
-    <select id="cat-sel" onchange="applyFilter()"><option value="">전체 카테고리</option></select>
-    <div class="tb-div"></div>
-    <button class="btn btn-ghost" onclick="runCmd('force')" title="validate 실패해도 generate 강행">▷ force</button>
-    <div id="row-count" style="margin-left:6px">—</div>
+    <div class="tw"><table id="w-tbl">
+      <colgroup><col style="width:130px"><col style="width:110px"><col style="width:90px"><col style="width:60px"><col style="width:80px"><col style="width:80px"><col style="width:auto"><col style="width:40px"></colgroup>
+      <thead><tr>
+        <th class="srt" data-col="id">id<span class="si2"></span></th>
+        <th class="srt" data-col="en">english<span class="si2"></span></th>
+        <th class="srt" data-col="ko">한글<span class="si2"></span></th>
+        <th>abbr</th><th class="srt" data-col="pos">pos<span class="si2"></span></th>
+        <th class="srt" data-col="domain">domain<span class="si2"></span></th>
+        <th>설명</th><th></th>
+      </tr></thead>
+      <tbody id="w-body"></tbody>
+    </table></div>
   </div>
-
-  <div id="table-wrap">
-    <table id="tbl">
-      <colgroup>
-        <col class="c-ko"><col class="c-en"><col class="c-long">
-        <col class="c-short"><col class="c-cats"><col class="c-desc"><col class="c-act">
-      </colgroup>
-      <thead>
-        <tr>
-          <th class="sortable" data-col="ko">한글명<span class="si"></span></th>
-          <th class="sortable" data-col="en">영문명<span class="si"></span></th>
-          <th class="sortable" data-col="abbr_long">abbr_long<span class="si"></span></th>
-          <th class="sortable" data-col="abbr_short">abbr_short<span class="si"></span></th>
-          <th>categories</th>
-          <th class="sortable" data-col="description">설명<span class="si"></span></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-    </table>
+  <!-- COMPOUNDS -->
+  <div class="view" id="view-compounds">
+    <div class="toolbar">
+      <div class="sw"><span class="si-s">⌕</span><input class="search-inp" id="c-search" type="text" placeholder="검색 — id, 한글, 영문, 약어, 구성단어…" oninput="cFilter()"></div>
+      <select class="fsel" id="c-domain" onchange="cFilter()"><option value="">전체 domain</option><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select>
+      <div class="row-cnt" id="c-cnt"></div>
+      <button class="btn btn-ac" onclick="openCompoundForm(null)">+ 복합어 추가</button>
+    </div>
+    <div class="tw"><table id="c-tbl">
+      <colgroup><col style="width:160px"><col style="width:160px"><col style="width:90px"><col style="width:120px"><col style="width:70px"><col style="width:80px"><col style="width:auto"><col style="width:40px"></colgroup>
+      <thead><tr>
+        <th class="srt" data-col="id">id<span class="si2"></span></th><th>구성 단어</th>
+        <th class="srt" data-col="ko">한글<span class="si2"></span></th>
+        <th>abbr_long</th><th>abbr_short</th>
+        <th class="srt" data-col="domain">domain<span class="si2"></span></th>
+        <th>설명</th><th></th>
+      </tr></thead>
+      <tbody id="c-body"></tbody>
+    </table></div>
+  </div>
+  <!-- BANNED -->
+  <div class="view" id="view-banned">
+    <div class="toolbar">
+      <div class="sw"><span class="si-s">⌕</span><input class="search-inp" id="b-search" type="text" placeholder="검색 — 금지표현, 올바른 표현, 사유…" oninput="bFilter()"></div>
+      <div class="row-cnt" id="b-cnt"></div>
+      <button class="btn btn-ac" onclick="openBannedForm(null)">+ 금지표현 추가</button>
+    </div>
+    <div class="tw"><table id="b-tbl">
+      <colgroup><col style="width:140px"><col style="width:240px"><col style="width:180px"><col style="width:auto"><col style="width:40px"></colgroup>
+      <thead><tr><th>금지 표현</th><th>문맥</th><th>올바른 표현</th><th>사유</th><th></th></tr></thead>
+      <tbody id="b-body"></tbody>
+    </table></div>
   </div>
 </div>
 </div>
 
-<!-- 카테고리 팝오버 -->
-<div class="pop" id="cat-pop" style="display:none">
-  <div class="cat-grid" id="cat-grid"></div>
-  <div class="pop-ft">
-    <button class="btn btn-ac" style="font-size:10px;padding:4px 10px" onclick="saveCatPop()">적용</button>
+<!-- WORD FORM -->
+<div class="ov" id="word-ov"><div class="modal" style="width:540px">
+  <div class="mh"><div class="mt" id="word-title">단어 추가</div><button class="ico" onclick="closeOv('word-ov')">✕</button></div>
+  <div class="mb" style="padding:16px">
+    <div class="fg2"><div class="fg"><div class="fl">id <span class="req">*</span></div><input class="fi" id="wf-id" placeholder="kill"></div><div class="fg"><div class="fl">english <span class="req">*</span></div><input class="fi" id="wf-en" placeholder="kill"></div></div>
+    <div class="fg2"><div class="fg"><div class="fl">한글 <span class="req">*</span></div><input class="fi" id="wf-ko" placeholder="킬"></div><div class="fg"><div class="fl">abbr (2-5자 대문자)</div><input class="fi" id="wf-abbr" placeholder="KL"></div></div>
+    <div class="fg2">
+      <div class="fg"><div class="fl">pos <span class="req">*</span></div><select class="fsel" id="wf-pos"><option value="noun">noun</option><option value="verb">verb</option><option value="adj">adj</option><option value="adv">adv</option><option value="prefix">prefix</option><option value="suffix">suffix</option><option value="proper">proper</option></select></div>
+      <div class="fg"><div class="fl">domain <span class="req">*</span></div><select class="fsel" id="wf-domain"><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select></div>
+    </div>
+    <div class="fg"><div class="fl">설명 <span class="req">*</span></div><textarea class="fta" id="wf-desc" placeholder="이 프로젝트에서의 의미"></textarea></div>
+    <div class="fg"><div class="fl">NOT (쉼표 구분)</div><input class="fi" id="wf-not" placeholder="금지 표현들"></div>
   </div>
-</div>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('word-ov')">취소</button><button class="btn btn-re" id="wf-del-btn" style="display:none" onclick="delWord()">🗑 삭제</button><button class="btn btn-ac" onclick="saveWord()">저장</button></div>
+</div></div>
 
-<!-- 행 메뉴 팝오버 -->
-<div class="pop" id="row-pop" style="display:none">
-  <div class="rpi" onclick="menuAction('note')">📝 note 편집</div>
-  <div class="rpi" onclick="menuAction('not')">⛔ NOT 편집</div>
-  <div class="rpi danger" onclick="menuAction('delete')">🗑 삭제</div>
-</div>
+<!-- COMPOUND FORM -->
+<div class="ov" id="compound-ov"><div class="modal" style="width:560px">
+  <div class="mh"><div class="mt" id="compound-title">복합어 추가</div><button class="ico" onclick="closeOv('compound-ov')">✕</button></div>
+  <div class="mb" style="padding:16px">
+    <div class="fg2"><div class="fg"><div class="fl">id <span class="req">*</span></div><input class="fi" id="cf-id" placeholder="kill_switch"></div><div class="fg"><div class="fl">구성 단어 (쉼표 구분) <span class="req">*</span></div><input class="fi" id="cf-words" placeholder="kill, switch"></div></div>
+    <div class="fg2"><div class="fg"><div class="fl">한글 <span class="req">*</span></div><input class="fi" id="cf-ko" placeholder="킬스위치"></div><div class="fg"><div class="fl">english <span class="req">*</span></div><input class="fi" id="cf-en" placeholder="Kill Switch"></div></div>
+    <div class="fg2"><div class="fg"><div class="fl">abbr_long <span class="req">*</span></div><input class="fi" id="cf-long" placeholder="killSwitch"></div><div class="fg"><div class="fl">abbr_short <span class="req">*</span></div><input class="fi" id="cf-short" placeholder="KSW"></div></div>
+    <div class="fg2">
+      <div class="fg"><div class="fl">domain <span class="req">*</span></div><select class="fsel" id="cf-domain"><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select></div>
+      <div class="fg"><div class="fl">등록 사유 <span class="req">*</span></div><select class="fsel" id="cf-reason"><option value="의미 비합산">의미 비합산</option><option value="공인 약어">공인 약어</option><option value="혼동 방지">혼동 방지</option><option value="시스템 객체">시스템 객체</option><option value="고유명사">고유명사</option></select></div>
+    </div>
+    <div class="fg"><div class="fl">설명 <span class="req">*</span></div><textarea class="fta" id="cf-desc" placeholder="한 줄 설명"></textarea></div>
+    <div class="fg"><div class="fl">NOT (쉼표 구분)</div><input class="fi" id="cf-not" placeholder="혼동 금지 표현들"></div>
+  </div>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('compound-ov')">취소</button><button class="btn btn-re" id="cf-del-btn" style="display:none" onclick="delCompound()">🗑 삭제</button><button class="btn btn-ac" onclick="saveCompound()">저장</button></div>
+</div></div>
 
-<!-- ADD MODAL -->
-<div class="overlay" id="add-modal">
-  <div class="modal" style="width:520px">
-    <div class="mhd"><div class="mhd-t">+ 용어 추가</div><button class="ico-btn" onclick="closeOverlay('add-modal')">✕</button></div>
-    <div class="mbd">
-      <div class="fg2">
-        <div class="fg"><div class="fl">id<span class="req">*</span></div><input class="fi" id="a-id" placeholder="fx_futures"></div>
-        <div class="fg"><div class="fl">한글명<span class="req">*</span></div><input class="fi" id="a-ko" placeholder="외환선물"></div>
-        <div class="fg"><div class="fl">영문명<span class="req">*</span></div><input class="fi" id="a-en" placeholder="FX Futures"></div>
-        <div class="fg"><div class="fl">abbr_long<span class="req">*</span></div><input class="fi" id="a-long" placeholder="fxFutures"></div>
-        <div class="fg"><div class="fl">abbr_short<span class="req">*</span></div><input class="fi" id="a-short" placeholder="FX_FUT"></div>
+<!-- BANNED FORM -->
+<div class="ov" id="banned-ov"><div class="modal" style="width:480px">
+  <div class="mh"><div class="mt" id="banned-title">금지표현 추가</div><button class="ico" onclick="closeOv('banned-ov')">✕</button></div>
+  <div class="mb" style="padding:16px">
+    <div class="fg"><div class="fl">금지 표현 <span class="req">*</span></div><input class="fi" id="bf-expr" placeholder="MT5_FUT"></div>
+    <div class="fg"><div class="fl">문맥 <span class="req">*</span></div><input class="fi" id="bf-ctx" placeholder="마켓 식별자로 사용 시"></div>
+    <div class="fg"><div class="fl">올바른 표현 <span class="req">*</span></div><input class="fi" id="bf-correct" placeholder="FX_FUT"></div>
+    <div class="fg"><div class="fl">사유 <span class="req">*</span></div><textarea class="fta" id="bf-reason" placeholder="MT5는 플랫폼이지 마켓이 아님"></textarea></div>
+  </div>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('banned-ov')">취소</button><button class="btn btn-re" id="bf-del-btn" style="display:none" onclick="delBanned()">🗑 삭제</button><button class="btn btn-ac" onclick="saveBanned()">저장</button></div>
+</div></div>
+
+<!-- CHECK-ID -->
+<div class="ov" id="checkid-ov"><div class="modal" style="width:500px">
+  <div class="mh"><div class="mt">⊙ check-id / suggest</div><button class="ico" onclick="closeOv('checkid-ov')">✕</button></div>
+  <div class="mb" style="padding:16px">
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <input class="fi" id="ci-input" placeholder="식별자 입력 (kill_switch)" style="flex:1" onkeydown="if(event.key==='Enter')runCheckId()">
+      <button class="btn btn-ac" onclick="runCheckId()">check-id</button>
+      <button class="btn btn-gh" onclick="runSuggest()">suggest</button>
+    </div>
+    <pre class="check-result" id="ci-result" style="min-height:80px">입력 후 실행</pre>
+  </div>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('checkid-ov')">닫기</button></div>
+</div></div>
+
+<!-- GIT -->
+<div class="ov" id="git-ov"><div class="modal" style="width:510px">
+  <div class="mh"><div class="mt">⎇ commit &amp; push</div><button class="ico" onclick="closeOv('git-ov')">✕</button></div>
+  <div class="mb" id="git-body" style="padding:0"></div>
+  <div class="mf" id="git-ft"><button class="btn btn-gh" onclick="closeOv('git-ov')">닫기</button><button class="btn btn-gr" id="cbtn" onclick="doCommit()">commit + push</button></div>
+</div></div>
+
+<!-- RUN -->
+<div class="ov" id="run-ov"><div class="modal" style="width:490px">
+  <div class="mh"><div class="mt" id="run-title">실행</div><button class="ico" onclick="closeOv('run-ov')">✕</button></div>
+  <div class="mb" style="padding:14px"><pre class="out-pre" id="run-out"></pre></div>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('run-ov')">닫기</button></div>
+</div></div>
+
+<!-- LOG -->
+<div class="ov" id="log-ov"><div class="modal" style="width:680px;max-height:80vh">
+  <div class="mh"><div class="mt">📋 서버 로그</div>
+    <div style="display:flex;gap:6px;align-items:center">
+      <span id="log-total" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span>
+      <button class="btn btn-gh" style="padding:3px 8px;font-size:9px" onclick="loadLogs()">↺</button>
+      <button class="btn btn-re" style="padding:3px 8px;font-size:9px" onclick="clearLogs()">초기화</button>
+      <button class="ico" onclick="closeOv('log-ov')">✕</button>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;padding:8px 12px;border-bottom:1px solid var(--ln);background:var(--s2)">
+    <input id="log-filter" type="text" placeholder="필터…" oninput="filterLogs()" style="flex:1;background:var(--s1);border:1px solid var(--ln);border-radius:var(--r);padding:4px 8px;color:var(--tx);font-family:var(--mono);font-size:11px;outline:none">
+    <select id="log-level-sel" onchange="filterLogs()" style="background:var(--s1);border:1px solid var(--ln);border-radius:var(--r);padding:4px 8px;color:var(--tx2);font-family:var(--mono);font-size:10px"><option value="">전체</option><option value="INFO">INFO</option><option value="WARNING">WARN</option><option value="ERROR">ERROR</option></select>
+    <label style="display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:10px;color:var(--tx3);cursor:pointer"><input type="checkbox" id="log-tail" checked onchange="filterLogs()"> 최신</label>
+  </div>
+  <pre id="log-content" style="font-family:var(--mono);font-size:10px;line-height:1.65;padding:10px 14px;margin:0;overflow:auto;max-height:460px;white-space:pre-wrap;word-break:break-all;color:var(--tx2)">로딩 중…</pre>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('log-ov')">닫기</button></div>
+</div></div>
+
+<!-- BATCH -->
+<div class="ov" id="batch-ov"><div class="modal" style="width:660px;max-height:85vh">
+  <div class="mh"><div class="mt">⚙ 용어 배치 추출</div><button class="ico" onclick="closeOv('batch-ov')">✕</button></div>
+  <div class="mb" style="padding:0">
+    <div class="batch-tab-bar"><button class="btab-btn active" data-btab="scan" onclick="switchBtab('scan')">1. 스캔</button><button class="btab-btn" data-btab="result" onclick="switchBtab('result')">2. 결과 파일</button><button class="btab-btn" data-btab="merge" onclick="switchBtab('merge')">3. 병합</button></div>
+    <div class="btab-pane active" id="btab-scan">
+      <div style="display:flex;gap:8px;margin-bottom:10px"><button class="btn btn-gh" onclick="doScan()" id="scan-btn">▷ 스캔</button><span id="scan-status" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span></div>
+      <pre id="scan-preview" style="font-family:var(--mono);font-size:10px;line-height:1.6;background:var(--bg);padding:10px;border-radius:4px;max-height:200px;overflow:auto;color:var(--tx2);white-space:pre-wrap;display:none"></pre>
+      <hr style="border:none;border-top:1px solid var(--ln);margin:14px 0">
+      <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:3px"><label style="font-family:var(--mono);font-size:9px;color:var(--tx3)">API</label><select id="batch-api-type" onchange="onBatchApiChange()" style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 9px;color:var(--tx);font-family:var(--mono);font-size:11px"><option value="">-- .env --</option><option value="claude">Claude</option><option value="openai">OpenAI</option><option value="google">Google</option></select></div>
+        <div style="display:flex;flex-direction:column;gap:3px"><label style="font-family:var(--mono);font-size:9px;color:var(--tx3)">모델</label><select id="batch-model" style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 9px;color:var(--tx);font-family:var(--mono);font-size:11px;min-width:200px"><option value="">-- .env --</option></select></div>
       </div>
-      <div class="fg"><div class="fl">설명<span class="req">*</span></div><textarea class="fta" id="a-desc" placeholder="용어에 대한 설명"></textarea></div>
-      <div class="fg"><div class="fl">categories<span class="req">*</span></div><div class="cc-wrap" id="a-cats"></div></div>
-      <div class="fg2">
-        <div class="fg"><div class="fl">NOT (쉼표 구분)</div><input class="fi" id="a-not" placeholder="MT5, mt5Futures"></div>
-        <div class="fg"><div class="fl">note</div><input class="fi" id="a-note" placeholder="주의사항"></div>
-      </div>
+      <div style="display:flex;gap:8px;align-items:center"><button class="btn btn-gh" onclick="doBatchDryRun()" id="dry-btn">▷ dry-run</button><button class="btn btn-ac" onclick="doBatchRun()" id="run-btn">▷ API 분석</button></div>
+      <pre id="batch-output" style="font-family:var(--mono);font-size:10px;line-height:1.6;background:var(--bg);padding:10px;border-radius:4px;max-height:180px;overflow:auto;color:var(--tx2);white-space:pre-wrap;margin-top:10px;display:none"></pre>
     </div>
-    <div class="mft">
-      <button class="btn btn-ghost" onclick="closeOverlay('add-modal')">취소</button>
-      <button class="btn btn-ac" onclick="doAdd()">추가</button>
-    </div>
+    <div class="btab-pane" id="btab-result"><div style="display:flex;justify-content:space-between;margin-bottom:10px"><span style="font-family:var(--mono);font-size:10px;color:var(--tx3)">tmp/terms/</span><button class="btn btn-gh" style="padding:3px 8px;font-size:9px" onclick="loadBatchFiles()">↺</button></div><div id="batch-file-list" style="max-height:340px;overflow-y:auto"></div></div>
+    <div class="btab-pane" id="btab-merge"><div style="margin-bottom:10px"><div style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-bottom:6px">선택 파일</div><div id="merge-fname" style="font-family:var(--mono);font-size:11px;color:var(--ac);padding:6px 10px;background:var(--bg);border-radius:4px">—</div></div><div id="merge-preview" style="max-height:280px;overflow-y:auto"></div><div id="merge-actions" style="margin-top:12px;display:none;gap:8px;align-items:center"><button class="btn btn-ac" onclick="doMergeAll()">전체 병합</button><button class="btn btn-gh" onclick="doMergeSelected()">선택만</button><span id="merge-status" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span></div></div>
   </div>
-</div>
-
-<!-- EXTRA (note / NOT) MODAL -->
-<div class="overlay" id="extra-modal">
-  <div class="modal" style="width:420px">
-    <div class="mhd"><div class="mhd-t" id="extra-title">편집</div><button class="ico-btn" onclick="closeOverlay('extra-modal')">✕</button></div>
-    <div class="mbd">
-      <div class="fg"><div class="fl" id="extra-lbl">값</div><textarea class="fta" id="extra-val" style="min-height:80px"></textarea><div style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-top:5px" id="extra-hint"></div></div>
-    </div>
-    <div class="mft">
-      <button class="btn btn-ghost" onclick="closeOverlay('extra-modal')">취소</button>
-      <button class="btn btn-ac" onclick="saveExtra()">저장</button>
-    </div>
-  </div>
-</div>
-
-<!-- GIT MODAL -->
-<div class="overlay" id="git-modal">
-  <div class="modal" style="width:520px">
-    <div class="mhd"><div class="mhd-t">⎇ commit &amp; push</div><button class="ico-btn" onclick="closeOverlay('git-modal')">✕</button></div>
-    <div class="mbd" id="git-mbd" style="padding:0">로딩 중...</div>
-    <div class="mft" id="git-mft">
-      <button class="btn btn-ghost" onclick="closeOverlay('git-modal')">닫기</button>
-      <button class="btn btn-gr" id="commit-btn" onclick="doCommit()">commit + push</button>
-    </div>
-  </div>
-</div>
-
-<!-- RUN MODAL -->
-<div class="overlay" id="run-modal">
-  <div class="modal" style="width:500px">
-    <div class="mhd"><div class="mhd-t" id="run-title">run.py</div><button class="ico-btn" onclick="closeOverlay('run-modal')">✕</button></div>
-    <div class="mbd" style="padding:0"><pre id="run-out" style="padding:14px">실행 중...</pre></div>
-    <div class="mft"><button class="btn btn-ghost" onclick="closeOverlay('run-modal')">닫기</button></div>
-  </div>
-</div>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('batch-ov')">닫기</button></div>
+</div></div>
 
 <!-- DELETE CONFIRM -->
-<div class="overlay" id="del-modal">
-  <div class="modal" style="width:340px">
-    <div class="mhd"><div class="mhd-t">용어 삭제</div><button class="ico-btn" onclick="closeOverlay('del-modal')">✕</button></div>
-    <div class="mbd">
-      <p><code id="del-name" style="color:var(--rd);font-family:var(--mono)"></code> 를 삭제합니까?</p>
-      <p style="margin-top:6px;font-family:var(--mono);font-size:10px;color:var(--tx3)">terms.json에 즉시 반영됩니다.</p>
-    </div>
-    <div class="mft">
-      <button class="btn btn-ghost" onclick="closeOverlay('del-modal')">취소</button>
-      <button class="btn btn-rd" id="del-confirm">삭제</button>
-    </div>
-  </div>
-</div>
-
-<!-- LOG VIEWER MODAL -->
-<div class="overlay" id="log-modal">
-  <div class="modal" style="width:700px;max-height:80vh">
-    <div class="mhd">
-      <div class="mhd-t">📋 서버 로그</div>
-      <div style="display:flex;gap:6px;align-items:center">
-        <span id="log-total" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span>
-        <button class="btn btn-ghost" style="padding:3px 8px;font-size:9px" onclick="loadLogs()" title="새로고침">↺</button>
-        <button class="btn btn-re"   style="padding:3px 8px;font-size:9px" onclick="clearLogs()" title="로그 초기화">초기화</button>
-        <button class="ico-btn" onclick="closeOverlay('log-modal')">✕</button>
-      </div>
-    </div>
-    <div class="mbd" style="padding:0;background:var(--bg)">
-      <div style="display:flex;gap:8px;padding:8px 12px;border-bottom:1px solid var(--ln);background:var(--s2)">
-        <input id="log-filter" type="text" placeholder="필터링…" oninput="filterLogs()"
-          style="flex:1;background:var(--s1);border:1px solid var(--ln);border-radius:var(--r);padding:4px 8px;color:var(--tx);font-family:var(--mono);font-size:11px;outline:none">
-        <select id="log-level-sel" onchange="filterLogs()"
-          style="background:var(--s1);border:1px solid var(--ln);border-radius:var(--r);padding:4px 8px;color:var(--tx2);font-family:var(--mono);font-size:10px">
-          <option value="">전체 레벨</option>
-          <option value="INFO">INFO</option>
-          <option value="WARNING">WARN</option>
-          <option value="ERROR">ERROR</option>
-          <option value="DEBUG">DEBUG</option>
-        </select>
-        <label style="display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:10px;color:var(--tx3);cursor:pointer">
-          <input type="checkbox" id="log-tail" checked onchange="filterLogs()"> 최신 고정
-        </label>
-      </div>
-      <pre id="log-content" style="font-family:var(--mono);font-size:10px;line-height:1.65;padding:10px 14px;margin:0;overflow:auto;max-height:480px;white-space:pre-wrap;word-break:break-all;color:var(--tx2)">로딩 중…</pre>
-    </div>
-    <div class="mft">
-      <button class="btn btn-ghost" onclick="closeOverlay('log-modal')">닫기</button>
-    </div>
-  </div>
-</div>
-
-<!-- BATCH MODAL -->
-<div class="overlay" id="batch-modal">
-  <div class="modal" style="width:680px;max-height:85vh">
-    <div class="mhd">
-      <div class="mhd-t">⚙ 용어 배치 추출</div>
-      <button class="ico-btn" onclick="closeOverlay('batch-modal')">✕</button>
-    </div>
-    <div class="mbd" id="batch-body" style="padding:0">
-      <!-- 탭 -->
-      <div style="display:flex;border-bottom:1px solid var(--ln);background:var(--s2)">
-        <button class="batch-tab active" data-tab="scan" onclick="switchBatchTab('scan')">1. 스캔</button>
-        <button class="batch-tab" data-tab="result" onclick="switchBatchTab('result')">2. 결과 파일</button>
-        <button class="batch-tab" data-tab="merge" onclick="switchBatchTab('merge')">3. 병합</button>
-      </div>
-
-      <!-- 스캔 탭 -->
-      <div id="btab-scan" class="btab" style="padding:16px">
-        <p style="font-size:12px;color:var(--tx2);margin-bottom:12px;line-height:1.6">
-          프로젝트 소스를 스캔해서 <code style="font-family:var(--mono);color:var(--ac)">terms.json</code>에 없는 용어 후보를 추출합니다.<br>
-          API를 사용하지 않으므로 토큰이 소모되지 않습니다.
-        </p>
-        <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
-          <button class="btn btn-ghost" onclick="doScan()" id="scan-btn">▷ 스캔 실행</button>
-          <span id="scan-status" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span>
-        </div>
-        <pre id="scan-preview" style="font-family:var(--mono);font-size:10px;line-height:1.6;background:var(--bg);padding:10px;border-radius:4px;max-height:260px;overflow:auto;color:var(--tx2);white-space:pre-wrap;display:none"></pre>
-
-        <hr style="border:none;border-top:1px solid var(--ln);margin:14px 0">
-        <p style="font-size:12px;color:var(--tx2);margin-bottom:10px">API 분석 실행 (스캔 후 진행하세요)</p>
-
-        <!-- API 종류 + 모델 선택 -->
-        <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center">
-          <div style="display:flex;flex-direction:column;gap:3px">
-            <label style="font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacing:.06em">API 종류</label>
-            <select id="batch-api-type" onchange="onBatchApiChange()"
-              style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 9px;color:var(--tx);font-family:var(--mono);font-size:11px">
-              <option value="">-- .env 설정 사용 --</option>
-              <option value="claude">Claude (Anthropic)</option>
-              <option value="openai">OpenAI</option>
-              <option value="google">Google (Gemini)</option>
-            </select>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:3px">
-            <label style="font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacing:.06em">모델</label>
-            <select id="batch-model"
-              style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 9px;color:var(--tx);font-family:var(--mono);font-size:11px;min-width:220px">
-              <option value="">-- .env 설정 사용 --</option>
-            </select>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-          <button class="btn btn-ghost" onclick="doBatchDryRun()" id="dry-btn">▷ dry-run (토큰 예상치)</button>
-          <button class="btn btn-ac"    onclick="doBatchRun()"    id="run-btn">▷ API 분석 실행</button>
-          <span style="font-family:var(--mono);font-size:9px;color:var(--tx3)">결과: 프로젝트/tmp/terms/terms_날짜.json</span>
-        </div>
-        <pre id="batch-output" style="font-family:var(--mono);font-size:10px;line-height:1.6;background:var(--bg);padding:10px;border-radius:4px;max-height:200px;overflow:auto;color:var(--tx2);white-space:pre-wrap;margin-top:10px;display:none"></pre>
-      </div>
-
-      <!-- 결과 파일 탭 -->
-      <div id="btab-result" class="btab" style="padding:16px;display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--tx3)">tmp/terms/ 하위 결과 파일</span>
-          <button class="btn btn-ghost" style="padding:3px 8px;font-size:9px" onclick="loadBatchFiles()">↺ 새로고침</button>
-        </div>
-        <div id="batch-file-list" style="max-height:360px;overflow-y:auto"></div>
-      </div>
-
-      <!-- 병합 탭 -->
-      <div id="btab-merge" class="btab" style="padding:16px;display:none">
-        <div style="margin-bottom:10px">
-          <div style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-bottom:6px">선택한 파일</div>
-          <div id="merge-fname" style="font-family:var(--mono);font-size:11px;color:var(--ac);padding:6px 10px;background:var(--bg);border-radius:4px">—</div>
-        </div>
-        <div id="merge-preview" style="max-height:320px;overflow-y:auto"></div>
-        <div id="merge-actions" style="margin-top:12px;display:flex;gap:8px;display:none">
-          <button class="btn btn-ac" onclick="doMergeAll()" id="merge-all-btn">전체 병합</button>
-          <button class="btn btn-ghost" onclick="doMergeSelected()" id="merge-sel-btn">선택 항목만 병합</button>
-          <span id="merge-status" style="font-family:var(--mono);font-size:10px;color:var(--tx3);line-height:32px"></span>
-        </div>
-      </div>
-    </div>
-    <div class="mft">
-      <button class="btn btn-ghost" onclick="closeOverlay('batch-modal')">닫기</button>
-    </div>
-  </div>
-</div>
+<div class="ov" id="del-ov"><div class="modal" style="width:340px">
+  <div class="mh"><div class="mt">삭제 확인</div><button class="ico" onclick="closeOv('del-ov')">✕</button></div>
+  <div class="mb" style="padding:16px"><p style="font-size:13px"><code id="del-nm" style="color:var(--re);font-family:var(--mono)"></code> 를 삭제합니까?</p><p style="margin-top:6px;font-family:var(--mono);font-size:10px;color:var(--tx3)">즉시 파일에 반영됩니다.</p></div>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('del-ov')">취소</button><button class="btn btn-re" id="del-ok">삭제</button></div>
+</div></div>
 
 <div id="toasts"></div>
 
 <script>
-/* ═══ STATE ═══ */
-let all=[], cats={}, filtered=[];
-let sortCol='ko', sortDir=1;
-let editId=null, editRow=null, editBuf={};
-let catPopId=null, rowPopId=null, extraId=null, extraField=null;
+let WORDS=[],COMPOUNDS=[],BANNED=[];
+let wFlt=[],cFlt=[],bFlt=[];
+let wSort={col:'id',dir:1},cSort={col:'id',dir:1};
+let wExpId=null,cExpId=null;
+let editWordId=null,editCompoundId=null,editBannedExpr=null;
+let _batchSelFile=null,_batchTerms=[],_allLogLines=[];
+const STEPS=['validate + generate','git add','git commit','git push'];
+const DC={trading:'d-trading',market:'d-market',system:'d-system',infra:'d-infra',ui:'d-ui',general:'d-general',proper:'d-proper'};
 
-/* ═══ BOOT ═══ */
-async function boot() {
-  try {
-    const [td,cd]=await Promise.all([fetch('/api/terms'),fetch('/api/categories')]);
-    const td2=await td.json(); cats=await cd.json();
-    all=td2.terms;
-    buildCatSel(); buildAddCats(); applyFilter(); updateStats(); loadGitStatus();
-  } catch(e){toast('서버 연결 실패','err')}
+async function boot(){
+  try{
+    const[wd,cd,bd]=await Promise.all([fetch('/api/words').then(r=>r.json()),fetch('/api/compounds').then(r=>r.json()),fetch('/api/banned').then(r=>r.json())]);
+    WORDS=wd.words||[];COMPOUNDS=cd.compounds||[];BANNED=bd.banned||[];
+    wFlt=[...WORDS];cFlt=[...COMPOUNDS];bFlt=[...BANNED];
+    renderWords();renderCompounds();renderBanned();updateStats();loadBranch();
+  }catch(e){toast('서버 연결 실패','ter');}
 }
 
-/* ═══ GIT STATUS ═══ */
-async function loadGitStatus() {
-  try {
-    const r=await fetch('/api/git/status'), d=await r.json();
-    document.getElementById('branch-name').textContent=d.branch||'—';
-    document.getElementById('branch-pill').classList.toggle('dirty',d.has_changes);
-    document.getElementById('git-btn').textContent=
-      d.has_changes?`⎇ commit & push (${d.changed.length})`:'⎇ commit & push';
-  } catch(e){}
+function updateStats(){
+  document.getElementById('tb-stats').textContent=`단어 ${WORDS.length} · 복합어 ${COMPOUNDS.length} · 금지 ${BANNED.length}`;
+  document.getElementById('badge-words').textContent=WORDS.length;
+  document.getElementById('badge-compounds').textContent=COMPOUNDS.length;
+  document.getElementById('badge-banned').textContent=BANNED.length;
 }
-function updateStats(){document.getElementById('tb-stats').textContent=`${all.length}개 · ${Object.keys(cats).length}cat`}
 
-/* ═══ FILTER / SORT ═══ */
-function buildCatSel(){const s=document.getElementById('cat-sel');Object.keys(cats).forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;s.appendChild(o)})}
+async function loadBranch(){
+  try{const d=await(await fetch('/api/git/status')).json();
+    document.getElementById('br-nm').textContent=d.branch||'—';
+    document.getElementById('tb-branch').classList.toggle('dirty',d.has_changes);
+    document.getElementById('git-btn').textContent=d.has_changes?`⎇ commit & push (${d.changed.length})`:'⎇ commit & push';
+  }catch(e){}
+}
 
-function applyFilter(){
-  const q=document.getElementById('search').value.toLowerCase().trim();
-  const cat=document.getElementById('cat-sel').value;
-  filtered=all.filter(t=>{
-    if(cat&&!(t.categories||[]).includes(cat))return false;
-    if(!q)return true;
-    return[t.ko,t.en,t.abbr_long,t.abbr_short,t.id,t.description].some(v=>v&&v.toLowerCase().includes(q));
+function switchTab(tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===`view-${tab}`));
+  const a=document.getElementById('tab-actions');
+  if(tab==='words'||tab==='compounds')
+    a.innerHTML=`<button class="btn btn-gh" onclick="runGenerate()">▷ generate</button><button class="btn btn-gh" onclick="runValidate()">▷ validate</button>`;
+  else a.innerHTML='';
+}
+switchTab('words');
+
+// ── WORDS ──
+function wFilter(){
+  const q=document.getElementById('w-search').value.toLowerCase().trim();
+  const dm=document.getElementById('w-domain').value,ps=document.getElementById('w-pos').value;
+  wFlt=WORDS.filter(w=>{if(dm&&w.domain!==dm)return false;if(ps&&w.pos!==ps)return false;
+    if(!q)return true;return[w.id,w.en,w.ko,w.abbr||'',w.description].some(v=>v&&v.toLowerCase().includes(q));});
+  wFlt.sort((a,b)=>{const av=(a[wSort.col]||'').toLowerCase(),bv=(b[wSort.col]||'').toLowerCase();return av<bv?-wSort.dir:av>bv?wSort.dir:0;});
+  document.getElementById('w-cnt').textContent=wFlt.length===WORDS.length?`${WORDS.length}개`:`${wFlt.length}/${WORDS.length}개`;
+  renderWords();
+}
+
+function renderWords(){
+  const tb=document.getElementById('w-body');tb.innerHTML='';
+  wFlt.forEach(w=>{
+    const isExp=w.id===wExpId;
+    const tr=document.createElement('tr');if(isExp)tr.classList.add('sel');tr.dataset.id=w.id;
+    tr.innerHTML=`<td class="c-id">${x(w.id)}</td><td class="c-en">${x(w.en)}</td><td class="c-ko">${x(w.ko)}</td><td>${w.abbr?`<span class="c-abbr">${x(w.abbr)}</span>`:'—'}</td><td><span class="c-pos">${x(w.pos)}</span></td><td><span class="c-domain ${DC[w.domain]||'d-general'}">${x(w.domain)}</span></td><td class="c-desc" title="${x(w.description)}">${x(w.description)}</td><td style="text-align:center"><button class="del-btn" onclick="event.stopPropagation();confirmDel(()=>doDeleteWord('${x(w.id)}'),'${x(w.ko)}')">🗑</button></td>`;
+    tr.addEventListener('click',()=>toggleWExp(w.id));
+    tr.addEventListener('dblclick',e=>{e.preventDefault();openWordForm(w);});
+    tb.appendChild(tr);
+    if(isExp){const xr=document.createElement('tr');xr.className='xrow';
+      const nots=(w.not||[]).map(n=>`<span class="not-chip">${x(n)}</span>`).join(' ');
+      xr.innerHTML=`<td colspan="8"><div class="xi"><div class="xf"><label>id</label><div class="xv" style="font-family:var(--mono);color:var(--tx3)">${x(w.id)}</div></div><div class="xf"><label>pos</label><div class="xv"><span class="c-pos">${x(w.pos)}</span></div></div><div class="xf"><label>domain</label><div class="xv"><span class="c-domain ${DC[w.domain]||''}">${x(w.domain)}</span></div></div><div class="xf full"><label>description</label><div class="xv">${x(w.description)}</div></div>${w.not?.length?`<div class="xf full"><label>NOT</label><div class="xv">${nots}</div></div>`:''}<div class="xf full"><span class="edit-link" onclick="openWordForm(WORDS.find(w=>w.id==='${x(w.id)}'))">✏ 수정</span></div></div></td>`;
+      tb.appendChild(xr);}
   });
-  doSort(); renderTable();
-  document.getElementById('row-count').textContent=filtered.length===all.length?`${all.length}개`:`${filtered.length}/${all.length}개`;
+  document.getElementById('w-cnt').textContent=wFlt.length===WORDS.length?`${WORDS.length}개`:`${wFlt.length}/${WORDS.length}개`;
 }
-function doSort(){filtered.sort((a,b)=>{const av=(a[sortCol]||'').toString().toLowerCase(),bv=(b[sortCol]||'').toString().toLowerCase();return av<bv?-sortDir:av>bv?sortDir:0})}
+function toggleWExp(id){wExpId=(wExpId===id)?null:id;renderWords();}
+document.querySelectorAll('#w-tbl th.srt').forEach(th=>{th.addEventListener('click',()=>{const col=th.dataset.col;wSort.dir=(wSort.col===col)?-wSort.dir:1;wSort.col=col;document.querySelectorAll('#w-tbl th').forEach(h=>h.classList.remove('sa','sd'));th.classList.add(wSort.dir===1?'sa':'sd');wFilter();});});
 
-document.querySelectorAll('thead th.sortable').forEach(th=>{
-  th.addEventListener('click',()=>{
-    if(editId)commitEdit();
-    const col=th.dataset.col;
-    sortDir=sortCol===col?-sortDir:1; sortCol=col;
-    document.querySelectorAll('thead th').forEach(h=>h.classList.remove('asc','desc'));
-    th.classList.add(sortDir===1?'asc':'desc');
-    doSort(); renderTable();
+// ── COMPOUNDS ──
+function cFilter(){
+  const q=document.getElementById('c-search').value.toLowerCase().trim();
+  const dm=document.getElementById('c-domain').value;
+  cFlt=COMPOUNDS.filter(c=>{if(dm&&c.domain!==dm)return false;if(!q)return true;
+    return[c.id,c.ko,c.en,c.abbr_long,c.abbr_short,(c.words||[]).join(' '),c.description].some(v=>v&&v.toLowerCase().includes(q));});
+  cFlt.sort((a,b)=>{const av=(a[cSort.col]||'').toLowerCase(),bv=(b[cSort.col]||'').toLowerCase();return av<bv?-cSort.dir:av>bv?cSort.dir:0;});
+  renderCompounds();
+}
+function renderCompounds(){
+  const tb=document.getElementById('c-body');tb.innerHTML='';
+  cFlt.forEach(c=>{const isExp=c.id===cExpId;const tr=document.createElement('tr');if(isExp)tr.classList.add('sel');tr.dataset.id=c.id;
+    const wchips=(c.words||[]).map(w=>`<span class="c-word-chip">${x(w)}</span>`).join('');
+    tr.innerHTML=`<td class="c-id">${x(c.id)}</td><td><div class="c-words">${wchips}</div></td><td class="c-ko">${x(c.ko)}</td><td class="c-en" style="font-family:var(--mono);font-size:11px">${x(c.abbr_long)}</td><td><span class="c-abbr">${x(c.abbr_short)}</span></td><td><span class="c-domain ${DC[c.domain]||'d-general'}">${x(c.domain)}</span></td><td class="c-desc" title="${x(c.description)}">${x(c.description)}</td><td style="text-align:center"><button class="del-btn" onclick="event.stopPropagation();confirmDel(()=>doDeleteCompound('${x(c.id)}'),'${x(c.ko)}')">🗑</button></td>`;
+    tr.addEventListener('click',()=>toggleCExp(c.id));tr.addEventListener('dblclick',e=>{e.preventDefault();openCompoundForm(c);});tb.appendChild(tr);
+    if(isExp){const xr=document.createElement('tr');xr.className='xrow';const nots=(c.not||[]).map(n=>`<span class="not-chip">${x(n)}</span>`).join(' ');
+      xr.innerHTML=`<td colspan="8"><div class="xi"><div class="xf"><label>id</label><div class="xv" style="font-family:var(--mono);color:var(--tx3)">${x(c.id)}</div></div><div class="xf"><label>abbr_long</label><div class="xv" style="font-family:var(--mono);color:var(--gr)">${x(c.abbr_long)}</div></div><div class="xf"><label>abbr_short</label><div class="xv"><span class="c-abbr">${x(c.abbr_short)}</span></div></div><div class="xf full"><label>등록 사유</label><div class="xv">${x(c.reason||'')}</div></div><div class="xf full"><label>description</label><div class="xv">${x(c.description)}</div></div>${c.not?.length?`<div class="xf full"><label>NOT</label><div class="xv">${nots}</div></div>`:''}<div class="xf full"><span class="edit-link" onclick="openCompoundForm(COMPOUNDS.find(c=>c.id==='${x(c.id)}'))">✏ 수정</span></div></div></td>`;
+      tb.appendChild(xr);}
   });
-});
-document.querySelector(`th[data-col="${sortCol}"]`).classList.add('asc');
-
-/* ═══ RENDER ═══ */
-function renderTable(){
-  const tbody=document.getElementById('tbody'); tbody.innerHTML='';
-  filtered.forEach(t=>tbody.appendChild(makeRow(t)));
+  document.getElementById('c-cnt').textContent=cFlt.length===COMPOUNDS.length?`${COMPOUNDS.length}개`:`${cFlt.length}/${COMPOUNDS.length}개`;
 }
-function makeRow(t){
-  const tr=document.createElement('tr'); tr.dataset.id=t.id;
-  const catsHtml=(t.categories||[]).map(c=>`<span class="cv-cat">${esc(c)}</span>`).join('');
-  tr.innerHTML=`
-    <td><div class="cv cv-ko" data-field="ko" onclick="startEdit('${t.id}','ko',this)">${esc(t.ko)}</div></td>
-    <td><div class="cv cv-en" data-field="en" onclick="startEdit('${t.id}','en',this)">${esc(t.en)}</div></td>
-    <td><div class="cv cv-long" data-field="abbr_long" onclick="startEdit('${t.id}','abbr_long',this)">${esc(t.abbr_long)}</div></td>
-    <td class="cv-short-td"><span class="cv-short" data-field="abbr_short" onclick="startEdit('${t.id}','abbr_short',this)">${esc(t.abbr_short)}</span></td>
-    <td><div class="cv-cats" onclick="openCatPop('${t.id}',this)">${catsHtml}<span class="cats-edit-ico">✎</span></div></td>
-    <td><div class="cv cv-desc" data-field="description" title="${esc(t.description||'')}" onclick="startEdit('${t.id}','description',this)">${esc(t.description||'')}</div></td>
-    <td><div class="act-cell"><button class="rmb" onclick="openRowPop('${t.id}',event)">⋯</button></div></td>`;
-  return tr;
-}
+function toggleCExp(id){cExpId=(cExpId===id)?null:id;renderCompounds();}
+document.querySelectorAll('#c-tbl th.srt').forEach(th=>{th.addEventListener('click',()=>{const col=th.dataset.col;cSort.dir=(cSort.col===col)?-cSort.dir:1;cSort.col=col;document.querySelectorAll('#c-tbl th').forEach(h=>h.classList.remove('sa','sd'));th.classList.add(cSort.dir===1?'sa':'sd');cFilter();});});
 
-/* ═══ INLINE EDIT ═══ */
-const FIELDS=['ko','en','abbr_long','abbr_short','description'];
+// ── BANNED ──
+function bFilter(){const q=document.getElementById('b-search').value.toLowerCase().trim();bFlt=BANNED.filter(b=>{if(!q)return true;return[b.expression,b.context,b.correct,b.reason].some(v=>v&&v.toLowerCase().includes(q));});renderBanned();}
+function renderBanned(){const tb=document.getElementById('b-body');tb.innerHTML='';bFlt.forEach(b=>{const tr=document.createElement('tr');tr.innerHTML=`<td><code class="c-expr">${x(b.expression)}</code></td><td class="c-desc">${x(b.context)}</td><td><code class="c-correct">${x(b.correct)}</code></td><td class="c-desc">${x(b.reason)}</td><td style="text-align:center"><button class="del-btn" onclick="event.stopPropagation();confirmDel(()=>doDeleteBanned('${x(b.expression)}'),'${x(b.expression)}')">🗑</button></td>`;tr.addEventListener('dblclick',e=>{e.preventDefault();openBannedForm(b);});tb.appendChild(tr);});document.getElementById('b-cnt').textContent=`${bFlt.length}개`;}
 
-function startEdit(id, field, el) {
-  if(editId && editId!==id) commitEdit();
-  const t=all.find(x=>x.id===id); if(!t) return;
-  const tr=el.closest('tr');
-  tr.classList.add('editing'); editRow=tr; editId=id;
-  if(!editBuf._id) editBuf={_id:id};
+// ── WORD FORM ──
+function openWordForm(w){editWordId=w?w.id:null;document.getElementById('word-title').textContent=w?'단어 수정':'단어 추가';document.getElementById('wf-id').value=w?.id||'';document.getElementById('wf-id').disabled=!!w;document.getElementById('wf-en').value=w?.en||'';document.getElementById('wf-ko').value=w?.ko||'';document.getElementById('wf-abbr').value=w?.abbr||'';document.getElementById('wf-pos').value=w?.pos||'noun';document.getElementById('wf-domain').value=w?.domain||'general';document.getElementById('wf-desc').value=w?.description||'';document.getElementById('wf-not').value=(w?.not||[]).join(', ');document.getElementById('wf-del-btn').style.display=w?'':'none';openOv('word-ov');}
+async function saveWord(){const id=document.getElementById('wf-id').value.trim(),en=document.getElementById('wf-en').value.trim(),ko=document.getElementById('wf-ko').value.trim(),abbr=document.getElementById('wf-abbr').value.trim()||null,pos=document.getElementById('wf-pos').value,dom=document.getElementById('wf-domain').value,desc=document.getElementById('wf-desc').value.trim(),notV=document.getElementById('wf-not').value.trim();if(!id||!en||!ko||!desc){toast('필수 항목 누락','ter');return;}const body={id,en,ko,abbr,pos,domain:dom,description:desc,not:notV?notV.split(',').map(s=>s.trim()).filter(Boolean):[]};const isAdd=!editWordId;const res=await fetch(isAdd?'/api/words':`/api/words/${editWordId}`,{method:isAdd?'POST':'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const d=await res.json();if(!res.ok){toast(d.error||'저장 실패','ter');return;}toast(isAdd?'추가 완료':'수정 완료','tok');closeOv('word-ov');await reloadWords();}
+async function doDeleteWord(id){const res=await fetch(`/api/words/${id}`,{method:'DELETE'});if(!res.ok){toast('삭제 실패','ter');return;}toast('삭제 완료','tok');closeOv('del-ov');closeOv('word-ov');await reloadWords();}
+function delWord(){confirmDel(()=>doDeleteWord(editWordId),editWordId);}
+async function reloadWords(){const d=await(await fetch('/api/words')).json();WORDS=d.words||[];wFlt=[...WORDS];wFilter();updateStats();}
 
-  const val=editBuf[field]!==undefined?editBuf[field]:(t[field]||'');
-  const td=el.closest('td');
-  const input=document.createElement('input');
+// ── COMPOUND FORM ──
+function openCompoundForm(c){editCompoundId=c?c.id:null;document.getElementById('compound-title').textContent=c?'복합어 수정':'복합어 추가';document.getElementById('cf-id').value=c?.id||'';document.getElementById('cf-id').disabled=!!c;document.getElementById('cf-words').value=(c?.words||[]).join(', ');document.getElementById('cf-ko').value=c?.ko||'';document.getElementById('cf-en').value=c?.en||'';document.getElementById('cf-long').value=c?.abbr_long||'';document.getElementById('cf-short').value=c?.abbr_short||'';document.getElementById('cf-domain').value=c?.domain||'system';document.getElementById('cf-reason').value=c?.reason||'의미 비합산';document.getElementById('cf-desc').value=c?.description||'';document.getElementById('cf-not').value=(c?.not||[]).join(', ');document.getElementById('cf-del-btn').style.display=c?'':'none';openOv('compound-ov');}
+async function saveCompound(){const id=document.getElementById('cf-id').value.trim(),words=document.getElementById('cf-words').value.split(',').map(s=>s.trim()).filter(Boolean),ko=document.getElementById('cf-ko').value.trim(),en=document.getElementById('cf-en').value.trim(),long=document.getElementById('cf-long').value.trim(),short=document.getElementById('cf-short').value.trim(),dom=document.getElementById('cf-domain').value,reason=document.getElementById('cf-reason').value,desc=document.getElementById('cf-desc').value.trim(),notV=document.getElementById('cf-not').value.trim();if(!id||!words.length||!ko||!en||!long||!short||!desc){toast('필수 항목 누락','ter');return;}const body={id,words,ko,en,abbr_long:long,abbr_short:short,domain:dom,description:desc,reason,not:notV?notV.split(',').map(s=>s.trim()).filter(Boolean):[]};const isAdd=!editCompoundId;const res=await fetch(isAdd?'/api/compounds':`/api/compounds/${editCompoundId||id}`,{method:isAdd?'POST':'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const d=await res.json();if(!res.ok){toast(d.error||'저장 실패','ter');return;}toast(isAdd?'추가 완료':'수정 완료','tok');closeOv('compound-ov');await reloadCompounds();}
+async function doDeleteCompound(id){const res=await fetch(`/api/compounds/${id}`,{method:'DELETE'});if(!res.ok){toast('삭제 실패','ter');return;}toast('삭제 완료','tok');closeOv('del-ov');closeOv('compound-ov');await reloadCompounds();}
+function delCompound(){confirmDel(()=>doDeleteCompound(editCompoundId),editCompoundId);}
+async function reloadCompounds(){const d=await(await fetch('/api/compounds')).json();COMPOUNDS=d.compounds||[];cFlt=[...COMPOUNDS];cFilter();updateStats();}
 
-  // css class map
-  const cls={ko:'ci-ko',en:'ci-en',abbr_long:'ci-long',abbr_short:'ci-short',description:'ci-desc'};
-  input.className=`ci ${cls[field]||''}`;
-  td.innerHTML=''; td.appendChild(input);
-  input.value=val; input.focus(); input.select();
+// ── BANNED FORM ──
+function openBannedForm(b){editBannedExpr=b?b.expression:null;document.getElementById('banned-title').textContent=b?'금지표현 수정':'금지표현 추가';document.getElementById('bf-expr').value=b?.expression||'';document.getElementById('bf-expr').disabled=!!b;document.getElementById('bf-ctx').value=b?.context||'';document.getElementById('bf-correct').value=b?.correct||'';document.getElementById('bf-reason').value=b?.reason||'';document.getElementById('bf-del-btn').style.display=b?'':'none';openOv('banned-ov');}
+async function saveBanned(){const expr=document.getElementById('bf-expr').value.trim(),context=document.getElementById('bf-ctx').value.trim(),correct=document.getElementById('bf-correct').value.trim(),reason=document.getElementById('bf-reason').value.trim();if(!expr||!context||!correct||!reason){toast('필수 항목 누락','ter');return;}const body={expression:expr,context,correct,reason};const isAdd=!editBannedExpr;const encoded=encodeURIComponent(editBannedExpr||'');const res=await fetch(isAdd?'/api/banned':`/api/banned/${encoded}`,{method:isAdd?'POST':'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const d=await res.json();if(!res.ok){toast(d.error||'저장 실패','ter');return;}toast(isAdd?'추가 완료':'수정 완료','tok');closeOv('banned-ov');await reloadBanned();}
+async function doDeleteBanned(expr){const res=await fetch(`/api/banned/${encodeURIComponent(expr)}`,{method:'DELETE'});if(!res.ok){toast('삭제 실패','ter');return;}toast('삭제 완료','tok');closeOv('del-ov');closeOv('banned-ov');await reloadBanned();}
+function delBanned(){confirmDel(()=>doDeleteBanned(editBannedExpr),editBannedExpr);}
+async function reloadBanned(){const d=await(await fetch('/api/banned')).json();BANNED=d.banned||[];bFlt=[...BANNED];bFilter();updateStats();}
 
-  input.addEventListener('input',()=>editBuf[field]=input.value);
-  input.addEventListener('keydown',e=>{
-    if(e.key==='Enter'){e.preventDefault();commitEdit()}
-    if(e.key==='Escape'){e.preventDefault();cancelEdit()}
-    if(e.key==='Tab'){e.preventDefault();commitEdit();const idx=FIELDS.indexOf(field);const nf=FIELDS[idx+(e.shiftKey?-1:1)];if(nf){const nel=tr.querySelector(`[data-field="${nf}"]`);if(nel)startEdit(editId,nf,nel)}}
-  });
-  input.addEventListener('blur',()=>setTimeout(()=>{
-    if(!document.activeElement?.closest('tr[data-id="'+id+'"]')&&!document.activeElement?.closest('.pop')&&!document.activeElement?.closest('.overlay'))commitEdit();
-  },130));
-}
+// ── GENERATE / VALIDATE ──
+async function runGenerate(){document.getElementById('run-title').textContent='▷ generate';document.getElementById('run-out').textContent='실행 중…';openOv('run-ov');const res=await fetch('/api/generate',{method:'POST'});const d=await res.json();document.getElementById('run-out').innerHTML=colorize(d.output||'(출력 없음)');document.getElementById('run-title').textContent=(d.ok?'✅ ':'❌ ')+'generate';toast(d.ok?'생성 완료':'실패',d.ok?'tok':'ter');}
+async function runValidate(){document.getElementById('run-title').textContent='▷ validate';document.getElementById('run-out').textContent='실행 중…';openOv('run-ov');const res=await fetch('/api/validate',{method:'POST'});const d=await res.json();document.getElementById('run-out').innerHTML=colorize(d.output||'(출력 없음)');document.getElementById('run-title').textContent=(d.ok?'✅ ':'❌ ')+'validate';}
+function colorize(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/(\[OK\][^\n]*)/g,'<span style="color:var(--gr)">$1</span>').replace(/(\[FATAL\][^\n]*)/g,'<span style="color:var(--re)">$1</span>').replace(/(\[WARN\][^\n]*)/g,'<span style="color:var(--ye)">$1</span>').replace(/(✅[^\n]*)/g,'<span style="color:var(--gr)">$1</span>').replace(/(❌[^\n]*)/g,'<span style="color:var(--re)">$1</span>');}
 
-async function commitEdit(){
-  if(!editId||!editBuf._id){resetEdit();return}
-  const t=all.find(x=>x.id===editId); if(!t){resetEdit();return}
-  const{_id,...changes}=editBuf;
-  const updated={...t,...changes};
-  resetEdit();
-  try{
-    const res=await fetch(`/api/terms/${t.id}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(updated)});
-    const d=await res.json();
-    if(!res.ok){toast(d.error||'저장 실패','err');await reload();return}
-    const idx=all.findIndex(x=>x.id===t.id);if(idx!==-1)all[idx]=updated;
-    applyFilter(); toast('저장','ok');
-  }catch(e){toast('서버 오류','err');await reload()}
-}
-function cancelEdit(){resetEdit();applyFilter()}
-function resetEdit(){if(editRow)editRow.classList.remove('editing');editRow=null;editId=null;editBuf={}}
+// ── CHECK-ID ──
+function openCheckId(){openOv('checkid-ov');setTimeout(()=>document.getElementById('ci-input').focus(),100);}
+async function runCheckId(){const id=document.getElementById('ci-input').value.trim();if(!id)return;document.getElementById('ci-result').textContent='조회 중…';const res=await fetch('/api/check-id',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});const d=await res.json();document.getElementById('ci-result').textContent=d.output||'(결과 없음)';}
+async function runSuggest(){const id=document.getElementById('ci-input').value.trim();if(!id)return;document.getElementById('ci-result').textContent='제안 생성 중…';const res=await fetch('/api/suggest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});const d=await res.json();document.getElementById('ci-result').textContent=d.output||'(결과 없음)';}
 
-/* ═══ CAT POPOVER ═══ */
-function openCatPop(id,anchor){
-  if(editId)commitEdit(); catPopId=id;
-  const t=all.find(x=>x.id===id); if(!t)return;
-  const grid=document.getElementById('cat-grid'); grid.innerHTML='';
-  Object.keys(cats).forEach(c=>{
-    const chip=document.createElement('div'); chip.className='cat-chip'+(( t.categories||[]).includes(c)?' on':'');
-    chip.textContent=c; chip.onclick=()=>chip.classList.toggle('on'); grid.appendChild(chip);
-  });
-  positionPop('cat-pop',anchor);
-}
-async function saveCatPop(){
-  const sel=[...document.querySelectorAll('#cat-grid .cat-chip.on')].map(c=>c.textContent);
-  if(!sel.length){toast('카테고리를 선택하세요','err');return}
-  const t=all.find(x=>x.id===catPopId); if(!t){closePop('cat-pop');return}
-  const updated={...t,categories:sel};
-  try{
-    const res=await fetch(`/api/terms/${t.id}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(updated)});
-    if(!res.ok){toast('저장 실패','err');return}
-    const idx=all.findIndex(x=>x.id===t.id);if(idx!==-1)all[idx]=updated;
-    closePop('cat-pop'); applyFilter(); toast('카테고리 저장','ok');
-  }catch(e){toast('서버 오류','err')}
-}
+// ── GIT ──
+async function openGit(){openOv('git-ov');document.getElementById('git-body').innerHTML='<div style="padding:14px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';document.getElementById('git-ft').innerHTML=`<button class="btn btn-gh" onclick="closeOv('git-ov')">닫기</button><button class="btn btn-gr" id="cbtn" onclick="doCommit()">commit + push</button>`;const[sr,lr]=await Promise.all([fetch('/api/git/status'),fetch('/api/git/log?limit=5')]);const st=await sr.json(),lg=await lr.json();const fHtml=st.changed.length?st.changed.map(f=>`<div class="gfile"><span class="gflag ${f.flag}">${f.flag}</span><span class="gpath">${x(f.path)}</span></div>`).join(''):'<div class="gempty">변경 없음</div>';const lHtml=lg.entries.length?lg.entries.map(e=>`<div class="glog"><span class="gh">${x(e.hash)}</span><span class="gs">${x(e.subject)}</span><span class="gw">${x(e.when)}</span></div>`).join(''):'<div class="gempty">이력 없음</div>';const tmpls=['feat: 단어 추가','feat: 복합어 추가','fix: 약어 수정','fix: 설명 수정','chore: generate'];document.getElementById('git-body').innerHTML=`<div class="gsec">변경 파일 (${st.changed.length})</div>${fHtml}<div class="gsec" style="margin-top:8px">커밋 메시지</div><div style="padding:10px"><textarea id="cmsg" placeholder="feat: 단어 추가 (kill, switch)"></textarea><div class="tmpls">${tmpls.map(t=>`<button class="tmpl" onclick="document.getElementById('cmsg').value='${t}'">${t}</button>`).join('')}</div></div><div class="gsec" style="margin-top:6px">최근 커밋</div>${lHtml}`;document.getElementById('cbtn').disabled=!st.has_changes;}
 
-/* ═══ ROW MENU ═══ */
-function openRowPop(id,event){event.stopPropagation();if(editId)commitEdit();rowPopId=id;positionPop('row-pop',event.currentTarget)}
-function menuAction(action){
-  const id=rowPopId; closePop('row-pop');
-  if(action==='delete'){const t=all.find(x=>x.id===id);document.getElementById('del-name').textContent=t?.ko||id;document.getElementById('del-confirm').onclick=()=>doDelete(id);openOverlay('del-modal');return}
-  const t=all.find(x=>x.id===id); if(!t)return;
-  extraId=id; extraField=action;
-  if(action==='note'){document.getElementById('extra-title').textContent='📝 note 편집';document.getElementById('extra-lbl').textContent='note';document.getElementById('extra-hint').textContent='주의사항, 보충 설명 등';document.getElementById('extra-val').value=t.note||''}
-  else{document.getElementById('extra-title').textContent='⛔ NOT 편집';document.getElementById('extra-lbl').textContent='NOT (쉼표 구분)';document.getElementById('extra-hint').textContent='혼동하지 말아야 할 약어. 예: MT5, mt5Futures';document.getElementById('extra-val').value=(t.NOT||[]).join(', ')}
-  openOverlay('extra-modal');
-}
-async function saveExtra(){
-  const t=all.find(x=>x.id===extraId); if(!t){closeOverlay('extra-modal');return}
-  const val=document.getElementById('extra-val').value.trim();
-  let updated={...t};
-  if(extraField==='note'){if(val)updated.note=val;else delete updated.note}
-  else{const arr=val?val.split(',').map(s=>s.trim()).filter(Boolean):[];if(arr.length)updated.NOT=arr;else delete updated.NOT}
-  try{
-    const res=await fetch(`/api/terms/${t.id}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(updated)});
-    if(!res.ok){toast('저장 실패','err');return}
-    const idx=all.findIndex(x=>x.id===t.id);if(idx!==-1)all[idx]=updated;
-    closeOverlay('extra-modal'); toast('저장','ok');
-  }catch(e){toast('서버 오류','err')}
-}
+async function doCommit(){const msg=document.getElementById('cmsg')?.value.trim();if(!msg){toast('커밋 메시지 필요','ter');return;}document.getElementById('cbtn').disabled=true;document.getElementById('git-body').innerHTML=`<div style="padding:4px 0">${STEPS.map((_,i)=>`<div class="srow" id="st${i}"><span class="sic spen">○</span><span class="snm">${STEPS[i]}</span></div>`).join('')}</div><div class="cerr" id="cerr" style="display:none"></div>`;document.getElementById('git-ft').innerHTML='<button class="btn btn-gh" onclick="closeOv(\'git-ov\')">닫기</button>';markSt(0,'run');const res=await fetch('/api/git/commit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});const d=await res.json();(d.steps||[]).forEach((s,i)=>markSt(i,s.ok?'ok':'fail'));if(!d.ok){const e=document.getElementById('cerr');e.style.display='block';e.textContent=d.error||'오류';toast('실패','ter');}else{toast('commit & push 완료','tok');loadBranch();}}
+function markSt(i,state){const el=document.getElementById('st'+i);if(!el)return;const ic=el.querySelector('.sic');ic.className=`sic ${state==='ok'?'sok':state==='fail'?'sfail':'spen'}`;ic.innerHTML=state==='ok'?'✓':state==='fail'?'✗':state==='run'?'<span class="spin">◌</span>':'○';if(state==='ok'&&i<STEPS.length-1)markSt(i+1,'run');}
 
-/* ═══ ADD ═══ */
-function buildAddCats(){
-  const w=document.getElementById('a-cats'); w.innerHTML='';
-  Object.keys(cats).forEach(c=>{const l=document.createElement('label');l.className='cc';l.innerHTML=`<input type="checkbox" value="${c}">${c}`;l.querySelector('input').addEventListener('change',e=>l.classList.toggle('on',e.target.checked));w.appendChild(l)});
-}
-function openAddModal(){
-  if(editId)commitEdit();
-  ['a-id','a-ko','a-en','a-long','a-short','a-desc','a-not','a-note'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
-  document.querySelectorAll('#a-cats input').forEach(cb=>{cb.checked=false;cb.closest('label').classList.remove('on')});
-  openOverlay('add-modal'); setTimeout(()=>document.getElementById('a-id').focus(),80);
-}
-async function doAdd(){
-  const id=document.getElementById('a-id').value.trim();
-  const ko=document.getElementById('a-ko').value.trim();
-  const en=document.getElementById('a-en').value.trim();
-  const long=document.getElementById('a-long').value.trim();
-  const shrt=document.getElementById('a-short').value.trim();
-  const desc=document.getElementById('a-desc').value.trim();
-  const notV=document.getElementById('a-not').value.trim();
-  const note=document.getElementById('a-note').value.trim();
-  const sel=[...document.querySelectorAll('#a-cats input:checked')].map(e=>e.value);
-  if(!id||!ko||!en||!long||!shrt||!desc||!sel.length){toast('필수 항목을 모두 입력하세요','err');return}
-  const term={id,ko,en,abbr_long:long,abbr_short:shrt,categories:sel,description:desc,...(notV?{NOT:notV.split(',').map(s=>s.trim()).filter(Boolean)}:{}),...(note?{note}:{})};
-  try{
-    const res=await fetch('/api/terms',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(term)});
-    const d=await res.json();
-    if(!res.ok){toast(d.error||'추가 실패','err');return}
-    all.push(term); closeOverlay('add-modal'); applyFilter(); updateStats();
-    setTimeout(()=>{const tr=document.querySelector(`tr[data-id="${id}"]`);if(tr){tr.classList.add('flash');tr.scrollIntoView({block:'center'})}},60);
-    toast(`'${ko}' 추가 완료`,'ok');
-  }catch(e){toast('서버 오류','err')}
-}
+// ── LOG ──
+async function openLogModal(){openOv('log-ov');await loadLogs();}
+async function loadLogs(){const res=await fetch('/api/logs?lines=300');const d=await res.json();_allLogLines=d.lines||[];document.getElementById('log-total').textContent=`총 ${d.total}줄 (최근 ${_allLogLines.length}줄)`;filterLogs();}
+function filterLogs(){const q=(document.getElementById('log-filter')?.value||'').toLowerCase(),lv=document.getElementById('log-level-sel')?.value||'',tail=document.getElementById('log-tail')?.checked;let lines=_allLogLines;if(lv)lines=lines.filter(l=>l.includes(`| ${lv}`));if(q)lines=lines.filter(l=>l.toLowerCase().includes(q));const el=document.getElementById('log-content');if(!lines.length){el.textContent='없음';return;}el.innerHTML=lines.map(l=>{const e=l.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');if(e.includes('| ERROR'))return`<span style="color:var(--re)">${e}</span>`;if(e.includes('| WARNING'))return`<span style="color:var(--ye)">${e}</span>`;if(e.includes('[OK]'))return`<span style="color:var(--gr)">${e}</span>`;return`<span style="color:var(--tx3)">${e}</span>`;}).join('\n');if(tail)el.scrollTop=el.scrollHeight;}
+async function clearLogs(){if(!confirm('로그 초기화?'))return;await fetch('/api/logs/clear',{method:'POST'});_allLogLines=[];document.getElementById('log-content').textContent='초기화됨';toast('로그 초기화','tok');}
 
-/* ═══ DELETE ═══ */
-async function doDelete(id){
-  try{
-    const res=await fetch(`/api/terms/${id}`,{method:'DELETE'}); const d=await res.json();
-    if(!res.ok){toast(d.error||'삭제 실패','err');return}
-    all=all.filter(x=>x.id!==id); closeOverlay('del-modal'); applyFilter(); updateStats(); toast('삭제 완료','ok');
-  }catch(e){toast('서버 오류','err')}
-}
+// ── BATCH ──
+const BATCH_MODELS={claude:[{v:'claude-sonnet-4-20250514',l:'Claude Sonnet 4'},{v:'claude-haiku-4-5-20251001',l:'Claude Haiku 4.5'}],openai:[{v:'gpt-4o',l:'GPT-4o'},{v:'gpt-4o-mini',l:'GPT-4o mini'}],google:[{v:'gemini-2.0-flash',l:'Gemini 2.0 Flash (RPD무제한)'},{v:'gemini-2.5-flash-lite',l:'Gemini 2.5 Flash Lite'},{v:'gemini-2.5-flash',l:'Gemini 2.5 Flash'},{v:'gemini-1.5-pro',l:'Gemini 1.5 Pro'}]};
+function openBatchModal(){openOv('batch-ov');switchBtab('scan');}
+function switchBtab(tab){document.querySelectorAll('.btab-btn').forEach(b=>b.classList.toggle('active',b.dataset.btab===tab));document.querySelectorAll('.btab-pane').forEach(p=>p.classList.toggle('active',p.id===`btab-${tab}`));if(tab==='result')loadBatchFiles();}
+function onBatchApiChange(){const t=document.getElementById('batch-api-type').value,s=document.getElementById('batch-model');s.innerHTML='<option value="">-- .env --</option>';if(t&&BATCH_MODELS[t])BATCH_MODELS[t].forEach(m=>{const o=document.createElement('option');o.value=m.v;o.textContent=m.l;s.appendChild(o);});}
+async function doScan(){const btn=document.getElementById('scan-btn'),pre=document.getElementById('scan-preview'),sts=document.getElementById('scan-status');btn.disabled=true;btn.textContent='스캔 중…';sts.textContent='';pre.style.display='none';const res=await fetch('/api/batch/scan',{method:'POST'});const d=await res.json();if(!d.ok){sts.textContent='오류: '+(d.error||'실패');}else{sts.textContent=`후보 ${d.count}개`;const lines=(d.candidates||[]).slice(0,40).map(c=>`${c.name.padEnd(32)} ${(c.sources||[])[0]||''}`);if(d.count>40)lines.push(`... 외 ${d.count-40}개`);pre.textContent=lines.join('\n');pre.style.display='block';}btn.disabled=false;btn.textContent='▷ 스캔';}
+async function doBatchDryRun(){_runBatch(true);}
+async function doBatchRun(){if(!confirm('API를 호출해 분석을 실행합니다.'))return;_runBatch(false);}
+async function _runBatch(dryRun){const outEl=document.getElementById('batch-output'),runBtn=document.getElementById('run-btn'),dryBtn=document.getElementById('dry-btn');const apiType=document.getElementById('batch-api-type')?.value||'',model=document.getElementById('batch-model')?.value||'';outEl.style.display='block';outEl.textContent=dryRun?'dry-run 중…':'API 분석 중…';runBtn.disabled=dryBtn.disabled=true;const payload={dry_run:dryRun};if(apiType)payload.api_type=apiType;if(model)payload.model=model;const res=await fetch('/api/batch/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const d=await res.json();outEl.textContent=d.output||'(출력 없음)';if(!dryRun&&d.ok)toast('분석 완료','tok');runBtn.disabled=dryBtn.disabled=false;}
+async function loadBatchFiles(){const wrap=document.getElementById('batch-file-list');wrap.innerHTML='<div style="padding:10px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';const d=await(await fetch('/api/batch/files')).json();if(!d.files.length){wrap.innerHTML='<div style="padding:14px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--tx3)">없음</div>';return;}wrap.innerHTML=d.files.map(f=>`<div class="batch-file-row${_batchSelFile===f.name?' sel':''}" onclick="selectBatchFile('${f.name}')"><span style="font-family:var(--mono);font-size:11px;color:var(--ac);flex:1">${f.name}</span><span style="font-family:var(--mono);font-size:10px;color:var(--tx3)">${f.count}개</span><button class="btn btn-ac" style="padding:3px 9px;font-size:9px" onclick="event.stopPropagation();selectBatchFile('${f.name}');switchBtab('merge')">병합 →</button></div>`).join('');}
+async function selectBatchFile(fname){_batchSelFile=fname;document.getElementById('merge-fname').textContent=fname;document.getElementById('merge-preview').innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';document.getElementById('merge-actions').style.display='none';const d=await(await fetch(`/api/batch/preview?file=${encodeURIComponent(fname)}`)).json();if(!d.ok||!d.terms?.length){document.getElementById('merge-preview').innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">없음</div>';return;}_batchTerms=d.terms;document.getElementById('merge-preview').innerHTML=_batchTerms.map((t,i)=>`<div class="merge-item"><input type="checkbox" id="mc${i}" checked><div style="flex:1"><span style="font-weight:600">${t.ko||''}</span><span style="font-family:var(--mono);font-size:10px;color:var(--ac);margin-left:8px">${t.abbr_short||''}</span><div style="font-size:10px;color:var(--tx3)">${t.description||''}</div></div></div>`).join('');document.getElementById('merge-actions').style.display='flex';document.getElementById('merge-status').textContent=`총 ${_batchTerms.length}개`;}
+async function doMergeAll(){await _doMerge(null);}
+async function doMergeSelected(){const ids=_batchTerms.filter((_,i)=>document.getElementById(`mc${i}`)?.checked).map(t=>t.id);if(!ids.length){toast('선택 없음','ter');return;}await _doMerge(ids);}
+async function _doMerge(ids){const sts=document.getElementById('merge-status');sts.textContent='병합 중…';const res=await fetch('/api/batch/merge',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({file:_batchSelFile,ids})});const d=await res.json();if(!d.ok){toast(d.error||'실패','ter');sts.textContent='';return;}sts.textContent=`완료: ${d.added}개 추가, ${d.skipped}개 중복`;toast(`${d.added}개 병합 완료`,'tok');await reloadWords();await reloadCompounds();}
 
-/* ═══ RUN ═══ */
-const RL={default:'validate + generate',check:'--check',force:'--force'};
-async function runCmd(mode){
-  if(editId)await commitEdit();
-  document.getElementById('run-title').textContent=`▷ run.py  ${RL[mode]}`;
-  document.getElementById('run-out').textContent='실행 중...'; openOverlay('run-modal');
-  try{
-    const res=await fetch('/api/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode})});
-    const d=await res.json();
-    const raw=(d.stdout+(d.stderr?'\n'+d.stderr:'')).trim();
-    document.getElementById('run-out').innerHTML=colorize(raw);
-    document.getElementById('run-title').textContent=(d.ok?'✅ ':'❌ ')+`run.py  ${RL[mode]}`;
-    toast(d.ok?'완료':'실패',d.ok?'ok':'err');
-  }catch(e){document.getElementById('run-out').textContent='오류: '+e.message}
-}
-function colorize(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/(\[OK\][^\n]*)/g,'<span style="color:var(--gr)">$1</span>').replace(/(\[FAIL\][^\n]*)/g,'<span style="color:var(--re)">$1</span>').replace(/(\[WARN\][^\n]*)/g,'<span style="color:var(--ye)">$1</span>').replace(/(\[변경 감지\][^\n]*)/g,'<span style="color:var(--ac)">$1</span>')}
-
-/* ═══ GIT ═══ */
-async function openGitModal(){
-  if(editId)await commitEdit(); openOverlay('git-modal');
-  document.getElementById('git-mbd').innerHTML='<div style="padding:14px;font-family:var(--mono);font-size:11px;color:var(--tx3)">로딩 중...</div>';
-  document.getElementById('git-mft').innerHTML=`<button class="btn btn-ghost" onclick="closeOverlay('git-modal')">닫기</button><button class="btn btn-gr" id="commit-btn" onclick="doCommit()">commit + push</button>`;
-  try{
-    const[sr,lr]=await Promise.all([fetch('/api/git/status'),fetch('/api/git/log?limit=5')]);
-    const status=await sr.json(), log=await lr.json();
-    renderGitBody(status,log);
-  }catch(e){document.getElementById('git-mbd').innerHTML=`<div style="padding:14px;color:var(--rd);font-family:var(--mono);font-size:11px">오류: ${e.message}</div>`}
-}
-function renderGitBody(status,log){
-  const fh=status.changed.length?status.changed.map(f=>`<div class="git-file"><span class="gf-flag ${f.flag}">${f.flag}</span><span class="gf-path">${esc(f.path)}</span></div>`).join(''):`<div class="git-none">변경된 파일 없음</div>`;
-  const lh=log.entries.length?log.entries.map(e=>`<div class="git-log-row"><span class="gl-h">${esc(e.hash)}</span><span class="gl-m">${esc(e.subject)}</span><span class="gl-w">${esc(e.when)}</span></div>`).join(''):`<div class="git-none">커밋 이력 없음</div>`;
-  const tmpls=['feat: 용어 추가','fix: 약어 수정','fix: 설명 수정','docs: 용어 정리','chore: 카테고리 정리'];
-  document.getElementById('git-mbd').innerHTML=`
-    <div class="git-sec">변경 파일 (${status.changed.length})</div>${fh}
-    <div class="git-sec" style="margin-top:4px">커밋 메시지</div>
-    <div style="padding:10px"><textarea id="commit-msg" placeholder="feat: 용어 추가 (예: 외환선물)"></textarea><div class="msg-tmpls">${tmpls.map(t=>`<button class="msg-tmpl" onclick="setMsg('${t}')">${t}</button>`).join('')}</div></div>
-    <div class="git-sec" style="margin-top:4px">최근 커밋</div>${lh}`;
-  document.getElementById('commit-btn').disabled=!status.has_changes;
-}
-function setMsg(t){document.getElementById('commit-msg').value=t}
-
-async function doCommit(){
-  const msg=document.getElementById('commit-msg')?.value.trim();
-  if(!msg){toast('커밋 메시지를 입력하세요','err');return}
-  document.getElementById('commit-btn').disabled=true;
-
-  // 초기 4개 스텝만 미리 표시 (rebase 스텝은 서버 응답 후 동적 추가)
-  const initSteps=['validate + generate','git add','git commit','git push'];
-  document.getElementById('git-mbd').innerHTML=`
-    <div id="step-wrap" style="padding:6px 0">
-      ${initSteps.map((s,i)=>`<div class="step-row" id="st${i}"><span class="s-ico s-pend">○</span><span class="s-name">${s}</span></div>`).join('')}
-    </div>
-    <div id="cerr" style="margin:8px 12px;font-family:var(--mono);font-size:11px;color:var(--rd);display:none"></div>`;
-  document.getElementById('git-mft').innerHTML='';
-  setStepRun(0);
-
-  try{
-    const res=await fetch('/api/git/commit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});
-    const d=await res.json();
-    const wrap=document.getElementById('step-wrap');
-
-    // 서버 응답 스텝 수가 초기 4개보다 많으면 동적으로 행 추가
-    (d.steps||[]).forEach((s,i)=>{
-      let el=document.getElementById(`st${i}`);
-      if(!el){
-        // pull --rebase / 재시도 등 추가 스텝
-        el=document.createElement('div');
-        el.className='step-row'; el.id=`st${i}`;
-        el.innerHTML=`<span class="s-ico s-pend">○</span><span class="s-name">${s.step}</span>`;
-        wrap.appendChild(el);
-      } else {
-        // 스텝명 업데이트 (재시도 등 이름 변경 반영)
-        el.querySelector('.s-name').textContent=s.step;
-      }
-      setStepDone(i, s.ok);
-    });
-
-    document.getElementById('git-mft').innerHTML=`<button class="btn btn-ghost" onclick="closeOverlay('git-modal')">닫기</button>`;
-    if(d.ok){toast('commit & push 완료 ✓','ok');loadGitStatus()}
-    else{
-      const e=document.getElementById('cerr');
-      e.style.display='block';
-      // pull --rebase 실패 시 상세 안내 추가
-      e.innerHTML=`${d.error||'오류 발생'}${d.error&&d.error.includes('rebase')?'<br><span style="color:var(--tx3);font-size:10px">터미널에서 git pull --rebase 후 다시 시도하세요.</span>':''}`;
-      toast('실패 — 로그 확인','err');
-    }
-  }catch(e){
-    document.getElementById('git-mft').innerHTML=`<button class="btn btn-ghost" onclick="closeOverlay('git-modal')">닫기</button>`;
-    toast('서버 오류','err');
-  }
-}
-function setStepRun(i){const el=document.getElementById(`st${i}`);if(!el)return;el.querySelector('.s-ico').innerHTML='<span class="spin">◌</span>'}
-function setStepDone(i,ok){const el=document.getElementById(`st${i}`);if(!el)return;const ico=el.querySelector('.s-ico');ico.className=`s-ico ${ok?'s-ok':'s-fail'}`;ico.textContent=ok?'✓':'✗'}
-
-/* ═══ POPOVER UTILS ═══ */
-function positionPop(id,anchor){
-  const pop=document.getElementById(id); const rect=anchor.getBoundingClientRect();
-  pop.style.display='block';
-  const pw=pop.offsetWidth,ph=pop.offsetHeight;
-  let top=rect.bottom+4,left=rect.left;
-  if(left+pw>window.innerWidth-8)left=window.innerWidth-pw-8;
-  if(top+ph>window.innerHeight-8)top=rect.top-ph-4;
-  pop.style.top=top+'px'; pop.style.left=left+'px';
-}
-function closePop(id){document.getElementById(id).style.display='none'}
-
-document.addEventListener('click',e=>{
-  if(!e.target.closest('#cat-pop')&&!e.target.closest('.cv-cats'))closePop('cat-pop');
-  if(!e.target.closest('#row-pop')&&!e.target.closest('.rmb'))closePop('row-pop');
-});
-
-/* ═══ OVERLAY ═══ */
-function openOverlay(id){document.getElementById(id).classList.add('open')}
-function closeOverlay(id){document.getElementById(id).classList.remove('open')}
-document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open')}));
-
-/* ═══ RELOAD / UTILS ═══ */
-async function reload(){const r=await fetch('/api/terms');const d=await r.json();all=d.terms;applyFilter();updateStats()}
-function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function toast(msg,type='inf',ms=3200){const c=document.getElementById('toasts');const d=document.createElement('div');d.className=`toast t-${type}`;d.textContent=msg;c.appendChild(d);setTimeout(()=>d.remove(),ms)}
-
-/* ═══ KEYBOARD ═══ */
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){if(editId){cancelEdit();return}['git-modal','run-modal','del-modal','add-modal','extra-modal','log-modal','batch-modal'].forEach(closeOverlay);closePop('cat-pop');closePop('row-pop')}
-  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();document.getElementById('search').focus()}
-  if((e.ctrlKey||e.metaKey)&&e.key==='n'){e.preventDefault();openAddModal()}
-});
-
-// ════════════════════════════════════════
-// LOG VIEWER
-// ════════════════════════════════════════
-let _allLogLines = [];
-
-async function openLogModal() {
-  openOverlay('log-modal');
-  await loadLogs();
-}
-
-async function loadLogs() {
-  try {
-    const res = await fetch('/api/logs?lines=300');
-    const d   = await res.json();
-    _allLogLines = d.lines || [];
-    document.getElementById('log-total').textContent =
-      `총 ${d.total}줄 (최근 ${_allLogLines.length}줄 표시)`;
-    filterLogs();
-  } catch(e) {
-    document.getElementById('log-content').textContent = '로그 조회 실패: ' + e.message;
-  }
-}
-
-function filterLogs() {
-  const q     = (document.getElementById('log-filter')?.value||'').toLowerCase();
-  const level = document.getElementById('log-level-sel')?.value||'';
-  const tail  = document.getElementById('log-tail')?.checked;
-
-  let lines = _allLogLines;
-  if(level) lines = lines.filter(l => l.includes(`| ${level}`));
-  if(q)     lines = lines.filter(l => l.toLowerCase().includes(q));
-
-  const el = document.getElementById('log-content');
-  if(!lines.length){ el.textContent = '표시할 로그가 없습니다.'; return; }
-
-  // 레벨별 색상 적용
-  el.innerHTML = lines.map(l => {
-    const esc = l.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    if(esc.includes('| ERROR')) return `<span style="color:var(--re)">${esc}</span>`;
-    if(esc.includes('| WARNING')) return `<span style="color:var(--ye)">${esc}</span>`;
-    if(esc.includes('| INFO') && esc.includes('[OK]')) return `<span style="color:var(--gr)">${esc}</span>`;
-    if(esc.includes('[commit]') || esc.includes('[run]')) return `<span style="color:var(--ac)">${esc}</span>`;
-    return `<span style="color:var(--tx3)">${esc}</span>`;
-  }).join('\n');
-
-  // 최신 고정
-  if(tail) el.scrollTop = el.scrollHeight;
-}
-
-async function clearLogs() {
-  if(!confirm('로그를 초기화하시겠습니까?')) return;
-  await fetch('/api/logs/clear', {method:'POST'});
-  _allLogLines = [];
-  document.getElementById('log-content').textContent = '로그가 초기화되었습니다.';
-  document.getElementById('log-total').textContent = '';
-  toast('로그 초기화 완료','ok');
-}
-
-// ════════════════════════════════════════
-// BATCH
-// ════════════════════════════════════════
-const BATCH_MODELS = {
-  claude: [
-    {v:'claude-sonnet-4-20250514',  l:'Claude Sonnet 4 (기본)'},
-    {v:'claude-opus-4-6',           l:'Claude Opus 4.6'},
-    {v:'claude-haiku-4-5-20251001', l:'Claude Haiku 4.5'},
-  ],
-  openai: [
-    {v:'gpt-4o',      l:'GPT-4o (기본)'},
-    {v:'gpt-4o-mini', l:'GPT-4o mini'},
-    {v:'gpt-4-turbo', l:'GPT-4 Turbo'},
-  ],
-  google: [
-    {v:'gemini-2.0-flash',             l:'Gemini 2.0 Flash (기본) — RPD 무제한'},
-    {v:'gemini-2.5-flash-lite-preview-06-17', l:'Gemini 2.5 Flash Lite — RPD 무제한, 빠름'},
-    {v:'gemini-2.5-flash',             l:'Gemini 2.5 Flash — RPD 10K'},
-    {v:'gemini-1.5-pro',               l:'Gemini 1.5 Pro'},
-    {v:'gemini-1.5-flash',             l:'Gemini 1.5 Flash'},
-    {v:'gemini-2.5-pro-preview-03-25', l:'Gemini 2.5 Pro — RPD 1K, 느림'},
-  ],
-};
-
-function onBatchApiChange() {
-  const apiType  = document.getElementById('batch-api-type').value;
-  const modelSel = document.getElementById('batch-model');
-  modelSel.innerHTML = '<option value="">-- .env 설정 사용 --</option>';
-  if (apiType && BATCH_MODELS[apiType]) {
-    BATCH_MODELS[apiType].forEach(m => {
-      const o = document.createElement('option');
-      o.value = m.v; o.textContent = m.l;
-      modelSel.appendChild(o);
-    });
-  }
-}
-
-let _batchSelFile = null;   // 선택된 결과 파일명
-let _batchTerms   = [];     // 미리보기용 용어 목록
-
-function openBatchModal() {
-  openOverlay('batch-modal');
-  switchBatchTab('scan');
-}
-
-function switchBatchTab(tab) {
-  document.querySelectorAll('.batch-tab').forEach(b =>
-    b.classList.toggle('active', b.dataset.tab === tab));
-  document.querySelectorAll('.btab').forEach(d =>
-    d.style.display = d.id === `btab-${tab}` ? 'block' : 'none');
-  if (tab === 'result') loadBatchFiles();
-}
-
-// ── 스캔 ─────────────────────────────────────────────────────────
-async function doScan() {
-  const btn = document.getElementById('scan-btn');
-  const pre = document.getElementById('scan-preview');
-  const sts = document.getElementById('scan-status');
-  btn.disabled = true; btn.textContent = '스캔 중…';
-  sts.textContent = ''; pre.style.display = 'none';
-
-  try {
-    const res = await fetch('/api/batch/scan', {method:'POST'});
-    const d   = await res.json();
-    if (!d.ok) { sts.textContent = '오류: ' + (d.error||'실패'); return; }
-
-    sts.textContent = `후보 ${d.count}개 발견`;
-    const lines = (d.candidates||[]).slice(0,50).map(c =>
-      `${c.name.padEnd(36)} ${(c.sources||[])[0]||''}`
-    );
-    if (d.count > 50) lines.push(`... 외 ${d.count-50}개`);
-    pre.textContent = lines.join('\n');
-    pre.style.display = 'block';
-  } catch(e) {
-    sts.textContent = '서버 오류: ' + e.message;
-  } finally {
-    btn.disabled = false; btn.textContent = '▷ 스캔 실행';
-  }
-}
-
-// ── dry-run ──────────────────────────────────────────────────────
-async function doBatchDryRun() {
-  _runBatch(true);
-}
-async function doBatchRun() {
-  if (!confirm('API를 호출해 분석을 실행합니다. 계속하시겠습니까?')) return;
-  _runBatch(false);
-}
-
-async function _runBatch(dryRun) {
-  const outEl   = document.getElementById('batch-output');
-  const runBtn  = document.getElementById('run-btn');
-  const dryBtn  = document.getElementById('dry-btn');
-  const apiType = document.getElementById('batch-api-type')?.value || '';
-  const model   = document.getElementById('batch-model')?.value   || '';
-
-  outEl.style.display = 'block';
-  outEl.textContent = dryRun ? 'dry-run 중…' : 'API 분석 중… (시간이 걸릴 수 있습니다)';
-  runBtn.disabled = dryBtn.disabled = true;
-
-  const payload = {dry_run: dryRun};
-  if (apiType) payload.api_type = apiType;
-  if (model)   payload.model    = model;
-
-  try {
-    const res = await fetch('/api/batch/run', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(payload),
-    });
-    const d = await res.json();
-    outEl.textContent = d.output || '(출력 없음)';
-    if (!dryRun && d.ok) {
-      toast('분석 완료 — 결과 파일 탭에서 확인하세요', 'ok');
-    }
-  } catch(e) {
-    outEl.textContent = '서버 오류: ' + e.message;
-  } finally {
-    runBtn.disabled = dryBtn.disabled = false;
-  }
-}
-
-// ── 결과 파일 목록 ────────────────────────────────────────────────
-async function loadBatchFiles() {
-  const wrap = document.getElementById('batch-file-list');
-  wrap.innerHTML = '<div style="padding:10px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';
-
-  try {
-    const d = await (await fetch('/api/batch/files')).json();
-    if (!d.files.length) {
-      wrap.innerHTML = '<div style="padding:14px;font-family:var(--mono);font-size:11px;color:var(--tx3);text-align:center">결과 파일 없음<br>스캔 탭에서 먼저 분석을 실행하세요</div>';
-      return;
-    }
-    wrap.innerHTML = d.files.map(f => `
-      <div class="batch-file-row${_batchSelFile===f.name?' sel':''}" onclick="selectBatchFile('${f.name}')">
-        <span style="font-family:var(--mono);font-size:11px;color:var(--ac);flex:1">${f.name}</span>
-        <span style="font-family:var(--mono);font-size:10px;color:var(--tx3)">${f.count}개</span>
-        <span style="font-family:var(--mono);font-size:9px;color:var(--tx3)">${f.generated_at?.slice(0,16)||''}</span>
-        <button class="btn btn-ac" style="padding:3px 9px;font-size:9px" onclick="event.stopPropagation();selectBatchFile('${f.name}');switchBatchTab('merge')">병합 →</button>
-      </div>`).join('');
-  } catch(e) {
-    wrap.innerHTML = `<div style="padding:10px;color:var(--re);font-family:var(--mono);font-size:10px">${e.message}</div>`;
-  }
-}
-
-// ── 병합 탭 ──────────────────────────────────────────────────────
-async function selectBatchFile(fname) {
-  _batchSelFile = fname;
-  document.getElementById('merge-fname').textContent = fname;
-  document.getElementById('merge-preview').innerHTML =
-    '<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';
-  document.getElementById('merge-actions').style.display = 'none';
-
-  try {
-    const d = await (await fetch(`/api/batch/preview?file=${encodeURIComponent(fname)}`)).json();
-    if (!d.ok || !d.terms?.length) {
-      document.getElementById('merge-preview').innerHTML =
-        '<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">용어 없음</div>';
-      return;
-    }
-    _batchTerms = d.terms;
-    document.getElementById('merge-preview').innerHTML = _batchTerms.map((t,i) => `
-      <div class="merge-item">
-        <input type="checkbox" id="mc${i}" checked>
-        <div style="flex:1">
-          <span style="font-weight:600;color:var(--tx)">${t.ko||''}</span>
-          <span style="font-family:var(--mono);font-size:10px;color:var(--ac);margin-left:8px">${t.abbr_short||''}</span>
-          <span style="font-family:var(--mono);font-size:10px;color:var(--gr);margin-left:6px">${t.abbr_long||''}</span>
-          <div style="font-size:10px;color:var(--tx3);margin-top:2px">${t.description||''}</div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--tx3)">${(t.categories||[]).join(', ')}</div>
-        </div>
-      </div>`).join('');
-    document.getElementById('merge-actions').style.display = 'flex';
-    document.getElementById('merge-status').textContent = `총 ${_batchTerms.length}개`;
-  } catch(e) {
-    document.getElementById('merge-preview').innerHTML =
-      `<div style="padding:8px;color:var(--re);font-family:var(--mono);font-size:10px">${e.message}</div>`;
-  }
-}
-
-async function doMergeAll() {
-  await _doMerge(null);
-}
-async function doMergeSelected() {
-  const ids = _batchTerms
-    .filter((_,i) => document.getElementById(`mc${i}`)?.checked)
-    .map(t => t.id);
-  if (!ids.length) { toast('선택된 항목 없음', 'err'); return; }
-  await _doMerge(ids);
-}
-
-async function _doMerge(ids) {
-  const sts = document.getElementById('merge-status');
-  sts.textContent = '병합 중…';
-  try {
-    const res = await fetch('/api/batch/merge', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({file: _batchSelFile, ids}),
-    });
-    const d = await res.json();
-    if (!d.ok) { toast(d.error||'병합 실패', 'err'); sts.textContent=''; return; }
-    sts.textContent = `완료: ${d.added}개 추가, ${d.skipped}개 중복 건너뜀`;
-    toast(`${d.added}개 용어 병합 완료`, 'ok');
-    await reload();   // 메인 테이블 새로고침
-  } catch(e) {
-    toast('서버 오류: ' + e.message, 'err');
-    sts.textContent = '';
-  }
-}
-
+// ── UTILS ──
+function confirmDel(cb,nm){document.getElementById('del-nm').textContent=nm;document.getElementById('del-ok').onclick=cb;openOv('del-ov');}
+function openOv(id){document.getElementById(id).classList.add('open');}
+function closeOv(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.ov').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
+function x(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function toast(msg,cls='tin',ms=3200){const c=document.getElementById('toasts'),d=document.createElement('div');d.className=`toast ${cls}`;d.textContent=msg;c.appendChild(d);setTimeout(()=>d.remove(),ms);}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){['word-ov','compound-ov','banned-ov','checkid-ov','git-ov','run-ov','log-ov','batch-ov','del-ov'].forEach(closeOv);}if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();const cur=document.querySelector('.view.active .search-inp');if(cur)cur.focus();}});
 boot();
 </script>
 </body>

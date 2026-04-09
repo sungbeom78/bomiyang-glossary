@@ -1,0 +1,2381 @@
+{
+  "$schema": "schema/compound.schema.json",
+  "version": "1.0.0",
+  "description": "BOM_TS 복합어 사전",
+  "compounds": [
+    {
+      "id": "kr_stock",
+      "words": [
+        "kr",
+        "stock"
+      ],
+      "ko": "한국주식",
+      "en": "Korean Stock",
+      "abbr_long": "krStock",
+      "abbr_short": "KR_STOCK",
+      "domain": "market",
+      "description": "한국 주식 시장 (KRX)",
+      "reason": "혼동 방지",
+      "not": [
+        "KIS",
+        "KOSPI",
+        "KOSDAQ"
+      ]
+    },
+    {
+      "id": "us_stock",
+      "words": [
+        "us",
+        "stock"
+      ],
+      "ko": "미국주식",
+      "en": "US Stock",
+      "abbr_long": "usStock",
+      "abbr_short": "US_STOCK",
+      "domain": "market",
+      "description": "미국 주식 시장 (NYSE, NASDAQ 등)",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "fx_futures",
+      "words": [
+        "fx",
+        "futures"
+      ],
+      "ko": "외환선물",
+      "en": "FX Futures",
+      "abbr_long": "fxFutures",
+      "abbr_short": "FX_FUT",
+      "domain": "market",
+      "description": "외환을 기초자산으로 하는 선물 상품. 접근 툴은 MT5이나, 시장 자체는 MT5가 아님.",
+      "reason": "혼동 방지",
+      "not": [
+        "MT5",
+        "mt5Futures",
+        "MT5_FUT"
+      ]
+    },
+    {
+      "id": "mt5_proxy",
+      "words": [
+        "mt5",
+        "proxy"
+      ],
+      "ko": "MT5 프록시",
+      "en": "MT5 Proxy",
+      "abbr_long": "mt5Proxy",
+      "abbr_short": "MT5P",
+      "domain": "infra",
+      "description": "WSL Python → Windows MT5 연결을 중계하는 FastAPI 서버",
+      "reason": "공인 약어, 고유명사",
+      "not": []
+    },
+    {
+      "id": "mt5_bridge",
+      "words": [
+        "mt5",
+        "bridge"
+      ],
+      "ko": "MT5 브릿지",
+      "en": "MT5 Bridge",
+      "abbr_long": "mt5Bridge",
+      "abbr_short": "MT5B",
+      "domain": "infra",
+      "description": "WSL에서 MT5 프록시로 RPC 호출하는 클라이언트 모듈",
+      "reason": "공인 약어, 고유명사",
+      "not": []
+    },
+    {
+      "id": "service_manager",
+      "words": [
+        "service",
+        "manager"
+      ],
+      "ko": "서비스 매니저",
+      "en": "Service Manager",
+      "abbr_long": "serviceManager",
+      "abbr_short": "SVC_MGR",
+      "domain": "infra",
+      "description": "멀티서비스(DB/LOG/FX/KR/US/Crypto) 시작·중지·상태 관리",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "process_guard",
+      "words": [
+        "process",
+        "guard"
+      ],
+      "ko": "프로세스 가드",
+      "en": "Process Guard",
+      "abbr_long": "processGuard",
+      "abbr_short": "PGD",
+      "domain": "infra",
+      "description": "중복 프로세스 실행 방지 (PID 파일 기반)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "node_name",
+      "words": [
+        "node",
+        "name"
+      ],
+      "ko": "노드명",
+      "en": "Node Name",
+      "abbr_long": "nodeName",
+      "abbr_short": "NODE",
+      "domain": "infra",
+      "description": "서버 식별자. 멀티노드 배포 시 노드 구분에 사용.",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "task_scheduler",
+      "words": [
+        "task",
+        "scheduler"
+      ],
+      "ko": "태스크 스케줄러",
+      "en": "Task Scheduler",
+      "abbr_long": "taskScheduler",
+      "abbr_short": "SCHED",
+      "domain": "infra",
+      "description": "일별/시간별 예약 작업 실행 (리부트, 리포트 생성 등)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "order_intent",
+      "words": [
+        "order",
+        "intent"
+      ],
+      "ko": "주문 의도",
+      "en": "Order Intent",
+      "abbr_long": "orderIntent",
+      "abbr_short": "OI",
+      "domain": "trading",
+      "description": "주문 실행 전 의사결정 내용. execution이 생성하여 adapter에 전달.",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "market_order",
+      "words": [
+        "market",
+        "order"
+      ],
+      "ko": "시장가 주문",
+      "en": "Market Order",
+      "abbr_long": "marketOrder",
+      "abbr_short": "MKT_ORD",
+      "domain": "trading",
+      "description": "현재 시장가로 즉시 체결되는 주문",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "limit_order",
+      "words": [
+        "limit",
+        "order"
+      ],
+      "ko": "지정가 주문",
+      "en": "Limit Order",
+      "abbr_long": "limitOrder",
+      "abbr_short": "LMT",
+      "domain": "trading",
+      "description": "지정 가격 이하(매수) 또는 이상(매도)에서만 체결되는 주문",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "split_buy",
+      "words": [
+        "split",
+        "buy"
+      ],
+      "ko": "분할 매수",
+      "en": "Split Buy",
+      "abbr_long": "splitBuy",
+      "abbr_short": "SBUY",
+      "domain": "trading",
+      "description": "분할 매수 (여러 번 나눠서 진입)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "split_sell",
+      "words": [
+        "split",
+        "sell"
+      ],
+      "ko": "분할 매도",
+      "en": "Split Sell",
+      "abbr_long": "splitSell",
+      "abbr_short": "SSELL",
+      "domain": "trading",
+      "description": "분할 매도 (여러 번 나눠서 청산)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "eod_flatten",
+      "words": [
+        "eod",
+        "flatten"
+      ],
+      "ko": "장 종료 전량 청산",
+      "en": "End-of-Day Flatten",
+      "abbr_long": "eodFlatten",
+      "abbr_short": "EODF",
+      "domain": "trading",
+      "description": "세션 종료 시각에 모든 포지션을 강제 청산",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "active_trade",
+      "words": [
+        "active",
+        "trade"
+      ],
+      "ko": "활성 거래",
+      "en": "Active Trade",
+      "abbr_long": "activeTrade",
+      "abbr_short": "AT",
+      "domain": "trading",
+      "description": "현재 보유 중인 거래 (OPEN 상태). TradeJournal의 SoT.",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "closed_trade",
+      "words": [
+        "closed",
+        "trade"
+      ],
+      "ko": "청산 거래",
+      "en": "Closed Trade",
+      "abbr_long": "closedTrade",
+      "abbr_short": "CT",
+      "domain": "trading",
+      "description": "청산 완료된 거래. 손익이 확정된 상태.",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "signal_direction",
+      "words": [
+        "signal",
+        "direction"
+      ],
+      "ko": "시그널 방향",
+      "en": "Signal Direction",
+      "abbr_long": "signalDirection",
+      "abbr_short": "DIR",
+      "domain": "trading",
+      "description": "LONG / SHORT / FLAT — 시그널이 제안하는 포지션 방향",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "signal_engine",
+      "words": [
+        "signal",
+        "engine"
+      ],
+      "ko": "시그널 엔진",
+      "en": "Signal Engine",
+      "abbr_long": "signalEngine",
+      "abbr_short": "SIG_ENG",
+      "domain": "trading",
+      "description": "진입·청산 조건을 판단하는 핵심 로직 단위",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "candle_personality",
+      "words": [
+        "candle",
+        "personality"
+      ],
+      "ko": "캔들 성격",
+      "en": "Candle Personality",
+      "abbr_long": "candlePersonality",
+      "abbr_short": "CP",
+      "domain": "trading",
+      "description": "캔들 형태 분석 점수 (윗꼬리·아랫꼬리 비율 기반)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "upper_wick",
+      "words": [
+        "upper",
+        "wick"
+      ],
+      "ko": "윗꼬리",
+      "en": "Upper Wick",
+      "abbr_long": "upperWick",
+      "abbr_short": "UW",
+      "domain": "trading",
+      "description": "캔들 고가에서 몸통까지의 꼬리 (매도 압력 지표)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "lower_wick",
+      "words": [
+        "lower",
+        "wick"
+      ],
+      "ko": "아랫꼬리",
+      "en": "Lower Wick",
+      "abbr_long": "lowerWick",
+      "abbr_short": "LW",
+      "domain": "trading",
+      "description": "캔들 저가에서 몸통까지의 꼬리 (매수 지지 지표)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "stop_loss",
+      "words": [
+        "stop",
+        "loss"
+      ],
+      "ko": "손절",
+      "en": "Stop Loss",
+      "abbr_long": "stopLoss",
+      "abbr_short": "SL",
+      "domain": "trading",
+      "description": "손실 한도 도달 시 강제 청산. Hard Stop.",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "take_profit",
+      "words": [
+        "take",
+        "profit"
+      ],
+      "ko": "익절",
+      "en": "Take Profit",
+      "abbr_long": "takeProfit",
+      "abbr_short": "TP",
+      "domain": "trading",
+      "description": "목표 수익 도달 시 청산",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "trailing_stop",
+      "words": [
+        "trailing",
+        "stop"
+      ],
+      "ko": "트레일링 스탑",
+      "en": "Trailing Stop",
+      "abbr_long": "trailingStop",
+      "abbr_short": "TSL",
+      "domain": "trading",
+      "description": "진입 후 최고가 대비 일정 % 이하로 하락 시 청산. 수익 보호.",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "no_bounce_exit",
+      "words": [
+        "no",
+        "bounce",
+        "exit"
+      ],
+      "ko": "반등 불발 청산",
+      "en": "No Bounce Exit",
+      "abbr_long": "noBounceExit",
+      "abbr_short": "NBE",
+      "domain": "trading",
+      "description": "반등 신호 없이 일정 시간 경과 시 청산",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "kill_switch",
+      "words": [
+        "kill",
+        "switch"
+      ],
+      "ko": "킬스위치",
+      "en": "Kill Switch",
+      "abbr_long": "killSwitch",
+      "abbr_short": "KSW",
+      "domain": "trading",
+      "description": "파일 기반 전체 거래 차단 장치. KILL_SWITCH 파일 존재 시 진입 전면 차단.",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "risk_manager",
+      "words": [
+        "risk",
+        "manager"
+      ],
+      "ko": "리스크 매니저",
+      "en": "Risk Manager",
+      "abbr_long": "riskManager",
+      "abbr_short": "RM",
+      "domain": "trading",
+      "description": "일일 손실 한도, 포지션 한도, 킬스위치 판단 담당",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "max_daily_loss",
+      "words": [
+        "max",
+        "daily",
+        "loss"
+      ],
+      "ko": "일일 최대 손실",
+      "en": "Max Daily Loss",
+      "abbr_long": "maxDailyLoss",
+      "abbr_short": "MDL",
+      "domain": "trading",
+      "description": "당일 허용 최대 손실액. 도달 시 전량 청산 + 진입 차단.",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "consecutive_stops",
+      "words": [
+        "consecutive",
+        "stops"
+      ],
+      "ko": "연속 손절 횟수",
+      "en": "Consecutive Stops",
+      "abbr_long": "consecutiveStops",
+      "abbr_short": "CS",
+      "domain": "trading",
+      "description": "연속 손절 한도. 도달 시 당일 진입 차단.",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "max_open_positions",
+      "words": [
+        "max",
+        "open",
+        "positions"
+      ],
+      "ko": "최대 동시 보유 수",
+      "en": "Max Open Positions",
+      "abbr_long": "maxOpenPositions",
+      "abbr_short": "MOP",
+      "domain": "trading",
+      "description": "동시에 보유 가능한 최대 포지션 수",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "position_size",
+      "words": [
+        "position",
+        "size"
+      ],
+      "ko": "포지션 크기",
+      "en": "Position Size",
+      "abbr_long": "positionSize",
+      "abbr_short": "PSIZ",
+      "domain": "trading",
+      "description": "1회 진입 시 투입 금액 또는 계약 수",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "margin_used",
+      "words": [
+        "margin",
+        "used"
+      ],
+      "ko": "사용 증거금",
+      "en": "Margin Used",
+      "abbr_long": "marginUsed",
+      "abbr_short": "MRG",
+      "domain": "trading",
+      "description": "현재 포지션 유지에 사용 중인 증거금",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "leader_stock",
+      "words": [
+        "leader",
+        "stock"
+      ],
+      "ko": "대장주",
+      "en": "Leader Stock",
+      "abbr_long": "leaderStock",
+      "abbr_short": "LEAD",
+      "domain": "trading",
+      "description": "섹터를 이끄는 핵심 종목. 조건식 기반 스캔으로 선정.",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "leader_candidates",
+      "words": [
+        "leader",
+        "candidates"
+      ],
+      "ko": "대장주 후보",
+      "en": "Leader Candidates",
+      "abbr_long": "leaderCandidates",
+      "abbr_short": "LCAND",
+      "domain": "trading",
+      "description": "대장주 선정 전 1차 필터링된 후보 종목 목록",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "market_scanner",
+      "words": [
+        "market",
+        "scanner"
+      ],
+      "ko": "마켓 스캐너",
+      "en": "Market Scanner",
+      "abbr_long": "marketScanner",
+      "abbr_short": "SCAN",
+      "domain": "trading",
+      "description": "조건식 기반 대장주 스캔 실행 모듈",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "sector_ranking",
+      "words": [
+        "sector",
+        "ranking"
+      ],
+      "ko": "섹터 랭킹",
+      "en": "Sector Ranking",
+      "abbr_long": "sectorRanking",
+      "abbr_short": "SEC_RNK",
+      "domain": "trading",
+      "description": "섹터별 강도 점수 순위",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "symbol_ranking",
+      "words": [
+        "symbol",
+        "ranking"
+      ],
+      "ko": "종목 랭킹",
+      "en": "Symbol Ranking",
+      "abbr_long": "symbolRanking",
+      "abbr_short": "SYM_RNK",
+      "domain": "trading",
+      "description": "종목별 점수 순위",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "market_strength",
+      "words": [
+        "market",
+        "strength"
+      ],
+      "ko": "시장 강도",
+      "en": "Market Strength",
+      "abbr_long": "marketStrength",
+      "abbr_short": "MS",
+      "domain": "trading",
+      "description": "전체 시장(코스피·코스닥) 상승/하락 강도 지표",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "sector_score",
+      "words": [
+        "sector",
+        "score"
+      ],
+      "ko": "섹터 점수",
+      "en": "Sector Score",
+      "abbr_long": "sectorScore",
+      "abbr_short": "SS",
+      "domain": "trading",
+      "description": "섹터 강도를 수치화한 점수",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "stock_score",
+      "words": [
+        "stock",
+        "score"
+      ],
+      "ko": "종목 점수",
+      "en": "Stock Score",
+      "abbr_long": "stockScore",
+      "abbr_short": "STS",
+      "domain": "trading",
+      "description": "개별 종목 강도를 수치화한 점수",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "momentum_score",
+      "words": [
+        "momentum",
+        "score"
+      ],
+      "ko": "모멘텀 점수",
+      "en": "Momentum Score",
+      "abbr_long": "momentumScore",
+      "abbr_short": "MOM",
+      "domain": "trading",
+      "description": "가격 모멘텀(추세 강도) 점수",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "trading_value_score",
+      "words": [
+        "trading",
+        "value",
+        "score"
+      ],
+      "ko": "거래대금 점수",
+      "en": "Trading Value Score",
+      "abbr_long": "tradingValueScore",
+      "abbr_short": "TVS",
+      "domain": "trading",
+      "description": "거래대금 기반 유동성 점수",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "exec_strength_score",
+      "words": [
+        "exec",
+        "strength",
+        "score"
+      ],
+      "ko": "체결 강도 점수",
+      "en": "Execution Strength Score",
+      "abbr_long": "execStrengthScore",
+      "abbr_short": "ESS",
+      "domain": "trading",
+      "description": "매수 체결 강도 점수 (매수강도/매도강도 비율)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "sector_strength_score",
+      "words": [
+        "sector",
+        "strength",
+        "score"
+      ],
+      "ko": "섹터 강도 점수",
+      "en": "Sector Strength Score",
+      "abbr_long": "sectorStrengthScore",
+      "abbr_short": "SSS",
+      "domain": "trading",
+      "description": "섹터 내 비교 강도 점수",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "volatility_score",
+      "words": [
+        "volatility",
+        "score"
+      ],
+      "ko": "변동성 점수",
+      "en": "Volatility Score",
+      "abbr_long": "volatilityScore",
+      "abbr_short": "VOLS",
+      "domain": "trading",
+      "description": "가격 변동성 점수. 높을수록 리스크 높음.",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "exec_strength",
+      "words": [
+        "exec",
+        "strength"
+      ],
+      "ko": "체결 강도",
+      "en": "Execution Strength",
+      "abbr_long": "execStrength",
+      "abbr_short": "ES",
+      "domain": "trading",
+      "description": "실시간 매수/매도 체결 강도 원본값",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "realtime_log",
+      "words": [
+        "realtime",
+        "log"
+      ],
+      "ko": "실시간 로그",
+      "en": "Realtime Log",
+      "abbr_long": "realtimeLog",
+      "abbr_short": "RLOG",
+      "domain": "trading",
+      "description": "Redis 스트림 기반 실시간 이벤트 로그",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "account_snapshot",
+      "words": [
+        "account",
+        "snapshot"
+      ],
+      "ko": "계좌 스냅샷",
+      "en": "Account Snapshot",
+      "abbr_long": "accountSnapshot",
+      "abbr_short": "ASNAP",
+      "domain": "trading",
+      "description": "특정 시점의 계좌 잔고·포지션 상태 스냅샷",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "realized_pnl",
+      "words": [
+        "realized",
+        "pnl"
+      ],
+      "ko": "실현 손익",
+      "en": "Realized PnL",
+      "abbr_long": "realizedPnl",
+      "abbr_short": "RPNL",
+      "domain": "trading",
+      "description": "청산 완료된 거래의 확정 손익",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "unrealized_pnl",
+      "words": [
+        "unrealized",
+        "pnl"
+      ],
+      "ko": "미실현 손익",
+      "en": "Unrealized PnL",
+      "abbr_long": "unrealizedPnl",
+      "abbr_short": "UPNL",
+      "domain": "trading",
+      "description": "현재 보유 중인 포지션의 평가 손익",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "order_status",
+      "words": [
+        "order",
+        "status"
+      ],
+      "ko": "주문 상태",
+      "en": "Order Status",
+      "abbr_long": "orderStatus",
+      "abbr_short": "OS",
+      "domain": "trading",
+      "description": "주문 생명주기 상태: pending→submitted→filled/cancelled/rejected",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "partial_fill",
+      "words": [
+        "partial",
+        "fill"
+      ],
+      "ko": "부분 체결",
+      "en": "Partial Fill",
+      "abbr_long": "partialFill",
+      "abbr_short": "PART",
+      "domain": "system",
+      "description": "주문 수량의 일부만 체결된 상태",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "mock_trading",
+      "words": [
+        "mock",
+        "trading"
+      ],
+      "ko": "모의 거래",
+      "en": "Mock Trading",
+      "abbr_long": "mockTrading",
+      "abbr_short": "MOCK",
+      "domain": "trading",
+      "description": "실제 자금 없이 시뮬레이션으로 진행하는 거래",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "live_trading",
+      "words": [
+        "live",
+        "trading"
+      ],
+      "ko": "실전 거래",
+      "en": "Live Trading",
+      "abbr_long": "liveTrading",
+      "abbr_short": "LIVE",
+      "domain": "trading",
+      "description": "실제 자금으로 진행하는 거래",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "market_open",
+      "words": [
+        "market",
+        "open"
+      ],
+      "ko": "장 시작",
+      "en": "Market Open",
+      "abbr_long": "marketOpen",
+      "abbr_short": "MO",
+      "domain": "trading",
+      "description": "해당 마켓의 거래 시작 시각",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "market_close",
+      "words": [
+        "market",
+        "close"
+      ],
+      "ko": "장 종료",
+      "en": "Market Close",
+      "abbr_long": "marketClose",
+      "abbr_short": "MC",
+      "domain": "trading",
+      "description": "해당 마켓의 거래 종료 시각",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "no_entry_after",
+      "words": [
+        "no",
+        "entry",
+        "after"
+      ],
+      "ko": "진입 차단 시각",
+      "en": "No Entry After",
+      "abbr_long": "noEntryAfter",
+      "abbr_short": "NEA",
+      "domain": "trading",
+      "description": "이 시각 이후 신규 진입 차단",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "tracking_start",
+      "words": [
+        "tracking",
+        "start"
+      ],
+      "ko": "트래킹 시작",
+      "en": "Tracking Start",
+      "abbr_long": "trackingStart",
+      "abbr_short": "TRK_ST",
+      "domain": "trading",
+      "description": "시세 추적 및 신호 감지 시작 시각",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "reboot_time",
+      "words": [
+        "reboot",
+        "time"
+      ],
+      "ko": "리부트 시각",
+      "en": "Reboot Time",
+      "abbr_long": "rebootTime",
+      "abbr_short": "RBT",
+      "domain": "trading",
+      "description": "일일 정기 프로세스 재시작 시각",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "work_start",
+      "words": [
+        "work",
+        "start"
+      ],
+      "ko": "업무 시작",
+      "en": "Work Start",
+      "abbr_long": "workStart",
+      "abbr_short": "WS",
+      "domain": "trading",
+      "description": "일일 업무 시작 시각 (사전 준비 포함)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "extended_market_start",
+      "words": [
+        "extended",
+        "market",
+        "start"
+      ],
+      "ko": "시간외 시작",
+      "en": "Extended Market Start",
+      "abbr_long": "extendedMarketStart",
+      "abbr_short": "EXT_ST",
+      "domain": "trading",
+      "description": "시간외 거래 시작 시각",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "extended_market_end",
+      "words": [
+        "extended",
+        "market",
+        "end"
+      ],
+      "ko": "시간외 종료",
+      "en": "Extended Market End",
+      "abbr_long": "extendedMarketEnd",
+      "abbr_short": "EXT_END",
+      "domain": "trading",
+      "description": "시간외 거래 종료 시각",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "system_notifier",
+      "words": [
+        "system",
+        "notifier"
+      ],
+      "ko": "시스템 알림",
+      "en": "System Notifier",
+      "abbr_long": "systemNotifier",
+      "abbr_short": "SYS_NTF",
+      "domain": "system",
+      "description": "시스템 이벤트(장애·시작·종료)를 Telegram system 봇으로 발송",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "trade_notifier",
+      "words": [
+        "trade",
+        "notifier"
+      ],
+      "ko": "거래 알림",
+      "en": "Trade Notifier",
+      "abbr_long": "tradeNotifier",
+      "abbr_short": "TRD_NTF",
+      "domain": "trading",
+      "description": "체결·청산 이벤트를 Telegram market 봇으로 발송",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "transaction_id",
+      "words": [
+        "transaction",
+        "id"
+      ],
+      "ko": "트랜잭션 ID",
+      "en": "Transaction ID",
+      "abbr_long": "transactionId",
+      "abbr_short": "TR_ID",
+      "domain": "trading",
+      "description": "주문-체결-청산을 연결하는 고유 식별자",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "telegram_bot",
+      "words": [
+        "telegram",
+        "bot"
+      ],
+      "ko": "텔레그램 봇",
+      "en": "Telegram Bot",
+      "abbr_long": "telegramBot",
+      "abbr_short": "TG_BOT",
+      "domain": "ui",
+      "description": "Telegram 알림·명령 처리 봇 (system/test/market 3종)",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "cls_market",
+      "words": [
+        "cls",
+        "market"
+      ],
+      "ko": "Market 열거형",
+      "en": "Market Enum",
+      "abbr_long": "Market",
+      "abbr_short": "MKT",
+      "domain": "system",
+      "description": "거래 마켓 열거형 (KR_STOCK, US_STOCK, FX_FUT, CRYPTO)",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_order_side",
+      "words": [
+        "cls",
+        "order",
+        "side"
+      ],
+      "ko": "주문 방향 열거형",
+      "en": "OrderSide Enum",
+      "abbr_long": "OrderSide",
+      "abbr_short": "OSIDE",
+      "domain": "system",
+      "description": "BUY / SELL",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_order_type",
+      "words": [
+        "cls",
+        "order",
+        "type"
+      ],
+      "ko": "주문 유형 열거형",
+      "en": "OrderType Enum",
+      "abbr_long": "OrderType",
+      "abbr_short": "OT",
+      "domain": "system",
+      "description": "MARKET / LIMIT",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_order_status",
+      "words": [
+        "cls",
+        "order",
+        "status"
+      ],
+      "ko": "주문 상태 열거형",
+      "en": "OrderStatus Enum",
+      "abbr_long": "OrderStatus",
+      "abbr_short": "OS_C",
+      "domain": "system",
+      "description": "PENDING / SUBMITTED / PARTIAL_FILL / FILLED / CANCELLED / REJECTED / FAILED",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_signal_direction",
+      "words": [
+        "cls",
+        "signal",
+        "direction"
+      ],
+      "ko": "시그널 방향 열거형",
+      "en": "SignalDirection Enum",
+      "abbr_long": "SignalDirection",
+      "abbr_short": "DIR_C",
+      "domain": "system",
+      "description": "LONG / SHORT / FLAT",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_time_in_force",
+      "words": [
+        "cls",
+        "time",
+        "in",
+        "force"
+      ],
+      "ko": "주문 유효 기간 열거형",
+      "en": "TimeInForce Enum",
+      "abbr_long": "TimeInForce",
+      "abbr_short": "TIF",
+      "domain": "system",
+      "description": "GTC / IOC / DAY",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_signal_event",
+      "words": [
+        "cls",
+        "signal",
+        "event"
+      ],
+      "ko": "시그널 이벤트",
+      "en": "SignalEvent",
+      "abbr_long": "SignalEvent",
+      "abbr_short": "SIG_EVT",
+      "domain": "system",
+      "description": "시그널 엔진 출력 모델. signals 모듈만 생성 가능.",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_order_intent",
+      "words": [
+        "cls",
+        "order",
+        "intent"
+      ],
+      "ko": "주문 의도 모델",
+      "en": "OrderIntent",
+      "abbr_long": "OrderIntent",
+      "abbr_short": "OI_C",
+      "domain": "system",
+      "description": "실행 전 주문 의도 Pydantic 모델. execution 모듈만 생성 가능.",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_account_snapshot",
+      "words": [
+        "cls",
+        "account",
+        "snapshot"
+      ],
+      "ko": "계좌 스냅샷 모델",
+      "en": "AccountSnapshot",
+      "abbr_long": "AccountSnapshot",
+      "abbr_short": "ASNAP_C",
+      "domain": "system",
+      "description": "계좌 상태 스냅샷 Pydantic 모델",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_settings",
+      "words": [
+        "cls",
+        "settings"
+      ],
+      "ko": "설정 클래스",
+      "en": "Settings",
+      "abbr_long": "Settings",
+      "abbr_short": "CFG_C",
+      "domain": "system",
+      "description": "settings.yaml + .env 통합 설정 싱글턴",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_service_type",
+      "words": [
+        "cls",
+        "service",
+        "type"
+      ],
+      "ko": "서비스 유형 열거형",
+      "en": "ServiceType Enum",
+      "abbr_long": "ServiceType",
+      "abbr_short": "SVC_T",
+      "domain": "system",
+      "description": "DB / LOG / FX / KR / US / CRYPTO / TEST",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_service_status",
+      "words": [
+        "cls",
+        "service",
+        "status"
+      ],
+      "ko": "서비스 상태 열거형",
+      "en": "ServiceStatus Enum",
+      "abbr_long": "ServiceStatus",
+      "abbr_short": "SVC_S",
+      "domain": "system",
+      "description": "RUNNING / STOPPED / STARTING / ERROR",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_service_info",
+      "words": [
+        "cls",
+        "service",
+        "info"
+      ],
+      "ko": "서비스 정보 모델",
+      "en": "ServiceInfo",
+      "abbr_long": "ServiceInfo",
+      "abbr_short": "SVC_I",
+      "domain": "system",
+      "description": "서비스 상태·메타데이터 Pydantic 모델",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_kis_auth",
+      "words": [
+        "cls",
+        "kis",
+        "auth"
+      ],
+      "ko": "KIS 인증 클래스",
+      "en": "KisAuth",
+      "abbr_long": "KisAuth",
+      "abbr_short": "KIS_AUTH",
+      "domain": "system",
+      "description": "KIS OAuth2 토큰 발급·갱신·캐싱",
+      "reason": "시스템 객체, 고유명사",
+      "not": []
+    },
+    {
+      "id": "cls_kis_mock_auth",
+      "words": [
+        "cls",
+        "kis",
+        "mock",
+        "auth"
+      ],
+      "ko": "KIS 모의 인증 클래스",
+      "en": "KisMockAuth",
+      "abbr_long": "KisMockAuth",
+      "abbr_short": "KIS_MAUTH",
+      "domain": "system",
+      "description": "KIS 모의투자 전용 인증 클래스",
+      "reason": "시스템 객체, 고유명사",
+      "not": []
+    },
+    {
+      "id": "cls_kis_adapter",
+      "words": [
+        "cls",
+        "kis",
+        "adapter"
+      ],
+      "ko": "KIS 어댑터",
+      "en": "KisAdapter",
+      "abbr_long": "KisAdapter",
+      "abbr_short": "KIS_ADP",
+      "domain": "system",
+      "description": "한국주식 KIS API 연동 어댑터 (이중 계좌: 실전 데이터 + 모의 매매)",
+      "reason": "시스템 객체, 고유명사",
+      "not": []
+    },
+    {
+      "id": "cls_kis_us_adapter",
+      "words": [
+        "cls",
+        "kis",
+        "us",
+        "adapter"
+      ],
+      "ko": "KIS 미국주식 어댑터",
+      "en": "KisUsAdapter",
+      "abbr_long": "KisUsAdapter",
+      "abbr_short": "KIS_US_ADP",
+      "domain": "system",
+      "description": "미국주식 KIS API 어댑터 (이중계좌: 실전 데이터 + 모의 매매)",
+      "reason": "시스템 객체, 고유명사",
+      "not": []
+    },
+    {
+      "id": "cls_upbit_auth",
+      "words": [
+        "cls",
+        "upbit",
+        "auth"
+      ],
+      "ko": "업비트 인증",
+      "en": "UpbitAuth",
+      "abbr_long": "UpbitAuth",
+      "abbr_short": "UPB_AUTH",
+      "domain": "system",
+      "description": "업비트 JWT 인증/서명 (PyJWT + SHA512)",
+      "reason": "시스템 객체, 고유명사",
+      "not": []
+    },
+    {
+      "id": "cls_upbit_adapter",
+      "words": [
+        "cls",
+        "upbit",
+        "adapter"
+      ],
+      "ko": "업비트 어댑터",
+      "en": "UpbitAdapter",
+      "abbr_long": "UpbitAdapter",
+      "abbr_short": "UPB_ADP",
+      "domain": "system",
+      "description": "업비트 REST API 어댑터 (잔고/캔들/주문/레이트리밋)",
+      "reason": "시스템 객체, 고유명사",
+      "not": []
+    },
+    {
+      "id": "cls_mt5_bridge",
+      "words": [
+        "cls",
+        "mt5",
+        "bridge"
+      ],
+      "ko": "MT5 브릿지 클래스",
+      "en": "MT5Bridge",
+      "abbr_long": "MT5Bridge",
+      "abbr_short": "MT5B_C",
+      "domain": "system",
+      "description": "WSL → Windows MT5 RPC 클라이언트 클래스",
+      "reason": "공인 약어, 시스템 객체, 고유명사",
+      "not": []
+    },
+    {
+      "id": "cls_mt5_proxy_server",
+      "words": [
+        "cls",
+        "mt5",
+        "proxy",
+        "server"
+      ],
+      "ko": "MT5 프록시 서버",
+      "en": "MT5ProxyServer",
+      "abbr_long": "MT5ProxyServer",
+      "abbr_short": "MT5PS",
+      "domain": "system",
+      "description": "Windows에서 실행되는 FastAPI 기반 MT5 프록시 서버",
+      "reason": "공인 약어, 시스템 객체, 고유명사",
+      "not": []
+    },
+    {
+      "id": "cls_mt5_local_adapter",
+      "words": [
+        "cls",
+        "mt5",
+        "local",
+        "adapter"
+      ],
+      "ko": "MT5 로컬 어댑터",
+      "en": "MT5LocalAdapter",
+      "abbr_long": "MT5LocalAdapter",
+      "abbr_short": "MT5_ADP",
+      "domain": "system",
+      "description": "로컬 MT5 어댑터 (BaseBrokerAdapter 구현, run.py 통합용)",
+      "reason": "시스템 객체, 고유명사",
+      "not": []
+    },
+    {
+      "id": "cls_sector_ranker",
+      "words": [
+        "cls",
+        "sector",
+        "ranker"
+      ],
+      "ko": "섹터 랭커",
+      "en": "SectorRanker",
+      "abbr_long": "SectorRanker",
+      "abbr_short": "SEC_RNK_C",
+      "domain": "system",
+      "description": "섹터 강도 랭킹 계산 클래스",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_symbol_ranker",
+      "words": [
+        "cls",
+        "symbol",
+        "ranker"
+      ],
+      "ko": "종목 랭커",
+      "en": "SymbolRanker",
+      "abbr_long": "SymbolRanker",
+      "abbr_short": "SYM_RNK_C",
+      "domain": "system",
+      "description": "종목 점수 랭킹 계산 클래스",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_kr_signal_engine",
+      "words": [
+        "cls",
+        "kr",
+        "signal",
+        "engine"
+      ],
+      "ko": "KR 시그널 엔진",
+      "en": "KrSignalEngine",
+      "abbr_long": "KrSignalEngine",
+      "abbr_short": "KR_SIG",
+      "domain": "system",
+      "description": "한국주식 진입·청산 시그널 생성 엔진",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_fx_signal_engine",
+      "words": [
+        "cls",
+        "fx",
+        "signal",
+        "engine"
+      ],
+      "ko": "FX 시그널 엔진",
+      "en": "FxSignalEngine",
+      "abbr_long": "FxSignalEngine",
+      "abbr_short": "FX_SIG",
+      "domain": "system",
+      "description": "외환선물 진입·청산 시그널 생성 엔진",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_crypto_signal_engine",
+      "words": [
+        "cls",
+        "crypto",
+        "signal",
+        "engine"
+      ],
+      "ko": "크립토 시그널 엔진",
+      "en": "CryptoSignalEngine",
+      "abbr_long": "CryptoSignalEngine",
+      "abbr_short": "CRY_SIG",
+      "domain": "system",
+      "description": "암호화폐 추세 돌파 시그널 엔진 (2단계 진입)",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_us_swing_signal_engine",
+      "words": [
+        "cls",
+        "us",
+        "swing",
+        "signal",
+        "engine"
+      ],
+      "ko": "US 스윙 시그널 엔진",
+      "en": "UsSwingSignalEngine",
+      "abbr_long": "UsSwingSignalEngine",
+      "abbr_short": "US_SIG",
+      "domain": "system",
+      "description": "미국주식 스윙 시그널 엔진 (눌림/돌파 진입, 5단계 청산)",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_kr_orderbook_filter",
+      "words": [
+        "cls",
+        "kr",
+        "orderbook",
+        "filter"
+      ],
+      "ko": "KR 호가 필터",
+      "en": "KrOrderbookFilter",
+      "abbr_long": "KrOrderbookFilter",
+      "abbr_short": "KR_OBF",
+      "domain": "system",
+      "description": "KR 호가 기반 진입 정합성·매도 위험 점수 산출",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_execution_engine",
+      "words": [
+        "cls",
+        "execution",
+        "engine"
+      ],
+      "ko": "실행 엔진",
+      "en": "ExecutionEngine",
+      "abbr_long": "ExecutionEngine",
+      "abbr_short": "EXEC_ENG",
+      "domain": "system",
+      "description": "주문 실행 담당 엔진 (OrderIntent → 브로커 API 호출)",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_trading_orchestrator",
+      "words": [
+        "cls",
+        "trading",
+        "orchestrator"
+      ],
+      "ko": "트레이딩 오케스트레이터",
+      "en": "TradingOrchestrator",
+      "abbr_long": "TradingOrchestrator",
+      "abbr_short": "T_ORCH",
+      "domain": "system",
+      "description": "전체 거래 루프를 조율하는 최상위 클래스",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_trade_record",
+      "words": [
+        "cls",
+        "trade",
+        "record"
+      ],
+      "ko": "거래 기록 모델",
+      "en": "TradeRecord",
+      "abbr_long": "TradeRecord",
+      "abbr_short": "TR",
+      "domain": "system",
+      "description": "거래 생명주기 전체(진입→청산) Pydantic 모델",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_replay_runner",
+      "words": [
+        "cls",
+        "replay",
+        "runner"
+      ],
+      "ko": "리플레이 러너",
+      "en": "ReplayRunner",
+      "abbr_long": "ReplayRunner",
+      "abbr_short": "RPL_RUN",
+      "domain": "system",
+      "description": "과거 데이터 기반 백테스트 실행 클래스",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_report_generator",
+      "words": [
+        "cls",
+        "report",
+        "generator"
+      ],
+      "ko": "리포트 생성기",
+      "en": "ReportGenerator",
+      "abbr_long": "ReportGenerator",
+      "abbr_short": "RPT_GEN",
+      "domain": "system",
+      "description": "일간/주간/월간 거래 리포트 생성 클래스",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_telegram_bot",
+      "words": [
+        "cls",
+        "telegram",
+        "bot"
+      ],
+      "ko": "텔레그램 봇 클래스",
+      "en": "TelegramBot",
+      "abbr_long": "TelegramBot",
+      "abbr_short": "TG_BOT_C",
+      "domain": "system",
+      "description": "Telegram 봇 기반 클래스 (system/test/market 공통)",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_db_engine",
+      "words": [
+        "cls",
+        "db",
+        "engine"
+      ],
+      "ko": "DB 엔진",
+      "en": "DBEngine",
+      "abbr_long": "DBEngine",
+      "abbr_short": "DBA",
+      "domain": "system",
+      "description": "PostgreSQL 연결 풀 및 ORM 세션 관리",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "cls_crypto_risk_manager",
+      "words": [
+        "cls",
+        "crypto",
+        "risk",
+        "manager"
+      ],
+      "ko": "코인 리스크 매니저",
+      "en": "CryptoRiskManager",
+      "abbr_long": "CryptoRiskManager",
+      "abbr_short": "CRY_RM",
+      "domain": "system",
+      "description": "코인 전용 리스크 관리 (연속손절·재진입 제한·일손 한도)",
+      "reason": "시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_common",
+      "words": [
+        "mod",
+        "common"
+      ],
+      "ko": "공통 모듈",
+      "en": "Common Module",
+      "abbr_long": "common",
+      "abbr_short": "CMN",
+      "domain": "system",
+      "description": "src/common/ — 모델, 설정, 로깅, 예외, 유틸",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_adapters",
+      "words": [
+        "mod",
+        "adapters"
+      ],
+      "ko": "어댑터 모듈",
+      "en": "Adapters Module",
+      "abbr_long": "adapters",
+      "abbr_short": "ADP",
+      "domain": "system",
+      "description": "src/adapters/ — 브로커 연동 (MT5/KIS/Upbit)",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_collectors",
+      "words": [
+        "mod",
+        "collectors"
+      ],
+      "ko": "수집기 모듈",
+      "en": "Collectors Module",
+      "abbr_long": "collectors",
+      "abbr_short": "COL",
+      "domain": "system",
+      "description": "src/collectors/ — 시세·데이터 수집",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_selector",
+      "words": [
+        "mod",
+        "selector"
+      ],
+      "ko": "셀렉터 모듈",
+      "en": "Selector Module",
+      "abbr_long": "selector",
+      "abbr_short": "SEL",
+      "domain": "system",
+      "description": "src/selector/ — 섹터·종목 선정",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_signals",
+      "words": [
+        "mod",
+        "signals"
+      ],
+      "ko": "시그널 모듈",
+      "en": "Signals Module",
+      "abbr_long": "signals",
+      "abbr_short": "SIG_M",
+      "domain": "system",
+      "description": "src/signals/ — 진입/청산 시그널",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_risk",
+      "words": [
+        "mod",
+        "risk"
+      ],
+      "ko": "리스크 모듈",
+      "en": "Risk Module",
+      "abbr_long": "risk",
+      "abbr_short": "RSK",
+      "domain": "system",
+      "description": "src/risk/ — 리스크 관리",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_execution",
+      "words": [
+        "mod",
+        "execution"
+      ],
+      "ko": "실행 모듈",
+      "en": "Execution Module",
+      "abbr_long": "execution",
+      "abbr_short": "EXEC",
+      "domain": "system",
+      "description": "src/execution/ — 주문 실행, 오케스트레이터",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_replay",
+      "words": [
+        "mod",
+        "replay"
+      ],
+      "ko": "리플레이 모듈",
+      "en": "Replay Module",
+      "abbr_long": "replay",
+      "abbr_short": "RPL",
+      "domain": "system",
+      "description": "src/replay/ — 백테스트",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_report",
+      "words": [
+        "mod",
+        "report"
+      ],
+      "ko": "리포트 모듈",
+      "en": "Report Module",
+      "abbr_long": "report",
+      "abbr_short": "RPT",
+      "domain": "system",
+      "description": "src/report/ — 리포트, 대시보드",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_storage",
+      "words": [
+        "mod",
+        "storage"
+      ],
+      "ko": "스토리지 모듈",
+      "en": "Storage Module",
+      "abbr_long": "storage",
+      "abbr_short": "STG",
+      "domain": "system",
+      "description": "src/storage/ — DB ORM, Redis 클라이언트",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_notifications",
+      "words": [
+        "mod",
+        "notifications"
+      ],
+      "ko": "알림 모듈",
+      "en": "Notifications Module",
+      "abbr_long": "notifications",
+      "abbr_short": "NTF",
+      "domain": "system",
+      "description": "src/notifications/ — Telegram 봇",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_config",
+      "words": [
+        "mod",
+        "config"
+      ],
+      "ko": "설정 모듈",
+      "en": "Config Module",
+      "abbr_long": "config",
+      "abbr_short": "CFG_M",
+      "domain": "system",
+      "description": "src/common/config.py — Settings 싱글턴 모듈",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_env",
+      "words": [
+        "mod",
+        "env"
+      ],
+      "ko": "환경변수 모듈",
+      "en": "Env Module",
+      "abbr_long": "env",
+      "abbr_short": "ENV_M",
+      "domain": "system",
+      "description": ".env 파일 로더 모듈",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "mod_logs",
+      "words": [
+        "mod",
+        "logs"
+      ],
+      "ko": "로그 디렉토리",
+      "en": "Logs Directory",
+      "abbr_long": "logs",
+      "abbr_short": "LOG",
+      "domain": "system",
+      "description": "logs/ — 런타임 로그 파일 저장",
+      "reason": "공인 약어, 시스템 객체",
+      "not": []
+    },
+    {
+      "id": "db_symbols",
+      "words": [
+        "db",
+        "symbols"
+      ],
+      "ko": "종목 마스터 테이블",
+      "en": "Symbols Table",
+      "abbr_long": "symbols",
+      "abbr_short": "SYM",
+      "domain": "market",
+      "description": "DB 종목 마스터 (코드·이름·마켓)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "db_stock_master",
+      "words": [
+        "db",
+        "stock",
+        "master"
+      ],
+      "ko": "주식 마스터 테이블",
+      "en": "Stock Master Table",
+      "abbr_long": "stockMaster",
+      "abbr_short": "STK_MST",
+      "domain": "market",
+      "description": "DB 한국주식 종목 마스터",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "db_sector_master",
+      "words": [
+        "db",
+        "sector",
+        "master"
+      ],
+      "ko": "섹터 마스터 테이블",
+      "en": "Sector Master Table",
+      "abbr_long": "sectorMaster",
+      "abbr_short": "SEC_MST",
+      "domain": "market",
+      "description": "DB 섹터 마스터 (섹터코드·이름)",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "db_bars_1m",
+      "words": [
+        "db",
+        "bars",
+        "1m"
+      ],
+      "ko": "1분봉 테이블",
+      "en": "1-Minute Bars Table",
+      "abbr_long": "bars1m",
+      "abbr_short": "BAR1M",
+      "domain": "market",
+      "description": "DB 1분 OHLCV 봉 데이터",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "db_ticks",
+      "words": [
+        "db",
+        "ticks"
+      ],
+      "ko": "틱 테이블",
+      "en": "Ticks Table",
+      "abbr_long": "ticks",
+      "abbr_short": "TK_DB",
+      "domain": "market",
+      "description": "DB 실시간 틱 데이터",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "db_sector_rankings",
+      "words": [
+        "db",
+        "sector",
+        "rankings"
+      ],
+      "ko": "섹터 랭킹 테이블",
+      "en": "Sector Rankings Table",
+      "abbr_long": "sectorRankings",
+      "abbr_short": "SEC_RNK_DB",
+      "domain": "market",
+      "description": "DB 섹터 랭킹 스냅샷",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "db_signals",
+      "words": [
+        "db",
+        "signals"
+      ],
+      "ko": "시그널 테이블",
+      "en": "Signals Table",
+      "abbr_long": "dbSignals",
+      "abbr_short": "SIG_DB",
+      "domain": "market",
+      "description": "DB 시그널 이력 저장 테이블",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "db_orders",
+      "words": [
+        "db",
+        "orders"
+      ],
+      "ko": "주문 테이블",
+      "en": "Orders Table",
+      "abbr_long": "dbOrders",
+      "abbr_short": "ORD_DB",
+      "domain": "trading",
+      "description": "DB 주문 이력 테이블",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "db_fills",
+      "words": [
+        "db",
+        "fills"
+      ],
+      "ko": "체결 테이블",
+      "en": "Fills Table",
+      "abbr_long": "dbFills",
+      "abbr_short": "FILL_DB",
+      "domain": "trading",
+      "description": "DB 체결 이력 테이블",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "db_account_snapshots",
+      "words": [
+        "db",
+        "account",
+        "snapshots"
+      ],
+      "ko": "계좌 스냅샷 테이블",
+      "en": "Account Snapshots Table",
+      "abbr_long": "accountSnapshots",
+      "abbr_short": "ASNAP_DB",
+      "domain": "market",
+      "description": "DB 계좌 스냅샷 이력",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "db_risk_events",
+      "words": [
+        "db",
+        "risk",
+        "events"
+      ],
+      "ko": "리스크 이벤트 테이블",
+      "en": "Risk Events Table",
+      "abbr_long": "riskEvents",
+      "abbr_short": "REVT",
+      "domain": "market",
+      "description": "DB 리스크 이벤트 이력 (킬스위치·일손 등)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "db_kr_orderbook_snapshot",
+      "words": [
+        "db",
+        "kr",
+        "orderbook",
+        "snapshot"
+      ],
+      "ko": "KR 호가 스냅샷 테이블",
+      "en": "KR Orderbook Snapshot Table",
+      "abbr_long": "krOrderbookSnapshot",
+      "abbr_short": "KR_OB_DB",
+      "domain": "market",
+      "description": "DB KR 주식 호가 스냅샷 (1초 주기)",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "cfg_system",
+      "words": [
+        "cfg",
+        "system"
+      ],
+      "ko": "시스템 설정",
+      "en": "System Config",
+      "abbr_long": "system",
+      "abbr_short": "SYS",
+      "domain": "system",
+      "description": "settings.yaml > system 섹션",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "cfg_sessions",
+      "words": [
+        "cfg",
+        "sessions"
+      ],
+      "ko": "세션 설정",
+      "en": "Sessions Config",
+      "abbr_long": "sessions",
+      "abbr_short": "SESS",
+      "domain": "system",
+      "description": "settings.yaml > sessions 섹션 (마켓별 시간)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "cfg_kr_strategy",
+      "words": [
+        "cfg",
+        "kr",
+        "strategy"
+      ],
+      "ko": "KR 전략 설정",
+      "en": "KR Strategy Config",
+      "abbr_long": "krStrategy",
+      "abbr_short": "KR_STR",
+      "domain": "system",
+      "description": "settings.yaml > kr_strategy 섹션",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "cfg_kr_selector",
+      "words": [
+        "cfg",
+        "kr",
+        "selector"
+      ],
+      "ko": "KR 셀렉터 설정",
+      "en": "KR Selector Config",
+      "abbr_long": "krSelector",
+      "abbr_short": "KR_SEL",
+      "domain": "system",
+      "description": "settings.yaml > kr_selector 섹션",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "cfg_entry_deny",
+      "words": [
+        "cfg",
+        "entry",
+        "deny"
+      ],
+      "ko": "진입 차단 설정",
+      "en": "Entry Deny Config",
+      "abbr_long": "entryDeny",
+      "abbr_short": "ED",
+      "domain": "system",
+      "description": "settings.yaml > entry_deny 섹션 (진입 차단 조건)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "cfg_scoring",
+      "words": [
+        "cfg",
+        "scoring"
+      ],
+      "ko": "스코어링 설정",
+      "en": "Scoring Config",
+      "abbr_long": "scoring",
+      "abbr_short": "SCR_CFG",
+      "domain": "system",
+      "description": "settings.yaml > scoring 섹션 (가중치 파라미터)",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "cfg_backtest",
+      "words": [
+        "cfg",
+        "backtest"
+      ],
+      "ko": "백테스트 설정",
+      "en": "Backtest Config",
+      "abbr_long": "backtest",
+      "abbr_short": "BT",
+      "domain": "system",
+      "description": "settings.yaml > backtest 섹션",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "cfg_reporting",
+      "words": [
+        "cfg",
+        "reporting"
+      ],
+      "ko": "리포트 설정",
+      "en": "Reporting Config",
+      "abbr_long": "reporting",
+      "abbr_short": "RPT_CFG",
+      "domain": "system",
+      "description": "settings.yaml > reporting 섹션",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "env_var",
+      "words": [
+        "env",
+        "var"
+      ],
+      "ko": "환경변수",
+      "en": "Environment Variable",
+      "abbr_long": "envVar",
+      "abbr_short": "ENV_E",
+      "domain": "system",
+      "description": ".env 파일 환경변수 총칭",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "env_node_name",
+      "words": [
+        "env",
+        "node",
+        "name"
+      ],
+      "ko": "노드명 환경변수",
+      "en": "Node Name Env",
+      "abbr_long": "nodeNameEnv",
+      "abbr_short": "NODE_E",
+      "domain": "system",
+      "description": ".env > NODE_NAME",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "env_pg_dsn",
+      "words": [
+        "env",
+        "pg",
+        "dsn"
+      ],
+      "ko": "PostgreSQL DSN",
+      "en": "PostgreSQL DSN Env",
+      "abbr_long": "pgDsn",
+      "abbr_short": "PG_DSN",
+      "domain": "system",
+      "description": ".env > PG_DSN — PostgreSQL 접속 문자열",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "env_redis_url",
+      "words": [
+        "env",
+        "redis",
+        "url"
+      ],
+      "ko": "Redis URL",
+      "en": "Redis URL Env",
+      "abbr_long": "redisUrl",
+      "abbr_short": "REDIS_URL",
+      "domain": "system",
+      "description": ".env > REDIS_URL — Redis 접속 URL",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "env_enable_kr",
+      "words": [
+        "env",
+        "enable",
+        "kr"
+      ],
+      "ko": "KR 마켓 활성화",
+      "en": "Enable KR Market Env",
+      "abbr_long": "enableKr",
+      "abbr_short": "E_KR",
+      "domain": "system",
+      "description": ".env > E_KR — 한국주식 마켓 활성화 여부",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "env_enable_us",
+      "words": [
+        "env",
+        "enable",
+        "us"
+      ],
+      "ko": "US 마켓 활성화",
+      "en": "Enable US Market Env",
+      "abbr_long": "enableUs",
+      "abbr_short": "E_US",
+      "domain": "system",
+      "description": ".env > E_US — 미국주식 마켓 활성화 여부",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "env_enable_fx",
+      "words": [
+        "env",
+        "enable",
+        "fx"
+      ],
+      "ko": "FX 마켓 활성화",
+      "en": "Enable FX Market Env",
+      "abbr_long": "enableFx",
+      "abbr_short": "E_FX",
+      "domain": "system",
+      "description": ".env > E_FX — 외환선물 마켓 활성화 여부",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "env_mt5_proxy_url",
+      "words": [
+        "env",
+        "mt5",
+        "proxy",
+        "url"
+      ],
+      "ko": "MT5 프록시 URL",
+      "en": "MT5 Proxy URL Env",
+      "abbr_long": "mt5ProxyUrl",
+      "abbr_short": "MT5P_E",
+      "domain": "system",
+      "description": ".env > MT5P — MT5 프록시 서버 URL (툴 접속 설정이므로 MT5 유지)",
+      "reason": "공인 약어",
+      "not": []
+    },
+    {
+      "id": "env_kis_app_key",
+      "words": [
+        "env",
+        "kis",
+        "app",
+        "key"
+      ],
+      "ko": "KIS 앱키",
+      "en": "KIS App Key Env",
+      "abbr_long": "kisAppKey",
+      "abbr_short": "KIS_AK",
+      "domain": "system",
+      "description": ".env > KIS_AK — KIS API 앱키",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "env_kis_app_secret",
+      "words": [
+        "env",
+        "kis",
+        "app",
+        "secret"
+      ],
+      "ko": "KIS 앱시크릿",
+      "en": "KIS App Secret Env",
+      "abbr_long": "kisAppSecret",
+      "abbr_short": "KIS_AS",
+      "domain": "system",
+      "description": ".env > KIS_AS — KIS API 앱시크릿",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "env_kis_account_no",
+      "words": [
+        "env",
+        "kis",
+        "account",
+        "no"
+      ],
+      "ko": "KIS 계좌번호",
+      "en": "KIS Account No Env",
+      "abbr_long": "kisAccountNo",
+      "abbr_short": "KIS_ACCT",
+      "domain": "system",
+      "description": ".env > KIS_ACCT — KIS 실전 계좌번호",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "env_kis_mock_app_key",
+      "words": [
+        "env",
+        "kis",
+        "mock",
+        "app",
+        "key"
+      ],
+      "ko": "KIS 모의 앱키",
+      "en": "KIS Mock App Key Env",
+      "abbr_long": "kisMockAppKey",
+      "abbr_short": "KIS_MAK",
+      "domain": "system",
+      "description": ".env > KIS_MAK — KIS 모의투자 앱키",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "env_dashboard_port",
+      "words": [
+        "env",
+        "dashboard",
+        "port"
+      ],
+      "ko": "대시보드 포트",
+      "en": "Dashboard Port Env",
+      "abbr_long": "dashboardPort",
+      "abbr_short": "DASH_P",
+      "domain": "system",
+      "description": ".env > DASH_P — 대시보드 웹서버 포트",
+      "reason": "의미 비합산",
+      "not": []
+    },
+    {
+      "id": "env_project_root",
+      "words": [
+        "env",
+        "project",
+        "root"
+      ],
+      "ko": "프로젝트 루트",
+      "en": "Project Root Env",
+      "abbr_long": "projectRoot",
+      "abbr_short": "PROJECT_ROOT",
+      "domain": "system",
+      "description": ".env > PROJECT_ROOT — 프로젝트 절대 경로 기준",
+      "reason": "의미 비합산",
+      "not": []
+    }
+  ]
+}

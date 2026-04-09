@@ -33,7 +33,12 @@ BIN_DIR   = REPO_ROOT / "bin"
 LOG_DIR   = REPO_ROOT / "log"
 LOG_FILE  = LOG_DIR / "glossary.log"
 RUN_PY    = BIN_DIR / "run.py"
-TERMS_PATH    = REPO_ROOT / "terms.json"
+GENERATE_PY   = REPO_ROOT / "generate_glossary.py"
+DICT_DIR      = REPO_ROOT / "dictionary"
+TERMS_PATH    = DICT_DIR / "terms.json"
+WORDS_PATH    = DICT_DIR / "words.json"
+COMPOUNDS_PATH = DICT_DIR / "compounds.json"
+BANNED_PATH   = DICT_DIR / "banned.json"
 GLOSSARY_PATH = REPO_ROOT / "GLOSSARY.md"
 GITIGNORE     = REPO_ROOT / ".gitignore"
 
@@ -135,6 +140,32 @@ def load_terms() -> dict:
 def save_terms(data: dict):
     with open(TERMS_PATH, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+
+# ── v2: words / compounds / banned ────────────────────────────────────
+def _load_json(path: Path, key: str) -> dict:
+    if not path.exists():
+        return {key: []}
+    with open(path, encoding='utf-8') as f:
+        return json.load(f)
+
+def _save_json(path: Path, data: dict):
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+def load_words()     -> dict: return _load_json(WORDS_PATH,     "words")
+def load_compounds() -> dict: return _load_json(COMPOUNDS_PATH, "compounds")
+def load_banned()    -> dict: return _load_json(BANNED_PATH,    "banned")
+
+def save_words(d):     _save_json(WORDS_PATH,     d)
+def save_compounds(d): _save_json(COMPOUNDS_PATH, d)
+def save_banned(d):    _save_json(BANNED_PATH,    d)
+
+def _run_generate():
+    """generate_glossary.py generate 실행 → terms.json + GLOSSARY.md 재생성."""
+    if GENERATE_PY.exists():
+        return run_subprocess(sys.executable, str(GENERATE_PY), "generate", timeout=30)
+    # fallback: bin/run.py
+    return run_subprocess(sys.executable, str(RUN_PY), timeout=30)
 
 
 def run_subprocess(*cmd, timeout=30, env_utf8=True) -> dict:
@@ -252,7 +283,183 @@ def delete_term(term_id):
 @app.route("/api/categories", methods=["GET"])
 def get_categories():
     data = load_terms()
-    return jsonify(data["meta"]["categories"])
+    return jsonify(data.get("meta", {}).get("categories", {}))
+
+
+# ══════════════════════════════════════════════════════════════════════
+# API v2 — words
+# ══════════════════════════════════════════════════════════════════════
+
+@app.route("/api/words", methods=["GET"])
+def get_words():
+    return jsonify(load_words())
+
+@app.route("/api/words", methods=["POST"])
+def add_word():
+    w = request.get_json()
+    if not w: return jsonify({"error": "요청 본문 없음"}), 400
+    data = load_words()
+    if any(x["id"] == w.get("id") for x in data["words"]):
+        return jsonify({"error": f"이미 존재하는 id: {w.get('id')}"}), 409
+    data["words"].append(w)
+    data["words"].sort(key=lambda x: x["id"])
+    save_words(data)
+    log.info(f"[word:add] id={w.get('id')}")
+    return jsonify({"ok": True, "word": w}), 201
+
+@app.route("/api/words/<word_id>", methods=["PUT"])
+def update_word(word_id):
+    updated = request.get_json()
+    if not updated: return jsonify({"error": "요청 본문 없음"}), 400
+    data = load_words()
+    idx = next((i for i,x in enumerate(data["words"]) if x["id"] == word_id), None)
+    if idx is None: return jsonify({"error": f"미존재: {word_id}"}), 404
+    data["words"][idx] = updated
+    save_words(data)
+    log.info(f"[word:update] id={word_id}")
+    return jsonify({"ok": True, "word": updated})
+
+@app.route("/api/words/<word_id>", methods=["DELETE"])
+def delete_word(word_id):
+    data = load_words()
+    before = len(data["words"])
+    data["words"] = [x for x in data["words"] if x["id"] != word_id]
+    if len(data["words"]) == before:
+        return jsonify({"error": f"미존재: {word_id}"}), 404
+    save_words(data)
+    log.info(f"[word:delete] id={word_id}")
+    return jsonify({"ok": True})
+
+
+# ══════════════════════════════════════════════════════════════════════
+# API v2 — compounds
+# ══════════════════════════════════════════════════════════════════════
+
+@app.route("/api/compounds", methods=["GET"])
+def get_compounds():
+    return jsonify(load_compounds())
+
+@app.route("/api/compounds", methods=["POST"])
+def add_compound():
+    c = request.get_json()
+    if not c: return jsonify({"error": "요청 본문 없음"}), 400
+    data = load_compounds()
+    if any(x["id"] == c.get("id") for x in data["compounds"]):
+        return jsonify({"error": f"이미 존재하는 id: {c.get('id')}"}), 409
+    data["compounds"].append(c)
+    data["compounds"].sort(key=lambda x: x["id"])
+    save_compounds(data)
+    log.info(f"[compound:add] id={c.get('id')}")
+    return jsonify({"ok": True, "compound": c}), 201
+
+@app.route("/api/compounds/<cid>", methods=["PUT"])
+def update_compound(cid):
+    updated = request.get_json()
+    if not updated: return jsonify({"error": "요청 본문 없음"}), 400
+    data = load_compounds()
+    idx = next((i for i,x in enumerate(data["compounds"]) if x["id"] == cid), None)
+    if idx is None: return jsonify({"error": f"미존재: {cid}"}), 404
+    data["compounds"][idx] = updated
+    save_compounds(data)
+    log.info(f"[compound:update] id={cid}")
+    return jsonify({"ok": True, "compound": updated})
+
+@app.route("/api/compounds/<cid>", methods=["DELETE"])
+def delete_compound(cid):
+    data = load_compounds()
+    before = len(data["compounds"])
+    data["compounds"] = [x for x in data["compounds"] if x["id"] != cid]
+    if len(data["compounds"]) == before:
+        return jsonify({"error": f"미존재: {cid}"}), 404
+    save_compounds(data)
+    log.info(f"[compound:delete] id={cid}")
+    return jsonify({"ok": True})
+
+
+# ══════════════════════════════════════════════════════════════════════
+# API v2 — banned
+# ══════════════════════════════════════════════════════════════════════
+
+@app.route("/api/banned", methods=["GET"])
+def get_banned():
+    return jsonify(load_banned())
+
+@app.route("/api/banned", methods=["POST"])
+def add_banned():
+    b = request.get_json()
+    if not b: return jsonify({"error": "요청 본문 없음"}), 400
+    data = load_banned()
+    if any(x["expression"] == b.get("expression") for x in data["banned"]):
+        return jsonify({"error": f"이미 존재: {b.get('expression')}"}), 409
+    data["banned"].append(b)
+    save_banned(data)
+    log.info(f"[banned:add] expr={b.get('expression')}")
+    return jsonify({"ok": True, "banned": b}), 201
+
+@app.route("/api/banned/<expr>", methods=["PUT"])
+def update_banned(expr):
+    updated = request.get_json()
+    if not updated: return jsonify({"error": "요청 본문 없음"}), 400
+    data = load_banned()
+    idx = next((i for i,x in enumerate(data["banned"]) if x["expression"] == expr), None)
+    if idx is None: return jsonify({"error": f"미존재: {expr}"}), 404
+    data["banned"][idx] = updated
+    save_banned(data)
+    return jsonify({"ok": True})
+
+@app.route("/api/banned/<expr>", methods=["DELETE"])
+def delete_banned(expr):
+    data = load_banned()
+    before = len(data["banned"])
+    data["banned"] = [x for x in data["banned"] if x["expression"] != expr]
+    if len(data["banned"]) == before:
+        return jsonify({"error": f"미존재: {expr}"}), 404
+    save_banned(data)
+    log.info(f"[banned:delete] expr={expr}")
+    return jsonify({"ok": True})
+
+
+# ══════════════════════════════════════════════════════════════════════
+# API v2 — generate (words+compounds → terms.json + GLOSSARY.md)
+# ══════════════════════════════════════════════════════════════════════
+
+@app.route("/api/generate", methods=["POST"])
+def api_generate():
+    """generate_glossary.py generate 실행."""
+    log.info("[generate] 시작")
+    result = _run_generate()
+    combined = result["stdout"]
+    if result["stderr"]: combined += "\n" + result["stderr"]
+    log.info(f"[generate] 완료 ok={result['ok']}")
+    return jsonify({"ok": result["ok"], "output": combined or f"(returncode={result['code']})"})
+
+@app.route("/api/validate", methods=["POST"])
+def api_validate():
+    """generate_glossary.py validate 실행."""
+    result = run_subprocess(sys.executable, str(GENERATE_PY), "validate", timeout=30)
+    combined = result["stdout"]
+    if result["stderr"]: combined += "\n" + result["stderr"]
+    return jsonify({"ok": result["ok"], "output": combined})
+
+@app.route("/api/check-id", methods=["POST"])
+def api_check_id():
+    """식별자 단어 분해 확인."""
+    body = request.get_json() or {}
+    identifier = body.get("id", "").strip()
+    if not identifier: return jsonify({"error": "id 파라미터 필요"}), 400
+    result = run_subprocess(sys.executable, str(GENERATE_PY), "check-id", identifier, timeout=15)
+    combined = result["stdout"] + (result["stderr"] or "")
+    return jsonify({"ok": result["ok"], "output": combined})
+
+@app.route("/api/suggest", methods=["POST"])
+def api_suggest():
+    """미등록 단어 제안."""
+    body = request.get_json() or {}
+    identifier = body.get("id", "").strip()
+    if not identifier: return jsonify({"error": "id 파라미터 필요"}), 400
+    result = run_subprocess(sys.executable, str(GENERATE_PY), "suggest", identifier, timeout=15)
+    combined = result["stdout"] + (result["stderr"] or "")
+    return jsonify({"ok": result["ok"], "output": combined})
 
 
 # ══════════════════════════════════════════════════════════════════════
