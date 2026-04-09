@@ -244,16 +244,24 @@ def main():
     # ── 스캔 ──────────────────────────────────────────────────────
     exclude_dirs = parse_list(env.get('EXCLUDE_DIRS',
         'backup,data,tests,lib_test,tmp,glossary,.git,__pycache__,node_modules,.venv,venv'))
-    content_skip = parse_list(env.get('EXCLUDE_FILE_CONTENT', 'cache,doc,logs'))
+    content_skip = parse_list(env.get('EXCLUDE_FILE_CONTENT', 'cache,logs'))
     exclude_exts = {e if e.startswith('.') else f'.{e}'
-                    for e in parse_list(env.get('EXCLUDE_EXTENSIONS', '.md,.txt,.log,.csv,.png,.jpg,.pdf'))}
-    existing     = load_existing_terms(GLOSSARY_DIR)
+                    for e in parse_list(env.get('EXCLUDE_EXTENSIONS',
+                    '.md,.txt,.log,.csv,.tsv,.png,.jpg,.jpeg,.gif,.pdf,.ico,.svg,.zip,.tar'))}
+    existing_syms, existing_tokens = load_existing_terms(GLOSSARY_DIR)
 
     print(f"[1/3] 소스 스캔 중... ({proj_root})")
-    scanner = TermScanner(proj_root, exclude_dirs, content_skip, exclude_exts, existing)
+    scanner = TermScanner(
+        proj_root         = proj_root,
+        exclude_dirs      = exclude_dirs,
+        content_skip_dirs = content_skip,
+        exclude_exts      = exclude_exts,
+        existing_syms     = existing_syms,
+        existing_tokens   = existing_tokens,
+    )
     scanner.scan()
     candidates = sorted(
-        [{"name": c, "sources": scanner.sources.get(c,[])} for c in scanner.candidates],
+        [{"name": c, "sources": scanner.candidates.get(c, [])} for c in scanner.candidates],
         key=lambda x: x["name"]
     )
     print(f"      후보 {len(candidates)}개 추출됨")
