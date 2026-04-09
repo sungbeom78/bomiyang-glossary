@@ -222,21 +222,62 @@ def call_api(prompt: str, env: dict, max_tokens: int) -> str:
 # ════════════════════════════════════════════════════════════════════
 
 def parse_response(text: str) -> list[dict]:
-    """API 응답에서 JSON 배열 추출."""
-    # ```json ... ``` 블록 제거
+    """
+    API 응답에서 JSON 배열 추출.
+    - 완전한 JSON → 정상 파싱
+    - max_tokens 초과로 중간에 잘린 JSON → 완전한 객체만 부분 복구
+    """
+    # 마크다운 코드블록 제거
     text = text.strip()
-    text = text.removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+    for prefix in ("```json", "```"):
+        if text.startswith(prefix):
+            text = text[len(prefix):]
+            break
+    if text.endswith("```"):
+        text = text[:-3]
+    text = text.strip()
 
-    # [ ... ] 범위만 추출
+    # [ 시작 위치 찾기
     start = text.find('[')
-    end   = text.rfind(']') + 1
-    if start == -1 or end == 0:
+    if start == -1:
         return []
 
-    try:
-        return json.loads(text[start:end])
-    except json.JSONDecodeError:
-        return []
+    body = text[start:]
+
+    # ── 1차 시도: 완전한 JSON ──────────────────────────────────────
+    end = body.rfind(']') + 1
+    if end > 0:
+        try:
+            result = json.loads(body[:end])
+            if isinstance(result, list):
+                return [t for t in result if isinstance(t, dict) and t.get('id')]
+        except json.JSONDecodeError:
+            pass
+
+    # ── 2차 시도: 잘린 JSON 부분 복구 ────────────────────────────
+    # 완전히 닫힌 { } 객체만 추출해서 리스트로 재조립
+    recovered = []
+    depth     = 0
+    obj_start = None
+
+    for idx, ch in enumerate(body):
+        if ch == '{':
+            if depth == 0:
+                obj_start = idx
+            depth += 1
+        elif ch == '}':
+            depth -= 1
+            if depth == 0 and obj_start is not None:
+                obj_str = body[obj_start:idx + 1]
+                try:
+                    obj = json.loads(obj_str)
+                    if isinstance(obj, dict) and obj.get('id'):
+                        recovered.append(obj)
+                except json.JSONDecodeError:
+                    pass
+                obj_start = None
+
+    return recovered
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -277,7 +318,7 @@ def main():
     env, env_loaded = get_env(args.env)
     proj_root  = resolve_proj_root(BIN_DIR, env)
     chunk_size = args.chunk or int(env.get("BATCH_CHUNK_SIZE", 300))
-    max_tokens = int(env.get("MAX_OUTPUT_TOKENS", 4000))
+    max_tokens = int(env.get("MAX_OUTPUT_TOKENS", 8192))
 
     api_type = env.get("API_KEY_TYPE", "claude").lower()
     model    = env.get("API_MODEL", "").strip() or DEFAULT_MODELS.get(api_type, "")
