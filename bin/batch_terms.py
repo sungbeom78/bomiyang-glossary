@@ -111,63 +111,70 @@ DEFAULT_MODELS = {
 }
 
 
-def call_claude(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
+def _http_post(url: str, body: bytes, headers: dict, timeout: int = 60) -> dict:
+    """HTTP POST 공통 함수. HTTPError 시 응답 본문을 포함한 상세 오류 발생."""
     import urllib.request
+    import urllib.error
+    req = urllib.request.Request(url, data=body, headers=headers, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode('utf-8'))
+    except urllib.error.HTTPError as e:
+        # 응답 본문에 실제 오류 메시지가 있음 (404, 400, 429 등)
+        try:
+            err_body = e.read().decode('utf-8', errors='replace')
+            err_json = json.loads(err_body)
+            detail   = err_json.get('error', {}).get('message', err_body[:300])
+        except Exception:
+            detail = str(e)
+        raise RuntimeError(f"HTTP {e.code} {e.reason} — {detail}") from None
+    except Exception as e:
+        raise RuntimeError(str(e)) from None
+
+
+def call_claude(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
     body = json.dumps({
         "model":      model,
         "max_tokens": max_tokens,
         "system":     SYSTEM_PROMPT,
         "messages":   [{"role": "user", "content": prompt}],
     }).encode('utf-8')
-
-    req = urllib.request.Request(
+    data = _http_post(
         "https://api.anthropic.com/v1/messages",
-        data=body,
-        headers={
+        body,
+        {
             "Content-Type":      "application/json",
             "x-api-key":         api_key,
             "anthropic-version": "2023-06-01",
         },
-        method="POST",
     )
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        data = json.loads(resp.read().decode('utf-8'))
     return data["content"][0]["text"]
 
 
 def call_openai(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
-    import urllib.request
     body = json.dumps({
         "model":      model,
         "max_tokens": max_tokens,
         "messages": [
-            {"role": "system",  "content": SYSTEM_PROMPT},
-            {"role": "user",    "content": prompt},
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user",   "content": prompt},
         ],
     }).encode('utf-8')
-
-    req = urllib.request.Request(
+    data = _http_post(
         "https://api.openai.com/v1/chat/completions",
-        data=body,
-        headers={"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"},
-        method="POST",
+        body,
+        {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"},
     )
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        data = json.loads(resp.read().decode('utf-8'))
     return data["choices"][0]["message"]["content"]
 
 
 def call_google(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
-    import urllib.request
-    body  = json.dumps({
-        "contents": [{"parts": [{"text": SYSTEM_PROMPT + "\n\n" + prompt}]}],
+    body = json.dumps({
+        "contents":       [{"parts": [{"text": SYSTEM_PROMPT + "\n\n" + prompt}]}],
         "generationConfig": {"maxOutputTokens": max_tokens},
     }).encode('utf-8')
-
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
-    req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json"}, method="POST")
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        data = json.loads(resp.read().decode('utf-8'))
+    url  = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+    data = _http_post(url, body, {"Content-Type": "application/json"})
     return data["candidates"][0]["content"]["parts"][0]["text"]
 
 
@@ -262,7 +269,7 @@ def main():
     # ── 스캔 ──────────────────────────────────────────────────────
     exclude_dirs = parse_list(env.get('EXCLUDE_DIRS',
         'backup,data,tests,lib_test,tmp,glossary,.git,__pycache__,node_modules,.venv,venv'))
-    content_skip = parse_list(env.get('EXCLUDE_FILE_CONTENT', 'cache,logs'))
+    content_skip = parse_list(env.get('EXCLUDE_FILE_CONTENT', 'cache,log'))
     exclude_exts = {e if e.startswith('.') else f'.{e}'
                     for e in parse_list(env.get('EXCLUDE_EXTENSIONS',
                     '.md,.txt,.log,.csv,.tsv,.png,.jpg,.jpeg,.gif,.pdf,.ico,.svg,.zip,.tar'))}
@@ -317,6 +324,7 @@ def main():
     print(f"\n[3/3] API 분석 중...")
     all_terms: list[dict] = []
 
+    fail_count = 0
     for i, (chunk, prompt) in enumerate(zip(chunks, prompts), 1):
         print(f"      청크 {i}/{n_chunks} 처리 중 ({len(chunk)}개)...", end=" ", flush=True)
         try:
@@ -324,11 +332,17 @@ def main():
             parsed   = parse_response(response)
             all_terms.extend(parsed)
             print(f"→ {len(parsed)}개 용어 추출")
+            fail_count = 0
         except Exception as e:
+            fail_count += 1
             print(f"→ 오류: {e}")
+            # 연속 2회 실패 시 조기 종료 (같은 오류 반복 방지)
+            if fail_count >= 2:
+                print(f"\n      연속 {fail_count}회 오류 — 실행 중단. .env 의 API 설정을 확인하세요.")
+                break
 
         if i < n_chunks:
-            time.sleep(1)   # rate limit 여유
+            time.sleep(1)
 
     # 중복 id 제거
     seen: set = set()

@@ -11,7 +11,7 @@ scan_terms.py v2  —  프로젝트 소스 스캔 → 용어 후보 추출
   EXCLUDE_DIRS 환경변수로 추가 가능
 
 [파일명만 보는 폴더]  — 내용 스캔 없음, 폴더명만 도메인 여부 판단
-  cache/, logs/
+  cache/, log/
   EXCLUDE_FILE_CONTENT 환경변수로 지정
 
 [doc/ 폴더 특별 규칙]
@@ -530,7 +530,7 @@ def main():
 
     exclude_dirs = parse_list(env.get('EXCLUDE_DIRS',
         'backup,data,tests,lib_test,tmp,glossary,.git,__pycache__,node_modules,.venv,venv'))
-    content_skip = parse_list(env.get('EXCLUDE_FILE_CONTENT', 'cache,logs'))
+    content_skip = parse_list(env.get('EXCLUDE_FILE_CONTENT', 'cache,log'))
     raw_exts     = parse_list(env.get('EXCLUDE_EXTENSIONS',
         '.md,.txt,.log,.csv,.tsv,.png,.jpg,.jpeg,.gif,.pdf,.ico,.svg,.zip,.tar'))
     exclude_exts = {e if e.startswith('.') else f'.{e}' for e in raw_exts}

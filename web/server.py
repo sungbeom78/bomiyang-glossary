@@ -30,7 +30,7 @@ if hasattr(sys.stderr, 'buffer') and sys.stderr.encoding.lower() not in ('utf-8'
 WEB_DIR   = Path(__file__).parent.resolve()   # glossary/web/
 REPO_ROOT = WEB_DIR.parent.resolve()          # glossary/
 BIN_DIR   = REPO_ROOT / "bin"
-LOG_DIR   = REPO_ROOT / "logs"
+LOG_DIR   = REPO_ROOT / "log"
 LOG_FILE  = LOG_DIR / "glossary.log"
 RUN_PY    = BIN_DIR / "run.py"
 TERMS_PATH    = REPO_ROOT / "terms.json"
@@ -43,7 +43,7 @@ LOG_DIR.mkdir(exist_ok=True)
 def ensure_gitignore():
     lines = GITIGNORE.read_text(encoding='utf-8').splitlines() if GITIGNORE.exists() else []
     changed = False
-    for entry in ['logs/', '*.log']:
+    for entry in ['log/', '*.log']:
         if entry not in lines:
             lines.append(entry)
             changed = True
