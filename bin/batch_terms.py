@@ -112,24 +112,40 @@ DEFAULT_MODELS = {
 
 
 def _http_post(url: str, body: bytes, headers: dict, timeout: int = 60) -> dict:
-    """HTTP POST 공통 함수. HTTPError 시 응답 본문을 포함한 상세 오류 발생."""
+    """HTTP POST 공통 함수. 503/429는 자동 재시도(최대 3회). 그 외 HTTPError는 상세 메시지 포함 예외."""
     import urllib.request
     import urllib.error
-    req = urllib.request.Request(url, data=body, headers=headers, method="POST")
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode('utf-8'))
-    except urllib.error.HTTPError as e:
-        # 응답 본문에 실제 오류 메시지가 있음 (404, 400, 429 등)
+
+    RETRY_CODES = {429, 500, 502, 503, 504}   # 재시도 대상 코드
+    MAX_RETRY   = 3
+
+    for attempt in range(1, MAX_RETRY + 1):
+        req = urllib.request.Request(url, data=body, headers=headers, method="POST")
         try:
-            err_body = e.read().decode('utf-8', errors='replace')
-            err_json = json.loads(err_body)
-            detail   = err_json.get('error', {}).get('message', err_body[:300])
-        except Exception:
-            detail = str(e)
-        raise RuntimeError(f"HTTP {e.code} {e.reason} — {detail}") from None
-    except Exception as e:
-        raise RuntimeError(str(e)) from None
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return json.loads(resp.read().decode('utf-8'))
+
+        except urllib.error.HTTPError as e:
+            try:
+                err_body = e.read().decode('utf-8', errors='replace')
+                err_json = json.loads(err_body)
+                detail   = err_json.get('error', {}).get('message', err_body[:300])
+            except Exception:
+                detail = str(e)
+
+            if e.code in RETRY_CODES and attempt < MAX_RETRY:
+                wait = 2 ** attempt   # 2초 → 4초 → 8초
+                print(f"\n        HTTP {e.code} — {attempt}/{MAX_RETRY}회 재시도 ({wait}초 후)...",
+                      end=" ", flush=True)
+                time.sleep(wait)
+                continue
+
+            raise RuntimeError(f"HTTP {e.code} {e.reason} — {detail}") from None
+
+        except Exception as e:
+            raise RuntimeError(str(e)) from None
+
+    raise RuntimeError("최대 재시도 횟수 초과")
 
 
 def call_claude(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
@@ -324,25 +340,48 @@ def main():
     print(f"\n[3/3] API 분석 중...")
     all_terms: list[dict] = []
 
-    fail_count = 0
-    for i, (chunk, prompt) in enumerate(zip(chunks, prompts), 1):
-        print(f"      청크 {i}/{n_chunks} 처리 중 ({len(chunk)}개)...", end=" ", flush=True)
-        try:
-            response = call_api(prompt, env, max_tokens)
-            parsed   = parse_response(response)
-            all_terms.extend(parsed)
-            print(f"→ {len(parsed)}개 용어 추출")
-            fail_count = 0
-        except Exception as e:
-            fail_count += 1
-            print(f"→ 오류: {e}")
-            # 연속 2회 실패 시 조기 종료 (같은 오류 반복 방지)
-            if fail_count >= 2:
-                print(f"\n      연속 {fail_count}회 오류 — 실행 중단. .env 의 API 설정을 확인하세요.")
-                break
+    # 로그 파일 경로 (응답 원문 저장용)
+    log_dir  = proj_root / "tmp" / "terms"
+    log_dir.mkdir(parents=True, exist_ok=True)
+    raw_log  = log_dir / f"raw_{datetime.now().strftime('%Y%m%d_%H%M')}.txt"
+    hard_fails = 0   # 재시도 불가 오류 횟수
 
-        if i < n_chunks:
-            time.sleep(1)
+    with open(raw_log, 'w', encoding='utf-8') as raw_f:
+        for i, (chunk, prompt) in enumerate(zip(chunks, prompts), 1):
+            print(f"      청크 {i}/{n_chunks} 처리 중 ({len(chunk)}개)...", end=" ", flush=True)
+            try:
+                response = call_api(prompt, env, max_tokens)
+                parsed   = parse_response(response)
+                all_terms.extend(parsed)
+                print(f"→ {len(parsed)}개 용어 추출")
+
+                # 0개 추출 시 원문을 로그에 저장 (파싱 실패 원인 확인용)
+                if not parsed:
+                    raw_f.write(f"\n=== 청크 {i} (0개 추출) ===\n{response[:1000]}\n")
+                    raw_f.flush()
+
+                hard_fails = 0
+
+            except Exception as e:
+                err_msg = str(e)
+                print(f"→ 오류: {err_msg}")
+                raw_f.write(f"\n=== 청크 {i} 오류 ===\n{err_msg}\n")
+                raw_f.flush()
+
+                # 403/404/401 같은 인증·설정 오류는 즉시 중단
+                if any(f"HTTP {c}" in err_msg for c in ["401", "403", "404"]):
+                    print(f"\n      인증/설정 오류 — 즉시 중단. .env 를 확인하세요.")
+                    break
+
+                hard_fails += 1
+                if hard_fails >= 3:
+                    print(f"\n      연속 {hard_fails}회 오류 — 실행 중단.")
+                    break
+
+            if i < n_chunks:
+                time.sleep(1)
+
+    print(f"      (응답 원문 로그: {raw_log})")
 
     # 중복 id 제거
     seen: set = set()
