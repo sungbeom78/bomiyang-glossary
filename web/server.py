@@ -7,7 +7,7 @@ server.py  —  glossary 웹 UI 서버
     python web/server.py
     python web/server.py --port 8080
 
-접속: http://localhost:9001
+접속: http://localhost:5000
 """
 
 import sys
@@ -452,12 +452,168 @@ def clear_logs():
 
 
 # ══════════════════════════════════════════════════════════════════════
+# API — 배치 (scan / batch / merge / list)
+# ══════════════════════════════════════════════════════════════════════
+
+def _proj_root() -> Path:
+    """프로젝트 루트 반환 (PROJ_ROOT 환경변수 우선, 없으면 REPO_ROOT 상위)."""
+    import os
+    pr = os.environ.get("PROJ_ROOT","").strip()
+    if pr and Path(pr).exists():
+        return Path(pr).resolve()
+    # .env 파일에서 읽기
+    env_path = REPO_ROOT.parent / ".env"
+    if not env_path.exists():
+        env_path = REPO_ROOT / ".env"
+    if env_path.exists():
+        for line in env_path.read_text(encoding='utf-8', errors='replace').splitlines():
+            if line.strip().startswith('PROJ_ROOT='):
+                val = line.split('=',1)[1].strip().strip('"').strip("'")
+                if val and Path(val).exists():
+                    return Path(val).resolve()
+    return REPO_ROOT.parent.resolve()
+
+
+@app.route("/api/batch/scan", methods=["POST"])
+def batch_scan():
+    """소스 스캔 → 후보 수 + 미리보기 반환 (API 미호출)."""
+    log.info("[batch] scan 시작")
+    result = run_subprocess(
+        sys.executable, str(BIN_DIR / "scan_terms.py"), "--json",
+        timeout=60,
+    )
+    if not result["ok"] and not result["stdout"]:
+        log.warning(f"[batch] scan 실패: {result['stderr']}")
+        return jsonify({"ok": False, "error": result["stderr"] or "scan 실패"})
+
+    try:
+        data = json.loads(result["stdout"])
+        log.info(f"[batch] scan 완료: {data.get('count',0)}개 후보")
+        return jsonify({"ok": True, **data})
+    except Exception as e:
+        return jsonify({"ok": False, "error": f"scan 출력 파싱 실패: {e}\n{result['stdout'][:300]}"})
+
+
+@app.route("/api/batch/run", methods=["POST"])
+def batch_run():
+    """scan + API 분석 → terms_날짜.json 생성 (dry_run 옵션 지원)."""
+    body     = request.get_json() or {}
+    dry_run  = body.get("dry_run", False)
+    chunk    = body.get("chunk", None)
+
+    cmd_args = [sys.executable, str(BIN_DIR / "batch_terms.py")]
+    if dry_run:
+        cmd_args.append("--dry-run")
+    if chunk:
+        cmd_args += ["--chunk", str(chunk)]
+
+    log.info(f"[batch] run 시작 dry_run={dry_run}")
+    result = run_subprocess(*cmd_args, timeout=300)
+
+    combined = result["stdout"]
+    if result["stderr"]:
+        combined += "\n" + result["stderr"]
+
+    log.info(f"[batch] run 완료 ok={result['ok']}")
+    return jsonify({
+        "ok":     result["ok"],
+        "output": combined or f"(returncode={result['code']})",
+    })
+
+
+@app.route("/api/batch/files", methods=["GET"])
+def batch_files():
+    """tmp/terms/ 하위 결과 파일 목록 반환."""
+    out_dir = _proj_root() / "tmp" / "terms"
+    if not out_dir.exists():
+        return jsonify({"ok": True, "files": []})
+
+    files = []
+    for f in sorted(out_dir.glob("terms_*.json"), reverse=True):
+        try:
+            data  = json.loads(f.read_text(encoding='utf-8'))
+            count = data.get("meta", {}).get("count", len(data.get("terms", [])))
+            files.append({
+                "name":    f.name,
+                "path":    str(f),
+                "count":   count,
+                "generated_at": data.get("meta", {}).get("generated_at", ""),
+            })
+        except Exception:
+            files.append({"name": f.name, "path": str(f), "count": 0, "generated_at": ""})
+
+    return jsonify({"ok": True, "files": files})
+
+
+@app.route("/api/batch/preview", methods=["GET"])
+def batch_preview():
+    """결과 파일 내용 미리보기."""
+    fname = request.args.get("file", "")
+    if not fname:
+        return jsonify({"error": "file 파라미터 필요"}), 400
+
+    out_dir = _proj_root() / "tmp" / "terms"
+    fpath   = (out_dir / fname).resolve()
+
+    # 경로 이탈 방지
+    if not str(fpath).startswith(str(out_dir.resolve())):
+        return jsonify({"error": "잘못된 경로"}), 400
+    if not fpath.exists():
+        return jsonify({"error": "파일 없음"}), 404
+
+    try:
+        data = json.loads(fpath.read_text(encoding='utf-8'))
+        return jsonify({"ok": True, **data})
+    except Exception as e:
+        return jsonify({"ok": False, "error": str(e)})
+
+
+@app.route("/api/batch/merge", methods=["POST"])
+def batch_merge():
+    """결과 파일의 용어를 terms.json 에 병합 (중복 id 제외)."""
+    body  = request.get_json() or {}
+    fname = body.get("file", "")
+    ids   = body.get("ids", None)   # None = 전체 병합, list = 선택 병합
+
+    if not fname:
+        return jsonify({"error": "file 파라미터 필요"}), 400
+
+    out_dir = _proj_root() / "tmp" / "terms"
+    fpath   = (out_dir / fname).resolve()
+    if not str(fpath).startswith(str(out_dir.resolve())):
+        return jsonify({"error": "잘못된 경로"}), 400
+    if not fpath.exists():
+        return jsonify({"error": "파일 없음"}), 404
+
+    try:
+        src_data  = json.loads(fpath.read_text(encoding='utf-8'))
+        main_data = load_terms()
+
+        existing_ids = {t["id"] for t in main_data["terms"]}
+        to_add = [
+            t for t in src_data.get("terms", [])
+            if t.get("id") and t["id"] not in existing_ids
+            and (ids is None or t["id"] in ids)
+        ]
+
+        main_data["terms"].extend(to_add)
+        save_terms(main_data)
+
+        log.info(f"[batch] merge {len(to_add)}개 용어 추가 from {fname}")
+        return jsonify({"ok": True, "added": len(to_add),
+                        "skipped": len(src_data.get("terms",[])) - len(to_add)})
+    except Exception as e:
+        log.warning(f"[batch] merge 실패: {e}")
+        return jsonify({"ok": False, "error": str(e)})
+
+
+# ══════════════════════════════════════════════════════════════════════
 # 진입점
 # ══════════════════════════════════════════════════════════════════════
 
 def main():
     parser = argparse.ArgumentParser(description="glossary 웹 UI 서버")
-    parser.add_argument("--port", type=int, default=9001)
+    parser.add_argument("--port", type=int, default=5000)
     parser.add_argument("--host", default="127.0.0.1")
     args = parser.parse_args()
 

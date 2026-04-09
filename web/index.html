@@ -189,6 +189,15 @@ tbody tr:hover .rmb,tbody tr.editing .rmb{opacity:1}
 /* TOAST */
 #toasts{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:999;display:flex;flex-direction:column;gap:4px;pointer-events:none;align-items:center}
 .toast{font-family:var(--mono);font-size:11px;padding:7px 14px;border-radius:var(--r);border-left:3px solid;white-space:nowrap;animation:tin .15s ease}
+.batch-tab{background:transparent;color:var(--tx3);border:none;border-bottom:2px solid transparent;padding:9px 16px;font-family:var(--mono);font-size:10px;font-weight:700;cursor:pointer;transition:all .12s;letter-spacing:.04em}
+.batch-tab:hover{color:var(--tx)}
+.batch-tab.active{color:var(--ac);border-bottom-color:var(--ac)}
+.batch-file-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-bottom:1px solid var(--ln);cursor:pointer;transition:background .08s;font-size:12px}
+.batch-file-row:hover{background:var(--s2)}
+.batch-file-row.sel{background:var(--ac-bg)}
+.merge-item{display:flex;align-items:flex-start;gap:8px;padding:7px 8px;border-bottom:1px solid var(--ln);font-size:11px}
+.merge-item:nth-child(odd){background:var(--s2)}
+.merge-item input[type=checkbox]{margin-top:2px;flex-shrink:0;accent-color:var(--ac)}
 @keyframes tin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .t-ok{background:var(--gr-bg);border-color:var(--gr);color:var(--gr)}
 .t-err{background:var(--rd-bg);border-color:var(--rd);color:var(--rd)}
@@ -207,6 +216,7 @@ tbody tr:hover .rmb,tbody tr.editing .rmb{opacity:1}
   <button class="btn btn-ghost" onclick="runCmd('check')">▷ check</button>
   <button class="btn btn-ghost" onclick="runCmd('default')">▷ generate</button>
   <button class="btn btn-ghost" onclick="openLogModal()" title="서버 로그 보기">📋 logs</button>
+  <button class="btn btn-ghost" onclick="openBatchModal()" title="용어 배치 추출">⚙ batch</button>
   <button class="btn btn-gr" onclick="openGitModal()" id="git-btn">⎇ commit &amp; push</button>
   <button class="btn btn-ac" onclick="openAddModal()">+ 추가</button>
 </header>
@@ -370,6 +380,72 @@ tbody tr:hover .rmb,tbody tr.editing .rmb{opacity:1}
     </div>
     <div class="mft">
       <button class="btn btn-ghost" onclick="closeOverlay('log-modal')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<!-- BATCH MODAL -->
+<div class="overlay" id="batch-modal">
+  <div class="modal" style="width:680px;max-height:85vh">
+    <div class="mhd">
+      <div class="mhd-t">⚙ 용어 배치 추출</div>
+      <button class="ico-btn" onclick="closeOverlay('batch-modal')">✕</button>
+    </div>
+    <div class="mbd" id="batch-body" style="padding:0">
+      <!-- 탭 -->
+      <div style="display:flex;border-bottom:1px solid var(--ln);background:var(--s2)">
+        <button class="batch-tab active" data-tab="scan" onclick="switchBatchTab('scan')">1. 스캔</button>
+        <button class="batch-tab" data-tab="result" onclick="switchBatchTab('result')">2. 결과 파일</button>
+        <button class="batch-tab" data-tab="merge" onclick="switchBatchTab('merge')">3. 병합</button>
+      </div>
+
+      <!-- 스캔 탭 -->
+      <div id="btab-scan" class="btab" style="padding:16px">
+        <p style="font-size:12px;color:var(--tx2);margin-bottom:12px;line-height:1.6">
+          프로젝트 소스를 스캔해서 <code style="font-family:var(--mono);color:var(--ac)">terms.json</code>에 없는 용어 후보를 추출합니다.<br>
+          API를 사용하지 않으므로 토큰이 소모되지 않습니다.
+        </p>
+        <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
+          <button class="btn btn-ghost" onclick="doScan()" id="scan-btn">▷ 스캔 실행</button>
+          <span id="scan-status" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span>
+        </div>
+        <pre id="scan-preview" style="font-family:var(--mono);font-size:10px;line-height:1.6;background:var(--bg);padding:10px;border-radius:4px;max-height:260px;overflow:auto;color:var(--tx2);white-space:pre-wrap;display:none"></pre>
+
+        <hr style="border:none;border-top:1px solid var(--ln);margin:14px 0">
+        <p style="font-size:12px;color:var(--tx2);margin-bottom:10px">API 분석 실행 (스캔 후 진행하세요)</p>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button class="btn btn-ghost" onclick="doBatchDryRun()" id="dry-btn">▷ dry-run (토큰 예상치)</button>
+          <button class="btn btn-ac"    onclick="doBatchRun()"    id="run-btn">▷ API 분석 실행</button>
+          <span style="font-family:var(--mono);font-size:9px;color:var(--tx3)">결과: 프로젝트/tmp/terms/terms_날짜.json</span>
+        </div>
+        <pre id="batch-output" style="font-family:var(--mono);font-size:10px;line-height:1.6;background:var(--bg);padding:10px;border-radius:4px;max-height:200px;overflow:auto;color:var(--tx2);white-space:pre-wrap;margin-top:10px;display:none"></pre>
+      </div>
+
+      <!-- 결과 파일 탭 -->
+      <div id="btab-result" class="btab" style="padding:16px;display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--tx3)">tmp/terms/ 하위 결과 파일</span>
+          <button class="btn btn-ghost" style="padding:3px 8px;font-size:9px" onclick="loadBatchFiles()">↺ 새로고침</button>
+        </div>
+        <div id="batch-file-list" style="max-height:360px;overflow-y:auto"></div>
+      </div>
+
+      <!-- 병합 탭 -->
+      <div id="btab-merge" class="btab" style="padding:16px;display:none">
+        <div style="margin-bottom:10px">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-bottom:6px">선택한 파일</div>
+          <div id="merge-fname" style="font-family:var(--mono);font-size:11px;color:var(--ac);padding:6px 10px;background:var(--bg);border-radius:4px">—</div>
+        </div>
+        <div id="merge-preview" style="max-height:320px;overflow-y:auto"></div>
+        <div id="merge-actions" style="margin-top:12px;display:flex;gap:8px;display:none">
+          <button class="btn btn-ac" onclick="doMergeAll()" id="merge-all-btn">전체 병합</button>
+          <button class="btn btn-ghost" onclick="doMergeSelected()" id="merge-sel-btn">선택 항목만 병합</button>
+          <span id="merge-status" style="font-family:var(--mono);font-size:10px;color:var(--tx3);line-height:32px"></span>
+        </div>
+      </div>
+    </div>
+    <div class="mft">
+      <button class="btn btn-ghost" onclick="closeOverlay('batch-modal')">닫기</button>
     </div>
   </div>
 </div>
@@ -714,7 +790,7 @@ function toast(msg,type='inf',ms=3200){const c=document.getElementById('toasts')
 
 /* ═══ KEYBOARD ═══ */
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){if(editId){cancelEdit();return}['git-modal','run-modal','del-modal','add-modal','extra-modal','log-modal'].forEach(closeOverlay);closePop('cat-pop');closePop('row-pop')}
+  if(e.key==='Escape'){if(editId){cancelEdit();return}['git-modal','run-modal','del-modal','add-modal','extra-modal','log-modal','batch-modal'].forEach(closeOverlay);closePop('cat-pop');closePop('row-pop')}
   if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();document.getElementById('search').focus()}
   if((e.ctrlKey||e.metaKey)&&e.key==='n'){e.preventDefault();openAddModal()}
 });
@@ -775,6 +851,174 @@ async function clearLogs() {
   document.getElementById('log-content').textContent = '로그가 초기화되었습니다.';
   document.getElementById('log-total').textContent = '';
   toast('로그 초기화 완료','ok');
+}
+
+// ════════════════════════════════════════
+// BATCH
+// ════════════════════════════════════════
+let _batchSelFile = null;   // 선택된 결과 파일명
+let _batchTerms   = [];     // 미리보기용 용어 목록
+
+function openBatchModal() {
+  openOverlay('batch-modal');
+  switchBatchTab('scan');
+}
+
+function switchBatchTab(tab) {
+  document.querySelectorAll('.batch-tab').forEach(b =>
+    b.classList.toggle('active', b.dataset.tab === tab));
+  document.querySelectorAll('.btab').forEach(d =>
+    d.style.display = d.id === `btab-${tab}` ? 'block' : 'none');
+  if (tab === 'result') loadBatchFiles();
+}
+
+// ── 스캔 ─────────────────────────────────────────────────────────
+async function doScan() {
+  const btn = document.getElementById('scan-btn');
+  const pre = document.getElementById('scan-preview');
+  const sts = document.getElementById('scan-status');
+  btn.disabled = true; btn.textContent = '스캔 중…';
+  sts.textContent = ''; pre.style.display = 'none';
+
+  try {
+    const res = await fetch('/api/batch/scan', {method:'POST'});
+    const d   = await res.json();
+    if (!d.ok) { sts.textContent = '오류: ' + (d.error||'실패'); return; }
+
+    sts.textContent = `후보 ${d.count}개 발견`;
+    const lines = (d.candidates||[]).slice(0,50).map(c =>
+      `${c.name.padEnd(36)} ${(c.sources||[])[0]||''}`
+    );
+    if (d.count > 50) lines.push(`... 외 ${d.count-50}개`);
+    pre.textContent = lines.join('\n');
+    pre.style.display = 'block';
+  } catch(e) {
+    sts.textContent = '서버 오류: ' + e.message;
+  } finally {
+    btn.disabled = false; btn.textContent = '▷ 스캔 실행';
+  }
+}
+
+// ── dry-run ──────────────────────────────────────────────────────
+async function doBatchDryRun() {
+  _runBatch(true);
+}
+async function doBatchRun() {
+  if (!confirm('API를 호출해 분석을 실행합니다. 계속하시겠습니까?')) return;
+  _runBatch(false);
+}
+
+async function _runBatch(dryRun) {
+  const outEl = document.getElementById('batch-output');
+  const runBtn = document.getElementById('run-btn');
+  const dryBtn = document.getElementById('dry-btn');
+  outEl.style.display = 'block';
+  outEl.textContent = dryRun ? 'dry-run 중…' : 'API 분석 중… (시간이 걸릴 수 있습니다)';
+  runBtn.disabled = dryBtn.disabled = true;
+
+  try {
+    const res = await fetch('/api/batch/run', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({dry_run: dryRun}),
+    });
+    const d = await res.json();
+    outEl.textContent = d.output || '(출력 없음)';
+    if (!dryRun && d.ok) {
+      toast('분석 완료 — 결과 파일 탭에서 확인하세요', 'ok');
+    }
+  } catch(e) {
+    outEl.textContent = '서버 오류: ' + e.message;
+  } finally {
+    runBtn.disabled = dryBtn.disabled = false;
+  }
+}
+
+// ── 결과 파일 목록 ────────────────────────────────────────────────
+async function loadBatchFiles() {
+  const wrap = document.getElementById('batch-file-list');
+  wrap.innerHTML = '<div style="padding:10px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';
+
+  try {
+    const d = await (await fetch('/api/batch/files')).json();
+    if (!d.files.length) {
+      wrap.innerHTML = '<div style="padding:14px;font-family:var(--mono);font-size:11px;color:var(--tx3);text-align:center">결과 파일 없음<br>스캔 탭에서 먼저 분석을 실행하세요</div>';
+      return;
+    }
+    wrap.innerHTML = d.files.map(f => `
+      <div class="batch-file-row${_batchSelFile===f.name?' sel':''}" onclick="selectBatchFile('${f.name}')">
+        <span style="font-family:var(--mono);font-size:11px;color:var(--ac);flex:1">${f.name}</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--tx3)">${f.count}개</span>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--tx3)">${f.generated_at?.slice(0,16)||''}</span>
+        <button class="btn btn-ac" style="padding:3px 9px;font-size:9px" onclick="event.stopPropagation();selectBatchFile('${f.name}');switchBatchTab('merge')">병합 →</button>
+      </div>`).join('');
+  } catch(e) {
+    wrap.innerHTML = `<div style="padding:10px;color:var(--re);font-family:var(--mono);font-size:10px">${e.message}</div>`;
+  }
+}
+
+// ── 병합 탭 ──────────────────────────────────────────────────────
+async function selectBatchFile(fname) {
+  _batchSelFile = fname;
+  document.getElementById('merge-fname').textContent = fname;
+  document.getElementById('merge-preview').innerHTML =
+    '<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';
+  document.getElementById('merge-actions').style.display = 'none';
+
+  try {
+    const d = await (await fetch(`/api/batch/preview?file=${encodeURIComponent(fname)}`)).json();
+    if (!d.ok || !d.terms?.length) {
+      document.getElementById('merge-preview').innerHTML =
+        '<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">용어 없음</div>';
+      return;
+    }
+    _batchTerms = d.terms;
+    document.getElementById('merge-preview').innerHTML = _batchTerms.map((t,i) => `
+      <div class="merge-item">
+        <input type="checkbox" id="mc${i}" checked>
+        <div style="flex:1">
+          <span style="font-weight:600;color:var(--tx)">${t.ko||''}</span>
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ac);margin-left:8px">${t.abbr_short||''}</span>
+          <span style="font-family:var(--mono);font-size:10px;color:var(--gr);margin-left:6px">${t.abbr_long||''}</span>
+          <div style="font-size:10px;color:var(--tx3);margin-top:2px">${t.description||''}</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--tx3)">${(t.categories||[]).join(', ')}</div>
+        </div>
+      </div>`).join('');
+    document.getElementById('merge-actions').style.display = 'flex';
+    document.getElementById('merge-status').textContent = `총 ${_batchTerms.length}개`;
+  } catch(e) {
+    document.getElementById('merge-preview').innerHTML =
+      `<div style="padding:8px;color:var(--re);font-family:var(--mono);font-size:10px">${e.message}</div>`;
+  }
+}
+
+async function doMergeAll() {
+  await _doMerge(null);
+}
+async function doMergeSelected() {
+  const ids = _batchTerms
+    .filter((_,i) => document.getElementById(`mc${i}`)?.checked)
+    .map(t => t.id);
+  if (!ids.length) { toast('선택된 항목 없음', 'err'); return; }
+  await _doMerge(ids);
+}
+
+async function _doMerge(ids) {
+  const sts = document.getElementById('merge-status');
+  sts.textContent = '병합 중…';
+  try {
+    const res = await fetch('/api/batch/merge', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({file: _batchSelFile, ids}),
+    });
+    const d = await res.json();
+    if (!d.ok) { toast(d.error||'병합 실패', 'err'); sts.textContent=''; return; }
+    sts.textContent = `완료: ${d.added}개 추가, ${d.skipped}개 중복 건너뜀`;
+    toast(`${d.added}개 용어 병합 완료`, 'ok');
+    await reload();   // 메인 테이블 새로고침
+  } catch(e) {
+    toast('서버 오류: ' + e.message, 'err');
+    sts.textContent = '';
+  }
 }
 
 boot();
