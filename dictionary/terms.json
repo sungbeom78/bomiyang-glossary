@@ -2,20 +2,8 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "2.0.0",
   "generated": true,
-  "generated_at": "2026-04-10T18:54:51.702266",
+  "generated_at": "2026-04-10T21:49:56.904063",
   "terms": [
-    {
-      "id": "1m",
-      "ko": "1분",
-      "en": "1M",
-      "abbr_long": "1m",
-      "abbr_short": "1M",
-      "categories": [
-        "market"
-      ],
-      "type": "word",
-      "description": "1분 단위 시간 간격"
-    },
     {
       "id": "account",
       "ko": "계좌",
@@ -51,18 +39,6 @@
       ],
       "type": "word",
       "description": "외부 API 연결 어댑터"
-    },
-    {
-      "id": "adapters",
-      "ko": "어댑터들",
-      "en": "Adapters",
-      "abbr_long": "adapters",
-      "abbr_short": "ADAPT",
-      "categories": [
-        "infra"
-      ],
-      "type": "word",
-      "description": "브로커 연결 어댑터 모음"
     },
     {
       "id": "after",
@@ -135,18 +111,6 @@
       ],
       "type": "word",
       "description": "OHLCV 캔들(봉) 데이터. M1 기준."
-    },
-    {
-      "id": "bars",
-      "ko": "캔들 데이터",
-      "en": "Bars",
-      "abbr_long": "bars",
-      "abbr_short": "BARS",
-      "categories": [
-        "market"
-      ],
-      "type": "word",
-      "description": "시계열 가격 데이터 (시가, 고가, 저가, 종가)"
     },
     {
       "id": "bot",
@@ -399,18 +363,6 @@
       ],
       "type": "word",
       "description": "데이터를 수집하는 컴포넌트"
-    },
-    {
-      "id": "collectors",
-      "ko": "수집기들",
-      "en": "Collectors",
-      "abbr_long": "collectors",
-      "abbr_short": "COLLE",
-      "categories": [
-        "infra"
-      ],
-      "type": "word",
-      "description": "데이터 수집 컴포넌트 모음"
     },
     {
       "id": "colors",
@@ -773,18 +725,6 @@
       "description": "시스템 내 발생 사건"
     },
     {
-      "id": "events",
-      "ko": "이벤트들",
-      "en": "Events",
-      "abbr_long": "events",
-      "abbr_short": "EVENT",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "복수의 이벤트"
-    },
-    {
       "id": "exchange",
       "ko": "거래소",
       "en": "Exchange",
@@ -879,18 +819,6 @@
       ],
       "type": "word",
       "description": "주문 전량 체결 완료"
-    },
-    {
-      "id": "fills",
-      "ko": "체결들",
-      "en": "Fills",
-      "abbr_long": "fills",
-      "abbr_short": "FILLS",
-      "categories": [
-        "infra"
-      ],
-      "type": "word",
-      "description": "체결 이력 테이블"
     },
     {
       "id": "filter",
@@ -1265,18 +1193,6 @@
       "description": "시스템 이벤트 기록"
     },
     {
-      "id": "logs",
-      "ko": "로그들",
-      "en": "Logs",
-      "abbr_long": "logs",
-      "abbr_short": "LOGS",
-      "categories": [
-        "infra"
-      ],
-      "type": "word",
-      "description": "로그 저장 폴더"
-    },
-    {
       "id": "long",
       "ko": "롱",
       "en": "Long",
@@ -1505,16 +1421,16 @@
       "description": "분산 환경의 개별 머신/컨테이너"
     },
     {
-      "id": "notifications",
-      "ko": "알림들",
-      "en": "Notifications",
-      "abbr_long": "notifications",
+      "id": "notification",
+      "ko": "알림",
+      "en": "Notification",
+      "abbr_long": "notification",
       "abbr_short": "NOTIF",
       "categories": [
         "infra"
       ],
       "type": "word",
-      "description": "알림 발송 컴포넌트 모음"
+      "description": "시스템 이벤트를 외부로 전달하는 알림"
     },
     {
       "id": "notifier",
@@ -1599,18 +1515,6 @@
       ],
       "type": "word",
       "description": "매수·매도 호가창 스냅샷"
-    },
-    {
-      "id": "orders",
-      "ko": "주문들",
-      "en": "Orders",
-      "abbr_long": "orders",
-      "abbr_short": "ORDER",
-      "categories": [
-        "infra"
-      ],
-      "type": "word",
-      "description": "주문 이력 테이블"
     },
     {
       "id": "overnight",
@@ -1709,18 +1613,6 @@
       "description": "현재 보유 중인 종목/계약 상태 (수량, 평균단가, 미실현손익)"
     },
     {
-      "id": "positions",
-      "ko": "포지션들",
-      "en": "Positions",
-      "abbr_long": "positions",
-      "abbr_short": "POSIT",
-      "categories": [
-        "trading"
-      ],
-      "type": "word",
-      "description": "복수의 포지션"
-    },
-    {
       "id": "postgresql",
       "ko": "PostgreSQL",
       "en": "Postgresql",
@@ -1815,18 +1707,6 @@
       ],
       "type": "word",
       "description": "순위 결과"
-    },
-    {
-      "id": "rankings",
-      "ko": "랭킹들",
-      "en": "Rankings",
-      "abbr_long": "rankings",
-      "abbr_short": "RANKI",
-      "categories": [
-        "market"
-      ],
-      "type": "word",
-      "description": "복수의 순위 결과"
     },
     {
       "id": "realized",
@@ -2237,18 +2117,6 @@
       "description": "진입 또는 청산 판단 결과. signals 모듈만 생성 가능."
     },
     {
-      "id": "signals",
-      "ko": "시그널들",
-      "en": "Signals",
-      "abbr_long": "signals",
-      "abbr_short": "SIGNA",
-      "categories": [
-        "infra"
-      ],
-      "type": "word",
-      "description": "시그널 이력 테이블"
-    },
-    {
       "id": "size",
       "ko": "크기",
       "en": "Size",
@@ -2283,18 +2151,6 @@
       ],
       "type": "word",
       "description": "특정 시점의 상태 저장본"
-    },
-    {
-      "id": "snapshots",
-      "ko": "스냅샷들",
-      "en": "Snapshots",
-      "abbr_long": "snapshots",
-      "abbr_short": "SNAPS",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "복수의 스냅샷"
     },
     {
       "id": "split",
@@ -2381,18 +2237,6 @@
       "description": "서비스 중지 상태"
     },
     {
-      "id": "stops",
-      "ko": "손절들",
-      "en": "Stops",
-      "abbr_long": "stops",
-      "abbr_short": "STOPS",
-      "categories": [
-        "trading"
-      ],
-      "type": "word",
-      "description": "복수의 손절 조건"
-    },
-    {
       "id": "storage",
       "ko": "저장소",
       "en": "Storage",
@@ -2477,18 +2321,6 @@
       "description": "거래 종목 코드"
     },
     {
-      "id": "symbols",
-      "ko": "종목들",
-      "en": "Symbols",
-      "abbr_long": "symbols",
-      "abbr_short": "SYMBO",
-      "categories": [
-        "infra"
-      ],
-      "type": "word",
-      "description": "종목 전체 테이블"
-    },
-    {
       "id": "system",
       "ko": "시스템",
       "en": "System",
@@ -2561,18 +2393,6 @@
       "description": "최소 가격 변동 단위 또는 실시간 시세 스트림"
     },
     {
-      "id": "ticks",
-      "ko": "틱들",
-      "en": "Ticks",
-      "abbr_long": "ticks",
-      "abbr_short": "TICKS",
-      "categories": [
-        "infra"
-      ],
-      "type": "word",
-      "description": "틱 데이터 테이블"
-    },
-    {
       "id": "time",
       "ko": "시각",
       "en": "Time",
@@ -2595,18 +2415,6 @@
       ],
       "type": "word",
       "description": "차트 또는 데이터 분석에서 사용되는 시간 단위 (예: 1분, 5분, 1시간)."
-    },
-    {
-      "id": "timeframes",
-      "ko": "타임프레임 목록",
-      "en": "Timeframes",
-      "abbr_long": "timeframes",
-      "abbr_short": "TIMEF",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "시스템에서 지원하거나 사용되는 다양한 시간대 목록입니다."
     },
     {
       "id": "timezone",
@@ -2633,11 +2441,11 @@
       "description": "인증 또는 세션 관리에 사용되는 보안 토큰입니다."
     },
     {
-      "id": "top_n",
+      "id": "topn",
       "ko": "상위 N개",
-      "en": "Top N",
-      "abbr_long": "top n",
-      "abbr_short": "TOP N",
+      "en": "Topn",
+      "abbr_long": "topn",
+      "abbr_short": "TOPN",
       "categories": [
         "system"
       ],
@@ -2679,18 +2487,6 @@
       ],
       "type": "word",
       "description": "개별 매매 거래"
-    },
-    {
-      "id": "trades",
-      "ko": "거래 목록",
-      "en": "Trades",
-      "abbr_long": "trades",
-      "abbr_short": "TRADE",
-      "categories": [
-        "market"
-      ],
-      "type": "word",
-      "description": "시스템에서 발생한 거래들의 목록입니다."
     },
     {
       "id": "trading",
@@ -2739,18 +2535,6 @@
       ],
       "type": "word",
       "description": "상태 머신 등에서 한 상태에서 다른 상태로의 변화를 나타냅니다."
-    },
-    {
-      "id": "transitions",
-      "ko": "전환 목록",
-      "en": "Transitions",
-      "abbr_long": "transitions",
-      "abbr_short": "TRANS",
-      "categories": [
-        "market"
-      ],
-      "type": "word",
-      "description": "가능한 모든 상태 변화의 목록입니다."
     },
     {
       "id": "trend",
@@ -2931,78 +2715,6 @@
       ],
       "type": "word",
       "description": "캔들의 몸통 밖 선"
-    },
-    {
-      "id": "script",
-      "ko": "스크립트",
-      "en": "Script",
-      "abbr_long": "script",
-      "abbr_short": "SCRIPT",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "실행 자동화/운영 작업용 스크립트 단위"
-    },
-    {
-      "id": "tool",
-      "ko": "도구",
-      "en": "Tool",
-      "abbr_long": "tool",
-      "abbr_short": "TOOL",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "유틸리티성 기능을 제공하는 도구 모듈/디렉토리"
-    },
-    {
-      "id": "guideline",
-      "ko": "가이드라인",
-      "en": "Guideline",
-      "abbr_long": "guideline",
-      "abbr_short": "GUIDE",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "프로젝트 운영/개발 지침 문서 단위"
-    },
-    {
-      "id": "reference",
-      "ko": "레퍼런스",
-      "en": "Reference",
-      "abbr_long": "reference",
-      "abbr_short": "REF",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "외부 사양/참고 문서 보관 단위"
-    },
-    {
-      "id": "notification",
-      "ko": "알림",
-      "en": "Notification",
-      "abbr_long": "notification",
-      "abbr_short": "NOTI",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "시스템 알림 기능(텔레그램 등) 모듈 단위"
-    },
-    {
-      "id": "test",
-      "ko": "테스트",
-      "en": "Test",
-      "abbr_long": "test",
-      "abbr_short": "TEST",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "검증 코드/테스트 케이스 단위"
     },
     {
       "id": "work",

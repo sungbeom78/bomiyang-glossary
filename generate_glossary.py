@@ -56,8 +56,17 @@ def load_all() -> tuple:
 
 
 # ════════════════════════════════════════════════════════════════════
-# 검증 (V-001 ~ V-103)
+# 검증 (V-001 ~ V-105)
 # ════════════════════════════════════════════════════════════════════
+
+def _auto_plural_check(word_id: str) -> str:
+    """단어 id로부터 규칙 기반 복수형 추론 (V-105 검증용)."""
+    if word_id.endswith(('s', 'sh', 'ch', 'x', 'z')):
+        return word_id + 'es'
+    if word_id.endswith('y') and len(word_id) > 1 and word_id[-2] not in 'aeiou':
+        return word_id[:-1] + 'ies'
+    return word_id + 's'
+
 
 def validate(words, compounds, banned, silent=False) -> tuple:
     """(fatals: list, warns: list) 반환."""
@@ -106,6 +115,26 @@ def validate(words, compounds, banned, silent=False) -> tuple:
             others = [a[1] for a in all_abbrs if a[0] == abbr and a[1] != aid]
             F("V-006", f"abbr 중복: '{abbr}' → {aid}, {others}")
 
+    # V-007: words.json id에 언더스코어 포함 여부 (단어 = 단일 토큰)
+    import re as _re
+    for w in words:
+        wid = w["id"]
+        if not _re.match(r'^[a-z][a-z0-9]*$', wid):
+            F("V-007", f"words.json id 형식 오류 (언더스코어/대문자/숫자 시작 불가): '{wid}'")
+
+    # V-008: words.json에 복수형 단독 항목 존재 여부
+    # (다른 단수형이 같이 등록되어 있으면서 복수형만 별도 등록된 경우)
+    word_id_set_lower = {w["id"].lower() for w in words}
+    for w in words:
+        wid = w["id"]
+        # -s로 끝나고, -1하면 기존 등록된 단어가 있는 경우 → 복수형 단독 의심
+        if wid.endswith('s') and wid[:-1] in word_id_set_lower:
+            F("V-008", f"words.json 복수형 단독 항목 의심 (단수형 '{wid[:-1]}' 이미 등록): '{wid}'")
+        elif wid.endswith('es') and wid[:-2] in word_id_set_lower:
+            F("V-008", f"words.json 복수형 단독 항목 의심 (단수형 '{wid[:-2]}' 이미 등록): '{wid}'")
+        elif wid.endswith('ies') and wid[:-3] + 'y' in word_id_set_lower:
+            F("V-008", f"words.json 복수형 단독 항목 의심 (단수형 '{wid[:-3]}y' 이미 등록): '{wid}'")
+
     # V-101: 고아 단어 (어떤 compound에서도 미참조)
     all_refs = set()
     for c in compounds:
@@ -118,9 +147,21 @@ def validate(words, compounds, banned, silent=False) -> tuple:
     all_ids = word_id_set | set(compound_ids)
     for b in banned:
         correct = b.get("correct","")
-        # correct에 여러 표현이 있을 수 있으므로 단순 체크
         if correct and not any(x in correct for x in all_ids):
             W("V-102", f"banned.correct '{correct}' → 미등록 표현")
+
+    # V-104: noun인데 plural 미명시
+    for w in words:
+        if w.get("pos") == "noun" and "plural" not in w:
+            W("V-104", f"noun인데 plural 필드 없음: '{w['id']}'")
+
+    # V-105: plural 값이 auto_plural과 동일한 경우 → null로 충분
+    for w in words:
+        pl = w.get("plural")
+        if pl and pl != '-' and w.get("pos") == "noun":
+            auto = _auto_plural_check(w["id"])
+            if pl == auto:
+                W("V-105", f"plural='{pl}' 이 자동 추론값과 동일 → null로 대체 권장: '{w['id']}'")
 
     if not silent:
         print(f"\n{'='*52}")

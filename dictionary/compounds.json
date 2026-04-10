@@ -452,7 +452,7 @@
       "id": "consecutive_stops",
       "words": [
         "consecutive",
-        "stops"
+        "stop"
       ],
       "ko": "연속 손절 횟수",
       "en": "Consecutive Stops",
@@ -468,7 +468,7 @@
       "words": [
         "max",
         "open",
-        "positions"
+        "position"
       ],
       "ko": "최대 동시 보유 수",
       "en": "Max Open Positions",
@@ -1646,7 +1646,7 @@
       "id": "mod_adapters",
       "words": [
         "mod",
-        "adapters"
+        "adapter"
       ],
       "ko": "어댑터 모듈",
       "en": "Adapters Module",
@@ -1661,7 +1661,7 @@
       "id": "mod_collectors",
       "words": [
         "mod",
-        "collectors"
+        "collector"
       ],
       "ko": "수집기 모듈",
       "en": "Collectors Module",
@@ -1691,7 +1691,7 @@
       "id": "mod_signals",
       "words": [
         "mod",
-        "signals"
+        "signal"
       ],
       "ko": "시그널 모듈",
       "en": "Signals Module",
@@ -1781,7 +1781,7 @@
       "id": "mod_notifications",
       "words": [
         "mod",
-        "notifications"
+        "notification"
       ],
       "ko": "알림 모듈",
       "en": "Notifications Module",
@@ -1826,7 +1826,7 @@
       "id": "mod_logs",
       "words": [
         "mod",
-        "logs"
+        "log"
       ],
       "ko": "로그 디렉토리",
       "en": "Logs Directory",
@@ -1841,7 +1841,7 @@
       "id": "db_symbols",
       "words": [
         "db",
-        "symbols"
+        "symbol"
       ],
       "ko": "종목 마스터 테이블",
       "en": "Symbols Table",
@@ -1888,8 +1888,7 @@
       "id": "db_bars_1m",
       "words": [
         "db",
-        "bars",
-        "1m"
+        "bar"
       ],
       "ko": "1분봉 테이블",
       "en": "1-Minute Bars Table",
@@ -1904,7 +1903,7 @@
       "id": "db_ticks",
       "words": [
         "db",
-        "ticks"
+        "tick"
       ],
       "ko": "틱 테이블",
       "en": "Ticks Table",
@@ -1920,7 +1919,7 @@
       "words": [
         "db",
         "sector",
-        "rankings"
+        "ranking"
       ],
       "ko": "섹터 랭킹 테이블",
       "en": "Sector Rankings Table",
@@ -1935,7 +1934,7 @@
       "id": "db_signals",
       "words": [
         "db",
-        "signals"
+        "signal"
       ],
       "ko": "시그널 테이블",
       "en": "Signals Table",
@@ -1950,7 +1949,7 @@
       "id": "db_orders",
       "words": [
         "db",
-        "orders"
+        "order"
       ],
       "ko": "주문 테이블",
       "en": "Orders Table",
@@ -1965,7 +1964,7 @@
       "id": "db_fills",
       "words": [
         "db",
-        "fills"
+        "fill"
       ],
       "ko": "체결 테이블",
       "en": "Fills Table",
@@ -1981,7 +1980,7 @@
       "words": [
         "db",
         "account",
-        "snapshots"
+        "snapshot"
       ],
       "ko": "계좌 스냅샷 테이블",
       "en": "Account Snapshots Table",
@@ -1997,7 +1996,7 @@
       "words": [
         "db",
         "risk",
-        "events"
+        "event"
       ],
       "ko": "리스크 이벤트 테이블",
       "en": "Risk Events Table",

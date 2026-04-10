@@ -214,6 +214,45 @@ def _is_noise(name: str) -> bool:
 
 
 # ════════════════════════════════════════════════════════════════════
+# 복수형 헬퍼
+# ════════════════════════════════════════════════════════════════════
+
+def auto_plural(word_id: str) -> str:
+    """
+    단어 id로부터 규칙 기반 복수형 추론.
+    words.json의 plural=null인 noun에 적용.
+    """
+    if word_id.endswith(('s', 'sh', 'ch', 'x', 'z')):
+        return word_id + 'es'
+    if word_id.endswith('y') and len(word_id) > 1 and word_id[-2] not in 'aeiou':
+        return word_id[:-1] + 'ies'
+    return word_id + 's'
+
+
+# suffix 인식 — 본체만 추출 (역할/의미 suffix만, 타입 suffix 제외)
+# 허용: 역할/의미 suffix (queue, pool, log, snapshot, state, cache, etc.)
+# 비권장: list, array, dict, tuple (타입 중심)
+COLLECTION_SUFFIXES = {
+    # 역할/의미 suffix — 허용
+    'queue', 'pool', 'stream', 'pipeline',
+    'log', 'history', 'record', 'trace',
+    'snapshot', 'state', 'status', 'cache',
+    'registry', 'store',
+    'map', 'set',
+}
+
+def _strip_collection_suffix(name: str) -> str:
+    """
+    order_queue → order (본체만 추출해서 사전 검증에 사용).
+    타입 중심 suffix (list, array, dict)는 인식하지 않음.
+    """
+    parts = name.rsplit('_', 1)
+    if len(parts) == 2 and parts[1].lower() in COLLECTION_SUFFIXES:
+        return parts[0]
+    return name
+
+
+# ════════════════════════════════════════════════════════════════════
 # 복합어 분해 — 기존 토큰 집합과 비교
 # ════════════════════════════════════════════════════════════════════
 
@@ -228,12 +267,25 @@ def _split_tokens(name: str) -> list:
 def _all_tokens_known(name: str, known_tokens: set) -> bool:
     """
     복합어를 분해했을 때 모든 토큰이 이미 알려진 토큰이면 True.
+    복수형 역변환 포함 (orders → order, indices → index 등).
     단순어(토큰 1개)는 항상 False 반환 → 개별 판단.
     """
     tokens = _split_tokens(name)
     if len(tokens) <= 1:
         return False
-    return all(t in known_tokens for t in tokens)
+
+    for t in tokens:
+        if t in known_tokens:
+            continue
+        # 복수형 역변환 시도
+        if t.endswith('ies') and t[:-3] + 'y' in known_tokens:
+            continue
+        if t.endswith('es') and t[:-2] in known_tokens:
+            continue
+        if t.endswith('s') and t[:-1] in known_tokens:
+            continue
+        return False
+    return True
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -246,12 +298,17 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
 
     v2 우선: dictionary/words.json + dictionary/compounds.json
     fallback: dictionary/terms.json (하위호환)
+
+    복수형도 syms/tokens에 등록:
+    - plural 명시 → 해당 값 사용
+    - plural=null + pos=noun → auto_plural() 로 추론
+    - plural="-" → 복수형 없음, 추가 안 함
     """
     dict_dir = glossary_dir / "dictionary"
     syms:   set = set()
     tokens: set = set()
 
-    def _absorb(entries: list, fields: tuple):
+    def _absorb_compound(entries: list, fields: tuple):
         for item in entries:
             for f in fields:
                 v = item.get(f, '')
@@ -260,13 +317,41 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
                     syms.add(str(v).lower())
                     for tok in _split_tokens(str(v)):
                         tokens.add(tok)
+            # compound plural 처리
+            pl = item.get('plural')
+            cid = item.get('id', '')
+            if pl and pl != '-':
+                syms.add(pl); tokens.add(pl.lower())
+            elif pl is None and cid:
+                auto = auto_plural(cid)
+                syms.add(auto); tokens.add(auto.lower())
 
     # ── words.json ──────────────────────────────────────────────────
     words_path = dict_dir / "words.json"
     if words_path.exists():
         try:
             data = json.loads(words_path.read_text(encoding='utf-8'))
-            _absorb(data.get("words", []), ('id', 'en', 'ko', 'abbr'))
+            for w in data.get("words", []):
+                wid   = w.get('id', '')
+                pos   = w.get('pos', '')
+                abbr  = w.get('abbr', '')
+                pl    = w.get('plural')  # 명시 값
+
+                # 기본 심볼 등록
+                for v in (wid, w.get('en',''), w.get('ko',''), abbr):
+                    if v:
+                        syms.add(str(v)); syms.add(str(v).lower())
+                        for tok in _split_tokens(str(v)):
+                            tokens.add(tok)
+
+                # 복수형 등록
+                if pl == '-':
+                    pass  # 불가산 → 추가 안 함
+                elif pl:
+                    syms.add(pl); tokens.add(pl.lower())
+                elif pl is None and pos == 'noun':
+                    auto = auto_plural(wid)
+                    syms.add(auto); tokens.add(auto.lower())
         except Exception:
             pass
 
@@ -275,7 +360,10 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
     if compounds_path.exists():
         try:
             data = json.loads(compounds_path.read_text(encoding='utf-8'))
-            _absorb(data.get("compounds", []), ('id', 'abbr_long', 'abbr_short', 'ko', 'en'))
+            _absorb_compound(
+                data.get("compounds", []),
+                ('id', 'abbr_long', 'abbr_short', 'ko', 'en'),
+            )
         except Exception:
             pass
 
@@ -285,7 +373,13 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
         if terms_path.exists():
             try:
                 data = json.loads(terms_path.read_text(encoding='utf-8'))
-                _absorb(data.get("terms", []), ('id', 'abbr_long', 'abbr_short', 'en', 'ko'))
+                for t in data.get("terms", []):
+                    for f in ('id', 'abbr_long', 'abbr_short', 'en', 'ko'):
+                        v = t.get(f, '')
+                        if v:
+                            syms.add(str(v)); syms.add(str(v).lower())
+                            for tok in _split_tokens(str(v)):
+                                tokens.add(tok)
             except Exception:
                 pass
 
@@ -324,6 +418,13 @@ class TermScanner:
             return
         if name in self.existing_syms or name.lower() in self.existing_syms:
             return
+
+        # suffix 스트립 후 본체가 이미 알려진 경우 제외
+        # 예) execution_log → execution + log → 둘 다 등록됨 → 후보 제외
+        stripped = _strip_collection_suffix(name)
+        if stripped != name and _all_tokens_known(stripped, self.ex_tokens):
+            return
+
         if _all_tokens_known(name, self.ex_tokens):
             return
         if name not in self.candidates:

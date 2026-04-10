@@ -70,7 +70,7 @@ SYSTEM_PROMPT = """당신은 BOM_TS(Bomiyang Trading System) 자동매매 시스
 주어진 용어 후보 목록을 분석해서, 진정한 도메인 용어만 골라 아래 JSON 포맷으로 정리하세요.
 
 사전 구조:
-- glossary/dictionary/words.json : 원자 단위 단어 (최소 단위)
+- glossary/dictionary/words.json : 원자 단위 단어 (최소 단위, 반드시 단수형)
 - glossary/dictionary/compounds.json : 복합어 (등록 조건 충족 시만)
 
 규칙:
@@ -81,7 +81,11 @@ SYSTEM_PROMPT = """당신은 BOM_TS(Bomiyang Trading System) 자동매매 시스
 5. abbr_long은 camelCase, abbr_short는 UPPER_SNAKE_CASE
 6. categories는 아래 중 복수 선택:
    market, tool, infra, domain, order, risk, data, account,
-   system, config, report, module, class, session, selector, status"""
+   system, config, report, module, class, session, selector, status
+7. 단어(id)는 반드시 단수형(singular)으로 등록한다. adapters(X) → adapter(O), orders(X) → order(O)
+8. 복수형을 독립 항목으로 제안하지 말 것. 단수형으로만 제안.
+9. _list, _array, _dict 등 타입 suffix가 붙은 것은 본체(단수형)만 판단하여 제안.
+   예) order_list → order 로 제안, signal_array → signal 로 제안"""
 
 USER_PROMPT_TMPL = """아래는 프로젝트 소스에서 추출한 용어 후보 목록입니다.
 각 항목 형식: 용어명 | 출처
@@ -268,12 +272,12 @@ def parse_response(text: str) -> list[dict]:
         try:
             result = json.loads(body[:end])
             if isinstance(result, list):
-                return [t for t in result if isinstance(t, dict) and t.get('id')]
+                items = [t for t in result if isinstance(t, dict) and t.get('id')]
+                return normalize_singular(items)
         except json.JSONDecodeError:
             pass
 
     # ── 2차 시도: 잘린 JSON 부분 복구 ────────────────────────────
-    # 완전히 닫힌 { } 객체만 추출해서 리스트로 재조립
     recovered = []
     depth     = 0
     obj_start = None
@@ -295,7 +299,64 @@ def parse_response(text: str) -> list[dict]:
                     pass
                 obj_start = None
 
-    return recovered
+    return normalize_singular(recovered)
+
+
+def normalize_singular(terms: list[dict]) -> list[dict]:
+    """
+    API 응답에서 복수형 id가 나오면 자동으로 단수형으로 교정.
+    예) id='orders' → id='order', abbr_long='orders'→'order'
+    규칙:
+      -ies 말미 → -y 복원
+      -es 말미 → -e 또는 그냥 제거
+      -s 말미 → 제거
+    단, 원형이 이미 's'로 끝나는 단어(status, process 등)는 건드리지 않음.
+    """
+    import re as _re
+
+    def _to_singular(word: str) -> str:
+        # 이미 단수형으로 보이는 것들은 그대로
+        KEEP = {'status', 'process', 'analysis', 'access', 'address',
+                'bonus', 'focus', 'nexus', 'axis', 'basis', 'canvas',
+                'bus', 'gas', 'class', 'glass', 'mass', 'pass',
+                'progress', 'success', 'excess', 'stress', 'press'}
+        if word in KEEP:
+            return word
+        # -ies → -y
+        if word.endswith('ies') and len(word) > 3:
+            return word[:-3] + 'y'
+        # -ches, -shes, -ses, -xes, -zes → 기본 제거
+        if word.endswith(('ches', 'shes', 'ses', 'xes', 'zes')) and len(word) > 4:
+            return word[:-2]
+        # -es → -e (희망)
+        if word.endswith('es') and len(word) > 3 and not word.endswith('ies'):
+            candidate = word[:-1]  # -s만 제거 먼저
+            if candidate.endswith('e'):
+                return candidate
+            return word[:-2] if len(word) > 4 else word
+        # -s 제거
+        if word.endswith('s') and len(word) > 3:
+            return word[:-1]
+        return word
+
+    result = []
+    for t in terms:
+        tid = t.get('id', '')
+        if not tid:
+            result.append(t)
+            continue
+        # id에 언더스코어가 없으면 단어 → 단수형 교정 시도
+        if '_' not in tid:
+            singular = _to_singular(tid)
+            if singular != tid:
+                t = dict(t)
+                t['id'] = singular
+                # abbr_long도 동일 값이면 함께 교정
+                al = t.get('abbr_long', '')
+                if al.lower() == tid.lower():
+                    t['abbr_long'] = singular
+        result.append(t)
+    return result
 
 
 # ════════════════════════════════════════════════════════════════════
