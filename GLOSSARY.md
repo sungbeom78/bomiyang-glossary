@@ -1,551 +1,464 @@
-# BOM_TS – 용어 사전 (Glossary)
+# BOM_TS 용어 사전
 
-> BOM_TS 전체 용어 사전. 코드·DB·설정·문서에서 용어 통일의 기준.
->
-> **버전:** 2.0.0  |  **최종 수정:** 2026-03-27
->
-> ⚠️  이 파일은 `terms.json`으로부터 자동 생성됩니다. 직접 편집하지 마세요.
+> 자동 생성 파일. 수동 편집 금지.
+> 원본: `words.json` + `compounds.json` + `banned.json`
+> 생성: 2026-04-10 18:54
 
-## 📌 약어 사용 규칙
-
-| 약어 종류 | 사용 위치 |
-|-----------|-----------|
-| `abbr_long` | variable, table, column, class, function, module |
-| `abbr_short` | env, filename, config_key |
-
-## 🔄 기존 용어에서 수정된 사항
-
-| 기존 (잘못된 용어) | 수정 후 | 이유 |
-|-------------------|---------|------|
-| `mt5Futures` / `MT5_FUT` | `fxFutures` / `FX_FUT` | MT5는 툴(플랫폼)이며 마켓이 아님 |
-
-## ⚠️  abbr_short 중복 주의 (동일 개념 다계층)
-
-아래 약어는 동일 개념의 다른 계층(도메인↔DB↔클래스↔모듈)에서 공유됩니다. 컨텍스트로 구분하세요.
-
-| abbr_short | 공유 용어들 |
-|------------|-------------|
-| `ASNAP` | `account_snapshot`, `cls_account_snapshot`, `db_account_snapshots` |
-| `CFG` | `cls_settings`, `mod_config` |
-| `DIR` | `signal_direction`, `cls_signal_direction` |
-| `ENV` | `mod_env`, `env_var` |
-| `MT5B` | `mt5_bridge`, `cls_mt5_bridge` |
-| `MT5P` | `mt5_proxy`, `env_mt5_proxy_url` |
-| `NODE` | `node_name`, `env_node_name` |
-| `OI` | `order_intent`, `cls_order_intent` |
-| `OS` | `order_status`, `cls_order_status` |
-| `SEC_RNK` | `sector_ranking`, `cls_sector_ranker` |
-| `SIG` | `signal`, `mod_signals` |
-| `SYM_RNK` | `symbol_ranking`, `cls_symbol_ranker` |
-| `TG_BOT` | `telegram_bot`, `cls_telegram_bot` |
-| `TK` | `tick`, `db_ticks` |
-
-## 목차
-
-1. [🌐 시장 / 마켓 (Markets)](#시장--마켓-markets)
-2. [🔧 툴 / 플랫폼 (Tools & Platforms)](#툴--플랫폼-tools--platforms)
-3. [🏗️  인프라 (Infrastructure)](#인프라-infrastructure)
-4. [📐 도메인 개념 (Domain Concepts)](#도메인-개념-domain-concepts)
-5. [📋 거래 / 주문 (Trading & Orders)](#거래--주문-trading--orders)
-6. [🛡️  리스크 관리 (Risk Management)](#리스크-관리-risk-management)
-7. [📊 시장 데이터 (Market Data)](#시장-데이터-market-data)
-8. [💰 계좌 / 잔고 (Account & Balance)](#계좌--잔고-account--balance)
-9. [⚙️  시스템 운영 (System Operation)](#시스템-운영-system-operation)
-10. [🔑 설정 / 환경변수 (Config & Env)](#설정--환경변수-config--env)
-11. [📈 리포트 / 알림 (Report & Notification)](#리포트--알림-report--notification)
-12. [📁 모듈 / 디렉토리 (Modules & Directories)](#모듈--디렉토리-modules--directories)
-13. [🧩 클래스 / 열거형 (Classes & Enums)](#클래스--열거형-classes--enums)
-14. [🕐 세션 / 시간 (Sessions & Time)](#세션--시간-sessions--time)
-15. [🔍 종목 선정 / 스코어링 (Selector & Scoring)](#종목-선정--스코어링-selector--scoring)
-16. [🚦 상태값 (Status Values)](#상태값-status-values)
+## 통계
+- 단어: 251개
+- 복합어: 152개
+- 금지 표현: 8개
 
 ---
 
-## 🌐 시장 / 마켓 (Markets)
+## 단어 사전 (Words)
 
-| 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
-|--------|--------|-----------|------------|----------|------|
-| 미국주식 | `US Stock` | `usStock` | `US_STOCK` | `market` | 미국 주식 시장 (NYSE, NASDAQ 등) |
-| 외환선물 | `FX Futures` | `fxFutures` | `FX_FUT` | `market` | 외환을 기초자산으로 하는 선물 상품. 접근 툴은 MT5이나, 시장 자체는 MT5가 아님. ❌ NOT: `MT5`, `mt5Futures`, `MT5_FUT` *(⚠️ MT5는 툴(플랫폼)이며 시장명이 아님. 반드시 fxFutures/FX_FUT 사용.)* |
-| 코스닥 | `KOSDAQ` | `kosdaq` | `KOSDAQ` | `market`, `data` | 한국 코스닥 시장 ❌ NOT: `KOSPI` |
-| 코스피 | `KOSPI` | `kospi` | `KOSPI` | `market`, `data` | 한국 종합주가지수 (Korea Composite Stock Price Index) ❌ NOT: `KOSDAQ` |
-| 코인거래 | `Cryptocurrency` | `crypto` | `CRYPTO` | `market` | 암호화폐 거래 시장 (업비트 KRW 마켓) |
-| 한국주식 | `Korean Stock` | `krStock` | `KR_STOCK` | `market` | 한국 주식 시장 (KRX) ❌ NOT: `KIS`, `KOSPI`, `KOSDAQ` |
+### trading
 
----
+| 단어 | 한글 | 약어 | 품사 | 설명 |
+|------|------|------|------|------|
+| `account` | 계좌 | — | noun | 투자 계좌 정보 |
+| `active` | 활성 | — | adj | 현재 진행 중이거나 활성화된 상태 |
+| `balance` | 잔고 | — | noun | 계좌의 현재 자산 잔고 |
+| `bar` | 봉 | BAR | noun | OHLCV 캔들(봉) 데이터. M1 기준. |
+| `bounce` | 반등 | — | noun | 하락 후 일시적 상승 |
+| `breakout` | 돌파 | BRK | noun | 직전 N봉 고가를 현재가가 상향 돌파하는 진입 패턴 |
+| `buy` | 매수 | BUY | noun | 매수 주문 |
+| `capital` | 자본금 | — | noun | 투자 시스템의 총 자본금 |
+| `classify` | 분류 | — | noun | 데이터를 분류하는 기능 |
+| `commission` | 수수료 | COMM | noun | 거래 수수료 (거래당 비용) |
+| `condition` | 조건 | — | noun | 매매 진입/청산 또는 필터링에 사용되는 조건 |
+| `consecutive` | 연속 | — | adj | 연속으로 발생하는 |
+| `entry` | 진입 | ENT | noun | 포지션 진입 (매수/매도 시작) |
+| `eod` | 장마감 | — | noun | End of Day 장 마감 시점 |
+| `equity` | 자본 | — | noun | 계좌의 현재 자본 값 |
+| `exec` | 실행 | — | noun | 실행 또는 체결 강도 |
+| `execution` | 실행 | — | noun | 주문 실행 및 관리 관련 시스템 |
+| `exit` | 청산 | EXIT | noun | 포지션 청산 (반대매매로 종료) |
+| `fill` | 체결 | FILL | noun | 주문이 실제 체결된 결과 (가격·수량·시간 포함) |
+| `flat` | 플랫 | FLAT | noun | 포지션 없음 (현금 보유 상태) |
+| `flatten` | 청산 | — | verb | 모든 포지션을 닫는 행위 |
+| `goldenkey` | 골든키 | — | noun | 특정 종목 선정 기준 또는 신호 |
+| `intraday` | 당일 거래 | INTRA | noun | 당일 내 진입·청산을 완료하는 거래 (데이트레이딩) |
+| `leader` | 대장 | — | noun | 섹터를 주도하는 종목 |
+| `limit` | 한도/지정가 | — | noun | 가격 제한 또는 지정가 주문 |
+| `live` | 실전 | — | adj | 실제 자금으로 진행하는 |
+| `long` | 롱 | LONG | noun | 매수 포지션 방향 (가격 상승 기대) |
+| `loss` | 손실 | — | noun | 거래에서 발생한 손실 |
+| `margin` | 증거금 | — | noun | 포지션 유지를 위한 담보금 |
+| `mock` | 모의 | — | adj | 실제 자금 없이 시뮬레이션하는 |
+| `momentum` | 모멘텀 | — | noun | 가격 추세의 강도 |
+| `order` | 주문 | ORD | noun | 브로커에 전송된 실제 주문 객체 |
+| `orderbook` | 호가 | OB | noun | 매수·매도 호가창 스냅샷 |
+| `overnight` | 오버나이트 | OVNT | noun | 당일 청산하지 않고 다음날까지 보유하는 거래 |
+| `partial` | 부분 | — | adj | 전체 중 일부만 처리된 |
+| `pnl` | 손익 | — | noun | Profit and Loss 손익 |
+| `position` | 포지션 | POS | noun | 현재 보유 중인 종목/계약 상태 (수량, 평균단가, 미실현손익) |
+| `positions` | 포지션들 | — | noun | 복수의 포지션 |
+| `profit` | 수익 | — | noun | 거래에서 발생한 이익 |
+| `pullback` | 눌림 | PB | noun | 상승 추세 중 일시적으로 되돌리는 구간에서 진입하는 패턴 |
+| `realized` | 실현 | — | adj | 청산 완료되어 확정된 |
+| `reentry` | 재진입 | — | noun | 거래에서 재진입할 수 있는지 여부를 결정하는 설정. |
+| `risk` | 리스크 | — | noun | 손실 가능성 또는 위험도 |
+| `sell` | 매도 | SELL | noun | 매도 주문 |
+| `short` | 숏 | SHORT | noun | 매도 포지션 방향 (가격 하락 기대) |
+| `signal` | 시그널 | SIG | noun | 진입 또는 청산 판단 결과. signals 모듈만 생성 가능. |
+| `slippage` | 슬리피지 | SLIP | noun | 주문 가격과 실제 체결 가격의 차이 |
+| `split` | 분할 | — | verb | 수량을 여러 번에 나눠 처리 |
+| `stop` | 정지/손절 | — | noun | 손실 한도 도달 시 포지션 청산 |
+| `stops` | 손절들 | — | noun | 복수의 손절 조건 |
+| `swing` | 스윙 | — | noun | 수일~수주에 걸친 중기 매매 |
+| `take` | 취득 | — | verb | 목표 수익을 달성하여 청산 |
+| `tick` | 틱 | TK | noun | 최소 가격 변동 단위 또는 실시간 시세 스트림 |
+| `trade` | 거래 | — | noun | 개별 매매 거래 |
+| `trading` | 거래 | — | noun | 매매 거래 행위 또는 거래 관련 |
+| `trailing` | 추적 | — | adj | 수익에 따라 이동하는 |
+| `universe` | 유니버스 | — | noun | 거래 대상이 되는 종목 또는 자산의 집합입니다. |
+| `unrealized` | 미실현 | — | adj | 아직 청산되지 않은 |
+| `volatility` | 변동성 | — | noun | 가격 변동의 폭 |
+| `vwap` | 거래량 가중 평균가 | VWAP | noun | Volume Weighted Average Price. 시가총액 가중 평균 체결가. |
 
-## 🔧 툴 / 플랫폼 (Tools & Platforms)
+### market
 
-| 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
-|--------|--------|-----------|------------|----------|------|
-| KIS API | `Korea Investment & Securities API` | `kis` | `KIS` | `tool` | 한국투자증권 REST API. 한국주식·미국주식 주문/시세 브로커. ❌ NOT: `KR_STOCK`, `krStock` |
-| MT5 | `MetaTrader 5` | `mt5` | `MT5` | `tool` | 해외선물 접근 플랫폼. Windows 전용. 시장명이 아닌 툴명. ❌ NOT: `fxFutures`, `FX_FUT` |
-| MT5 브릿지 | `MT5 Bridge` | `mt5Bridge` | `MT5B` | `tool`, `infra` | WSL에서 MT5 프록시로 RPC 호출하는 클라이언트 모듈 |
-| MT5 프록시 | `MT5 Proxy` | `mt5Proxy` | `MT5P` | `tool`, `infra`, `config` | WSL Python → Windows MT5 연결을 중계하는 FastAPI 서버 |
-| 업비트 | `Upbit` | `upbit` | `UPBIT` | `tool` | 암호화폐 거래소. crypto 마켓의 브로커. |
-| 인증 | `Authentication` | `auth` | `AUTH` | `tool`, `system` | 브로커 API 인증 토큰 발급·갱신 (KIS OAuth, Upbit JWT 등) |
+| 단어 | 한글 | 약어 | 품사 | 설명 |
+|------|------|------|------|------|
+| `1m` | 1분 | — | noun | 1분 단위 시간 간격 |
+| `bars` | 캔들 데이터 | BARS | noun | 시계열 가격 데이터 (시가, 고가, 저가, 종가) |
+| `candle` | 캔들 | — | noun | 캔들스틱 차트 봉 |
+| `categories` | 분류 | — | noun | 종목 또는 테마의 분류 정보 |
+| `classification` | 분류 | — | noun | 종목 또는 시장 상황에 대한 분류 결과 |
+| `close` | 종가 | — | noun | 봉의 마지막 가격 |
+| `code` | 코드 | CODE | noun | 종목 코드 또는 기타 식별 코드 |
+| `crypto` | 코인거래 | — | noun | 암호화폐 거래 시장 (업비트 KRW 마켓) |
+| `direction` | 방향 | — | noun | 시그널의 매수/매도 방향 |
+| `exchange` | 거래소 | — | noun | 거래가 이루어지는 금융 거래소 |
+| `futures` | 선물 | — | noun | 선물 상품 |
+| `fx` | 외환 | — | prefix | 외환 시장 prefix |
+| `history` | 히스토리 | — | noun | 과거 데이터 또는 이벤트 기록 |
+| `kosdaq` | 코스닥 | — | noun | 한국 코스닥 시장 |
+| `kospi` | 코스피 | KOSPI | noun | 한국 종합주가지수 (Korea Composite Stock Price Index) |
+| `kr` | 한국 | — | prefix | 한국 시장 prefix |
+| `lower` | 아래 | — | adj | 아래쪽에 위치한 |
+| `market` | 시장 | — | noun | 거래가 이루어지는 시장 |
+| `meta` | 메타 정보 | META | noun |  |
+| `open` | 시가 | — | noun | 봉의 시작 가격 |
+| `personality` | 성격 | — | noun | 봉의 형태적 특성 |
+| `ranking` | 랭킹 | — | noun | 순위 결과 |
+| `rankings` | 랭킹들 | — | noun | 복수의 순위 결과 |
+| `realtime` | 실시간 | — | adj | 실시간으로 처리되는 |
+| `score` | 점수 | — | noun | 특정 지표의 수치화 결과 |
+| `sector` | 섹터 | — | noun | 산업 분류 업종 |
+| `stock` | 주식 | — | noun | 주식 종목 |
+| `strength` | 강도 | — | noun | 시장 또는 종목의 상승/하락 강도 |
+| `symbol` | 종목 | — | noun | 거래 종목 코드 |
+| `themes` | 테마 목록 | — | noun | 시스템에서 관리되는 전체 테마 목록을 나타내는 테이블입니다. |
+| `trades` | 거래 목록 | — | noun | 시스템에서 발생한 거래들의 목록입니다. |
+| `transitions` | 전환 목록 | — | noun | 가능한 모든 상태 변화의 목록입니다. |
+| `upper` | 위 | — | adj | 위쪽에 위치한 |
+| `us` | 미국 | — | prefix | 미국 시장 prefix |
+| `value` | 거래대금 | — | noun | 가격×수량의 거래 금액 |
+| `wick` | 꼬리 | — | noun | 캔들의 몸통 밖 선 |
 
----
+### system
 
-## 🏗️  인프라 (Infrastructure)
+| 단어 | 한글 | 약어 | 품사 | 설명 |
+|------|------|------|------|------|
+| `after` | 이후 | — | adv | 특정 시각 이후 |
+| `backtest` | 백테스트 | — | noun | 과거 데이터 기반 전략 검증 |
+| `cancelled` | 취소 | CNCL | noun | 주문 취소됨 |
+| `chart` | 차트 | CHART | noun | 시각화를 위한 차트 설정 |
+| `closed` | 종료됨 | — | noun | 주문, 거래 또는 프로세스가 종료되었음을 나타내는 상태 |
+| `cluster` | 클러스터 | — | noun | 데이터 클러스터링 결과 또는 구조 |
+| `clustering` | 클러스터링 | — | noun | 데이터를 클러스터로 그룹화하는 설정 |
+| `collector` | 수집기 | — | noun | 데이터를 수집하는 컴포넌트 |
+| `colors` | 색상 | — | noun | UI 또는 보고서에 사용되는 색상 설정 |
+| `command` | 명령어 | — | noun | 시스템 제어를 위한 명령어 설정 |
+| `complete` | 완료 | — | noun | 작업 또는 프로세스가 완료되었음을 나타내는 상태 |
+| `completed` | 완료됨 | — | noun | 주문, 작업 또는 프로세스가 완료되었음을 나타내는 상태 |
+| `confidence` | 신뢰도 | — | noun | 신호 또는 예측의 신뢰 수준 |
+| `config` | 설정 | — | noun | 시스템 설정값 |
+| `confirmed` | 확인됨 | — | noun | 어떤 이벤트나 상태가 최종적으로 확인되었음을 나타내는 플래그 |
+| `connected` | 연결됨 | — | noun | 서비스 또는 시스템과의 연결 상태 |
+| `deny` | 거부 | — | verb | 진입 조건 불충족으로 거부 |
+| `disabled` | 비활성화 | OFF | noun | 기능 비활성화 상태 |
+| `enabled` | 활성화 | ON | noun | 기능 활성화 상태 |
+| `end` | 종료 | — | noun | 종료 시각 또는 동작 |
+| `engine` | 엔진 | — | noun | 시스템의 핵심 처리 로직을 담당하는 부분 |
+| `error` | 오류 | ERR | noun | 오류 발생 상태 |
+| `event` | 이벤트 | — | noun | 시스템 내 발생 사건 |
+| `events` | 이벤트들 | — | noun | 복수의 이벤트 |
+| `extended` | 확장 | — | adj | 기본 범위를 넘어 확장된 |
+| `failed` | 실패 | FAIL | noun | 시스템 오류로 처리 실패 |
+| `filled` | 체결 완료 | FLLD | noun | 주문 전량 체결 완료 |
+| `filter` | 필터 | — | noun | 조건에 맞게 거르는 컴포넌트 |
+| `generator` | 생성기 | — | noun | 결과물을 생성하는 컴포넌트 |
+| `guard` | 가드 | — | noun | 프로세스 보호 컴포넌트 |
+| `guideline` | 가이드라인 | GUIDE | noun | 프로젝트 운영/개발 지침 문서 단위 |
+| `halted` | 중단됨 | — | noun | 거래 또는 시스템이 일시적으로 중단된 상태 |
+| `handlers` | 핸들러 | — | noun | 특정 이벤트를 처리하는 객체 또는 함수들의 집합 |
+| `health` | 상태 | — | noun | 시스템 컴포넌트의 정상 작동 여부 (헬스 체크) |
+| `info` | 정보 | — | noun | 메타 정보 |
+| `intent` | 의도 | — | noun | 실행 전 주문 의사결정 객체 |
+| `interval` | 간격 | — | noun | 데이터 수집, 분석 또는 작업 실행 간격 |
+| `kill` | 킬 | — | verb | 강제 종료 또는 비활성화 |
+| `local` | 로컬 | — | adj | 원격이 아닌 로컬 환경 |
+| `log` | 로그 | — | noun | 시스템 이벤트 기록 |
+| `main` | 메인 실행 | MAIN | noun |  |
+| `manager` | 관리자 | — | noun |  |
+| `manual` | 수동 | — | noun |  |
+| `method` | 방법 | — | noun |  |
+| `no` | 금지 | — | prefix | 부정 또는 금지를 나타내는 접두사 |
+| `node` | 노드 | — | noun | 분산 환경의 개별 머신/컨테이너 |
+| `notification` | 알림 | NOTI | noun | 시스템 알림 기능(텔레그램 등) 모듈 단위 |
+| `notifier` | 알리미 | — | noun | 알림 발송 컴포넌트 |
+| `offline` | 오프라인 | OFLN | noun | 네트워크/서비스 미연결 상태 |
+| `online` | 온라인 | ONLN | noun | 네트워크/서비스 연결 상태 |
+| `pending` | 대기 | PEND | noun | 주문 생성 후 브로커 전송 전 대기 상태 |
+| `process` | 프로세스 | — | noun | 실행 중인 프로그램 |
+| `ranker` | 랭커 | — | noun | 순위를 산정하는 컴포넌트 |
+| `reboot` | 재시작 | — | noun | 시스템 정기 재시작 |
+| `record` | 기록 | — | noun | 개별 거래 이력 |
+| `reference` | 레퍼런스 | REF | noun | 외부 사양/참고 문서 보관 단위 |
+| `rejected` | 거절 | RJCT | noun | 브로커에 의해 주문 거절됨 |
+| `relaxed` | 완화된 | — | noun | 특정 조건을 완화하여 적용하는 설정. |
+| `replay` | 리플레이 | — | noun | 과거 데이터 재생 시뮬레이션 |
+| `report` | 리포트 | — | noun | 보고서 |
+| `reporting` | 리포팅 | — | noun | 보고서 생성 설정 |
+| `role` | 역할 | ROLE | noun | 서비스 또는 노드의 역할 (primary/replica 등) |
+| `runner` | 실행기 | — | noun | 작업을 실행하는 컴포넌트 |
+| `running` | 실행 중 | RUN | noun | 서비스 실행 중 상태 |
+| `runtime` | 런타임 | — | noun | 프로그램이 실행되는 환경 또는 시간. |
+| `scanner` | 스캐너 | — | noun | 시장이나 종목을 탐색하고 분석하는 모듈 또는 기능. |
+| `scheduler` | 스케줄러 | — | noun | 작업 예약 및 관리를 담당하는 시스템 컴포넌트 또는 설정. |
+| `scope` | 범위 | SCOPE | noun | 설정이나 작업이 적용되는 범위를 정의하는 설정. |
+| `scorer` | 스코어러 | — | noun | 종목 또는 신호에 점수를 부여하는 모듈. |
+| `scoring` | 스코어링 | — | noun | 점수 산정 로직 |
+| `script` | 스크립트 | SCRIPT | noun | 실행 자동화/운영 작업용 스크립트 단위 |
+| `selector` | 셀렉터 | — | noun | 종목 선정 컴포넌트 |
+| `server` | 서버 | — | noun | 서버 프로세스 |
+| `service` | 서비스 | — | noun | 독립적으로 실행되는 프로세스 |
+| `sessions` | 세션들 | — | noun | 시장 세션 설정 모음 |
+| `settings` | 설정들 | — | noun | 시스템 설정값 모음 |
+| `side` | 방향 | — | noun | 매수/매도 방향 |
+| `snapshot` | 스냅샷 | — | noun | 특정 시점의 상태 저장본 |
+| `snapshots` | 스냅샷들 | — | noun | 복수의 스냅샷 |
+| `start` | 시작 | — | noun | 시작 시각 또는 동작 |
+| `starting` | 시작 중 | START | noun | 서비스 시작 중 (초기화 진행 중) |
+| `status` | 상태 | — | noun | 현재 처리 상태 |
+| `stopped` | 중지 | STOP | noun | 서비스 중지 상태 |
+| `strategy` | 전략 | — | noun | 매매 전략 설정 |
+| `submitted` | 접수 | SUBM | noun | 브로커에 주문 전송 완료 |
+| `switch` | 스위치 | — | noun | 기능 활성화/비활성화 제어 |
+| `system` | 시스템 | — | noun | 전체 소프트웨어 시스템 |
+| `task` | 작업 | — | noun | 스케줄링되는 실행 단위 |
+| `test` | 테스트 | TEST | noun | 검증 코드/테스트 케이스 단위 |
+| `time` | 시각 | — | noun | 특정 시점 |
+| `timeframe` | 타임프레임 | — | noun | 차트 또는 데이터 분석에서 사용되는 시간 단위 (예: 1분, 5분, 1시간). |
+| `timeframes` | 타임프레임 목록 | — | noun | 시스템에서 지원하거나 사용되는 다양한 시간대 목록입니다. |
+| `timezone` | 시간대 | — | noun | 시스템 또는 특정 작업에서 사용되는 표준 시간대 설정입니다. |
+| `token` | 토큰 | TOKEN | noun | 인증 또는 세션 관리에 사용되는 보안 토큰입니다. |
+| `tool` | 도구 | TOOL | noun | 유틸리티성 기능을 제공하는 도구 모듈/디렉토리 |
+| `top_n` | 상위 N개 | — | noun | 데이터 목록에서 상위 N개의 항목을 선택하거나 필터링할 때 사용되는 파라미터입니다. |
+| `tracking` | 추적 | — | noun | 종목 모니터링 시작 시각 |
+| `tradability` | 거래 가능성 | — | noun | 종목이나 상품의 거래 가능 여부 또는 수준을 나타내는 지표입니다. |
+| `transaction` | 거래 ID | — | noun | API 요청 식별자 |
+| `transition` | 전환 | — | noun | 상태 머신 등에서 한 상태에서 다른 상태로의 변화를 나타냅니다. |
+| `trend` | 추세 | TREND | noun | 시장 가격의 전반적인 방향성을 나타냅니다. |
+| `type` | 유형 | — | noun | 분류 유형 |
+| `used` | 사용됨 | — | adj | 현재 사용 중인 |
+| `var` | 변수 | — | noun | 환경변수 |
+| `work` | 작업 | — | noun | 일과 시작 |
 
-| 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
-|--------|--------|-----------|------------|----------|------|
-| PostgreSQL | `PostgreSQL` | `postgresql` | `PG_DB` | `infra` | System of Record. 모든 거래·시세·계좌 데이터의 최종 진실 저장소. *(⚠️ v2: abbr_short를 PG_DB로 변경 (process_guard의 PGD와 구분))* |
-| Redis | `Redis` | `redis` | `REDIS` | `infra` | 실시간 캐시 + 이벤트 스트림. DB가 원본이며 Redis는 파생값. |
-| 노드명 | `Node Name` | `nodeName` | `NODE` | `infra`, `config` | 서버 식별자. 멀티노드 배포 시 노드 구분에 사용. |
-| 서비스 매니저 | `Service Manager` | `serviceManager` | `SVC_MGR` | `infra`, `system` | 멀티서비스(DB/LOG/FX/KR/US/Crypto) 시작·중지·상태 관리 |
-| 오케스트레이터 | `Orchestrator` | `orchestrator` | `ORCH` | `infra`, `system` | 전체 거래 루프를 조율하는 최상위 실행 컨트롤러 |
-| 워치독 | `Watchdog` | `watchdog` | `WDG` | `infra`, `system` | 서비스 비정상 종료 감지 및 자동 재시작 |
-| 태스크 스케줄러 | `Task Scheduler` | `taskScheduler` | `SCHED` | `infra`, `system` | 일별/시간별 예약 작업 실행 (리부트, 리포트 생성 등) |
-| 프로세스 가드 | `Process Guard` | `processGuard` | `PGD` | `infra`, `system` | 중복 프로세스 실행 방지 (PID 파일 기반) *(⚠️ v2: abbr_short를 PGD로 변경 (postgresql의 PG_DB와 구분))* |
-| 하트비트 | `Heartbeat` | `heartbeat` | `HB` | `infra`, `system` | 시스템 생존 신호. 주기적으로 Telegram system 봇에 전송. |
+### infra
 
----
+| 단어 | 한글 | 약어 | 품사 | 설명 |
+|------|------|------|------|------|
+| `adapter` | 어댑터 | — | noun | 외부 API 연결 어댑터 |
+| `adapters` | 어댑터들 | — | noun | 브로커 연결 어댑터 모음 |
+| `app` | 앱 | — | noun | 애플리케이션 키 |
+| `auth` | 인증 | AUTH | noun | 브로커 API 인증 토큰 발급·갱신 (KIS OAuth, Upbit JWT 등) |
+| `bot` | 봇 | — | noun | 자동화 프로그램 |
+| `bridge` | 브릿지 | — | noun | 두 시스템을 연결하는 컴포넌트 |
+| `cfg` | 설정 | — | noun | 설정 키 접두사 |
+| `cls` | 클래스 | — | noun | 클래스 정의 접두사 |
+| `collectors` | 수집기들 | — | noun | 데이터 수집 컴포넌트 모음 |
+| `common` | 공통 | — | adj | 전 모듈 공유 공통 코드 |
+| `dashboard` | 대시보드 | — | noun | 모니터링 UI |
+| `db` | 데이터베이스 | — | noun | 데이터베이스 접두사 |
+| `dsn` | 접속 문자열 | — | noun | Database Source Name |
+| `enable` | 활성화 | — | verb | 기능을 켜는 설정 |
+| `env` | 환경변수 | — | noun | 환경변수 접두사 |
+| `fills` | 체결들 | — | noun | 체결 이력 테이블 |
+| `heartbeat` | 하트비트 | HB | noun | 시스템 생존 신호. 주기적으로 Telegram system 봇에 전송. |
+| `id` | 식별자 | — | noun | 고유 식별자 |
+| `key` | 키 | — | noun | 인증 키 |
+| `kis` | KIS API | KIS | noun | 한국투자증권 REST API. 한국주식·미국주식 주문/시세 브로커. |
+| `logs` | 로그들 | — | noun | 로그 저장 폴더 |
+| `master` | 마스터 | — | noun | 기준 데이터 테이블 |
+| `mod` | 모듈 | — | noun | 모듈/폴더 접두사 |
+| `mt5` | MT5 | MT5 | noun | 해외선물 접근 플랫폼. Windows 전용. 시장명이 아닌 툴명. |
+| `name` | 이름 | — | noun | 식별 이름 |
+| `notifications` | 알림들 | — | noun | 알림 발송 컴포넌트 모음 |
+| `orchestrator` | 오케스트레이터 | ORCH | noun | 전체 거래 루프를 조율하는 최상위 실행 컨트롤러 |
+| `orders` | 주문들 | — | noun | 주문 이력 테이블 |
+| `pg` | PostgreSQL | — | proper | PostgreSQL 데이터베이스 |
+| `port` | 포트 | — | noun | 네트워크 포트 번호 |
+| `postgresql` | PostgreSQL | — | noun | System of Record. 모든 거래·시세·계좌 데이터의 최종 진실 저장소. |
+| `project` | 프로젝트 | — | noun | 프로젝트 루트 |
+| `proxy` | 프록시 | — | noun | 통신을 중계하는 서버 |
+| `redis` | Redis | REDIS | noun | 실시간 캐시 + 이벤트 스트림. DB가 원본이며 Redis는 파생값. |
+| `root` | 루트 | — | noun | 최상위 경로 |
+| `secret` | 시크릿 | — | noun | 비밀 인증 키 |
+| `signals` | 시그널들 | — | noun | 시그널 이력 테이블 |
+| `storage` | 저장소 | — | noun | 데이터 저장 추상화 레이어 |
+| `symbols` | 종목들 | — | noun | 종목 전체 테이블 |
+| `telegram` | 텔레그램 | — | proper | 텔레그램 메시징 서비스 |
+| `ticks` | 틱들 | — | noun | 틱 데이터 테이블 |
+| `upbit` | 업비트 | UPBIT | noun | 암호화폐 거래소. crypto 마켓의 브로커. |
+| `url` | URL | — | noun | Uniform Resource Locator |
+| `watchdog` | 워치독 | WDG | noun | 서비스 비정상 종료 감지 및 자동 재시작 |
 
-## 📐 도메인 개념 (Domain Concepts)
+### general
 
-| 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
-|--------|--------|-----------|------------|----------|------|
-| 거래대금 점수 | `Trading Value Score` | `tradingValueScore` | `TVS` | `domain`, `selector` | 거래대금 기반 유동성 점수 |
-| 거래량 가중 평균가 | `VWAP` | `vwap` | `VWAP` | `domain`, `data` | Volume Weighted Average Price. 시가총액 가중 평균 체결가. |
-| 계좌 스냅샷 | `Account Snapshot` | `accountSnapshot` | `ASNAP` | `domain`, `account` | 특정 시점의 계좌 잔고·포지션 상태 스냅샷 |
-| 눌림 | `Pullback` | `pullback` | `PB` | `domain`, `selector` | 상승 추세 중 일시적으로 되돌리는 구간에서 진입하는 패턴 |
-| 당일 거래 | `Intraday` | `intraday` | `INTRA` | `domain`, `session` | 당일 내 진입·청산을 완료하는 거래 (데이트레이딩) |
-| 대장주 | `Leader Stock` | `leaderStock` | `LEAD` | `domain`, `selector` | 섹터를 이끄는 핵심 종목. 조건식 기반 스캔으로 선정. |
-| 대장주 후보 | `Leader Candidates` | `leaderCandidates` | `LCAND` | `domain`, `selector` | 대장주 선정 전 1차 필터링된 후보 종목 목록 |
-| 돌파 | `Breakout` | `breakout` | `BRK` | `domain`, `selector` | 직전 N봉 고가를 현재가가 상향 돌파하는 진입 패턴 |
-| 롱 | `Long` | `long` | `LONG` | `domain` | 매수 포지션 방향 (가격 상승 기대) |
-| 리부트 시각 | `Reboot Time` | `rebootTime` | `RBT` | `domain`, `session`, `system` | 일일 정기 프로세스 재시작 시각 |
-| 리스크 매니저 | `Risk Manager` | `riskManager` | `RM` | `domain`, `risk` | 일일 손실 한도, 포지션 한도, 킬스위치 판단 담당 |
-| 마켓 스캐너 | `Market Scanner` | `marketScanner` | `SCAN` | `domain`, `selector` | 조건식 기반 대장주 스캔 실행 모듈 |
-| 매도 | `Sell` | `sell` | `SELL` | `domain`, `order` | 매도 주문 |
-| 매수 | `Buy` | `buy` | `BUY` | `domain`, `order` | 매수 주문 |
-| 모멘텀 점수 | `Momentum Score` | `momentumScore` | `MOM` | `domain`, `selector` | 가격 모멘텀(추세 강도) 점수 |
-| 모의 거래 | `Mock Trading` | `mockTrading` | `MOCK` | `domain`, `system` | 실제 자금 없이 시뮬레이션으로 진행하는 거래 |
-| 미실현 손익 | `Unrealized PnL` | `unrealizedPnl` | `UPNL` | `domain`, `account` | 현재 보유 중인 포지션의 평가 손익 |
-| 반등 불발 청산 | `No Bounce Exit` | `noBounceExit` | `NBE` | `domain`, `risk` | 반등 신호 없이 일정 시간 경과 시 청산 |
-| 변동성 점수 | `Volatility Score` | `volatilityScore` | `VOLS` | `domain`, `selector`, `risk` | 가격 변동성 점수. 높을수록 리스크 높음. |
-| 봉 | `Bar` | `bar` | `BAR` | `domain`, `data` | OHLCV 캔들(봉) 데이터. M1 기준. |
-| 분할 매도 | `Split Sell` | `splitSell` | `SSELL` | `domain`, `order` | 분할 매도 (여러 번 나눠서 청산) |
-| 분할 매수 | `Split Buy` | `splitBuy` | `SBUY` | `domain`, `order` | 분할 매수 (여러 번 나눠서 진입) |
-| 사용 증거금 | `Margin Used` | `marginUsed` | `MRG` | `domain`, `account`, `risk` | 현재 포지션 유지에 사용 중인 증거금 |
-| 섹터 강도 점수 | `Sector Strength Score` | `sectorStrengthScore` | `SSS` | `domain`, `selector` | 섹터 내 비교 강도 점수 |
-| 섹터 랭킹 | `Sector Ranking` | `sectorRanking` | `SEC_RNK` | `domain`, `selector` | 섹터별 강도 점수 순위 |
-| 섹터 점수 | `Sector Score` | `sectorScore` | `SS` | `domain`, `selector` | 섹터 강도를 수치화한 점수 |
-| 손절 | `Stop Loss` | `stopLoss` | `SL` | `domain`, `risk` | 손실 한도 도달 시 강제 청산. Hard Stop. |
-| 숏 | `Short` | `short` | `SHORT` | `domain` | 매도 포지션 방향 (가격 하락 기대) |
-| 수수료 | `Commission` | `commission` | `COMM` | `domain`, `account` | 거래 수수료 (거래당 비용) |
-| 슬리피지 | `Slippage` | `slippage` | `SLIP` | `domain`, `order`, `risk` | 주문 가격과 실제 체결 가격의 차이 |
-| 시간외 시작 | `Extended Market Start` | `extendedMarketStart` | `EXT_ST` | `domain`, `session` | 시간외 거래 시작 시각 |
-| 시간외 종료 | `Extended Market End` | `extendedMarketEnd` | `EXT_END` | `domain`, `session` | 시간외 거래 종료 시각 |
-| 시그널 | `Signal` | `signal` | `SIG` | `domain`, `module` | 진입 또는 청산 판단 결과. signals 모듈만 생성 가능. |
-| 시그널 방향 | `Signal Direction` | `signalDirection` | `DIR` | `domain`, `status` | LONG / SHORT / FLAT — 시그널이 제안하는 포지션 방향 |
-| 시그널 엔진 | `Signal Engine` | `signalEngine` | `SIG_ENG` | `domain` | 진입·청산 조건을 판단하는 핵심 로직 단위 |
-| 시장 강도 | `Market Strength` | `marketStrength` | `MS` | `domain`, `selector`, `data` | 전체 시장(코스피·코스닥) 상승/하락 강도 지표 |
-| 시장가 주문 | `Market Order` | `marketOrder` | `MKT_ORD` | `domain`, `order` | 현재 시장가로 즉시 체결되는 주문 *(⚠️ v2: abbr_short를 MKT_ORD로 변경 (cls_market의 MKT와 충돌 해소))* |
-| 실시간 로그 | `Realtime Log` | `realtimeLog` | `RLOG` | `domain`, `data`, `system` | Redis 스트림 기반 실시간 이벤트 로그 *(⚠️ v2: abbr_short를 RLOG로 변경 (파일 로그 mod_logs의 LOG와 충돌 해소))* |
-| 실전 거래 | `Live Trading` | `liveTrading` | `LIVE` | `domain`, `system` | 실제 자금으로 진행하는 거래 |
-| 실현 손익 | `Realized PnL` | `realizedPnl` | `RPNL` | `domain`, `account` | 청산 완료된 거래의 확정 손익 |
-| 아랫꼬리 | `Lower Wick` | `lowerWick` | `LW` | `domain`, `data` | 캔들 저가에서 몸통까지의 꼬리 (매수 지지 지표) |
-| 업무 시작 | `Work Start` | `workStart` | `WS` | `domain`, `session` | 일일 업무 시작 시각 (사전 준비 포함) |
-| 연속 손절 횟수 | `Consecutive Stops` | `consecutiveStops` | `CS` | `domain`, `risk` | 연속 손절 한도. 도달 시 당일 진입 차단. |
-| 오버나이트 | `Overnight` | `overnight` | `OVNT` | `domain`, `session` | 당일 청산하지 않고 다음날까지 보유하는 거래 *(⚠️ v2: abbr_short를 OVNT로 변경 (enabled/online의 ON과 충돌 해소))* |
-| 윗꼬리 | `Upper Wick` | `upperWick` | `UW` | `domain`, `data` | 캔들 고가에서 몸통까지의 꼬리 (매도 압력 지표) |
-| 익절 | `Take Profit` | `takeProfit` | `TP` | `domain`, `risk` | 목표 수익 도달 시 청산 |
-| 일일 최대 손실 | `Max Daily Loss` | `maxDailyLoss` | `MDL` | `domain`, `risk` | 당일 허용 최대 손실액. 도달 시 전량 청산 + 진입 차단. |
-| 장 시작 | `Market Open` | `marketOpen` | `MO` | `domain`, `session` | 해당 마켓의 거래 시작 시각 |
-| 장 종료 | `Market Close` | `marketClose` | `MC` | `domain`, `session` | 해당 마켓의 거래 종료 시각 |
-| 장 종료 전량 청산 | `End-of-Day Flatten` | `eodFlatten` | `EODF` | `domain`, `order`, `session`, `risk` | 세션 종료 시각에 모든 포지션을 강제 청산 |
-| 종목 랭킹 | `Symbol Ranking` | `symbolRanking` | `SYM_RNK` | `domain`, `selector` | 종목별 점수 순위 |
-| 종목 점수 | `Stock Score` | `stockScore` | `STS` | `domain`, `selector` | 개별 종목 강도를 수치화한 점수 |
-| 주문 | `Order` | `order` | `ORD` | `domain`, `order` | 브로커에 전송된 실제 주문 객체 |
-| 주문 상태 | `Order Status` | `orderStatus` | `OS` | `domain`, `status`, `order` | 주문 생명주기 상태: pending→submitted→filled/cancelled/rejected |
-| 주문 의도 | `Order Intent` | `orderIntent` | `OI` | `domain`, `order` | 주문 실행 전 의사결정 내용. execution이 생성하여 adapter에 전달. |
-| 지정가 주문 | `Limit Order` | `limitOrder` | `LMT` | `domain`, `order` | 지정 가격 이하(매수) 또는 이상(매도)에서만 체결되는 주문 |
-| 진입 | `Entry` | `entry` | `ENT` | `domain`, `order` | 포지션 진입 (매수/매도 시작) |
-| 진입 차단 시각 | `No Entry After` | `noEntryAfter` | `NEA` | `domain`, `session`, `risk` | 이 시각 이후 신규 진입 차단 |
-| 청산 | `Exit` | `exit` | `EXIT` | `domain`, `order` | 포지션 청산 (반대매매로 종료) |
-| 청산 거래 | `Closed Trade` | `closedTrade` | `CT` | `domain`, `order` | 청산 완료된 거래. 손익이 확정된 상태. |
-| 체결 | `Fill` | `fill` | `FILL` | `domain`, `order` | 주문이 실제 체결된 결과 (가격·수량·시간 포함) |
-| 체결 강도 | `Execution Strength` | `execStrength` | `ES` | `domain`, `data` | 실시간 매수/매도 체결 강도 원본값 |
-| 체결 강도 점수 | `Execution Strength Score` | `execStrengthScore` | `ESS` | `domain`, `selector` | 매수 체결 강도 점수 (매수강도/매도강도 비율) |
-| 최대 동시 보유 수 | `Max Open Positions` | `maxOpenPositions` | `MOP` | `domain`, `risk` | 동시에 보유 가능한 최대 포지션 수 |
-| 캔들 성격 | `Candle Personality` | `candlePersonality` | `CP` | `domain`, `selector`, `data` | 캔들 형태 분석 점수 (윗꼬리·아랫꼬리 비율 기반) |
-| 킬스위치 | `Kill Switch` | `killSwitch` | `KSW` | `domain`, `risk`, `system` | 파일 기반 전체 거래 차단 장치. KILL_SWITCH 파일 존재 시 진입 전면 차단. |
-| 트래킹 시작 | `Tracking Start` | `trackingStart` | `TRK_ST` | `domain`, `session` | 시세 추적 및 신호 감지 시작 시각 |
-| 트랜잭션 ID | `Transaction ID` | `transactionId` | `TR_ID` | `domain`, `order`, `infra` | 주문-체결-청산을 연결하는 고유 식별자 |
-| 트레일링 스탑 | `Trailing Stop` | `trailingStop` | `TSL` | `domain`, `risk` | 진입 후 최고가 대비 일정 % 이하로 하락 시 청산. 수익 보호. *(⚠️ v2: abbr_short를 TSL로 변경 (task_scheduler의 TS와 충돌 해소))* |
-| 틱 | `Tick` | `tick` | `TK` | `domain`, `data` | 최소 가격 변동 단위 또는 실시간 시세 스트림 |
-| 포지션 | `Position` | `position` | `POS` | `domain`, `order`, `account` | 현재 보유 중인 종목/계약 상태 (수량, 평균단가, 미실현손익) |
-| 포지션 크기 | `Position Size` | `positionSize` | `PSIZ` | `domain`, `risk`, `order` | 1회 진입 시 투입 금액 또는 계약 수 |
-| 플랫 | `Flat` | `flat` | `FLAT` | `domain` | 포지션 없음 (현금 보유 상태) |
-| 호가 | `Orderbook` | `orderbook` | `OB` | `domain`, `data` | 매수·매도 호가창 스냅샷 |
-| 활성 거래 | `Active Trade` | `activeTrade` | `AT` | `domain`, `order` | 현재 보유 중인 거래 (OPEN 상태). TradeJournal의 SoT. |
-
----
-
-## 📋 거래 / 주문 (Trading & Orders)
-
-| 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
-|--------|--------|-----------|------------|----------|------|
-| 거래 알림 | `Trade Notifier` | `tradeNotifier` | `TRD_NTF` | `order`, `report` | 체결·청산 이벤트를 Telegram market 봇으로 발송 |
-| 주문 테이블 | `Orders Table` | `dbOrders` | `ORD_DB` | `order`, `data`, `infra` | DB 주문 이력 테이블 *(⚠️ v2: abbr_long을 dbOrders로, abbr_short를 ORD_DB로 변경 (domain order와 구분))* |
-| 체결 테이블 | `Fills Table` | `dbFills` | `FILL_DB` | `order`, `data`, `infra` | DB 체결 이력 테이블 *(⚠️ v2: abbr_long을 dbFills로, abbr_short를 FILL_DB로 변경 (domain fill과 구분))* |
-
----
-
-## 📊 시장 데이터 (Market Data)
-
-| 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
-|--------|--------|-----------|------------|----------|------|
-| 1분봉 테이블 | `1-Minute Bars Table` | `bars1m` | `BAR1M` | `data`, `infra` | DB 1분 OHLCV 봉 데이터 |
-| KR 호가 스냅샷 테이블 | `KR Orderbook Snapshot Table` | `krOrderbookSnapshot` | `KR_OB_DB` | `data`, `infra` | DB KR 주식 호가 스냅샷 (1초 주기) |
-| 계좌 스냅샷 테이블 | `Account Snapshots Table` | `accountSnapshots` | `ASNAP` | `data`, `infra`, `account` | DB 계좌 스냅샷 이력 |
-| 리스크 이벤트 테이블 | `Risk Events Table` | `riskEvents` | `REVT` | `data`, `infra`, `risk` | DB 리스크 이벤트 이력 (킬스위치·일손 등) |
-| 섹터 랭킹 테이블 | `Sector Rankings Table` | `sectorRankings` | `SEC_RNK_DB` | `data`, `infra`, `selector` | DB 섹터 랭킹 스냅샷 *(⚠️ v2: abbr_short를 SEC_RNK_DB로 변경 (domain sector_ranking의 SEC_RNK와 구분))* |
-| 섹터 마스터 테이블 | `Sector Master Table` | `sectorMaster` | `SEC_MST` | `data`, `infra` | DB 섹터 마스터 (섹터코드·이름) |
-| 시그널 테이블 | `Signals Table` | `dbSignals` | `SIG_DB` | `data`, `infra` | DB 시그널 이력 저장 테이블 *(⚠️ v2: abbr_long을 dbSignals로 변경 (domain signal의 signals와 충돌 방지))* |
-| 종목 마스터 테이블 | `Symbols Table` | `symbols` | `SYM` | `data`, `infra` | DB 종목 마스터 (코드·이름·마켓) |
-| 주식 마스터 테이블 | `Stock Master Table` | `stockMaster` | `STK_MST` | `data`, `infra` | DB 한국주식 종목 마스터 |
-| 틱 테이블 | `Ticks Table` | `ticks` | `TK` | `data`, `infra` | DB 실시간 틱 데이터 |
-
----
-
-## ⚙️  시스템 운영 (System Operation)
-
-| 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
-|--------|--------|-----------|------------|----------|------|
-| 시스템 알림 | `System Notifier` | `systemNotifier` | `SYS_NTF` | `system`, `report` | 시스템 이벤트(장애·시작·종료)를 Telegram system 봇으로 발송 |
-| 역할 | `Role` | `role` | `ROLE` | `system`, `config` | 서비스 또는 노드의 역할 (primary/replica 등) |
-
----
-
-## 🔑 설정 / 환경변수 (Config & Env)
-
-| 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
-|--------|--------|-----------|------------|----------|------|
-| FX 마켓 활성화 | `Enable FX Market Env` | `enableFx` | `E_FX` | `config`, `market` | .env > E_FX — 외환선물 마켓 활성화 여부 *(⚠️ v2: E_MT5 → E_FX로 변경 (MT5는 툴명이므로 마켓 활성화 키에 사용 부적절))* |
-| KIS 계좌번호 | `KIS Account No Env` | `kisAccountNo` | `KIS_ACCT` | `config` | .env > KIS_ACCT — KIS 실전 계좌번호 |
-| KIS 모의 앱키 | `KIS Mock App Key Env` | `kisMockAppKey` | `KIS_MAK` | `config` | .env > KIS_MAK — KIS 모의투자 앱키 |
-| KIS 앱시크릿 | `KIS App Secret Env` | `kisAppSecret` | `KIS_AS` | `config` | .env > KIS_AS — KIS API 앱시크릿 |
-| KIS 앱키 | `KIS App Key Env` | `kisAppKey` | `KIS_AK` | `config` | .env > KIS_AK — KIS API 앱키 |
-| KR 마켓 활성화 | `Enable KR Market Env` | `enableKr` | `E_KR` | `config`, `market` | .env > E_KR — 한국주식 마켓 활성화 여부 |
-| KR 셀렉터 설정 | `KR Selector Config` | `krSelector` | `KR_SEL` | `config`, `selector` | settings.yaml > kr_selector 섹션 |
-| KR 전략 설정 | `KR Strategy Config` | `krStrategy` | `KR_STR` | `config` | settings.yaml > kr_strategy 섹션 |
-| MT5 프록시 URL | `MT5 Proxy URL Env` | `mt5ProxyUrl` | `MT5P` | `config`, `infra` | .env > MT5P — MT5 프록시 서버 URL (툴 접속 설정이므로 MT5 유지) |
-| PostgreSQL DSN | `PostgreSQL DSN Env` | `pgDsn` | `PG_DSN` | `config`, `infra` | .env > PG_DSN — PostgreSQL 접속 문자열 |
-| Redis URL | `Redis URL Env` | `redisUrl` | `REDIS_URL` | `config`, `infra` | .env > REDIS_URL — Redis 접속 URL |
-| US 마켓 활성화 | `Enable US Market Env` | `enableUs` | `E_US` | `config`, `market` | .env > E_US — 미국주식 마켓 활성화 여부 |
-| 노드명 환경변수 | `Node Name Env` | `nodeNameEnv` | `NODE` | `config` | .env > NODE_NAME |
-| 대시보드 포트 | `Dashboard Port Env` | `dashboardPort` | `DASH_P` | `config`, `infra` | .env > DASH_P — 대시보드 웹서버 포트 |
-| 리포트 설정 | `Reporting Config` | `reporting` | `RPT_CFG` | `config`, `report` | settings.yaml > reporting 섹션 *(⚠️ v2: abbr_short를 RPT_CFG로 변경 (mod_report의 RPT와 구분))* |
-| 백테스트 설정 | `Backtest Config` | `backtest` | `BT` | `config`, `system` | settings.yaml > backtest 섹션 |
-| 세션 설정 | `Sessions Config` | `sessions` | `SESS` | `config`, `session` | settings.yaml > sessions 섹션 (마켓별 시간) |
-| 스코어링 설정 | `Scoring Config` | `scoring` | `SCR_CFG` | `config`, `selector` | settings.yaml > scoring 섹션 (가중치 파라미터) |
-| 시스템 설정 | `System Config` | `system` | `SYS` | `config` | settings.yaml > system 섹션 |
-| 진입 차단 설정 | `Entry Deny Config` | `entryDeny` | `ED` | `config`, `risk` | settings.yaml > entry_deny 섹션 (진입 차단 조건) |
-| 프로젝트 루트 | `Project Root Env` | `projectRoot` | `PROJECT_ROOT` | `config` | .env > PROJECT_ROOT — 프로젝트 절대 경로 기준 |
-| 환경변수 | `Environment Variable` | `envVar` | `ENV` | `config` | .env 파일 환경변수 총칭 |
-
----
-
-## 📈 리포트 / 알림 (Report & Notification)
-
-| 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
-|--------|--------|-----------|------------|----------|------|
-| 텔레그램 봇 | `Telegram Bot` | `telegramBot` | `TG_BOT` | `report`, `infra` | Telegram 알림·명령 처리 봇 (system/test/market 3종) |
-
----
-
-## 📁 모듈 / 디렉토리 (Modules & Directories)
-
-| 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
-|--------|--------|-----------|------------|----------|------|
-| 공통 모듈 | `Common Module` | `common` | `CMN` | `module` | src/common/ — 모델, 설정, 로깅, 예외, 유틸 |
-| 로그 디렉토리 | `Logs Directory` | `logs` | `LOG` | `module` | logs/ — 런타임 로그 파일 저장 |
-| 리스크 모듈 | `Risk Module` | `risk` | `RSK` | `module` | src/risk/ — 리스크 관리 |
-| 리포트 모듈 | `Report Module` | `report` | `RPT` | `module` | src/report/ — 리포트, 대시보드 |
-| 리플레이 모듈 | `Replay Module` | `replay` | `RPL` | `module` | src/replay/ — 백테스트 |
-| 설정 모듈 | `Config Module` | `config` | `CFG` | `module`, `config` | src/common/config.py — Settings 싱글턴 모듈 |
-| 셀렉터 모듈 | `Selector Module` | `selector` | `SEL` | `module` | src/selector/ — 섹터·종목 선정 |
-| 수집기 모듈 | `Collectors Module` | `collectors` | `COL` | `module` | src/collectors/ — 시세·데이터 수집 |
-| 스토리지 모듈 | `Storage Module` | `storage` | `STG` | `module` | src/storage/ — DB ORM, Redis 클라이언트 |
-| 시그널 모듈 | `Signals Module` | `signals` | `SIG` | `module`, `domain` | src/signals/ — 진입/청산 시그널 |
-| 실행 모듈 | `Execution Module` | `execution` | `EXEC` | `module` | src/execution/ — 주문 실행, 오케스트레이터 |
-| 알림 모듈 | `Notifications Module` | `notifications` | `NTF` | `module` | src/notifications/ — Telegram 봇 |
-| 어댑터 모듈 | `Adapters Module` | `adapters` | `ADP` | `module` | src/adapters/ — 브로커 연동 (MT5/KIS/Upbit) |
-| 환경변수 모듈 | `Env Module` | `env` | `ENV` | `module`, `config` | .env 파일 로더 모듈 |
-
----
-
-## 🧩 클래스 / 열거형 (Classes & Enums)
-
-| 한글명 | 클래스명 | abbr_long | abbr_short | 유형 | 모듈 | 설명 |
-|--------|---------|-----------|------------|------|------|------|
-| DB 엔진 | `DBEngine` | `DBEngine` | `DBA` | True | `-` | PostgreSQL 연결 풀 및 ORM 세션 관리 |
-| FX 시그널 엔진 | `FxSignalEngine` | `FxSignalEngine` | `FX_SIG` | True | `-` | 외환선물 진입·청산 시그널 생성 엔진 |
-| KIS 모의 인증 클래스 | `KisMockAuth` | `KisMockAuth` | `KIS_MAUTH` | True | `-` | KIS 모의투자 전용 인증 클래스 |
-| KIS 미국주식 어댑터 | `KisUsAdapter` | `KisUsAdapter` | `KIS_US_ADP` | True | `-` | 미국주식 KIS API 어댑터 (이중계좌: 실전 데이터 + 모의 매매) |
-| KIS 어댑터 | `KisAdapter` | `KisAdapter` | `KIS_ADP` | True | `-` | 한국주식 KIS API 연동 어댑터 (이중 계좌: 실전 데이터 + 모의 매매) |
-| KIS 인증 클래스 | `KisAuth` | `KisAuth` | `KIS_AUTH` | True | `-` | KIS OAuth2 토큰 발급·갱신·캐싱 |
-| KR 시그널 엔진 | `KrSignalEngine` | `KrSignalEngine` | `KR_SIG` | True | `-` | 한국주식 진입·청산 시그널 생성 엔진 |
-| KR 호가 필터 | `KrOrderbookFilter` | `KrOrderbookFilter` | `KR_OBF` | True | `-` | KR 호가 기반 진입 정합성·매도 위험 점수 산출 |
-| MT5 로컬 어댑터 | `MT5LocalAdapter` | `MT5LocalAdapter` | `MT5_ADP` | True | `-` | 로컬 MT5 어댑터 (BaseBrokerAdapter 구현, run.py 통합용) |
-| MT5 브릿지 클래스 | `MT5Bridge` | `MT5Bridge` | `MT5B` | True | `-` | WSL → Windows MT5 RPC 클라이언트 클래스 |
-| MT5 프록시 서버 | `MT5ProxyServer` | `MT5ProxyServer` | `MT5PS` | True | `-` | Windows에서 실행되는 FastAPI 기반 MT5 프록시 서버 |
-| Market 열거형 | `Market Enum` | `Market` | `MKT` | True | `-` | 거래 마켓 열거형 (KR_STOCK, US_STOCK, FX_FUT, CRYPTO) |
-| US 스윙 시그널 엔진 | `UsSwingSignalEngine` | `UsSwingSignalEngine` | `US_SIG` | True | `-` | 미국주식 스윙 시그널 엔진 (눌림/돌파 진입, 5단계 청산) |
-| 거래 기록 모델 | `TradeRecord` | `TradeRecord` | `TR` | True | `-` | 거래 생명주기 전체(진입→청산) Pydantic 모델 |
-| 계좌 스냅샷 모델 | `AccountSnapshot` | `AccountSnapshot` | `ASNAP` | True | `-` | 계좌 상태 스냅샷 Pydantic 모델 |
-| 리포트 생성기 | `ReportGenerator` | `ReportGenerator` | `RPT_GEN` | True | `-` | 일간/주간/월간 거래 리포트 생성 클래스 |
-| 리플레이 러너 | `ReplayRunner` | `ReplayRunner` | `RPL_RUN` | True | `-` | 과거 데이터 기반 백테스트 실행 클래스 |
-| 서비스 상태 열거형 | `ServiceStatus Enum` | `ServiceStatus` | `SVC_S` | True | `-` | RUNNING / STOPPED / STARTING / ERROR |
-| 서비스 유형 열거형 | `ServiceType Enum` | `ServiceType` | `SVC_T` | True | `-` | DB / LOG / FX / KR / US / CRYPTO / TEST |
-| 서비스 정보 모델 | `ServiceInfo` | `ServiceInfo` | `SVC_I` | True | `-` | 서비스 상태·메타데이터 Pydantic 모델 |
-| 설정 클래스 | `Settings` | `Settings` | `CFG` | True | `-` | settings.yaml + .env 통합 설정 싱글턴 |
-| 섹터 랭커 | `SectorRanker` | `SectorRanker` | `SEC_RNK` | True | `-` | 섹터 강도 랭킹 계산 클래스 |
-| 시그널 방향 열거형 | `SignalDirection Enum` | `SignalDirection` | `DIR` | True | `-` | LONG / SHORT / FLAT |
-| 시그널 이벤트 | `SignalEvent` | `SignalEvent` | `SIG_EVT` | True | `-` | 시그널 엔진 출력 모델. signals 모듈만 생성 가능. |
-| 실행 엔진 | `ExecutionEngine` | `ExecutionEngine` | `EXEC_ENG` | True | `-` | 주문 실행 담당 엔진 (OrderIntent → 브로커 API 호출) |
-| 업비트 어댑터 | `UpbitAdapter` | `UpbitAdapter` | `UPB_ADP` | True | `-` | 업비트 REST API 어댑터 (잔고/캔들/주문/레이트리밋) |
-| 업비트 인증 | `UpbitAuth` | `UpbitAuth` | `UPB_AUTH` | True | `-` | 업비트 JWT 인증/서명 (PyJWT + SHA512) |
-| 종목 랭커 | `SymbolRanker` | `SymbolRanker` | `SYM_RNK` | True | `-` | 종목 점수 랭킹 계산 클래스 |
-| 주문 방향 열거형 | `OrderSide Enum` | `OrderSide` | `OSIDE` | True | `-` | BUY / SELL |
-| 주문 상태 열거형 | `OrderStatus Enum` | `OrderStatus` | `OS` | True | `-` | PENDING / SUBMITTED / PARTIAL_FILL / FILLED / CANCELLED / REJECTED / FAILED |
-| 주문 유형 열거형 | `OrderType Enum` | `OrderType` | `OT` | True | `-` | MARKET / LIMIT |
-| 주문 유효 기간 열거형 | `TimeInForce Enum` | `TimeInForce` | `TIF` | True | `-` | GTC / IOC / DAY |
-| 주문 의도 모델 | `OrderIntent` | `OrderIntent` | `OI` | True | `-` | 실행 전 주문 의도 Pydantic 모델. execution 모듈만 생성 가능. |
-| 코인 리스크 매니저 | `CryptoRiskManager` | `CryptoRiskManager` | `CRY_RM` | True | `-` | 코인 전용 리스크 관리 (연속손절·재진입 제한·일손 한도) |
-| 크립토 시그널 엔진 | `CryptoSignalEngine` | `CryptoSignalEngine` | `CRY_SIG` | True | `-` | 암호화폐 추세 돌파 시그널 엔진 (2단계 진입) |
-| 텔레그램 봇 클래스 | `TelegramBot` | `TelegramBot` | `TG_BOT` | True | `-` | Telegram 봇 기반 클래스 (system/test/market 공통) |
-| 트레이딩 오케스트레이터 | `TradingOrchestrator` | `TradingOrchestrator` | `T_ORCH` | True | `-` | 전체 거래 루프를 조율하는 최상위 클래스 |
-
----
-
-## 🚦 상태값 (Status Values)
-
-| 한글명 | 영문명 | abbr_long | abbr_short | 카테고리 | 설명 |
-|--------|--------|-----------|------------|----------|------|
-| 거절 | `Rejected` | `rejected` | `RJCT` | `status`, `order` | 브로커에 의해 주문 거절됨 |
-| 대기 | `Pending` | `pending` | `PEND` | `status` | 주문 생성 후 브로커 전송 전 대기 상태 |
-| 부분 체결 | `Partial Fill` | `partialFill` | `PART` | `status`, `order` | 주문 수량의 일부만 체결된 상태 |
-| 비활성화 | `Disabled` | `disabled` | `OFF` | `status`, `config` | 기능 비활성화 상태 |
-| 시작 중 | `Starting` | `starting` | `START` | `status`, `system` | 서비스 시작 중 (초기화 진행 중) |
-| 실패 | `Failed` | `failed` | `FAIL` | `status` | 시스템 오류로 처리 실패 |
-| 실행 중 | `Running` | `running` | `RUN` | `status`, `system` | 서비스 실행 중 상태 |
-| 오류 | `Error` | `error` | `ERR` | `status`, `system` | 오류 발생 상태 |
-| 오프라인 | `Offline` | `offline` | `OFLN` | `status` | 네트워크/서비스 미연결 상태 *(⚠️ v2: abbr_short를 OFLN으로 변경 (disabled의 OFF와 충돌 해소))* |
-| 온라인 | `Online` | `online` | `ONLN` | `status` | 네트워크/서비스 연결 상태 *(⚠️ v2: abbr_short를 ONLN으로 변경 (overnight의 ON과 충돌 해소))* |
-| 접수 | `Submitted` | `submitted` | `SUBM` | `status` | 브로커에 주문 전송 완료 |
-| 중지 | `Stopped` | `stopped` | `STOP` | `status`, `system` | 서비스 중지 상태 |
-| 체결 완료 | `Filled` | `filled` | `FLLD` | `status`, `order` | 주문 전량 체결 완료 |
-| 취소 | `Cancelled` | `cancelled` | `CNCL` | `status`, `order` | 주문 취소됨 |
-| 활성화 | `Enabled` | `enabled` | `ON` | `status`, `config` | 기능 활성화 상태 |
+| 단어 | 한글 | 약어 | 품사 | 설명 |
+|------|------|------|------|------|
+| `candidates` | 후보들 | — | noun | 선정 대상 후보 목록 |
+| `daily` | 일간 | — | adj | 하루 단위 |
+| `force` | 강제 | — | verb | 조건과 무관하게 강제 실행 |
+| `in` | 내에서 | — | adv | 시간 내, 범위 내 |
+| `max` | 최대 | — | adj | 최대값 |
+| `size` | 크기 | — | noun | 수량 또는 비중 |
 
 ---
 
-## 🔤 전체 색인 (abbr_short 알파벳순)
+## 복합어 사전 (Compounds)
 
-| abbr_short | abbr_long | 한글명 | 영문명 |
-|------------|-----------|--------|--------|
-| `ADP` | `adapters` | 어댑터 모듈 | `Adapters Module` |
-| `ASNAP` | `accountSnapshot` | 계좌 스냅샷 | `Account Snapshot` |
-| `ASNAP` | `AccountSnapshot` | 계좌 스냅샷 모델 | `AccountSnapshot` |
-| `ASNAP` | `accountSnapshots` | 계좌 스냅샷 테이블 | `Account Snapshots Table` |
-| `AT` | `activeTrade` | 활성 거래 | `Active Trade` |
-| `AUTH` | `auth` | 인증 | `Authentication` |
-| `BAR` | `bar` | 봉 | `Bar` |
-| `BAR1M` | `bars1m` | 1분봉 테이블 | `1-Minute Bars Table` |
-| `BRK` | `breakout` | 돌파 | `Breakout` |
-| `BT` | `backtest` | 백테스트 설정 | `Backtest Config` |
-| `BUY` | `buy` | 매수 | `Buy` |
-| `CFG` | `Settings` | 설정 클래스 | `Settings` |
-| `CFG` | `config` | 설정 모듈 | `Config Module` |
-| `CMN` | `common` | 공통 모듈 | `Common Module` |
-| `CNCL` | `cancelled` | 취소 | `Cancelled` |
-| `COL` | `collectors` | 수집기 모듈 | `Collectors Module` |
-| `COMM` | `commission` | 수수료 | `Commission` |
-| `CP` | `candlePersonality` | 캔들 성격 | `Candle Personality` |
-| `CRYPTO` | `crypto` | 코인거래 | `Cryptocurrency` |
-| `CRY_RM` | `CryptoRiskManager` | 코인 리스크 매니저 | `CryptoRiskManager` |
-| `CRY_SIG` | `CryptoSignalEngine` | 크립토 시그널 엔진 | `CryptoSignalEngine` |
-| `CS` | `consecutiveStops` | 연속 손절 횟수 | `Consecutive Stops` |
-| `CT` | `closedTrade` | 청산 거래 | `Closed Trade` |
-| `DASH_P` | `dashboardPort` | 대시보드 포트 | `Dashboard Port Env` |
-| `DBA` | `DBEngine` | DB 엔진 | `DBEngine` |
-| `DIR` | `signalDirection` | 시그널 방향 | `Signal Direction` |
-| `DIR` | `SignalDirection` | 시그널 방향 열거형 | `SignalDirection Enum` |
-| `ED` | `entryDeny` | 진입 차단 설정 | `Entry Deny Config` |
-| `ENT` | `entry` | 진입 | `Entry` |
-| `ENV` | `env` | 환경변수 모듈 | `Env Module` |
-| `ENV` | `envVar` | 환경변수 | `Environment Variable` |
-| `EODF` | `eodFlatten` | 장 종료 전량 청산 | `End-of-Day Flatten` |
-| `ERR` | `error` | 오류 | `Error` |
-| `ES` | `execStrength` | 체결 강도 | `Execution Strength` |
-| `ESS` | `execStrengthScore` | 체결 강도 점수 | `Execution Strength Score` |
-| `EXEC` | `execution` | 실행 모듈 | `Execution Module` |
-| `EXEC_ENG` | `ExecutionEngine` | 실행 엔진 | `ExecutionEngine` |
-| `EXIT` | `exit` | 청산 | `Exit` |
-| `EXT_END` | `extendedMarketEnd` | 시간외 종료 | `Extended Market End` |
-| `EXT_ST` | `extendedMarketStart` | 시간외 시작 | `Extended Market Start` |
-| `E_FX` | `enableFx` | FX 마켓 활성화 | `Enable FX Market Env` |
-| `E_KR` | `enableKr` | KR 마켓 활성화 | `Enable KR Market Env` |
-| `E_US` | `enableUs` | US 마켓 활성화 | `Enable US Market Env` |
-| `FAIL` | `failed` | 실패 | `Failed` |
-| `FILL` | `fill` | 체결 | `Fill` |
-| `FILL_DB` | `dbFills` | 체결 테이블 | `Fills Table` |
-| `FLAT` | `flat` | 플랫 | `Flat` |
-| `FLLD` | `filled` | 체결 완료 | `Filled` |
-| `FX_FUT` | `fxFutures` | 외환선물 | `FX Futures` |
-| `FX_SIG` | `FxSignalEngine` | FX 시그널 엔진 | `FxSignalEngine` |
-| `HB` | `heartbeat` | 하트비트 | `Heartbeat` |
-| `INTRA` | `intraday` | 당일 거래 | `Intraday` |
-| `KIS` | `kis` | KIS API | `Korea Investment & Securities API` |
-| `KIS_ACCT` | `kisAccountNo` | KIS 계좌번호 | `KIS Account No Env` |
-| `KIS_ADP` | `KisAdapter` | KIS 어댑터 | `KisAdapter` |
-| `KIS_AK` | `kisAppKey` | KIS 앱키 | `KIS App Key Env` |
-| `KIS_AS` | `kisAppSecret` | KIS 앱시크릿 | `KIS App Secret Env` |
-| `KIS_AUTH` | `KisAuth` | KIS 인증 클래스 | `KisAuth` |
-| `KIS_MAK` | `kisMockAppKey` | KIS 모의 앱키 | `KIS Mock App Key Env` |
-| `KIS_MAUTH` | `KisMockAuth` | KIS 모의 인증 클래스 | `KisMockAuth` |
-| `KIS_US_ADP` | `KisUsAdapter` | KIS 미국주식 어댑터 | `KisUsAdapter` |
-| `KOSDAQ` | `kosdaq` | 코스닥 | `KOSDAQ` |
-| `KOSPI` | `kospi` | 코스피 | `KOSPI` |
-| `KR_OBF` | `KrOrderbookFilter` | KR 호가 필터 | `KrOrderbookFilter` |
-| `KR_OB_DB` | `krOrderbookSnapshot` | KR 호가 스냅샷 테이블 | `KR Orderbook Snapshot Table` |
-| `KR_SEL` | `krSelector` | KR 셀렉터 설정 | `KR Selector Config` |
-| `KR_SIG` | `KrSignalEngine` | KR 시그널 엔진 | `KrSignalEngine` |
-| `KR_STOCK` | `krStock` | 한국주식 | `Korean Stock` |
-| `KR_STR` | `krStrategy` | KR 전략 설정 | `KR Strategy Config` |
-| `KSW` | `killSwitch` | 킬스위치 | `Kill Switch` |
-| `LCAND` | `leaderCandidates` | 대장주 후보 | `Leader Candidates` |
-| `LEAD` | `leaderStock` | 대장주 | `Leader Stock` |
-| `LIVE` | `liveTrading` | 실전 거래 | `Live Trading` |
-| `LMT` | `limitOrder` | 지정가 주문 | `Limit Order` |
-| `LOG` | `logs` | 로그 디렉토리 | `Logs Directory` |
-| `LONG` | `long` | 롱 | `Long` |
-| `LW` | `lowerWick` | 아랫꼬리 | `Lower Wick` |
-| `MC` | `marketClose` | 장 종료 | `Market Close` |
-| `MDL` | `maxDailyLoss` | 일일 최대 손실 | `Max Daily Loss` |
-| `MKT` | `Market` | Market 열거형 | `Market Enum` |
-| `MKT_ORD` | `marketOrder` | 시장가 주문 | `Market Order` |
-| `MO` | `marketOpen` | 장 시작 | `Market Open` |
-| `MOCK` | `mockTrading` | 모의 거래 | `Mock Trading` |
-| `MOM` | `momentumScore` | 모멘텀 점수 | `Momentum Score` |
-| `MOP` | `maxOpenPositions` | 최대 동시 보유 수 | `Max Open Positions` |
-| `MRG` | `marginUsed` | 사용 증거금 | `Margin Used` |
-| `MS` | `marketStrength` | 시장 강도 | `Market Strength` |
-| `MT5` | `mt5` | MT5 | `MetaTrader 5` |
-| `MT5B` | `mt5Bridge` | MT5 브릿지 | `MT5 Bridge` |
-| `MT5B` | `MT5Bridge` | MT5 브릿지 클래스 | `MT5Bridge` |
-| `MT5P` | `mt5Proxy` | MT5 프록시 | `MT5 Proxy` |
-| `MT5P` | `mt5ProxyUrl` | MT5 프록시 URL | `MT5 Proxy URL Env` |
-| `MT5PS` | `MT5ProxyServer` | MT5 프록시 서버 | `MT5ProxyServer` |
-| `MT5_ADP` | `MT5LocalAdapter` | MT5 로컬 어댑터 | `MT5LocalAdapter` |
-| `NBE` | `noBounceExit` | 반등 불발 청산 | `No Bounce Exit` |
-| `NEA` | `noEntryAfter` | 진입 차단 시각 | `No Entry After` |
-| `NODE` | `nodeName` | 노드명 | `Node Name` |
-| `NODE` | `nodeNameEnv` | 노드명 환경변수 | `Node Name Env` |
-| `NTF` | `notifications` | 알림 모듈 | `Notifications Module` |
-| `OB` | `orderbook` | 호가 | `Orderbook` |
-| `OFF` | `disabled` | 비활성화 | `Disabled` |
-| `OFLN` | `offline` | 오프라인 | `Offline` |
-| `OI` | `orderIntent` | 주문 의도 | `Order Intent` |
-| `OI` | `OrderIntent` | 주문 의도 모델 | `OrderIntent` |
-| `ON` | `enabled` | 활성화 | `Enabled` |
-| `ONLN` | `online` | 온라인 | `Online` |
-| `ORCH` | `orchestrator` | 오케스트레이터 | `Orchestrator` |
-| `ORD` | `order` | 주문 | `Order` |
-| `ORD_DB` | `dbOrders` | 주문 테이블 | `Orders Table` |
-| `OS` | `orderStatus` | 주문 상태 | `Order Status` |
-| `OS` | `OrderStatus` | 주문 상태 열거형 | `OrderStatus Enum` |
-| `OSIDE` | `OrderSide` | 주문 방향 열거형 | `OrderSide Enum` |
-| `OT` | `OrderType` | 주문 유형 열거형 | `OrderType Enum` |
-| `OVNT` | `overnight` | 오버나이트 | `Overnight` |
-| `PART` | `partialFill` | 부분 체결 | `Partial Fill` |
-| `PB` | `pullback` | 눌림 | `Pullback` |
-| `PEND` | `pending` | 대기 | `Pending` |
-| `PGD` | `processGuard` | 프로세스 가드 | `Process Guard` |
-| `PG_DB` | `postgresql` | PostgreSQL | `PostgreSQL` |
-| `PG_DSN` | `pgDsn` | PostgreSQL DSN | `PostgreSQL DSN Env` |
-| `POS` | `position` | 포지션 | `Position` |
-| `PROJECT_ROOT` | `projectRoot` | 프로젝트 루트 | `Project Root Env` |
-| `PSIZ` | `positionSize` | 포지션 크기 | `Position Size` |
-| `RBT` | `rebootTime` | 리부트 시각 | `Reboot Time` |
-| `REDIS` | `redis` | Redis | `Redis` |
-| `REDIS_URL` | `redisUrl` | Redis URL | `Redis URL Env` |
-| `REVT` | `riskEvents` | 리스크 이벤트 테이블 | `Risk Events Table` |
-| `RJCT` | `rejected` | 거절 | `Rejected` |
-| `RLOG` | `realtimeLog` | 실시간 로그 | `Realtime Log` |
-| `RM` | `riskManager` | 리스크 매니저 | `Risk Manager` |
-| `ROLE` | `role` | 역할 | `Role` |
-| `RPL` | `replay` | 리플레이 모듈 | `Replay Module` |
-| `RPL_RUN` | `ReplayRunner` | 리플레이 러너 | `ReplayRunner` |
-| `RPNL` | `realizedPnl` | 실현 손익 | `Realized PnL` |
-| `RPT` | `report` | 리포트 모듈 | `Report Module` |
-| `RPT_CFG` | `reporting` | 리포트 설정 | `Reporting Config` |
-| `RPT_GEN` | `ReportGenerator` | 리포트 생성기 | `ReportGenerator` |
-| `RSK` | `risk` | 리스크 모듈 | `Risk Module` |
-| `RUN` | `running` | 실행 중 | `Running` |
-| `SBUY` | `splitBuy` | 분할 매수 | `Split Buy` |
-| `SCAN` | `marketScanner` | 마켓 스캐너 | `Market Scanner` |
-| `SCHED` | `taskScheduler` | 태스크 스케줄러 | `Task Scheduler` |
-| `SCR_CFG` | `scoring` | 스코어링 설정 | `Scoring Config` |
-| `SEC_MST` | `sectorMaster` | 섹터 마스터 테이블 | `Sector Master Table` |
-| `SEC_RNK` | `sectorRanking` | 섹터 랭킹 | `Sector Ranking` |
-| `SEC_RNK` | `SectorRanker` | 섹터 랭커 | `SectorRanker` |
-| `SEC_RNK_DB` | `sectorRankings` | 섹터 랭킹 테이블 | `Sector Rankings Table` |
-| `SEL` | `selector` | 셀렉터 모듈 | `Selector Module` |
-| `SELL` | `sell` | 매도 | `Sell` |
-| `SESS` | `sessions` | 세션 설정 | `Sessions Config` |
-| `SHORT` | `short` | 숏 | `Short` |
-| `SIG` | `signal` | 시그널 | `Signal` |
-| `SIG` | `signals` | 시그널 모듈 | `Signals Module` |
-| `SIG_DB` | `dbSignals` | 시그널 테이블 | `Signals Table` |
-| `SIG_ENG` | `signalEngine` | 시그널 엔진 | `Signal Engine` |
-| `SIG_EVT` | `SignalEvent` | 시그널 이벤트 | `SignalEvent` |
-| `SL` | `stopLoss` | 손절 | `Stop Loss` |
-| `SLIP` | `slippage` | 슬리피지 | `Slippage` |
-| `SS` | `sectorScore` | 섹터 점수 | `Sector Score` |
-| `SSELL` | `splitSell` | 분할 매도 | `Split Sell` |
-| `SSS` | `sectorStrengthScore` | 섹터 강도 점수 | `Sector Strength Score` |
-| `START` | `starting` | 시작 중 | `Starting` |
-| `STG` | `storage` | 스토리지 모듈 | `Storage Module` |
-| `STK_MST` | `stockMaster` | 주식 마스터 테이블 | `Stock Master Table` |
-| `STOP` | `stopped` | 중지 | `Stopped` |
-| `STS` | `stockScore` | 종목 점수 | `Stock Score` |
-| `SUBM` | `submitted` | 접수 | `Submitted` |
-| `SVC_I` | `ServiceInfo` | 서비스 정보 모델 | `ServiceInfo` |
-| `SVC_MGR` | `serviceManager` | 서비스 매니저 | `Service Manager` |
-| `SVC_S` | `ServiceStatus` | 서비스 상태 열거형 | `ServiceStatus Enum` |
-| `SVC_T` | `ServiceType` | 서비스 유형 열거형 | `ServiceType Enum` |
-| `SYM` | `symbols` | 종목 마스터 테이블 | `Symbols Table` |
-| `SYM_RNK` | `symbolRanking` | 종목 랭킹 | `Symbol Ranking` |
-| `SYM_RNK` | `SymbolRanker` | 종목 랭커 | `SymbolRanker` |
-| `SYS` | `system` | 시스템 설정 | `System Config` |
-| `SYS_NTF` | `systemNotifier` | 시스템 알림 | `System Notifier` |
-| `TG_BOT` | `telegramBot` | 텔레그램 봇 | `Telegram Bot` |
-| `TG_BOT` | `TelegramBot` | 텔레그램 봇 클래스 | `TelegramBot` |
-| `TIF` | `TimeInForce` | 주문 유효 기간 열거형 | `TimeInForce Enum` |
-| `TK` | `tick` | 틱 | `Tick` |
-| `TK` | `ticks` | 틱 테이블 | `Ticks Table` |
-| `TP` | `takeProfit` | 익절 | `Take Profit` |
-| `TR` | `TradeRecord` | 거래 기록 모델 | `TradeRecord` |
-| `TRD_NTF` | `tradeNotifier` | 거래 알림 | `Trade Notifier` |
-| `TRK_ST` | `trackingStart` | 트래킹 시작 | `Tracking Start` |
-| `TR_ID` | `transactionId` | 트랜잭션 ID | `Transaction ID` |
-| `TSL` | `trailingStop` | 트레일링 스탑 | `Trailing Stop` |
-| `TVS` | `tradingValueScore` | 거래대금 점수 | `Trading Value Score` |
-| `T_ORCH` | `TradingOrchestrator` | 트레이딩 오케스트레이터 | `TradingOrchestrator` |
-| `UPBIT` | `upbit` | 업비트 | `Upbit` |
-| `UPB_ADP` | `UpbitAdapter` | 업비트 어댑터 | `UpbitAdapter` |
-| `UPB_AUTH` | `UpbitAuth` | 업비트 인증 | `UpbitAuth` |
-| `UPNL` | `unrealizedPnl` | 미실현 손익 | `Unrealized PnL` |
-| `US_SIG` | `UsSwingSignalEngine` | US 스윙 시그널 엔진 | `UsSwingSignalEngine` |
-| `US_STOCK` | `usStock` | 미국주식 | `US Stock` |
-| `UW` | `upperWick` | 윗꼬리 | `Upper Wick` |
-| `VOLS` | `volatilityScore` | 변동성 점수 | `Volatility Score` |
-| `VWAP` | `vwap` | 거래량 가중 평균가 | `VWAP` |
-| `WDG` | `watchdog` | 워치독 | `Watchdog` |
-| `WS` | `workStart` | 업무 시작 | `Work Start` |
+| 복합어 | 구성 단어 | 한글 | camelCase | 약어 | 등록 사유 |
+|--------|----------|------|-----------|------|----------|
+| `account_snapshot` | account + snapshot | 계좌 스냅샷 | `accountSnapshot` | `ASNAP` | 공인 약어 |
+| `active_trade` | active + trade | 활성 거래 | `activeTrade` | `AT` | 공인 약어 |
+| `candle_personality` | candle + personality | 캔들 성격 | `candlePersonality` | `CP` | 공인 약어 |
+| `cfg_backtest` | cfg + backtest | 백테스트 설정 | `backtest` | `BT` | 공인 약어 |
+| `cfg_entry_deny` | cfg + entry + deny | 진입 차단 설정 | `entryDeny` | `ED` | 공인 약어 |
+| `cfg_kr_selector` | cfg + kr + selector | KR 셀렉터 설정 | `krSelector` | `KR_SEL` | 의미 비합산 |
+| `cfg_kr_strategy` | cfg + kr + strategy | KR 전략 설정 | `krStrategy` | `KR_STR` | 의미 비합산 |
+| `cfg_reporting` | cfg + reporting | 리포트 설정 | `reporting` | `RPT_CFG` | 의미 비합산 |
+| `cfg_scoring` | cfg + scoring | 스코어링 설정 | `scoring` | `SCR_CFG` | 의미 비합산 |
+| `cfg_sessions` | cfg + sessions | 세션 설정 | `sessions` | `SESS` | 공인 약어 |
+| `cfg_system` | cfg + system | 시스템 설정 | `system` | `SYS` | 공인 약어 |
+| `closed_trade` | closed + trade | 청산 거래 | `closedTrade` | `CT` | 공인 약어 |
+| `cls_account_snapshot` | cls + account + snapshot | 계좌 스냅샷 모델 | `AccountSnapshot` | `ASNAP_C` | 공인 약어, 시스템 객체 |
+| `cls_crypto_risk_manager` | cls + crypto + risk + manager | 코인 리스크 매니저 | `CryptoRiskManager` | `CRY_RM` | 시스템 객체 |
+| `cls_crypto_signal_engine` | cls + crypto + signal + engine | 크립토 시그널 엔진 | `CryptoSignalEngine` | `CRY_SIG` | 시스템 객체 |
+| `cls_db_engine` | cls + db + engine | DB 엔진 | `DBEngine` | `DBA` | 공인 약어, 시스템 객체 |
+| `cls_execution_engine` | cls + execution + engine | 실행 엔진 | `ExecutionEngine` | `EXEC_ENG` | 시스템 객체 |
+| `cls_fx_signal_engine` | cls + fx + signal + engine | FX 시그널 엔진 | `FxSignalEngine` | `FX_SIG` | 시스템 객체 |
+| `cls_kis_adapter` | cls + kis + adapter | KIS 어댑터 | `KisAdapter` | `KIS_ADP` | 시스템 객체, 고유명사 |
+| `cls_kis_auth` | cls + kis + auth | KIS 인증 클래스 | `KisAuth` | `KIS_AUTH` | 시스템 객체, 고유명사 |
+| `cls_kis_mock_auth` | cls + kis + mock + auth | KIS 모의 인증 클래스 | `KisMockAuth` | `KIS_MAUTH` | 시스템 객체, 고유명사 |
+| `cls_kis_us_adapter` | cls + kis + us + adapter | KIS 미국주식 어댑터 | `KisUsAdapter` | `KIS_US_ADP` | 시스템 객체, 고유명사 |
+| `cls_kr_orderbook_filter` | cls + kr + orderbook + filter | KR 호가 필터 | `KrOrderbookFilter` | `KR_OBF` | 시스템 객체 |
+| `cls_kr_signal_engine` | cls + kr + signal + engine | KR 시그널 엔진 | `KrSignalEngine` | `KR_SIG` | 시스템 객체 |
+| `cls_market` | cls + market | Market 열거형 | `Market` | `MKT` | 공인 약어, 시스템 객체 |
+| `cls_mt5_bridge` | cls + mt5 + bridge | MT5 브릿지 클래스 | `MT5Bridge` | `MT5B_C` | 공인 약어, 시스템 객체, 고유명사 |
+| `cls_mt5_local_adapter` | cls + mt5 + local + adapter | MT5 로컬 어댑터 | `MT5LocalAdapter` | `MT5_ADP` | 시스템 객체, 고유명사 |
+| `cls_mt5_proxy_server` | cls + mt5 + proxy + server | MT5 프록시 서버 | `MT5ProxyServer` | `MT5PS` | 공인 약어, 시스템 객체, 고유명사 |
+| `cls_order_intent` | cls + order + intent | 주문 의도 모델 | `OrderIntent` | `OI_C` | 공인 약어, 시스템 객체 |
+| `cls_order_side` | cls + order + side | 주문 방향 열거형 | `OrderSide` | `OSIDE` | 공인 약어, 시스템 객체 |
+| `cls_order_status` | cls + order + status | 주문 상태 열거형 | `OrderStatus` | `OS_C` | 공인 약어, 시스템 객체 |
+| `cls_order_type` | cls + order + type | 주문 유형 열거형 | `OrderType` | `OT` | 공인 약어, 시스템 객체 |
+| `cls_replay_runner` | cls + replay + runner | 리플레이 러너 | `ReplayRunner` | `RPL_RUN` | 시스템 객체 |
+| `cls_report_generator` | cls + report + generator | 리포트 생성기 | `ReportGenerator` | `RPT_GEN` | 시스템 객체 |
+| `cls_sector_ranker` | cls + sector + ranker | 섹터 랭커 | `SectorRanker` | `SEC_RNK_C` | 시스템 객체 |
+| `cls_service_info` | cls + service + info | 서비스 정보 모델 | `ServiceInfo` | `SVC_I` | 시스템 객체 |
+| `cls_service_status` | cls + service + status | 서비스 상태 열거형 | `ServiceStatus` | `SVC_S` | 시스템 객체 |
+| `cls_service_type` | cls + service + type | 서비스 유형 열거형 | `ServiceType` | `SVC_T` | 시스템 객체 |
+| `cls_settings` | cls + settings | 설정 클래스 | `Settings` | `CFG_C` | 공인 약어, 시스템 객체 |
+| `cls_signal_direction` | cls + signal + direction | 시그널 방향 열거형 | `SignalDirection` | `DIR_C` | 공인 약어, 시스템 객체 |
+| `cls_signal_event` | cls + signal + event | 시그널 이벤트 | `SignalEvent` | `SIG_EVT` | 시스템 객체 |
+| `cls_symbol_ranker` | cls + symbol + ranker | 종목 랭커 | `SymbolRanker` | `SYM_RNK_C` | 시스템 객체 |
+| `cls_telegram_bot` | cls + telegram + bot | 텔레그램 봇 클래스 | `TelegramBot` | `TG_BOT_C` | 시스템 객체 |
+| `cls_time_in_force` | cls + time + in + force | 주문 유효 기간 열거형 | `TimeInForce` | `TIF` | 공인 약어, 시스템 객체 |
+| `cls_trade_record` | cls + trade + record | 거래 기록 모델 | `TradeRecord` | `TR` | 공인 약어, 시스템 객체 |
+| `cls_trading_orchestrator` | cls + trading + orchestrator | 트레이딩 오케스트레이터 | `TradingOrchestrator` | `T_ORCH` | 시스템 객체 |
+| `cls_upbit_adapter` | cls + upbit + adapter | 업비트 어댑터 | `UpbitAdapter` | `UPB_ADP` | 시스템 객체, 고유명사 |
+| `cls_upbit_auth` | cls + upbit + auth | 업비트 인증 | `UpbitAuth` | `UPB_AUTH` | 시스템 객체, 고유명사 |
+| `cls_us_swing_signal_engine` | cls + us + swing + signal + engine | US 스윙 시그널 엔진 | `UsSwingSignalEngine` | `US_SIG` | 시스템 객체 |
+| `consecutive_stops` | consecutive + stops | 연속 손절 횟수 | `consecutiveStops` | `CS` | 공인 약어 |
+| `db_account_snapshots` | db + account + snapshots | 계좌 스냅샷 테이블 | `accountSnapshots` | `ASNAP_DB` | 공인 약어 |
+| `db_bars_1m` | db + bars + 1m | 1분봉 테이블 | `bars1m` | `BAR1M` | 공인 약어 |
+| `db_fills` | db + fills | 체결 테이블 | `dbFills` | `FILL_DB` | 의미 비합산 |
+| `db_kr_orderbook_snapshot` | db + kr + orderbook + snapshot | KR 호가 스냅샷 테이블 | `krOrderbookSnapshot` | `KR_OB_DB` | 의미 비합산 |
+| `db_orders` | db + orders | 주문 테이블 | `dbOrders` | `ORD_DB` | 의미 비합산 |
+| `db_risk_events` | db + risk + events | 리스크 이벤트 테이블 | `riskEvents` | `REVT` | 공인 약어 |
+| `db_sector_master` | db + sector + master | 섹터 마스터 테이블 | `sectorMaster` | `SEC_MST` | 의미 비합산 |
+| `db_sector_rankings` | db + sector + rankings | 섹터 랭킹 테이블 | `sectorRankings` | `SEC_RNK_DB` | 의미 비합산 |
+| `db_signals` | db + signals | 시그널 테이블 | `dbSignals` | `SIG_DB` | 의미 비합산 |
+| `db_stock_master` | db + stock + master | 주식 마스터 테이블 | `stockMaster` | `STK_MST` | 의미 비합산 |
+| `db_symbols` | db + symbols | 종목 마스터 테이블 | `symbols` | `SYM` | 공인 약어 |
+| `db_ticks` | db + ticks | 틱 테이블 | `ticks` | `TK_DB` | 공인 약어 |
+| `env_dashboard_port` | env + dashboard + port | 대시보드 포트 | `dashboardPort` | `DASH_P` | 의미 비합산 |
+| `env_enable_fx` | env + enable + fx | FX 마켓 활성화 | `enableFx` | `E_FX` | 의미 비합산 |
+| `env_enable_kr` | env + enable + kr | KR 마켓 활성화 | `enableKr` | `E_KR` | 의미 비합산 |
+| `env_enable_us` | env + enable + us | US 마켓 활성화 | `enableUs` | `E_US` | 의미 비합산 |
+| `env_kis_account_no` | env + kis + account + no | KIS 계좌번호 | `kisAccountNo` | `KIS_ACCT` | 의미 비합산 |
+| `env_kis_app_key` | env + kis + app + key | KIS 앱키 | `kisAppKey` | `KIS_AK` | 의미 비합산 |
+| `env_kis_app_secret` | env + kis + app + secret | KIS 앱시크릿 | `kisAppSecret` | `KIS_AS` | 의미 비합산 |
+| `env_kis_mock_app_key` | env + kis + mock + app + key | KIS 모의 앱키 | `kisMockAppKey` | `KIS_MAK` | 의미 비합산 |
+| `env_mt5_proxy_url` | env + mt5 + proxy + url | MT5 프록시 URL | `mt5ProxyUrl` | `MT5P_E` | 공인 약어 |
+| `env_node_name` | env + node + name | 노드명 환경변수 | `nodeNameEnv` | `NODE_E` | 공인 약어 |
+| `env_pg_dsn` | env + pg + dsn | PostgreSQL DSN | `pgDsn` | `PG_DSN` | 의미 비합산 |
+| `env_project_root` | env + project + root | 프로젝트 루트 | `projectRoot` | `PROJECT_ROOT` | 의미 비합산 |
+| `env_redis_url` | env + redis + url | Redis URL | `redisUrl` | `REDIS_URL` | 의미 비합산 |
+| `env_var` | env + var | 환경변수 | `envVar` | `ENV_E` | 공인 약어 |
+| `eod_flatten` | eod + flatten | 장 종료 전량 청산 | `eodFlatten` | `EODF` | 공인 약어 |
+| `exec_strength` | exec + strength | 체결 강도 | `execStrength` | `ES` | 공인 약어 |
+| `exec_strength_score` | exec + strength + score | 체결 강도 점수 | `execStrengthScore` | `ESS` | 공인 약어 |
+| `extended_market_end` | extended + market + end | 시간외 종료 | `extendedMarketEnd` | `EXT_END` | 의미 비합산 |
+| `extended_market_start` | extended + market + start | 시간외 시작 | `extendedMarketStart` | `EXT_ST` | 의미 비합산 |
+| `fx_futures` | fx + futures | 외환선물 | `fxFutures` | `FX_FUT` | 혼동 방지 |
+| `kill_switch` | kill + switch | 킬스위치 | `killSwitch` | `KSW` | 공인 약어 |
+| `kr_stock` | kr + stock | 한국주식 | `krStock` | `KR_STOCK` | 혼동 방지 |
+| `leader_candidates` | leader + candidates | 대장주 후보 | `leaderCandidates` | `LCAND` | 공인 약어 |
+| `leader_stock` | leader + stock | 대장주 | `leaderStock` | `LEAD` | 공인 약어 |
+| `limit_order` | limit + order | 지정가 주문 | `limitOrder` | `LMT` | 공인 약어 |
+| `live_trading` | live + trading | 실전 거래 | `liveTrading` | `LIVE` | 공인 약어 |
+| `lower_wick` | lower + wick | 아랫꼬리 | `lowerWick` | `LW` | 공인 약어 |
+| `margin_used` | margin + used | 사용 증거금 | `marginUsed` | `MRG` | 공인 약어 |
+| `market_close` | market + close | 장 종료 | `marketClose` | `MC` | 공인 약어 |
+| `market_open` | market + open | 장 시작 | `marketOpen` | `MO` | 공인 약어 |
+| `market_order` | market + order | 시장가 주문 | `marketOrder` | `MKT_ORD` | 의미 비합산 |
+| `market_scanner` | market + scanner | 마켓 스캐너 | `marketScanner` | `SCAN` | 공인 약어 |
+| `market_strength` | market + strength | 시장 강도 | `marketStrength` | `MS` | 공인 약어 |
+| `max_daily_loss` | max + daily + loss | 일일 최대 손실 | `maxDailyLoss` | `MDL` | 공인 약어 |
+| `max_open_positions` | max + open + positions | 최대 동시 보유 수 | `maxOpenPositions` | `MOP` | 공인 약어 |
+| `mock_trading` | mock + trading | 모의 거래 | `mockTrading` | `MOCK` | 공인 약어 |
+| `mod_adapters` | mod + adapters | 어댑터 모듈 | `adapters` | `ADP` | 공인 약어, 시스템 객체 |
+| `mod_collectors` | mod + collectors | 수집기 모듈 | `collectors` | `COL` | 공인 약어, 시스템 객체 |
+| `mod_common` | mod + common | 공통 모듈 | `common` | `CMN` | 공인 약어, 시스템 객체 |
+| `mod_config` | mod + config | 설정 모듈 | `config` | `CFG_M` | 공인 약어, 시스템 객체 |
+| `mod_env` | mod + env | 환경변수 모듈 | `env` | `ENV_M` | 공인 약어, 시스템 객체 |
+| `mod_execution` | mod + execution | 실행 모듈 | `execution` | `EXEC` | 공인 약어, 시스템 객체 |
+| `mod_logs` | mod + logs | 로그 디렉토리 | `logs` | `LOG` | 공인 약어, 시스템 객체 |
+| `mod_notifications` | mod + notifications | 알림 모듈 | `notifications` | `NTF` | 공인 약어, 시스템 객체 |
+| `mod_replay` | mod + replay | 리플레이 모듈 | `replay` | `RPL` | 공인 약어, 시스템 객체 |
+| `mod_report` | mod + report | 리포트 모듈 | `report` | `RPT` | 공인 약어, 시스템 객체 |
+| `mod_risk` | mod + risk | 리스크 모듈 | `risk` | `RSK` | 공인 약어, 시스템 객체 |
+| `mod_selector` | mod + selector | 셀렉터 모듈 | `selector` | `SEL` | 공인 약어, 시스템 객체 |
+| `mod_signals` | mod + signals | 시그널 모듈 | `signals` | `SIG_M` | 공인 약어, 시스템 객체 |
+| `mod_storage` | mod + storage | 스토리지 모듈 | `storage` | `STG` | 공인 약어, 시스템 객체 |
+| `momentum_score` | momentum + score | 모멘텀 점수 | `momentumScore` | `MOM` | 공인 약어 |
+| `mt5_bridge` | mt5 + bridge | MT5 브릿지 | `mt5Bridge` | `MT5B` | 공인 약어, 고유명사 |
+| `mt5_proxy` | mt5 + proxy | MT5 프록시 | `mt5Proxy` | `MT5P` | 공인 약어, 고유명사 |
+| `no_bounce_exit` | no + bounce + exit | 반등 불발 청산 | `noBounceExit` | `NBE` | 공인 약어 |
+| `no_entry_after` | no + entry + after | 진입 차단 시각 | `noEntryAfter` | `NEA` | 공인 약어 |
+| `node_name` | node + name | 노드명 | `nodeName` | `NODE` | 공인 약어 |
+| `order_intent` | order + intent | 주문 의도 | `orderIntent` | `OI` | 공인 약어 |
+| `order_status` | order + status | 주문 상태 | `orderStatus` | `OS` | 공인 약어 |
+| `partial_fill` | partial + fill | 부분 체결 | `partialFill` | `PART` | 공인 약어 |
+| `position_size` | position + size | 포지션 크기 | `positionSize` | `PSIZ` | 공인 약어 |
+| `process_guard` | process + guard | 프로세스 가드 | `processGuard` | `PGD` | 공인 약어 |
+| `realized_pnl` | realized + pnl | 실현 손익 | `realizedPnl` | `RPNL` | 공인 약어 |
+| `realtime_log` | realtime + log | 실시간 로그 | `realtimeLog` | `RLOG` | 공인 약어 |
+| `reboot_time` | reboot + time | 리부트 시각 | `rebootTime` | `RBT` | 공인 약어 |
+| `risk_manager` | risk + manager | 리스크 매니저 | `riskManager` | `RM` | 공인 약어 |
+| `sector_ranking` | sector + ranking | 섹터 랭킹 | `sectorRanking` | `SEC_RNK` | 의미 비합산 |
+| `sector_score` | sector + score | 섹터 점수 | `sectorScore` | `SS` | 공인 약어 |
+| `sector_strength_score` | sector + strength + score | 섹터 강도 점수 | `sectorStrengthScore` | `SSS` | 공인 약어 |
+| `service_manager` | service + manager | 서비스 매니저 | `serviceManager` | `SVC_MGR` | 의미 비합산 |
+| `signal_direction` | signal + direction | 시그널 방향 | `signalDirection` | `DIR` | 공인 약어 |
+| `signal_engine` | signal + engine | 시그널 엔진 | `signalEngine` | `SIG_ENG` | 의미 비합산 |
+| `split_buy` | split + buy | 분할 매수 | `splitBuy` | `SBUY` | 공인 약어 |
+| `split_sell` | split + sell | 분할 매도 | `splitSell` | `SSELL` | 공인 약어 |
+| `stock_score` | stock + score | 종목 점수 | `stockScore` | `STS` | 공인 약어 |
+| `stop_loss` | stop + loss | 손절 | `stopLoss` | `SL` | 공인 약어 |
+| `symbol_ranking` | symbol + ranking | 종목 랭킹 | `symbolRanking` | `SYM_RNK` | 의미 비합산 |
+| `system_notifier` | system + notifier | 시스템 알림 | `systemNotifier` | `SYS_NTF` | 의미 비합산 |
+| `take_profit` | take + profit | 익절 | `takeProfit` | `TP` | 공인 약어 |
+| `task_scheduler` | task + scheduler | 태스크 스케줄러 | `taskScheduler` | `SCHED` | 공인 약어 |
+| `telegram_bot` | telegram + bot | 텔레그램 봇 | `telegramBot` | `TG_BOT` | 의미 비합산 |
+| `tracking_start` | tracking + start | 트래킹 시작 | `trackingStart` | `TRK_ST` | 의미 비합산 |
+| `trade_notifier` | trade + notifier | 거래 알림 | `tradeNotifier` | `TRD_NTF` | 의미 비합산 |
+| `trading_value_score` | trading + value + score | 거래대금 점수 | `tradingValueScore` | `TVS` | 공인 약어 |
+| `trailing_stop` | trailing + stop | 트레일링 스탑 | `trailingStop` | `TSL` | 공인 약어 |
+| `transaction_id` | transaction + id | 트랜잭션 ID | `transactionId` | `TR_ID` | 의미 비합산 |
+| `unrealized_pnl` | unrealized + pnl | 미실현 손익 | `unrealizedPnl` | `UPNL` | 공인 약어 |
+| `upper_wick` | upper + wick | 윗꼬리 | `upperWick` | `UW` | 공인 약어 |
+| `us_stock` | us + stock | 미국주식 | `usStock` | `US_STOCK` | 의미 비합산 |
+| `volatility_score` | volatility + score | 변동성 점수 | `volatilityScore` | `VOLS` | 공인 약어 |
+| `work_start` | work + start | 업무 시작 | `workStart` | `WS` | 공인 약어 |
+
+---
+
+## 금지 표현 (Banned)
+
+| 금지 표현 | 문맥 | 올바른 표현 | 사유 |
+|----------|------|------------|------|
+| `MT5_FUT` | 마켓 식별자로 사용 시 | `FX_FUT` | MT5는 플랫폼(tool)이지 시장(market)이 아님 |
+| `mt5Futures` | 외환선물 변수명으로 사용 시 | `fxFutures` | MT5는 접근 툴이며 마켓명이 아님 |
+| `KIS` | 한국주식 마켓 식별자 의미로 사용 시 | `KR_STOCK` | KIS는 브로커명. 마켓 식별자와 혼용 금지 |
+| `MT5` | 외환선물 마켓 의미로 사용 시 | `FX_FUT 또는 fxFutures` | MT5는 MetaTrader5 플랫폼명 |
+| `VOL` | 변동성(volatility) 의미로 단독 사용 시 | `VOLS (volatilityScore) 또는 context 명시` | VOL은 거래량(volume)과 혼동 가능 |
+| `TS` | trailingStop 또는 trackingStart 단독 사용 시 | `문맥에 따라 trailingStop / TRK_ST 구분` | TS가 두 개념에 모두 사용되어 혼동 발생 |
+| `WR` | weeklyReport 또는 winRate 단독 사용 시 | `문맥에 따라 weeklyReport / W_RPT 또는 winRate 구분` | WR이 두 개념에 모두 사용되어 혼동 발생 |
+| `ON` | enabled/online/overnight 혼용 시 | `각 의미에 맞는 전체 이름 사용` | ON이 세 가지 개념에 사용되어 혼동 발생 |

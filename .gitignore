@@ -51,3 +51,4 @@ backups/
 *.sqlite3
 .omx/
 .codex/
+log/

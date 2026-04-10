@@ -2454,6 +2454,66 @@
       "not": []
     },
     {
+      "id": "script",
+      "en": "script",
+      "ko": "스크립트",
+      "abbr": "SCRIPT",
+      "pos": "noun",
+      "domain": "system",
+      "description": "실행 자동화/운영 작업용 스크립트 단위",
+      "not": []
+    },
+    {
+      "id": "tool",
+      "en": "tool",
+      "ko": "도구",
+      "abbr": "TOOL",
+      "pos": "noun",
+      "domain": "system",
+      "description": "유틸리티성 기능을 제공하는 도구 모듈/디렉토리",
+      "not": []
+    },
+    {
+      "id": "guideline",
+      "en": "guideline",
+      "ko": "가이드라인",
+      "abbr": "GUIDE",
+      "pos": "noun",
+      "domain": "system",
+      "description": "프로젝트 운영/개발 지침 문서 단위",
+      "not": []
+    },
+    {
+      "id": "reference",
+      "en": "reference",
+      "ko": "레퍼런스",
+      "abbr": "REF",
+      "pos": "noun",
+      "domain": "system",
+      "description": "외부 사양/참고 문서 보관 단위",
+      "not": []
+    },
+    {
+      "id": "notification",
+      "en": "notification",
+      "ko": "알림",
+      "abbr": "NOTI",
+      "pos": "noun",
+      "domain": "system",
+      "description": "시스템 알림 기능(텔레그램 등) 모듈 단위",
+      "not": []
+    },
+    {
+      "id": "test",
+      "en": "test",
+      "ko": "테스트",
+      "abbr": "TEST",
+      "pos": "noun",
+      "domain": "system",
+      "description": "검증 코드/테스트 케이스 단위",
+      "not": []
+    },
+    {
       "id": "work",
       "en": "work",
       "ko": "작업",
