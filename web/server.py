@@ -548,7 +548,8 @@ def git_commit_push():
         return jsonify({"ok": False, "steps": steps, "error": "validate 실패 — 커밋을 중단했습니다."})
 
     # ── Step 2: git add ───────────────────────────────────────────────
-    add = run_git("add", "terms.json", "GLOSSARY.md")
+    add = run_git("add", "dictionary/words.json", "dictionary/compounds.json",
+                  "dictionary/banned.json", "dictionary/terms.json", "GLOSSARY.md")
     steps.append({"step": "git add", "ok": add["ok"], "output": add["stdout"] or add["stderr"]})
     log.info(f"[commit] step2 git add ok={add['ok']}")
     if not add["ok"]:
@@ -808,10 +809,18 @@ def batch_preview():
 
 @app.route("/api/batch/merge", methods=["POST"])
 def batch_merge():
-    """결과 파일의 용어를 terms.json 에 병합 (중복 id 제외)."""
+    """
+    결과 파일의 용어를 dictionary/words.json 에 병합 (중복 id 제외).
+
+    batch_terms.py 결과는 terms.json 포맷이므로,
+    단순어(토큰 1개)는 words.json으로, 복합어는 compounds.json으로 분류 후 병합.
+    분류 불가 항목은 words.json에 병합 (사용자가 이후 수동 검토).
+    """
+    import re
+
     body  = request.get_json() or {}
     fname = body.get("file", "")
-    ids   = body.get("ids", None)   # None = 전체 병합, list = 선택 병합
+    ids   = body.get("ids", None)   # None = 전체, list = 선택
 
     if not fname:
         return jsonify({"error": "file 파라미터 필요"}), 400
@@ -823,23 +832,77 @@ def batch_merge():
     if not fpath.exists():
         return jsonify({"error": "파일 없음"}), 404
 
+    def _tokenize(name: str) -> list:
+        s = str(name).replace('-', '_')
+        s = re.sub(r'([a-z])([A-Z])', r'\1_\2', s)
+        return [t.lower() for t in s.split('_') if len(t) >= 2]
+
     try:
-        src_data  = json.loads(fpath.read_text(encoding='utf-8'))
-        main_data = load_terms()
+        src_data = json.loads(fpath.read_text(encoding='utf-8'))
+        candidates = src_data.get("terms", [])
 
-        existing_ids = {t["id"] for t in main_data["terms"]}
-        to_add = [
-            t for t in src_data.get("terms", [])
-            if t.get("id") and t["id"] not in existing_ids
-            and (ids is None or t["id"] in ids)
-        ]
+        # ids 필터
+        if ids is not None:
+            candidates = [t for t in candidates if t.get("id") in ids]
 
-        main_data["terms"].extend(to_add)
-        save_terms(main_data)
+        # words.json / compounds.json 기존 id 수집
+        wd = load_words()
+        cd = load_compounds()
+        existing_word_ids = {w["id"] for w in wd["words"]}
+        existing_comp_ids = {c["id"] for c in cd["compounds"]}
+        existing_all      = existing_word_ids | existing_comp_ids
 
-        log.info(f"[batch] merge {len(to_add)}개 용어 추가 from {fname}")
-        return jsonify({"ok": True, "added": len(to_add),
-                        "skipped": len(src_data.get("terms",[])) - len(to_add)})
+        words_to_add = []
+        skipped      = 0
+
+        for t in candidates:
+            tid = t.get("id", "").strip()
+            if not tid or tid in existing_all:
+                skipped += 1
+                continue
+
+            tokens = _tokenize(tid)
+            cats   = t.get("categories", ["system"])
+
+            # domain 변환
+            CAT_MAP = {
+                'order':'trading','risk':'trading','trading':'trading',
+                'domain':'trading','account':'trading',
+                'market':'market','data':'market','selector':'market',
+                'system':'system','status':'system','session':'system',
+                'module':'system','config':'system','class':'system',
+                'infra':'infra','tool':'infra','report':'ui',
+            }
+            domain = next((CAT_MAP.get(c) for c in cats if c in CAT_MAP), "general")
+            abbr   = t.get("abbr_short", "")
+            abbr_v = abbr if (abbr and 2 <= len(abbr) <= 5 and abbr.isupper()
+                              and '_' not in abbr) else None
+
+            # 단순어 → words.json
+            words_to_add.append({
+                "id":          tid,
+                "en":          (t.get("en") or tid).lower(),
+                "ko":          t.get("ko") or tid,
+                "abbr":        abbr_v,
+                "pos":         "noun",
+                "domain":      domain,
+                "description": t.get("description") or "",
+                "not":         [],
+            })
+            existing_all.add(tid)
+
+        if words_to_add:
+            wd["words"].extend(words_to_add)
+            wd["words"].sort(key=lambda w: w["id"])
+            save_words(wd)
+
+        log.info(f"[batch] merge words={len(words_to_add)} skipped={skipped} from {fname}")
+        return jsonify({
+            "ok":      True,
+            "added":   len(words_to_add),
+            "skipped": skipped,
+            "note":    "words.json에 병합됨. 복합어는 UI에서 수동 이동 필요.",
+        })
     except Exception as e:
         log.warning(f"[batch] merge 실패: {e}")
         return jsonify({"ok": False, "error": str(e)})

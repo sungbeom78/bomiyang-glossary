@@ -1,119 +1,94 @@
 #!/usr/bin/env python3
 """
-validate.py
-terms.json 유효성 검사 스크립트
+validate.py v2  —  BOM_TS glossary 검증 래퍼 (CI용)
+위치: glossary/bin/validate.py
+
+역할:
+  generate_glossary.py validate 명령에 위임한다.
+  CI 파이프라인 또는 run.py 에서 직접 호출 가능.
 
 사용법:
-    python3 validate.py
-    python3 validate.py --input terms.json
+    python validate.py              # 검증 실행 (FATAL 있으면 exit 1)
+    python validate.py --silent     # 출력 없이 종료 코드만 반환
+
+검증 규칙 (generate_glossary.py 참조):
+  [FATAL]
+  V-001: words.json id 고유
+  V-002: compounds.json id 고유
+  V-003: words ↔ compounds id 충돌 없음
+  V-004: compounds.words[] 참조가 words.json에 존재
+  V-005: compounds.reason 비어있지 않음
+  V-006: abbr 중복 없음
+
+  [WARN]
+  V-101: 고아 단어 (compound 미참조)
+  V-102: banned.correct 가 words/compounds에 존재
+  V-103: not[] 값이 다른 id와 충돌
 """
 
-import json
-import argparse
-import io
 import sys
-from collections import defaultdict
+import io
+import os
+import subprocess
+import argparse
+from pathlib import Path
 
-# ── Windows cp949 인코딩 오류 방지 ─────────────────────────────────────
+# ── Windows cp949 인코딩 오류 방지 ────────────────────────────────────
 if sys.stdout.encoding and sys.stdout.encoding.lower() not in ('utf-8', 'utf8'):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 if sys.stderr.encoding and sys.stderr.encoding.lower() not in ('utf-8', 'utf8'):
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
-REQUIRED_FIELDS = ["id", "ko", "en", "abbr_long", "abbr_short", "categories", "description"]
+BIN_DIR     = Path(__file__).parent.resolve()
+REPO_ROOT   = BIN_DIR.parent.resolve()
+GENERATE_PY = REPO_ROOT / "generate_glossary.py"
 
 
-def validate(path: str) -> bool:
-    with open(path, encoding="utf-8") as f:
-        data = json.load(f)
+def validate(silent: bool = False) -> bool:
+    """
+    generate_glossary.py validate 실행.
+    반환: True(FATAL 없음) / False(FATAL 있음)
+    """
+    env = os.environ.copy()
+    env['PYTHONIOENCODING'] = 'utf-8'
+    env['PYTHONUTF8']       = '1'
 
-    terms = data["terms"]
-    errors = []
-    warnings = []
-
-    # 1. 필수 필드 검사
-    for t in terms:
-        for field in REQUIRED_FIELDS:
-            if field not in t or not t[field]:
-                errors.append(f"[{t.get('id','?')}] 필수 필드 누락: '{field}'")
-
-    # 2. id 중복 검사
-    id_map = defaultdict(list)
-    for t in terms:
-        id_map[t.get("id", "")].append(t)
-    for id_, ts in id_map.items():
-        if len(ts) > 1:
-            errors.append(f"id 중복: '{id_}' ({len(ts)}건)")
-
-    # 3. abbr_long 중복 검사
-    long_map = defaultdict(list)
-    for t in terms:
-        long_map[t.get("abbr_long", "")].append(t["id"])
-    for k, ids in long_map.items():
-        if len(ids) > 1:
-            errors.append(f"abbr_long 중복: '{k}' → {ids}")
-
-    # 4. abbr_short 충돌 검사 (다른 개념끼리만)
-    short_map = defaultdict(list)
-    for t in terms:
-        short_map[t.get("abbr_short", "")].append(t)
-    for short, ts in short_map.items():
-        if len(ts) > 1:
-            # 카테고리가 전혀 겹치지 않으면 위험 경고
-            all_cats = [set(t.get("categories", [])) for t in ts]
-            has_overlap = any(
-                all_cats[i] & all_cats[j]
-                for i in range(len(all_cats))
-                for j in range(i + 1, len(all_cats))
-            )
-            ids = [t["id"] for t in ts]
-            if not has_overlap:
-                errors.append(f"abbr_short 충돌 (카테고리 불일치): '{short}' → {ids}")
-            else:
-                warnings.append(f"abbr_short 공유 (동일개념 다계층, 허용): '{short}' → {ids}")
-
-    # 5. categories 유효성 검사
-    valid_cats = set(data["meta"]["categories"].keys())
-    for t in terms:
-        for cat in t.get("categories", []):
-            if cat not in valid_cats:
-                errors.append(f"[{t['id']}] 알 수 없는 category: '{cat}'")
-
-    # 6. abbr_long camelCase 검사 (경고)
-    for t in terms:
-        al = t.get("abbr_long", "")
-        if al and al[0].isupper() and not t.get("class_type"):
-            warnings.append(f"[{t['id']}] abbr_long '{al}' 이 대문자 시작 (클래스가 아닌 경우 확인 필요)")
-
-    # 결과 출력
-    print(f"\n{'='*50}")
-    print(f"[validate]  {path}")
-    print(f"{'='*50}")
-    print(f"총 용어 수: {len(terms)}개")
-
-    if errors:
-        print(f"\n[FAIL] 오류 {len(errors)}건:")
-        for e in errors:
-            print(f"  • {e}")
-    else:
-        print("\n[OK] 오류 없음")
-
-    if warnings:
-        print(f"\n[WARN] 경고 {len(warnings)}건:")
-        for w in warnings:
-            print(f"  • {w}")
-
-    print(f"\n{'='*50}\n")
-    return len(errors) == 0
+    try:
+        result = subprocess.run(
+            [sys.executable, str(GENERATE_PY), "validate"],
+            cwd=str(REPO_ROOT),
+            capture_output=True,
+            encoding='utf-8',
+            errors='replace',
+            timeout=30,
+            env=env,
+        )
+        if not silent:
+            if result.stdout:
+                print(result.stdout, end='')
+            if result.stderr:
+                print(result.stderr, end='', file=sys.stderr)
+        return result.returncode == 0
+    except subprocess.TimeoutExpired:
+        if not silent:
+            print("[FAIL] validate 타임아웃 (30초 초과)")
+        return False
+    except Exception as e:
+        if not silent:
+            print(f"[FAIL] validate 실행 오류: {e}")
+        return False
 
 
 def main():
-    parser = argparse.ArgumentParser(description="terms.json 유효성 검사")
-    parser.add_argument("--input", default="terms.json")
+    parser = argparse.ArgumentParser(
+        description="BOM_TS glossary 검증 (generate_glossary.py validate 래퍼)"
+    )
+    parser.add_argument("--silent", action="store_true",
+                        help="출력 없이 종료 코드만 반환")
     args = parser.parse_args()
 
-    ok = validate(args.input)
-    exit(0 if ok else 1)
+    ok = validate(silent=args.silent)
+    sys.exit(0 if ok else 1)
 
 
 if __name__ == "__main__":

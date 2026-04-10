@@ -1,12 +1,26 @@
 #!/usr/bin/env python3
 """
-batch_terms.py  —  용어 후보 → Claude/OpenAI/Google API → terms_날짜.json
+batch_terms.py  —  BOM_TS 용어 후보 → Claude/OpenAI/Google API → terms_날짜.json
 위치: glossary/bin/batch_terms.py
+
+역할:
+  scan_terms.py로 용어 후보를 수집하고, LLM API로 분석하여
+  결과를 PROJ_ROOT/tmp/terms/terms_날짜.json 에 저장한다.
+  웹 UI에서 검토 후 dictionary/words.json 또는 dictionary/compounds.json 에 병합.
+
+사전 기준:
+  glossary/dictionary/words.json     (단어 원자 단위)
+  glossary/dictionary/compounds.json (복합어)
 
 사용법:
   python batch_terms.py              # 스캔 + API 분석 + 결과 저장
   python batch_terms.py --dry-run    # API 미호출, 토큰 예상치만 출력
   python batch_terms.py --chunk 200  # 청크 크기 지정
+
+규칙 준수:
+  AGENTS.md Rule 8-B: 신규 식별자는 generate_glossary.py check-id 로 검증
+  AGENTS.md Rule 8-A: 폴더명 단수형 강제 (test/, log/ 등)
+  08_naming.md: 시스템 공식 명칭 BOM_TS 사용
 """
 
 import sys
@@ -52,8 +66,12 @@ def get_env(env_arg: str = None) -> tuple:
 # 프롬프트 생성
 # ════════════════════════════════════════════════════════════════════
 
-SYSTEM_PROMPT = """당신은 자동매매 시스템 개발 프로젝트의 용어 사전 관리자입니다.
-주어진 용어 후보 목록을 분석해서, 진정한 도메인 용어만 골라 terms.json 포맷으로 정리하세요.
+SYSTEM_PROMPT = """당신은 BOM_TS(Bomiyang Trading System) 자동매매 시스템 개발 프로젝트의 용어 사전 관리자입니다.
+주어진 용어 후보 목록을 분석해서, 진정한 도메인 용어만 골라 아래 JSON 포맷으로 정리하세요.
+
+사전 구조:
+- glossary/dictionary/words.json : 원자 단위 단어 (최소 단위)
+- glossary/dictionary/compounds.json : 복합어 (등록 조건 충족 시만)
 
 규칙:
 1. 기술 구현 상세(지역변수, 임시변수, 외부 라이브러리명)는 제외
@@ -294,9 +312,10 @@ def save_result(terms: list[dict], proj_root: Path) -> Path:
     # terms.json 메타 포맷 동일하게
     result = {
         "meta": {
-            "generated_at": datetime.now().isoformat(),
-            "description":  "batch_terms.py 자동 추출 결과 — glossary/terms.json 에 병합 전 검토 필요",
-            "count":        len(terms),
+            "project":       "BOM_TS",
+            "generated_at":  datetime.now().isoformat(),
+            "description":   "batch_terms.py 자동 추출 결과 — 검토 후 dictionary/words.json 또는 compounds.json 에 병합",
+            "count":         len(terms),
         },
         "terms": terms,
     }
@@ -325,7 +344,7 @@ def main():
 
     # ── 스캔 ──────────────────────────────────────────────────────
     exclude_dirs = parse_list(env.get('EXCLUDE_DIRS',
-        'backup,data,tests,lib_test,tmp,glossary,.git,__pycache__,node_modules,.venv,venv'))
+        'backup,data,test,lib_test,tmp,glossary,.git,__pycache__,node_modules,.venv,venv'))
     content_skip = parse_list(env.get('EXCLUDE_FILE_CONTENT', 'cache,log'))
     exclude_exts = {e if e.startswith('.') else f'.{e}'
                     for e in parse_list(env.get('EXCLUDE_EXTENSIONS',
@@ -437,7 +456,8 @@ def main():
     if deduped:
         out_path = save_result(deduped, proj_root)
         print(f"\n[완료] {len(deduped)}개 용어 → {out_path}")
-        print(f"       웹 UI에서 검토 후 terms.json 에 병합하세요.")
+        print(f"       웹 UI에서 검토 후 dictionary/words.json 또는 compounds.json 에 병합하세요.")
+        print(f"       또는: python glossary/generate_glossary.py check-id <식별자>")
     else:
         print("\n[완료] API 응답에서 추출된 용어가 없습니다.")
 

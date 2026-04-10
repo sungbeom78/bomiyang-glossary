@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 """
-scan_terms.py v2  —  프로젝트 소스 스캔 → 용어 후보 추출
+scan_terms.py v2  —  BOM_TS 프로젝트 소스 스캔 → 용어 후보 추출
 위치: glossary/bin/scan_terms.py
+
+사전 기준:
+  glossary/dictionary/words.json     (단어 원자 단위)
+  glossary/dictionary/compounds.json (복합어)
+  glossary/dictionary/terms.json     (fallback, 자동 생성)
 
 == 스캔 대상 / 제외 규칙 ==
 
 [완전 제외 폴더]  — 내용도 파일명도 안 봄
-  backup/, data/, tests/, tmp/, glossary/
+  backup/, data/, test/, tmp/, glossary/
   .* (숨김 폴더: .git, .omx 등 모두)
   EXCLUDE_DIRS 환경변수로 추가 가능
+  ※ AGENTS.md Rule 8-A: 폴더명은 단수형 강제
 
 [파일명만 보는 폴더]  — 내용 스캔 없음, 폴더명만 도메인 여부 판단
   cache/, log/
@@ -16,7 +22,7 @@ scan_terms.py v2  —  프로젝트 소스 스캔 → 용어 후보 추출
 
 [doc/ 폴더 특별 규칙]
   - *.md 파일명 → 완전 무시 (자연어 제목이므로)
-  - 폴더명 → 도메인 관련성 있는 것만 후보 (아래 DOMAIN_DOC_DIRS 참고)
+  - 폴더명 → 도메인 관련성 있는 것만 후보 (DOMAIN_DOC_DIR_PATTERNS 참고)
   - 내용(본문 텍스트) → 스캔 안 함
 
 [스캔 대상]
@@ -36,9 +42,13 @@ scan_terms.py v2  —  프로젝트 소스 스캔 → 용어 후보 추출
   1. 최소 4자 이상
   2. 숫자/타임스탬프/해시로 시작하는 것 제외
   3. 불용어 제외 (Python 내장, 범용 동사, 외부 라이브러리)
-  4. 이미 terms.json 에 등록된 심볼 제외
+  4. dictionary/words.json + compounds.json 에 등록된 심볼 제외
   5. 복합어 분해 시 모든 토큰이 이미 등록된 경우 제외
-     예) kisApiToken = kis + Api + Token → 모두 등록됨 → 제외
+     예) kisApiToken = kis + api + token → 모두 등록됨 → 제외
+
+[규칙 준수]
+  AGENTS.md Rule 8-B: 신규 식별자 생성 전 glossary 검증 필수
+    python glossary/generate_glossary.py check-id <식별자>
 """
 
 import ast
@@ -227,29 +237,59 @@ def _all_tokens_known(name: str, known_tokens: set) -> bool:
 
 
 # ════════════════════════════════════════════════════════════════════
-# 기존 terms.json 로드
+# 기존 사전 로드 — dictionary/words.json + dictionary/compounds.json
 # ════════════════════════════════════════════════════════════════════
 
 def load_existing_terms(glossary_dir: Path) -> tuple:
-    """(등록 심볼 집합, 분해 토큰 집합) 반환."""
-    tj = glossary_dir / "terms.json"
-    if not tj.exists():
-        return set(), set()
-    try:
-        data   = json.loads(tj.read_text(encoding='utf-8'))
-        syms   = set()
-        tokens = set()
-        for t in data.get("terms", []):
-            for field in ('id', 'abbr_long', 'abbr_short', 'en', 'ko'):
-                v = t.get(field, '')
+    """
+    (등록 심볼 집합, 분해 토큰 집합) 반환.
+
+    v2 우선: dictionary/words.json + dictionary/compounds.json
+    fallback: dictionary/terms.json (하위호환)
+    """
+    dict_dir = glossary_dir / "dictionary"
+    syms:   set = set()
+    tokens: set = set()
+
+    def _absorb(entries: list, fields: tuple):
+        for item in entries:
+            for f in fields:
+                v = item.get(f, '')
                 if v:
-                    syms.add(v)
-                    syms.add(v.lower())
-                    for tok in _split_tokens(v):
+                    syms.add(str(v))
+                    syms.add(str(v).lower())
+                    for tok in _split_tokens(str(v)):
                         tokens.add(tok)
-        return syms, tokens
-    except Exception:
-        return set(), set()
+
+    # ── words.json ──────────────────────────────────────────────────
+    words_path = dict_dir / "words.json"
+    if words_path.exists():
+        try:
+            data = json.loads(words_path.read_text(encoding='utf-8'))
+            _absorb(data.get("words", []), ('id', 'en', 'ko', 'abbr'))
+        except Exception:
+            pass
+
+    # ── compounds.json ───────────────────────────────────────────────
+    compounds_path = dict_dir / "compounds.json"
+    if compounds_path.exists():
+        try:
+            data = json.loads(compounds_path.read_text(encoding='utf-8'))
+            _absorb(data.get("compounds", []), ('id', 'abbr_long', 'abbr_short', 'ko', 'en'))
+        except Exception:
+            pass
+
+    # ── fallback: terms.json (하위호환, words/compounds 없을 때) ─────
+    if not syms:
+        terms_path = dict_dir / "terms.json"
+        if terms_path.exists():
+            try:
+                data = json.loads(terms_path.read_text(encoding='utf-8'))
+                _absorb(data.get("terms", []), ('id', 'abbr_long', 'abbr_short', 'en', 'ko'))
+            except Exception:
+                pass
+
+    return syms, tokens
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -529,7 +569,7 @@ def main():
     proj_root = resolve_proj_root(bin_dir, env)
 
     exclude_dirs = parse_list(env.get('EXCLUDE_DIRS',
-        'backup,data,tests,lib_test,tmp,glossary,.git,__pycache__,node_modules,.venv,venv'))
+        'backup,data,test,lib_test,tmp,glossary,.git,__pycache__,node_modules,.venv,venv'))
     content_skip = parse_list(env.get('EXCLUDE_FILE_CONTENT', 'cache,log'))
     raw_exts     = parse_list(env.get('EXCLUDE_EXTENSIONS',
         '.md,.txt,.log,.csv,.tsv,.png,.jpg,.jpeg,.gif,.pdf,.ico,.svg,.zip,.tar'))
