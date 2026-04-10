@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Word",
+  "type": "object",
+  "required": ["id","en","ko","pos","domain","description"],
+  "properties": {
+    "id":          {"type":"string","pattern":"^[a-z][a-z0-9_]*$"},
+    "en":          {"type":"string"},
+    "ko":          {"type":"string"},
+    "abbr":        {"type":["string","null"],"pattern":"^[A-Z]{2,5}$"},
+    "pos":         {"type":"string","enum":["noun","verb","adj","adv","prefix","suffix","proper"]},
+    "domain":      {"type":"string","enum":["trading","market","system","infra","ui","general","proper"]},
+    "description": {"type":"string"},
+    "not":         {"type":"array","items":{"type":"string"}}
+  },
+  "additionalProperties": false
+}
