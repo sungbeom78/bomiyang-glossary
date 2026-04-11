@@ -1624,6 +1624,16 @@
       "not": []
     },
     {
+      "id": "premium",
+      "en": "premium",
+      "ko": "프리미엄",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "유료/고급 정보 성격의 데이터 구분 키",
+      "not": []
+    },
+    {
       "id": "report",
       "en": "report",
       "ko": "리포트",
@@ -2134,6 +2144,16 @@
       "not": []
     },
     {
+      "id": "theme",
+      "en": "theme",
+      "ko": "테마",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "market",
+      "description": "시장 분류 단위로 사용되는 테마",
+      "not": []
+    },
+    {
       "id": "tick",
       "en": "tick",
       "ko": "틱",
@@ -2511,6 +2531,26 @@
       "pos": "noun",
       "domain": "system",
       "description": "검증 코드/테스트 케이스 단위",
+      "not": []
+    },
+    {
+      "id": "table",
+      "en": "table",
+      "ko": "",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "database table unit",
+      "not": []
+    },
+    {
+      "id": "contract",
+      "en": "contract",
+      "ko": "",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "interface contract unit",
       "not": []
     },
     {

@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "2.0.0",
   "generated": true,
-  "generated_at": "2026-04-10T18:54:51.702266",
+  "generated_at": "2026-04-11T07:03:56.438384",
   "terms": [
     {
       "id": "1m",
@@ -1937,6 +1937,18 @@
       "description": "과거 데이터 재생 시뮬레이션"
     },
     {
+      "id": "premium",
+      "ko": "프리미엄",
+      "en": "Premium",
+      "abbr_long": "premium",
+      "abbr_short": "PREMI",
+      "categories": [
+        "market"
+      ],
+      "type": "word",
+      "description": "유료/고급 정보 성격의 데이터 구분 키"
+    },
+    {
       "id": "report",
       "ko": "리포트",
       "en": "Report",
@@ -2549,6 +2561,18 @@
       "description": "시스템에서 관리되는 전체 테마 목록을 나타내는 테이블입니다."
     },
     {
+      "id": "theme",
+      "ko": "테마",
+      "en": "Theme",
+      "abbr_long": "theme",
+      "abbr_short": "THEME",
+      "categories": [
+        "market"
+      ],
+      "type": "word",
+      "description": "시장 분류 단위로 사용되는 테마"
+    },
+    {
       "id": "tick",
       "ko": "틱",
       "en": "Tick",
@@ -3003,6 +3027,30 @@
       ],
       "type": "word",
       "description": "검증 코드/테스트 케이스 단위"
+    },
+    {
+      "id": "table",
+      "ko": "",
+      "en": "Table",
+      "abbr_long": "table",
+      "abbr_short": "TABLE",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "description": "database table unit"
+    },
+    {
+      "id": "contract",
+      "ko": "",
+      "en": "Contract",
+      "abbr_long": "contract",
+      "abbr_short": "CONTR",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "description": "interface contract unit"
     },
     {
       "id": "work",
