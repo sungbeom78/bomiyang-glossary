@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "2.0.0",
   "generated": true,
-  "generated_at": "2026-04-10T21:49:56.904063",
+  "generated_at": "2026-04-10T18:54:51.702266",
   "terms": [
     {
       "id": "account",
@@ -1817,6 +1817,18 @@
       "description": "과거 데이터 재생 시뮬레이션"
     },
     {
+      "id": "premium",
+      "ko": "프리미엄",
+      "en": "Premium",
+      "abbr_long": "premium",
+      "abbr_short": "PREMI",
+      "categories": [
+        "market"
+      ],
+      "type": "word",
+      "description": "유료/고급 정보 성격의 데이터 구분 키"
+    },
+    {
       "id": "report",
       "ko": "리포트",
       "en": "Report",
@@ -2381,6 +2393,18 @@
       "description": "시스템에서 관리되는 전체 테마 목록을 나타내는 테이블입니다."
     },
     {
+      "id": "theme",
+      "ko": "테마",
+      "en": "Theme",
+      "abbr_long": "theme",
+      "abbr_short": "THEME",
+      "categories": [
+        "market"
+      ],
+      "type": "word",
+      "description": "시장 분류 단위로 사용되는 테마"
+    },
+    {
       "id": "tick",
       "ko": "틱",
       "en": "Tick",
@@ -2715,6 +2739,78 @@
       ],
       "type": "word",
       "description": "캔들의 몸통 밖 선"
+    },
+    {
+      "id": "script",
+      "ko": "스크립트",
+      "en": "Script",
+      "abbr_long": "script",
+      "abbr_short": "SCRIPT",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "description": "실행 자동화/운영 작업용 스크립트 단위"
+    },
+    {
+      "id": "tool",
+      "ko": "도구",
+      "en": "Tool",
+      "abbr_long": "tool",
+      "abbr_short": "TOOL",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "description": "유틸리티성 기능을 제공하는 도구 모듈/디렉토리"
+    },
+    {
+      "id": "guideline",
+      "ko": "가이드라인",
+      "en": "Guideline",
+      "abbr_long": "guideline",
+      "abbr_short": "GUIDE",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "description": "프로젝트 운영/개발 지침 문서 단위"
+    },
+    {
+      "id": "reference",
+      "ko": "레퍼런스",
+      "en": "Reference",
+      "abbr_long": "reference",
+      "abbr_short": "REF",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "description": "외부 사양/참고 문서 보관 단위"
+    },
+    {
+      "id": "notification",
+      "ko": "알림",
+      "en": "Notification",
+      "abbr_long": "notification",
+      "abbr_short": "NOTI",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "description": "시스템 알림 기능(텔레그램 등) 모듈 단위"
+    },
+    {
+      "id": "test",
+      "ko": "테스트",
+      "en": "Test",
+      "abbr_long": "test",
+      "abbr_short": "TEST",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "description": "검증 코드/테스트 케이스 단위"
     },
     {
       "id": "work",

@@ -2,10 +2,10 @@
 
 > 자동 생성 파일. 수동 편집 금지.
 > 원본: `words.json` + `compounds.json` + `banned.json`
-> 생성: 2026-04-10 18:54
+> 생성: 2026-04-11 07:03
 
 ## 통계
-- 단어: 251개
+- 단어: 255개
 - 복합어: 152개
 - 금지 표현: 8개
 
@@ -103,6 +103,7 @@
 | `meta` | 메타 정보 | META | noun |  |
 | `open` | 시가 | — | noun | 봉의 시작 가격 |
 | `personality` | 성격 | — | noun | 봉의 형태적 특성 |
+| `premium` | 프리미엄 | — | noun | 유료/고급 정보 성격의 데이터 구분 키 |
 | `ranking` | 랭킹 | — | noun | 순위 결과 |
 | `rankings` | 랭킹들 | — | noun | 복수의 순위 결과 |
 | `realtime` | 실시간 | — | adj | 실시간으로 처리되는 |
@@ -111,6 +112,7 @@
 | `stock` | 주식 | — | noun | 주식 종목 |
 | `strength` | 강도 | — | noun | 시장 또는 종목의 상승/하락 강도 |
 | `symbol` | 종목 | — | noun | 거래 종목 코드 |
+| `theme` | 테마 | — | noun | 시장 분류 단위로 사용되는 테마 |
 | `themes` | 테마 목록 | — | noun | 시스템에서 관리되는 전체 테마 목록을 나타내는 테이블입니다. |
 | `trades` | 거래 목록 | — | noun | 시스템에서 발생한 거래들의 목록입니다. |
 | `transitions` | 전환 목록 | — | noun | 가능한 모든 상태 변화의 목록입니다. |
@@ -139,6 +141,7 @@
 | `config` | 설정 | — | noun | 시스템 설정값 |
 | `confirmed` | 확인됨 | — | noun | 어떤 이벤트나 상태가 최종적으로 확인되었음을 나타내는 플래그 |
 | `connected` | 연결됨 | — | noun | 서비스 또는 시스템과의 연결 상태 |
+| `contract` |  | — | noun | interface contract unit |
 | `deny` | 거부 | — | verb | 진입 조건 불충족으로 거부 |
 | `disabled` | 비활성화 | OFF | noun | 기능 비활성화 상태 |
 | `enabled` | 활성화 | ON | noun | 기능 활성화 상태 |
@@ -210,6 +213,7 @@
 | `submitted` | 접수 | SUBM | noun | 브로커에 주문 전송 완료 |
 | `switch` | 스위치 | — | noun | 기능 활성화/비활성화 제어 |
 | `system` | 시스템 | — | noun | 전체 소프트웨어 시스템 |
+| `table` |  | — | noun | database table unit |
 | `task` | 작업 | — | noun | 스케줄링되는 실행 단위 |
 | `test` | 테스트 | TEST | noun | 검증 코드/테스트 케이스 단위 |
 | `time` | 시각 | — | noun | 특정 시점 |
