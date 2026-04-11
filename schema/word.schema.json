@@ -4,12 +4,13 @@
   "type": "object",
   "required": ["id","en","ko","pos","domain","description"],
   "properties": {
-    "id":          {"type":"string","pattern":"^[a-z][a-z0-9_]*$"},
+    "id":          {"type":"string","pattern":"^[a-z][a-z0-9]*$"},
     "en":          {"type":"string"},
     "ko":          {"type":"string"},
-    "abbr":        {"type":["string","null"],"pattern":"^[A-Z]{2,5}$"},
+    "abbr":        {"type":["string","null"]},
     "pos":         {"type":"string","enum":["noun","verb","adj","adv","prefix","suffix","proper"]},
     "domain":      {"type":"string","enum":["trading","market","system","infra","ui","general","proper"]},
+    "plural":      {"type":["string","null"]},
     "description": {"type":"string"},
     "not":         {"type":"array","items":{"type":"string"}}
   },

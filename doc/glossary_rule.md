@@ -17,6 +17,9 @@
 3. 사전에 없는 단어는 사용자 승인 후 등록한다.
 4. dictionary/terms.json 은 자동 생성 파일이다 — 수동 편집 절대 금지.
 5. 복합어는 5가지 조건 중 하나 이상을 충족할 때만 등록한다.
+6. words.json 의 단어 id 는 반드시 단수형이며 언더스코어 없이 영소문자+숫자만 허용한다.
+   형식: ^[a-z][a-z0-9]*$  예) order(O)  orders(X)  order_intent(X)
+7. 복수형은 코드에서 컬렉션 표현 시 사용 가능하나, words.json 에는 단수형만 등록한다.
 ```
 
 ---
@@ -25,7 +28,7 @@
 
 | 파일 | 역할 | 편집 |
 |------|------|------|
-| `glossary/dictionary/words.json` | 단어 원자 단위 (최소 단위) | ✅ 수동 |
+| `glossary/dictionary/words.json` | 단어 원자 단위 (최소 단위, **단수형+언더스코어 없음**) | ✅ 수동 |
 | `glossary/dictionary/compounds.json` | 복합어 (조건부 등록) | ✅ 수동 |
 | `glossary/dictionary/banned.json` | 금지표현 | ✅ 수동 |
 | `glossary/dictionary/terms.json` | 하위호환 통합본 | ❌ 자동 생성 |
@@ -110,7 +113,72 @@ python glossary/generate_glossary.py generate
 | config 키 | snake_case | `kr_strategy`, `stop_loss_rate` |
 | JSON/API 필드 | snake_case | `order_intent`, `fill_price` |
 
-### 3-2. 허용 문자
+### 3-2. words.json id 형식 (V-007 / V-008)
+
+```
+허용 패턴: ^[a-z][a-z0-9]*$
+  - 영소문자로 시작
+  - 영소문자 + 숫자만 허용
+  - 언더스코어 금지 (단어 = 단일 토큰)
+  - 복수형 단독 등록 금지
+
+예시:
+  ✅ order, fill, signal, kill, topn
+  ❌ order_intent  (언더스코어 → compound에 등록)
+  ❌ orders        (복수형 → 단수형 등록 후 plural 필드로 관리)
+  ❌ 1m            (숫자 시작 → 사전 등록 불가)
+```
+
+### 3-3. plural 필드 (noun 전용)
+
+| plural 값 | 의미 | 예시 |
+|-----------|------|------|
+| `null` | 자동 추론 (+s/+es/+ies) | `order` → `orders` |
+| 문자열 | 불규칙 복수형 명시 | `index` → `"indices"` |
+| `"-"` | 불가산 (복수형 없음) | `risk`, `config`, `info` |
+
+```json
+{"id": "order",    "pos": "noun", "plural": null,      ...}
+{"id": "index",    "pos": "noun", "plural": "indices",  ...}
+{"id": "risk",     "pos": "noun", "plural": "-",        ...}
+{"id": "activate", "pos": "verb"                        ...}
+```
+
+### 3-4. 단수/복수 사용 원칙 (AGENTS.md Rule 8-A)
+
+| 영역 | 규칙 | 예시 |
+|------|------|------|
+| 폴더명 | **단수 강제** | `log/`, `test/`, `script/` |
+| DB 테이블명 | **단수 강제** | `order`, `fill`, `position` |
+| 코드 변수/함수 | **의미 기반** | `orders = list[Order]` (컬렉션이면 복수 허용) |
+| words.json id | **단수 강제** | `order`(O), `orders`(X) |
+
+### 3-5. suffix 사용 원칙
+
+suffix는 **역할/의미** 추가 시에만 사용. 타입 표현에는 사용 금지.
+
+| 분류 | suffix 목록 | 사용 |
+|------|-------------|------|
+| ✅ 강하게 권장 | `_queue`, `_stream`, `_pipeline` | 흐름/처리 역할 |
+| ✅ 강하게 권장 | `_log`, `_history`, `_record`, `_trace` | 기록/이력 |
+| ✅ 강하게 권장 | `_snapshot`, `_state`, `_status`, `_cache` | 상태/시점 |
+| ✅ 강하게 권장 | `_registry`, `_store`, `_pool` | 관리/집합 |
+| ⚠️ 조건부 허용 | `_set`, `_map` | key-value/중복제거가 의미적으로 중요할 때 |
+| ❌ 비권장 | `_list`, `_array`, `_dict`, `_tuple` | 타입 중심 → 복수형으로 대체 |
+
+```python
+# ✅ 권장
+order_queue   = deque()          # 처리 대기열 (역할 suffix)
+signal_log    = []               # 이력 (의미 suffix)
+active_orders = list[Order]      # 컬렉션 (복수형으로 충분)
+
+# ❌ 비권장
+order_list    = []   # → active_orders 또는 orders 로
+signal_array  = []   # → signals 로
+orders_list   = []   # → 중복 표현 금지
+```
+
+### 3-6. 허용 문자 및 구분자 규칙
 
 ```
 허용:  a-z, 0-9, underscore (_)
@@ -121,7 +189,7 @@ PascalCase  → 영문 대소문자 (구분자 없음)
 UPPER_SNAKE → 대문자 + underscore
 ```
 
-### 3-3. 단어 순서 규칙
+### 3-7. 단어 순서 규칙
 
 | 패턴 | 예시 |
 |------|------|
@@ -130,7 +198,7 @@ UPPER_SNAKE → 대문자 + underscore
 | 주체 → 역할 | `risk_manager`, `signal_engine` |
 | 범위(대) → 범위(소) | `market_session`, `account_snapshot` |
 
-### 3-4. 폴더명 단수형 강제
+### 3-8. 폴더명 단수형 강제
 
 > `AGENTS.md Rule 8-A`: 모든 디렉토리명은 단수형을 사용한다.
 
@@ -225,6 +293,24 @@ python glossary/generate_glossary.py suggest <식별자>
 python glossary/generate_glossary.py stats
 ```
 
+**검증 규칙 요약 (V-001 ~ V-105):**
+
+| 코드 | 규칙 | 수준 |
+|------|------|------|
+| V-001 | words id 고유 | FATAL |
+| V-002 | compounds id 고유 | FATAL |
+| V-003 | words ↔ compounds id 충돌 없음 | FATAL |
+| V-004 | compounds.words[] 참조가 words에 존재 | FATAL |
+| V-005 | compounds.reason 비어있지 않음 | FATAL |
+| V-006 | abbr 중복 없음 | FATAL |
+| V-007 | words id 형식: `^[a-z][a-z0-9]*$` | FATAL |
+| V-008 | words 복수형 단독 항목 금지 | FATAL |
+| V-101 | 고아 단어 (compound 미참조) | WARN |
+| V-102 | banned.correct 미등록 | WARN |
+| V-103 | not[] 값이 id와 충돌 | WARN |
+| V-104 | noun인데 plural 필드 없음 | WARN |
+| V-105 | plural 값이 자동추론과 동일 → null 권장 | WARN |
+
 ---
 
 ## 8. 서브모듈 Git 운영
@@ -288,6 +374,11 @@ chore:    generate 재실행, 자동 생성 업데이트
 | 복합어 조건 미충족 등록 | 해당 compound 삭제, 단어 조합으로 대체 |
 | terms.json 수동 편집 | 즉시 되돌리기, generate 재실행 |
 | 폴더명 복수형 사용 | 즉시 수정 (logs → log, tests → test) |
+| words.json id에 언더스코어 포함 | V-007 FATAL → 즉시 수정 (단어 = 단일 토큰) |
+| words.json에 복수형 단독 등록 | V-008 FATAL → 삭제 후 단수형으로 등록 |
+| plural 필드 누락 (noun) | V-104 WARN → plural 필드 추가 |
+| `_list`, `_array`, `_dict` suffix 신규 사용 | 비권장 → 복수형 또는 의미 suffix로 대체 |
+| `orders_list` 등 중복 표현 | 즉시 수정 → `orders` 또는 `order_queue` 등으로 |
 
 ---
 

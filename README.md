@@ -46,14 +46,14 @@
 | 시스템 공식 | `BOM_TS` | 문서, 로그, 커밋 메시지 |
 | 공개 브랜드 | `Bomiyang's Trade System` | 웹페이지 타이틀, 헤더 |
 
-### 현황 (v2) : 2026-04-10
+### 현황 (v2)
 
 | 항목 | 수치 |
 |------|------|
-| 단어 (words.json) | 245개 |
+| 단어 (words.json) | 227개 |
 | 복합어 (compounds.json) | 152개 |
 | 금지표현 (banned.json) | 8개 |
-| 하위호환 terms.json | 397개 (자동 생성) |
+| 하위호환 terms.json | 379개 (자동 생성) |
 
 ---
 
@@ -136,14 +136,27 @@ generate_glossary.py generate        →       GLOSSARY.md (자동)
 
 | 필드 | 설명 |
 |------|------|
-| `id` | snake_case 고유 식별자 |
+| `id` | snake_case 없음. **영소문자+숫자만**, 단수형 강제 (`^[a-z][a-z0-9]*$`) |
 | `en` | 영문 원형 |
 | `ko` | 한글 대표 번역 |
 | `abbr` | 약어 (2~5자 대문자, 없으면 null) |
 | `pos` | 품사: noun / verb / adj / adv / prefix / suffix / proper |
 | `domain` | 분류: trading / market / system / infra / ui / general / proper |
+| `plural` | noun에만 사용. null=자동추론, 문자열=불규칙, `"-"`=불가산 |
 | `description` | 이 프로젝트에서의 의미 |
 | `not` | 혼동 금지 표현 목록 |
+
+**plural 필드 규칙:**
+
+| 값 | 의미 | 예시 |
+|----|------|------|
+| `null` | 자동 추론 (+s/+es/+ies) | `order` → `orders` |
+| 문자열 | 불규칙 복수형 명시 | `"indices"` (index용) |
+| `"-"` | 불가산 (복수형 없음) | `risk`, `config`, `info` |
+| (필드 없음) | noun 아닌 품사 | verb, adj 등 |
+
+**id 형식 규칙 (V-007):** 단어 id는 `^[a-z][a-z0-9]*$` 패턴만 허용.
+언더스코어, 대문자, 숫자 시작 금지. 복수형 단독 등록 금지 (V-008).
 
 ### 복합어 (Compound) — 조건부 등록
 
@@ -170,7 +183,55 @@ generate_glossary.py generate        →       GLOSSARY.md (자동)
 | 환경변수 | UPPER_SNAKE | `KIS_AK`, `PG_DSN` |
 | DB 테이블 | snake_case (단수) | `order_intent`, `fill` |
 
-### 금지표현 (Banned)
+### 복수형 (Plural) 관리
+
+단어 자체는 항상 **단수형**으로 등록. 복수형은 `plural` 필드로 관리.
+
+```
+AGENTS.md Rule 8-A 단수/복수 요약:
+  폴더명·DB 테이블명 → 단수 강제 (STRICT)
+  코드 변수·함수 등  → 의미 기반 (SEMANTIC: 컬렉션이면 복수 허용)
+```
+
+**코드에서의 복수형 사용 예시:**
+
+```python
+order  = Order()          # 단일 객체 → 단수
+orders = list[Order]      # 컬렉션 → 복수 (허용)
+
+# scan_terms.py가 'orders'를 만나면 → auto_plural 역변환 → 'order' 등록됨 인식
+```
+
+### suffix 사용 원칙
+
+suffix는 **역할/의미**를 추가할 때만 사용. 타입 표현에는 사용하지 않음.
+
+| 분류 | suffix | 사용 |
+|------|--------|------|
+| ✅ 강하게 권장 | `_queue`, `_stream`, `_pipeline` | 흐름/처리 역할 |
+| ✅ 강하게 권장 | `_log`, `_history`, `_record`, `_trace` | 기록/이력 |
+| ✅ 강하게 권장 | `_snapshot`, `_state`, `_status`, `_cache` | 상태/시점 |
+| ✅ 강하게 권장 | `_registry`, `_store`, `_pool` | 관리/집합 |
+| ⚠️ 조건부 허용 | `_set`, `_map` | 의미적 중요도 높을 때만 |
+| ❌ 비권장 | `_list`, `_array`, `_dict`, `_tuple` | 타입 중심 → 복수형으로 대체 |
+
+**예시:**
+
+```python
+# ✅ 권장
+order_queue      # 처리 대기열 (역할 suffix)
+execution_log    # 실행 이력 (의미 suffix)
+price_snapshot   # 가격 스냅샷 (상태 suffix)
+active_orders    # 활성 주문 목록 (복수형으로 충분)
+
+# ❌ 비권장
+order_list       # → active_orders 또는 orders 로
+signal_array     # → signals 로
+config_dict      # → configs 또는 config_map (key-value가 중요할 때만)
+orders_list      # → 중복 표현 금지
+```
+
+
 
 혼동을 유발하는 표현을 명시적으로 금지. `dictionary/banned.json`에 등록.
 
@@ -537,6 +598,8 @@ EXCLUDE_EXTENSIONS=.md,.txt,.log,.csv,.tsv,.png,.jpg,.jpeg,.gif,.pdf,.ico,.svg,.
 | V-004 | `compounds.words[]` 참조가 words.json에 존재 |
 | V-005 | `compounds.reason` 비어있지 않음 |
 | V-006 | abbr 중복 없음 (words 내, compounds 내, cross) |
+| V-007 | `words.json` id 형식: `^[a-z][a-z0-9]*$` (언더스코어/대문자/숫자시작 금지) |
+| V-008 | `words.json` 복수형 단독 항목 금지 (단수형 이미 등록된 경우) |
 
 ### WARN — 경고만, generate 계속
 
@@ -545,6 +608,8 @@ EXCLUDE_EXTENSIONS=.md,.txt,.log,.csv,.tsv,.png,.jpg,.jpeg,.gif,.pdf,.ico,.svg,.
 | V-101 | 고아 단어 (어떤 compound에서도 미참조) |
 | V-102 | `banned.correct`가 words/compounds에 존재 |
 | V-103 | `not[]` 값이 다른 id와 충돌 |
+| V-104 | noun인데 `plural` 필드 미설정 |
+| V-105 | `plural` 값이 자동추론값과 동일 → null로 대체 권장 |
 
 ---
 

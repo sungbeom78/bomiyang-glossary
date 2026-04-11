@@ -2,18 +2,72 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Compound",
   "type": "object",
-  "required": ["id","words","ko","en","abbr_long","abbr_short","domain","description","reason"],
+  "required": [
+    "id",
+    "words",
+    "ko",
+    "en",
+    "abbr_long",
+    "abbr_short",
+    "domain",
+    "description",
+    "reason"
+  ],
   "properties": {
-    "id":          {"type":"string","pattern":"^[a-z][a-z0-9_]*$"},
-    "words":       {"type":"array","items":{"type":"string"},"minItems":2},
-    "ko":          {"type":"string"},
-    "en":          {"type":"string"},
-    "abbr_long":   {"type":"string"},
-    "abbr_short":  {"type":"string"},
-    "domain":      {"type":"string","enum":["trading","market","system","infra","ui","general","proper"]},
-    "description": {"type":"string"},
-    "reason":      {"type":"string","minLength":1},
-    "not":         {"type":"array","items":{"type":"string"}}
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "words": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2
+    },
+    "ko": {
+      "type": "string"
+    },
+    "en": {
+      "type": "string"
+    },
+    "abbr_long": {
+      "type": "string"
+    },
+    "abbr_short": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "trading",
+        "market",
+        "system",
+        "infra",
+        "ui",
+        "general",
+        "proper"
+      ]
+    },
+    "plural": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "not": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
   },
   "additionalProperties": false
 }

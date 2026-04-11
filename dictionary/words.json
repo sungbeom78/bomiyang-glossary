@@ -4,16 +4,6 @@
   "description": "BOM_TS 단어 사전 — 식별자의 최소 단위",
   "words": [
     {
-      "id": "1m",
-      "en": "1m",
-      "ko": "1분",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "market",
-      "description": "1분 단위 시간 간격",
-      "not": []
-    },
-    {
       "id": "account",
       "en": "account",
       "ko": "계좌",
@@ -21,7 +11,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "투자 계좌 정보",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "active",
@@ -41,17 +32,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "외부 API 연결 어댑터",
-      "not": []
-    },
-    {
-      "id": "adapters",
-      "en": "adapters",
-      "ko": "어댑터들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "infra",
-      "description": "브로커 연결 어댑터 모음",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "after",
@@ -71,7 +53,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "애플리케이션 키",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "auth",
@@ -81,7 +64,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "브로커 API 인증 토큰 발급·갱신 (KIS OAuth, Upbit JWT 등)",
-      "not": []
+      "not": [],
+      "plural": "-"
     },
     {
       "id": "backtest",
@@ -91,7 +75,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "과거 데이터 기반 전략 검증",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "balance",
@@ -101,7 +86,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "계좌의 현재 자산 잔고",
-      "not": []
+      "not": [],
+      "plural": "-"
     },
     {
       "id": "bar",
@@ -111,17 +97,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "OHLCV 캔들(봉) 데이터. M1 기준.",
-      "not": []
-    },
-    {
-      "id": "bars",
-      "en": "bars",
-      "ko": "캔들 데이터",
-      "abbr": "BARS",
-      "pos": "noun",
-      "domain": "market",
-      "description": "시계열 가격 데이터 (시가, 고가, 저가, 종가)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "bot",
@@ -131,7 +108,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "자동화 프로그램",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "bounce",
@@ -141,7 +119,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "하락 후 일시적 상승",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "breakout",
@@ -151,7 +130,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "직전 N봉 고가를 현재가가 상향 돌파하는 진입 패턴",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "bridge",
@@ -161,7 +141,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "두 시스템을 연결하는 컴포넌트",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "buy",
@@ -171,7 +152,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "매수 주문",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "cancelled",
@@ -181,7 +163,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "주문 취소됨",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "candidates",
@@ -191,7 +174,8 @@
       "pos": "noun",
       "domain": "general",
       "description": "선정 대상 후보 목록",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "candle",
@@ -201,7 +185,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "캔들스틱 차트 봉",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "capital",
@@ -211,7 +196,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "투자 시스템의 총 자본금",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "categories",
@@ -221,7 +207,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "종목 또는 테마의 분류 정보",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "cfg",
@@ -231,7 +218,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "설정 키 접두사",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "chart",
@@ -241,7 +229,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시각화를 위한 차트 설정",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "classification",
@@ -251,7 +240,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "종목 또는 시장 상황에 대한 분류 결과",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "classify",
@@ -261,7 +251,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "데이터를 분류하는 기능",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "close",
@@ -271,7 +262,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "봉의 마지막 가격",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "closed",
@@ -281,7 +273,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "주문, 거래 또는 프로세스가 종료되었음을 나타내는 상태",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "cls",
@@ -291,7 +284,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "클래스 정의 접두사",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "cluster",
@@ -301,7 +295,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "데이터 클러스터링 결과 또는 구조",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "clustering",
@@ -311,7 +306,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "데이터를 클러스터로 그룹화하는 설정",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "code",
@@ -321,7 +317,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "종목 코드 또는 기타 식별 코드",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "collector",
@@ -331,17 +328,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "데이터를 수집하는 컴포넌트",
-      "not": []
-    },
-    {
-      "id": "collectors",
-      "en": "collectors",
-      "ko": "수집기들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "infra",
-      "description": "데이터 수집 컴포넌트 모음",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "colors",
@@ -351,7 +339,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "UI 또는 보고서에 사용되는 색상 설정",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "command",
@@ -361,7 +350,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시스템 제어를 위한 명령어 설정",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "commission",
@@ -371,7 +361,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "거래 수수료 (거래당 비용)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "common",
@@ -391,7 +382,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "작업 또는 프로세스가 완료되었음을 나타내는 상태",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "completed",
@@ -401,7 +393,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "주문, 작업 또는 프로세스가 완료되었음을 나타내는 상태",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "condition",
@@ -411,7 +404,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "매매 진입/청산 또는 필터링에 사용되는 조건",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "confidence",
@@ -421,7 +415,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "신호 또는 예측의 신뢰 수준",
-      "not": []
+      "not": [],
+      "plural": "-"
     },
     {
       "id": "config",
@@ -431,7 +426,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시스템 설정값",
-      "not": []
+      "not": [],
+      "plural": "-"
     },
     {
       "id": "confirmed",
@@ -441,7 +437,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "어떤 이벤트나 상태가 최종적으로 확인되었음을 나타내는 플래그",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "connected",
@@ -451,7 +448,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "서비스 또는 시스템과의 연결 상태",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "consecutive",
@@ -471,7 +469,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "암호화폐 거래 시장 (업비트 KRW 마켓)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "daily",
@@ -491,7 +490,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "모니터링 UI",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "db",
@@ -501,7 +501,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "데이터베이스 접두사",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "deny",
@@ -521,7 +522,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "시그널의 매수/매도 방향",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "disabled",
@@ -531,7 +533,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "기능 비활성화 상태",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "dsn",
@@ -541,7 +544,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "Database Source Name",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "enable",
@@ -561,7 +565,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "기능 활성화 상태",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "end",
@@ -571,7 +576,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "종료 시각 또는 동작",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "engine",
@@ -581,7 +587,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시스템의 핵심 처리 로직을 담당하는 부분",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "entry",
@@ -591,7 +598,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "포지션 진입 (매수/매도 시작)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "env",
@@ -601,7 +609,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "환경변수 접두사",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "eod",
@@ -611,7 +620,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "End of Day 장 마감 시점",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "equity",
@@ -621,7 +631,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "계좌의 현재 자본 값",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "error",
@@ -631,7 +642,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "오류 발생 상태",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "event",
@@ -641,17 +653,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시스템 내 발생 사건",
-      "not": []
-    },
-    {
-      "id": "events",
-      "en": "events",
-      "ko": "이벤트들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "system",
-      "description": "복수의 이벤트",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "exchange",
@@ -661,7 +664,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "거래가 이루어지는 금융 거래소",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "exec",
@@ -671,7 +675,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "실행 또는 체결 강도",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "execution",
@@ -681,7 +686,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "주문 실행 및 관리 관련 시스템",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "exit",
@@ -691,7 +697,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "포지션 청산 (반대매매로 종료)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "extended",
@@ -711,7 +718,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시스템 오류로 처리 실패",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "fill",
@@ -721,7 +729,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "주문이 실제 체결된 결과 (가격·수량·시간 포함)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "filled",
@@ -731,17 +740,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "주문 전량 체결 완료",
-      "not": []
-    },
-    {
-      "id": "fills",
-      "en": "fills",
-      "ko": "체결들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "infra",
-      "description": "체결 이력 테이블",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "filter",
@@ -751,7 +751,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "조건에 맞게 거르는 컴포넌트",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "flat",
@@ -761,7 +762,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "포지션 없음 (현금 보유 상태)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "flatten",
@@ -791,7 +793,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "선물 상품",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "fx",
@@ -811,7 +814,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "결과물을 생성하는 컴포넌트",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "goldenkey",
@@ -821,7 +825,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "특정 종목 선정 기준 또는 신호",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "guard",
@@ -831,7 +836,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "프로세스 보호 컴포넌트",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "halted",
@@ -841,7 +847,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "거래 또는 시스템이 일시적으로 중단된 상태",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "handlers",
@@ -851,7 +858,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "특정 이벤트를 처리하는 객체 또는 함수들의 집합",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "health",
@@ -861,7 +869,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시스템 컴포넌트의 정상 작동 여부 (헬스 체크)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "heartbeat",
@@ -871,7 +880,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "시스템 생존 신호. 주기적으로 Telegram system 봇에 전송.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "history",
@@ -881,7 +891,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "과거 데이터 또는 이벤트 기록",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "id",
@@ -891,7 +902,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "고유 식별자",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "in",
@@ -911,7 +923,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "메타 정보",
-      "not": []
+      "not": [],
+      "plural": "-"
     },
     {
       "id": "intent",
@@ -921,7 +934,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "실행 전 주문 의사결정 객체",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "interval",
@@ -931,7 +945,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "데이터 수집, 분석 또는 작업 실행 간격",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "intraday",
@@ -941,7 +956,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "당일 내 진입·청산을 완료하는 거래 (데이트레이딩)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "key",
@@ -951,7 +967,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "인증 키",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "kill",
@@ -974,7 +991,8 @@
       "not": [
         "KR_STOCK",
         "krStock"
-      ]
+      ],
+      "plural": null
     },
     {
       "id": "kosdaq",
@@ -986,7 +1004,8 @@
       "description": "한국 코스닥 시장",
       "not": [
         "KOSPI"
-      ]
+      ],
+      "plural": null
     },
     {
       "id": "kospi",
@@ -998,7 +1017,8 @@
       "description": "한국 종합주가지수 (Korea Composite Stock Price Index)",
       "not": [
         "KOSDAQ"
-      ]
+      ],
+      "plural": null
     },
     {
       "id": "kr",
@@ -1018,7 +1038,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "섹터를 주도하는 종목",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "limit",
@@ -1028,7 +1049,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "가격 제한 또는 지정가 주문",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "live",
@@ -1058,17 +1080,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시스템 이벤트 기록",
-      "not": []
-    },
-    {
-      "id": "logs",
-      "en": "logs",
-      "ko": "로그들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "infra",
-      "description": "로그 저장 폴더",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "long",
@@ -1078,7 +1091,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "매수 포지션 방향 (가격 상승 기대)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "loss",
@@ -1088,7 +1102,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "거래에서 발생한 손실",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "lower",
@@ -1108,7 +1123,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "manager",
@@ -1118,7 +1134,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "manual",
@@ -1128,7 +1145,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "margin",
@@ -1138,7 +1156,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "포지션 유지를 위한 담보금",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "market",
@@ -1148,7 +1167,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "거래가 이루어지는 시장",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "master",
@@ -1158,7 +1178,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "기준 데이터 테이블",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "max",
@@ -1178,7 +1199,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "method",
@@ -1188,7 +1210,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "mock",
@@ -1208,7 +1231,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "모듈/폴더 접두사",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "momentum",
@@ -1218,7 +1242,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "가격 추세의 강도",
-      "not": []
+      "not": [],
+      "plural": "-"
     },
     {
       "id": "mt5",
@@ -1231,7 +1256,8 @@
       "not": [
         "fxFutures",
         "FX_FUT"
-      ]
+      ],
+      "plural": null
     },
     {
       "id": "name",
@@ -1241,7 +1267,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "식별 이름",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "no",
@@ -1261,16 +1288,18 @@
       "pos": "noun",
       "domain": "system",
       "description": "분산 환경의 개별 머신/컨테이너",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
-      "id": "notifications",
-      "en": "notifications",
-      "ko": "알림들",
+      "id": "notification",
+      "en": "notification",
+      "ko": "알림",
       "abbr": null,
       "pos": "noun",
       "domain": "infra",
-      "description": "알림 발송 컴포넌트 모음",
+      "plural": null,
+      "description": "시스템 이벤트를 외부로 전달하는 알림",
       "not": []
     },
     {
@@ -1281,7 +1310,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "알림 발송 컴포넌트",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "offline",
@@ -1291,7 +1321,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "네트워크/서비스 미연결 상태",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "online",
@@ -1301,7 +1332,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "네트워크/서비스 연결 상태",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "open",
@@ -1311,7 +1343,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "봉의 시작 가격",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "orchestrator",
@@ -1321,7 +1354,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "전체 거래 루프를 조율하는 최상위 실행 컨트롤러",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "order",
@@ -1331,7 +1365,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "브로커에 전송된 실제 주문 객체",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "orderbook",
@@ -1341,17 +1376,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "매수·매도 호가창 스냅샷",
-      "not": []
-    },
-    {
-      "id": "orders",
-      "en": "orders",
-      "ko": "주문들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "infra",
-      "description": "주문 이력 테이블",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "overnight",
@@ -1361,7 +1387,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "당일 청산하지 않고 다음날까지 보유하는 거래",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "partial",
@@ -1381,7 +1408,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "주문 생성 후 브로커 전송 전 대기 상태",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "personality",
@@ -1391,7 +1419,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "봉의 형태적 특성",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "pg",
@@ -1411,7 +1440,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "Profit and Loss 손익",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "port",
@@ -1421,7 +1451,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "네트워크 포트 번호",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "position",
@@ -1431,17 +1462,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "현재 보유 중인 종목/계약 상태 (수량, 평균단가, 미실현손익)",
-      "not": []
-    },
-    {
-      "id": "positions",
-      "en": "positions",
-      "ko": "포지션들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "trading",
-      "description": "복수의 포지션",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "postgresql",
@@ -1451,7 +1473,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "System of Record. 모든 거래·시세·계좌 데이터의 최종 진실 저장소.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "process",
@@ -1461,7 +1484,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "실행 중인 프로그램",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "profit",
@@ -1471,7 +1495,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "거래에서 발생한 이익",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "project",
@@ -1481,7 +1506,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "프로젝트 루트",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "proxy",
@@ -1491,7 +1517,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "통신을 중계하는 서버",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "pullback",
@@ -1501,7 +1528,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "상승 추세 중 일시적으로 되돌리는 구간에서 진입하는 패턴",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "ranker",
@@ -1511,7 +1539,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "순위를 산정하는 컴포넌트",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "ranking",
@@ -1521,17 +1550,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "순위 결과",
-      "not": []
-    },
-    {
-      "id": "rankings",
-      "en": "rankings",
-      "ko": "랭킹들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "market",
-      "description": "복수의 순위 결과",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "realized",
@@ -1561,7 +1581,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시스템 정기 재시작",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "record",
@@ -1571,7 +1592,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "개별 거래 이력",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "redis",
@@ -1581,7 +1603,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "실시간 캐시 + 이벤트 스트림. DB가 원본이며 Redis는 파생값.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "reentry",
@@ -1591,7 +1614,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "거래에서 재진입할 수 있는지 여부를 결정하는 설정.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "rejected",
@@ -1601,7 +1625,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "브로커에 의해 주문 거절됨",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "relaxed",
@@ -1611,7 +1636,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "특정 조건을 완화하여 적용하는 설정.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "replay",
@@ -1621,7 +1647,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "과거 데이터 재생 시뮬레이션",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "premium",
@@ -1641,7 +1668,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "보고서",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "reporting",
@@ -1651,7 +1679,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "보고서 생성 설정",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "risk",
@@ -1661,7 +1690,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "손실 가능성 또는 위험도",
-      "not": []
+      "not": [],
+      "plural": "-"
     },
     {
       "id": "role",
@@ -1671,7 +1701,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "서비스 또는 노드의 역할 (primary/replica 등)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "root",
@@ -1681,7 +1712,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "최상위 경로",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "runner",
@@ -1691,7 +1723,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "작업을 실행하는 컴포넌트",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "running",
@@ -1701,7 +1734,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "서비스 실행 중 상태",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "runtime",
@@ -1711,7 +1745,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "프로그램이 실행되는 환경 또는 시간.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "scanner",
@@ -1721,7 +1756,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시장이나 종목을 탐색하고 분석하는 모듈 또는 기능.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "scheduler",
@@ -1731,7 +1767,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "작업 예약 및 관리를 담당하는 시스템 컴포넌트 또는 설정.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "scope",
@@ -1741,7 +1778,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "설정이나 작업이 적용되는 범위를 정의하는 설정.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "score",
@@ -1751,7 +1789,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "특정 지표의 수치화 결과",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "scorer",
@@ -1761,7 +1800,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "종목 또는 신호에 점수를 부여하는 모듈.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "scoring",
@@ -1771,7 +1811,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "점수 산정 로직",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "secret",
@@ -1781,7 +1822,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "비밀 인증 키",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "sector",
@@ -1791,7 +1833,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "산업 분류 업종",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "selector",
@@ -1801,7 +1844,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "종목 선정 컴포넌트",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "sell",
@@ -1811,7 +1855,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "매도 주문",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "server",
@@ -1821,7 +1866,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "서버 프로세스",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "service",
@@ -1831,7 +1877,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "독립적으로 실행되는 프로세스",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "sessions",
@@ -1841,7 +1888,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시장 세션 설정 모음",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "settings",
@@ -1851,7 +1899,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시스템 설정값 모음",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "short",
@@ -1861,7 +1910,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "매도 포지션 방향 (가격 하락 기대)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "side",
@@ -1871,7 +1921,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "매수/매도 방향",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "signal",
@@ -1881,17 +1932,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "진입 또는 청산 판단 결과. signals 모듈만 생성 가능.",
-      "not": []
-    },
-    {
-      "id": "signals",
-      "en": "signals",
-      "ko": "시그널들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "infra",
-      "description": "시그널 이력 테이블",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "size",
@@ -1901,7 +1943,8 @@
       "pos": "noun",
       "domain": "general",
       "description": "수량 또는 비중",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "slippage",
@@ -1911,7 +1954,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "주문 가격과 실제 체결 가격의 차이",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "snapshot",
@@ -1921,17 +1965,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "특정 시점의 상태 저장본",
-      "not": []
-    },
-    {
-      "id": "snapshots",
-      "en": "snapshots",
-      "ko": "스냅샷들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "system",
-      "description": "복수의 스냅샷",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "split",
@@ -1951,7 +1986,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시작 시각 또는 동작",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "starting",
@@ -1961,7 +1997,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "서비스 시작 중 (초기화 진행 중)",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "status",
@@ -1971,7 +2008,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "현재 처리 상태",
-      "not": []
+      "not": [],
+      "plural": "-"
     },
     {
       "id": "stock",
@@ -1981,7 +2019,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "주식 종목",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "stop",
@@ -1991,7 +2030,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "손실 한도 도달 시 포지션 청산",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "stopped",
@@ -2001,17 +2041,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "서비스 중지 상태",
-      "not": []
-    },
-    {
-      "id": "stops",
-      "en": "stops",
-      "ko": "손절들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "trading",
-      "description": "복수의 손절 조건",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "storage",
@@ -2021,7 +2052,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "데이터 저장 추상화 레이어",
-      "not": []
+      "not": [],
+      "plural": "-"
     },
     {
       "id": "strategy",
@@ -2031,7 +2063,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "매매 전략 설정",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "strength",
@@ -2041,7 +2074,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "시장 또는 종목의 상승/하락 강도",
-      "not": []
+      "not": [],
+      "plural": "-"
     },
     {
       "id": "submitted",
@@ -2051,7 +2085,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "브로커에 주문 전송 완료",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "swing",
@@ -2061,7 +2096,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "수일~수주에 걸친 중기 매매",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "switch",
@@ -2071,7 +2107,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "기능 활성화/비활성화 제어",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "symbol",
@@ -2081,17 +2118,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "거래 종목 코드",
-      "not": []
-    },
-    {
-      "id": "symbols",
-      "en": "symbols",
-      "ko": "종목들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "infra",
-      "description": "종목 전체 테이블",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "system",
@@ -2101,7 +2129,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "전체 소프트웨어 시스템",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "take",
@@ -2121,7 +2150,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "스케줄링되는 실행 단위",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "telegram",
@@ -2141,7 +2171,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "시스템에서 관리되는 전체 테마 목록을 나타내는 테이블입니다.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "theme",
@@ -2161,17 +2192,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "최소 가격 변동 단위 또는 실시간 시세 스트림",
-      "not": []
-    },
-    {
-      "id": "ticks",
-      "en": "ticks",
-      "ko": "틱들",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "infra",
-      "description": "틱 데이터 테이블",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "time",
@@ -2181,7 +2203,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "특정 시점",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "timeframe",
@@ -2191,17 +2214,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "차트 또는 데이터 분석에서 사용되는 시간 단위 (예: 1분, 5분, 1시간).",
-      "not": []
-    },
-    {
-      "id": "timeframes",
-      "en": "timeframes",
-      "ko": "타임프레임 목록",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "system",
-      "description": "시스템에서 지원하거나 사용되는 다양한 시간대 목록입니다.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "timezone",
@@ -2211,7 +2225,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시스템 또는 특정 작업에서 사용되는 표준 시간대 설정입니다.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "token",
@@ -2221,17 +2236,19 @@
       "pos": "noun",
       "domain": "system",
       "description": "인증 또는 세션 관리에 사용되는 보안 토큰입니다.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
-      "id": "top_n",
-      "en": "top n",
+      "id": "topn",
+      "en": "topn",
       "ko": "상위 N개",
       "abbr": null,
       "pos": "noun",
       "domain": "system",
       "description": "데이터 목록에서 상위 N개의 항목을 선택하거나 필터링할 때 사용되는 파라미터입니다.",
-      "not": []
+      "not": [],
+      "plural": "-"
     },
     {
       "id": "tracking",
@@ -2241,7 +2258,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "종목 모니터링 시작 시각",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "tradability",
@@ -2251,7 +2269,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "종목이나 상품의 거래 가능 여부 또는 수준을 나타내는 지표입니다.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "trade",
@@ -2261,17 +2280,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "개별 매매 거래",
-      "not": []
-    },
-    {
-      "id": "trades",
-      "en": "trades",
-      "ko": "거래 목록",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "market",
-      "description": "시스템에서 발생한 거래들의 목록입니다.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "trading",
@@ -2281,7 +2291,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "매매 거래 행위 또는 거래 관련",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "trailing",
@@ -2301,7 +2312,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "API 요청 식별자",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "transition",
@@ -2311,17 +2323,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "상태 머신 등에서 한 상태에서 다른 상태로의 변화를 나타냅니다.",
-      "not": []
-    },
-    {
-      "id": "transitions",
-      "en": "transitions",
-      "ko": "전환 목록",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "market",
-      "description": "가능한 모든 상태 변화의 목록입니다.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "trend",
@@ -2331,7 +2334,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "시장 가격의 전반적인 방향성을 나타냅니다.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "type",
@@ -2341,7 +2345,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "분류 유형",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "universe",
@@ -2351,7 +2356,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "거래 대상이 되는 종목 또는 자산의 집합입니다.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "unrealized",
@@ -2371,7 +2377,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "암호화폐 거래소. crypto 마켓의 브로커.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "upper",
@@ -2391,7 +2398,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "Uniform Resource Locator",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "us",
@@ -2421,7 +2429,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "가격×수량의 거래 금액",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "var",
@@ -2431,7 +2440,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "환경변수",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "volatility",
@@ -2441,7 +2451,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "가격 변동의 폭",
-      "not": []
+      "not": [],
+      "plural": "-"
     },
     {
       "id": "vwap",
@@ -2451,7 +2462,8 @@
       "pos": "noun",
       "domain": "trading",
       "description": "Volume Weighted Average Price. 시가총액 가중 평균 체결가.",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "watchdog",
@@ -2461,7 +2473,8 @@
       "pos": "noun",
       "domain": "infra",
       "description": "서비스 비정상 종료 감지 및 자동 재시작",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "wick",
@@ -2471,67 +2484,8 @@
       "pos": "noun",
       "domain": "market",
       "description": "캔들의 몸통 밖 선",
-      "not": []
-    },
-    {
-      "id": "script",
-      "en": "script",
-      "ko": "스크립트",
-      "abbr": "SCRIPT",
-      "pos": "noun",
-      "domain": "system",
-      "description": "실행 자동화/운영 작업용 스크립트 단위",
-      "not": []
-    },
-    {
-      "id": "tool",
-      "en": "tool",
-      "ko": "도구",
-      "abbr": "TOOL",
-      "pos": "noun",
-      "domain": "system",
-      "description": "유틸리티성 기능을 제공하는 도구 모듈/디렉토리",
-      "not": []
-    },
-    {
-      "id": "guideline",
-      "en": "guideline",
-      "ko": "가이드라인",
-      "abbr": "GUIDE",
-      "pos": "noun",
-      "domain": "system",
-      "description": "프로젝트 운영/개발 지침 문서 단위",
-      "not": []
-    },
-    {
-      "id": "reference",
-      "en": "reference",
-      "ko": "레퍼런스",
-      "abbr": "REF",
-      "pos": "noun",
-      "domain": "system",
-      "description": "외부 사양/참고 문서 보관 단위",
-      "not": []
-    },
-    {
-      "id": "notification",
-      "en": "notification",
-      "ko": "알림",
-      "abbr": "NOTI",
-      "pos": "noun",
-      "domain": "system",
-      "description": "시스템 알림 기능(텔레그램 등) 모듈 단위",
-      "not": []
-    },
-    {
-      "id": "test",
-      "en": "test",
-      "ko": "테스트",
-      "abbr": "TEST",
-      "pos": "noun",
-      "domain": "system",
-      "description": "검증 코드/테스트 케이스 단위",
-      "not": []
+      "not": [],
+      "plural": null
     },
     {
       "id": "table",
@@ -2561,7 +2515,8 @@
       "pos": "noun",
       "domain": "system",
       "description": "일과 시작",
-      "not": []
+      "not": [],
+      "plural": null
     }
   ]
 }
