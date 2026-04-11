@@ -1656,9 +1656,10 @@
       "ko": "프리미엄",
       "abbr": null,
       "pos": "noun",
-      "domain": "market",
-      "description": "유료/고급 정보 성격의 데이터 구분 키",
-      "not": []
+      "domain": "trading",
+      "description": "프리미엄 가격/가치",
+      "not": [],
+      "plural": null
     },
     {
       "id": "report",
@@ -2164,25 +2165,15 @@
       "not": []
     },
     {
-      "id": "themes",
-      "en": "themes",
-      "ko": "테마 목록",
-      "abbr": null,
-      "pos": "noun",
-      "domain": "market",
-      "description": "시스템에서 관리되는 전체 테마 목록을 나타내는 테이블입니다.",
-      "not": [],
-      "plural": null
-    },
-    {
       "id": "theme",
       "en": "theme",
       "ko": "테마",
       "abbr": null,
       "pos": "noun",
       "domain": "market",
-      "description": "시장 분류 단위로 사용되는 테마",
-      "not": []
+      "description": "종목 분류 테마 (테마주)",
+      "not": [],
+      "plural": null
     },
     {
       "id": "tick",
@@ -2240,15 +2231,24 @@
       "plural": null
     },
     {
-      "id": "topn",
-      "en": "topn",
-      "ko": "상위 N개",
+      "id": "m",
+      "en": "m",
+      "ko": "분",
+      "abbr": "M",
+      "pos": "suffix",
+      "domain": "market",
+      "description": "분 단위 시간 접미사 (1m, 5m 등)",
+      "not": []
+    },
+    {
+      "id": "top",
+      "en": "top",
+      "ko": "상위",
       "abbr": null,
-      "pos": "noun",
-      "domain": "system",
-      "description": "데이터 목록에서 상위 N개의 항목을 선택하거나 필터링할 때 사용되는 파라미터입니다.",
-      "not": [],
-      "plural": "-"
+      "pos": "adj",
+      "domain": "general",
+      "description": "순위/값 기준 상위",
+      "not": []
     },
     {
       "id": "tracking",
@@ -2490,22 +2490,24 @@
     {
       "id": "table",
       "en": "table",
-      "ko": "",
+      "ko": "테이블",
       "abbr": null,
       "pos": "noun",
-      "domain": "system",
-      "description": "database table unit",
-      "not": []
+      "domain": "infra",
+      "description": "DB 테이블 또는 데이터 구조",
+      "not": [],
+      "plural": null
     },
     {
       "id": "contract",
       "en": "contract",
-      "ko": "",
+      "ko": "계약",
       "abbr": null,
       "pos": "noun",
-      "domain": "system",
-      "description": "interface contract unit",
-      "not": []
+      "domain": "trading",
+      "description": "선물 계약 단위",
+      "not": [],
+      "plural": null
     },
     {
       "id": "work",

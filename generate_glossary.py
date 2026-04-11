@@ -259,11 +259,19 @@ def build_glossary_md(words, compounds, banned) -> str:
             continue
         lines.append(f"### {domain}")
         lines.append("")
-        lines.append("| 단어 | 한글 | 약어 | 품사 | 설명 |")
-        lines.append("|------|------|------|------|------|")
+        lines.append("| 단어 | 한글 | 약어 | 품사 | 복수형 | 설명 |")
+        lines.append("|------|------|------|------|--------|------|")
         for w in wlist:
             abbr = w.get("abbr") or "—"
-            lines.append(f"| `{w['id']}` | {w['ko']} | {abbr} | {w['pos']} | {w['description']} |")
+            if w.get("pos") != "noun":
+                plural = "—"
+            else:
+                pl = w.get("plural")
+                if pl is None:
+                    plural = "auto"
+                else:
+                    plural = str(pl)
+            lines.append(f"| `{w['id']}` | {w['ko']} | {abbr} | {w['pos']} | {plural} | {w['description']} |")
         lines.append("")
 
     lines += [
@@ -271,14 +279,40 @@ def build_glossary_md(words, compounds, banned) -> str:
         "",
         "## 복합어 사전 (Compounds)",
         "",
-        "| 복합어 | 구성 단어 | 한글 | camelCase | 약어 | 등록 사유 |",
-        "|--------|----------|------|-----------|------|----------|",
+        "| 복합어 | 구성 단어 | 한글 | camelCase | 약어 | 복수형 | 등록 사유 |",
+        "|--------|----------|------|-----------|------|--------|----------|",
     ]
     for c in sorted(compounds, key=lambda x: x["id"]):
         wds = " + ".join(c.get("words", []))
+        c_plural = c.get("plural")
+        c_plural_txt = "auto" if c_plural is None else str(c_plural)
         lines.append(
-            f"| `{c['id']}` | {wds} | {c['ko']} | `{c['abbr_long']}` | `{c['abbr_short']}` | {c['reason']} |"
+            f"| `{c['id']}` | {wds} | {c['ko']} | `{c['abbr_long']}` | `{c['abbr_short']}` | {c_plural_txt} | {c['reason']} |"
         )
+
+    n_compounds = [c for c in sorted(compounds, key=lambda x: x["id"]) if "[N]" in c.get("id", "")]
+    lines += [
+        "",
+        "---",
+        "",
+        "## [N] 패턴 (Numeric Pattern Compounds)",
+        "",
+    ]
+    if n_compounds:
+        lines += [
+            "| 패턴 | 예시 | 설명 |",
+            "|------|------|------|",
+        ]
+        for c in n_compounds:
+            if c["id"] == "[N]m":
+                sample = "1m, 5m, 10m, 15m, 60m"
+            elif c["id"] == "top[N]":
+                sample = "top3, top5, top10, top100"
+            else:
+                sample = "—"
+            lines.append(f"| `{c['id']}` | {sample} | {c['description']} |")
+    else:
+        lines.append("- 등록된 [N] 패턴 복합어가 없습니다.")
 
     lines += [
         "",
@@ -308,6 +342,47 @@ def tokenize(identifier: str) -> list:
     s = re.sub(r'([a-z])([A-Z])', r'\1_\2', s)
     s = re.sub(r'([A-Z]+)([A-Z][a-z])', r'\1_\2', s)
     return [t.lower() for t in s.split('_') if t]
+
+
+def build_n_pattern_regexes(compounds: list) -> list:
+    """
+    compounds id 중 [N] 패턴을 정규식으로 변환.
+    예) [N]m -> ^\d+m$, top[N] -> ^top\d+$
+    """
+    patterns = []
+    for c in compounds:
+        cid = c.get("id", "")
+        if "[N]" not in cid:
+            continue
+        pat = re.escape(cid).replace(r"\[N\]", r"\d+")
+        patterns.append((cid, re.compile(rf"^{pat}$", re.IGNORECASE)))
+    return patterns
+
+
+def match_n_pattern(token: str, n_patterns: list) -> str | None:
+    for cid, cre in n_patterns:
+        if cre.fullmatch(token):
+            return cid
+    return None
+
+
+def find_singular_token(token: str, word_ids: dict) -> str | None:
+    """
+    복수형 토큰을 단수형으로 역변환해 words.json 존재 여부 확인.
+    """
+    if token.endswith("ies") and len(token) > 3:
+        cand = token[:-3] + "y"
+        if cand in word_ids:
+            return cand
+    if token.endswith("es") and len(token) > 2:
+        cand = token[:-2]
+        if cand in word_ids:
+            return cand
+    if token.endswith("s") and len(token) > 1:
+        cand = token[:-1]
+        if cand in word_ids:
+            return cand
+    return None
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -375,12 +450,14 @@ def cmd_check_id(identifier: str):
     words, compounds, _ = load_all()
     word_ids = {w["id"]: w for w in words}
     compound_ids = {c["id"]: c for c in compounds}
+    n_patterns = build_n_pattern_regexes(compounds)
 
     tokens = tokenize(identifier)
     print(f"\n식별자: {identifier}")
     print(f"분해:   {tokens}\n")
 
     missing = []
+    pattern_hits = []
     for tok in tokens:
         if tok in word_ids:
             w = word_ids[tok]
@@ -389,8 +466,18 @@ def cmd_check_id(identifier: str):
             c = compound_ids[tok]
             print(f"  {tok:<20} → [OK]  compounds.json (\"{c['ko']}\")")
         else:
-            print(f"  {tok:<20} → [미등록]")
-            missing.append(tok)
+            matched = match_n_pattern(tok, n_patterns)
+            if matched:
+                pattern_hits.append((tok, matched))
+                print(f"  {tok:<20} → [OK]  compounds.json (pattern: '{matched}')")
+            else:
+                singular = find_singular_token(tok, word_ids)
+                if singular:
+                    w = word_ids[singular]
+                    print(f"  {tok:<20} → [OK]  words.json ({w['domain']}, {w['pos']}, \"{w['ko']}\", singular='{singular}')")
+                else:
+                    print(f"  {tok:<20} → [미등록]")
+                    missing.append(tok)
 
     print()
     if missing:
@@ -401,6 +488,8 @@ def cmd_check_id(identifier: str):
         # 복합어 등록 필요 여부
         if identifier in compound_ids:
             print(f"→ 복합어로 이미 등록됨.")
+        elif match_n_pattern(identifier, n_patterns):
+            print(f"→ [N] 패턴 복합어로 매칭됨.")
         elif len(tokens) > 1:
             print(f"→ 모든 단어 등록됨. 복합어 등록은 조건 충족 시만 필요.")
         else:
@@ -409,10 +498,17 @@ def cmd_check_id(identifier: str):
 
 
 def cmd_suggest(identifier: str):
-    words, _, _ = load_all()
+    words, compounds, _ = load_all()
     word_ids = {w["id"] for w in words}
+    word_lookup = {w["id"]: w for w in words}
+    n_patterns = build_n_pattern_regexes(compounds)
     tokens = tokenize(identifier)
-    missing = [t for t in tokens if t not in word_ids]
+    missing = [
+        t for t in tokens
+        if t not in word_ids
+        and not match_n_pattern(t, n_patterns)
+        and not find_singular_token(t, word_lookup)
+    ]
 
     if not missing:
         print(f"\n'{identifier}' — 모든 단어가 이미 등록되어 있습니다.\n")

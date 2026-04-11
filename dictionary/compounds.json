@@ -57,6 +57,38 @@
       ]
     },
     {
+      "id": "[N]m",
+      "words": [
+        "m"
+      ],
+      "ko": "N분봉",
+      "en": "[N] Minute",
+      "abbr_long": "[N]m",
+      "abbr_short": "[N]M",
+      "domain": "market",
+      "plural": null,
+      "description": "[N]분 단위 캔들/봉 데이터. [N]은 임의의 자연수(>0). 실제 사용: 1m, 5m, 10m, 15m, 60m 등",
+      "reason": "숫자+단위 조합 패턴. 개별 등록 시 무한 증식",
+      "not": []
+    },
+    {
+      "id": "top[N]",
+      "words": [
+        "top"
+      ],
+      "ko": "상위 N개",
+      "en": "Top [N]",
+      "abbr_long": "top[N]",
+      "abbr_short": "TOP[N]",
+      "domain": "system",
+      "plural": null,
+      "description": "상위 N개 항목 선택/필터링. [N]은 임의의 자연수(>0). 실제 사용: top3, top5, top10, top100 등",
+      "reason": "숫자 파라미터 패턴. 개별 등록 시 무한 증식",
+      "not": [
+        "top_n"
+      ]
+    },
+    {
       "id": "mt5_proxy",
       "words": [
         "mt5",

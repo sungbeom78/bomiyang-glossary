@@ -264,6 +264,17 @@ def _split_tokens(name: str) -> list:
     return [t.lower() for t in s.split() if len(t) >= 2]
 
 
+def _compile_n_pattern(expr: str):
+    """
+    [N] 패턴 식별자를 정규식으로 변환.
+    예) [N]m -> ^\d+m$, top[N] -> ^top\d+$
+    """
+    if '[N]' not in expr:
+        return None
+    pat = re.escape(expr).replace(r'\[N\]', r'\d+')
+    return re.compile(rf'^{pat}$', re.IGNORECASE)
+
+
 def _all_tokens_known(name: str, known_tokens: set) -> bool:
     """
     복합어를 분해했을 때 모든 토큰이 이미 알려진 토큰이면 True.
@@ -294,7 +305,7 @@ def _all_tokens_known(name: str, known_tokens: set) -> bool:
 
 def load_existing_terms(glossary_dir: Path) -> tuple:
     """
-    (등록 심볼 집합, 분해 토큰 집합) 반환.
+    (등록 심볼 집합, 분해 토큰 집합, [N] 패턴 정규식 목록) 반환.
 
     v2 우선: dictionary/words.json + dictionary/compounds.json
     fallback: dictionary/terms.json (하위호환)
@@ -307,9 +318,18 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
     dict_dir = glossary_dir / "dictionary"
     syms:   set = set()
     tokens: set = set()
+    n_patterns: list = []
+    n_pattern_exprs: set = set()
 
     def _absorb_compound(entries: list, fields: tuple):
         for item in entries:
+            cid = str(item.get('id', ''))
+            if '[N]' in cid and cid not in n_pattern_exprs:
+                n_pattern_exprs.add(cid)
+                pat = _compile_n_pattern(cid)
+                if pat:
+                    n_patterns.append(pat)
+
             for f in fields:
                 v = item.get(f, '')
                 if v:
@@ -319,10 +339,9 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
                         tokens.add(tok)
             # compound plural 처리
             pl = item.get('plural')
-            cid = item.get('id', '')
             if pl and pl != '-':
                 syms.add(pl); tokens.add(pl.lower())
-            elif pl is None and cid:
+            elif pl is None and cid and '[N]' not in cid:
                 auto = auto_plural(cid)
                 syms.add(auto); tokens.add(auto.lower())
 
@@ -383,7 +402,7 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
             except Exception:
                 pass
 
-    return syms, tokens
+    return syms, tokens, n_patterns
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -400,6 +419,7 @@ class TermScanner:
         exclude_exts: set,
         existing_syms: set,
         existing_tokens: set,
+        n_patterns: list | None = None,
         yaml_max_depth: int = 2,
     ):
         self.root           = proj_root
@@ -408,6 +428,7 @@ class TermScanner:
         self.exclude_exts   = exclude_exts
         self.existing_syms  = existing_syms
         self.ex_tokens      = existing_tokens
+        self.n_patterns     = n_patterns or []
         self.yaml_depth     = yaml_max_depth
         self.candidates: dict = {}   # name → [source, ...]
 
@@ -417,6 +438,8 @@ class TermScanner:
         if _is_noise(name):
             return
         if name in self.existing_syms or name.lower() in self.existing_syms:
+            return
+        if any(p.fullmatch(name) for p in self.n_patterns):
             return
 
         # suffix 스트립 후 본체가 이미 알려진 경우 제외
@@ -676,7 +699,7 @@ def main():
         '.md,.txt,.log,.csv,.tsv,.png,.jpg,.jpeg,.gif,.pdf,.ico,.svg,.zip,.tar'))
     exclude_exts = {e if e.startswith('.') else f'.{e}' for e in raw_exts}
 
-    existing_syms, existing_tokens = load_existing_terms(glossary_dir)
+    existing_syms, existing_tokens, n_patterns = load_existing_terms(glossary_dir)
 
     scanner = TermScanner(
         proj_root       = proj_root,
@@ -685,6 +708,7 @@ def main():
         exclude_exts    = exclude_exts,
         existing_syms   = existing_syms,
         existing_tokens = existing_tokens,
+        n_patterns      = n_patterns,
         yaml_max_depth  = args.yaml_depth,
     )
     scanner.scan()

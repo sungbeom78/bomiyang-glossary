@@ -85,7 +85,10 @@ SYSTEM_PROMPT = """당신은 BOM_TS(Bomiyang Trading System) 자동매매 시스
 7. 단어(id)는 반드시 단수형(singular)으로 등록한다. adapters(X) → adapter(O), orders(X) → order(O)
 8. 복수형을 독립 항목으로 제안하지 말 것. 단수형으로만 제안.
 9. _list, _array, _dict 등 타입 suffix가 붙은 것은 본체(단수형)만 판단하여 제안.
-   예) order_list → order 로 제안, signal_array → signal 로 제안"""
+   예) order_list → order 로 제안, signal_array → signal 로 제안
+10. 숫자 패턴 식별자는 [N]으로 추상화한다.
+    예) 1m, 5m, 15m → [N]m / top3, top10, top100 → top[N]
+11. [N] 패턴은 compound로 취급하고, words 단독 항목으로 제안하지 않는다."""
 
 USER_PROMPT_TMPL = """아래는 프로젝트 소스에서 추출한 용어 후보 목록입니다.
 각 항목 형식: 용어명 | 출처
@@ -304,8 +307,11 @@ def parse_response(text: str) -> list[dict]:
 
 def normalize_singular(terms: list[dict]) -> list[dict]:
     """
-    API 응답에서 복수형 id가 나오면 자동으로 단수형으로 교정.
+    API 응답 후처리:
+    1) 복수형 id 단수형 교정
+    2) 숫자 패턴 id를 [N] 패턴으로 정규화
     예) id='orders' → id='order', abbr_long='orders'→'order'
+        id='5m' → '[N]m', id='top100' → 'top[N]'
     규칙:
       -ies 말미 → -y 복원
       -es 말미 → -e 또는 그냥 제거
@@ -339,21 +345,38 @@ def normalize_singular(terms: list[dict]) -> list[dict]:
             return word[:-1]
         return word
 
+    def _normalize_n_pattern(word: str) -> str:
+        lw = word.lower()
+        if _re.fullmatch(r'\d+m', lw):
+            return '[N]m'
+        if _re.fullmatch(r'top\d+', lw):
+            return 'top[N]'
+        return word
+
     result = []
     for t in terms:
         tid = t.get('id', '')
         if not tid:
             result.append(t)
             continue
-        # id에 언더스코어가 없으면 단어 → 단수형 교정 시도
-        if '_' not in tid:
+        normalized = _normalize_n_pattern(tid)
+        if normalized != tid:
+            t = dict(t)
+            t['id'] = normalized
+            al = t.get('abbr_long', '')
+            if isinstance(al, str) and al.lower() == tid.lower():
+                t['abbr_long'] = normalized
+            tid = normalized
+
+        # id에 언더스코어가 없고 [N] 패턴이 아니면 단어 단수형 교정 시도
+        if '_' not in tid and '[N]' not in tid:
             singular = _to_singular(tid)
             if singular != tid:
                 t = dict(t)
                 t['id'] = singular
                 # abbr_long도 동일 값이면 함께 교정
                 al = t.get('abbr_long', '')
-                if al.lower() == tid.lower():
+                if isinstance(al, str) and al.lower() == tid.lower():
                     t['abbr_long'] = singular
         result.append(t)
     return result

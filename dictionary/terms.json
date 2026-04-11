@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "2.0.0",
   "generated": true,
-  "generated_at": "2026-04-10T18:54:51.702266",
+  "generated_at": "2026-04-11T12:09:23.135272",
   "terms": [
     {
       "id": "account",
@@ -1823,10 +1823,10 @@
       "abbr_long": "premium",
       "abbr_short": "PREMI",
       "categories": [
-        "market"
+        "trading"
       ],
       "type": "word",
-      "description": "유료/고급 정보 성격의 데이터 구분 키"
+      "description": "프리미엄 가격/가치"
     },
     {
       "id": "report",
@@ -2381,18 +2381,6 @@
       "description": "텔레그램 메시징 서비스"
     },
     {
-      "id": "themes",
-      "ko": "테마 목록",
-      "en": "Themes",
-      "abbr_long": "themes",
-      "abbr_short": "THEME",
-      "categories": [
-        "market"
-      ],
-      "type": "word",
-      "description": "시스템에서 관리되는 전체 테마 목록을 나타내는 테이블입니다."
-    },
-    {
       "id": "theme",
       "ko": "테마",
       "en": "Theme",
@@ -2402,7 +2390,7 @@
         "market"
       ],
       "type": "word",
-      "description": "시장 분류 단위로 사용되는 테마"
+      "description": "종목 분류 테마 (테마주)"
     },
     {
       "id": "tick",
@@ -2465,16 +2453,28 @@
       "description": "인증 또는 세션 관리에 사용되는 보안 토큰입니다."
     },
     {
-      "id": "topn",
-      "ko": "상위 N개",
-      "en": "Topn",
-      "abbr_long": "topn",
-      "abbr_short": "TOPN",
+      "id": "m",
+      "ko": "분",
+      "en": "M",
+      "abbr_long": "m",
+      "abbr_short": "M",
       "categories": [
-        "system"
+        "market"
       ],
       "type": "word",
-      "description": "데이터 목록에서 상위 N개의 항목을 선택하거나 필터링할 때 사용되는 파라미터입니다."
+      "description": "분 단위 시간 접미사 (1m, 5m 등)"
+    },
+    {
+      "id": "top",
+      "ko": "상위",
+      "en": "Top",
+      "abbr_long": "top",
+      "abbr_short": "TOP",
+      "categories": [
+        "general"
+      ],
+      "type": "word",
+      "description": "순위/값 기준 상위"
     },
     {
       "id": "tracking",
@@ -2741,76 +2741,28 @@
       "description": "캔들의 몸통 밖 선"
     },
     {
-      "id": "script",
-      "ko": "스크립트",
-      "en": "Script",
-      "abbr_long": "script",
-      "abbr_short": "SCRIPT",
+      "id": "table",
+      "ko": "테이블",
+      "en": "Table",
+      "abbr_long": "table",
+      "abbr_short": "TABLE",
       "categories": [
-        "system"
+        "infra"
       ],
       "type": "word",
-      "description": "실행 자동화/운영 작업용 스크립트 단위"
+      "description": "DB 테이블 또는 데이터 구조"
     },
     {
-      "id": "tool",
-      "ko": "도구",
-      "en": "Tool",
-      "abbr_long": "tool",
-      "abbr_short": "TOOL",
+      "id": "contract",
+      "ko": "계약",
+      "en": "Contract",
+      "abbr_long": "contract",
+      "abbr_short": "CONTR",
       "categories": [
-        "system"
+        "trading"
       ],
       "type": "word",
-      "description": "유틸리티성 기능을 제공하는 도구 모듈/디렉토리"
-    },
-    {
-      "id": "guideline",
-      "ko": "가이드라인",
-      "en": "Guideline",
-      "abbr_long": "guideline",
-      "abbr_short": "GUIDE",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "프로젝트 운영/개발 지침 문서 단위"
-    },
-    {
-      "id": "reference",
-      "ko": "레퍼런스",
-      "en": "Reference",
-      "abbr_long": "reference",
-      "abbr_short": "REF",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "외부 사양/참고 문서 보관 단위"
-    },
-    {
-      "id": "notification",
-      "ko": "알림",
-      "en": "Notification",
-      "abbr_long": "notification",
-      "abbr_short": "NOTI",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "시스템 알림 기능(텔레그램 등) 모듈 단위"
-    },
-    {
-      "id": "test",
-      "ko": "테스트",
-      "en": "Test",
-      "abbr_long": "test",
-      "abbr_short": "TEST",
-      "categories": [
-        "system"
-      ],
-      "type": "word",
-      "description": "검증 코드/테스트 케이스 단위"
+      "description": "선물 계약 단위"
     },
     {
       "id": "work",
@@ -2859,6 +2811,30 @@
       ],
       "type": "compound",
       "description": "외환을 기초자산으로 하는 선물 상품. 접근 툴은 MT5이나, 시장 자체는 MT5가 아님."
+    },
+    {
+      "id": "[N]m",
+      "ko": "N분봉",
+      "en": "[N] Minute",
+      "abbr_long": "[N]m",
+      "abbr_short": "[N]M",
+      "categories": [
+        "market"
+      ],
+      "type": "compound",
+      "description": "[N]분 단위 캔들/봉 데이터. [N]은 임의의 자연수(>0). 실제 사용: 1m, 5m, 10m, 15m, 60m 등"
+    },
+    {
+      "id": "top[N]",
+      "ko": "상위 N개",
+      "en": "Top [N]",
+      "abbr_long": "top[N]",
+      "abbr_short": "TOP[N]",
+      "categories": [
+        "system"
+      ],
+      "type": "compound",
+      "description": "상위 N개 항목 선택/필터링. [N]은 임의의 자연수(>0). 실제 사용: top3, top5, top10, top100 등"
     },
     {
       "id": "mt5_proxy",

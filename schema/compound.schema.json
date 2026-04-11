@@ -16,14 +16,14 @@
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^[a-z][a-z0-9_]*$"
+      "pattern": "^(\\[N\\])?[a-z][a-z0-9_]*(\\[N\\])?[a-z0-9_]*$|^[a-z][a-z0-9_]*(\\[N\\])[a-z0-9_]*$"
     },
     "words": {
       "type": "array",
       "items": {
         "type": "string"
       },
-      "minItems": 2
+      "minItems": 1
     },
     "ko": {
       "type": "string"
