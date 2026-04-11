@@ -419,6 +419,17 @@
       "plural": "-"
     },
     {
+      "id": "core",
+      "en": "core",
+      "ko": "코어",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "공통 흐름의 중심 역할을 담당하는 핵심 구성요소",
+      "not": [],
+      "plural": null
+    },
+    {
       "id": "config",
       "en": "config",
       "ko": "설정",
@@ -1235,6 +1246,17 @@
       "plural": null
     },
     {
+      "id": "module",
+      "en": "module",
+      "ko": "모듈",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "특정 책임을 캡슐화한 코드 단위",
+      "not": [],
+      "plural": null
+    },
+    {
       "id": "momentum",
       "en": "momentum",
       "ko": "모멘텀",
@@ -1607,6 +1629,17 @@
       "plural": null
     },
     {
+      "id": "registry",
+      "en": "registry",
+      "ko": "레지스트리",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "마켓별 모듈을 등록하고 조회하는 매핑 저장소",
+      "not": [],
+      "plural": null
+    },
+    {
       "id": "reentry",
       "en": "re-entry",
       "ko": "재진입",
@@ -1658,6 +1691,17 @@
       "pos": "noun",
       "domain": "trading",
       "description": "프리미엄 가격/가치",
+      "not": [],
+      "plural": null
+    },
+    {
+      "id": "protocol",
+      "en": "protocol",
+      "ko": "프로토콜",
+      "abbr": null,
+      "pos": "noun",
+      "domain": "system",
+      "description": "모듈 간 동작 계약(인터페이스) 규약",
       "not": [],
       "plural": null
     },

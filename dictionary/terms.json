@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "2.0.0",
   "generated": true,
-  "generated_at": "2026-04-11T12:09:23.135272",
+  "generated_at": "2026-04-11T14:05:25.646084",
   "terms": [
     {
       "id": "account",
@@ -459,6 +459,18 @@
       ],
       "type": "word",
       "description": "신호 또는 예측의 신뢰 수준"
+    },
+    {
+      "id": "core",
+      "ko": "코어",
+      "en": "Core",
+      "abbr_long": "core",
+      "abbr_short": "CORE",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "description": "공통 흐름의 중심 역할을 담당하는 핵심 구성요소"
     },
     {
       "id": "config",
@@ -1361,6 +1373,18 @@
       "description": "모듈/폴더 접두사"
     },
     {
+      "id": "module",
+      "ko": "모듈",
+      "en": "Module",
+      "abbr_long": "module",
+      "abbr_short": "MODUL",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "description": "특정 책임을 캡슐화한 코드 단위"
+    },
+    {
       "id": "momentum",
       "ko": "모멘텀",
       "en": "Momentum",
@@ -1769,6 +1793,18 @@
       "description": "실시간 캐시 + 이벤트 스트림. DB가 원본이며 Redis는 파생값."
     },
     {
+      "id": "registry",
+      "ko": "레지스트리",
+      "en": "Registry",
+      "abbr_long": "registry",
+      "abbr_short": "REGIS",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "description": "마켓별 모듈을 등록하고 조회하는 매핑 저장소"
+    },
+    {
       "id": "reentry",
       "ko": "재진입",
       "en": "Re-Entry",
@@ -1827,6 +1863,18 @@
       ],
       "type": "word",
       "description": "프리미엄 가격/가치"
+    },
+    {
+      "id": "protocol",
+      "ko": "프로토콜",
+      "en": "Protocol",
+      "abbr_long": "protocol",
+      "abbr_short": "PROTO",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "description": "모듈 간 동작 계약(인터페이스) 규약"
     },
     {
       "id": "report",

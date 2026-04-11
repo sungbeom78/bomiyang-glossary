@@ -2,10 +2,10 @@
 
 > 자동 생성 파일. 수동 편집 금지.
 > 원본: `words.json` + `compounds.json` + `banned.json`
-> 생성: 2026-04-11 12:09
+> 생성: 2026-04-11 14:05
 
 ## 통계
-- 단어: 231개
+- 단어: 235개
 - 복합어: 154개
 - 금지 표현: 8개
 
@@ -135,6 +135,7 @@
 | `config` | 설정 | — | noun | - | 시스템 설정값 |
 | `confirmed` | 확인됨 | — | noun | auto | 어떤 이벤트나 상태가 최종적으로 확인되었음을 나타내는 플래그 |
 | `connected` | 연결됨 | — | noun | auto | 서비스 또는 시스템과의 연결 상태 |
+| `core` | 코어 | — | noun | auto | 공통 흐름의 중심 역할을 담당하는 핵심 구성요소 |
 | `deny` | 거부 | — | verb | — | 진입 조건 불충족으로 거부 |
 | `disabled` | 비활성화 | OFF | noun | auto | 기능 비활성화 상태 |
 | `enabled` | 활성화 | ON | noun | auto | 기능 활성화 상태 |
@@ -161,6 +162,7 @@
 | `manager` | 관리자 | — | noun | auto |  |
 | `manual` | 수동 | — | noun | auto |  |
 | `method` | 방법 | — | noun | auto |  |
+| `module` | 모듈 | — | noun | auto | 특정 책임을 캡슐화한 코드 단위 |
 | `no` | 금지 | — | prefix | — | 부정 또는 금지를 나타내는 접두사 |
 | `node` | 노드 | — | noun | auto | 분산 환경의 개별 머신/컨테이너 |
 | `notifier` | 알리미 | — | noun | auto | 알림 발송 컴포넌트 |
@@ -168,9 +170,11 @@
 | `online` | 온라인 | ONLN | noun | auto | 네트워크/서비스 연결 상태 |
 | `pending` | 대기 | PEND | noun | auto | 주문 생성 후 브로커 전송 전 대기 상태 |
 | `process` | 프로세스 | — | noun | auto | 실행 중인 프로그램 |
+| `protocol` | 프로토콜 | — | noun | auto | 모듈 간 동작 계약(인터페이스) 규약 |
 | `ranker` | 랭커 | — | noun | auto | 순위를 산정하는 컴포넌트 |
 | `reboot` | 재시작 | — | noun | auto | 시스템 정기 재시작 |
 | `record` | 기록 | — | noun | auto | 개별 거래 이력 |
+| `registry` | 레지스트리 | — | noun | auto | 마켓별 모듈을 등록하고 조회하는 매핑 저장소 |
 | `rejected` | 거절 | RJCT | noun | auto | 브로커에 의해 주문 거절됨 |
 | `relaxed` | 완화된 | — | noun | auto | 특정 조건을 완화하여 적용하는 설정. |
 | `replay` | 리플레이 | — | noun | auto | 과거 데이터 재생 시뮬레이션 |
