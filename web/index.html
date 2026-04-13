@@ -613,11 +613,12 @@ async function doMergeProcessed(){
 }
 
 // ── UTILS ──
+function x(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+const escapeHtml = x;
 function confirmDel(cb,nm){document.getElementById('del-nm').textContent=nm;document.getElementById('del-ok').onclick=cb;openOv('del-ov');}
 function openOv(id){document.getElementById(id).classList.add('open');}
 function closeOv(id){document.getElementById(id).classList.remove('open');}
 document.querySelectorAll('.ov').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
-function x(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 function toast(msg,cls='tin',ms=3200){const c=document.getElementById('toasts'),d=document.createElement('div');d.className=`toast ${cls}`;d.textContent=msg;c.appendChild(d);setTimeout(()=>d.remove(),ms);}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){['word-ov','compound-ov','banned-ov','checkid-ov','git-ov','run-ov','log-ov','batch-ov','del-ov'].forEach(closeOv);}if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();const cur=document.querySelector('.view.active .search-inp');if(cur)cur.focus();}});
 boot();
