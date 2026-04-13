@@ -447,47 +447,78 @@ async function loadBatchFiles(){const wrap=document.getElementById('batch-file-l
 async function selectBatchFile(fname){
   _batchSelFile=fname;
   document.getElementById('merge-fname').textContent=fname;
-  document.getElementById('merge-preview').innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';
+  const container=document.getElementById('merge-preview');
+  container.innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">서버에서 파일 읽는 중…</div>';
   document.getElementById('merge-actions').style.display='none';
+  
   const d=await(await fetch(`/api/batch/preview?file=${encodeURIComponent(fname)}`)).json();
   if(!d.ok||!d.terms?.length){
-    document.getElementById('merge-preview').innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">없음</div>';
+    container.innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">없음</div>';
     return;
   }
+  
   _batchTerms=d.terms;
-  document.getElementById('merge-preview').innerHTML=_batchTerms.map((t,i)=>{
-    let issueHtml = t.issues_comment ? `<div style="font-size:10px;color:var(--ye);margin-top:4px">⚠️ 코멘트: ${escapeHtml(t.issues_comment)}</div>` : '';
-    let baseParts = '';
-    if (t.is_compound && t.base_words && t.base_words.length) {
-      baseParts = `<div style="margin-top:6px;padding-left:12px;border-left:2px solid var(--ln)">` +
-        t.base_words.map((bw, j) => {
-            return `<div style="display:flex;gap:4px;margin-bottom:2px;align-items:center;">
-               <span style="font-family:var(--mono);font-size:10px;width:70px;color:var(--gr)">+ ${escapeHtml(bw.id)}</span>
-               <input type="text" id="bw_ko_${i}_${j}" value="${escapeHtml(bw.ko||'')}" style="width:60px;font-size:10px;padding:2px 4px;border:1px solid var(--ln);background:var(--s2);color:var(--tx)" placeholder="뜻">
-               <input type="text" id="bw_desc_${i}_${j}" value="${escapeHtml(bw.description||'')}" style="flex:1;font-size:10px;padding:2px 4px;border:1px solid var(--ln);background:var(--s2);color:var(--tx)" placeholder="설명(위치/클래스)">
-               <span style="font-size:9px;color:var(--tx3)">${bw.plural?`(원문: ${escapeHtml(bw.plural)})`:''}</span>
-            </div>`;
-        }).join('') + `</div>`;
-    } else if (!t.is_compound && t.plural) {
-       baseParts = `<div style="font-size:9px;color:var(--tx3);margin-top:2px">복수형 원문: ${escapeHtml(t.plural)}</div>`;
-    }
+  const total = _batchTerms.length;
+  let current = 0;
+  const chunkSize = 40; 
+  
+  container.innerHTML = `<div id="render-prog" style="padding:10px;font-family:var(--mono);font-size:11px;color:var(--ac);font-weight:bold;">화면 생성 중... 0/${total} (0%)</div>`;
+  const progEl = document.getElementById('render-prog');
+  const wrap = document.createElement('div');
+  container.appendChild(wrap);
 
-    return `<div class="merge-item" style="padding-bottom:10px;border-bottom:1px solid var(--ln);margin-bottom:8px;">
-       <div style="display:flex;">
-         <input type="checkbox" id="mc${i}" checked>
-         <div style="flex:1;margin-left:6px">
-           <span style="font-weight:600">${escapeHtml(t.ko||t.id)}</span>
-           <span style="font-family:var(--mono);font-size:10px;color:var(--ac);margin-left:8px">${escapeHtml(t.id)}</span>
-           ${t.abbr_short ? `<span style="font-family:var(--mono);font-size:10px;color:var(--gr);margin-left:4px">[${escapeHtml(t.abbr_short)}]</span>` : ''}
-           <div style="font-size:10px;color:var(--tx3);margin-top:2px">${escapeHtml(t.description||'')}</div>
-           ${baseParts}
-           ${issueHtml}
+  function renderChunk() {
+    let end = Math.min(current + chunkSize, total);
+    let chunkHtml = '';
+    
+    for(let i=current; i<end; i++){
+      const t = _batchTerms[i];
+      let issueHtml = t.issues_comment ? `<div style="font-size:10px;color:var(--ye);margin-top:4px">⚠️ 코멘트: ${escapeHtml(t.issues_comment)}</div>` : '';
+      let baseParts = '';
+      if (t.is_compound && t.base_words && t.base_words.length) {
+        baseParts = `<div style="margin-top:6px;padding-left:12px;border-left:2px solid var(--ln)">` +
+          t.base_words.map((bw, j) => {
+              return `<div style="display:flex;gap:4px;margin-bottom:2px;align-items:center;">
+                 <span style="font-family:var(--mono);font-size:10px;width:70px;color:var(--gr)">+ ${escapeHtml(bw.id)}</span>
+                 <input type="text" id="bw_ko_${i}_${j}" value="${escapeHtml(bw.ko||'')}" style="width:60px;font-size:10px;padding:2px 4px;border:1px solid var(--ln);background:var(--s2);color:var(--tx)" placeholder="뜻">
+                 <input type="text" id="bw_desc_${i}_${j}" value="${escapeHtml(bw.description||'')}" style="flex:1;font-size:10px;padding:2px 4px;border:1px solid var(--ln);background:var(--s2);color:var(--tx)" placeholder="설명(위치/클래스)">
+                 <span style="font-size:9px;color:var(--tx3)">${bw.plural?`(원문: ${escapeHtml(bw.plural)})`:''}</span>
+              </div>`;
+          }).join('') + `</div>`;
+      } else if (!t.is_compound && t.plural) {
+         baseParts = `<div style="font-size:9px;color:var(--tx3);margin-top:2px">복수형 원문: ${escapeHtml(t.plural)}</div>`;
+      }
+
+      chunkHtml += `<div class="merge-item" style="padding-bottom:10px;border-bottom:1px solid var(--ln);margin-bottom:8px;">
+         <div style="display:flex;">
+           <input type="checkbox" id="mc${i}" checked>
+           <div style="flex:1;margin-left:6px">
+             <span style="font-weight:600">${escapeHtml(t.ko||t.id)}</span>
+             <span style="font-family:var(--mono);font-size:10px;color:var(--ac);margin-left:8px">${escapeHtml(t.id)}</span>
+             ${t.abbr_short ? `<span style="font-family:var(--mono);font-size:10px;color:var(--gr);margin-left:4px">[${escapeHtml(t.abbr_short)}]</span>` : ''}
+             <div style="font-size:10px;color:var(--tx3);margin-top:2px">${escapeHtml(t.description||'')}</div>
+             ${baseParts}
+             ${issueHtml}
+           </div>
          </div>
-       </div>
-    </div>`;
-  }).join('');
-  document.getElementById('merge-actions').style.display='flex';
-  document.getElementById('merge-status').textContent=`총 ${_batchTerms.length}개`;
+      </div>`;
+    }
+    
+    wrap.insertAdjacentHTML('beforeend', chunkHtml);
+    current = end;
+    
+    if(current < total) {
+       let pct = Math.round((current/total)*100);
+       progEl.textContent = `화면 생성 중... ${current}/${total} (${pct}%)`;
+       requestAnimationFrame(renderChunk);
+    } else {
+       progEl.style.display = 'none';
+       document.getElementById('merge-actions').style.display='flex';
+       document.getElementById('merge-status').textContent=`총 ${_batchTerms.length}개`;
+    }
+  }
+  
+  requestAnimationFrame(renderChunk);
 }
 
 async function doMergeProcessed(){
