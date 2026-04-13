@@ -49,6 +49,7 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
   <button class="tab active" data-tab="words"     onclick="switchTab('words')">단어<span class="badge" id="badge-words">0</span></button>
   <button class="tab"        data-tab="compounds" onclick="switchTab('compounds')">복합어<span class="badge" id="badge-compounds">0</span></button>
   <button class="tab"        data-tab="banned"    onclick="switchTab('banned')">금지표현<span class="badge" id="badge-banned">0</span></button>
+  <button class="tab"        data-tab="drafts"    onclick="switchTab('drafts')">보류(Drafts)<span class="badge" id="badge-drafts">0</span></button>
   <div id="tab-actions"></div>
 </div>
 <div id="content">
@@ -110,6 +111,20 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
       <colgroup><col style="width:140px"><col style="width:240px"><col style="width:180px"><col style="width:auto"><col style="width:40px"></colgroup>
       <thead><tr><th>금지 표현</th><th>문맥</th><th>올바른 표현</th><th>사유</th><th></th></tr></thead>
       <tbody id="b-body"></tbody>
+    </table></div>
+  </div>
+  <!-- DRAFTS -->
+  <div class="view" id="view-drafts">
+    <div class="toolbar">
+      <div class="sw"><span class="si-s">⌕</span><input class="search-inp" id="d-search" type="text" placeholder="검색 — id, 한글…" oninput="dFilter()"></div>
+      <div style="flex:1 1 0"></div>
+      <div class="row-cnt" id="d-cnt"></div>
+      <button class="btn btn-gh" onclick="loadDrafts()" style="padding:4px 8px;font-size:11px">↺ 새로고침</button>
+    </div>
+    <div class="tw"><table id="d-tbl">
+      <colgroup><col style="width:160px"><col style="width:140px"><col style="width:auto"><col style="width:50px"></colgroup>
+      <thead><tr><th>id</th><th>한글</th><th>원문 내용 (JSON)</th><th></th></tr></thead>
+      <tbody id="d-body"></tbody>
     </table></div>
   </div>
 </div>
@@ -224,7 +239,7 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
       <pre id="batch-output" style="font-family:var(--mono);font-size:10px;line-height:1.6;background:var(--bg);padding:10px;border-radius:4px;max-height:180px;overflow:auto;color:var(--tx2);white-space:pre-wrap;margin-top:10px;display:none"></pre>
     </div>
     <div class="btab-pane" id="btab-result"><div style="display:flex;justify-content:space-between;margin-bottom:10px"><span style="font-family:var(--mono);font-size:10px;color:var(--tx3)">tmp/terms/</span><button class="btn btn-gh" style="padding:3px 8px;font-size:9px" onclick="loadBatchFiles()">↺</button></div><div id="batch-file-list" style="max-height:340px;overflow-y:auto"></div></div>
-    <div class="btab-pane" id="btab-merge"><div style="margin-bottom:10px"><div style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-bottom:6px">선택 파일</div><div id="merge-fname" style="font-family:var(--mono);font-size:11px;color:var(--ac);padding:6px 10px;background:var(--bg);border-radius:4px">—</div></div><div id="merge-preview" style="max-height:280px;overflow-y:auto"></div><div id="merge-actions" style="margin-top:12px;display:none;gap:8px;align-items:center"><button class="btn btn-ac" onclick="doMergeAll()">전체 병합</button><button class="btn btn-gh" onclick="doMergeSelected()">선택만</button><span id="merge-status" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span></div></div>
+    <div class="btab-pane" id="btab-merge"><div style="margin-bottom:10px"><div style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-bottom:6px">선택 파일</div><div id="merge-fname" style="font-family:var(--mono);font-size:11px;color:var(--ac);padding:6px 10px;background:var(--bg);border-radius:4px">—</div></div><div id="merge-preview" style="max-height:280px;overflow-y:auto"></div><div id="merge-actions" style="margin-top:12px;display:none;gap:8px;align-items:center"><button class="btn btn-ac" onclick="doMergeProcessed()">선택 승인 및 나머지 보류</button><span id="merge-status" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span></div></div>
   </div>
   <div class="mf"><button class="btn btn-gh" onclick="closeOv('batch-ov')">닫기</button></div>
 </div></div>
@@ -239,8 +254,8 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
 <div id="toasts"></div>
 
 <script>
-let WORDS=[],COMPOUNDS=[],BANNED=[];
-let wFlt=[],cFlt=[],bFlt=[];
+let WORDS=[],COMPOUNDS=[],BANNED=[],DRAFTS=[];
+let wFlt=[],cFlt=[],bFlt=[],dFlt=[];
 let wSort={col:'id',dir:1},cSort={col:'id',dir:1};
 let wExpId=null,cExpId=null;
 let editWordId=null,editCompoundId=null,editBannedExpr=null;
@@ -250,18 +265,54 @@ const DC={trading:'d-trading',market:'d-market',system:'d-system',infra:'d-infra
 
 async function boot(){
   try{
-    const[wd,cd,bd]=await Promise.all([fetch('/api/words').then(r=>r.json()),fetch('/api/compounds').then(r=>r.json()),fetch('/api/banned').then(r=>r.json())]);
-    WORDS=wd.words||[];COMPOUNDS=cd.compounds||[];BANNED=bd.banned||[];
-    wFlt=[...WORDS];cFlt=[...COMPOUNDS];bFlt=[...BANNED];
-    renderWords();renderCompounds();renderBanned();updateStats();loadBranch();
+    const[wd,cd,bd,dd]=await Promise.all([
+      fetch('/api/words').then(r=>r.json()),
+      fetch('/api/compounds').then(r=>r.json()),
+      fetch('/api/banned').then(r=>r.json()),
+      fetch('/api/drafts').then(r=>r.json())
+    ]);
+    WORDS=wd.words||[];COMPOUNDS=cd.compounds||[];BANNED=bd.banned||[];DRAFTS=dd.drafts||[];
+    wFlt=[...WORDS];cFlt=[...COMPOUNDS];bFlt=[...BANNED];dFlt=[...DRAFTS];
+    renderWords();renderCompounds();renderBanned();renderDrafts();updateStats();loadBranch();
   }catch(e){toast('서버 연결 실패','ter');}
 }
 
 function updateStats(){
-  document.getElementById('tb-stats').textContent=`단어 ${WORDS.length} · 복합어 ${COMPOUNDS.length} · 금지 ${BANNED.length}`;
+  document.getElementById('tb-stats').textContent=`단어 ${WORDS.length} · 복합어 ${COMPOUNDS.length} · 금지 ${BANNED.length} · 보류 ${DRAFTS.length}`;
   document.getElementById('badge-words').textContent=WORDS.length;
   document.getElementById('badge-compounds').textContent=COMPOUNDS.length;
   document.getElementById('badge-banned').textContent=BANNED.length;
+  document.getElementById('badge-drafts').textContent=DRAFTS.length;
+}
+
+function renderDrafts(){
+  const b=document.getElementById('d-body'); b.innerHTML='';
+  document.getElementById('d-cnt').textContent=`총 ${dFlt.length}개`;
+  dFlt.forEach((d,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td class="id-cell">${escapeHtml(d.id||'')}</td>
+      <td>${escapeHtml(d.ko||'')}</td>
+      <td><pre style="margin:0;font-size:9px;white-space:pre-wrap;color:var(--tx3)">${escapeHtml(JSON.stringify(d, null, 2))}</pre></td>
+      <td></td>
+    `;
+    b.appendChild(tr);
+  });
+}
+
+function dFilter(){
+  const sq=document.getElementById('d-search').value.toLowerCase();
+  dFlt=DRAFTS.filter(d=>(d.id||'').toLowerCase().includes(sq)||(d.ko||'').includes(sq));
+  renderDrafts();
+}
+
+async function loadDrafts(){
+  try{
+    const dd=await fetch('/api/drafts').then(r=>r.json());
+    DRAFTS=dd.drafts||[];
+    dFilter();
+    updateStats();
+  }catch(e){toast('Drafts 로드 실패','ter');}
 }
 
 async function loadBranch(){
@@ -391,12 +442,144 @@ function onBatchApiChange(){const t=document.getElementById('batch-api-type').va
 async function doScan(){const btn=document.getElementById('scan-btn'),pre=document.getElementById('scan-preview'),sts=document.getElementById('scan-status');btn.disabled=true;btn.textContent='스캔 중…';sts.textContent='';pre.style.display='none';const res=await fetch('/api/batch/scan',{method:'POST'});const d=await res.json();if(!d.ok){sts.textContent='오류: '+(d.error||'실패');}else{sts.textContent=`후보 ${d.count}개`;const lines=(d.candidates||[]).slice(0,40).map(c=>`${c.name.padEnd(32)} ${(c.sources||[])[0]||''}`);if(d.count>40)lines.push(`... 외 ${d.count-40}개`);pre.textContent=lines.join('\n');pre.style.display='block';}btn.disabled=false;btn.textContent='▷ 스캔';}
 async function doBatchDryRun(){_runBatch(true);}
 async function doBatchRun(){if(!confirm('API를 호출해 분석을 실행합니다.'))return;_runBatch(false);}
-async function _runBatch(dryRun){const outEl=document.getElementById('batch-output'),runBtn=document.getElementById('run-btn'),dryBtn=document.getElementById('dry-btn');const apiType=document.getElementById('batch-api-type')?.value||'',model=document.getElementById('batch-model')?.value||'';outEl.style.display='block';outEl.textContent=dryRun?'dry-run 중…':'API 분석 중…';runBtn.disabled=dryBtn.disabled=true;const payload={dry_run:dryRun};if(apiType)payload.api_type=apiType;if(model)payload.model=model;const res=await fetch('/api/batch/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const d=await res.json();outEl.textContent=d.output||'(출력 없음)';if(!dryRun&&d.ok)toast('분석 완료','tok');runBtn.disabled=dryBtn.disabled=false;}
+async function _runBatch(dryRun){const outEl=document.getElementById('batch-output'),runBtn=document.getElementById('run-btn'),dryBtn=document.getElementById('dry-btn');const apiType=document.getElementById('batch-api-type')?.value||'',model=document.getElementById('batch-model')?.value||'';outEl.style.display='block';outEl.innerHTML='';const progDiv=document.createElement('div');progDiv.style.marginBottom='15px';progDiv.style.color='var(--gr)';const logDiv=document.createElement('div');outEl.appendChild(progDiv);outEl.appendChild(logDiv);runBtn.disabled=dryBtn.disabled=true;const payload={dry_run:dryRun};if(apiType)payload.api_type=apiType;if(model)payload.model=model;try{const res=await fetch('/api/batch/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const reader=res.body.getReader();const decoder=new TextDecoder('utf-8');let buffer='',tasks={};function renderTasks(){progDiv.innerHTML=Object.values(tasks).sort((a,b)=>a.idx-b.idx).map(t=>{let pct=t.total?Math.round((t.cur/t.total)*100):0;let ar=t.status==='완료'?'>>>>>>>':(t.status==='대기 중'?'>':'>>');return`<div>${t.idx}. ${t.name.padEnd(20,'\u00a0')} ${ar} ${String(t.cur).padStart(4,'\u00a0')}/${t.total} ${t.status} (${pct}%)</div>`;}).join('');}while(true){const{done,value}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});let lines=buffer.split('\n');buffer=lines.pop();for(let i=0;i<lines.length;i++){const line=lines[i];if(line.startsWith('PROG|')){let p=line.split('|');if(p.length>=6){tasks[parseInt(p[1])]={idx:parseInt(p[1]),name:p[2],cur:parseInt(p[3]),total:parseInt(p[4]),status:p[5]};renderTasks();}}else{logDiv.appendChild(document.createTextNode(line+'\n'));outEl.scrollTop=outEl.scrollHeight;}}}if(buffer.trim())logDiv.appendChild(document.createTextNode(buffer+'\n'));if(!dryRun&&logDiv.textContent.includes('[완료]'))toast('분석 완료','tok');}catch(e){logDiv.appendChild(document.createTextNode('\\n연결 오류: '+e));}runBtn.disabled=dryBtn.disabled=false;}
 async function loadBatchFiles(){const wrap=document.getElementById('batch-file-list');wrap.innerHTML='<div style="padding:10px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';const d=await(await fetch('/api/batch/files')).json();if(!d.files.length){wrap.innerHTML='<div style="padding:14px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--tx3)">없음</div>';return;}wrap.innerHTML=d.files.map(f=>`<div class="batch-file-row${_batchSelFile===f.name?' sel':''}" onclick="selectBatchFile('${f.name}')"><span style="font-family:var(--mono);font-size:11px;color:var(--ac);flex:1">${f.name}</span><span style="font-family:var(--mono);font-size:10px;color:var(--tx3)">${f.count}개</span><button class="btn btn-ac" style="padding:3px 9px;font-size:9px" onclick="event.stopPropagation();selectBatchFile('${f.name}');switchBtab('merge')">병합 →</button></div>`).join('');}
-async function selectBatchFile(fname){_batchSelFile=fname;document.getElementById('merge-fname').textContent=fname;document.getElementById('merge-preview').innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';document.getElementById('merge-actions').style.display='none';const d=await(await fetch(`/api/batch/preview?file=${encodeURIComponent(fname)}`)).json();if(!d.ok||!d.terms?.length){document.getElementById('merge-preview').innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">없음</div>';return;}_batchTerms=d.terms;document.getElementById('merge-preview').innerHTML=_batchTerms.map((t,i)=>`<div class="merge-item"><input type="checkbox" id="mc${i}" checked><div style="flex:1"><span style="font-weight:600">${t.ko||''}</span><span style="font-family:var(--mono);font-size:10px;color:var(--ac);margin-left:8px">${t.abbr_short||''}</span><div style="font-size:10px;color:var(--tx3)">${t.description||''}</div></div></div>`).join('');document.getElementById('merge-actions').style.display='flex';document.getElementById('merge-status').textContent=`총 ${_batchTerms.length}개`;}
-async function doMergeAll(){await _doMerge(null);}
-async function doMergeSelected(){const ids=_batchTerms.filter((_,i)=>document.getElementById(`mc${i}`)?.checked).map(t=>t.id);if(!ids.length){toast('선택 없음','ter');return;}await _doMerge(ids);}
-async function _doMerge(ids){const sts=document.getElementById('merge-status');sts.textContent='병합 중…';const res=await fetch('/api/batch/merge',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({file:_batchSelFile,ids})});const d=await res.json();if(!d.ok){toast(d.error||'실패','ter');sts.textContent='';return;}sts.textContent=`완료: ${d.added}개 추가, ${d.skipped}개 중복`;toast(`${d.added}개 병합 완료`,'tok');await reloadWords();await reloadCompounds();}
+async function selectBatchFile(fname){
+  _batchSelFile=fname;
+  document.getElementById('merge-fname').textContent=fname;
+  document.getElementById('merge-preview').innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';
+  document.getElementById('merge-actions').style.display='none';
+  const d=await(await fetch(`/api/batch/preview?file=${encodeURIComponent(fname)}`)).json();
+  if(!d.ok||!d.terms?.length){
+    document.getElementById('merge-preview').innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">없음</div>';
+    return;
+  }
+  _batchTerms=d.terms;
+  document.getElementById('merge-preview').innerHTML=_batchTerms.map((t,i)=>{
+    let issueHtml = t.issues_comment ? `<div style="font-size:10px;color:var(--ye);margin-top:4px">⚠️ 코멘트: ${escapeHtml(t.issues_comment)}</div>` : '';
+    let baseParts = '';
+    if (t.is_compound && t.base_words && t.base_words.length) {
+      baseParts = `<div style="margin-top:6px;padding-left:12px;border-left:2px solid var(--ln)">` +
+        t.base_words.map((bw, j) => {
+            return `<div style="display:flex;gap:4px;margin-bottom:2px;align-items:center;">
+               <span style="font-family:var(--mono);font-size:10px;width:70px;color:var(--gr)">+ ${escapeHtml(bw.id)}</span>
+               <input type="text" id="bw_ko_${i}_${j}" value="${escapeHtml(bw.ko||'')}" style="width:60px;font-size:10px;padding:2px 4px;border:1px solid var(--ln);background:var(--s2);color:var(--tx)" placeholder="뜻">
+               <input type="text" id="bw_desc_${i}_${j}" value="${escapeHtml(bw.description||'')}" style="flex:1;font-size:10px;padding:2px 4px;border:1px solid var(--ln);background:var(--s2);color:var(--tx)" placeholder="설명(위치/클래스)">
+               <span style="font-size:9px;color:var(--tx3)">${bw.plural?`(원문: ${escapeHtml(bw.plural)})`:''}</span>
+            </div>`;
+        }).join('') + `</div>`;
+    } else if (!t.is_compound && t.plural) {
+       baseParts = `<div style="font-size:9px;color:var(--tx3);margin-top:2px">복수형 원문: ${escapeHtml(t.plural)}</div>`;
+    }
+
+    return `<div class="merge-item" style="padding-bottom:10px;border-bottom:1px solid var(--ln);margin-bottom:8px;">
+       <div style="display:flex;">
+         <input type="checkbox" id="mc${i}" checked>
+         <div style="flex:1;margin-left:6px">
+           <span style="font-weight:600">${escapeHtml(t.ko||t.id)}</span>
+           <span style="font-family:var(--mono);font-size:10px;color:var(--ac);margin-left:8px">${escapeHtml(t.id)}</span>
+           ${t.abbr_short ? `<span style="font-family:var(--mono);font-size:10px;color:var(--gr);margin-left:4px">[${escapeHtml(t.abbr_short)}]</span>` : ''}
+           <div style="font-size:10px;color:var(--tx3);margin-top:2px">${escapeHtml(t.description||'')}</div>
+           ${baseParts}
+           ${issueHtml}
+         </div>
+       </div>
+    </div>`;
+  }).join('');
+  document.getElementById('merge-actions').style.display='flex';
+  document.getElementById('merge-status').textContent=`총 ${_batchTerms.length}개`;
+}
+
+async function doMergeProcessed(){
+  const sts=document.getElementById('merge-status');
+  sts.textContent='처리 중…';
+  
+  let appW = [], appC = [], rej = [];
+  const CAT_MAP = {'order':'trading','risk':'trading','trading':'trading','domain':'trading','account':'trading','market':'market','data':'market','selector':'market','system':'system','status':'system','session':'system','module':'system','config':'system','class':'system','infra':'infra','tool':'infra','report':'ui'};
+
+  _batchTerms.forEach((t, i) => {
+    const cb = document.getElementById(`mc${i}`);
+    const isChecked = cb && cb.checked;
+    
+    let domain = "general";
+    if (t.categories) {
+       let found = t.categories.find(c => CAT_MAP[c]);
+       if (found) domain = CAT_MAP[found];
+    }
+    
+    if (!isChecked) {
+       rej.push(t);
+       return;
+    }
+    
+    if (t.is_compound) {
+       appC.push({
+          id: t.id,
+          words: (t.base_words||[]).map(bw => bw.id),
+          ko: t.ko,
+          en: t.en || t.id,
+          abbr_long: t.abbr_long,
+          abbr_short: t.abbr_short,
+          domain: domain,
+          reason: "의미 비합산",
+          description: t.description
+       });
+       if (t.base_words) {
+         t.base_words.forEach((bw, j) => {
+            let u_ko = document.getElementById(`bw_ko_${i}_${j}`)?.value || bw.ko || bw.id;
+            let u_desc = document.getElementById(`bw_desc_${i}_${j}`)?.value || bw.description || "";
+            appW.push({
+               id: bw.id,
+               en: bw.id,
+               ko: u_ko,
+               abbr: null,
+               pos: "noun",
+               domain: domain,
+               description: u_desc,
+               not: [],
+               plural: bw.plural || null
+            });
+         });
+       }
+    } else {
+       appW.push({
+          id: t.id,
+          en: t.en || t.id,
+          ko: t.ko || t.id,
+          abbr: (t.abbr_short && t.abbr_short.length >= 2 && !t.abbr_short.includes('_')) ? t.abbr_short : null,
+          pos: "noun",
+          domain: domain,
+          description: t.description || "",
+          not: [],
+          plural: t.plural || null
+       });
+    }
+  });
+
+  if (!appW.length && !appC.length && !rej.length) {
+    toast('처리할 대상 없음','ter'); return;
+  }
+  
+  const res = await fetch('/api/batch/merge', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      file: _batchSelFile,
+      approved_words: appW,
+      approved_compounds: appC,
+      rejected: rej
+    })
+  });
+  
+  const d = await res.json();
+  if(!d.ok){ toast(d.error||'실패', 'ter'); sts.textContent=''; return; }
+  
+  sts.textContent=`성공: ${d.added}개 승인, ${rej.length}개 보류`;
+  toast('병합 및 보류 이동 처리 완료', 'tok');
+  await reloadWords(); 
+  await reloadCompounds();
+  await loadDrafts();
+}
 
 // ── UTILS ──
 function confirmDel(cb,nm){document.getElementById('del-nm').textContent=nm;document.getElementById('del-ok').onclick=cb;openOv('del-ov');}

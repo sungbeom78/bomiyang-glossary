@@ -141,12 +141,19 @@ def save_terms(data: dict):
     with open(TERMS_PATH, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-# ── v2: words / compounds / banned ────────────────────────────────────
+# ── v2: words / compounds / banned / drafts ─────────────────────────
 def _load_json(path: Path, key: str) -> dict:
     if not path.exists():
         return {key: []}
     with open(path, encoding='utf-8') as f:
         return json.load(f)
+
+def load_drafts() -> dict:
+    return _load_json(DICT_DIR / "drafts.json", "drafts")
+
+def save_drafts(data: dict):
+    with open(DICT_DIR / "drafts.json", 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
 def _save_json(path: Path, data: dict):
     with open(path, 'w', encoding='utf-8') as f:
@@ -717,6 +724,8 @@ def batch_run():
     if chunk:
         cmd_args += ["--chunk", str(chunk)]
 
+    cmd_args.append("--ui-prog")
+
     # UI 선택값을 환경변수로 주입 (비어있으면 .env 값 그대로 사용)
     import os
     extra_env = os.environ.copy()
@@ -731,33 +740,34 @@ def batch_run():
 
     log.info(f"[batch] run 시작 dry_run={dry_run} api={api_type or '(.env)'} model={model or '(.env)'}")
 
+    from flask import Response
     import subprocess as _sp
-    try:
-        proc = _sp.run(
-            cmd_args,
-            cwd=str(REPO_ROOT),
-            capture_output=True,
-            encoding='utf-8',
-            errors='replace',
-            timeout=300,
-            env=extra_env,
-        )
-        combined = proc.stdout or ""
-        if proc.stderr:
-            combined += "\n" + proc.stderr
-        ok = proc.returncode == 0
-    except _sp.TimeoutExpired:
-        combined = "타임아웃 (300초 초과)"
-        ok = False
-    except Exception as e:
-        combined = str(e)
-        ok = False
 
-    log.info(f"[batch] run 완료 ok={ok}")
-    return jsonify({
-        "ok":     ok,
-        "output": combined.strip() or f"(출력 없음)",
-    })
+    def generate_stream():
+        try:
+            proc = _sp.Popen(
+                cmd_args,
+                cwd=str(REPO_ROOT),
+                stdout=_sp.PIPE,
+                stderr=_sp.STDOUT,
+                encoding='utf-8',
+                errors='replace',
+                bufsize=1,
+                env=extra_env,
+            )
+            for line in proc.stdout:
+                yield line
+            
+            proc.wait(timeout=900)
+            if proc.returncode != 0:
+                yield f"\n[오류] 프로세스가 에러 코드 {proc.returncode}로 종료되었습니다.\n"
+            else:
+                yield "\n[완료] API 분석 프로세스 정상 종료"
+        except Exception as e:
+            yield f"\n[서버 오류] {e}\n"
+
+    # text/plain event stream returning raw logs
+    return Response(generate_stream(), mimetype="text/plain")
 
 
 @app.route("/api/batch/files", methods=["GET"])
@@ -807,102 +817,73 @@ def batch_preview():
         return jsonify({"ok": False, "error": str(e)})
 
 
+@app.route("/api/drafts", methods=["GET"])
+def api_get_drafts():
+    """BOM_TS drafts 보류 용어 조회"""
+    return jsonify(load_drafts())
+
+
 @app.route("/api/batch/merge", methods=["POST"])
 def batch_merge():
     """
-    결과 파일의 용어를 dictionary/words.json 에 병합 (중복 id 제외).
-
-    batch_terms.py 결과는 terms.json 포맷이므로,
-    단순어(토큰 1개)는 words.json으로, 복합어는 compounds.json으로 분류 후 병합.
-    분류 불가 항목은 words.json에 병합 (사용자가 이후 수동 검토).
+    승인된 단어(words), 복합어(compounds)를 병합하고, 선택받지 못한 용어는 drafts.json에 저장 (최대 100건).
     """
-    import re
-
-    body  = request.get_json() or {}
-    fname = body.get("file", "")
-    ids   = body.get("ids", None)   # None = 전체, list = 선택
-
-    if not fname:
-        return jsonify({"error": "file 파라미터 필요"}), 400
-
-    out_dir = _proj_root() / "tmp" / "terms"
-    fpath   = (out_dir / fname).resolve()
-    if not str(fpath).startswith(str(out_dir.resolve())):
-        return jsonify({"error": "잘못된 경로"}), 400
-    if not fpath.exists():
-        return jsonify({"error": "파일 없음"}), 404
-
-    def _tokenize(name: str) -> list:
-        s = str(name).replace('-', '_')
-        s = re.sub(r'([a-z])([A-Z])', r'\1_\2', s)
-        return [t.lower() for t in s.split('_') if len(t) >= 2]
+    body = request.get_json() or {}
+    
+    approved_words = body.get("approved_words", [])
+    approved_comps = body.get("approved_compounds", [])
+    rejected       = body.get("rejected", [])
 
     try:
-        src_data = json.loads(fpath.read_text(encoding='utf-8'))
-        candidates = src_data.get("terms", [])
-
-        # ids 필터
-        if ids is not None:
-            candidates = [t for t in candidates if t.get("id") in ids]
-
-        # words.json / compounds.json 기존 id 수집
         wd = load_words()
         cd = load_compounds()
+        dd = load_drafts()
+
         existing_word_ids = {w["id"] for w in wd["words"]}
         existing_comp_ids = {c["id"] for c in cd["compounds"]}
-        existing_all      = existing_word_ids | existing_comp_ids
+        
+        words_added = 0
+        comps_added = 0
 
-        words_to_add = []
-        skipped      = 0
+        # 단일 단어 추가
+        for w in approved_words:
+            wid = w.get("id")
+            if wid and wid not in existing_word_ids:
+                wd["words"].append(w)
+                existing_word_ids.add(wid)
+                words_added += 1
 
-        for t in candidates:
-            tid = t.get("id", "").strip()
-            if not tid or tid in existing_all:
-                skipped += 1
-                continue
+        # 복합어 추가
+        for c in approved_comps:
+            cid = c.get("id")
+            if cid and cid not in existing_comp_ids:
+                cd["compounds"].append(c)
+                existing_comp_ids.add(cid)
+                comps_added += 1
 
-            tokens = _tokenize(tid)
-            cats   = t.get("categories", ["system"])
+        # 거부된/선택받지 못한 항목 Drafts 추가
+        if rejected:
+            # Add to top, keep 100
+            new_drafts = rejected + dd.get("drafts", [])
+            dd["drafts"] = new_drafts[:100]
+            save_drafts(dd)
 
-            # domain 변환
-            CAT_MAP = {
-                'order':'trading','risk':'trading','trading':'trading',
-                'domain':'trading','account':'trading',
-                'market':'market','data':'market','selector':'market',
-                'system':'system','status':'system','session':'system',
-                'module':'system','config':'system','class':'system',
-                'infra':'infra','tool':'infra','report':'ui',
-            }
-            domain = next((CAT_MAP.get(c) for c in cats if c in CAT_MAP), "general")
-            abbr   = t.get("abbr_short", "")
-            abbr_v = abbr if (abbr and 2 <= len(abbr) <= 5 and abbr.isupper()
-                              and '_' not in abbr) else None
-
-            # 단순어 → words.json
-            words_to_add.append({
-                "id":          tid,
-                "en":          (t.get("en") or tid).lower(),
-                "ko":          t.get("ko") or tid,
-                "abbr":        abbr_v,
-                "pos":         "noun",
-                "domain":      domain,
-                "description": t.get("description") or "",
-                "not":         [],
-            })
-            existing_all.add(tid)
-
-        if words_to_add:
-            wd["words"].extend(words_to_add)
-            wd["words"].sort(key=lambda w: w["id"])
+        if words_added > 0:
+            wd["words"].sort(key=lambda x: x["id"])
             save_words(wd)
+            
+        if comps_added > 0:
+            cd["compounds"].sort(key=lambda x: x["id"])
+            save_compounds(cd)
 
-        log.info(f"[batch] merge words={len(words_to_add)} skipped={skipped} from {fname}")
+        log.info(f"[batch] merge words={words_added} comps={comps_added} drafts={len(rejected)}")
         return jsonify({
-            "ok":      True,
-            "added":   len(words_to_add),
-            "skipped": skipped,
-            "note":    "words.json에 병합됨. 복합어는 UI에서 수동 이동 필요.",
+            "ok": True,
+            "added": words_added + comps_added,
+            "skipped": 0,
+            "note": "병합 처리 완료 및 드래프트 저장."
         })
+
     except Exception as e:
         log.warning(f"[batch] merge 실패: {e}")
         return jsonify({"ok": False, "error": str(e)})
