@@ -433,7 +433,7 @@ def main():
     exclude_exts = {e if e.startswith('.') else f'.{e}'
                     for e in parse_list(env.get('EXCLUDE_EXTENSIONS',
                     '.md,.txt,.log,.csv,.tsv,.png,.jpg,.jpeg,.gif,.pdf,.ico,.svg,.zip,.tar'))}
-    existing_syms, existing_tokens = load_existing_terms(GLOSSARY_DIR)
+    existing_syms, existing_tokens, n_patterns = load_existing_terms(GLOSSARY_DIR)
 
     print(f"[1/3] 소스 스캔 중... ({proj_root})")
     scanner = TermScanner(
@@ -443,6 +443,7 @@ def main():
         exclude_exts      = exclude_exts,
         existing_syms     = existing_syms,
         existing_tokens   = existing_tokens,
+        n_patterns        = n_patterns,
     )
     scanner.scan()
     candidates = sorted(
