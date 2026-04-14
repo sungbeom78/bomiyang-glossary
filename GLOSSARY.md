@@ -2,7 +2,7 @@
 
 > 자동 생성 파일. 수동 편집 금지.
 > 원본: `words.json` + `compounds.json` + `banned.json`
-> 생성: 2026-04-14 20:03
+> 생성: 2026-04-14 21:35
 
 ## 통계
 - 단어: 234개
@@ -448,11 +448,11 @@
 
 | 금지 표현 | 올바른 표현 | 사유 | 위반 강도 |
 |----------|------------|------|----------|
-| `MT5_FUT` | `FX_FUT` | MT5는 플랫폼(tool)이지 시장(market)이 아님 (마켓 식별자로 사용 시) | warn |
-| `mt5Futures` | `fxFutures` | MT5는 접근 툴이며 마켓명이 아님 (외환선물 변수명으로 사용 시) | warn |
-| `KIS` | `KR_STOCK` | KIS는 브로커명. 마켓 식별자와 혼용 금지 (한국주식 마켓 식별자 의미로 사용 시) | warn |
-| `MT5` | `FX_FUT 또는 fxFutures` | MT5는 MetaTrader5 플랫폼명 (외환선물 마켓 의미로 사용 시) | warn |
-| `VOL` | `VOLS (volatilityScore) 또는 context 명시` | VOL은 거래량(volume)과 혼동 가능 (변동성(volatility) 의미로 단독 사용 시) | warn |
-| `TS` | `문맥에 따라 trailingStop / TRK_ST 구분` | TS가 두 개념에 모두 사용되어 혼동 발생 (trailingStop 또는 trackingStart 단독 사용 시) | warn |
-| `WR` | `문맥에 따라 weeklyReport / W_RPT 또는 winRate 구분` | WR이 두 개념에 모두 사용되어 혼동 발생 (weeklyReport 또는 winRate 단독 사용 시) | warn |
+| `MT5_FUT` | `fx_fut` | MT5는 플랫폼(tool)이지 시장(market)이 아님 (마켓 식별자로 사용 시) | warn |
+| `mt5Futures` | `fxfutures` | MT5는 접근 툴이며 마켓명이 아님 (외환선물 변수명으로 사용 시) | warn |
+| `KIS` | `kr_stock` | KIS는 브로커명. 마켓 식별자와 혼용 금지 (한국주식 마켓 식별자 의미로 사용 시) | warn |
+| `MT5` | `fx_fut 또는 fxfutures` | MT5는 MetaTrader5 플랫폼명 (외환선물 마켓 의미로 사용 시) | warn |
+| `VOL` | `vols (volatilityscore) 또는 context 명시` | VOL은 거래량(volume)과 혼동 가능 (변동성(volatility) 의미로 단독 사용 시) | warn |
+| `TS` | `문맥에 따라 trailingstop / trk_st 구분` | TS가 두 개념에 모두 사용되어 혼동 발생 (trailingStop 또는 trackingStart 단독 사용 시) | warn |
+| `WR` | `문맥에 따라 weeklyreport / w_rpt 또는 winrate 구분` | WR이 두 개념에 모두 사용되어 혼동 발생 (weeklyReport 또는 winRate 단독 사용 시) | warn |
 | `ON` | `각 의미에 맞는 전체 이름 사용` | ON이 세 가지 개념에 사용되어 혼동 발생 (enabled/online/overnight 혼용 시) | warn |

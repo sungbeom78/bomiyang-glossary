@@ -331,8 +331,12 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
                     n_patterns.append(pat)
 
             lang = item.get('lang', {})
-            abbr = item.get('abbr', {})
-            for v in (item.get('id', ''), abbr.get('long', ''), abbr.get('short', ''), lang.get('en', ''), lang.get('ko', '')):
+            variants = item.get('variants', {})
+            abbrs = variants.get('abbreviation', [])
+            if isinstance(abbrs, str): abbrs = [abbrs]
+            
+            vals = [item.get('id', ''), lang.get('en', ''), lang.get('ko', '')] + abbrs
+            for v in vals:
                 if v:
                     syms.add(str(v))
                     syms.add(str(v).lower())
@@ -359,8 +363,8 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
                 abbr  = variants.get('abbreviation', '')
                 pl    = variants.get('plural')
 
-                # 기본 심볼 등록
-                for v in (wid, lang.get('en',''), lang.get('ko',''), abbr):
+                abbrs = abbr if isinstance(abbr, list) else [abbr]
+                for v in [wid, lang.get('en',''), lang.get('ko','')] + abbrs:
                     if v:
                         syms.add(str(v)); syms.add(str(v).lower())
                         for tok in _split_tokens(str(v)):
@@ -395,8 +399,8 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
             try:
                 data = json.loads(terms_path.read_text(encoding='utf-8'))
                 for t in data.get("terms", []):
-                    for f in ('id', 'en', 'ko'):
-                        v = t.get(f, '')
+                    lang = t.get('lang', {})
+                    for v in (t.get('id', ''), lang.get('en', ''), lang.get('ko', '')):
                         if v:
                             syms.add(str(v)); syms.add(str(v).lower())
                             for tok in _split_tokens(str(v)):

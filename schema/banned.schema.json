@@ -2,22 +2,81 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Banned",
   "type": "object",
-  "required": ["expression", "reason", "severity"],
+  "required": [
+    "expression",
+    "correct",
+    "reason_i18n",
+    "severity",
+    "status",
+    "created_at",
+    "updated_at"
+  ],
   "properties": {
-    "expression": {"type": "string"},
-    "lang": {"type": "string"},
-    "correct": {"type": "string"},
+    "expression": {
+      "type": "string"
+    },
+    "lang": {
+      "type": "string"
+    },
+    "correct": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "id",
+            "literal"
+          ]
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "value"
+      ]
+    },
     "reason_i18n": {
       "type": "object",
       "properties": {
-        "ko": {"type": "string"},
-        "en": {"type": "string"}
-      }
+        "ko": {
+          "type": "string"
+        },
+        "en": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ko"
+      ]
     },
-    "reason": {"type": "string"},
     "severity": {
       "type": "string",
-      "enum": ["warn", "error"]
+      "enum": [
+        "warn",
+        "error"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "deprecated"
+      ],
+      "default": "active"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deprecated_at": {
+      "type": "string",
+      "format": "date-time"
     }
   },
   "additionalProperties": false

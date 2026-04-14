@@ -7,7 +7,9 @@
     "words",
     "lang",
     "domain",
-    "status"
+    "status",
+    "created_at",
+    "updated_at"
   ],
   "properties": {
     "id": {
@@ -38,7 +40,8 @@
       "enum": [
         "active",
         "deprecated"
-      ]
+      ],
+      "default": "active"
     },
     "lang": {
       "type": "object",
@@ -148,6 +151,18 @@
       "items": {
         "type": "string"
       }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deprecated_at": {
+      "type": "string",
+      "format": "date-time"
     }
   },
   "additionalProperties": false

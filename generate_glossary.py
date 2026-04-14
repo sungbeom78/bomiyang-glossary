@@ -149,6 +149,34 @@ def validate(words, compounds, banned, silent=False) -> tuple:
         if w["id"] in abbr_to_root and abbr_to_root[w["id"]] != w["id"]:
             F("V-202", f"abbreviation이 word로 독립 존재: '{w['id']}' (root: {abbr_to_root[w['id']]})")
 
+
+    for dic, source in [(words, 'words.json'), (compounds, 'compounds.json'), (banned, 'banned.json')]:
+        for item in dic:
+            for f in ['created_at', 'updated_at', 'deprecated_at']:
+                if f in item:
+                    try:
+                        from datetime import datetime
+                        datetime.fromisoformat(item[f].replace('Z', '+00:00'))
+                    except Exception:
+                        W('V-403', f"{source} {item.get('id', item.get('expression'))} - {f} 형식이 올바른 ISO8601이 아닙니다: {item[f]}")
+            status = item.get('status', 'active')
+            if status not in ['active', 'deprecated']:
+                F('V-404', f"{source} {item.get('id', item.get('expression'))} - 잘못된 status 값: {status}")
+            if status == 'deprecated' and 'deprecated_at' not in item:
+                W('V-405', f"{source} {item.get('id', item.get('expression'))} - status가 deprecated인데 deprecated_at이 없습니다.")
+
+    for w in words:
+        if not w.get("description_i18n"):
+            W("V-401", f"description_i18n 없음: '{w['id']}'")
+        if not w.get("domain"):
+            W("V-402", f"domain 없음: '{w['id']}'")
+            
+    for c in compounds:
+        if not c.get("description_i18n"):
+            W("V-401", f"description_i18n 없음: '{c['id']}'")
+        if not c.get("domain"):
+            W("V-402", f"domain 없음: '{c['id']}'")
+
     word_lookup = {w["id"]: w for w in words}
     for w in words:
         wid = w["id"]
@@ -218,20 +246,19 @@ def build_terms_json(words, compounds) -> dict:
     terms = []
     
     for w in words:
-        en_val = w.get("lang", {}).get("en") or w.get("en", "")
-        ko_val = w.get("lang", {}).get("ko") or w.get("ko", "")
-        desc = w.get("description_i18n", {}).get("ko") or w.get("description", "")
-        categories = [w.get("domain", "general")]
+        lang = w.get("lang", {})
+        desc_i18n = w.get("description_i18n", {})
+        domain = w.get("domain", "general")
         
         # Base entity
         terms.append({
-            "id":          w["id"],
-            "ko":          ko_val,
-            "en":          en_val.title() if en_val else "",
-            "categories":  categories,
-            "type":        "word",
-            "source":      "word",
-            "description": desc,
+            "id": w["id"],
+            "source": "word",
+            "root": w["id"],
+            "term_type": "base",
+            "domain": domain,
+            "lang": lang,
+            "description_i18n": desc_i18n,
         })
         
         # Variant entities (abbreviations)
@@ -239,67 +266,60 @@ def build_terms_json(words, compounds) -> dict:
         if isinstance(abbrs, str): abbrs = [abbrs]
         for a in abbrs:
             terms.append({
-                "id":          a,
-                "ko":          ko_val,
-                "en":          en_val.title() if en_val else "",
-                "categories":  categories,
-                "type":        "word",
-                "source":      "word",
+                "id": a,
+                "source": "word",
+                "root": w["id"],
+                "term_type": "variant",
                 "variant_type": "abbreviation",
-                "root":        w["id"],
-                "description": desc,
+                "domain": domain,
+                "lang": lang,
             })
 
         plurals = w.get("variants", {}).get("plural") or []
         if isinstance(plurals, str): plurals = [plurals]
         for p in plurals:
             terms.append({
-                "id":          p,
-                "ko":          ko_val,
-                "en":          en_val.title() if en_val else "",
-                "categories":  categories,
-                "type":        "word",
-                "source":      "word",
+                "id": p,
+                "source": "word",
+                "root": w["id"],
+                "term_type": "variant",
                 "variant_type": "plural",
-                "root":        w["id"],
-                "description": desc,
+                "domain": domain,
+                "lang": lang,
             })
 
     for c in compounds:
-        en_val = c.get("lang", {}).get("en") or c.get("en", "")
-        ko_val = c.get("lang", {}).get("ko") or c.get("ko", "")
-        desc = c.get("description_i18n", {}).get("ko") or c.get("description", "")
-        categories = [c.get("domain", "general")]
+        lang = c.get("lang", {})
+        desc_i18n = c.get("description_i18n", {})
+        domain = c.get("domain", "general")
         
         # Base compound
         terms.append({
-            "id":          c["id"],
-            "ko":          ko_val,
-            "en":          en_val,
-            "categories":  categories,
-            "type":        "compound",
-            "source":      "compound",
-            "description": desc,
+            "id": c["id"],
+            "source": "compound",
+            "root": c["id"],
+            "term_type": "base",
+            "domain": domain,
+            "lang": lang,
+            "description_i18n": desc_i18n,
         })
         
         # Variant for compound
         abbr_short = c.get("abbr", {}).get("short")
         if abbr_short:
             terms.append({
-                "id":          abbr_short,
-                "ko":          ko_val,
-                "en":          en_val,
-                "categories":  categories,
-                "type":        "compound",
-                "source":      "compound",
+                "id": abbr_short,
+                "source": "compound",
+                "root": c["id"],
+                "term_type": "variant",
                 "variant_type": "abbreviation",
-                "root":        c["id"],
-                "description": desc,
+                "domain": domain,
+                "lang": lang,
             })
             
     return {
         "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
-        "version":   "2.0.0",
+        "version":   "3.0.0",
         "generated": True,
         "generated_at": datetime.now().isoformat(),
         "terms": terms,
@@ -413,10 +433,11 @@ def build_glossary_md(words, compounds, banned) -> str:
         "|----------|------------|------|----------|",
     ]
     for b in banned:
-        desc = b.get("reason_i18n", {}).get("ko") or b.get("reason", "")
+        desc = b.get("reason_i18n", {}).get("ko", "")
         severity = b.get("severity", "warn")
+        correct = b.get("correct", {}).get("value", "") if isinstance(b.get("correct"), dict) else str(b.get("correct", ""))
         lines.append(
-            f"| `{b['expression']}` | `{b['correct']}` | {desc} | {severity} |"
+            f"| `{b['expression']}` | `{correct}` | {desc} | {severity} |"
         )
 
     lines.append("")
@@ -687,6 +708,19 @@ def cmd_check_id(identifier: str):
 def cmd_suggest(identifier: str):
     words, compounds, _ = load_all()
     word_ids = {w["id"] for w in words}
+
+    for w in words:
+        if not w.get("description_i18n"):
+            W("V-401", f"description_i18n 없음: '{w['id']}'")
+        if not w.get("domain"):
+            W("V-402", f"domain 없음: '{w['id']}'")
+            
+    for c in compounds:
+        if not c.get("description_i18n"):
+            W("V-401", f"description_i18n 없음: '{c['id']}'")
+        if not c.get("domain"):
+            W("V-402", f"domain 없음: '{c['id']}'")
+
     word_lookup = {w["id"]: w for w in words}
     n_patterns = build_n_pattern_regexes(compounds)
     tokens = tokenize(identifier)

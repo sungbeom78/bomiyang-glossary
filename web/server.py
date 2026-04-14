@@ -236,6 +236,27 @@ def index():
 def get_terms():
     return jsonify(load_terms())
 
+def _inject_metadata(new_item, old_item=None):
+    from datetime import datetime, timezone
+    now_str = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    new_item['status'] = new_item.get('status', 'active')
+    
+    if old_item:
+        new_item['created_at'] = old_item.get('created_at', now_str)
+        if new_item['status'] == 'deprecated':
+            new_item['deprecated_at'] = old_item.get('deprecated_at', now_str)
+        else:
+            if 'deprecated_at' in old_item:
+                new_item['deprecated_at'] = old_item['deprecated_at']
+            if 'deprecated_at' in new_item and 'deprecated_at' not in old_item:
+                del new_item['deprecated_at']
+    else:
+        new_item['created_at'] = new_item.get('created_at', now_str)
+        if new_item['status'] == 'deprecated':
+            new_item['deprecated_at'] = new_item.get('deprecated_at', now_str)
+            
+    new_item['updated_at'] = now_str
+
 
 @app.route("/api/terms/<term_id>", methods=["GET"])
 def get_term(term_id):
@@ -308,6 +329,7 @@ def add_word():
     data = load_words()
     if any(x["id"] == w.get("id") for x in data["words"]):
         return jsonify({"error": f"이미 존재하는 id: {w.get('id')}"}), 409
+    _inject_metadata(w)
     data["words"].append(w)
     data["words"].sort(key=lambda x: x["id"])
     save_words(data)
@@ -321,6 +343,7 @@ def update_word(word_id):
     data = load_words()
     idx = next((i for i,x in enumerate(data["words"]) if x["id"] == word_id), None)
     if idx is None: return jsonify({"error": f"미존재: {word_id}"}), 404
+    _inject_metadata(updated, data["words"][idx])
     data["words"][idx] = updated
     save_words(data)
     log.info(f"[word:update] id={word_id}")
@@ -353,6 +376,7 @@ def add_compound():
     data = load_compounds()
     if any(x["id"] == c.get("id") for x in data["compounds"]):
         return jsonify({"error": f"이미 존재하는 id: {c.get('id')}"}), 409
+    _inject_metadata(c)
     data["compounds"].append(c)
     data["compounds"].sort(key=lambda x: x["id"])
     save_compounds(data)
@@ -366,6 +390,7 @@ def update_compound(cid):
     data = load_compounds()
     idx = next((i for i,x in enumerate(data["compounds"]) if x["id"] == cid), None)
     if idx is None: return jsonify({"error": f"미존재: {cid}"}), 404
+    _inject_metadata(updated, data["compounds"][idx])
     data["compounds"][idx] = updated
     save_compounds(data)
     log.info(f"[compound:update] id={cid}")
@@ -398,6 +423,7 @@ def add_banned():
     data = load_banned()
     if any(x["expression"] == b.get("expression") for x in data["banned"]):
         return jsonify({"error": f"이미 존재: {b.get('expression')}"}), 409
+    _inject_metadata(b)
     data["banned"].append(b)
     save_banned(data)
     log.info(f"[banned:add] expr={b.get('expression')}")
@@ -410,6 +436,7 @@ def update_banned(expr):
     data = load_banned()
     idx = next((i for i,x in enumerate(data["banned"]) if x["expression"] == expr), None)
     if idx is None: return jsonify({"error": f"미존재: {expr}"}), 404
+    _inject_metadata(updated, data["banned"][idx])
     data["banned"][idx] = updated
     save_banned(data)
     return jsonify({"ok": True})
@@ -849,6 +876,7 @@ def batch_merge():
         for w in approved_words:
             wid = w.get("id")
             if wid and wid not in existing_word_ids:
+                _inject_metadata(w)
                 wd["words"].append(w)
                 existing_word_ids.add(wid)
                 words_added += 1
@@ -857,6 +885,7 @@ def batch_merge():
         for c in approved_comps:
             cid = c.get("id")
             if cid and cid not in existing_comp_ids:
+                _inject_metadata(c)
                 cd["compounds"].append(c)
                 existing_comp_ids.add(cid)
                 comps_added += 1

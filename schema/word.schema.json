@@ -7,7 +7,9 @@
     "domain",
     "status",
     "canonical_pos",
-    "lang"
+    "lang",
+    "created_at",
+    "updated_at"
   ],
   "properties": {
     "id": {
@@ -31,7 +33,8 @@
       "enum": [
         "active",
         "deprecated"
-      ]
+      ],
+      "default": "active"
     },
     "canonical_pos": {
       "type": "string",
@@ -142,6 +145,18 @@
     },
     "reason": {
       "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deprecated_at": {
+      "type": "string",
+      "format": "date-time"
     }
   },
   "additionalProperties": false
