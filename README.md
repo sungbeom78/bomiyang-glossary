@@ -1,6 +1,7 @@
-# BOM_TS Glossary
+```md
+# BomTS Glossary
 
-> A self-evolving glossary system powered by AI, supporting multi-language definitions and automated word enrichment.
+> A word-based glossary system that enforces consistent naming across codebases, with AI-powered enrichment and multi-language support.
 
 🌐 Languages:
 - 🇺🇸 English (Current)
@@ -10,62 +11,103 @@
 
 ## What is this?
 
-BOM_TS Glossary is a **word-level naming system** that ensures all identifiers are built from a controlled vocabulary.
+BomTS Glossary is a **word-level naming system** designed to eliminate inconsistency in identifiers across large-scale systems.
 
-Instead of:
+Instead of allowing arbitrary naming like:
+
 ```
+
 get_position / fetch_position / load_position
+
 ```
 
-You define:
+You define a single base concept:
+
 ```
+
 position
+
 ```
 
-And enforce:
+And enforce consistent usage:
+
 ```
+
 get_position
+
 ```
+
+All identifiers must be composed from a controlled vocabulary.
 
 ---
 
-## Why it matters
+## Why this matters
 
-In large systems:
+In real-world systems:
 
-- Naming becomes inconsistent
-- AI agents generate duplicate logic
-- Code navigation becomes difficult
+- Naming becomes inconsistent over time
+- AI-generated code introduces duplicate concepts
+- Code navigation becomes harder
+- Team communication breaks down
 
-This system solves that by:
+This system solves those problems by:
 
 - Enforcing a shared vocabulary (`words.json`)
 - Validating identifiers automatically
-- Enabling AI agents to generate consistent code
+- Preventing duplicate naming patterns
+- Guiding AI agents to generate consistent code
+
+---
+
+## Who should use this?
+
+This system is especially useful if:
+
+- You are building a large or long-lived system
+- You use AI coding tools (Codex, Claude, Gemini, etc.)
+- Naming consistency is important for your architecture
+- You want to standardize terminology across a team
+
+---
+
+## When NOT to use this
+
+You probably don’t need this if:
+
+- Your project is small or short-lived
+- You are working solo without naming complexity
+- You don’t care about naming consistency or structure
 
 ---
 
 ## Core Concept
 
 ```
-words.json → building blocks
-compounds.json → special cases
-terms.json → auto-generated (read-only)
+
+words.json       → atomic building blocks
+compounds.json   → special cases
+terms.json       → auto-generated (read-only)
+
 ```
 
-All identifiers must be composed of registered words.
+All identifiers must be built from registered words.
 
 ---
 
 ## Architecture
 
 ```
-code → scan_items → batch_items → review → words.json
-↓
-generate_glossary
-↓
-terms.json / GLOSSARY.md
-```
+
+code
+→ scan_items
+→ batch_items
+→ review (Web UI)
+→ words.json
+
+→ generate_glossary
+→ terms.json / GLOSSARY.md
+
+````
 
 ---
 
@@ -77,7 +119,7 @@ python glossary/bin/run.py
 
 # check identifier
 python glossary/generate_glossary.py check-id kill_switch
-```
+````
 
 ---
 
@@ -89,14 +131,21 @@ python glossary/web/server.py
 
 → [http://localhost:5000](http://localhost:5000)
 
+Use the UI for:
+
+* Reviewing batch results
+* Registering new words safely
+* Managing glossary entries
+
 ---
 
 ## Word Registration Flow
 
-1. Run `check-id` against your terminology
-2. Register missing words
-3. (Optional) Register compound variations
-4. Generate the final glossary
+1. Run `check-id`
+2. Identify missing words
+3. Register new words (via UI or CLI)
+4. (Optional) Register compound terms
+5. Generate glossary
 
 ---
 
@@ -106,18 +155,39 @@ python glossary/web/server.py
 python glossary/bin/enrich_items.py
 ```
 
-* Dictionary first
-* AI fallback
+Enrichment follows a strict policy:
+
+1. **Dictionary first**
+2. **AI fallback**
+3. **Non-destructive updates**
+
+This ensures:
+
+* Reliable definitions
 * Multi-language support
+* Minimal manual effort
+
+---
+
+## Example Workflow
+
+```text
+New identifier → check-id
+→ missing word detected
+→ register word
+→ generate glossary
+→ validated identifier ready
+```
 
 ---
 
 ## Design Principles
 
-* **Word-first** (not term-first)
-* **Dictionary** → AI fallback
-* **Non-destructive** updates
-* **Concept-based** descriptions
+* **Word-first, not term-first**
+* **Dictionary → AI fallback**
+* **Non-destructive updates**
+* **Concept-based descriptions**
+* **Consistency over flexibility**
 
 ---
 
@@ -125,10 +195,10 @@ python glossary/bin/enrich_items.py
 
 * `terms.json` is auto-generated (do not edit)
 * Use Web UI for safe batch operations
-* CLI auto mode applies changes immediately
+* CLI `auto` mode applies changes immediately
 
 ---
 
 ## License / Usage
 
-Internal tool for BOM_TS ecosystem.
+Internal tool for the BomTS ecosystem.
