@@ -721,7 +721,7 @@ def batch_scan():
     """소스 스캔 → 후보 수 + 미리보기 반환 (API 미호출)."""
     log.info("[batch] scan 시작")
     result = run_subprocess(
-        sys.executable, str(BIN_DIR / "scan_terms.py"), "--json",
+        sys.executable, str(BIN_DIR / "scan_items.py"), "--mode", "word", "--json",
         timeout=60,
     )
     if not result["ok"] and not result["stdout"]:
@@ -740,17 +740,12 @@ def batch_scan():
 def batch_run():
     """scan + API 분석 → terms_날짜.json 생성 (dry_run 옵션 지원)."""
     body     = request.get_json() or {}
-    dry_run  = body.get("dry_run", False)
-    chunk    = body.get("chunk", None)
+    reg_mode = body.get("register_mode", "normal")
     api_type = body.get("api_type", "").strip()   # UI에서 선택한 API 종류
     model    = body.get("model",    "").strip()   # UI에서 선택한 모델
 
-    cmd_args = [sys.executable, str(BIN_DIR / "batch_terms.py")]
-    if dry_run:
-        cmd_args.append("--dry-run")
-    if chunk:
-        cmd_args += ["--chunk", str(chunk)]
-
+    cmd_args = [sys.executable, str(BIN_DIR / "batch_items.py"), "--mode", "word", "--register-mode", reg_mode]
+    
     cmd_args.append("--ui-prog")
 
     # UI 선택값을 환경변수로 주입 (비어있으면 .env 값 그대로 사용)
@@ -765,7 +760,7 @@ def batch_run():
         extra_env['API_MODEL'] = model
         log.info(f"[batch] API_MODEL 오버라이드: {model}")
 
-    log.info(f"[batch] run 시작 dry_run={dry_run} api={api_type or '(.env)'} model={model or '(.env)'}")
+    log.info(f"[batch] run 시작 auto_mode={reg_mode} api={api_type or '(.env)'} model={model or '(.env)'}")
 
     from flask import Response
     import subprocess as _sp
@@ -799,13 +794,13 @@ def batch_run():
 
 @app.route("/api/batch/files", methods=["GET"])
 def batch_files():
-    """tmp/terms/ 하위 결과 파일 목록 반환."""
-    out_dir = _proj_root() / "tmp" / "terms"
+    """tmp/items/ 하위 결과 파일 목록 반환."""
+    out_dir = _proj_root() / "tmp" / "items"
     if not out_dir.exists():
         return jsonify({"ok": True, "files": []})
 
     files = []
-    for f in sorted(out_dir.glob("terms_*.json"), reverse=True):
+    for f in sorted(out_dir.glob("items_*.json"), reverse=True):
         try:
             data  = json.loads(f.read_text(encoding='utf-8'))
             count = data.get("meta", {}).get("count", len(data.get("terms", [])))
@@ -828,7 +823,7 @@ def batch_preview():
     if not fname:
         return jsonify({"error": "file 파라미터 필요"}), 400
 
-    out_dir = _proj_root() / "tmp" / "terms"
+    out_dir = _proj_root() / "tmp" / "items"
     fpath   = (out_dir / fname).resolve()
 
     # 경로 이탈 방지
@@ -839,7 +834,7 @@ def batch_preview():
 
     try:
         data = json.loads(fpath.read_text(encoding='utf-8'))
-        return jsonify({"ok": True, **data})
+        return jsonify({"ok": True, "items": data.get("items", [])})
     except Exception as e:
         return jsonify({"ok": False, "error": str(e)})
 

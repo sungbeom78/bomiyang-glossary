@@ -232,7 +232,8 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
       <pre id="scan-preview" style="font-family:var(--mono);font-size:10px;line-height:1.6;background:var(--bg);padding:10px;border-radius:4px;max-height:200px;overflow:auto;color:var(--tx2);white-space:pre-wrap;display:none"></pre>
       <hr style="border:none;border-top:1px solid var(--ln);margin:14px 0">
       <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;align-items:center">
-        <div style="display:flex;flex-direction:column;gap:3px"><label style="font-family:var(--mono);font-size:9px;color:var(--tx3)">API</label><select id="batch-api-type" onchange="onBatchApiChange()" style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 9px;color:var(--tx);font-family:var(--mono);font-size:11px"><option value="">-- .env --</option><option value="claude">Claude</option><option value="openai">OpenAI</option><option value="google">Google</option></select></div>
+        <div style="display:flex;flex-direction:column;gap:3px"><label style="font-family:var(--mono);font-size:9px;color:var(--tx3)">모드</label><select id="batch-reg-mode" style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 9px;color:var(--tx);font-family:var(--mono);font-size:11px"><option value="normal" selected>Normal (목록만)</option><option value="safety">Safety (LLM AI)</option><option value="auto">Auto (사전 API)</option></select></div>
+        <div style="display:flex;flex-direction:column;gap:3px"><label style="font-family:var(--mono);font-size:9px;color:var(--tx3)">API (Safety)</label><select id="batch-api-type" onchange="onBatchApiChange()" style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 9px;color:var(--tx);font-family:var(--mono);font-size:11px"><option value="">-- .env --</option><option value="claude">Claude</option><option value="openai">OpenAI</option><option value="google">Google</option></select></div>
         <div style="display:flex;flex-direction:column;gap:3px"><label style="font-family:var(--mono);font-size:9px;color:var(--tx3)">모델</label><select id="batch-model" style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:5px 9px;color:var(--tx);font-family:var(--mono);font-size:11px;min-width:200px"><option value="">-- .env --</option></select></div>
       </div>
       <div style="display:flex;gap:8px;align-items:center"><button class="btn btn-gh" onclick="doBatchDryRun()" id="dry-btn">▷ dry-run</button><button class="btn btn-ac" onclick="doBatchRun()" id="run-btn">▷ API 분석</button></div>
@@ -460,7 +461,7 @@ function onBatchApiChange(){const t=document.getElementById('batch-api-type').va
 async function doScan(){const btn=document.getElementById('scan-btn'),pre=document.getElementById('scan-preview'),sts=document.getElementById('scan-status');btn.disabled=true;btn.textContent='스캔 중…';sts.textContent='';pre.style.display='none';const res=await fetch('/api/batch/scan',{method:'POST'});const d=await res.json();if(!d.ok){sts.textContent='오류: '+(d.error||'실패');}else{sts.textContent=`후보 ${d.count}개`;const lines=(d.candidates||[]).slice(0,40).map(c=>`${c.name.padEnd(32)} ${(c.sources||[])[0]||''}`);if(d.count>40)lines.push(`... 외 ${d.count-40}개`);pre.textContent=lines.join('\n');pre.style.display='block';}btn.disabled=false;btn.textContent='▷ 스캔';}
 async function doBatchDryRun(){_runBatch(true);}
 async function doBatchRun(){if(!confirm('API를 호출해 분석을 실행합니다.'))return;_runBatch(false);}
-async function _runBatch(dryRun){const outEl=document.getElementById('batch-output'),runBtn=document.getElementById('run-btn'),dryBtn=document.getElementById('dry-btn');const apiType=document.getElementById('batch-api-type')?.value||'',model=document.getElementById('batch-model')?.value||'';outEl.style.display='block';outEl.innerHTML='';const progDiv=document.createElement('div');progDiv.style.marginBottom='15px';progDiv.style.color='var(--gr)';const logDiv=document.createElement('div');outEl.appendChild(progDiv);outEl.appendChild(logDiv);runBtn.disabled=dryBtn.disabled=true;const payload={dry_run:dryRun};if(apiType)payload.api_type=apiType;if(model)payload.model=model;try{const res=await fetch('/api/batch/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const reader=res.body.getReader();const decoder=new TextDecoder('utf-8');let buffer='',tasks={};function renderTasks(){progDiv.innerHTML=Object.values(tasks).sort((a,b)=>a.idx-b.idx).map(t=>{let pct=t.total?Math.round((t.cur/t.total)*100):0;let ar=t.status==='완료'?'>>>>>>>':(t.status==='대기 중'?'>':'>>');return`<div>${t.idx}. ${t.name.padEnd(20,'\u00a0')} ${ar} ${String(t.cur).padStart(4,'\u00a0')}/${t.total} ${t.status} (${pct}%)</div>`;}).join('');}while(true){const{done,value}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});let lines=buffer.split('\n');buffer=lines.pop();for(let i=0;i<lines.length;i++){const line=lines[i];if(line.startsWith('PROG|')){let p=line.split('|');if(p.length>=6){tasks[parseInt(p[1])]={idx:parseInt(p[1]),name:p[2],cur:parseInt(p[3]),total:parseInt(p[4]),status:p[5]};renderTasks();}}else{logDiv.appendChild(document.createTextNode(line+'\n'));outEl.scrollTop=outEl.scrollHeight;}}}if(buffer.trim())logDiv.appendChild(document.createTextNode(buffer+'\n'));if(!dryRun&&logDiv.textContent.includes('[완료]'))toast('분석 완료','tok');}catch(e){logDiv.appendChild(document.createTextNode('\\n연결 오류: '+e));}runBtn.disabled=dryBtn.disabled=false;}
+async function _runBatch(dryRun){const outEl=document.getElementById('batch-output'),runBtn=document.getElementById('run-btn'),dryBtn=document.getElementById('dry-btn');const apiType=document.getElementById('batch-api-type')?.value||'',model=document.getElementById('batch-model')?.value||'';const regMode=document.getElementById('batch-reg-mode')?.value||'normal';outEl.style.display='block';outEl.innerHTML='';const progDiv=document.createElement('div');progDiv.style.marginBottom='15px';progDiv.style.color='var(--gr)';const logDiv=document.createElement('div');outEl.appendChild(progDiv);outEl.appendChild(logDiv);runBtn.disabled=dryBtn.disabled=true;const payload={dry_run:dryRun,register_mode:regMode};if(apiType)payload.api_type=apiType;if(model)payload.model=model;try{const res=await fetch('/api/batch/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const reader=res.body.getReader();const decoder=new TextDecoder('utf-8');let buffer='',tasks={};function renderTasks(){progDiv.innerHTML=Object.values(tasks).sort((a,b)=>a.idx-b.idx).map(t=>{let pct=t.total?Math.round((t.cur/t.total)*100):0;let ar=t.status==='완료'?'>>>>>>>':(t.status==='대기 중'?'>':'>>');return`<div>${t.idx}. ${t.name.padEnd(20,'\u00a0')} ${ar} ${String(t.cur).padStart(4,'\u00a0')}/${t.total} ${t.status} (${pct}%)</div>`;}).join('');}while(true){const{done,value}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});let lines=buffer.split('\n');buffer=lines.pop();for(let i=0;i<lines.length;i++){const line=lines[i];if(line.startsWith('PROG|')){let p=line.split('|');if(p.length>=6){tasks[parseInt(p[1])]={idx:parseInt(p[1]),name:p[2],cur:parseInt(p[3]),total:parseInt(p[4]),status:p[5]};renderTasks();}}else{logDiv.appendChild(document.createTextNode(line+'\n'));outEl.scrollTop=outEl.scrollHeight;}}}if(buffer.trim())logDiv.appendChild(document.createTextNode(buffer+'\n'));if(!dryRun&&logDiv.textContent.includes('[완료]'))toast('분석 완료','tok');}catch(e){logDiv.appendChild(document.createTextNode('\\n연결 오류: '+e));}runBtn.disabled=dryBtn.disabled=false;}
 async function loadBatchFiles(){const wrap=document.getElementById('batch-file-list');wrap.innerHTML='<div style="padding:10px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';const d=await(await fetch('/api/batch/files')).json();if(!d.files.length){wrap.innerHTML='<div style="padding:14px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--tx3)">없음</div>';return;}wrap.innerHTML=d.files.map(f=>`<div class="batch-file-row${_batchSelFile===f.name?' sel':''}" onclick="selectBatchFile('${f.name}')"><span style="font-family:var(--mono);font-size:11px;color:var(--ac);flex:1">${f.name}</span><span style="font-family:var(--mono);font-size:10px;color:var(--tx3)">${f.count}개</span><button class="btn btn-ac" style="padding:3px 9px;font-size:9px" onclick="event.stopPropagation();selectBatchFile('${f.name}');switchBtab('merge')">병합 →</button></div>`).join('');}
 async function selectBatchFile(fname){
   _batchSelFile=fname;
@@ -491,32 +492,14 @@ async function selectBatchFile(fname){
     
     for(let i=current; i<end; i++){
       const t = _batchTerms[i];
-      let issueHtml = t.issues_comment ? `<div style="font-size:10px;color:var(--ye);margin-top:4px">⚠️ 코멘트: ${escapeHtml(t.issues_comment)}</div>` : '';
-      let baseParts = '';
-      if (t.is_compound && t.base_words && t.base_words.length) {
-        baseParts = `<div style="margin-top:6px;padding-left:12px;border-left:2px solid var(--ln)">` +
-          t.base_words.map((bw, j) => {
-              return `<div style="display:flex;gap:4px;margin-bottom:2px;align-items:center;">
-                 <span style="font-family:var(--mono);font-size:10px;width:70px;color:var(--gr)">+ ${escapeHtml(bw.id)}</span>
-                 <input type="text" id="bw_ko_${i}_${j}" value="${escapeHtml(bw.lang?.ko||bw.ko||'')}" style="width:60px;font-size:10px;padding:2px 4px;border:1px solid var(--ln);background:var(--s2);color:var(--tx)" placeholder="뜻">
-                 <input type="text" id="bw_desc_${i}_${j}" value="${escapeHtml(bw.description_i18n?.ko||bw.description||'')}" style="flex:1;font-size:10px;padding:2px 4px;border:1px solid var(--ln);background:var(--s2);color:var(--tx)" placeholder="설명(위치/클래스)">
-                 <span style="font-size:9px;color:var(--tx3)">${bw.plural?`(원문: ${escapeHtml(bw.plural)})`:''}</span>
-              </div>`;
-          }).join('') + `</div>`;
-      } else if (!t.is_compound && t.plural) {
-         baseParts = `<div style="font-size:9px;color:var(--tx3);margin-top:2px">복수형 원문: ${escapeHtml(t.plural)}</div>`;
-      }
-
+      let isRec = (t.recommended || t.recommended === undefined) ? 'checked' : '';
+      
       chunkHtml += `<div class="merge-item" style="padding-bottom:10px;border-bottom:1px solid var(--ln);margin-bottom:8px;">
          <div style="display:flex;">
-           <input type="checkbox" id="mc${i}" checked>
+           <input type="checkbox" id="mc${i}" ${isRec}>
            <div style="flex:1;margin-left:6px">
-             <span style="font-weight:600">${escapeHtml(t.lang?.ko||t.ko||t.id)}</span>
-             <span style="font-family:var(--mono);font-size:10px;color:var(--ac);margin-left:8px">${escapeHtml(t.id)}</span>
-             ${t.abbr_short ? `<span style="font-family:var(--mono);font-size:10px;color:var(--gr);margin-left:4px">[${escapeHtml(t.abbr_short)}]</span>` : ''}
-             <div style="font-size:10px;color:var(--tx3);margin-top:2px">${escapeHtml(t.description_i18n?.ko||t.description||'')}</div>
-             ${baseParts}
-             ${issueHtml}
+             <span style="font-weight:600">${escapeHtml(t.word)}</span>
+             <span style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-left:8px">발견: ${t.count}회</span>
            </div>
          </div>
       </div>`;
@@ -544,66 +527,23 @@ async function doMergeProcessed(){
   sts.textContent='처리 중…';
   
   let appW = [], appC = [], rej = [];
-  const CAT_MAP = {'order':'trading','risk':'trading','trading':'trading','domain':'trading','account':'trading','market':'market','data':'market','selector':'market','system':'system','status':'system','session':'system','module':'system','config':'system','class':'system','infra':'infra','tool':'infra','report':'ui'};
-
+  
   _batchTerms.forEach((t, i) => {
     const cb = document.getElementById(`mc${i}`);
     const isChecked = cb && cb.checked;
-    
-    let domain = "general";
-    if (t.categories) {
-       let found = t.categories.find(c => CAT_MAP[c]);
-       if (found) domain = CAT_MAP[found];
-    }
     
     if (!isChecked) {
        rej.push(t);
        return;
     }
     
-    if (t.is_compound) {
-       appC.push({
-          id: t.id,
-          words: (t.base_words||[]).map(bw => bw.id),
-          lang: {ko: t.lang?.ko || t.ko, en: t.lang?.en || t.en || t.id},
-          abbr: {long: t.abbr_long||"", short: t.abbr_short||""},
-          domain: domain,
-          reason: "의미 비합산",
-          description_i18n: {ko: t.description_i18n?.ko || t.description || ""}
-       });
-       if (t.base_words) {
-         t.base_words.forEach((bw, j) => {
-            let u_ko = document.getElementById(`bw_ko_${i}_${j}`)?.value || bw.lang?.ko || bw.ko || bw.id;
-            let u_desc = document.getElementById(`bw_desc_${i}_${j}`)?.value || bw.description_i18n?.ko || bw.description || "";
-            let variants = {}; if(bw.plural) variants.plural = bw.plural;
-            let wordObj = {
-               id: bw.id,
-               lang: {en: bw.id, ko: u_ko},
-               canonical_pos: "noun",
-               domain: domain,
-               description_i18n: {ko: u_desc},
-               not: []
-            };
-            if(Object.keys(variants).length > 0) wordObj.variants = variants;
-            appW.push(wordObj);
-         });
-       }
-    } else {
-       let variants = {};
-       let abb = (t.abbr_short && t.abbr_short.length >= 2 && !t.abbr_short.includes('_')) ? t.abbr_short : null;
-       if(abb) variants.abbreviation = [abb];
-       if(t.plural) variants.plural = t.plural;
-       let wordObj = {
-          id: t.id,
-          lang: {ko: t.lang?.ko || t.ko || t.id, en: t.lang?.en || t.en || t.id},
-          canonical_pos: "noun",
-          domain: domain,
-          description_i18n: {ko: t.description_i18n?.ko || t.description || ""},
-          not: []
-       };
-       if(Object.keys(variants).length > 0) wordObj.variants = variants;
-       appW.push(wordObj);
-    }
+    appW.push({
+      id: t.word,
+      lang: {en: t.word, ko: t.word},
+      canonical_pos: "noun",
+      domain: "general",
+      status: t.reason === "사전 확인" ? "auto_registered" : "active"
+    });
   });
 
   if (!appW.length && !appC.length && !rej.length) {

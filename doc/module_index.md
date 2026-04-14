@@ -5,29 +5,29 @@
 - Classes: N/A
 - Responsibility: glossary source(`dictionary/*.json`)를 검증하고 `terms.json`, `GLOSSARY.md`, `build/index/word_min.json`, `build/index/compound_min.json`, `build/index/variant_map.json`을 생성하며 `check-id` naming gate를 제공
 - Entry Point: `main()`
-- Related Modules: `bin/run.py`, `web/server.py`, `bin/scan_terms.py`
+- Related Modules: `bin/run.py`, `web/server.py`, `bin/scan_items.py`
 - Config: N/A
 
-## batch_terms.py
-- Path: bin/batch_terms.py
+## batch_items.py
+- Path: bin/batch_items.py
 - Classes: N/A
-- Responsibility: 스캔된 용어 후보들을 LLM API를 통해 필터링하고 JSON 포맷으로 저장
+- Responsibility: 스캔된 용어 후보들을 LLM 및 외부 사전 API를 통해 필터링하고 JSON 포맷으로 저장
 - Entry Point: `main()`
-- Related Modules: `scan_terms`
+- Related Modules: `scan_items`
 - Config: `.env`
 
-## scan_terms.py
-- Path: bin/scan_terms.py
-- Classes: `TermScanner`
-- Responsibility: 프로젝트 소스 코드를 스캔하여 용어 후보를 추출
+## scan_items.py
+- Path: bin/scan_items.py
+- Classes: `ItemScanner`
+- Responsibility: 프로젝트 소스 코드를 스캔하여 단어 및 식별자 후보를 추출
 - Entry Point: `main()`
-- Related Modules: `batch_terms`
+- Related Modules: `batch_items`
 - Config: `.env`
 
-## migrate_v1_2.py
-- Path: bin/migrate_v1_2.py
+## enrich_items.py
+- Path: bin/enrich_items.py
 - Classes: N/A
-- Responsibility: 기존 JSON 데이터를 v1.2 스키마 구격(Sparse, Enum 규칙 포함)에 맞춰 자동 마이그레이션 (`--dry-run` 모드 지원)
+- Responsibility: 사전 API 및 번역 API(Google GTX)를 통해 words.json 내 빈 다국어 항목 및 영문/한글 정의(설명)를 식별해 일괄 보완(backfill)
 - Entry Point: `main()`
 - Related Modules: N/A
 - Config: N/A
