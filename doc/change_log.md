@@ -1,3 +1,18 @@
+## [2026-04-14 14:44:16]
+### Modified / Removed
+- terms.json에서 자동 생성되던 abbr_short 및 abbr_long 속성 전면 삭제 (BOM_TS 구조 개선 v0.2)
+- terms.json 내 Base(source), Variant(variant_type, root) 구조 고도화 적용
+- web/index.html UI에서 잔재하던 abbr_long, abbr_short 참조 버그 픽스 (abbr.long, abbr.short 참조로 수정 적용)
+- bin/batch_terms.py, bin/scan_terms.py 내 하위호환 용 abbr 레거시 로직 제거
+- File: generate_glossary.py
+- File: web/index.html
+- File: bin/batch_terms.py
+- File: bin/scan_terms.py
+### Notes
+- 복합어 저장 및 생성 시 단일화된 abbr 객체 스키마 적용
+- 약어에 대해선 root 값 필수 포함 원칙 적용 완료
+
+
 ## [2026-04-14 14:22:08]
 ### Modified
 - Glossary_Refactoring_Plan_v1.2_extra_01.md 에 정의된 abbreviation (약어) 스키마 변경 및 정책 반영

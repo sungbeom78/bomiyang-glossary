@@ -181,40 +181,72 @@ def validate(words, compounds, banned, silent=False) -> tuple:
 
 def build_terms_json(words, compounds) -> dict:
     terms = []
+    
     for w in words:
         en_val = w.get("lang", {}).get("en") or w.get("en", "")
         ko_val = w.get("lang", {}).get("ko") or w.get("ko", "")
-        abbrs = w.get("variants", {}).get("abbreviation") or []
-        if isinstance(abbrs, str): abbrs = [abbrs]
-        abbr = abbrs[0] if abbrs else w.get("abbr")
-        abbr_short = abbr or en_val.upper()[:5]
         desc = w.get("description_i18n", {}).get("ko") or w.get("description", "")
+        categories = [w.get("domain", "general")]
+        
+        # Base entity
         terms.append({
             "id":          w["id"],
             "ko":          ko_val,
             "en":          en_val.title() if en_val else "",
-            "abbr_long":   en_val,
-            "abbr_short":  abbr_short,
-            "categories":  [w.get("domain", "general")],
+            "categories":  categories,
             "type":        "word",
+            "source":      "word",
             "description": desc,
         })
+        
+        # Variant entities (abbreviations)
+        abbrs = w.get("variants", {}).get("abbreviation") or []
+        if isinstance(abbrs, str): abbrs = [abbrs]
+        for a in abbrs:
+            terms.append({
+                "id":          a,
+                "ko":          ko_val,
+                "en":          en_val.title() if en_val else "",
+                "categories":  categories,
+                "type":        "word",
+                "source":      "word",
+                "variant_type": "abbreviation",
+                "root":        w["id"],
+                "description": desc,
+            })
+
     for c in compounds:
         en_val = c.get("lang", {}).get("en") or c.get("en", "")
         ko_val = c.get("lang", {}).get("ko") or c.get("ko", "")
-        abbr_long = c.get("abbr", {}).get("long") or c.get("abbr_long", "")
-        abbr_short = c.get("abbr", {}).get("short") or c.get("abbr_short", "")
         desc = c.get("description_i18n", {}).get("ko") or c.get("description", "")
+        categories = [c.get("domain", "general")]
+        
+        # Base compound
         terms.append({
             "id":          c["id"],
             "ko":          ko_val,
             "en":          en_val,
-            "abbr_long":   abbr_long,
-            "abbr_short":  abbr_short,
-            "categories":  [c.get("domain", "general")],
+            "categories":  categories,
             "type":        "compound",
+            "source":      "compound",
             "description": desc,
         })
+        
+        # Variant for compound
+        abbr_short = c.get("abbr", {}).get("short")
+        if abbr_short:
+            terms.append({
+                "id":          abbr_short,
+                "ko":          ko_val,
+                "en":          en_val,
+                "categories":  categories,
+                "type":        "compound",
+                "source":      "compound",
+                "variant_type": "abbreviation",
+                "root":        c["id"],
+                "description": desc,
+            })
+            
     return {
         "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
         "version":   "2.0.0",

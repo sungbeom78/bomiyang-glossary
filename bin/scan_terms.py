@@ -331,7 +331,8 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
                     n_patterns.append(pat)
 
             lang = item.get('lang', {})
-            for v in (item.get('id', ''), item.get('abbr_long', ''), item.get('abbr_short', ''), lang.get('en', ''), lang.get('ko', '')):
+            abbr = item.get('abbr', {})
+            for v in (item.get('id', ''), abbr.get('long', ''), abbr.get('short', ''), lang.get('en', ''), lang.get('ko', '')):
                 if v:
                     syms.add(str(v))
                     syms.add(str(v).lower())
@@ -394,7 +395,7 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
             try:
                 data = json.loads(terms_path.read_text(encoding='utf-8'))
                 for t in data.get("terms", []):
-                    for f in ('id', 'abbr_long', 'abbr_short', 'en', 'ko'):
+                    for f in ('id', 'en', 'ko'):
                         v = t.get(f, '')
                         if v:
                             syms.add(str(v)); syms.add(str(v).lower())
