@@ -5,6 +5,8 @@
 🌐 Languages:
 - 🇺🇸 [English](README.md)
 - 🇰🇷 한국어 (Current)
+- 🇯🇵 [日本語](README.ja.md)
+- 🇨🇳 [中文](README.zh.md)
 
 > **BOM_TS(Bomiyang Trading System)** 프로젝트의 공식 용어 사전 시스템
 > Git Submodule로 관리되며, 시스템 전체 코드의 일관성을 강제합니다.
