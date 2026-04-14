@@ -1,5 +1,13 @@
 # Module Index
 
+## generate_glossary.py
+- Path: generate_glossary.py
+- Classes: N/A
+- Responsibility: glossary source(`dictionary/*.json`)를 검증하고 `terms.json`, `GLOSSARY.md`, `build/index/word_min.json`, `build/index/compound_min.json`, `build/index/variant_map.json`을 생성하며 `check-id` naming gate를 제공
+- Entry Point: `main()`
+- Related Modules: `bin/run.py`, `web/server.py`, `bin/scan_terms.py`
+- Config: N/A
+
 ## batch_terms.py
 - Path: bin/batch_terms.py
 - Classes: N/A
@@ -23,3 +31,11 @@
 - Entry Point: `main()`
 - Related Modules: N/A
 - Config: N/A
+
+## web/server.py
+- Path: web/server.py
+- Classes: N/A
+- Responsibility: glossary 웹 UI API를 제공하고 `generate_glossary.py`를 호출해 validate/generate/check-id 흐름을 노출
+- Entry Point: `main()`
+- Related Modules: `generate_glossary.py`, `web/index.html`
+- Config: `.env`

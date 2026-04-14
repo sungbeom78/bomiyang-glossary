@@ -11,6 +11,8 @@ This document serves as the AI guideline for the BOM_TS glossary submodule.
 - System ID: BOM_TS
 - Folders: Singular form only (`test/`, `log/`, etc.) per AGENTS.md.
 - New identifier terminology must be checked with `python glossary/generate_glossary.py check-id <identifier>`.
+- Run `python glossary/generate_glossary.py generate` before agent-assisted naming work so `build/index/word_min.json` and `build/index/variant_map.json` are current.
+- When providing glossary context to AI agents, prefer `build/index/word_min.json` first. It is the sparse runtime index and now carries `id`, `lang`, `domain`, `status`, and `canonical_pos` for naming-gate decisions.
 - Python Scripts: `snake_case.py`
 - Classes: `PascalCase`
 - Functions/Methods: `snake_case`

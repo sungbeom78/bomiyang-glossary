@@ -1,3 +1,24 @@
+## [2026-04-14 20:01:59]
+### Modified
+- V-351 경고 규칙을 Sparse JSON 원칙에 맞게 정리 (명사 plural 미정의 일괄 WARN 제거)
+- File: generate_glossary.py
+### Notes
+- 기존 V-351은 noun + plural 미정의 전체를 경고해 대부분 단어가 WARN으로 출력되는 과경고 상태였음
+- v0.4의 Sparse 원칙(값 없는 필드 생략 허용)에 맞게 `variants.plural`이 "명시되어 있는데 비어 있는 경우"에만 V-351 경고를 발생하도록 조정
+- plural root 금지(V-301), self-conflict 금지(V-303), check-id 정규화 동작에는 영향 없음
+
+## [2026-04-14 18:28:48]
+### Modified
+- BOM_TS Glossary Integration Final v0.4 기준으로 AI runtime index 메타데이터 정합화 및 운영 문서 보강
+- File: generate_glossary.py
+- File: doc/README_AI_GUIDELINE.md
+- File: doc/module_index.md
+### Notes
+- `word_min.json`에 `status`, `canonical_pos`를 포함해 AI 에이전트 naming gate가 sparse index만으로 품사/상태를 참조할 수 있도록 보강
+- `compound_min.json`에도 `status`를 포함해 runtime index와 source lifecycle 정보 정합성을 맞춤
+- glossary AI guideline에 `build/index/word_min.json`, `build/index/variant_map.json` 우선 사용 규칙 추가
+- module index에 `generate_glossary.py`, `web/server.py` 책임과 생성 산출물 경로를 명시
+
 ## [2026-04-14 14:44:16]
 
 ## [2026-04-14 15:23:47]

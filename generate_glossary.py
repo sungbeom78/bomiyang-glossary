@@ -153,7 +153,9 @@ def validate(words, compounds, banned, silent=False) -> tuple:
     for w in words:
         wid = w["id"]
         pos = w.get("canonical_pos") or w.get("pos", "noun")
-        plurals = w.get("variants", {}).get("plural") or []
+        variants = w.get("variants", {}) if isinstance(w.get("variants", {}), dict) else {}
+        plural_defined = "plural" in variants
+        plurals = variants.get("plural") or []
         if isinstance(plurals, str): plurals = [plurals]
         
         # V-303
@@ -163,9 +165,10 @@ def validate(words, compounds, banned, silent=False) -> tuple:
             if p in word_lookup and p != wid:
                 F("V-301", f"plural root 금지: '{p}'가 독립 root로 존재함 (root: '{wid}')")
                 
-        # V-351
-        if pos == "noun" and not plurals:
-            W("V-351", f"noun인데 plural 미정의 (확인 필요): '{wid}'")
+        # V-351: Sparse JSON 원칙상 미정의는 허용한다.
+        # 단, variants.plural을 명시해놓고 비워둔 경우는 데이터 불완전으로 경고한다.
+        if pos == "noun" and plural_defined and not plurals:
+            W("V-351", f"noun인데 variants.plural이 비어 있음: '{wid}'")
             
         # V-352
         ko_val = w.get("lang", {}).get("ko") or w.get("ko", "")
@@ -435,7 +438,7 @@ def tokenize(identifier: str) -> list:
 def build_n_pattern_regexes(compounds: list) -> list:
     """
     compounds id 중 [N] 패턴을 정규식으로 변환.
-    예) [N]m -> ^\d+m$, top[N] -> ^top\d+$
+    예) [N]m -> ^\\d+m$, top[N] -> ^top\\d+$
     """
     patterns = []
     for c in compounds:
@@ -495,9 +498,27 @@ def cmd_generate():
     INDEX_DIR = ROOT / "build" / "index"
     INDEX_DIR.mkdir(parents=True, exist_ok=True)
     
-    # Strip unnecessary fields for minimum size
-    word_min = [{"id": w["id"], "lang": w.get("lang", {}), "domain": w.get("domain")} for w in words]
-    compound_min = [{"id": c["id"], "words": c.get("words", []), "lang": c.get("lang", {}), "domain": c.get("domain")} for c in compounds]
+    # Keep the runtime index sparse, but preserve naming-gate metadata for AI agents.
+    word_min = [
+        {
+            "id": w["id"],
+            "lang": w.get("lang", {}),
+            "domain": w.get("domain"),
+            "status": w.get("status"),
+            "canonical_pos": w.get("canonical_pos"),
+        }
+        for w in words
+    ]
+    compound_min = [
+        {
+            "id": c["id"],
+            "words": c.get("words", []),
+            "lang": c.get("lang", {}),
+            "domain": c.get("domain"),
+            "status": c.get("status"),
+        }
+        for c in compounds
+    ]
     
     variant_map = {}
     for w in words:
