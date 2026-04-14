@@ -217,7 +217,7 @@
       },
       "abbr": {
         "long": "nodeName",
-        "short": "NODE"
+        "short": ""
       },
       "description_i18n": {
         "ko": "서버 식별자. 멀티노드 배포 시 노드 구분에 사용."
@@ -1189,7 +1189,7 @@
       },
       "abbr": {
         "long": "mockTrading",
-        "short": "MOCK"
+        "short": ""
       },
       "description_i18n": {
         "ko": "실제 자금 없이 시뮬레이션으로 진행하는 거래"
@@ -1210,7 +1210,7 @@
       },
       "abbr": {
         "long": "liveTrading",
-        "short": "LIVE"
+        "short": ""
       },
       "description_i18n": {
         "ko": "실제 자금으로 진행하는 거래"
@@ -2436,7 +2436,7 @@
       },
       "abbr": {
         "long": "execution",
-        "short": "EXEC"
+        "short": ""
       },
       "description_i18n": {
         "ko": "src/execution/ — 주문 실행, 오케스트레이터"
@@ -2583,7 +2583,7 @@
       },
       "abbr": {
         "long": "logs",
-        "short": "LOG"
+        "short": ""
       },
       "description_i18n": {
         "ko": "logs/ — 런타임 로그 파일 저장"
@@ -2852,7 +2852,7 @@
     {
       "id": "cfg_system",
       "words": [
-        "cfg",
+        "config",
         "system"
       ],
       "domain": "system",
@@ -2873,7 +2873,7 @@
     {
       "id": "cfg_sessions",
       "words": [
-        "cfg",
+        "config",
         "sessions"
       ],
       "domain": "system",
@@ -2894,7 +2894,7 @@
     {
       "id": "cfg_kr_strategy",
       "words": [
-        "cfg",
+        "config",
         "kr",
         "strategy"
       ],
@@ -2916,7 +2916,7 @@
     {
       "id": "cfg_kr_selector",
       "words": [
-        "cfg",
+        "config",
         "kr",
         "selector"
       ],
@@ -2938,7 +2938,7 @@
     {
       "id": "cfg_entry_deny",
       "words": [
-        "cfg",
+        "config",
         "entry",
         "deny"
       ],
@@ -2960,7 +2960,7 @@
     {
       "id": "cfg_scoring",
       "words": [
-        "cfg",
+        "config",
         "scoring"
       ],
       "domain": "system",
@@ -2981,7 +2981,7 @@
     {
       "id": "cfg_backtest",
       "words": [
-        "cfg",
+        "config",
         "backtest"
       ],
       "domain": "system",
@@ -3002,7 +3002,7 @@
     {
       "id": "cfg_reporting",
       "words": [
-        "cfg",
+        "config",
         "reporting"
       ],
       "domain": "system",

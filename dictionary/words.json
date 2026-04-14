@@ -89,7 +89,9 @@
         "zh_hans": "验证"
       },
       "variants": {
-        "abbreviation": "AUTH"
+        "abbreviation": [
+          "AUTH"
+        ]
       },
       "description_i18n": {
         "ko": "브로커 API 인증 토큰 발급·갱신 (KIS OAuth, Upbit JWT 등)"
@@ -137,7 +139,9 @@
         "zh_hans": "酒吧"
       },
       "variants": {
-        "abbreviation": "BAR"
+        "abbreviation": [
+          "BAR"
+        ]
       },
       "description_i18n": {
         "ko": "OHLCV 캔들(봉) 데이터. M1 기준."
@@ -185,7 +189,9 @@
         "zh_hans": "突破"
       },
       "variants": {
-        "abbreviation": "BRK"
+        "abbreviation": [
+          "BRK"
+        ]
       },
       "description_i18n": {
         "ko": "직전 N봉 고가를 현재가가 상향 돌파하는 진입 패턴"
@@ -218,7 +224,9 @@
         "zh_hans": "买"
       },
       "variants": {
-        "abbreviation": "BUY"
+        "abbreviation": [
+          "BUY"
+        ]
       },
       "description_i18n": {
         "ko": "매수 주문"
@@ -236,7 +244,9 @@
         "zh_hans": "取消"
       },
       "variants": {
-        "abbreviation": "CNCL"
+        "abbreviation": [
+          "CNCL"
+        ]
       },
       "description_i18n": {
         "ko": "주문 취소됨"
@@ -304,21 +314,6 @@
       "canonical_pos": "noun"
     },
     {
-      "id": "cfg",
-      "domain": "infra",
-      "status": "active",
-      "lang": {
-        "en": "cfg",
-        "ko": "설정",
-        "ja": "CFG",
-        "zh_hans": "cfg"
-      },
-      "description_i18n": {
-        "ko": "설정 키 접두사"
-      },
-      "canonical_pos": "noun"
-    },
-    {
       "id": "chart",
       "domain": "system",
       "status": "active",
@@ -329,7 +324,9 @@
         "zh_hans": "图表"
       },
       "variants": {
-        "abbreviation": "CHART"
+        "abbreviation": [
+          "CHART"
+        ]
       },
       "description_i18n": {
         "ko": "시각화를 위한 차트 설정"
@@ -452,7 +449,9 @@
         "zh_hans": "代码"
       },
       "variants": {
-        "abbreviation": "CODE"
+        "abbreviation": [
+          "CODE"
+        ]
       },
       "description_i18n": {
         "ko": "종목 코드 또는 기타 식별 코드"
@@ -515,7 +514,9 @@
         "zh_hans": "委员会"
       },
       "variants": {
-        "abbreviation": "COMM"
+        "abbreviation": [
+          "COMM"
+        ]
       },
       "description_i18n": {
         "ko": "거래 수수료 (거래당 비용)"
@@ -625,7 +626,12 @@
       "description_i18n": {
         "ko": "시스템 설정값"
       },
-      "canonical_pos": "noun"
+      "canonical_pos": "noun",
+      "variants": {
+        "abbreviation": [
+          "cfg"
+        ]
+      }
     },
     {
       "id": "confirmed",
@@ -773,7 +779,9 @@
         "zh_hans": "残疾人"
       },
       "variants": {
-        "abbreviation": "OFF"
+        "abbreviation": [
+          "OFF"
+        ]
       },
       "description_i18n": {
         "ko": "기능 비활성화 상태"
@@ -821,7 +829,9 @@
         "zh_hans": "已启用"
       },
       "variants": {
-        "abbreviation": "ON"
+        "abbreviation": [
+          "ON"
+        ]
       },
       "description_i18n": {
         "ko": "기능 활성화 상태"
@@ -869,7 +879,9 @@
         "zh_hans": "入口"
       },
       "variants": {
-        "abbreviation": "ENT"
+        "abbreviation": [
+          "ENT"
+        ]
       },
       "description_i18n": {
         "ko": "포지션 진입 (매수/매도 시작)"
@@ -932,7 +944,9 @@
         "zh_hans": "错误"
       },
       "variants": {
-        "abbreviation": "ERR"
+        "abbreviation": [
+          "ERR"
+        ]
       },
       "description_i18n": {
         "ko": "오류 발생 상태"
@@ -1010,7 +1024,9 @@
         "zh_hans": "出口"
       },
       "variants": {
-        "abbreviation": "EXIT"
+        "abbreviation": [
+          "EXIT"
+        ]
       },
       "description_i18n": {
         "ko": "포지션 청산 (반대매매로 종료)"
@@ -1043,7 +1059,9 @@
         "zh_hans": "失败的"
       },
       "variants": {
-        "abbreviation": "FAIL"
+        "abbreviation": [
+          "FAIL"
+        ]
       },
       "description_i18n": {
         "ko": "시스템 오류로 처리 실패"
@@ -1061,7 +1079,9 @@
         "zh_hans": "充满"
       },
       "variants": {
-        "abbreviation": "FILL"
+        "abbreviation": [
+          "FILL"
+        ]
       },
       "description_i18n": {
         "ko": "주문이 실제 체결된 결과 (가격·수량·시간 포함)"
@@ -1079,7 +1099,9 @@
         "zh_hans": "充满"
       },
       "variants": {
-        "abbreviation": "FLLD"
+        "abbreviation": [
+          "FLLD"
+        ]
       },
       "description_i18n": {
         "ko": "주문 전량 체결 완료"
@@ -1112,7 +1134,9 @@
         "zh_hans": "平坦的"
       },
       "variants": {
-        "abbreviation": "FLAT"
+        "abbreviation": [
+          "FLAT"
+        ]
       },
       "description_i18n": {
         "ko": "포지션 없음 (현금 보유 상태)"
@@ -1280,7 +1304,9 @@
         "zh_hans": "心跳"
       },
       "variants": {
-        "abbreviation": "HB"
+        "abbreviation": [
+          "HB"
+        ]
       },
       "description_i18n": {
         "ko": "시스템 생존 신호. 주기적으로 Telegram system 봇에 전송."
@@ -1388,7 +1414,9 @@
         "zh_hans": "盘中"
       },
       "variants": {
-        "abbreviation": "INTRA"
+        "abbreviation": [
+          "INTRA"
+        ]
       },
       "description_i18n": {
         "ko": "당일 내 진입·청산을 완료하는 거래 (데이트레이딩)"
@@ -1436,7 +1464,9 @@
         "zh_hans": "韩国投资和证券API"
       },
       "variants": {
-        "abbreviation": "KIS"
+        "abbreviation": [
+          "KIS"
+        ]
       },
       "description_i18n": {
         "ko": "한국투자증권 REST API. 한국주식·미국주식 주문/시세 브로커."
@@ -1476,7 +1506,9 @@
         "zh_hans": "科斯皮"
       },
       "variants": {
-        "abbreviation": "KOSPI"
+        "abbreviation": [
+          "KOSPI"
+        ]
       },
       "description_i18n": {
         "ko": "한국 종합주가지수 (Korea Composite Stock Price Index)"
@@ -1587,7 +1619,9 @@
         "zh_hans": "长的"
       },
       "variants": {
-        "abbreviation": "LONG"
+        "abbreviation": [
+          "LONG"
+        ]
       },
       "description_i18n": {
         "ko": "매수 포지션 방향 (가격 상승 기대)"
@@ -1635,7 +1669,9 @@
         "zh_hans": "主要执行"
       },
       "variants": {
-        "abbreviation": "MAIN"
+        "abbreviation": [
+          "MAIN"
+        ]
       },
       "canonical_pos": "noun"
     },
@@ -1734,7 +1770,9 @@
         "zh_hans": "元信息"
       },
       "variants": {
-        "abbreviation": "META"
+        "abbreviation": [
+          "META"
+        ]
       },
       "canonical_pos": "noun"
     },
@@ -1821,7 +1859,9 @@
         "zh_hans": "元交易者5"
       },
       "variants": {
-        "abbreviation": "MT5"
+        "abbreviation": [
+          "MT5"
+        ]
       },
       "description_i18n": {
         "ko": "해외선물 접근 플랫폼. Windows 전용. 시장명이 아닌 툴명."
@@ -1918,7 +1958,9 @@
         "zh_hans": "离线"
       },
       "variants": {
-        "abbreviation": "OFLN"
+        "abbreviation": [
+          "OFLN"
+        ]
       },
       "description_i18n": {
         "ko": "네트워크/서비스 미연결 상태"
@@ -1936,7 +1978,9 @@
         "zh_hans": "在线的"
       },
       "variants": {
-        "abbreviation": "ONLN"
+        "abbreviation": [
+          "ONLN"
+        ]
       },
       "description_i18n": {
         "ko": "네트워크/서비스 연결 상태"
@@ -1969,7 +2013,9 @@
         "zh_hans": "协调者"
       },
       "variants": {
-        "abbreviation": "ORCH"
+        "abbreviation": [
+          "ORCH"
+        ]
       },
       "description_i18n": {
         "ko": "전체 거래 루프를 조율하는 최상위 실행 컨트롤러"
@@ -1987,7 +2033,9 @@
         "zh_hans": "命令"
       },
       "variants": {
-        "abbreviation": "ORD"
+        "abbreviation": [
+          "ORD"
+        ]
       },
       "description_i18n": {
         "ko": "브로커에 전송된 실제 주문 객체"
@@ -2005,7 +2053,9 @@
         "zh_hans": "订单簿"
       },
       "variants": {
-        "abbreviation": "OB"
+        "abbreviation": [
+          "OB"
+        ]
       },
       "description_i18n": {
         "ko": "매수·매도 호가창 스냅샷"
@@ -2023,7 +2073,9 @@
         "zh_hans": "过夜"
       },
       "variants": {
-        "abbreviation": "OVNT"
+        "abbreviation": [
+          "OVNT"
+        ]
       },
       "description_i18n": {
         "ko": "당일 청산하지 않고 다음날까지 보유하는 거래"
@@ -2056,7 +2108,9 @@
         "zh_hans": "待办的"
       },
       "variants": {
-        "abbreviation": "PEND"
+        "abbreviation": [
+          "PEND"
+        ]
       },
       "description_i18n": {
         "ko": "주문 생성 후 브로커 전송 전 대기 상태"
@@ -2134,7 +2188,9 @@
         "zh_hans": "位置"
       },
       "variants": {
-        "abbreviation": "POS"
+        "abbreviation": [
+          "POS"
+        ]
       },
       "description_i18n": {
         "ko": "현재 보유 중인 종목/계약 상태 (수량, 평균단가, 미실현손익)"
@@ -2227,7 +2283,9 @@
         "zh_hans": "拉回"
       },
       "variants": {
-        "abbreviation": "PB"
+        "abbreviation": [
+          "PB"
+        ]
       },
       "description_i18n": {
         "ko": "상승 추세 중 일시적으로 되돌리는 구간에서 진입하는 패턴"
@@ -2335,7 +2393,9 @@
         "zh_hans": "雷迪斯"
       },
       "variants": {
-        "abbreviation": "REDIS"
+        "abbreviation": [
+          "REDIS"
+        ]
       },
       "description_i18n": {
         "ko": "실시간 캐시 + 이벤트 스트림. DB가 원본이며 Redis는 파생값."
@@ -2383,7 +2443,9 @@
         "zh_hans": "被拒绝"
       },
       "variants": {
-        "abbreviation": "RJCT"
+        "abbreviation": [
+          "RJCT"
+        ]
       },
       "description_i18n": {
         "ko": "브로커에 의해 주문 거절됨"
@@ -2506,7 +2568,9 @@
         "zh_hans": "角色"
       },
       "variants": {
-        "abbreviation": "ROLE"
+        "abbreviation": [
+          "ROLE"
+        ]
       },
       "description_i18n": {
         "ko": "서비스 또는 노드의 역할 (primary/replica 등)"
@@ -2554,7 +2618,9 @@
         "zh_hans": "跑步"
       },
       "variants": {
-        "abbreviation": "RUN"
+        "abbreviation": [
+          "RUN"
+        ]
       },
       "description_i18n": {
         "ko": "서비스 실행 중 상태"
@@ -2617,7 +2683,9 @@
         "zh_hans": "范围"
       },
       "variants": {
-        "abbreviation": "SCOPE"
+        "abbreviation": [
+          "SCOPE"
+        ]
       },
       "description_i18n": {
         "ko": "설정이나 작업이 적용되는 범위를 정의하는 설정."
@@ -2725,7 +2793,9 @@
         "zh_hans": "卖"
       },
       "variants": {
-        "abbreviation": "SELL"
+        "abbreviation": [
+          "SELL"
+        ]
       },
       "description_i18n": {
         "ko": "매도 주문"
@@ -2803,7 +2873,9 @@
         "zh_hans": "短的"
       },
       "variants": {
-        "abbreviation": "SHORT"
+        "abbreviation": [
+          "SHORT"
+        ]
       },
       "description_i18n": {
         "ko": "매도 포지션 방향 (가격 하락 기대)"
@@ -2836,7 +2908,9 @@
         "zh_hans": "信号"
       },
       "variants": {
-        "abbreviation": "SIG"
+        "abbreviation": [
+          "SIG"
+        ]
       },
       "description_i18n": {
         "ko": "진입 또는 청산 판단 결과. signals 모듈만 생성 가능."
@@ -2869,7 +2943,9 @@
         "zh_hans": "滑移"
       },
       "variants": {
-        "abbreviation": "SLIP"
+        "abbreviation": [
+          "SLIP"
+        ]
       },
       "description_i18n": {
         "ko": "주문 가격과 실제 체결 가격의 차이"
@@ -2932,7 +3008,7 @@
         "zh_hans": "开始"
       },
       "variants": {
-        "abbreviation": "START"
+        "abbreviation": []
       },
       "description_i18n": {
         "ko": "서비스 시작 중 (초기화 진행 중)"
@@ -2995,7 +3071,7 @@
         "zh_hans": "停止了"
       },
       "variants": {
-        "abbreviation": "STOP"
+        "abbreviation": []
       },
       "description_i18n": {
         "ko": "서비스 중지 상태"
@@ -3058,7 +3134,9 @@
         "zh_hans": "已提交"
       },
       "variants": {
-        "abbreviation": "SUBM"
+        "abbreviation": [
+          "SUBM"
+        ]
       },
       "description_i18n": {
         "ko": "브로커에 주문 전송 완료"
@@ -3196,7 +3274,9 @@
         "zh_hans": "打钩"
       },
       "variants": {
-        "abbreviation": "TK"
+        "abbreviation": [
+          "TK"
+        ]
       },
       "description_i18n": {
         "ko": "최소 가격 변동 단위 또는 실시간 시세 스트림"
@@ -3259,7 +3339,9 @@
         "zh_hans": "代币"
       },
       "variants": {
-        "abbreviation": "TOKEN"
+        "abbreviation": [
+          "TOKEN"
+        ]
       },
       "description_i18n": {
         "ko": "인증 또는 세션 관리에 사용되는 보안 토큰입니다."
@@ -3277,7 +3359,9 @@
         "zh_hans": "米"
       },
       "variants": {
-        "abbreviation": "M"
+        "abbreviation": [
+          "M"
+        ]
       },
       "description_i18n": {
         "ko": "분 단위 시간 접미사 (1m, 5m 등)"
@@ -3415,7 +3499,9 @@
         "zh_hans": "趋势"
       },
       "variants": {
-        "abbreviation": "TREND"
+        "abbreviation": [
+          "TREND"
+        ]
       },
       "description_i18n": {
         "ko": "시장 가격의 전반적인 방향성을 나타냅니다."
@@ -3478,7 +3564,9 @@
         "zh_hans": "上位"
       },
       "variants": {
-        "abbreviation": "UPBIT"
+        "abbreviation": [
+          "UPBIT"
+        ]
       },
       "description_i18n": {
         "ko": "암호화폐 거래소. crypto 마켓의 브로커."
@@ -3601,7 +3689,9 @@
         "zh_hans": "瓦普"
       },
       "variants": {
-        "abbreviation": "VWAP"
+        "abbreviation": [
+          "VWAP"
+        ]
       },
       "description_i18n": {
         "ko": "Volume Weighted Average Price. 시가총액 가중 평균 체결가."
@@ -3619,7 +3709,9 @@
         "zh_hans": "看门狗"
       },
       "variants": {
-        "abbreviation": "WDG"
+        "abbreviation": [
+          "WDG"
+        ]
       },
       "description_i18n": {
         "ko": "서비스 비정상 종료 감지 및 자동 재시작"

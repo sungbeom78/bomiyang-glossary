@@ -124,6 +124,31 @@ def validate(words, compounds, banned, silent=False) -> tuple:
             if cycle_found:
                 F("V-104", f"순환 참조 발생: '{cid}' -> '{conflict}'")
 
+    # abbreviation 검증
+    abbr_to_root = {}
+    
+    for w in words:
+        abbrs = w.get("variants", {}).get("abbreviation")
+        if abbrs:
+            if isinstance(abbrs, str): abbrs = [abbrs]
+            for a in abbrs:
+                al = a.lower()
+                if al in abbr_to_root:
+                    W("V-201", f"약어 중복 정의: '{a}' ({abbr_to_root[al]} vs {w['id']})")
+                abbr_to_root[al] = w["id"]
+
+    for c in compounds:
+        abbr = c.get("abbr", {}).get("short")
+        if abbr:
+            al = abbr.lower()
+            if al in abbr_to_root:
+                W("V-201", f"약어 중복 정의: '{abbr}' ({abbr_to_root[al]} vs {c['id']})")
+            abbr_to_root[al] = c["id"]
+
+    for w in words:
+        if w["id"] in abbr_to_root and abbr_to_root[w["id"]] != w["id"]:
+            F("V-202", f"abbreviation이 word로 독립 존재: '{w['id']}' (root: {abbr_to_root[w['id']]})")
+
     if not silent:
         print(f"\n{'='*52}")
         print(f"  validate  —  {datetime.now().strftime('%H:%M:%S')}")
@@ -159,7 +184,9 @@ def build_terms_json(words, compounds) -> dict:
     for w in words:
         en_val = w.get("lang", {}).get("en") or w.get("en", "")
         ko_val = w.get("lang", {}).get("ko") or w.get("ko", "")
-        abbr = w.get("variants", {}).get("abbreviation") or w.get("abbr")
+        abbrs = w.get("variants", {}).get("abbreviation") or []
+        if isinstance(abbrs, str): abbrs = [abbrs]
+        abbr = abbrs[0] if abbrs else w.get("abbr")
         abbr_short = abbr or en_val.upper()[:5]
         desc = w.get("description_i18n", {}).get("ko") or w.get("description", "")
         terms.append({
@@ -232,7 +259,9 @@ def build_glossary_md(words, compounds, banned) -> str:
         lines.append("| 단어 | 한글 | 약어 | 품사 | 복수형 | 설명 |")
         lines.append("|------|------|------|------|--------|------|")
         for w in wlist:
-            abbr = w.get("variants", {}).get("abbreviation") or w.get("abbr") or "—"
+            abbrs = w.get("variants", {}).get("abbreviation") or []
+            if isinstance(abbrs, str): abbrs = [abbrs]
+            abbr = (abbrs[0] if abbrs else w.get("abbr")) or "—"
             pos = w.get("canonical_pos") or w.get("pos", "noun")
             if pos != "noun":
                 plural = "—"
@@ -391,9 +420,22 @@ def cmd_generate():
     word_min = [{"id": w["id"], "lang": w.get("lang", {}), "domain": w.get("domain")} for w in words]
     compound_min = [{"id": c["id"], "words": c.get("words", []), "lang": c.get("lang", {}), "domain": c.get("domain")} for c in compounds]
     
+    variant_map = {}
+    for w in words:
+        abbrs = w.get("variants", {}).get("abbreviation") or []
+        if isinstance(abbrs, str): abbrs = [abbrs]
+        for a in abbrs:
+            variant_map[a] = {"root": w["id"], "type": "abbreviation"}
+            
+    for c in compounds:
+        abbr = c.get("abbr", {}).get("short")
+        if abbr:
+            variant_map[abbr] = {"root": c["id"], "type": "abbreviation"}
+
     (INDEX_DIR / "word_min.json").write_text(json.dumps(word_min, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
     (INDEX_DIR / "compound_min.json").write_text(json.dumps(compound_min, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
-    print(f"[OK] Index 생성 (build/index/word_min.json, compound_min.json)")
+    (INDEX_DIR / "variant_map.json").write_text(json.dumps(variant_map, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    print(f"[OK] Index 생성 (build/index/word_min.json, compound_min.json, variant_map.json)")
 
     # GLOSSARY.md
     md = build_glossary_md(words, compounds, banned)
@@ -442,12 +484,16 @@ def cmd_check_id(identifier: str):
     INDEX_DIR = ROOT / "build" / "index"
     w_idx = INDEX_DIR / "word_min.json"
     c_idx = INDEX_DIR / "compound_min.json"
-    if not w_idx.exists() or not c_idx.exists():
+    v_idx = INDEX_DIR / "variant_map.json"
+    if not w_idx.exists() or not c_idx.exists() or not v_idx.exists():
         print("인덱스가 없습니다. 'python generate_glossary.py generate'를 먼저 실행하세요.")
         sys.exit(1)
         
     words = json.loads(w_idx.read_text(encoding='utf-8'))
     compounds = json.loads(c_idx.read_text(encoding='utf-8'))
+    variant_map = json.loads(v_idx.read_text(encoding='utf-8'))
+    # Make a lowercase map for case-insensitive lookup
+    variant_map_lower = {k.lower(): v for k, v in variant_map.items()}
     
     word_ids = {w["id"]: w for w in words}
     compound_ids = {c["id"]: c for c in compounds}
@@ -459,28 +505,44 @@ def cmd_check_id(identifier: str):
 
     missing = []
     pattern_hits = []
+    
+    normalized_list = []
+    variant_list = []
+
     for tok in tokens:
-        if tok in word_ids:
+        # Check variant specifically
+        if tok in variant_map_lower:
+            v_info = variant_map_lower[tok]
+            root_id = v_info["root"]
+            normalized_list.append(root_id)
+            variant_list.append(v_info["type"])
+            print(f"  {tok:<20} → [WARN] abbreviation 사용 (root: {root_id})")
+        elif tok in word_ids:
             w = word_ids[tok]
             ko_val = w.get("lang", {}).get("ko", "")
+            normalized_list.append(tok)
             print(f"  {tok:<20} → [OK]  word_min.json ({w.get('domain', '')}, \"{ko_val}\")")
         elif tok in compound_ids:
             c = compound_ids[tok]
             ko_val = c.get("lang", {}).get("ko", "")
+            normalized_list.append(tok)
             print(f"  {tok:<20} → [OK]  compound_min.json (\"{ko_val}\")")
         else:
             matched = match_n_pattern(tok, n_patterns)
             if matched:
                 pattern_hits.append((tok, matched))
+                normalized_list.append(tok)
                 print(f"  {tok:<20} → [OK]  compound_min.json (pattern: '{matched}')")
             else:
                 singular = find_singular_token(tok, word_ids)
                 if singular:
                     w = word_ids[singular]
                     ko_val = w.get("lang", {}).get("ko", "")
+                    normalized_list.append(singular)
+                    variant_list.append("plural_to_singular")
                     print(f"  {tok:<20} → [OK]  word_min.json ({w.get('domain', '')}, \"{ko_val}\", singular='{singular}')")
                 else:
-                    print(f"  {tok:<20} → [미등록]")
+                    print(f"  {tok:<20} → [ERROR] 미등록")
                     missing.append(tok)
 
     print()
@@ -489,6 +551,16 @@ def cmd_check_id(identifier: str):
         print(f"→ words.json에 등록 후 사용 가능합니다.")
         print(f"→ python generate_glossary.py suggest {identifier}")
     else:
+        # JSON 결과 출력 (정책 참조)
+        result_payload = {
+            "normalized": normalized_list,
+        }
+        if variant_list:
+            result_payload["variant"] = variant_list
+            
+        print("결과:")
+        print(json.dumps(result_payload, indent=2, ensure_ascii=False))
+
         # 복합어 등록 필요 여부
         if identifier in compound_ids:
             print(f"→ 복합어로 이미 등록됨.")

@@ -321,7 +321,7 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
     n_patterns: list = []
     n_pattern_exprs: set = set()
 
-    def _absorb_compound(entries: list, fields: tuple):
+    def _absorb_compound(entries: list):
         for item in entries:
             cid = str(item.get('id', ''))
             if '[N]' in cid and cid not in n_pattern_exprs:
@@ -330,15 +330,15 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
                 if pat:
                     n_patterns.append(pat)
 
-            for f in fields:
-                v = item.get(f, '')
+            lang = item.get('lang', {})
+            for v in (item.get('id', ''), item.get('abbr_long', ''), item.get('abbr_short', ''), lang.get('en', ''), lang.get('ko', '')):
                 if v:
                     syms.add(str(v))
                     syms.add(str(v).lower())
                     for tok in _split_tokens(str(v)):
                         tokens.add(tok)
             # compound plural 처리
-            pl = item.get('plural')
+            pl = item.get('variants', {}).get('plural')
             if pl and pl != '-':
                 syms.add(pl); tokens.add(pl.lower())
             elif pl is None and cid and '[N]' not in cid:
@@ -352,12 +352,14 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
             data = json.loads(words_path.read_text(encoding='utf-8'))
             for w in data.get("words", []):
                 wid   = w.get('id', '')
-                pos   = w.get('pos', '')
-                abbr  = w.get('abbr', '')
-                pl    = w.get('plural')  # 명시 값
+                pos   = w.get('canonical_pos', '')
+                lang  = w.get('lang', {})
+                variants = w.get('variants', {})
+                abbr  = variants.get('abbreviation', '')
+                pl    = variants.get('plural')
 
                 # 기본 심볼 등록
-                for v in (wid, w.get('en',''), w.get('ko',''), abbr):
+                for v in (wid, lang.get('en',''), lang.get('ko',''), abbr):
                     if v:
                         syms.add(str(v)); syms.add(str(v).lower())
                         for tok in _split_tokens(str(v)):
@@ -380,8 +382,7 @@ def load_existing_terms(glossary_dir: Path) -> tuple:
         try:
             data = json.loads(compounds_path.read_text(encoding='utf-8'))
             _absorb_compound(
-                data.get("compounds", []),
-                ('id', 'abbr_long', 'abbr_short', 'ko', 'en'),
+                data.get("compounds", [])
             )
         except Exception:
             pass

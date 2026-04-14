@@ -93,7 +93,10 @@
           "type": "string"
         },
         "abbreviation": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "adjective": {
           "type": "string"

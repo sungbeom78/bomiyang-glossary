@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "2.0.0",
   "generated": true,
-  "generated_at": "2026-04-14T13:05:13.925619",
+  "generated_at": "2026-04-14T14:20:17.731309",
   "terms": [
     {
       "id": "account",
@@ -231,18 +231,6 @@
       ],
       "type": "word",
       "description": "종목 또는 테마의 분류 정보"
-    },
-    {
-      "id": "cfg",
-      "ko": "설정",
-      "en": "Cfg",
-      "abbr_long": "cfg",
-      "abbr_short": "CFG",
-      "categories": [
-        "infra"
-      ],
-      "type": "word",
-      "description": "설정 키 접두사"
     },
     {
       "id": "chart",
@@ -477,7 +465,7 @@
       "ko": "설정",
       "en": "Config",
       "abbr_long": "config",
-      "abbr_short": "CONFI",
+      "abbr_short": "cfg",
       "categories": [
         "system"
       ],
@@ -2289,7 +2277,7 @@
       "ko": "중지",
       "en": "Stopped",
       "abbr_long": "stopped",
-      "abbr_short": "STOP",
+      "abbr_short": "STOPP",
       "categories": [
         "system"
       ],
@@ -2937,7 +2925,7 @@
       "ko": "노드명",
       "en": "Node Name",
       "abbr_long": "nodeName",
-      "abbr_short": "NODE",
+      "abbr_short": "",
       "categories": [
         "infra"
       ],
@@ -3489,7 +3477,7 @@
       "ko": "모의 거래",
       "en": "Mock Trading",
       "abbr_long": "mockTrading",
-      "abbr_short": "MOCK",
+      "abbr_short": "",
       "categories": [
         "trading"
       ],
@@ -3501,7 +3489,7 @@
       "ko": "실전 거래",
       "en": "Live Trading",
       "abbr_long": "liveTrading",
-      "abbr_short": "LIVE",
+      "abbr_short": "",
       "categories": [
         "trading"
       ],
@@ -4173,7 +4161,7 @@
       "ko": "실행 모듈",
       "en": "Execution Module",
       "abbr_long": "execution",
-      "abbr_short": "EXEC",
+      "abbr_short": "",
       "categories": [
         "system"
       ],
@@ -4257,7 +4245,7 @@
       "ko": "로그 디렉토리",
       "en": "Logs Directory",
       "abbr_long": "logs",
-      "abbr_short": "LOG",
+      "abbr_short": "",
       "categories": [
         "system"
       ],

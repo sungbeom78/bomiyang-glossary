@@ -2,10 +2,10 @@
 
 > 자동 생성 파일. 수동 편집 금지.
 > 원본: `words.json` + `compounds.json` + `banned.json`
-> 생성: 2026-04-14 13:05
+> 생성: 2026-04-14 14:20
 
 ## 통계
-- 단어: 235개
+- 단어: 234개
 - 복합어: 154개
 - 금지 표현: 8개
 
@@ -132,7 +132,7 @@
 | `complete` | 완료 | — | noun | auto | 작업 또는 프로세스가 완료되었음을 나타내는 상태 |
 | `completed` | 완료됨 | — | noun | auto | 주문, 작업 또는 프로세스가 완료되었음을 나타내는 상태 |
 | `confidence` | 신뢰도 | — | noun | auto | 신호 또는 예측의 신뢰 수준 |
-| `config` | 설정 | — | noun | auto | 시스템 설정값 |
+| `config` | 설정 | cfg | noun | auto | 시스템 설정값 |
 | `confirmed` | 확인됨 | — | noun | auto | 어떤 이벤트나 상태가 최종적으로 확인되었음을 나타내는 플래그 |
 | `connected` | 연결됨 | — | noun | auto | 서비스 또는 시스템과의 연결 상태 |
 | `core` | 코어 | — | noun | auto | 공통 흐름의 중심 역할을 담당하는 핵심 구성요소 |
@@ -197,9 +197,9 @@
 | `side` | 방향 | — | noun | auto | 매수/매도 방향 |
 | `snapshot` | 스냅샷 | — | noun | auto | 특정 시점의 상태 저장본 |
 | `start` | 시작 | — | noun | auto | 시작 시각 또는 동작 |
-| `starting` | 시작 중 | START | noun | auto | 서비스 시작 중 (초기화 진행 중) |
+| `starting` | 시작 중 | — | noun | auto | 서비스 시작 중 (초기화 진행 중) |
 | `status` | 상태 | — | noun | auto | 현재 처리 상태 |
-| `stopped` | 중지 | STOP | noun | auto | 서비스 중지 상태 |
+| `stopped` | 중지 | — | noun | auto | 서비스 중지 상태 |
 | `strategy` | 전략 | — | noun | auto | 매매 전략 설정 |
 | `submitted` | 접수 | SUBM | noun | auto | 브로커에 주문 전송 완료 |
 | `switch` | 스위치 | — | noun | auto | 기능 활성화/비활성화 제어 |
@@ -228,7 +228,6 @@
 | `auth` | 인증 | AUTH | noun | auto | 브로커 API 인증 토큰 발급·갱신 (KIS OAuth, Upbit JWT 등) |
 | `bot` | 봇 | — | noun | auto | 자동화 프로그램 |
 | `bridge` | 브릿지 | — | noun | auto | 두 시스템을 연결하는 컴포넌트 |
-| `cfg` | 설정 | — | noun | auto | 설정 키 접두사 |
 | `cls` | 클래스 | — | noun | auto | 클래스 정의 접두사 |
 | `common` | 공통 | — | adj | — | 전 모듈 공유 공통 코드 |
 | `dashboard` | 대시보드 | — | noun | auto | 모니터링 UI |
@@ -283,14 +282,14 @@
 | `account_snapshot` | account + snapshot | 계좌 스냅샷 | `accountSnapshot` | `ASNAP` | auto | 공인 약어 |
 | `active_trade` | active + trade | 활성 거래 | `activeTrade` | `AT` | auto | 공인 약어 |
 | `candle_personality` | candle + personality | 캔들 성격 | `candlePersonality` | `CP` | auto | 공인 약어 |
-| `cfg_backtest` | cfg + backtest | 백테스트 설정 | `backtest` | `BT` | auto | 공인 약어 |
-| `cfg_entry_deny` | cfg + entry + deny | 진입 차단 설정 | `entryDeny` | `ED` | auto | 공인 약어 |
-| `cfg_kr_selector` | cfg + kr + selector | KR 셀렉터 설정 | `krSelector` | `KR_SEL` | auto | 의미 비합산 |
-| `cfg_kr_strategy` | cfg + kr + strategy | KR 전략 설정 | `krStrategy` | `KR_STR` | auto | 의미 비합산 |
-| `cfg_reporting` | cfg + reporting | 리포트 설정 | `reporting` | `RPT_CFG` | auto | 의미 비합산 |
-| `cfg_scoring` | cfg + scoring | 스코어링 설정 | `scoring` | `SCR_CFG` | auto | 의미 비합산 |
-| `cfg_sessions` | cfg + sessions | 세션 설정 | `sessions` | `SESS` | auto | 공인 약어 |
-| `cfg_system` | cfg + system | 시스템 설정 | `system` | `SYS` | auto | 공인 약어 |
+| `cfg_backtest` | config + backtest | 백테스트 설정 | `backtest` | `BT` | auto | 공인 약어 |
+| `cfg_entry_deny` | config + entry + deny | 진입 차단 설정 | `entryDeny` | `ED` | auto | 공인 약어 |
+| `cfg_kr_selector` | config + kr + selector | KR 셀렉터 설정 | `krSelector` | `KR_SEL` | auto | 의미 비합산 |
+| `cfg_kr_strategy` | config + kr + strategy | KR 전략 설정 | `krStrategy` | `KR_STR` | auto | 의미 비합산 |
+| `cfg_reporting` | config + reporting | 리포트 설정 | `reporting` | `RPT_CFG` | auto | 의미 비합산 |
+| `cfg_scoring` | config + scoring | 스코어링 설정 | `scoring` | `SCR_CFG` | auto | 의미 비합산 |
+| `cfg_sessions` | config + sessions | 세션 설정 | `sessions` | `SESS` | auto | 공인 약어 |
+| `cfg_system` | config + system | 시스템 설정 | `system` | `SYS` | auto | 공인 약어 |
 | `closed_trade` | closed + trade | 청산 거래 | `closedTrade` | `CT` | auto | 공인 약어 |
 | `cls_account_snapshot` | cls + account + snapshot | 계좌 스냅샷 모델 | `AccountSnapshot` | `ASNAP_C` | auto | 공인 약어, 시스템 객체 |
 | `cls_crypto_risk_manager` | cls + crypto + risk + manager | 코인 리스크 매니저 | `CryptoRiskManager` | `CRY_RM` | auto | 시스템 객체 |
@@ -367,7 +366,7 @@
 | `leader_candidates` | leader + candidates | 대장주 후보 | `leaderCandidates` | `LCAND` | auto | 공인 약어 |
 | `leader_stock` | leader + stock | 대장주 | `leaderStock` | `LEAD` | auto | 공인 약어 |
 | `limit_order` | limit + order | 지정가 주문 | `limitOrder` | `LMT` | auto | 공인 약어 |
-| `live_trading` | live + trading | 실전 거래 | `liveTrading` | `LIVE` | auto | 공인 약어 |
+| `live_trading` | live + trading | 실전 거래 | `liveTrading` | `` | auto | 공인 약어 |
 | `lower_wick` | lower + wick | 아랫꼬리 | `lowerWick` | `LW` | auto | 공인 약어 |
 | `margin_used` | margin + used | 사용 증거금 | `marginUsed` | `MRG` | auto | 공인 약어 |
 | `market_close` | market + close | 장 종료 | `marketClose` | `MC` | auto | 공인 약어 |
@@ -377,14 +376,14 @@
 | `market_strength` | market + strength | 시장 강도 | `marketStrength` | `MS` | auto | 공인 약어 |
 | `max_daily_loss` | max + daily + loss | 일일 최대 손실 | `maxDailyLoss` | `MDL` | auto | 공인 약어 |
 | `max_open_positions` | max + open + position | 최대 동시 보유 수 | `maxOpenPositions` | `MOP` | auto | 공인 약어 |
-| `mock_trading` | mock + trading | 모의 거래 | `mockTrading` | `MOCK` | auto | 공인 약어 |
+| `mock_trading` | mock + trading | 모의 거래 | `mockTrading` | `` | auto | 공인 약어 |
 | `mod_adapters` | mod + adapter | 어댑터 모듈 | `adapters` | `ADP` | auto | 공인 약어, 시스템 객체 |
 | `mod_collectors` | mod + collector | 수집기 모듈 | `collectors` | `COL` | auto | 공인 약어, 시스템 객체 |
 | `mod_common` | mod + common | 공통 모듈 | `common` | `CMN` | auto | 공인 약어, 시스템 객체 |
 | `mod_config` | mod + config | 설정 모듈 | `config` | `CFG_M` | auto | 공인 약어, 시스템 객체 |
 | `mod_env` | mod + env | 환경변수 모듈 | `env` | `ENV_M` | auto | 공인 약어, 시스템 객체 |
-| `mod_execution` | mod + execution | 실행 모듈 | `execution` | `EXEC` | auto | 공인 약어, 시스템 객체 |
-| `mod_logs` | mod + log | 로그 디렉토리 | `logs` | `LOG` | auto | 공인 약어, 시스템 객체 |
+| `mod_execution` | mod + execution | 실행 모듈 | `execution` | `` | auto | 공인 약어, 시스템 객체 |
+| `mod_logs` | mod + log | 로그 디렉토리 | `logs` | `` | auto | 공인 약어, 시스템 객체 |
 | `mod_notifications` | mod + notification | 알림 모듈 | `notifications` | `NTF` | auto | 공인 약어, 시스템 객체 |
 | `mod_replay` | mod + replay | 리플레이 모듈 | `replay` | `RPL` | auto | 공인 약어, 시스템 객체 |
 | `mod_report` | mod + report | 리포트 모듈 | `report` | `RPT` | auto | 공인 약어, 시스템 객체 |
@@ -397,7 +396,7 @@
 | `mt5_proxy` | mt5 + proxy | MT5 프록시 | `mt5Proxy` | `MT5P` | auto | 공인 약어, 고유명사 |
 | `no_bounce_exit` | no + bounce + exit | 반등 불발 청산 | `noBounceExit` | `NBE` | auto | 공인 약어 |
 | `no_entry_after` | no + entry + after | 진입 차단 시각 | `noEntryAfter` | `NEA` | auto | 공인 약어 |
-| `node_name` | node + name | 노드명 | `nodeName` | `NODE` | auto | 공인 약어 |
+| `node_name` | node + name | 노드명 | `nodeName` | `` | auto | 공인 약어 |
 | `order_intent` | order + intent | 주문 의도 | `orderIntent` | `OI` | auto | 공인 약어 |
 | `order_status` | order + status | 주문 상태 | `orderStatus` | `OS` | auto | 공인 약어 |
 | `partial_fill` | partial + fill | 부분 체결 | `partialFill` | `PART` | auto | 공인 약어 |
