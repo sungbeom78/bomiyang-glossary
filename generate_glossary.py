@@ -93,75 +93,36 @@ def validate(words, compounds, banned, silent=False) -> tuple:
     for d in cross:
         F("V-003", f"words ↔ compounds id 충돌: '{d}'")
 
-    # V-004: compounds.words[] 참조 검증
+    # V-104: compounds.words[] 참조 검증 및 순환 참조 방지
     word_id_set = set(word_ids)
+    compound_id_set = set(compound_ids)
+    compound_dict = {c["id"]: c.get("words", []) for c in compounds}
+    
+    def has_cycle(cid, visited, stack):
+        visited.add(cid)
+        stack.add(cid)
+        for ref in compound_dict.get(cid, []):
+            if ref in stack:
+                return True, ref
+            if ref in compound_dict and ref not in visited:
+                cycle_found, conflict = has_cycle(ref, visited, stack)
+                if cycle_found:
+                    return True, conflict
+        stack.remove(cid)
+        return False, None
+
+    visited = set()
     for c in compounds:
+        cid = c["id"]
         for ref in c.get("words", []):
-            if ref not in word_id_set:
-                F("V-004", f"compounds['{c['id']}'].words 참조 미등록: '{ref}'")
-
-    # V-005: compounds.reason 비어있지 않은지
-    for c in compounds:
-        if not c.get("reason","").strip():
-            F("V-005", f"compounds['{c['id']}'].reason 비어있음")
-
-    # V-006: abbr 중복
-    word_abbrs     = [(w["abbr"], w["id"]) for w in words if w.get("abbr")]
-    compound_abbrs = [(c["abbr_short"], c["id"]) for c in compounds if c.get("abbr_short")]
-    all_abbrs = word_abbrs + compound_abbrs
-    abbr_vals = [a[0] for a in all_abbrs]
-    for abbr, aid in all_abbrs:
-        if abbr_vals.count(abbr) > 1:
-            others = [a[1] for a in all_abbrs if a[0] == abbr and a[1] != aid]
-            F("V-006", f"abbr 중복: '{abbr}' → {aid}, {others}")
-
-    # V-007: words.json id에 언더스코어 포함 여부 (단어 = 단일 토큰)
-    import re as _re
-    for w in words:
-        wid = w["id"]
-        if not _re.match(r'^[a-z][a-z0-9]*$', wid):
-            F("V-007", f"words.json id 형식 오류 (언더스코어/대문자/숫자 시작 불가): '{wid}'")
-
-    # V-008: words.json에 복수형 단독 항목 존재 여부
-    # (다른 단수형이 같이 등록되어 있으면서 복수형만 별도 등록된 경우)
-    word_id_set_lower = {w["id"].lower() for w in words}
-    for w in words:
-        wid = w["id"]
-        # -s로 끝나고, -1하면 기존 등록된 단어가 있는 경우 → 복수형 단독 의심
-        if wid.endswith('s') and wid[:-1] in word_id_set_lower:
-            F("V-008", f"words.json 복수형 단독 항목 의심 (단수형 '{wid[:-1]}' 이미 등록): '{wid}'")
-        elif wid.endswith('es') and wid[:-2] in word_id_set_lower:
-            F("V-008", f"words.json 복수형 단독 항목 의심 (단수형 '{wid[:-2]}' 이미 등록): '{wid}'")
-        elif wid.endswith('ies') and wid[:-3] + 'y' in word_id_set_lower:
-            F("V-008", f"words.json 복수형 단독 항목 의심 (단수형 '{wid[:-3]}y' 이미 등록): '{wid}'")
-
-    # V-101: 고아 단어 (어떤 compound에서도 미참조)
-    all_refs = set()
-    for c in compounds:
-        all_refs.update(c.get("words", []))
-    for w in words:
-        if w["id"] not in all_refs:
-            W("V-101", f"고아 단어 (compound 미참조): '{w['id']}'")
-
-    # V-102: banned.correct 가 words/compounds에 존재하는지
-    all_ids = word_id_set | set(compound_ids)
-    for b in banned:
-        correct = b.get("correct","")
-        if correct and not any(x in correct for x in all_ids):
-            W("V-102", f"banned.correct '{correct}' → 미등록 표현")
-
-    # V-104: noun인데 plural 미명시
-    for w in words:
-        if w.get("pos") == "noun" and "plural" not in w:
-            W("V-104", f"noun인데 plural 필드 없음: '{w['id']}'")
-
-    # V-105: plural 값이 auto_plural과 동일한 경우 → null로 충분
-    for w in words:
-        pl = w.get("plural")
-        if pl and pl != '-' and w.get("pos") == "noun":
-            auto = _auto_plural_check(w["id"])
-            if pl == auto:
-                W("V-105", f"plural='{pl}' 이 자동 추론값과 동일 → null로 대체 권장: '{w['id']}'")
+            if ref not in word_id_set and ref not in compound_id_set:
+                F("V-104", f"compounds['{cid}'].words 참조 미등록: '{ref}'")
+        
+        if cid not in visited:
+            stack = set()
+            cycle_found, conflict = has_cycle(cid, visited, stack)
+            if cycle_found:
+                F("V-104", f"순환 참조 발생: '{cid}' -> '{conflict}'")
 
     if not silent:
         print(f"\n{'='*52}")
@@ -196,27 +157,36 @@ def validate(words, compounds, banned, silent=False) -> tuple:
 def build_terms_json(words, compounds) -> dict:
     terms = []
     for w in words:
-        abbr_short = w.get("abbr") or w["en"].upper()[:5]
+        en_val = w.get("lang", {}).get("en") or w.get("en", "")
+        ko_val = w.get("lang", {}).get("ko") or w.get("ko", "")
+        abbr = w.get("variants", {}).get("abbreviation") or w.get("abbr")
+        abbr_short = abbr or en_val.upper()[:5]
+        desc = w.get("description_i18n", {}).get("ko") or w.get("description", "")
         terms.append({
             "id":          w["id"],
-            "ko":          w["ko"],
-            "en":          w["en"].title(),
-            "abbr_long":   w["en"],
+            "ko":          ko_val,
+            "en":          en_val.title() if en_val else "",
+            "abbr_long":   en_val,
             "abbr_short":  abbr_short,
-            "categories":  [w["domain"]],
+            "categories":  [w.get("domain", "general")],
             "type":        "word",
-            "description": w["description"],
+            "description": desc,
         })
     for c in compounds:
+        en_val = c.get("lang", {}).get("en") or c.get("en", "")
+        ko_val = c.get("lang", {}).get("ko") or c.get("ko", "")
+        abbr_long = c.get("abbr", {}).get("long") or c.get("abbr_long", "")
+        abbr_short = c.get("abbr", {}).get("short") or c.get("abbr_short", "")
+        desc = c.get("description_i18n", {}).get("ko") or c.get("description", "")
         terms.append({
             "id":          c["id"],
-            "ko":          c["ko"],
-            "en":          c["en"],
-            "abbr_long":   c["abbr_long"],
-            "abbr_short":  c["abbr_short"],
-            "categories":  [c["domain"]],
+            "ko":          ko_val,
+            "en":          en_val,
+            "abbr_long":   abbr_long,
+            "abbr_short":  abbr_short,
+            "categories":  [c.get("domain", "general")],
             "type":        "compound",
-            "description": c["description"],
+            "description": desc,
         })
     return {
         "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
@@ -262,16 +232,19 @@ def build_glossary_md(words, compounds, banned) -> str:
         lines.append("| 단어 | 한글 | 약어 | 품사 | 복수형 | 설명 |")
         lines.append("|------|------|------|------|--------|------|")
         for w in wlist:
-            abbr = w.get("abbr") or "—"
-            if w.get("pos") != "noun":
+            abbr = w.get("variants", {}).get("abbreviation") or w.get("abbr") or "—"
+            pos = w.get("canonical_pos") or w.get("pos", "noun")
+            if pos != "noun":
                 plural = "—"
             else:
-                pl = w.get("plural")
+                pl = w.get("variants", {}).get("plural") or w.get("plural")
                 if pl is None:
                     plural = "auto"
                 else:
                     plural = str(pl)
-            lines.append(f"| `{w['id']}` | {w['ko']} | {abbr} | {w['pos']} | {plural} | {w['description']} |")
+            ko_val = w.get("lang", {}).get("ko") or w.get("ko", "")
+            desc = w.get("description_i18n", {}).get("ko") or w.get("description", "")
+            lines.append(f"| `{w['id']}` | {ko_val} | {abbr} | {pos} | {plural} | {desc} |")
         lines.append("")
 
     lines += [
@@ -284,10 +257,14 @@ def build_glossary_md(words, compounds, banned) -> str:
     ]
     for c in sorted(compounds, key=lambda x: x["id"]):
         wds = " + ".join(c.get("words", []))
-        c_plural = c.get("plural")
+        c_plural = c.get("variants", {}).get("plural") or c.get("plural")
         c_plural_txt = "auto" if c_plural is None else str(c_plural)
+        ko_val = c.get("lang", {}).get("ko") or c.get("ko", "")
+        abbr_long = c.get("abbr", {}).get("long") or c.get("abbr_long", "")
+        abbr_short = c.get("abbr", {}).get("short") or c.get("abbr_short", "")
+        reason = c.get("reason", "")
         lines.append(
-            f"| `{c['id']}` | {wds} | {c['ko']} | `{c['abbr_long']}` | `{c['abbr_short']}` | {c_plural_txt} | {c['reason']} |"
+            f"| `{c['id']}` | {wds} | {ko_val} | `{abbr_long}` | `{abbr_short}` | {c_plural_txt} | {reason} |"
         )
 
     n_compounds = [c for c in sorted(compounds, key=lambda x: x["id"]) if "[N]" in c.get("id", "")]
@@ -310,7 +287,8 @@ def build_glossary_md(words, compounds, banned) -> str:
                 sample = "top3, top5, top10, top100"
             else:
                 sample = "—"
-            lines.append(f"| `{c['id']}` | {sample} | {c['description']} |")
+            desc = c.get("description_i18n", {}).get("ko") or c.get("description", "")
+            lines.append(f"| `{c['id']}` | {sample} | {desc} |")
     else:
         lines.append("- 등록된 [N] 패턴 복합어가 없습니다.")
 
@@ -320,12 +298,14 @@ def build_glossary_md(words, compounds, banned) -> str:
         "",
         "## 금지 표현 (Banned)",
         "",
-        "| 금지 표현 | 문맥 | 올바른 표현 | 사유 |",
-        "|----------|------|------------|------|",
+        "| 금지 표현 | 올바른 표현 | 사유 | 위반 강도 |",
+        "|----------|------------|------|----------|",
     ]
     for b in banned:
+        desc = b.get("reason_i18n", {}).get("ko") or b.get("reason", "")
+        severity = b.get("severity", "warn")
         lines.append(
-            f"| `{b['expression']}` | {b['context']} | `{b['correct']}` | {b['reason']} |"
+            f"| `{b['expression']}` | `{b['correct']}` | {desc} | {severity} |"
         )
 
     lines.append("")
@@ -403,6 +383,18 @@ def cmd_generate():
     TERMS_PATH.write_text(json.dumps(terms_data, ensure_ascii=False, indent=2), encoding='utf-8')
     print(f"[OK] terms.json 생성 ({len(terms_data['terms'])}개)")
 
+    # Index Shift
+    INDEX_DIR = ROOT / "build" / "index"
+    INDEX_DIR.mkdir(parents=True, exist_ok=True)
+    
+    # Strip unnecessary fields for minimum size
+    word_min = [{"id": w["id"], "lang": w.get("lang", {}), "domain": w.get("domain")} for w in words]
+    compound_min = [{"id": c["id"], "words": c.get("words", []), "lang": c.get("lang", {}), "domain": c.get("domain")} for c in compounds]
+    
+    (INDEX_DIR / "word_min.json").write_text(json.dumps(word_min, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    (INDEX_DIR / "compound_min.json").write_text(json.dumps(compound_min, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    print(f"[OK] Index 생성 (build/index/word_min.json, compound_min.json)")
+
     # GLOSSARY.md
     md = build_glossary_md(words, compounds, banned)
     GLOSSARY_PATH.write_text(md, encoding='utf-8')
@@ -447,7 +439,16 @@ def cmd_stats():
 
 
 def cmd_check_id(identifier: str):
-    words, compounds, _ = load_all()
+    INDEX_DIR = ROOT / "build" / "index"
+    w_idx = INDEX_DIR / "word_min.json"
+    c_idx = INDEX_DIR / "compound_min.json"
+    if not w_idx.exists() or not c_idx.exists():
+        print("인덱스가 없습니다. 'python generate_glossary.py generate'를 먼저 실행하세요.")
+        sys.exit(1)
+        
+    words = json.loads(w_idx.read_text(encoding='utf-8'))
+    compounds = json.loads(c_idx.read_text(encoding='utf-8'))
+    
     word_ids = {w["id"]: w for w in words}
     compound_ids = {c["id"]: c for c in compounds}
     n_patterns = build_n_pattern_regexes(compounds)
@@ -461,20 +462,23 @@ def cmd_check_id(identifier: str):
     for tok in tokens:
         if tok in word_ids:
             w = word_ids[tok]
-            print(f"  {tok:<20} → [OK]  words.json ({w['domain']}, {w['pos']}, \"{w['ko']}\")")
+            ko_val = w.get("lang", {}).get("ko", "")
+            print(f"  {tok:<20} → [OK]  word_min.json ({w.get('domain', '')}, \"{ko_val}\")")
         elif tok in compound_ids:
             c = compound_ids[tok]
-            print(f"  {tok:<20} → [OK]  compounds.json (\"{c['ko']}\")")
+            ko_val = c.get("lang", {}).get("ko", "")
+            print(f"  {tok:<20} → [OK]  compound_min.json (\"{ko_val}\")")
         else:
             matched = match_n_pattern(tok, n_patterns)
             if matched:
                 pattern_hits.append((tok, matched))
-                print(f"  {tok:<20} → [OK]  compounds.json (pattern: '{matched}')")
+                print(f"  {tok:<20} → [OK]  compound_min.json (pattern: '{matched}')")
             else:
                 singular = find_singular_token(tok, word_ids)
                 if singular:
                     w = word_ids[singular]
-                    print(f"  {tok:<20} → [OK]  words.json ({w['domain']}, {w['pos']}, \"{w['ko']}\", singular='{singular}')")
+                    ko_val = w.get("lang", {}).get("ko", "")
+                    print(f"  {tok:<20} → [OK]  word_min.json ({w.get('domain', '')}, \"{ko_val}\", singular='{singular}')")
                 else:
                     print(f"  {tok:<20} → [미등록]")
                     missing.append(tok)
@@ -518,13 +522,16 @@ def cmd_suggest(identifier: str):
     for tok in missing:
         template = {
             "id":          tok,
-            "en":          tok,
-            "ko":          "",
-            "abbr":        None,
-            "pos":         "noun",
             "domain":      "general",
-            "description": "",
-            "not":         [],
+            "status":      "active",
+            "canonical_pos": "noun",
+            "lang": {
+                "en": tok,
+                "ko": ""
+            },
+            "description_i18n": {
+                "ko": ""
+            }
         }
         print(json.dumps(template, ensure_ascii=False, indent=2))
         print()

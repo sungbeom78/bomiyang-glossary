@@ -1,55 +1,87 @@
 {
   "$schema": "schema/banned.schema.json",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "BOM_TS 금지 표현 사전 — 혼동 방지를 위해 사용 금지된 식별자",
   "banned": [
     {
       "expression": "MT5_FUT",
-      "context": "마켓 식별자로 사용 시",
       "correct": "FX_FUT",
-      "reason": "MT5는 플랫폼(tool)이지 시장(market)이 아님"
+      "reason": "MT5는 플랫폼(tool)이지 시장(market)이 아님 (마켓 식별자로 사용 시)",
+      "reason_i18n": {
+        "ko": "MT5는 플랫폼(tool)이지 시장(market)이 아님 (마켓 식별자로 사용 시)",
+        "en": "MT5 is a platform (tool), not a market (when used as a market identifier)"
+      },
+      "severity": "warn"
     },
     {
       "expression": "mt5Futures",
-      "context": "외환선물 변수명으로 사용 시",
       "correct": "fxFutures",
-      "reason": "MT5는 접근 툴이며 마켓명이 아님"
+      "reason": "MT5는 접근 툴이며 마켓명이 아님 (외환선물 변수명으로 사용 시)",
+      "reason_i18n": {
+        "ko": "MT5는 접근 툴이며 마켓명이 아님 (외환선물 변수명으로 사용 시)",
+        "en": "MT5 is an access tool, not a market name (when used as an FX futures variable name)"
+      },
+      "severity": "warn"
     },
     {
       "expression": "KIS",
-      "context": "한국주식 마켓 식별자 의미로 사용 시",
       "correct": "KR_STOCK",
-      "reason": "KIS는 브로커명. 마켓 식별자와 혼용 금지"
+      "reason": "KIS는 브로커명. 마켓 식별자와 혼용 금지 (한국주식 마켓 식별자 의미로 사용 시)",
+      "reason_i18n": {
+        "ko": "KIS는 브로커명. 마켓 식별자와 혼용 금지 (한국주식 마켓 식별자 의미로 사용 시)",
+        "en": "KIS is a broker name. Do not mix with market identifiers (when used as a KR stock market identifier)"
+      },
+      "severity": "warn"
     },
     {
       "expression": "MT5",
-      "context": "외환선물 마켓 의미로 사용 시",
       "correct": "FX_FUT 또는 fxFutures",
-      "reason": "MT5는 MetaTrader5 플랫폼명"
+      "reason": "MT5는 MetaTrader5 플랫폼명 (외환선물 마켓 의미로 사용 시)",
+      "reason_i18n": {
+        "ko": "MT5는 MetaTrader5 플랫폼명 (외환선물 마켓 의미로 사용 시)",
+        "en": "MT5 is the MetaTrader5 platform name (when used to mean FX futures market)"
+      },
+      "severity": "warn"
     },
     {
       "expression": "VOL",
-      "context": "변동성(volatility) 의미로 단독 사용 시",
       "correct": "VOLS (volatilityScore) 또는 context 명시",
-      "reason": "VOL은 거래량(volume)과 혼동 가능"
+      "reason": "VOL은 거래량(volume)과 혼동 가능 (변동성(volatility) 의미로 단독 사용 시)",
+      "reason_i18n": {
+        "ko": "VOL은 거래량(volume)과 혼동 가능 (변동성(volatility) 의미로 단독 사용 시)",
+        "en": "VOL can be confused with volume (when used alone to mean volatility)"
+      },
+      "severity": "warn"
     },
     {
       "expression": "TS",
-      "context": "trailingStop 또는 trackingStart 단독 사용 시",
       "correct": "문맥에 따라 trailingStop / TRK_ST 구분",
-      "reason": "TS가 두 개념에 모두 사용되어 혼동 발생"
+      "reason": "TS가 두 개념에 모두 사용되어 혼동 발생 (trailingStop 또는 trackingStart 단독 사용 시)",
+      "reason_i18n": {
+        "ko": "TS가 두 개념에 모두 사용되어 혼동 발생 (trailingStop 또는 trackingStart 단독 사용 시)",
+        "en": "TS is used for both concepts causing confusion (when used alone for trailingStop or trackingStart)"
+      },
+      "severity": "warn"
     },
     {
       "expression": "WR",
-      "context": "weeklyReport 또는 winRate 단독 사용 시",
       "correct": "문맥에 따라 weeklyReport / W_RPT 또는 winRate 구분",
-      "reason": "WR이 두 개념에 모두 사용되어 혼동 발생"
+      "reason": "WR이 두 개념에 모두 사용되어 혼동 발생 (weeklyReport 또는 winRate 단독 사용 시)",
+      "reason_i18n": {
+        "ko": "WR이 두 개념에 모두 사용되어 혼동 발생 (weeklyReport 또는 winRate 단독 사용 시)",
+        "en": "WR is used for both concepts causing confusion (when used alone for weeklyReport or winRate)"
+      },
+      "severity": "warn"
     },
     {
       "expression": "ON",
-      "context": "enabled/online/overnight 혼용 시",
       "correct": "각 의미에 맞는 전체 이름 사용",
-      "reason": "ON이 세 가지 개념에 사용되어 혼동 발생"
+      "reason": "ON이 세 가지 개념에 사용되어 혼동 발생 (enabled/online/overnight 혼용 시)",
+      "reason_i18n": {
+        "ko": "ON이 세 가지 개념에 사용되어 혼동 발생 (enabled/online/overnight 혼용 시)",
+        "en": "ON is used for three concepts causing confusion (when enabled, online, and overnight are mixed)"
+      },
+      "severity": "warn"
     }
   ]
 }

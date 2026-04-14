@@ -2,7 +2,7 @@
 
 > 자동 생성 파일. 수동 편집 금지.
 > 원본: `words.json` + `compounds.json` + `banned.json`
-> 생성: 2026-04-11 14:05
+> 생성: 2026-04-14 13:05
 
 ## 통계
 - 단어: 235개
@@ -19,7 +19,7 @@
 |------|------|------|------|--------|------|
 | `account` | 계좌 | — | noun | auto | 투자 계좌 정보 |
 | `active` | 활성 | — | adj | — | 현재 진행 중이거나 활성화된 상태 |
-| `balance` | 잔고 | — | noun | - | 계좌의 현재 자산 잔고 |
+| `balance` | 잔고 | — | noun | auto | 계좌의 현재 자산 잔고 |
 | `bar` | 봉 | BAR | noun | auto | OHLCV 캔들(봉) 데이터. M1 기준. |
 | `bounce` | 반등 | — | noun | auto | 하락 후 일시적 상승 |
 | `breakout` | 돌파 | BRK | noun | auto | 직전 N봉 고가를 현재가가 상향 돌파하는 진입 패턴 |
@@ -48,7 +48,7 @@
 | `loss` | 손실 | — | noun | auto | 거래에서 발생한 손실 |
 | `margin` | 증거금 | — | noun | auto | 포지션 유지를 위한 담보금 |
 | `mock` | 모의 | — | adj | — | 실제 자금 없이 시뮬레이션하는 |
-| `momentum` | 모멘텀 | — | noun | - | 가격 추세의 강도 |
+| `momentum` | 모멘텀 | — | noun | auto | 가격 추세의 강도 |
 | `order` | 주문 | ORD | noun | auto | 브로커에 전송된 실제 주문 객체 |
 | `orderbook` | 호가 | OB | noun | auto | 매수·매도 호가창 스냅샷 |
 | `overnight` | 오버나이트 | OVNT | noun | auto | 당일 청산하지 않고 다음날까지 보유하는 거래 |
@@ -60,7 +60,7 @@
 | `pullback` | 눌림 | PB | noun | auto | 상승 추세 중 일시적으로 되돌리는 구간에서 진입하는 패턴 |
 | `realized` | 실현 | — | adj | — | 청산 완료되어 확정된 |
 | `reentry` | 재진입 | — | noun | auto | 거래에서 재진입할 수 있는지 여부를 결정하는 설정. |
-| `risk` | 리스크 | — | noun | - | 손실 가능성 또는 위험도 |
+| `risk` | 리스크 | — | noun | auto | 손실 가능성 또는 위험도 |
 | `sell` | 매도 | SELL | noun | auto | 매도 주문 |
 | `short` | 숏 | SHORT | noun | auto | 매도 포지션 방향 (가격 하락 기대) |
 | `signal` | 시그널 | SIG | noun | auto | 진입 또는 청산 판단 결과. signals 모듈만 생성 가능. |
@@ -75,7 +75,7 @@
 | `trailing` | 추적 | — | adj | — | 수익에 따라 이동하는 |
 | `universe` | 유니버스 | — | noun | auto | 거래 대상이 되는 종목 또는 자산의 집합입니다. |
 | `unrealized` | 미실현 | — | adj | — | 아직 청산되지 않은 |
-| `volatility` | 변동성 | — | noun | - | 가격 변동의 폭 |
+| `volatility` | 변동성 | — | noun | auto | 가격 변동의 폭 |
 | `vwap` | 거래량 가중 평균가 | VWAP | noun | auto | Volume Weighted Average Price. 시가총액 가중 평균 체결가. |
 
 ### market
@@ -107,7 +107,7 @@
 | `score` | 점수 | — | noun | auto | 특정 지표의 수치화 결과 |
 | `sector` | 섹터 | — | noun | auto | 산업 분류 업종 |
 | `stock` | 주식 | — | noun | auto | 주식 종목 |
-| `strength` | 강도 | — | noun | - | 시장 또는 종목의 상승/하락 강도 |
+| `strength` | 강도 | — | noun | auto | 시장 또는 종목의 상승/하락 강도 |
 | `symbol` | 종목 | — | noun | auto | 거래 종목 코드 |
 | `theme` | 테마 | — | noun | auto | 종목 분류 테마 (테마주) |
 | `upper` | 위 | — | adj | — | 위쪽에 위치한 |
@@ -131,8 +131,8 @@
 | `command` | 명령어 | — | noun | auto | 시스템 제어를 위한 명령어 설정 |
 | `complete` | 완료 | — | noun | auto | 작업 또는 프로세스가 완료되었음을 나타내는 상태 |
 | `completed` | 완료됨 | — | noun | auto | 주문, 작업 또는 프로세스가 완료되었음을 나타내는 상태 |
-| `confidence` | 신뢰도 | — | noun | - | 신호 또는 예측의 신뢰 수준 |
-| `config` | 설정 | — | noun | - | 시스템 설정값 |
+| `confidence` | 신뢰도 | — | noun | auto | 신호 또는 예측의 신뢰 수준 |
+| `config` | 설정 | — | noun | auto | 시스템 설정값 |
 | `confirmed` | 확인됨 | — | noun | auto | 어떤 이벤트나 상태가 최종적으로 확인되었음을 나타내는 플래그 |
 | `connected` | 연결됨 | — | noun | auto | 서비스 또는 시스템과의 연결 상태 |
 | `core` | 코어 | — | noun | auto | 공통 흐름의 중심 역할을 담당하는 핵심 구성요소 |
@@ -152,7 +152,7 @@
 | `halted` | 중단됨 | — | noun | auto | 거래 또는 시스템이 일시적으로 중단된 상태 |
 | `handlers` | 핸들러 | — | noun | auto | 특정 이벤트를 처리하는 객체 또는 함수들의 집합 |
 | `health` | 상태 | — | noun | auto | 시스템 컴포넌트의 정상 작동 여부 (헬스 체크) |
-| `info` | 정보 | — | noun | - | 메타 정보 |
+| `info` | 정보 | — | noun | auto | 메타 정보 |
 | `intent` | 의도 | — | noun | auto | 실행 전 주문 의사결정 객체 |
 | `interval` | 간격 | — | noun | auto | 데이터 수집, 분석 또는 작업 실행 간격 |
 | `kill` | 킬 | — | verb | — | 강제 종료 또는 비활성화 |
@@ -198,7 +198,7 @@
 | `snapshot` | 스냅샷 | — | noun | auto | 특정 시점의 상태 저장본 |
 | `start` | 시작 | — | noun | auto | 시작 시각 또는 동작 |
 | `starting` | 시작 중 | START | noun | auto | 서비스 시작 중 (초기화 진행 중) |
-| `status` | 상태 | — | noun | - | 현재 처리 상태 |
+| `status` | 상태 | — | noun | auto | 현재 처리 상태 |
 | `stopped` | 중지 | STOP | noun | auto | 서비스 중지 상태 |
 | `strategy` | 전략 | — | noun | auto | 매매 전략 설정 |
 | `submitted` | 접수 | SUBM | noun | auto | 브로커에 주문 전송 완료 |
@@ -225,7 +225,7 @@
 |------|------|------|------|--------|------|
 | `adapter` | 어댑터 | — | noun | auto | 외부 API 연결 어댑터 |
 | `app` | 앱 | — | noun | auto | 애플리케이션 키 |
-| `auth` | 인증 | AUTH | noun | - | 브로커 API 인증 토큰 발급·갱신 (KIS OAuth, Upbit JWT 등) |
+| `auth` | 인증 | AUTH | noun | auto | 브로커 API 인증 토큰 발급·갱신 (KIS OAuth, Upbit JWT 등) |
 | `bot` | 봇 | — | noun | auto | 자동화 프로그램 |
 | `bridge` | 브릿지 | — | noun | auto | 두 시스템을 연결하는 컴포넌트 |
 | `cfg` | 설정 | — | noun | auto | 설정 키 접두사 |
@@ -254,7 +254,7 @@
 | `redis` | Redis | REDIS | noun | auto | 실시간 캐시 + 이벤트 스트림. DB가 원본이며 Redis는 파생값. |
 | `root` | 루트 | — | noun | auto | 최상위 경로 |
 | `secret` | 시크릿 | — | noun | auto | 비밀 인증 키 |
-| `storage` | 저장소 | — | noun | - | 데이터 저장 추상화 레이어 |
+| `storage` | 저장소 | — | noun | auto | 데이터 저장 추상화 레이어 |
 | `table` | 테이블 | — | noun | auto | DB 테이블 또는 데이터 구조 |
 | `telegram` | 텔레그램 | — | proper | — | 텔레그램 메시징 서비스 |
 | `upbit` | 업비트 | UPBIT | noun | auto | 암호화폐 거래소. crypto 마켓의 브로커. |
@@ -447,13 +447,13 @@
 
 ## 금지 표현 (Banned)
 
-| 금지 표현 | 문맥 | 올바른 표현 | 사유 |
-|----------|------|------------|------|
-| `MT5_FUT` | 마켓 식별자로 사용 시 | `FX_FUT` | MT5는 플랫폼(tool)이지 시장(market)이 아님 |
-| `mt5Futures` | 외환선물 변수명으로 사용 시 | `fxFutures` | MT5는 접근 툴이며 마켓명이 아님 |
-| `KIS` | 한국주식 마켓 식별자 의미로 사용 시 | `KR_STOCK` | KIS는 브로커명. 마켓 식별자와 혼용 금지 |
-| `MT5` | 외환선물 마켓 의미로 사용 시 | `FX_FUT 또는 fxFutures` | MT5는 MetaTrader5 플랫폼명 |
-| `VOL` | 변동성(volatility) 의미로 단독 사용 시 | `VOLS (volatilityScore) 또는 context 명시` | VOL은 거래량(volume)과 혼동 가능 |
-| `TS` | trailingStop 또는 trackingStart 단독 사용 시 | `문맥에 따라 trailingStop / TRK_ST 구분` | TS가 두 개념에 모두 사용되어 혼동 발생 |
-| `WR` | weeklyReport 또는 winRate 단독 사용 시 | `문맥에 따라 weeklyReport / W_RPT 또는 winRate 구분` | WR이 두 개념에 모두 사용되어 혼동 발생 |
-| `ON` | enabled/online/overnight 혼용 시 | `각 의미에 맞는 전체 이름 사용` | ON이 세 가지 개념에 사용되어 혼동 발생 |
+| 금지 표현 | 올바른 표현 | 사유 | 위반 강도 |
+|----------|------------|------|----------|
+| `MT5_FUT` | `FX_FUT` | MT5는 플랫폼(tool)이지 시장(market)이 아님 (마켓 식별자로 사용 시) | warn |
+| `mt5Futures` | `fxFutures` | MT5는 접근 툴이며 마켓명이 아님 (외환선물 변수명으로 사용 시) | warn |
+| `KIS` | `KR_STOCK` | KIS는 브로커명. 마켓 식별자와 혼용 금지 (한국주식 마켓 식별자 의미로 사용 시) | warn |
+| `MT5` | `FX_FUT 또는 fxFutures` | MT5는 MetaTrader5 플랫폼명 (외환선물 마켓 의미로 사용 시) | warn |
+| `VOL` | `VOLS (volatilityScore) 또는 context 명시` | VOL은 거래량(volume)과 혼동 가능 (변동성(volatility) 의미로 단독 사용 시) | warn |
+| `TS` | `문맥에 따라 trailingStop / TRK_ST 구분` | TS가 두 개념에 모두 사용되어 혼동 발생 (trailingStop 또는 trackingStart 단독 사용 시) | warn |
+| `WR` | `문맥에 따라 weeklyReport / W_RPT 또는 winRate 구분` | WR이 두 개념에 모두 사용되어 혼동 발생 (weeklyReport 또는 winRate 단독 사용 시) | warn |
+| `ON` | `각 의미에 맞는 전체 이름 사용` | ON이 세 가지 개념에 사용되어 혼동 발생 (enabled/online/overnight 혼용 시) | warn |

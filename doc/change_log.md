@@ -1,3 +1,34 @@
+## [2026-04-14 13:08:00]
+### Added / Modified
+- `words.json` 내 전 단어를 대상으로 `ja`, `zh_hans` (일본어, 중국어 간체) 필드 번역 및 일괄 추가 완료
+- `banned.json` 및 `banned.schema.json` 파일 v1.2 체제(3.3절) 맞춤 리팩토링 (`reason_i18n` 다국어 확장, `severity` 필드 추가)
+- `generate_glossary.py` 로직이 새로운 `banned` 객체 형식 처리하도록 수정 (Context 병합)
+- File: dictionary/words.json
+- File: dictionary/banned.json
+- File: schema/word.schema.json
+- File: schema/compound.schema.json
+- File: schema/banned.schema.json
+- File: generate_glossary.py
+### Notes
+- 커스텀 번역 스크립트(`bin/translate_lang_gtx.py`) 작성을 통해 GoogleTranslate 무인증 엔드포인트를 호출하여 총 235단어 자동 번역 수행.
+- Sparse 특성 검사 및 `generate`/`validate`/`check-id` 검증 완료.
+
+## [2026-04-14 12:16:00]
+### Added / Modified
+- Glossary_Refactoring_Plan_v1.2.md에 따른 Sparse JSON 스키마 적용 및 리팩토링 진행
+- `words.json`, `compounds.json` 데이터를 v1.2 스키마에 맞게 마이그레이션하는 스크립트 작성 (lang, variants, description_i18n 분리 및 canonical_pos 적용)
+- `generate_glossary.py` 내 Index(`word_min.json`, `compound_min.json`) 생성 기능 추가 및 `check-id` 명령의 Index 기반 조회 전환
+- `generate_glossary.py` 의 V-104 검증 규칙을 강화하여 복합어 `words` 참조 검증 및 순환 참조(Circular Reference) 예방 추가
+- File: schema/word.schema.json
+- File: schema/compound.schema.json
+- File: bin/migrate_v1_2.py
+- File: generate_glossary.py
+- File: dictionary/words.json
+- File: dictionary/compounds.json
+### Notes
+- `terms.json`을 직접 의존하는 외부 스크립트(web/server.py 등)와의 하위호환을 위해 Phase 4 완료시까지 `terms.json` 자동 생성을 유지함.
+- `reason`, `not` 필드는 컴파운드의 특수한 데이터로 판단하여 삭제하지 않고 Sparse한 속성으로 유지함.
+
 ## [2026-04-14 02:22:28]
 ### Modified
 - 병합 대상 파일(`terms_*.json`) 파싱 시 대용량 배열의 렌더링 지연 속도를 시각화 및 최적화

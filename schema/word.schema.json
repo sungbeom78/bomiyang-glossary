@@ -2,17 +2,138 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Word",
   "type": "object",
-  "required": ["id","en","ko","pos","domain","description"],
+  "required": [
+    "id",
+    "domain",
+    "status",
+    "canonical_pos",
+    "lang"
+  ],
   "properties": {
-    "id":          {"type":"string","pattern":"^[a-z][a-z0-9]*$"},
-    "en":          {"type":"string"},
-    "ko":          {"type":"string"},
-    "abbr":        {"type":["string","null"]},
-    "pos":         {"type":"string","enum":["noun","verb","adj","adv","prefix","suffix","proper"]},
-    "domain":      {"type":"string","enum":["trading","market","system","infra","ui","general","proper"]},
-    "plural":      {"type":["string","null"]},
-    "description": {"type":"string"},
-    "not":         {"type":"array","items":{"type":"string"}}
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*$"
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "trading",
+        "market",
+        "system",
+        "infra",
+        "ui",
+        "general",
+        "proper"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "deprecated"
+      ]
+    },
+    "canonical_pos": {
+      "type": "string",
+      "enum": [
+        "noun",
+        "verb",
+        "adj",
+        "adv",
+        "prefix",
+        "suffix",
+        "proper",
+        "mixed"
+      ]
+    },
+    "lang": {
+      "type": "object",
+      "properties": {
+        "en": {
+          "type": "string"
+        },
+        "ko": {
+          "type": "string"
+        },
+        "ja": {
+          "type": "string"
+        },
+        "zh_hans": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "en"
+      ]
+    },
+    "variants": {
+      "type": "object",
+      "properties": {
+        "plural": {
+          "type": "string"
+        },
+        "verb": {
+          "type": "string"
+        },
+        "past": {
+          "type": "string"
+        },
+        "past_participle": {
+          "type": "string"
+        },
+        "present_participle": {
+          "type": "string"
+        },
+        "agent": {
+          "type": "string"
+        },
+        "abbreviation": {
+          "type": "string"
+        },
+        "adjective": {
+          "type": "string"
+        },
+        "adverb": {
+          "type": "string"
+        },
+        "alias": {
+          "type": "string"
+        },
+        "misspelling": {
+          "type": "string"
+        },
+        "singular": {
+          "type": "string"
+        },
+        "noun_form": {
+          "type": "string"
+        },
+        "verb_form": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "description_i18n": {
+      "type": "object",
+      "properties": {
+        "ko": {
+          "type": "string"
+        },
+        "en": {
+          "type": "string"
+        }
+      }
+    },
+    "not": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reason": {
+      "type": "string"
+    }
   },
   "additionalProperties": false
 }

@@ -15,3 +15,11 @@
 - Entry Point: `main()`
 - Related Modules: `batch_terms`
 - Config: `.env`
+
+## migrate_v1_2.py
+- Path: bin/migrate_v1_2.py
+- Classes: N/A
+- Responsibility: 기존 JSON 데이터를 v1.2 스키마 구격(Sparse, Enum 규칙 포함)에 맞춰 자동 마이그레이션 (`--dry-run` 모드 지원)
+- Entry Point: `main()`
+- Related Modules: N/A
+- Config: N/A
