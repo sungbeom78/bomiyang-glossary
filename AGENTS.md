@@ -25,6 +25,15 @@ This AGENTS.md scopes guidance to `glossary`. Parent AGENTS guidance still appli
 
 <!-- OMX:AGENTS-INIT:MANUAL:START -->
 ## Local Notes
-- Add subtree-specific constraints, ownership notes, and test commands here.
-- Keep notes scoped to this directory and its children.
+- CLI의 auto 모드는 승인 없는 즉시 반영 모드로 취급한다.
+- 검토 후 반영이 필요한 경우에는 웹 UI의 auto 또는 safety 모드를 사용한다.
+- Auto 모드 단어 등록 정책 (`batch_items.py --register-mode auto`):
+  - 일반 영어 단어를 원칙적으로 등록 허용한다.
+  - 단, 아래 항목은 노이즈로 간주하여 자동 제외한다:
+    - 길이 1~2의 토큰
+    - 숫자 포함 토큰
+    - 의미 없는 축약 조각
+    - 식별자 분해 과정에서 생성된 비의미 토큰
+  - 일반적이더라도 실제 시스템에서 반복 사용되는 단어는 blacklist로 제외하지 않는다.
+- **[필수] 작업 완료 후에는 항상 관련 문서(README.md, module_index.md, glossary_rule.md, AGENTS.md)를 최신화한다.**
 <!-- OMX:AGENTS-INIT:MANUAL:END -->
