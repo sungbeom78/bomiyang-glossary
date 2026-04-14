@@ -149,6 +149,38 @@ def validate(words, compounds, banned, silent=False) -> tuple:
         if w["id"] in abbr_to_root and abbr_to_root[w["id"]] != w["id"]:
             F("V-202", f"abbreviation이 word로 독립 존재: '{w['id']}' (root: {abbr_to_root[w['id']]})")
 
+    word_lookup = {w["id"]: w for w in words}
+    for w in words:
+        wid = w["id"]
+        pos = w.get("canonical_pos") or w.get("pos", "noun")
+        plurals = w.get("variants", {}).get("plural") or []
+        if isinstance(plurals, str): plurals = [plurals]
+        
+        # V-303
+        for p in plurals:
+            if p == wid:
+                F("V-303", f"singular/plural self-conflict 금지: '{wid}'")
+            if p in word_lookup and p != wid:
+                F("V-301", f"plural root 금지: '{p}'가 독립 root로 존재함 (root: '{wid}')")
+                
+        # V-351
+        if pos == "noun" and not plurals:
+            W("V-351", f"noun인데 plural 미정의 (확인 필요): '{wid}'")
+            
+        # V-352
+        ko_val = w.get("lang", {}).get("ko") or w.get("ko", "")
+        if ko_val.endswith("들"):
+            W("V-352", f"ko 표현이 집합 표현으로만 남아 있음: '{wid}' -> '{ko_val}'")
+            
+        # V-301 manual check for common plural roots remaining
+        if pos == "noun" and wid.endswith("s") and wid not in ["status", "kis", "redis", "cls", "us", "futures", "options", "goods", "series", "news", "basis"]:
+            singular = None
+            if wid.endswith("ies") and len(wid) > 3: singular = wid[:-3] + "y"
+            elif wid.endswith("es") and len(wid) > 2: singular = wid[:-2]
+            elif wid.endswith("s") and len(wid) > 1: singular = wid[:-1]
+            if singular and singular in word_lookup:
+                F("V-301", f"plural root 금지: '{wid}' (단수형 '{singular}'가 존재함)")
+
     if not silent:
         print(f"\n{'='*52}")
         print(f"  validate  —  {datetime.now().strftime('%H:%M:%S')}")
@@ -211,6 +243,21 @@ def build_terms_json(words, compounds) -> dict:
                 "type":        "word",
                 "source":      "word",
                 "variant_type": "abbreviation",
+                "root":        w["id"],
+                "description": desc,
+            })
+
+        plurals = w.get("variants", {}).get("plural") or []
+        if isinstance(plurals, str): plurals = [plurals]
+        for p in plurals:
+            terms.append({
+                "id":          p,
+                "ko":          ko_val,
+                "en":          en_val.title() if en_val else "",
+                "categories":  categories,
+                "type":        "word",
+                "source":      "word",
+                "variant_type": "plural",
                 "root":        w["id"],
                 "description": desc,
             })
@@ -458,6 +505,11 @@ def cmd_generate():
         if isinstance(abbrs, str): abbrs = [abbrs]
         for a in abbrs:
             variant_map[a] = {"root": w["id"], "type": "abbreviation"}
+
+        plurals = w.get("variants", {}).get("plural") or []
+        if isinstance(plurals, str): plurals = [plurals]
+        for p in plurals:
+            variant_map[p] = {"root": w["id"], "type": "plural"}
             
     for c in compounds:
         abbr = c.get("abbr", {}).get("short")
@@ -548,7 +600,12 @@ def cmd_check_id(identifier: str):
             root_id = v_info["root"]
             normalized_list.append(root_id)
             variant_list.append(v_info["type"])
-            print(f"  {tok:<20} → [WARN] abbreviation 사용 (root: {root_id})")
+            if v_info["type"] == "abbreviation":
+                print(f"  {tok:<20} → [WARN] abbreviation 사용 (root: {root_id})")
+            elif v_info["type"] == "plural":
+                print(f"  {tok:<20} → [INFO] plural variant 정규화 (root: {root_id})")
+            else:
+                print(f"  {tok:<20} → [INFO] variant 사용: {v_info['type']} (root: {root_id})")
         elif tok in word_ids:
             w = word_ids[tok]
             ko_val = w.get("lang", {}).get("ko", "")
@@ -594,7 +651,8 @@ def cmd_check_id(identifier: str):
         print(json.dumps(result_payload, indent=2, ensure_ascii=False))
 
         # 복합어 등록 필요 여부
-        if identifier in compound_ids:
+        normalized_identifier = "_".join(normalized_list)
+        if normalized_identifier in compound_ids or identifier in compound_ids:
             print(f"→ 복합어로 이미 등록됨.")
         elif match_n_pattern(identifier, n_patterns):
             print(f"→ [N] 패턴 복합어로 매칭됨.")

@@ -2,7 +2,7 @@
 
 > 자동 생성 파일. 수동 편집 금지.
 > 원본: `words.json` + `compounds.json` + `banned.json`
-> 생성: 2026-04-14 14:43
+> 생성: 2026-04-14 15:20
 
 ## 통계
 - 단어: 234개
@@ -83,7 +83,7 @@
 | 단어 | 한글 | 약어 | 품사 | 복수형 | 설명 |
 |------|------|------|------|--------|------|
 | `candle` | 캔들 | — | noun | auto | 캔들스틱 차트 봉 |
-| `categories` | 분류 | — | noun | auto | 종목 또는 테마의 분류 정보 |
+| `category` | 분류 | — | noun | ['categories'] | 종목 또는 테마의 분류 정보 |
 | `classification` | 분류 | — | noun | auto | 종목 또는 시장 상황에 대한 분류 결과 |
 | `close` | 종가 | — | noun | auto | 봉의 마지막 가격 |
 | `code` | 코드 | CODE | noun | auto | 종목 코드 또는 기타 식별 코드 |
@@ -127,7 +127,7 @@
 | `cluster` | 클러스터 | — | noun | auto | 데이터 클러스터링 결과 또는 구조 |
 | `clustering` | 클러스터링 | — | noun | auto | 데이터를 클러스터로 그룹화하는 설정 |
 | `collector` | 수집기 | — | noun | auto | 데이터를 수집하는 컴포넌트 |
-| `colors` | 색상 | — | noun | auto | UI 또는 보고서에 사용되는 색상 설정 |
+| `color` | 색상 | — | noun | ['colors'] | UI 또는 보고서에 사용되는 색상 설정 |
 | `command` | 명령어 | — | noun | auto | 시스템 제어를 위한 명령어 설정 |
 | `complete` | 완료 | — | noun | auto | 작업 또는 프로세스가 완료되었음을 나타내는 상태 |
 | `completed` | 완료됨 | — | noun | auto | 주문, 작업 또는 프로세스가 완료되었음을 나타내는 상태 |
@@ -150,7 +150,7 @@
 | `generator` | 생성기 | — | noun | auto | 결과물을 생성하는 컴포넌트 |
 | `guard` | 가드 | — | noun | auto | 프로세스 보호 컴포넌트 |
 | `halted` | 중단됨 | — | noun | auto | 거래 또는 시스템이 일시적으로 중단된 상태 |
-| `handlers` | 핸들러 | — | noun | auto | 특정 이벤트를 처리하는 객체 또는 함수들의 집합 |
+| `handler` | 핸들러 | — | noun | ['handlers'] | 특정 이벤트를 처리하는 객체 또는 함수들의 집합 |
 | `health` | 상태 | — | noun | auto | 시스템 컴포넌트의 정상 작동 여부 (헬스 체크) |
 | `info` | 정보 | — | noun | auto | 메타 정보 |
 | `intent` | 의도 | — | noun | auto | 실행 전 주문 의사결정 객체 |
@@ -192,8 +192,8 @@
 | `selector` | 셀렉터 | — | noun | auto | 종목 선정 컴포넌트 |
 | `server` | 서버 | — | noun | auto | 서버 프로세스 |
 | `service` | 서비스 | — | noun | auto | 독립적으로 실행되는 프로세스 |
-| `sessions` | 세션들 | — | noun | auto | 시장 세션 설정 모음 |
-| `settings` | 설정들 | — | noun | auto | 시스템 설정값 모음 |
+| `session` | 세션 | — | noun | ['sessions'] | 시장 세션 설정 모음 |
+| `setting` | 설정 | — | noun | ['settings'] | 시스템 설정값 모음 |
 | `side` | 방향 | — | noun | auto | 매수/매도 방향 |
 | `snapshot` | 스냅샷 | — | noun | auto | 특정 시점의 상태 저장본 |
 | `start` | 시작 | — | noun | auto | 시작 시각 또는 동작 |
@@ -264,7 +264,7 @@
 
 | 단어 | 한글 | 약어 | 품사 | 복수형 | 설명 |
 |------|------|------|------|--------|------|
-| `candidates` | 후보들 | — | noun | auto | 선정 대상 후보 목록 |
+| `candidate` | 후보 | — | noun | ['candidates'] | 선정 대상 후보 목록 |
 | `daily` | 일간 | — | adj | — | 하루 단위 |
 | `force` | 강제 | — | verb | — | 조건과 무관하게 강제 실행 |
 | `in` | 내에서 | — | adv | — | 시간 내, 범위 내 |
@@ -288,7 +288,7 @@
 | `cfg_kr_strategy` | config + kr + strategy | KR 전략 설정 | `krStrategy` | `KR_STR` | auto | 의미 비합산 |
 | `cfg_reporting` | config + reporting | 리포트 설정 | `reporting` | `RPT_CFG` | auto | 의미 비합산 |
 | `cfg_scoring` | config + scoring | 스코어링 설정 | `scoring` | `SCR_CFG` | auto | 의미 비합산 |
-| `cfg_sessions` | config + sessions | 세션 설정 | `sessions` | `SESS` | auto | 공인 약어 |
+| `cfg_session` | config + session | 세션 설정 | `sessions` | `SESS` | ['cfg_sessions'] | 공인 약어 |
 | `cfg_system` | config + system | 시스템 설정 | `system` | `SYS` | auto | 공인 약어 |
 | `closed_trade` | closed + trade | 청산 거래 | `closedTrade` | `CT` | auto | 공인 약어 |
 | `cls_account_snapshot` | cls + account + snapshot | 계좌 스냅샷 모델 | `AccountSnapshot` | `ASNAP_C` | auto | 공인 약어, 시스템 객체 |
@@ -317,7 +317,7 @@
 | `cls_service_info` | cls + service + info | 서비스 정보 모델 | `ServiceInfo` | `SVC_I` | auto | 시스템 객체 |
 | `cls_service_status` | cls + service + status | 서비스 상태 열거형 | `ServiceStatus` | `SVC_S` | auto | 시스템 객체 |
 | `cls_service_type` | cls + service + type | 서비스 유형 열거형 | `ServiceType` | `SVC_T` | auto | 시스템 객체 |
-| `cls_settings` | cls + settings | 설정 클래스 | `Settings` | `CFG_C` | auto | 공인 약어, 시스템 객체 |
+| `cls_setting` | cls + setting | 설정 클래스 | `Settings` | `CFG_C` | ['cls_settings'] | 공인 약어, 시스템 객체 |
 | `cls_signal_direction` | cls + signal + direction | 시그널 방향 열거형 | `SignalDirection` | `DIR_C` | auto | 공인 약어, 시스템 객체 |
 | `cls_signal_event` | cls + signal + event | 시그널 이벤트 | `SignalEvent` | `SIG_EVT` | auto | 시스템 객체 |
 | `cls_symbol_ranker` | cls + symbol + ranker | 종목 랭커 | `SymbolRanker` | `SYM_RNK_C` | auto | 시스템 객체 |
@@ -363,7 +363,7 @@
 | `fx_futures` | fx + futures | 외환선물 | `fxFutures` | `FX_FUT` | auto | 혼동 방지 |
 | `kill_switch` | kill + switch | 킬스위치 | `killSwitch` | `KSW` | auto | 공인 약어 |
 | `kr_stock` | kr + stock | 한국주식 | `krStock` | `KR_STOCK` | auto | 혼동 방지 |
-| `leader_candidates` | leader + candidates | 대장주 후보 | `leaderCandidates` | `LCAND` | auto | 공인 약어 |
+| `leader_candidate` | leader + candidate | 대장주 후보 | `leaderCandidates` | `LCAND` | ['leader_candidates'] | 공인 약어 |
 | `leader_stock` | leader + stock | 대장주 | `leaderStock` | `LEAD` | auto | 공인 약어 |
 | `limit_order` | limit + order | 지정가 주문 | `limitOrder` | `LMT` | auto | 공인 약어 |
 | `live_trading` | live + trading | 실전 거래 | `liveTrading` | `` | auto | 공인 약어 |

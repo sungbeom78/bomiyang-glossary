@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "2.0.0",
   "generated": true,
-  "generated_at": "2026-04-14T14:43:57.684030",
+  "generated_at": "2026-04-14T15:20:56.512101",
   "terms": [
     {
       "id": "account",
@@ -235,14 +235,27 @@
       "description": "주문 취소됨"
     },
     {
-      "id": "candidates",
-      "ko": "후보들",
-      "en": "Candidates",
+      "id": "candidate",
+      "ko": "후보",
+      "en": "Candidate",
       "categories": [
         "general"
       ],
       "type": "word",
       "source": "word",
+      "description": "선정 대상 후보 목록"
+    },
+    {
+      "id": "candidates",
+      "ko": "후보",
+      "en": "Candidate",
+      "categories": [
+        "general"
+      ],
+      "type": "word",
+      "source": "word",
+      "variant_type": "plural",
+      "root": "candidate",
       "description": "선정 대상 후보 목록"
     },
     {
@@ -268,14 +281,27 @@
       "description": "투자 시스템의 총 자본금"
     },
     {
-      "id": "categories",
+      "id": "category",
       "ko": "분류",
-      "en": "Categories",
+      "en": "Category",
       "categories": [
         "market"
       ],
       "type": "word",
       "source": "word",
+      "description": "종목 또는 테마의 분류 정보"
+    },
+    {
+      "id": "categories",
+      "ko": "분류",
+      "en": "Category",
+      "categories": [
+        "market"
+      ],
+      "type": "word",
+      "source": "word",
+      "variant_type": "plural",
+      "root": "category",
       "description": "종목 또는 테마의 분류 정보"
     },
     {
@@ -415,14 +441,27 @@
       "description": "데이터를 수집하는 컴포넌트"
     },
     {
-      "id": "colors",
+      "id": "color",
       "ko": "색상",
-      "en": "Colors",
+      "en": "Color",
       "categories": [
         "system"
       ],
       "type": "word",
       "source": "word",
+      "description": "UI 또는 보고서에 사용되는 색상 설정"
+    },
+    {
+      "id": "colors",
+      "ko": "색상",
+      "en": "Color",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "source": "word",
+      "variant_type": "plural",
+      "root": "color",
       "description": "UI 또는 보고서에 사용되는 색상 설정"
     },
     {
@@ -1097,14 +1136,27 @@
       "description": "거래 또는 시스템이 일시적으로 중단된 상태"
     },
     {
-      "id": "handlers",
+      "id": "handler",
       "ko": "핸들러",
-      "en": "Handlers",
+      "en": "Handler",
       "categories": [
         "system"
       ],
       "type": "word",
       "source": "word",
+      "description": "특정 이벤트를 처리하는 객체 또는 함수들의 집합"
+    },
+    {
+      "id": "handlers",
+      "ko": "핸들러",
+      "en": "Handler",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "source": "word",
+      "variant_type": "plural",
+      "root": "handler",
       "description": "특정 이벤트를 처리하는 객체 또는 함수들의 집합"
     },
     {
@@ -2463,9 +2515,9 @@
       "description": "독립적으로 실행되는 프로세스"
     },
     {
-      "id": "sessions",
-      "ko": "세션들",
-      "en": "Sessions",
+      "id": "session",
+      "ko": "세션",
+      "en": "Session",
       "categories": [
         "system"
       ],
@@ -2474,14 +2526,40 @@
       "description": "시장 세션 설정 모음"
     },
     {
-      "id": "settings",
-      "ko": "설정들",
-      "en": "Settings",
+      "id": "sessions",
+      "ko": "세션",
+      "en": "Session",
       "categories": [
         "system"
       ],
       "type": "word",
       "source": "word",
+      "variant_type": "plural",
+      "root": "session",
+      "description": "시장 세션 설정 모음"
+    },
+    {
+      "id": "setting",
+      "ko": "설정",
+      "en": "Setting",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "source": "word",
+      "description": "시스템 설정값 모음"
+    },
+    {
+      "id": "settings",
+      "ko": "설정",
+      "en": "Setting",
+      "categories": [
+        "system"
+      ],
+      "type": "word",
+      "source": "word",
+      "variant_type": "plural",
+      "root": "setting",
       "description": "시스템 설정값 모음"
     },
     {
@@ -4106,7 +4184,7 @@
       "description": "섹터를 이끄는 핵심 종목. 조건식 기반 스캔으로 선정."
     },
     {
-      "id": "leader_candidates",
+      "id": "leader_candidate",
       "ko": "대장주 후보",
       "en": "Leader Candidates",
       "categories": [
@@ -4126,7 +4204,7 @@
       "type": "compound",
       "source": "compound",
       "variant_type": "abbreviation",
-      "root": "leader_candidates",
+      "root": "leader_candidate",
       "description": "대장주 선정 전 1차 필터링된 후보 종목 목록"
     },
     {
@@ -5088,7 +5166,7 @@
       "description": "계좌 상태 스냅샷 Pydantic 모델"
     },
     {
-      "id": "cls_settings",
+      "id": "cls_setting",
       "ko": "설정 클래스",
       "en": "Settings",
       "categories": [
@@ -5108,7 +5186,7 @@
       "type": "compound",
       "source": "compound",
       "variant_type": "abbreviation",
-      "root": "cls_settings",
+      "root": "cls_setting",
       "description": "settings.yaml + .env 통합 설정 싱글턴"
     },
     {
@@ -6382,7 +6460,7 @@
       "description": "settings.yaml > system 섹션"
     },
     {
-      "id": "cfg_sessions",
+      "id": "cfg_session",
       "ko": "세션 설정",
       "en": "Sessions Config",
       "categories": [
@@ -6402,7 +6480,7 @@
       "type": "compound",
       "source": "compound",
       "variant_type": "abbreviation",
-      "root": "cfg_sessions",
+      "root": "cfg_session",
       "description": "settings.yaml > sessions 섹션 (마켓별 시간)"
     },
     {

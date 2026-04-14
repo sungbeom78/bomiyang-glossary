@@ -774,10 +774,10 @@
       "reason": "공인 약어"
     },
     {
-      "id": "leader_candidates",
+      "id": "leader_candidate",
       "words": [
         "leader",
-        "candidates"
+        "candidate"
       ],
       "domain": "trading",
       "status": "active",
@@ -792,7 +792,12 @@
       "description_i18n": {
         "ko": "대장주 선정 전 1차 필터링된 후보 종목 목록"
       },
-      "reason": "공인 약어"
+      "reason": "공인 약어",
+      "variants": {
+        "plural": [
+          "leader_candidates"
+        ]
+      }
     },
     {
       "id": "market_scanner",
@@ -1671,10 +1676,10 @@
       "reason": "공인 약어, 시스템 객체"
     },
     {
-      "id": "cls_settings",
+      "id": "cls_setting",
       "words": [
         "cls",
-        "settings"
+        "setting"
       ],
       "domain": "system",
       "status": "active",
@@ -1689,7 +1694,12 @@
       "description_i18n": {
         "ko": "settings.yaml + .env 통합 설정 싱글턴"
       },
-      "reason": "공인 약어, 시스템 객체"
+      "reason": "공인 약어, 시스템 객체",
+      "variants": {
+        "plural": [
+          "cls_settings"
+        ]
+      }
     },
     {
       "id": "cls_service_type",
@@ -2871,10 +2881,10 @@
       "reason": "공인 약어"
     },
     {
-      "id": "cfg_sessions",
+      "id": "cfg_session",
       "words": [
         "config",
-        "sessions"
+        "session"
       ],
       "domain": "system",
       "status": "active",
@@ -2889,7 +2899,12 @@
       "description_i18n": {
         "ko": "settings.yaml > sessions 섹션 (마켓별 시간)"
       },
-      "reason": "공인 약어"
+      "reason": "공인 약어",
+      "variants": {
+        "plural": [
+          "cfg_sessions"
+        ]
+      }
     },
     {
       "id": "cfg_kr_strategy",

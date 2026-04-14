@@ -1,4 +1,20 @@
 ## [2026-04-14 14:44:16]
+
+## [2026-04-14 15:23:47]
+### Modified
+- Glossary_Refactoring_Plan_v1.2_extra_03.md 지침에 따라 root 단수형 정규화 및 validation 규칙 적용 완료
+- File: schema/word.schema.json
+- File: schema/compound.schema.json
+- File: dictionary/words.json
+- File: dictionary/compounds.json
+- File: generate_glossary.py
+- File: bin/scan_terms.py
+### Notes
+- 복수형이 root로 쓰이던 항목(candidates 등)을 단수형으로 치환하고 `variants.plural` 배열 구성
+- V-301 (plural root 금지), V-303 (self-conflict 금지), V-351, V-352 등의 validation 코드 반영
+- check-id 스크립트 실행 시 plural 입력을 root로 식별하고 정규화 정보 출력 지원
+- scan_terms.py에서 plural / abbreviation이 배열화된 schema 호환 처리
+
 ### Modified / Removed
 - terms.json에서 자동 생성되던 abbr_short 및 abbr_long 속성 전면 삭제 (BOM_TS 구조 개선 v0.2)
 - terms.json 내 Base(source), Variant(variant_type, root) 구조 고도화 적용

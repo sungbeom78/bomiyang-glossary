@@ -254,19 +254,24 @@
       "canonical_pos": "noun"
     },
     {
-      "id": "candidates",
+      "id": "candidate",
       "domain": "general",
       "status": "active",
       "lang": {
-        "en": "candidates",
-        "ko": "후보들",
+        "en": "candidate",
+        "ko": "후보",
         "ja": "候補者",
         "zh_hans": "候选人"
       },
       "description_i18n": {
         "ko": "선정 대상 후보 목록"
       },
-      "canonical_pos": "noun"
+      "canonical_pos": "noun",
+      "variants": {
+        "plural": [
+          "candidates"
+        ]
+      }
     },
     {
       "id": "candle",
@@ -299,11 +304,11 @@
       "canonical_pos": "noun"
     },
     {
-      "id": "categories",
+      "id": "category",
       "domain": "market",
       "status": "active",
       "lang": {
-        "en": "categories",
+        "en": "category",
         "ko": "분류",
         "ja": "カテゴリ",
         "zh_hans": "类别"
@@ -311,7 +316,12 @@
       "description_i18n": {
         "ko": "종목 또는 테마의 분류 정보"
       },
-      "canonical_pos": "noun"
+      "canonical_pos": "noun",
+      "variants": {
+        "plural": [
+          "categories"
+        ]
+      }
     },
     {
       "id": "chart",
@@ -474,11 +484,11 @@
       "canonical_pos": "noun"
     },
     {
-      "id": "colors",
+      "id": "color",
       "domain": "system",
       "status": "active",
       "lang": {
-        "en": "colors",
+        "en": "color",
         "ko": "색상",
         "ja": "色",
         "zh_hans": "颜色"
@@ -486,7 +496,12 @@
       "description_i18n": {
         "ko": "UI 또는 보고서에 사용되는 색상 설정"
       },
-      "canonical_pos": "noun"
+      "canonical_pos": "noun",
+      "variants": {
+        "plural": [
+          "colors"
+        ]
+      }
     },
     {
       "id": "command",
@@ -1264,11 +1279,11 @@
       "canonical_pos": "noun"
     },
     {
-      "id": "handlers",
+      "id": "handler",
       "domain": "system",
       "status": "active",
       "lang": {
-        "en": "handlers",
+        "en": "handler",
         "ko": "핸들러",
         "ja": "ハンドラー",
         "zh_hans": "处理程序"
@@ -1276,7 +1291,12 @@
       "description_i18n": {
         "ko": "특정 이벤트를 처리하는 객체 또는 함수들의 집합"
       },
-      "canonical_pos": "noun"
+      "canonical_pos": "noun",
+      "variants": {
+        "plural": [
+          "handlers"
+        ]
+      }
     },
     {
       "id": "health",
@@ -2833,34 +2853,44 @@
       "canonical_pos": "noun"
     },
     {
-      "id": "sessions",
+      "id": "session",
       "domain": "system",
       "status": "active",
       "lang": {
-        "en": "sessions",
-        "ko": "세션들",
+        "en": "session",
+        "ko": "세션",
         "ja": "セッション",
         "zh_hans": "会议"
       },
       "description_i18n": {
         "ko": "시장 세션 설정 모음"
       },
-      "canonical_pos": "noun"
+      "canonical_pos": "noun",
+      "variants": {
+        "plural": [
+          "sessions"
+        ]
+      }
     },
     {
-      "id": "settings",
+      "id": "setting",
       "domain": "system",
       "status": "active",
       "lang": {
-        "en": "settings",
-        "ko": "설정들",
+        "en": "setting",
+        "ko": "설정",
         "ja": "設定",
         "zh_hans": "设置"
       },
       "description_i18n": {
         "ko": "시스템 설정값 모음"
       },
-      "canonical_pos": "noun"
+      "canonical_pos": "noun",
+      "variants": {
+        "plural": [
+          "settings"
+        ]
+      }
     },
     {
       "id": "short",
