@@ -46,6 +46,8 @@ def _http_post(url: str, body: bytes, headers: dict, timeout: int = 120) -> dict
 
 def _http_get(url: str, headers: dict = None, timeout: int = 10) -> list:
     headers = headers or {}
+    if "User-Agent" not in headers:
+        headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 BOM_TS Glossary/2.0"
     req = urllib.request.Request(url, headers=headers)
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
@@ -177,7 +179,7 @@ def process_auto(candidates: list, prog_cb) -> list:
                 continue
                 
             try:
-                meanings = _http_get(f"https://api.dictionaryapi.dev/v2/entries/en/{w}")
+                meanings = _http_get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{w}")
                 if len(meanings) > 0:
                     pos = [m["partOfSpeech"] for m in meanings[0].get("meanings", [])]
                     if "noun" in pos or "verb" in pos:

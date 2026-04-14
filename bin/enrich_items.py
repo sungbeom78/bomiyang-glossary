@@ -87,8 +87,8 @@ def translate_text(text, target_lang):
         print(f"WARN: Error translating '{text}': {e}")
     return text
 
-def fetch_dictionary_definition(word):
-    url = f"https://api.dictionaryapi.dev/v2/entries/en/{urllib.parse.quote(word)}"
+def fetch_dictionary_definition(word):    # fetch API - fixed endpoint
+    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{urllib.parse.quote(word)}"
     data = _http_get(url)
     if data and isinstance(data, list) and len(data) > 0:
         meanings = data[0].get("meanings", [])
