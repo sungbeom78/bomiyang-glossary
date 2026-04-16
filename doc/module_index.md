@@ -3,9 +3,16 @@
 ## generate_glossary.py
 - Path: generate_glossary.py
 - Classes: N/A
-- Responsibility: glossary source(`dictionary/*.json`)를 검증하고 `terms.json`, `GLOSSARY.md`, `build/index/word_min.json`, `build/index/compound_min.json`, `build/index/variant_map.json`을 생성하며 `check-id` naming gate를 제공
+- Responsibility: glossary source(`dictionary/*.json`)를 검증하고 다음 산출물을 생성:
+  - `dictionary/terms.json` (projection, sha256 checksum 포함)
+  - `dictionary/terms_legacy.json` (deprecated 항목)
+  - `GLOSSARY.md`
+  - `build/index/word_min.json`, `compound_min.json`, `variant_map.json`
+  - `build/report/dependency_missing.json`, `projection_skipped.json`, `merge_candidates.json`, `banned_autofix_report.json`
+  - `check-id` naming gate 제공
+- Validation Gate: V-001/V-004/V-008/V-010/V-011/V-013
 - Entry Point: `main()`
-- Related Modules: `bin/run.py`, `web/server.py`, `bin/scan_items.py`
+- Related Modules: `bin/run.py`, `web/server.py`, `bin/scan_items.py`, `bin/validate.py`
 - Config: N/A
 
 ## batch_items.py

@@ -1,4 +1,52 @@
+## [2026-04-15 13:42:12]
+### Added / Modified
+- Plan v2.5.1 2단계 구현 완료 — variants Array 전환
+- bin/migrate_variants.py 신설: words.json/compounds.json의 variants object → array 마이그레이션 (dry-run 지원)
+- generate_glossary.py: `build_terms_json()` 내 compound variants projection을 array+object 하위호환으로 전환
+- generate_glossary.py: `cmd_generate()` 내 `variant_map` 생성 로직을 array+object 하위호환으로 전환
+- schema/word.schema.json: variants를 type-based array 형식으로 완전 재정의 (§3.3, oneOf[value|short])
+- schema/compound.schema.json: variants array 형식 + abbr 객체 제거 (abbreviation type으로 통합)
+- web/index.html:
+  - `getVariantShort(variants)`, `getVariantLong(variants)`, `cAbbrShort(c)`, `cAbbrLong(c)` 헬퍼 추가
+  - wFilter, renderWords, cFilter, renderCompounds → 헬퍼 사용으로 전환
+  - openWordForm, saveWord → variants array [{type:'abbreviation',short}] 형식으로 저장
+  - openCompoundForm, saveCompound → variants array [{type:'abbreviation',short,long}] 형식으로 저장
+- words.json: 234개 단어 variants object → array 마이그레이션 완료
+- compounds.json: 154개 복합어 variants object → array 마이그레이션 완료
+- File: generate_glossary.py
+- File: schema/word.schema.json
+- File: schema/compound.schema.json
+- File: bin/migrate_variants.py
+- File: web/index.html
+### Notes
+- generate FATAL 없음, WARN 6건(V-401 기존 단어 4개 description 미등록, V-352 1건)
+- terms.json 598개 checksum 포함 재생성 완료
+
+## [2026-04-15 13:28:00]
+### Added / Modified
+- Plan v2.5.1 1단계 구현 완료 (Glossary Consolidation & Refactoring Plan v2.5.1)
+- terms.json에 sha256 checksum 필드 추가 (`compute_checksum`, `verify_checksum` 함수 신설)
+- V-010 (checksum CRITICAL), V-011 (schema ERROR), V-013 (banned exact-match ERROR) 검증 추가
+- `validate()` 함수에 `skip_checksum` 파라미터 추가 — generate 전 호출 시 기존 terms.json checksum 검증 스킵
+- deprecated 항목 → `dictionary/terms_legacy.json` 자동 분리 생성
+- Projection 보강: alias / misspelling variant도 terms.json에 포함 (`PROJECTION_VARIANT_TYPES` 상수 신설)
+- `_extract_word_variants()` 헬퍼 추가 — §4.4/§4.5 포함/제외 규칙 집중 처리
+- `build_terms_json()` 반환 시그니처 변경: dict → tuple(active_data, legacy_data, skipped)
+- `_register_term()` 내부 함수 추가 — id 충돌 시 skipped 기록 (§4.7)
+- 운영 산출물 4종 자동 생성 (§11): `build/report/dependency_missing.json`, `projection_skipped.json`, `merge_candidates.json`, `banned_autofix_report.json`
+- `REPORT_DIR`, `TERMS_LEGACY_PATH` 경로 상수 추가
+- `PROJECTION_VARIANT_TYPES`, `PROJECTION_EXCLUDE_TYPES` 상수 추가 (§4.4, §4.5)
+- `cmd_stats()` 내 `w["pos"]` → `w.get("canonical_pos")` 수정 (v1.2 스키마 정합)
+- `doc/module_index.md` 갱신 — generate_glossary.py 산출물 및 Validation Gate 명시
+- File: generate_glossary.py
+- File: doc/module_index.md
+### Notes
+- V-010은 standalone `validate` 명령에서만 기존 terms.json 체크섬 검증. `generate` 전에는 skip_checksum=True로 우회.
+- V-013은 case-sensitive exact match 적용 — KIS(banned)↔kis(id) 오탐 방지.
+- WARN 6건 (V-401×5, V-352×1)은 기존 데이터 품질 이슈로 1단계 범위 외.
+
 ## [2026-04-14 20:01:59]
+
 ### Modified
 - V-351 경고 규칙을 Sparse JSON 원칙에 맞게 정리 (명사 plural 미정의 일괄 WARN 제거)
 - File: generate_glossary.py

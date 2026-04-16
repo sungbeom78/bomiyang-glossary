@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Compound",
+  "description": "BOM_TS 복합어 사전 항목 — Plan v2.5.1 §3.3. abbr 필드 제거, variants array 통합.",
   "type": "object",
   "required": [
     "id",
@@ -18,128 +19,72 @@
     },
     "words": {
       "type": "array",
-      "items": {
-        "type": "string"
-      },
+      "items": { "type": "string" },
       "minItems": 1
     },
     "domain": {
       "type": "string",
-      "enum": [
-        "trading",
-        "market",
-        "system",
-        "infra",
-        "ui",
-        "general",
-        "proper"
-      ]
+      "enum": ["trading", "market", "system", "infra", "ui", "general", "proper"]
     },
     "status": {
       "type": "string",
-      "enum": [
-        "active",
-        "deprecated"
-      ],
+      "enum": ["active", "deprecated"],
       "default": "active"
     },
     "lang": {
       "type": "object",
       "properties": {
-        "en": {
-          "type": "string"
-        },
-        "ko": {
-          "type": "string"
-        },
-        "ja": {
-          "type": "string"
-        },
-        "zh_hans": {
-          "type": "string"
-        }
+        "en":      { "type": "string" },
+        "ko":      { "type": "string" },
+        "ja":      { "type": "string" },
+        "zh_hans": { "type": "string" }
       },
-      "required": [
-        "en"
-      ]
-    },
-    "abbr": {
-      "type": "object",
-      "properties": {
-        "long": {
-          "type": "string"
-        },
-        "short": {
-          "type": "string"
-        }
-      }
+      "required": ["en"]
     },
     "variants": {
-      "type": "object",
-      "properties": {
-        "plural": {
-          "type": "array",
-          "items": {
-            "type": "string"
+      "description": "§3.2 지원 타입 전체. abbreviation에 long/short 포함 (구 abbr 객체 통합). §3.4 정렬: abbreviation > alias > plural > 기타",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "plural", "singular", "abbreviation", "alias",
+              "misspelling", "adjective", "adverb", "verb",
+              "noun_form", "verb_form", "present_participle",
+              "past", "past_participle", "agent", "pos_forms", "deprecated"
+            ]
+          },
+          "value":  { "type": "string" },
+          "short":  { "type": "string" },
+          "long":   { "type": "string" },
+          "domain": { "type": "string" },
+          "noun":   { "type": "array", "items": { "type": "string" } },
+          "verb":   { "type": "array", "items": { "type": "string" } },
+          "adj":    { "type": "array", "items": { "type": "string" } },
+          "adv":    { "type": "array", "items": { "type": "string" } },
+          "abbreviation_meta": {
+            "type": "object",
+            "properties": {
+              "confidence": { "enum": ["high", "medium", "low"] },
+              "source":     { "enum": ["dictionary", "api", "ai", "manual"] },
+              "ambiguity":  { "enum": ["low", "medium", "high"] }
+            }
           }
         },
-        "verb": {
-          "type": "string"
-        },
-        "past": {
-          "type": "string"
-        },
-        "past_participle": {
-          "type": "string"
-        },
-        "present_participle": {
-          "type": "string"
-        },
-        "agent": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "abbreviation": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "adjective": {
-          "type": "string"
-        },
-        "adverb": {
-          "type": "string"
-        },
-        "alias": {
-          "type": "string"
-        },
-        "misspelling": {
-          "type": "string"
-        },
-        "singular": {
-          "type": "string"
-        },
-        "noun_form": {
-          "type": "string"
-        },
-        "verb_form": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false
+        "oneOf": [
+          { "required": ["value"] },
+          { "required": ["short"] }
+        ]
+      }
     },
     "description_i18n": {
       "type": "object",
       "properties": {
-        "ko": {
-          "type": "string"
-        },
-        "en": {
-          "type": "string"
-        }
+        "ko": { "type": "string" },
+        "en": { "type": "string" }
       }
     },
     "reason": {
@@ -148,22 +93,11 @@
     },
     "not": {
       "type": "array",
-      "items": {
-        "type": "string"
-      }
+      "items": { "type": "string" }
     },
-    "created_at": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "updated_at": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "deprecated_at": {
-      "type": "string",
-      "format": "date-time"
-    }
+    "created_at":    { "type": "string", "format": "date-time" },
+    "updated_at":    { "type": "string", "format": "date-time" },
+    "deprecated_at": { "type": "string", "format": "date-time" }
   },
   "additionalProperties": false
 }

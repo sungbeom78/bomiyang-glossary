@@ -1,6 +1,6 @@
 {
   "$schema": "schema/word.schema.json",
-  "version": "1.2.0",
+  "version": "2.5.1",
   "description": "BOM_TS 단어 사전 — 식별자의 최소 단위",
   "words": [
     {
@@ -18,7 +18,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "active",
@@ -35,7 +35,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "adapter",
@@ -52,7 +52,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "after",
@@ -69,7 +69,7 @@
       },
       "canonical_pos": "adv",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "app",
@@ -86,7 +86,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "auth",
@@ -98,17 +98,18 @@
         "ja": "認証",
         "zh_hans": "验证"
       },
-      "variants": {
-        "abbreviation": [
-          "AUTH"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "AUTH"
+        }
+      ],
       "description_i18n": {
         "ko": "브로커 API 인증 토큰 발급·갱신 (KIS OAuth, Upbit JWT 등)"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "backtest",
@@ -125,7 +126,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "balance",
@@ -142,7 +143,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "bar",
@@ -154,17 +155,18 @@
         "ja": "バー",
         "zh_hans": "酒吧"
       },
-      "variants": {
-        "abbreviation": [
-          "BAR"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "BAR"
+        }
+      ],
       "description_i18n": {
         "ko": "OHLCV 캔들(봉) 데이터. M1 기준."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "bot",
@@ -181,7 +183,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "bounce",
@@ -198,7 +200,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "breakout",
@@ -210,17 +212,18 @@
         "ja": "起こる",
         "zh_hans": "突破"
       },
-      "variants": {
-        "abbreviation": [
-          "BRK"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "BRK"
+        }
+      ],
       "description_i18n": {
         "ko": "직전 N봉 고가를 현재가가 상향 돌파하는 진입 패턴"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "bridge",
@@ -237,7 +240,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "buy",
@@ -249,17 +252,18 @@
         "ja": "買う",
         "zh_hans": "买"
       },
-      "variants": {
-        "abbreviation": [
-          "BUY"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "BUY"
+        }
+      ],
       "description_i18n": {
         "ko": "매수 주문"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "cancelled",
@@ -271,17 +275,18 @@
         "ja": "キャンセル",
         "zh_hans": "取消"
       },
-      "variants": {
-        "abbreviation": [
-          "CNCL"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "CNCL"
+        }
+      ],
       "description_i18n": {
         "ko": "주문 취소됨"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "candidate",
@@ -297,13 +302,14 @@
         "ko": "선정 대상 후보 목록"
       },
       "canonical_pos": "noun",
-      "variants": {
-        "plural": [
-          "candidates"
-        ]
-      },
+      "variants": [
+        {
+          "type": "plural",
+          "value": "candidates"
+        }
+      ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "candle",
@@ -320,7 +326,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "capital",
@@ -337,7 +343,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "category",
@@ -353,13 +359,14 @@
         "ko": "종목 또는 테마의 분류 정보"
       },
       "canonical_pos": "noun",
-      "variants": {
-        "plural": [
-          "categories"
-        ]
-      },
+      "variants": [
+        {
+          "type": "plural",
+          "value": "categories"
+        }
+      ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "chart",
@@ -371,17 +378,18 @@
         "ja": "チャート",
         "zh_hans": "图表"
       },
-      "variants": {
-        "abbreviation": [
-          "CHART"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "CHART"
+        }
+      ],
       "description_i18n": {
         "ko": "시각화를 위한 차트 설정"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "classification",
@@ -398,7 +406,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "classify",
@@ -415,7 +423,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "close",
@@ -432,7 +440,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "closed",
@@ -449,7 +457,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "cls",
@@ -466,7 +474,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "cluster",
@@ -483,7 +491,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "clustering",
@@ -500,7 +508,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "code",
@@ -512,17 +520,18 @@
         "ja": "コード",
         "zh_hans": "代码"
       },
-      "variants": {
-        "abbreviation": [
-          "CODE"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "CODE"
+        }
+      ],
       "description_i18n": {
         "ko": "종목 코드 또는 기타 식별 코드"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "collector",
@@ -539,7 +548,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "color",
@@ -555,13 +564,14 @@
         "ko": "UI 또는 보고서에 사용되는 색상 설정"
       },
       "canonical_pos": "noun",
-      "variants": {
-        "plural": [
-          "colors"
-        ]
-      },
+      "variants": [
+        {
+          "type": "plural",
+          "value": "colors"
+        }
+      ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "command",
@@ -578,7 +588,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "commission",
@@ -590,17 +600,18 @@
         "ja": "手数料",
         "zh_hans": "委员会"
       },
-      "variants": {
-        "abbreviation": [
-          "COMM"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "COMM"
+        }
+      ],
       "description_i18n": {
         "ko": "거래 수수료 (거래당 비용)"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "common",
@@ -617,7 +628,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "complete",
@@ -634,7 +645,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "completed",
@@ -651,7 +662,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "condition",
@@ -668,7 +679,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "confidence",
@@ -685,7 +696,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "core",
@@ -702,7 +713,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "config",
@@ -718,13 +729,14 @@
         "ko": "시스템 설정값"
       },
       "canonical_pos": "noun",
-      "variants": {
-        "abbreviation": [
-          "cfg"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "cfg"
+        }
+      ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "confirmed",
@@ -741,7 +753,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "connected",
@@ -758,7 +770,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "consecutive",
@@ -775,7 +787,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "crypto",
@@ -792,7 +804,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "daily",
@@ -809,7 +821,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "dashboard",
@@ -826,7 +838,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "db",
@@ -843,7 +855,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "deny",
@@ -860,7 +872,7 @@
       },
       "canonical_pos": "verb",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "direction",
@@ -877,7 +889,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "disabled",
@@ -889,17 +901,18 @@
         "ja": "無効",
         "zh_hans": "残疾人"
       },
-      "variants": {
-        "abbreviation": [
-          "OFF"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "OFF"
+        }
+      ],
       "description_i18n": {
         "ko": "기능 비활성화 상태"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "dsn",
@@ -916,7 +929,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "enable",
@@ -933,7 +946,7 @@
       },
       "canonical_pos": "verb",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "enabled",
@@ -945,17 +958,18 @@
         "ja": "有効",
         "zh_hans": "已启用"
       },
-      "variants": {
-        "abbreviation": [
-          "ON"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "ON"
+        }
+      ],
       "description_i18n": {
         "ko": "기능 활성화 상태"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "end",
@@ -972,7 +986,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "engine",
@@ -989,7 +1003,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "entry",
@@ -1001,17 +1015,18 @@
         "ja": "エントリ",
         "zh_hans": "入口"
       },
-      "variants": {
-        "abbreviation": [
-          "ENT"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "ENT"
+        }
+      ],
       "description_i18n": {
         "ko": "포지션 진입 (매수/매도 시작)"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "env",
@@ -1028,7 +1043,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "eod",
@@ -1045,7 +1060,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "equity",
@@ -1062,7 +1077,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "error",
@@ -1074,17 +1089,18 @@
         "ja": "エラー",
         "zh_hans": "错误"
       },
-      "variants": {
-        "abbreviation": [
-          "ERR"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "ERR"
+        }
+      ],
       "description_i18n": {
         "ko": "오류 발생 상태"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "event",
@@ -1101,7 +1117,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "exchange",
@@ -1118,7 +1134,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "exec",
@@ -1135,7 +1151,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "execution",
@@ -1152,7 +1168,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "exit",
@@ -1164,17 +1180,18 @@
         "ja": "出口",
         "zh_hans": "出口"
       },
-      "variants": {
-        "abbreviation": [
-          "EXIT"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "EXIT"
+        }
+      ],
       "description_i18n": {
         "ko": "포지션 청산 (반대매매로 종료)"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "extended",
@@ -1191,7 +1208,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "failed",
@@ -1203,17 +1220,18 @@
         "ja": "失敗した",
         "zh_hans": "失败的"
       },
-      "variants": {
-        "abbreviation": [
-          "FAIL"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "FAIL"
+        }
+      ],
       "description_i18n": {
         "ko": "시스템 오류로 처리 실패"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "fill",
@@ -1225,17 +1243,18 @@
         "ja": "埋める",
         "zh_hans": "充满"
       },
-      "variants": {
-        "abbreviation": [
-          "FILL"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "FILL"
+        }
+      ],
       "description_i18n": {
         "ko": "주문이 실제 체결된 결과 (가격·수량·시간 포함)"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "filled",
@@ -1247,17 +1266,18 @@
         "ja": "満たされた",
         "zh_hans": "充满"
       },
-      "variants": {
-        "abbreviation": [
-          "FLLD"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "FLLD"
+        }
+      ],
       "description_i18n": {
         "ko": "주문 전량 체결 완료"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "filter",
@@ -1274,7 +1294,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "flat",
@@ -1286,17 +1306,18 @@
         "ja": "フラット",
         "zh_hans": "平坦的"
       },
-      "variants": {
-        "abbreviation": [
-          "FLAT"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "FLAT"
+        }
+      ],
       "description_i18n": {
         "ko": "포지션 없음 (현금 보유 상태)"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "flatten",
@@ -1313,7 +1334,7 @@
       },
       "canonical_pos": "verb",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "force",
@@ -1330,7 +1351,7 @@
       },
       "canonical_pos": "verb",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "futures",
@@ -1347,7 +1368,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "fx",
@@ -1364,7 +1385,7 @@
       },
       "canonical_pos": "prefix",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "generator",
@@ -1381,7 +1402,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "goldenkey",
@@ -1398,7 +1419,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "guard",
@@ -1415,7 +1436,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "halted",
@@ -1432,7 +1453,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "handler",
@@ -1448,13 +1469,14 @@
         "ko": "특정 이벤트를 처리하는 객체 또는 함수들의 집합"
       },
       "canonical_pos": "noun",
-      "variants": {
-        "plural": [
-          "handlers"
-        ]
-      },
+      "variants": [
+        {
+          "type": "plural",
+          "value": "handlers"
+        }
+      ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "health",
@@ -1471,7 +1493,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "heartbeat",
@@ -1483,17 +1505,18 @@
         "ja": "心拍数",
         "zh_hans": "心跳"
       },
-      "variants": {
-        "abbreviation": [
-          "HB"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "HB"
+        }
+      ],
       "description_i18n": {
         "ko": "시스템 생존 신호. 주기적으로 Telegram system 봇에 전송."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "history",
@@ -1510,7 +1533,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "id",
@@ -1527,7 +1550,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "in",
@@ -1544,7 +1567,7 @@
       },
       "canonical_pos": "adv",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "info",
@@ -1561,7 +1584,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "intent",
@@ -1578,7 +1601,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "interval",
@@ -1595,7 +1618,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "intraday",
@@ -1607,17 +1630,18 @@
         "ja": "日中",
         "zh_hans": "盘中"
       },
-      "variants": {
-        "abbreviation": [
-          "INTRA"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "INTRA"
+        }
+      ],
       "description_i18n": {
         "ko": "당일 내 진입·청산을 완료하는 거래 (데이트레이딩)"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "key",
@@ -1634,7 +1658,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "kill",
@@ -1651,7 +1675,7 @@
       },
       "canonical_pos": "verb",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "kis",
@@ -1663,11 +1687,12 @@
         "ja": "韓国投資証券API",
         "zh_hans": "韩国投资和证券API"
       },
-      "variants": {
-        "abbreviation": [
-          "KIS"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "KIS"
+        }
+      ],
       "description_i18n": {
         "ko": "한국투자증권 REST API. 한국주식·미국주식 주문/시세 브로커."
       },
@@ -1677,7 +1702,7 @@
         "krStock"
       ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "kosdaq",
@@ -1697,7 +1722,7 @@
         "KOSPI"
       ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "kospi",
@@ -1709,11 +1734,12 @@
         "ja": "コスピ",
         "zh_hans": "科斯皮"
       },
-      "variants": {
-        "abbreviation": [
-          "KOSPI"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "KOSPI"
+        }
+      ],
       "description_i18n": {
         "ko": "한국 종합주가지수 (Korea Composite Stock Price Index)"
       },
@@ -1722,7 +1748,7 @@
         "KOSDAQ"
       ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "kr",
@@ -1739,7 +1765,7 @@
       },
       "canonical_pos": "prefix",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "leader",
@@ -1756,7 +1782,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "limit",
@@ -1773,7 +1799,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "live",
@@ -1790,7 +1816,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "local",
@@ -1807,7 +1833,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "log",
@@ -1824,7 +1850,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "long",
@@ -1836,17 +1862,18 @@
         "ja": "長さ",
         "zh_hans": "长的"
       },
-      "variants": {
-        "abbreviation": [
-          "LONG"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "LONG"
+        }
+      ],
       "description_i18n": {
         "ko": "매수 포지션 방향 (가격 상승 기대)"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "loss",
@@ -1863,7 +1890,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "lower",
@@ -1880,7 +1907,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "main",
@@ -1892,14 +1919,15 @@
         "ja": "メイン実行",
         "zh_hans": "主要执行"
       },
-      "variants": {
-        "abbreviation": [
-          "MAIN"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "MAIN"
+        }
+      ],
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "manager",
@@ -1913,7 +1941,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "manual",
@@ -1927,7 +1955,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "margin",
@@ -1944,7 +1972,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "market",
@@ -1961,7 +1989,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "master",
@@ -1978,7 +2006,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "max",
@@ -1995,7 +2023,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "meta",
@@ -2007,14 +2035,15 @@
         "ja": "メタ情報",
         "zh_hans": "元信息"
       },
-      "variants": {
-        "abbreviation": [
-          "META"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "META"
+        }
+      ],
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "method",
@@ -2028,7 +2057,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "mock",
@@ -2045,7 +2074,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "mod",
@@ -2062,7 +2091,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "module",
@@ -2079,7 +2108,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "momentum",
@@ -2096,7 +2125,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "mt5",
@@ -2108,11 +2137,12 @@
         "ja": "メタトレーダー5",
         "zh_hans": "元交易者5"
       },
-      "variants": {
-        "abbreviation": [
-          "MT5"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "MT5"
+        }
+      ],
       "description_i18n": {
         "ko": "해외선물 접근 플랫폼. Windows 전용. 시장명이 아닌 툴명."
       },
@@ -2122,7 +2152,7 @@
         "FX_FUT"
       ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "name",
@@ -2139,7 +2169,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "no",
@@ -2156,7 +2186,7 @@
       },
       "canonical_pos": "prefix",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "node",
@@ -2173,7 +2203,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "notification",
@@ -2190,7 +2220,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "notifier",
@@ -2207,7 +2237,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "offline",
@@ -2219,17 +2249,18 @@
         "ja": "オフライン",
         "zh_hans": "离线"
       },
-      "variants": {
-        "abbreviation": [
-          "OFLN"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "OFLN"
+        }
+      ],
       "description_i18n": {
         "ko": "네트워크/서비스 미연결 상태"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "online",
@@ -2241,17 +2272,18 @@
         "ja": "オンライン",
         "zh_hans": "在线的"
       },
-      "variants": {
-        "abbreviation": [
-          "ONLN"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "ONLN"
+        }
+      ],
       "description_i18n": {
         "ko": "네트워크/서비스 연결 상태"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "open",
@@ -2268,7 +2300,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "orchestrator",
@@ -2280,17 +2312,18 @@
         "ja": "オーケストレーター",
         "zh_hans": "协调者"
       },
-      "variants": {
-        "abbreviation": [
-          "ORCH"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "ORCH"
+        }
+      ],
       "description_i18n": {
         "ko": "전체 거래 루프를 조율하는 최상위 실행 컨트롤러"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "order",
@@ -2302,17 +2335,18 @@
         "ja": "注文",
         "zh_hans": "命令"
       },
-      "variants": {
-        "abbreviation": [
-          "ORD"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "ORD"
+        }
+      ],
       "description_i18n": {
         "ko": "브로커에 전송된 실제 주문 객체"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "orderbook",
@@ -2324,17 +2358,18 @@
         "ja": "注文書",
         "zh_hans": "订单簿"
       },
-      "variants": {
-        "abbreviation": [
-          "OB"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "OB"
+        }
+      ],
       "description_i18n": {
         "ko": "매수·매도 호가창 스냅샷"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "overnight",
@@ -2346,17 +2381,18 @@
         "ja": "一晩中",
         "zh_hans": "过夜"
       },
-      "variants": {
-        "abbreviation": [
-          "OVNT"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "OVNT"
+        }
+      ],
       "description_i18n": {
         "ko": "당일 청산하지 않고 다음날까지 보유하는 거래"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "partial",
@@ -2373,7 +2409,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "pending",
@@ -2385,17 +2421,18 @@
         "ja": "保留中",
         "zh_hans": "待办的"
       },
-      "variants": {
-        "abbreviation": [
-          "PEND"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "PEND"
+        }
+      ],
       "description_i18n": {
         "ko": "주문 생성 후 브로커 전송 전 대기 상태"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "personality",
@@ -2412,7 +2449,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "pg",
@@ -2429,7 +2466,7 @@
       },
       "canonical_pos": "proper",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "pnl",
@@ -2446,7 +2483,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "port",
@@ -2463,7 +2500,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "position",
@@ -2475,17 +2512,18 @@
         "ja": "位置",
         "zh_hans": "位置"
       },
-      "variants": {
-        "abbreviation": [
-          "POS"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "POS"
+        }
+      ],
       "description_i18n": {
         "ko": "현재 보유 중인 종목/계약 상태 (수량, 평균단가, 미실현손익)"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "postgresql",
@@ -2502,7 +2540,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "process",
@@ -2519,7 +2557,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "profit",
@@ -2536,7 +2574,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "project",
@@ -2553,7 +2591,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "proxy",
@@ -2570,7 +2608,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "pullback",
@@ -2582,17 +2620,18 @@
         "ja": "プルバック",
         "zh_hans": "拉回"
       },
-      "variants": {
-        "abbreviation": [
-          "PB"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "PB"
+        }
+      ],
       "description_i18n": {
         "ko": "상승 추세 중 일시적으로 되돌리는 구간에서 진입하는 패턴"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "ranker",
@@ -2609,7 +2648,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "ranking",
@@ -2626,7 +2665,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "realized",
@@ -2643,7 +2682,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "realtime",
@@ -2660,7 +2699,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "reboot",
@@ -2677,7 +2716,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "record",
@@ -2694,7 +2733,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "redis",
@@ -2706,17 +2745,18 @@
         "ja": "レディス",
         "zh_hans": "雷迪斯"
       },
-      "variants": {
-        "abbreviation": [
-          "REDIS"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "REDIS"
+        }
+      ],
       "description_i18n": {
         "ko": "실시간 캐시 + 이벤트 스트림. DB가 원본이며 Redis는 파생값."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "registry",
@@ -2733,7 +2773,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "reentry",
@@ -2750,7 +2790,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "rejected",
@@ -2762,17 +2802,18 @@
         "ja": "拒否されました",
         "zh_hans": "被拒绝"
       },
-      "variants": {
-        "abbreviation": [
-          "RJCT"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "RJCT"
+        }
+      ],
       "description_i18n": {
         "ko": "브로커에 의해 주문 거절됨"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "relaxed",
@@ -2789,7 +2830,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "replay",
@@ -2806,7 +2847,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "premium",
@@ -2823,7 +2864,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "protocol",
@@ -2840,7 +2881,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "report",
@@ -2857,7 +2898,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "reporting",
@@ -2874,7 +2915,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "risk",
@@ -2891,7 +2932,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "role",
@@ -2903,17 +2944,18 @@
         "ja": "役割",
         "zh_hans": "角色"
       },
-      "variants": {
-        "abbreviation": [
-          "ROLE"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "ROLE"
+        }
+      ],
       "description_i18n": {
         "ko": "서비스 또는 노드의 역할 (primary/replica 등)"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "root",
@@ -2930,7 +2972,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "runner",
@@ -2947,7 +2989,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "running",
@@ -2959,17 +3001,18 @@
         "ja": "走っている",
         "zh_hans": "跑步"
       },
-      "variants": {
-        "abbreviation": [
-          "RUN"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "RUN"
+        }
+      ],
       "description_i18n": {
         "ko": "서비스 실행 중 상태"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "runtime",
@@ -2986,7 +3029,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "scanner",
@@ -3003,7 +3046,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "scheduler",
@@ -3020,7 +3063,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "scope",
@@ -3032,17 +3075,18 @@
         "ja": "範囲",
         "zh_hans": "范围"
       },
-      "variants": {
-        "abbreviation": [
-          "SCOPE"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "SCOPE"
+        }
+      ],
       "description_i18n": {
         "ko": "설정이나 작업이 적용되는 범위를 정의하는 설정."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "score",
@@ -3059,7 +3103,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "scorer",
@@ -3076,7 +3120,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "scoring",
@@ -3093,7 +3137,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "secret",
@@ -3110,7 +3154,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "sector",
@@ -3127,7 +3171,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "selector",
@@ -3144,7 +3188,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "sell",
@@ -3156,17 +3200,18 @@
         "ja": "売る",
         "zh_hans": "卖"
       },
-      "variants": {
-        "abbreviation": [
-          "SELL"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "SELL"
+        }
+      ],
       "description_i18n": {
         "ko": "매도 주문"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "server",
@@ -3183,7 +3228,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "service",
@@ -3200,7 +3245,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "session",
@@ -3216,13 +3261,14 @@
         "ko": "시장 세션 설정 모음"
       },
       "canonical_pos": "noun",
-      "variants": {
-        "plural": [
-          "sessions"
-        ]
-      },
+      "variants": [
+        {
+          "type": "plural",
+          "value": "sessions"
+        }
+      ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "setting",
@@ -3238,13 +3284,14 @@
         "ko": "시스템 설정값 모음"
       },
       "canonical_pos": "noun",
-      "variants": {
-        "plural": [
-          "settings"
-        ]
-      },
+      "variants": [
+        {
+          "type": "plural",
+          "value": "settings"
+        }
+      ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "short",
@@ -3256,17 +3303,18 @@
         "ja": "短い",
         "zh_hans": "短的"
       },
-      "variants": {
-        "abbreviation": [
-          "SHORT"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "SHORT"
+        }
+      ],
       "description_i18n": {
         "ko": "매도 포지션 방향 (가격 하락 기대)"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "side",
@@ -3283,7 +3331,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "signal",
@@ -3295,17 +3343,18 @@
         "ja": "信号",
         "zh_hans": "信号"
       },
-      "variants": {
-        "abbreviation": [
-          "SIG"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "SIG"
+        }
+      ],
       "description_i18n": {
         "ko": "진입 또는 청산 판단 결과. signals 모듈만 생성 가능."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "size",
@@ -3322,7 +3371,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "slippage",
@@ -3334,17 +3383,18 @@
         "ja": "滑り",
         "zh_hans": "滑移"
       },
-      "variants": {
-        "abbreviation": [
-          "SLIP"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "SLIP"
+        }
+      ],
       "description_i18n": {
         "ko": "주문 가격과 실제 체결 가격의 차이"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "snapshot",
@@ -3361,7 +3411,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "split",
@@ -3378,7 +3428,7 @@
       },
       "canonical_pos": "verb",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "start",
@@ -3395,7 +3445,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "starting",
@@ -3407,15 +3457,12 @@
         "ja": "起動",
         "zh_hans": "开始"
       },
-      "variants": {
-        "abbreviation": []
-      },
       "description_i18n": {
         "ko": "서비스 시작 중 (초기화 진행 중)"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "status",
@@ -3432,7 +3479,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "stock",
@@ -3449,7 +3496,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "stop",
@@ -3466,7 +3513,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "stopped",
@@ -3478,15 +3525,12 @@
         "ja": "止まった",
         "zh_hans": "停止了"
       },
-      "variants": {
-        "abbreviation": []
-      },
       "description_i18n": {
         "ko": "서비스 중지 상태"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "storage",
@@ -3503,7 +3547,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "strategy",
@@ -3520,7 +3564,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "strength",
@@ -3537,7 +3581,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "submitted",
@@ -3549,17 +3593,18 @@
         "ja": "提出された",
         "zh_hans": "已提交"
       },
-      "variants": {
-        "abbreviation": [
-          "SUBM"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "SUBM"
+        }
+      ],
       "description_i18n": {
         "ko": "브로커에 주문 전송 완료"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "swing",
@@ -3576,7 +3621,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "switch",
@@ -3593,7 +3638,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "symbol",
@@ -3610,7 +3655,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "system",
@@ -3627,7 +3672,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "take",
@@ -3644,7 +3689,7 @@
       },
       "canonical_pos": "verb",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "task",
@@ -3661,7 +3706,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "telegram",
@@ -3678,7 +3723,7 @@
       },
       "canonical_pos": "proper",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "theme",
@@ -3695,7 +3740,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "tick",
@@ -3707,17 +3752,18 @@
         "ja": "カチカチ",
         "zh_hans": "打钩"
       },
-      "variants": {
-        "abbreviation": [
-          "TK"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "TK"
+        }
+      ],
       "description_i18n": {
         "ko": "최소 가격 변동 단위 또는 실시간 시세 스트림"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "time",
@@ -3734,7 +3780,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "timeframe",
@@ -3751,7 +3797,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "timezone",
@@ -3768,7 +3814,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "token",
@@ -3780,17 +3826,18 @@
         "ja": "トークン",
         "zh_hans": "代币"
       },
-      "variants": {
-        "abbreviation": [
-          "TOKEN"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "TOKEN"
+        }
+      ],
       "description_i18n": {
         "ko": "인증 또는 세션 관리에 사용되는 보안 토큰입니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "m",
@@ -3802,17 +3849,18 @@
         "ja": "メートル",
         "zh_hans": "米"
       },
-      "variants": {
-        "abbreviation": [
-          "M"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "M"
+        }
+      ],
       "description_i18n": {
         "ko": "분 단위 시간 접미사 (1m, 5m 등)"
       },
       "canonical_pos": "suffix",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "top",
@@ -3829,7 +3877,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "tracking",
@@ -3846,7 +3894,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "tradability",
@@ -3863,7 +3911,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "trade",
@@ -3880,7 +3928,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "trading",
@@ -3897,7 +3945,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "trailing",
@@ -3914,7 +3962,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "transaction",
@@ -3931,7 +3979,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "transition",
@@ -3948,7 +3996,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "trend",
@@ -3960,17 +4008,18 @@
         "ja": "傾向",
         "zh_hans": "趋势"
       },
-      "variants": {
-        "abbreviation": [
-          "TREND"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "TREND"
+        }
+      ],
       "description_i18n": {
         "ko": "시장 가격의 전반적인 방향성을 나타냅니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "type",
@@ -3987,7 +4036,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "universe",
@@ -4004,7 +4053,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "unrealized",
@@ -4021,7 +4070,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "upbit",
@@ -4033,17 +4082,18 @@
         "ja": "アップビット",
         "zh_hans": "上位"
       },
-      "variants": {
-        "abbreviation": [
-          "UPBIT"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "UPBIT"
+        }
+      ],
       "description_i18n": {
         "ko": "암호화폐 거래소. crypto 마켓의 브로커."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "upper",
@@ -4060,7 +4110,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "url",
@@ -4077,7 +4127,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "us",
@@ -4094,7 +4144,7 @@
       },
       "canonical_pos": "prefix",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "used",
@@ -4111,7 +4161,7 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "value",
@@ -4128,7 +4178,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "var",
@@ -4145,7 +4195,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "volatility",
@@ -4162,7 +4212,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "vwap",
@@ -4174,17 +4224,18 @@
         "ja": "vwap",
         "zh_hans": "瓦普"
       },
-      "variants": {
-        "abbreviation": [
-          "VWAP"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "VWAP"
+        }
+      ],
       "description_i18n": {
         "ko": "Volume Weighted Average Price. 시가총액 가중 평균 체결가."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "watchdog",
@@ -4196,17 +4247,18 @@
         "ja": "番犬",
         "zh_hans": "看门狗"
       },
-      "variants": {
-        "abbreviation": [
-          "WDG"
-        ]
-      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "WDG"
+        }
+      ],
       "description_i18n": {
         "ko": "서비스 비정상 종료 감지 및 자동 재시작"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "wick",
@@ -4223,7 +4275,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "table",
@@ -4240,7 +4292,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "contract",
@@ -4257,7 +4309,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     },
     {
       "id": "work",
@@ -4274,7 +4326,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-14T13:05:05Z"
+      "updated_at": "2026-04-15T04:29:45Z"
     }
   ]
 }

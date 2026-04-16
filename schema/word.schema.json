@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Word",
+  "description": "BOM_TS 단어 사전 항목 — Plan v2.5.1 §3.3",
   "type": "object",
   "required": [
     "id",
@@ -18,146 +19,81 @@
     },
     "domain": {
       "type": "string",
-      "enum": [
-        "trading",
-        "market",
-        "system",
-        "infra",
-        "ui",
-        "general",
-        "proper"
-      ]
+      "enum": ["trading", "market", "system", "infra", "ui", "general", "proper"]
     },
     "status": {
       "type": "string",
-      "enum": [
-        "active",
-        "deprecated"
-      ],
+      "enum": ["active", "deprecated"],
       "default": "active"
     },
     "canonical_pos": {
       "type": "string",
-      "enum": [
-        "noun",
-        "verb",
-        "adj",
-        "adv",
-        "prefix",
-        "suffix",
-        "proper",
-        "mixed"
-      ]
+      "enum": ["noun", "verb", "adj", "adv", "prefix", "suffix", "proper", "mixed"]
     },
     "lang": {
       "type": "object",
       "properties": {
-        "en": {
-          "type": "string"
-        },
-        "ko": {
-          "type": "string"
-        },
-        "ja": {
-          "type": "string"
-        },
-        "zh_hans": {
-          "type": "string"
-        }
+        "en":      { "type": "string" },
+        "ko":      { "type": "string" },
+        "ja":      { "type": "string" },
+        "zh_hans": { "type": "string" }
       },
-      "required": [
-        "en"
-      ]
+      "required": ["en"]
     },
     "variants": {
-      "type": "object",
-      "properties": {
-        "plural": {
-          "type": "array",
-          "items": {
-            "type": "string"
+      "description": "§3.2 지원 타입 전체 포함. §3.4 정렬: abbreviation > alias > plural > singular > 기타",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "plural", "singular", "abbreviation", "alias",
+              "misspelling", "adjective", "adverb", "verb",
+              "noun_form", "verb_form", "present_participle",
+              "past", "past_participle", "agent", "pos_forms", "deprecated"
+            ]
+          },
+          "value":  { "type": "string" },
+          "short":  { "type": "string" },
+          "long":   { "type": "string" },
+          "domain": { "type": "string" },
+          "noun":   { "type": "array", "items": { "type": "string" } },
+          "verb":   { "type": "array", "items": { "type": "string" } },
+          "adj":    { "type": "array", "items": { "type": "string" } },
+          "adv":    { "type": "array", "items": { "type": "string" } },
+          "abbreviation_meta": {
+            "type": "object",
+            "properties": {
+              "confidence": { "enum": ["high", "medium", "low"] },
+              "source":     { "enum": ["dictionary", "api", "ai", "manual"] },
+              "ambiguity":  { "enum": ["low", "medium", "high"] }
+            }
           }
         },
-        "verb": {
-          "type": "string"
-        },
-        "past": {
-          "type": "string"
-        },
-        "past_participle": {
-          "type": "string"
-        },
-        "present_participle": {
-          "type": "string"
-        },
-        "agent": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "abbreviation": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "adjective": {
-          "type": "string"
-        },
-        "adverb": {
-          "type": "string"
-        },
-        "alias": {
-          "type": "string"
-        },
-        "misspelling": {
-          "type": "string"
-        },
-        "singular": {
-          "type": "string"
-        },
-        "noun_form": {
-          "type": "string"
-        },
-        "verb_form": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false
+        "oneOf": [
+          { "required": ["value"] },
+          { "required": ["short"] }
+        ]
+      }
     },
     "description_i18n": {
       "type": "object",
       "properties": {
-        "ko": {
-          "type": "string"
-        },
-        "en": {
-          "type": "string"
-        }
+        "ko": { "type": "string" },
+        "en": { "type": "string" }
       }
     },
     "not": {
       "type": "array",
-      "items": {
-        "type": "string"
-      }
+      "items": { "type": "string" }
     },
-    "reason": {
-      "type": "string"
-    },
-    "created_at": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "updated_at": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "deprecated_at": {
-      "type": "string",
-      "format": "date-time"
-    }
+    "reason":       { "type": "string" },
+    "created_at":   { "type": "string", "format": "date-time" },
+    "updated_at":   { "type": "string", "format": "date-time" },
+    "deprecated_at":{ "type": "string", "format": "date-time" }
   },
   "additionalProperties": false
 }

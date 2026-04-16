@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-04-14T21:35:20.057552",
+  "generated_at": "2026-04-15T04:42:12Z",
   "terms": [
     {
       "id": "account",
@@ -5501,6 +5501,18 @@
       }
     },
     {
+      "id": "leader_candidates",
+      "source": "compound",
+      "root": "leader_candidate",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "Leader Candidates",
+        "ko": "대장주 후보"
+      }
+    },
+    {
       "id": "market_scanner",
       "source": "compound",
       "root": "market_scanner",
@@ -6562,6 +6574,18 @@
       "root": "cls_setting",
       "term_type": "variant",
       "variant_type": "abbreviation",
+      "domain": "system",
+      "lang": {
+        "en": "Settings",
+        "ko": "설정 클래스"
+      }
+    },
+    {
+      "id": "cls_settings",
+      "source": "compound",
+      "root": "cls_setting",
+      "term_type": "variant",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "Settings",
@@ -7975,6 +7999,18 @@
       }
     },
     {
+      "id": "cfg_sessions",
+      "source": "compound",
+      "root": "cfg_session",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "Sessions Config",
+        "ko": "세션 설정"
+      }
+    },
+    {
       "id": "cfg_kr_strategy",
       "source": "compound",
       "root": "cfg_kr_strategy",
@@ -8494,5 +8530,6 @@
         "ko": "프로젝트 루트"
       }
     }
-  ]
+  ],
+  "checksum": "sha256:b078592dec19f256c995bae7cb7f79a61469b7416bd1840c565446cb90cad4f8"
 }

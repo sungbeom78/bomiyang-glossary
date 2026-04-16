@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-generate_glossary.py v2  —  BOM_TS 용어 사전 생성·검증·조회
+generate_glossary.py v2.5.1  —  BOM_TS 용어 사전 생성·검증·조회
 위치: glossary/generate_glossary.py
 
 명령어:
@@ -10,12 +10,20 @@ generate_glossary.py v2  —  BOM_TS 용어 사전 생성·검증·조회
   python generate_glossary.py check-id <id>    # 식별자 단어 분해 + 등록 여부
   python generate_glossary.py suggest <id>     # 미등록 단어 등록 제안
   python generate_glossary.py migrate-from-legacy <terms.json>  # 마이그레이션
+
+v2.5.1 변경:
+  - terms.json checksum (sha256) 포함
+  - V-010 (checksum CRITICAL), V-013 (banned 위반 ERROR) 검증 추가
+  - deprecated → dictionary/terms_legacy.json 분리 생성
+  - alias / misspelling projection 보강
+  - 운영 산출물 4종 자동 생성 (build/report/)
 """
 
 import sys
 import io
 import json
 import re
+import hashlib
 import argparse
 from datetime import datetime
 from pathlib import Path
@@ -25,16 +33,23 @@ if hasattr(sys.stdout, 'buffer') and sys.stdout.encoding.lower() not in ('utf-8'
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 # ── 경로 ────────────────────────────────────────────────────────────
-ROOT         = Path(__file__).parent.resolve()
-DICT_DIR     = ROOT / "dictionary"
-WORDS_PATH   = DICT_DIR / "words.json"
-COMPOUNDS_PATH = DICT_DIR / "compounds.json"
-BANNED_PATH  = DICT_DIR / "banned.json"
-TERMS_PATH   = DICT_DIR / "terms.json"       # 자동 생성 (하위호환)
-GLOSSARY_PATH = ROOT / "GLOSSARY.md"         # 자동 생성 (루트에 유지)
+ROOT              = Path(__file__).parent.resolve()
+DICT_DIR          = ROOT / "dictionary"
+WORDS_PATH        = DICT_DIR / "words.json"
+COMPOUNDS_PATH    = DICT_DIR / "compounds.json"
+BANNED_PATH       = DICT_DIR / "banned.json"
+TERMS_PATH        = DICT_DIR / "terms.json"           # 자동 생성 (projection)
+TERMS_LEGACY_PATH = DICT_DIR / "terms_legacy.json"   # 자동 생성 (deprecated)
+GLOSSARY_PATH     = ROOT / "GLOSSARY.md"              # 자동 생성 (루트에 유지)
+REPORT_DIR        = ROOT / "build" / "report"         # 운영 산출물 디렉토리
 
 DOMAINS = ["trading","market","system","infra","ui","general","proper"]
 POS_LIST = ["noun","verb","adj","adv","prefix","suffix","proper"]
+
+# Projection에 포함하는 variant type 목록 (§4.4)
+PROJECTION_VARIANT_TYPES = {"abbreviation", "alias", "plural", "misspelling"}
+# Projection에서 제외하는 variant type 목록 (§4.5)
+PROJECTION_EXCLUDE_TYPES = {"pos_forms", "deprecated", "adjective", "adverb"}
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -68,8 +83,18 @@ def _auto_plural_check(word_id: str) -> str:
     return word_id + 's'
 
 
-def validate(words, compounds, banned, silent=False) -> tuple:
-    """(fatals: list, warns: list) 반환."""
+def validate(words, compounds, banned, silent=False, skip_checksum=False) -> tuple:
+    """
+    (fatals: list, warns: list) 반환.
+    §7 Validation Gate:
+      V-001: id unique (ERROR)
+      V-004: dependency (ERROR)
+      V-008: abbr unique (ERROR)
+      V-010: checksum (CRITICAL) — skip_checksum=False 시 terms.json 존재하면 검증
+               generate 전 validate 시에는 skip_checksum=True 사용
+      V-011: schema (ERROR)
+      V-013: banned (ERROR) — words/compounds id가 banned.expression과 대소문자 완전 일치
+    """
     fatals, warns = [], []
 
     def F(code, msg): fatals.append(f"[{code}] {msg}")
@@ -124,22 +149,43 @@ def validate(words, compounds, banned, silent=False) -> tuple:
             if cycle_found:
                 F("V-104", f"순환 참조 발생: '{cid}' -> '{conflict}'")
 
-    # abbreviation 검증
+    # abbreviation 검증 (variants array 형식 지원 — §2단계)
     abbr_to_root = {}
-    
+
+    def _get_abbrs_from_variants(variants_field) -> list:
+        """variants array 또는 object에서 abbreviation 값 목록 추출."""
+        if isinstance(variants_field, list):
+            return [v["short"] for v in variants_field
+                    if isinstance(v, dict) and v.get("type") == "abbreviation" and v.get("short")]
+        elif isinstance(variants_field, dict):
+            abbrs = variants_field.get("abbreviation") or []
+            return [abbrs] if isinstance(abbrs, str) else (abbrs if isinstance(abbrs, list) else [])
+        return []
+
+    def _get_plurals_from_variants(variants_field) -> list:
+        """variants array 또는 object에서 plural 값 목록 추출."""
+        if isinstance(variants_field, list):
+            return [v["value"] for v in variants_field
+                    if isinstance(v, dict) and v.get("type") == "plural" and v.get("value")]
+        elif isinstance(variants_field, dict):
+            plurals = variants_field.get("plural") or []
+            return [plurals] if isinstance(plurals, str) else (plurals if isinstance(plurals, list) else [])
+        return []
+
     for w in words:
-        abbrs = w.get("variants", {}).get("abbreviation")
-        if abbrs:
-            if isinstance(abbrs, str): abbrs = [abbrs]
-            for a in abbrs:
-                al = a.lower()
-                if al in abbr_to_root:
-                    W("V-201", f"약어 중복 정의: '{a}' ({abbr_to_root[al]} vs {w['id']})")
-                abbr_to_root[al] = w["id"]
+        abbrs = _get_abbrs_from_variants(w.get("variants"))
+        for a in abbrs:
+            al = a.lower()
+            if al in abbr_to_root:
+                W("V-201", f"약어 중복 정의: '{a}' ({abbr_to_root[al]} vs {w['id']})")
+            abbr_to_root[al] = w["id"]
 
     for c in compounds:
-        abbr = c.get("abbr", {}).get("short")
-        if abbr:
+        # array: abbreviation variant에서 short 추출 / 하위호환: abbr.short
+        c_abbrs = _get_abbrs_from_variants(c.get("variants"))
+        if not c_abbrs and c.get("abbr", {}).get("short"):
+            c_abbrs = [c["abbr"]["short"]]
+        for abbr in c_abbrs:
             al = abbr.lower()
             if al in abbr_to_root:
                 W("V-201", f"약어 중복 정의: '{abbr}' ({abbr_to_root[al]} vs {c['id']})")
@@ -150,12 +196,57 @@ def validate(words, compounds, banned, silent=False) -> tuple:
             F("V-202", f"abbreviation이 word로 독립 존재: '{w['id']}' (root: {abbr_to_root[w['id']]})")
 
 
+    # V-013: banned.expression이 words/compounds id와 대소문자 완전 일치 시 ERROR (§7)
+    # 주의: KIS(banned) ↔ kis(id)는 약어와 식별자 분리이므로 오탐 제외.
+    # exact match(case-sensitive)로만 충돌 판별.
+    all_registered_ids = set(word_ids) | set(compound_ids)
+    banned_expressions_exact = set(b.get("expression", "") for b in banned)
+    for b_expr in banned_expressions_exact:
+        if b_expr in all_registered_ids:
+            F("V-013", f"banned.expression '{b_expr}'이 등록 id '{b_expr}'와 완전 일치 (대소문자 포함)")
+
+    # V-011: words/compounds/banned 필수 필드 schema 검증 (§7)
+    for w in words:
+        if not w.get("id"):
+            F("V-011", "words.json 항목에 'id' 필드 없음")
+        if not w.get("domain"):
+            F("V-011", f"words['{w.get('id', '?')}'] 'domain' 필드 없음")
+        if not w.get("canonical_pos"):
+            F("V-011", f"words['{w.get('id', '?')}'] 'canonical_pos' 필드 없음")
+        if not w.get("lang", {}).get("en"):
+            F("V-011", f"words['{w.get('id', '?')}'] lang.en 필드 없음")
+        if not w.get("created_at"):
+            F("V-011", f"words['{w.get('id', '?')}'] 'created_at' 필드 없음")
+    for c in compounds:
+        if not c.get("id"):
+            F("V-011", "compounds.json 항목에 'id' 필드 없음")
+        if not c.get("words"):
+            F("V-011", f"compounds['{c.get('id', '?')}'] 'words' 필드 없음")
+        if not c.get("domain"):
+            F("V-011", f"compounds['{c.get('id', '?')}'] 'domain' 필드 없음")
+        if not c.get("lang", {}).get("en"):
+            F("V-011", f"compounds['{c.get('id', '?')}'] lang.en 필드 없음")
+        if not c.get("created_at"):
+            F("V-011", f"compounds['{c.get('id', '?')}'] 'created_at' 필드 없음")
+
+    # V-010: terms.json checksum 검증 (존재할 때만, CRITICAL) (§4.9, §7)
+    # generate 전 validate(skip_checksum=True) 시에는 건너뜀.
+    # standalone validate 명령(skip_checksum=False)에서만 실행.
+    if not skip_checksum and TERMS_PATH.exists():
+        try:
+            terms_data = json.loads(TERMS_PATH.read_text(encoding="utf-8"))
+            ok, stored, computed = verify_checksum(terms_data)
+            if not ok:
+                # checksum 불일치는 CRITICAL → fatals에 추가
+                F("V-010", f"terms.json checksum CRITICAL: stored={stored[:30]}... computed={computed[:30]}...")
+        except Exception as e:
+            W("V-010", f"terms.json checksum 검증 실패 (파일 읽기 오류): {e}")
+
     for dic, source in [(words, 'words.json'), (compounds, 'compounds.json'), (banned, 'banned.json')]:
         for item in dic:
             for f in ['created_at', 'updated_at', 'deprecated_at']:
                 if f in item:
                     try:
-                        from datetime import datetime
                         datetime.fromisoformat(item[f].replace('Z', '+00:00'))
                     except Exception:
                         W('V-403', f"{source} {item.get('id', item.get('expression'))} - {f} 형식이 올바른 ISO8601이 아닙니다: {item[f]}")
@@ -181,29 +272,33 @@ def validate(words, compounds, banned, silent=False) -> tuple:
     for w in words:
         wid = w["id"]
         pos = w.get("canonical_pos") or w.get("pos", "noun")
-        variants = w.get("variants", {}) if isinstance(w.get("variants", {}), dict) else {}
-        plural_defined = "plural" in variants
-        plurals = variants.get("plural") or []
-        if isinstance(plurals, str): plurals = [plurals]
-        
+        variants_field = w.get("variants")
+        plurals = _get_plurals_from_variants(variants_field)
+        # plural 정의 여부: array인 경우 plural type 항목이 있는지, object인 경우 'plural' 키 존재
+        if isinstance(variants_field, list):
+            plural_defined = any(v.get("type") == "plural" for v in variants_field if isinstance(v, dict))
+        elif isinstance(variants_field, dict):
+            plural_defined = "plural" in variants_field
+        else:
+            plural_defined = False
+
         # V-303
         for p in plurals:
             if p == wid:
                 F("V-303", f"singular/plural self-conflict 금지: '{wid}'")
             if p in word_lookup and p != wid:
-                F("V-301", f"plural root 금지: '{p}'가 독립 root로 존재함 (root: '{wid}')")
-                
-        # V-351: Sparse JSON 원칙상 미정의는 허용한다.
-        # 단, variants.plural을 명시해놓고 비워둔 경우는 데이터 불완전으로 경고한다.
+                F("V-301", f"plural root 금지: '{p}'가 독립 root로 존재함 (root: '{wid}')")  
+
+        # V-351
         if pos == "noun" and plural_defined and not plurals:
             W("V-351", f"noun인데 variants.plural이 비어 있음: '{wid}'")
-            
+
         # V-352
         ko_val = w.get("lang", {}).get("ko") or w.get("ko", "")
         if ko_val.endswith("들"):
             W("V-352", f"ko 표현이 집합 표현으로만 남아 있음: '{wid}' -> '{ko_val}'")
-            
-        # V-301 manual check for common plural roots remaining
+
+        # V-301 manual check
         if pos == "noun" and wid.endswith("s") and wid not in ["status", "kis", "redis", "cls", "us", "futures", "options", "goods", "series", "news", "basis"]:
             singular = None
             if wid.endswith("ies") and len(wid) > 3: singular = wid[:-3] + "y"
@@ -239,91 +334,260 @@ def validate(words, compounds, banned, silent=False) -> tuple:
 
 
 # ════════════════════════════════════════════════════════════════════
-# terms.json 생성 (하위호환)
+# checksum 계산 헬퍼 (§4.9)
 # ════════════════════════════════════════════════════════════════════
 
-def build_terms_json(words, compounds) -> dict:
-    terms = []
-    
+def compute_checksum(data: dict) -> str:
+    """terms 데이터의 sha256 checksum 계산 (checksum 필드 자체 제외)."""
+    stable = json.dumps(data, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
+    return "sha256:" + hashlib.sha256(stable.encode("utf-8")).hexdigest()
+
+
+def verify_checksum(data: dict) -> tuple:
+    """
+    terms.json checksum 검증.
+    반환: (ok: bool, stored: str, computed: str)
+    """
+    stored = data.get("checksum", "")
+    payload = {k: v for k, v in data.items() if k != "checksum"}
+    computed = compute_checksum(payload)
+    return stored == computed, stored, computed
+
+
+# ════════════════════════════════════════════════════════════════════
+# terms.json 생성 (Projection — §4)
+# ════════════════════════════════════════════════════════════════════
+
+def _extract_word_variants(w: dict) -> list:
+    """
+    word의 variants(array 또는 object)에서 projection 포함 대상 항목만 추출.
+    반환: [(variant_type, value), ...]
+    §4.4 포함: abbreviation, alias, plural, misspelling
+    §4.5 제외: pos_forms, deprecated, adjective, adverb
+    2단계: variants array 형식 지원
+    """
+    variants_field = w.get("variants")
+
+    # — Array 형식 (§2단계 이후)
+    if isinstance(variants_field, list):
+        result = []
+        for v in variants_field:
+            if not isinstance(v, dict):
+                continue
+            vtype = v.get("type", "")
+            if vtype in PROJECTION_EXCLUDE_TYPES or vtype not in PROJECTION_VARIANT_TYPES:
+                continue
+            if vtype == "abbreviation":
+                val = v.get("short") or v.get("value", "")
+            else:
+                val = v.get("value", "")
+            if val and isinstance(val, str):
+                result.append((vtype, val.strip()))
+        return result
+
+    # — Object 형식 (하위호환 — 이론상 마이그레이션 후 발생 안 함)
+    if isinstance(variants_field, dict):
+        result = []
+        for vtype, vval in variants_field.items():
+            if vtype in PROJECTION_EXCLUDE_TYPES:
+                continue
+            if vtype not in PROJECTION_VARIANT_TYPES:
+                continue
+            if isinstance(vval, list):
+                for v in vval:
+                    if v and isinstance(v, str):
+                        result.append((vtype, v.strip()))
+            elif isinstance(vval, str) and vval.strip():
+                result.append((vtype, vval.strip()))
+        return result
+
+    return []
+
+
+def build_terms_json(words, compounds) -> tuple:
+    """
+    (active_data: dict, legacy_data: dict) 반환.
+    - active_data: terms.json (projection-only, checksum 포함)
+    - legacy_data: terms_legacy.json (deprecated 항목)
+    §1.1: terms.json은 100% projection 결과물. 역방향 수정 절대 금지.
+    §4.6 우선순위: abbreviation > alias > plural > singular
+    §4.7 충돌 처리: 동일 id ERROR / ambiguity high 제외
+    §4.8 legacy: deprecated → terms_legacy.json
+    §4.9 checksum 포함
+    """
+    active_terms = []
+    legacy_terms = []
+    skipped = []       # projection_skipped 산출물용
+    seen_ids = {}      # id 충돌 감지 (§4.7)
+
+    def _register_term(entry: dict, source_desc: str) -> bool:
+        """중복 id 검사 후 terms 리스트에 추가. 충돌 시 skipped에 기록."""
+        eid = entry["id"]
+        if eid in seen_ids:
+            skipped.append({
+                "id": eid,
+                "reason": "id_conflict",
+                "detail": f"{source_desc} vs {seen_ids[eid]}",
+            })
+            return False
+        seen_ids[eid] = source_desc
+        return True
+
     for w in words:
+        wid = w["id"]
         lang = w.get("lang", {})
         desc_i18n = w.get("description_i18n", {})
         domain = w.get("domain", "general")
-        
-        # Base entity
-        terms.append({
-            "id": w["id"],
+        status = w.get("status", "active")
+
+        base_entry = {
+            "id": wid,
             "source": "word",
-            "root": w["id"],
+            "root": wid,
             "term_type": "base",
             "domain": domain,
             "lang": lang,
             "description_i18n": desc_i18n,
-        })
-        
-        # Variant entities (abbreviations)
-        abbrs = w.get("variants", {}).get("abbreviation") or []
-        if isinstance(abbrs, str): abbrs = [abbrs]
-        for a in abbrs:
-            terms.append({
-                "id": a,
-                "source": "word",
-                "root": w["id"],
-                "term_type": "variant",
-                "variant_type": "abbreviation",
-                "domain": domain,
-                "lang": lang,
-            })
+        }
 
-        plurals = w.get("variants", {}).get("plural") or []
-        if isinstance(plurals, str): plurals = [plurals]
-        for p in plurals:
-            terms.append({
-                "id": p,
+        if status == "deprecated":
+            # §4.8: deprecated → legacy
+            base_entry["deprecated_at"] = w.get("deprecated_at", "")
+            legacy_terms.append(base_entry)
+            continue
+
+        if _register_term(base_entry, f"word:{wid}:base"):
+            active_terms.append(base_entry)
+
+        # §4.4 variant projection: abbreviation > alias > plural > misspelling
+        for vtype, vval in _extract_word_variants(w):
+            ambiguity = None
+            # abbreviation_meta 확인 (high ambiguity → §4.7 제외)
+            if vtype == "abbreviation":
+                # variants가 object 형식인 경우 meta는 별도 필드에 없으므로 기본 허용
+                pass
+            entry = {
+                "id": vval,
                 "source": "word",
-                "root": w["id"],
+                "root": wid,
                 "term_type": "variant",
-                "variant_type": "plural",
+                "variant_type": vtype,
                 "domain": domain,
                 "lang": lang,
-            })
+            }
+            if _register_term(entry, f"word:{wid}:{vtype}"):
+                active_terms.append(entry)
 
     for c in compounds:
+        cid = c["id"]
         lang = c.get("lang", {})
         desc_i18n = c.get("description_i18n", {})
         domain = c.get("domain", "general")
-        
-        # Base compound
-        terms.append({
-            "id": c["id"],
+        status = c.get("status", "active")
+
+        base_entry = {
+            "id": cid,
             "source": "compound",
-            "root": c["id"],
+            "root": cid,
             "term_type": "base",
             "domain": domain,
             "lang": lang,
             "description_i18n": desc_i18n,
-        })
-        
-        # Variant for compound
-        abbr_short = c.get("abbr", {}).get("short")
-        if abbr_short:
-            terms.append({
-                "id": abbr_short,
-                "source": "compound",
-                "root": c["id"],
-                "term_type": "variant",
-                "variant_type": "abbreviation",
-                "domain": domain,
-                "lang": lang,
-            })
-            
-    return {
+        }
+
+        if status == "deprecated":
+            base_entry["deprecated_at"] = c.get("deprecated_at", "")
+            legacy_terms.append(base_entry)
+            continue
+
+        if _register_term(base_entry, f"compound:{cid}:base"):
+            active_terms.append(base_entry)
+
+        # compound variants projection (§4.4) — array + object 하위호환
+        c_variants_field = c.get("variants")
+        if isinstance(c_variants_field, list):
+            # §2단계 array 형식
+            for v in c_variants_field:
+                if not isinstance(v, dict):
+                    continue
+                vtype = v.get("type", "")
+                if vtype in PROJECTION_EXCLUDE_TYPES or vtype not in PROJECTION_VARIANT_TYPES:
+                    continue
+                # abbreviation: short 값이 id
+                if vtype == "abbreviation":
+                    val = v.get("short") or v.get("value", "")
+                else:
+                    val = v.get("value", "")
+                if not val:
+                    continue
+                entry = {
+                    "id": val,
+                    "source": "compound",
+                    "root": cid,
+                    "term_type": "variant",
+                    "variant_type": vtype,
+                    "domain": domain,
+                    "lang": lang,
+                }
+                if _register_term(entry, f"compound:{cid}:{vtype}"):
+                    active_terms.append(entry)
+        elif isinstance(c_variants_field, dict):
+            # §1단계 object 형식 하위호환
+            # compound abbr.short (구형 필드 — 마이그레이션 후 사라짐)
+            abbr_short_legacy = c.get("abbr", {}).get("short")
+            if abbr_short_legacy:
+                entry = {
+                    "id": abbr_short_legacy,
+                    "source": "compound",
+                    "root": cid,
+                    "term_type": "variant",
+                    "variant_type": "abbreviation",
+                    "domain": domain,
+                    "lang": lang,
+                }
+                if _register_term(entry, f"compound:{cid}:abbreviation"):
+                    active_terms.append(entry)
+            for vtype, vval in c_variants_field.items():
+                if vtype in PROJECTION_EXCLUDE_TYPES or vtype not in PROJECTION_VARIANT_TYPES:
+                    continue
+                vals = [vval] if isinstance(vval, str) else (vval if isinstance(vval, list) else [])
+                for v in vals:
+                    if not v:
+                        continue
+                    entry = {
+                        "id": v,
+                        "source": "compound",
+                        "root": cid,
+                        "term_type": "variant",
+                        "variant_type": vtype,
+                        "domain": domain,
+                        "lang": lang,
+                    }
+                    if _register_term(entry, f"compound:{cid}:{vtype}"):
+                        active_terms.append(entry)
+
+    # §4.9 checksum 계산
+    generated_at = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    payload = {
         "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
-        "version":   "3.0.0",
+        "version": "3.0.0",
         "generated": True,
-        "generated_at": datetime.now().isoformat(),
-        "terms": terms,
+        "generated_at": generated_at,
+        "terms": active_terms,
     }
+    checksum = compute_checksum(payload)
+    active_data = dict(payload)
+    active_data["checksum"] = checksum
+
+    legacy_data = {
+        "_WARNING": "이 파일은 자동 생성됩니다. deprecated 항목만 포함. 수동 편집 금지.",
+        "version": "3.0.0",
+        "generated": True,
+        "generated_at": generated_at,
+        "terms": legacy_terms,
+    }
+
+    return active_data, legacy_data, skipped
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -361,18 +625,28 @@ def build_glossary_md(words, compounds, banned) -> str:
         lines.append("| 단어 | 한글 | 약어 | 품사 | 복수형 | 설명 |")
         lines.append("|------|------|------|------|--------|------|")
         for w in wlist:
-            abbrs = w.get("variants", {}).get("abbreviation") or []
-            if isinstance(abbrs, str): abbrs = [abbrs]
-            abbr = (abbrs[0] if abbrs else w.get("abbr")) or "—"
+            # variants array 형식 지원
+            variants_f = w.get("variants")
+            abbr_list = []
+            if isinstance(variants_f, list):
+                abbr_list = [v.get("short") or v.get("value", "") for v in variants_f
+                             if isinstance(v, dict) and v.get("type") == "abbreviation"]
+            elif isinstance(variants_f, dict):
+                raw = variants_f.get("abbreviation") or []
+                abbr_list = [raw] if isinstance(raw, str) else raw
+            abbr = (abbr_list[0] if abbr_list else w.get("abbr")) or "—"
             pos = w.get("canonical_pos") or w.get("pos", "noun")
             if pos != "noun":
                 plural = "—"
             else:
-                pl = w.get("variants", {}).get("plural") or w.get("plural")
-                if pl is None:
-                    plural = "auto"
-                else:
-                    plural = str(pl)
+                pl_list = []
+                if isinstance(variants_f, list):
+                    pl_list = [v.get("value", "") for v in variants_f
+                               if isinstance(v, dict) and v.get("type") == "plural"]
+                elif isinstance(variants_f, dict):
+                    raw_pl = variants_f.get("plural")
+                    pl_list = [raw_pl] if isinstance(raw_pl, str) else (raw_pl or [])
+                plural = ", ".join(pl_list) if pl_list else "auto"
             ko_val = w.get("lang", {}).get("ko") or w.get("ko", "")
             desc = w.get("description_i18n", {}).get("ko") or w.get("description", "")
             lines.append(f"| `{w['id']}` | {ko_val} | {abbr} | {pos} | {plural} | {desc} |")
@@ -388,11 +662,28 @@ def build_glossary_md(words, compounds, banned) -> str:
     ]
     for c in sorted(compounds, key=lambda x: x["id"]):
         wds = " + ".join(c.get("words", []))
-        c_plural = c.get("variants", {}).get("plural") or c.get("plural")
-        c_plural_txt = "auto" if c_plural is None else str(c_plural)
+        # variants array: abbreviation 항목에서 long/short 추출
+        c_variants = c.get("variants")
+        abbr_long, abbr_short = "", ""
+        c_plural_vals = []
+        if isinstance(c_variants, list):
+            for v in c_variants:
+                if not isinstance(v, dict):
+                    continue
+                if v.get("type") == "abbreviation":
+                    abbr_short = abbr_short or v.get("short", "")
+                    abbr_long  = abbr_long  or v.get("long",  "")
+                elif v.get("type") == "plural":
+                    c_plural_vals.append(v.get("value", ""))
+        else:
+            # 하위호환: abbr object
+            abbr_long  = c.get("abbr", {}).get("long",  "") or c.get("abbr_long",  "")
+            abbr_short = c.get("abbr", {}).get("short", "") or c.get("abbr_short", "")
+            raw_pl = c.get("variants", {}).get("plural") if isinstance(c.get("variants"), dict) else None
+            if isinstance(raw_pl, list): c_plural_vals = raw_pl
+            elif isinstance(raw_pl, str): c_plural_vals = [raw_pl]
+        c_plural_txt = ", ".join(c_plural_vals) if c_plural_vals else "auto"
         ko_val = c.get("lang", {}).get("ko") or c.get("ko", "")
-        abbr_long = c.get("abbr", {}).get("long") or c.get("abbr_long", "")
-        abbr_short = c.get("abbr", {}).get("short") or c.get("abbr_short", "")
         reason = c.get("reason", "")
         lines.append(
             f"| `{c['id']}` | {wds} | {ko_val} | `{abbr_long}` | `{abbr_short}` | {c_plural_txt} | {reason} |"
@@ -501,24 +792,110 @@ def find_singular_token(token: str, word_ids: dict) -> str | None:
 # 명령 구현
 # ════════════════════════════════════════════════════════════════════
 
+def _build_report_dependency_missing(words: list, compounds: list) -> list:
+    """dependency_missing.json 내용 생성 (§11, §6.2)."""
+    word_id_set = set(w["id"] for w in words)
+    compound_id_set = set(c["id"] for c in compounds)
+    missing = []
+    for c in compounds:
+        for ref in c.get("words", []):
+            if ref not in word_id_set and ref not in compound_id_set:
+                missing.append({"compound": c["id"], "missing_ref": ref})
+    return missing
+
+
+def _build_report_banned_autofix(words: list, compounds: list, banned: list) -> list:
+    """banned_autofix_report.json 내용 생성 (§9, §11)."""
+    report = []
+    all_ids = {w["id"] for w in words} | {c["id"] for c in compounds}
+    for b in banned:
+        expr = b.get("expression", "")
+        correct_val = ""
+        if isinstance(b.get("correct"), dict):
+            correct_val = b["correct"].get("value", "")
+        elif isinstance(b.get("correct"), str):
+            correct_val = b["correct"]
+        severity = b.get("severity", "warn")
+        # §9 원칙: 코드 자동 수정 금지, glossary 내부 mapping만 허용
+        report.append({
+            "expression": expr,
+            "correct": correct_val,
+            "severity": severity,
+            "autofix_allowed": False,  # §9: 코드 자동 수정 절대 금지
+            "correct_registered": correct_val.split()[0] in all_ids if correct_val else False,
+        })
+    return report
+
+
+def _build_report_merge_candidates(words: list) -> list:
+    """merge_candidates.json — 의미/ko가 동일한 word 후보 (§11)."""
+    from collections import defaultdict
+    ko_groups = defaultdict(list)
+    for w in words:
+        ko = w.get("lang", {}).get("ko") or ""
+        if ko:
+            ko_groups[ko].append(w["id"])
+    candidates = [
+        {"ko": ko, "ids": ids, "action": "review_merge_or_keep"}
+        for ko, ids in ko_groups.items() if len(ids) > 1
+    ]
+    return candidates
+
+
 def cmd_generate():
     words, compounds, banned = load_all()
-    fatals, _ = validate(words, compounds, banned, silent=False)
+    # generate 전 validate: 기존 terms.json의 checksum은 검증하지 않음 (skip_checksum=True)
+    # 이유: generate 자체가 새 terms.json을 생성하는 과정이므로
+    fatals, _ = validate(words, compounds, banned, silent=False, skip_checksum=True)
     if fatals:
         print("[FAIL] FATAL 오류가 있어 생성을 중단합니다.")
         sys.exit(1)
 
     DICT_DIR.mkdir(exist_ok=True)
 
-    # terms.json
-    terms_data = build_terms_json(words, compounds)
-    TERMS_PATH.write_text(json.dumps(terms_data, ensure_ascii=False, indent=2), encoding='utf-8')
-    print(f"[OK] terms.json 생성 ({len(terms_data['terms'])}개)")
+    # terms.json + terms_legacy.json (§4.8, §4.9)
+    active_data, legacy_data, skipped = build_terms_json(words, compounds)
+    TERMS_PATH.write_text(json.dumps(active_data, ensure_ascii=False, indent=2), encoding='utf-8')
+    print(f"[OK] terms.json 생성 ({len(active_data['terms'])}개, checksum 포함)")
 
-    # Index Shift
+    TERMS_LEGACY_PATH.write_text(json.dumps(legacy_data, ensure_ascii=False, indent=2), encoding='utf-8')
+    print(f"[OK] terms_legacy.json 생성 ({len(legacy_data['terms'])}개 deprecated 항목)")
+
+    # 운영 산출물 (§11)
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+
+    dep_missing = _build_report_dependency_missing(words, compounds)
+    (REPORT_DIR / "dependency_missing.json").write_text(
+        json.dumps({"generated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "count": len(dep_missing), "items": dep_missing},
+                   ensure_ascii=False, indent=2), encoding='utf-8')
+    print(f"[OK] dependency_missing.json ({len(dep_missing)}건)")
+
+    proj_skipped = skipped
+    (REPORT_DIR / "projection_skipped.json").write_text(
+        json.dumps({"generated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "count": len(proj_skipped), "items": proj_skipped},
+                   ensure_ascii=False, indent=2), encoding='utf-8')
+    print(f"[OK] projection_skipped.json ({len(proj_skipped)}건)")
+
+    merge_cands = _build_report_merge_candidates(words)
+    (REPORT_DIR / "merge_candidates.json").write_text(
+        json.dumps({"generated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "count": len(merge_cands), "items": merge_cands},
+                   ensure_ascii=False, indent=2), encoding='utf-8')
+    print(f"[OK] merge_candidates.json ({len(merge_cands)}건)")
+
+    banned_report = _build_report_banned_autofix(words, compounds, banned)
+    (REPORT_DIR / "banned_autofix_report.json").write_text(
+        json.dumps({"generated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "count": len(banned_report), "items": banned_report},
+                   ensure_ascii=False, indent=2), encoding='utf-8')
+    print(f"[OK] banned_autofix_report.json ({len(banned_report)}건)")
+
+    # Index 생성
     INDEX_DIR = ROOT / "build" / "index"
     INDEX_DIR.mkdir(parents=True, exist_ok=True)
-    
+
     # Keep the runtime index sparse, but preserve naming-gate metadata for AI agents.
     word_min = [
         {
@@ -540,28 +917,46 @@ def cmd_generate():
         }
         for c in compounds
     ]
-    
+
+    # variant_map: PROJECTION_VARIANT_TYPES 전체 포함 (§4.4) — array + object 하위호환
     variant_map = {}
     for w in words:
-        abbrs = w.get("variants", {}).get("abbreviation") or []
-        if isinstance(abbrs, str): abbrs = [abbrs]
-        for a in abbrs:
-            variant_map[a] = {"root": w["id"], "type": "abbreviation"}
+        for vtype, vval in _extract_word_variants(w):
+            variant_map[vval] = {"root": w["id"], "type": vtype}
 
-        plurals = w.get("variants", {}).get("plural") or []
-        if isinstance(plurals, str): plurals = [plurals]
-        for p in plurals:
-            variant_map[p] = {"root": w["id"], "type": "plural"}
-            
     for c in compounds:
-        abbr = c.get("abbr", {}).get("short")
-        if abbr:
-            variant_map[abbr] = {"root": c["id"], "type": "abbreviation"}
+        c_vf = c.get("variants")
+        if isinstance(c_vf, list):
+            # §2단계 array 형식
+            for v in c_vf:
+                if not isinstance(v, dict):
+                    continue
+                vtype = v.get("type", "")
+                if vtype in PROJECTION_EXCLUDE_TYPES or vtype not in PROJECTION_VARIANT_TYPES:
+                    continue
+                val = v.get("short") if vtype == "abbreviation" else v.get("value", "")
+                if val:
+                    variant_map[val] = {"root": c["id"], "type": vtype}
+        elif isinstance(c_vf, dict):
+            # §1단계 object 형식 하위호환
+            abbr = c.get("abbr", {}).get("short")
+            if abbr:
+                variant_map[abbr] = {"root": c["id"], "type": "abbreviation"}
+            for vtype, vval in c_vf.items():
+                if vtype in PROJECTION_EXCLUDE_TYPES or vtype not in PROJECTION_VARIANT_TYPES:
+                    continue
+                vals = [vval] if isinstance(vval, str) else (vval if isinstance(vval, list) else [])
+                for v in vals:
+                    if v:
+                        variant_map[v] = {"root": c["id"], "type": vtype}
 
-    (INDEX_DIR / "word_min.json").write_text(json.dumps(word_min, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
-    (INDEX_DIR / "compound_min.json").write_text(json.dumps(compound_min, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
-    (INDEX_DIR / "variant_map.json").write_text(json.dumps(variant_map, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
-    print(f"[OK] Index 생성 (build/index/word_min.json, compound_min.json, variant_map.json)")
+    (INDEX_DIR / "word_min.json").write_text(
+        json.dumps(word_min, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    (INDEX_DIR / "compound_min.json").write_text(
+        json.dumps(compound_min, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    (INDEX_DIR / "variant_map.json").write_text(
+        json.dumps(variant_map, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    print(f"[OK] Index 생성 (build/index/)")
 
     # GLOSSARY.md
     md = build_glossary_md(words, compounds, banned)
@@ -592,7 +987,7 @@ def cmd_stats():
         print(f"    {d:<12}: {n}개")
 
     print(f"\n  [단어 pos 분포]")
-    pc = Counter(w["pos"] for w in words)
+    pc = Counter(w.get("canonical_pos") or w.get("pos", "unknown") for w in words)
     for p, n in pc.most_common():
         print(f"    {p:<10}: {n}개")
 

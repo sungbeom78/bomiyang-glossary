@@ -1,6 +1,6 @@
 # 📖 BomTS Glossary
 
-> A word-based glossary system that enforces consistent naming across codebases, with AI-powered enrichment and multi-language support.
+> 🚀 **A self-evolving glossary system powered by AI, designed to enforce consistent naming across large-scale codebases.**
 
 **🌐 Languages:**
 - 🇺🇸 English (Current)
