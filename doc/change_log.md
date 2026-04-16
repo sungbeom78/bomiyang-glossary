@@ -1,3 +1,68 @@
+## [2026-04-16 12:31:00]
+### Added
+- §5.3 Alerting 구현 — `web/notifier.py` 신설
+  - Telegram: `TELEGRAM_SYSTEM_TOKEN` + `TELEGRAM_DEFAULT_CHAT_ID` (.env)
+  - Slack 방식 1 (권장): `SLACK_WEBHOOK_URL` (Incoming Webhook)
+  - Slack 방식 2: `SLACK_BOT_TOKEN` + `SLACK_DEFAULT_CHAT_ID` (xoxb- 필수)
+  - `notify_info()` / `notify_warning()` / `notify_critical()` 편의 함수 제공
+  - `notify()` 통합 함수: Telegram + Slack 동시 발송
+- §1.3 Trading Freeze 구현 — `web/trading_freeze.py` 신설
+  - `is_trading_freeze()` → (bool, reason) 반환
+  - `check_freeze_or_raise()` → Flask 응답 dict 반환 (server.py 연동용)
+  - `get_freeze_status()` → `/api/trading-freeze/status` 응답용
+  - 차단 시간대: 한국 주식 09:00–15:30 / 해외 FX 21:00–02:00 / 코인 옵션
+- `web/server.py` 연동 수정
+  - `api_generate()`: Trading Freeze 게이트 추가 + generate 완료/실패 알림
+  - `api_validate()`: FATAL 발생 시 `notify_critical()` 알림
+  - `git_commit_push()`: Trading Freeze 게이트 추가 + commit 완료 알림
+  - `GET /api/trading-freeze/status` 신규 엔드포인트 추가
+  - `main()`: 서버 시작 시 Trading Freeze 상태 출력 (🔴/🟢 표시)
+- `.env.example` 신규 키 추가: TELEGRAM_SYSTEM_TOKEN, TELEGRAM_DEFAULT_CHAT_ID,
+  SLACK_WEBHOOK_URL, SLACK_BOT_TOKEN, SLACK_DEFAULT_CHAT_ID,
+  TRADING_FREEZE_ENABLED, TRADING_FREEZE_CRYPTO
+- File: web/notifier.py [NEW]
+- File: web/trading_freeze.py [NEW]
+- File: web/server.py
+- File: .env.example
+- File: doc/plan/Glossary Consolidation & Refactoring Plan v2.5.1 task.md (§5.3, §1.3 [x] 완료)
+### Notes
+- Telegram 전송: telegram=True 확인 완료 (2026-04-16 12:35 KST)
+- Slack: 제공된 SLACK_SYSTEM_TOKEN이 Telegram 형식으로 Slack 사용 불가.
+  SLACK_WEBHOOK_URL 또는 xoxb- Bot Token 발급 후 .env 설정 필요.
+- Trading Freeze: 현재 KST 12:35 → "한국 주식 시장 운영 중" FREEZE 정상 감지 확인
+
+## [2026-04-16 12:25:00]
+### Modified
+- Plan v2.5.1 task.md 상태 최신화
+- 현재 상태 테이블에 build/report/, build/index/, bin/test_*.py, rollout_rollback_plan.md 항목 추가
+- 잔여 검토 사항 → Plan §8 Migration 완료 현황으로 재구성
+- Step 6~10 모두 [x] 완료 처리 (이전 [ ] 상태에서 갱신)
+- File: doc/plan/Glossary Consolidation & Refactoring Plan v2.5.1 task.md
+### Notes
+- Step 7 (16/16 PASS), Step 8 (19/19 PASS), Step 9~10 (rollout_rollback_plan.md) 모두 완료 반영
+- §5.3 Alerting, §1.3 Trading Freeze 는 범위 외 별도 작업으로 유지
+
+## [2026-04-16 11:41:00]
+### Modified
+- Plan v2.5.1 §8 Step 7–10 대응 파일 수정 — Windows 호환성 및 경로 정확성 개선
+- bin/test_regression.py: Windows cp949 터미널 UnicodeEncodeError 방지 위해 `sys.stdout.reconfigure(encoding='utf-8')` 추가, tc_08/tc_09 내 `import io as _io` alias 불일치 버그 수정
+- bin/test_db_compat.py: 동일한 Windows stdout UTF-8 처리 추가, dc_05 JSON 왕복 테스트에서 `len(words_obj)` 가 dict 키 수를 반환하던 오류를 `_unwrap()` 적용 후 항목 수 계산으로 수정 (words:234개, compounds:154개 정상 표시)
+- bin/rollout_rollback_plan.md: 모든 Linux 전용 명령어(bash/sh) → PowerShell 명령어로 대체
+  - `cp -r` → `Copy-Item -Recurse`
+  - `ln -sfn` → `Rename-Item` 기반 교체 절차 (mklink 주석 안내)
+  - `date +%Y%m%d` → `Get-Date -Format 'yyyyMMdd'`
+  - `cd glossary` / `cd ..` → `Push-Location ..` / `Pop-Location`
+  - `cat` → `Get-Content`
+  - git commit 문자열 내 이중 따옴표 → 단일 따옴표 (PowerShell 파싱 안전)
+  - 코드 블럭 언어 태그 `bash` → `powershell`
+  - 모든 명령 블럭에 실행 위치 주석(`# 실행 위치: glossary/ 루트`) 추가
+- File: bin/test_regression.py
+- File: bin/test_db_compat.py
+- File: bin/rollout_rollback_plan.md
+### Notes
+- test_regression.py: 16/16 PASS (PYTHONIOENCODING 환경변수 없이도 정상 실행)
+- test_db_compat.py: 19/19 PASS (words:234, compounds:154, terms:598 정상 표시)
+
 ## [2026-04-15 13:42:12]
 ### Added / Modified
 - Plan v2.5.1 2단계 구현 완료 — variants Array 전환

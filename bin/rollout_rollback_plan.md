@@ -11,6 +11,7 @@
 
 ```
 [ ] generate FATAL 0건 확인
+    # glossary/ 루트에서 실행
     python generate_glossary.py validate
 
 [ ] regression test 전 통과
@@ -45,7 +46,10 @@
 
 ### 9.3 Maintenance Window 절차
 
-```bash
+```powershell
+# 실행 위치: glossary/ 루트 (generate_glossary.py 위치)
+# PowerShell 기준
+
 # 1. 서비스 상태 확인 (active position 체크)
 #    → 트레이딩 엔진 대시보드 또는 로그 확인
 
@@ -53,24 +57,25 @@
 python generate_glossary.py validate
 python generate_glossary.py generate
 
-# 3. glossary 서브모듈 커밋
-cd glossary
+# 3. glossary 저장소 코바 (서브모듈로 운영하는 경우)
 git add dictionary/words.json dictionary/compounds.json dictionary/terms.json GLOSSARY.md
-git commit -m "release: v2.5.1 variants array 전환 완료"
+git commit -m 'release: v2.5.1 variants array 전환 완료'
 git push
 
-# 4. 상위 프로젝트 서브모듈 포인터 업데이트
-cd ..
+# 4. 상위 프로젝트 서브모듈 포인터 업데이트 (서브모듈 구조인 경우)
+#    프로젝트 루트에서 실행
+Push-Location ..
 git add glossary
-git commit -m "chore: update glossary submodule to v2.5.1"
+git commit -m 'chore: update glossary submodule to v2.5.1'
 git push
+Pop-Location
 
 # 5. 웹 UI 서버 재시작 (운영 중인 경우)
 #    Ctrl+C → python web/server.py
 
 # 6. 배포 후 검증
 python generate_glossary.py validate   # FATAL 0건 재확인
-python bin/test_regression.py          # regression 재실행
+python bin/test_regression.py         # regression 재실행
 ```
 
 ### 9.4 배포 후 모니터링
@@ -79,6 +84,7 @@ python bin/test_regression.py          # regression 재실행
 
 ```
 [ ] glossary.log — ERROR / CRITICAL 없음
+    # glossary/ 루트 기준: log/ 디렉토리
 [ ] web UI 정상 접속 (http://localhost:5000)
 [ ] generate 버튼 정상 동작
 [ ] validate 버튼 FATAL 0건
@@ -101,11 +107,11 @@ python bin/test_regression.py          # regression 재실행
 
 ### 10.2 Git 기반 Rollback (권장)
 
-```bash
-# ── glossary 서브모듈 이전 커밋으로 복구 ──────────────────────────
+```powershell
+# 실행 위치: glossary/ 루트 (generate_glossary.py 위치)
+# PowerShell 기준
 
 # 1. 현재 커밋 확인
-cd glossary
 git log --oneline -5
 
 # 2. 이전 안정 커밋으로 복구
@@ -117,40 +123,48 @@ python generate_glossary.py validate
 python generate_glossary.py generate
 
 # 4. rollback 커밋
-git checkout -b rollback/v2.5.1-$(date +%Y%m%d)
+$rollback_branch = "rollback/v2.5.1-$(Get-Date -Format 'yyyyMMdd')"
+git checkout -b $rollback_branch
 git add dictionary/
-git commit -m "rollback: v2.5.1 배포 취소 → 이전 상태 복원"
+git commit -m 'rollback: v2.5.1 배포 취소 → 이전 상태 복원'
 git push
 
-# ── 상위 프로젝트 서브모듈 포인터 복구 ───────────────────────────
-cd ..
+# 상위 프로젝트 서브모듈 포인터 복구 (서브모듈인 경우)
+Push-Location ..
 git add glossary
-git commit -m "chore: rollback glossary submodule"
+git commit -m 'chore: rollback glossary submodule'
 git push
+Pop-Location
 ```
 
 ### 10.3 Symlink 기반 Rollback (선택)
 
 운영 환경에 symlink를 사용하는 경우:
 
-```bash
-# 배포 전 백업 생성 (배포 시 항상 수행)
-cp -r glossary/dictionary glossary/dictionary.bak.$(date +%Y%m%d_%H%M)
+```powershell
+# 배포 전 백업 생성 (배포 시 항상 수행) - glossary/ 루트 기준
+$ts = Get-Date -Format 'yyyyMMdd_HHmm'
+Copy-Item -Path dictionary -Destination "dictionary.bak.$ts" -Recurse
 
-# 롤백 시 심링크 전환
-ln -sfn dictionary.bak.20260416_1535 glossary/dictionary_active
+# 롤백 시 이전 백업로 교체 (심링크 미사용 환경)
+# 이전 백업 디렉토리를 직접 dictionary로 이름 변경:
+Rename-Item -Path dictionary -NewName dictionary.broken
+Rename-Item -Path "dictionary.bak.20260416_1535" -NewName dictionary
 
-# 웹 서버가 dictionary_active를 바라보도록 설정 시 즉시 복구 가능
+# (선택) 심링크 기반 구성을 지원하는 운영 환경에서는
+# mklink /D dictionary_active dictionary.bak.20260416_1535 (관리자 CMD 필요)
 ```
 
 ### 10.4 긴급 복구 절차 (Hotfix)
 
 FATAL이 발생했으나 rollback이 어려운 경우:
 
-```bash
+```powershell
+# 실행 위치: glossary/ 루트 (generate_glossary.py 위치)
+
 # 1. 운영 산출물로 원인 파악
-cat glossary/build/report/dependency_missing.json
-cat glossary/build/report/projection_skipped.json
+Get-Content build\report\dependency_missing.json
+Get-Content build\report\projection_skipped.json
 
 # 2. 해당 항목 수동 수정
 #    → words.json 또는 compounds.json 직접 편집
@@ -163,7 +177,7 @@ python generate_glossary.py validate
 
 # 5. hotfix 커밋
 git add dictionary/
-git commit -m "hotfix: [오류 내용] 긴급 수정"
+git commit -m 'hotfix: [오류 내용] 긴급 수정'
 git push
 ```
 

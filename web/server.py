@@ -44,6 +44,26 @@ GITIGNORE     = REPO_ROOT / ".gitignore"
 
 LOG_DIR.mkdir(exist_ok=True)
 
+# ── 알림 / Trading Freeze 모듈 로드 ────────────────────────────
+try:
+    from web.notifier import notify_info, notify_warning, notify_critical
+except ImportError:
+    try:
+        from notifier import notify_info, notify_warning, notify_critical
+    except ImportError:
+        def notify_info(msg):     return {"telegram": False, "slack": False}  # type: ignore
+        def notify_warning(msg):  return {"telegram": False, "slack": False}  # type: ignore
+        def notify_critical(msg): return {"telegram": False, "slack": False}  # type: ignore
+
+try:
+    from web.trading_freeze import check_freeze_or_raise, get_freeze_status
+except ImportError:
+    try:
+        from trading_freeze import check_freeze_or_raise, get_freeze_status
+    except ImportError:
+        def check_freeze_or_raise(action=""):  return None         # type: ignore
+        def get_freeze_status():               return {"enabled": False, "is_frozen": False, "reason": ""}  # type: ignore
+
 # ── .gitignore 에 logs/ 자동 추가 ─────────────────────────────────────
 def ensure_gitignore():
     lines = GITIGNORE.read_text(encoding='utf-8').splitlines() if GITIGNORE.exists() else []
@@ -460,11 +480,25 @@ def delete_banned(expr):
 @app.route("/api/generate", methods=["POST"])
 def api_generate():
     """generate_glossary.py generate 실행."""
+    # ── Trading Freeze 게이트 ───────────────────────────────
+    freeze_resp = check_freeze_or_raise("generate")
+    if freeze_resp:
+        from flask import jsonify as _jsonify
+        return _jsonify(freeze_resp), 403
+
     log.info("[generate] 시작")
     result = _run_generate()
     combined = result["stdout"]
     if result["stderr"]: combined += "\n" + result["stderr"]
     log.info(f"[generate] 완료 ok={result['ok']}")
+
+    # ── 알림 ─────────────────────────────────────────
+    fatal_in_output = "FATAL" in combined or "[CRITICAL]" in combined
+    if result["ok"] and not fatal_in_output:
+        notify_info("generate 완료: terms.json 재생성 성공")
+    else:
+        notify_warning(f"generate 실패 또는 FATAL 발생\n{combined[:300]}")
+
     return jsonify({"ok": result["ok"], "output": combined or f"(returncode={result['code']})"})
 
 @app.route("/api/validate", methods=["POST"])
@@ -473,6 +507,12 @@ def api_validate():
     result = run_subprocess(sys.executable, str(GENERATE_PY), "validate", timeout=30)
     combined = result["stdout"]
     if result["stderr"]: combined += "\n" + result["stderr"]
+
+    # FATAL 발생 시만 알림
+    fatal_in_output = "FATAL" in combined or "[CRITICAL]" in combined
+    if fatal_in_output:
+        notify_critical(f"validate FATAL 발생!\n{combined[:400]}")
+
     return jsonify({"ok": result["ok"], "output": combined})
 
 @app.route("/api/check-id", methods=["POST"])
@@ -563,6 +603,11 @@ def git_commit_push():
     if not message:
         return jsonify({"error": "커밋 메시지를 입력하세요"}), 400
 
+    # ── Trading Freeze 게이트 ───────────────────────────────
+    freeze_resp = check_freeze_or_raise("컴바 + 배포")
+    if freeze_resp:
+        return jsonify(freeze_resp), 403
+
     log.info(f"[commit] start  msg={message!r}")
     steps = []
 
@@ -648,6 +693,7 @@ def git_commit_push():
         return jsonify({"ok": False, "steps": steps, "error": "git push 실패 — 인증 또는 네트워크 확인"})
 
     log.info(f"[commit] done  msg={message!r}")
+    notify_info(f"glossary 커바 완료: {message}")
     return jsonify({"ok": True, "steps": steps, "message": message})
 
 
@@ -681,6 +727,16 @@ def get_logs():
         return jsonify({"ok": True, "lines": recent, "total": len(all_lines)})
     except Exception as e:
         return jsonify({"ok": False, "error": str(e), "lines": [], "total": 0})
+
+
+# ════════════════════════════════════════════════════════
+# API — Trading Freeze 상태
+# ════════════════════════════════════════════════════════
+
+@app.route("/api/trading-freeze/status", methods=["GET"])
+def trading_freeze_status():
+    """Trading Freeze 현재 상태 조회."""
+    return jsonify(get_freeze_status())
 
 
 @app.route("/api/logs/clear", methods=["POST"])
@@ -923,11 +979,18 @@ def main():
     parser.add_argument("--host", default="127.0.0.1")
     args = parser.parse_args()
 
+    # Trading Freeze 상태 출력
+    freeze_status = get_freeze_status()
+    freeze_mark = "🔴 FREEZE" if freeze_status["is_frozen"] else "🟢 OK"
+
     log.info(f"[server] 시작  port={args.port}  repo={REPO_ROOT}")
     print(f"\n  glossary UI 서버 시작")
     print(f"  저장소 루트  : {REPO_ROOT}")
     print(f"  로그 파일    : {LOG_FILE}")
     print(f"  접속 주소    : http://{args.host}:{args.port}")
+    print(f"  Trading Freeze: {freeze_mark}")
+    if freeze_status["is_frozen"]:
+        print(f"    이유: {freeze_status['reason']}")
     print(f"  종료         : Ctrl+C\n")
 
     app.run(host=args.host, port=args.port, debug=False)

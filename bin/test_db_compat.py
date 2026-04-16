@@ -19,8 +19,15 @@ import json
 import sys
 import copy
 import argparse
+import io
 from pathlib import Path
 from datetime import datetime
+
+# ── Windows stdout UTF-8 강제 설정 (cp949 UnicodeEncodeError 방지) ──────────
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+elif sys.stdout.encoding and sys.stdout.encoding.lower() not in ("utf-8", "utf8"):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 # ── 경로 설정 ──────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).parent.resolve()
@@ -213,17 +220,19 @@ def dc_05_json_roundtrip(verbose):
         words_raw  = WORDS_PATH.read_text(encoding="utf-8")
         words_obj  = json.loads(words_raw)
         words_re   = json.loads(json.dumps(words_obj, ensure_ascii=False))
+        words_list = _unwrap(words_obj, "words")
         test("words.json 직렬화 왕복",
              words_obj == words_re,
-             "불일치 발생" if words_obj != words_re else f"{len(words_obj)}개 OK")
+             "불일치 발생" if words_obj != words_re else f"{len(words_list)}개 OK")
 
         # compounds
         comp_raw   = COMPOUNDS_PATH.read_text(encoding="utf-8")
         comp_obj   = json.loads(comp_raw)
         comp_re    = json.loads(json.dumps(comp_obj, ensure_ascii=False))
+        comp_list  = _unwrap(comp_obj, "compounds")
         test("compounds.json 직렬화 왕복",
              comp_obj == comp_re,
-             "불일치 발생" if comp_obj != comp_re else f"{len(comp_obj)}개 OK")
+             "불일치 발생" if comp_obj != comp_re else f"{len(comp_list)}개 OK")
 
         # terms
         terms_raw  = TERMS_PATH.read_text(encoding="utf-8")

@@ -13,8 +13,15 @@ import sys
 import copy
 import hashlib
 import argparse
+import io
 from pathlib import Path
 from datetime import datetime
+
+# ── Windows stdout UTF-8 강제 설정 (cp949 UnicodeEncodeError 방지) ──────────
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+elif sys.stdout.encoding and sys.stdout.encoding.lower() not in ("utf-8", "utf8"):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 # ── 경로 설정 ─────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).parent.resolve()
@@ -259,9 +266,9 @@ def tc_08_check_id_registered(words, verbose):
             return
         # 첫 번째 단어 id로 테스트
         wid = words[0]["id"] if isinstance(words[0], dict) else str(words[0])
-        import io
+        import io as _io
         from contextlib import redirect_stdout
-        buf = io.StringIO()
+        buf = _io.StringIO()
         with redirect_stdout(buf):
             cmd_check_id(wid)
         output = buf.getvalue()
@@ -279,9 +286,9 @@ def tc_09_stats_count(words, compounds, verbose):
     header("TC-09  stats — words/compounds 카운트 정합")
     try:
         from generate_glossary import cmd_stats
-        import io
+        import io as _io
         from contextlib import redirect_stdout
-        buf = io.StringIO()
+        buf = _io.StringIO()
         with redirect_stdout(buf):
             cmd_stats()
         output = buf.getvalue()
