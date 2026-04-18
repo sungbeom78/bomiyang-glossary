@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-04-16T02:46:42Z",
+  "generated_at": "2026-04-17T00:16:44Z",
   "terms": [
     {
       "id": "account",
@@ -18,6 +18,20 @@
       },
       "description_i18n": {
         "ko": "투자 계좌 정보"
+      }
+    },
+    {
+      "id": "accounts",
+      "source": "word",
+      "root": "account",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "account",
+        "ko": "계좌",
+        "ja": "アカウント",
+        "zh_hans": "帐户"
       }
     },
     {
@@ -53,6 +67,20 @@
       }
     },
     {
+      "id": "adapters",
+      "source": "word",
+      "root": "adapter",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "adapter",
+        "ko": "어댑터",
+        "ja": "アダプタ",
+        "zh_hans": "适配器"
+      }
+    },
+    {
       "id": "after",
       "source": "word",
       "root": "after",
@@ -85,6 +113,20 @@
       }
     },
     {
+      "id": "apps",
+      "source": "word",
+      "root": "app",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "app",
+        "ko": "앱",
+        "ja": "アプリ",
+        "zh_hans": "应用程序"
+      }
+    },
+    {
       "id": "auth",
       "source": "word",
       "root": "auth",
@@ -101,11 +143,11 @@
       }
     },
     {
-      "id": "AUTH",
+      "id": "authentications",
       "source": "word",
       "root": "auth",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "infra",
       "lang": {
         "en": "authentication",
@@ -131,6 +173,20 @@
       }
     },
     {
+      "id": "backtests",
+      "source": "word",
+      "root": "backtest",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "backtest",
+        "ko": "백테스트",
+        "ja": "バックテスト",
+        "zh_hans": "回测"
+      }
+    },
+    {
       "id": "balance",
       "source": "word",
       "root": "balance",
@@ -144,6 +200,20 @@
       },
       "description_i18n": {
         "ko": "계좌의 현재 자산 잔고"
+      }
+    },
+    {
+      "id": "balances",
+      "source": "word",
+      "root": "balance",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "balance",
+        "ko": "잔고",
+        "ja": "バランス",
+        "zh_hans": "平衡"
       }
     },
     {
@@ -163,11 +233,11 @@
       }
     },
     {
-      "id": "BAR",
+      "id": "bars",
       "source": "word",
       "root": "bar",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "bar",
@@ -193,6 +263,20 @@
       }
     },
     {
+      "id": "bots",
+      "source": "word",
+      "root": "bot",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "bot",
+        "ko": "봇",
+        "ja": "ボット",
+        "zh_hans": "机器人"
+      }
+    },
+    {
       "id": "bounce",
       "source": "word",
       "root": "bounce",
@@ -206,6 +290,20 @@
       },
       "description_i18n": {
         "ko": "하락 후 일시적 상승"
+      }
+    },
+    {
+      "id": "bounces",
+      "source": "word",
+      "root": "bounce",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "bounce",
+        "ko": "반등",
+        "ja": "跳ねる",
+        "zh_hans": "弹跳"
       }
     },
     {
@@ -225,11 +323,11 @@
       }
     },
     {
-      "id": "BRK",
+      "id": "breakouts",
       "source": "word",
       "root": "breakout",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "breakout",
@@ -255,6 +353,20 @@
       }
     },
     {
+      "id": "bridges",
+      "source": "word",
+      "root": "bridge",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "bridge",
+        "ko": "브릿지",
+        "ja": "橋",
+        "zh_hans": "桥"
+      }
+    },
+    {
       "id": "buy",
       "source": "word",
       "root": "buy",
@@ -271,11 +383,11 @@
       }
     },
     {
-      "id": "BUY",
+      "id": "buys",
       "source": "word",
       "root": "buy",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "buy",
@@ -301,11 +413,11 @@
       }
     },
     {
-      "id": "CNCL",
+      "id": "cancelleds",
       "source": "word",
       "root": "cancelled",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "cancelled",
@@ -361,6 +473,20 @@
       }
     },
     {
+      "id": "candles",
+      "source": "word",
+      "root": "candle",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "candle",
+        "ko": "캔들",
+        "ja": "キャンドル",
+        "zh_hans": "蜡烛"
+      }
+    },
+    {
       "id": "capital",
       "source": "word",
       "root": "capital",
@@ -374,6 +500,20 @@
       },
       "description_i18n": {
         "ko": "투자 시스템의 총 자본금"
+      }
+    },
+    {
+      "id": "capitals",
+      "source": "word",
+      "root": "capital",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "capital",
+        "ko": "자본금",
+        "ja": "資本",
+        "zh_hans": "首都"
       }
     },
     {
@@ -423,11 +563,11 @@
       }
     },
     {
-      "id": "CHART",
+      "id": "charts",
       "source": "word",
       "root": "chart",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "chart",
@@ -453,6 +593,20 @@
       }
     },
     {
+      "id": "classifications",
+      "source": "word",
+      "root": "classification",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "classification",
+        "ko": "분류",
+        "ja": "分類",
+        "zh_hans": "分类"
+      }
+    },
+    {
       "id": "classify",
       "source": "word",
       "root": "classify",
@@ -466,6 +620,20 @@
       },
       "description_i18n": {
         "ko": "데이터를 분류하는 기능"
+      }
+    },
+    {
+      "id": "classifies",
+      "source": "word",
+      "root": "classify",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "classify",
+        "ko": "분류",
+        "ja": "分類する",
+        "zh_hans": "分类"
       }
     },
     {
@@ -485,6 +653,20 @@
       }
     },
     {
+      "id": "closes",
+      "source": "word",
+      "root": "close",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "close",
+        "ko": "종가",
+        "ja": "近い",
+        "zh_hans": "关闭"
+      }
+    },
+    {
       "id": "closed",
       "source": "word",
       "root": "closed",
@@ -498,6 +680,20 @@
       },
       "description_i18n": {
         "ko": "주문, 거래 또는 프로세스가 종료되었음을 나타내는 상태"
+      }
+    },
+    {
+      "id": "closeds",
+      "source": "word",
+      "root": "closed",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "closed",
+        "ko": "종료됨",
+        "ja": "閉まっている",
+        "zh_hans": "关闭"
       }
     },
     {
@@ -517,6 +713,20 @@
       }
     },
     {
+      "id": "clses",
+      "source": "word",
+      "root": "cls",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "cls",
+        "ko": "클래스",
+        "ja": "CLS",
+        "zh_hans": "CLS"
+      }
+    },
+    {
       "id": "cluster",
       "source": "word",
       "root": "cluster",
@@ -530,6 +740,20 @@
       },
       "description_i18n": {
         "ko": "데이터 클러스터링 결과 또는 구조"
+      }
+    },
+    {
+      "id": "clusters",
+      "source": "word",
+      "root": "cluster",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "cluster",
+        "ko": "클러스터",
+        "ja": "クラスタ",
+        "zh_hans": "簇"
       }
     },
     {
@@ -549,6 +773,20 @@
       }
     },
     {
+      "id": "clusterings",
+      "source": "word",
+      "root": "clustering",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "clustering",
+        "ko": "클러스터링",
+        "ja": "クラスタリング",
+        "zh_hans": "聚类"
+      }
+    },
+    {
       "id": "code",
       "source": "word",
       "root": "code",
@@ -565,11 +803,11 @@
       }
     },
     {
-      "id": "CODE",
+      "id": "codes",
       "source": "word",
       "root": "code",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "market",
       "lang": {
         "en": "code",
@@ -592,6 +830,20 @@
       },
       "description_i18n": {
         "ko": "데이터를 수집하는 컴포넌트"
+      }
+    },
+    {
+      "id": "collectors",
+      "source": "word",
+      "root": "collector",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "collector",
+        "ko": "수집기",
+        "ja": "コレクタ",
+        "zh_hans": "集电极"
       }
     },
     {
@@ -641,6 +893,20 @@
       }
     },
     {
+      "id": "commands",
+      "source": "word",
+      "root": "command",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "command",
+        "ko": "명령어",
+        "ja": "指示",
+        "zh_hans": "命令"
+      }
+    },
+    {
       "id": "commission",
       "source": "word",
       "root": "commission",
@@ -657,11 +923,11 @@
       }
     },
     {
-      "id": "COMM",
+      "id": "commissions",
       "source": "word",
       "root": "commission",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "commission",
@@ -703,6 +969,20 @@
       }
     },
     {
+      "id": "completes",
+      "source": "word",
+      "root": "complete",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "complete",
+        "ko": "완료",
+        "ja": "完了",
+        "zh_hans": "完全的"
+      }
+    },
+    {
       "id": "completed",
       "source": "word",
       "root": "completed",
@@ -716,6 +996,20 @@
       },
       "description_i18n": {
         "ko": "주문, 작업 또는 프로세스가 완료되었음을 나타내는 상태"
+      }
+    },
+    {
+      "id": "completeds",
+      "source": "word",
+      "root": "completed",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "completed",
+        "ko": "완료됨",
+        "ja": "完了しました",
+        "zh_hans": "完全的"
       }
     },
     {
@@ -735,6 +1029,20 @@
       }
     },
     {
+      "id": "conditions",
+      "source": "word",
+      "root": "condition",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "condition",
+        "ko": "조건",
+        "ja": "状態",
+        "zh_hans": "状况"
+      }
+    },
+    {
       "id": "confidence",
       "source": "word",
       "root": "confidence",
@@ -748,6 +1056,20 @@
       },
       "description_i18n": {
         "ko": "신호 또는 예측의 신뢰 수준"
+      }
+    },
+    {
+      "id": "confidences",
+      "source": "word",
+      "root": "confidence",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "confidence",
+        "ko": "신뢰도",
+        "ja": "自信",
+        "zh_hans": "信心"
       }
     },
     {
@@ -767,6 +1089,20 @@
       }
     },
     {
+      "id": "cores",
+      "source": "word",
+      "root": "core",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "core",
+        "ko": "코어",
+        "ja": "コア",
+        "zh_hans": "核"
+      }
+    },
+    {
       "id": "config",
       "source": "word",
       "root": "config",
@@ -783,11 +1119,11 @@
       }
     },
     {
-      "id": "cfg",
+      "id": "configs",
       "source": "word",
       "root": "config",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "config",
@@ -813,6 +1149,20 @@
       }
     },
     {
+      "id": "confirmeds",
+      "source": "word",
+      "root": "confirmed",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "confirmed",
+        "ko": "확인됨",
+        "ja": "確認済み",
+        "zh_hans": "确认的"
+      }
+    },
+    {
       "id": "connected",
       "source": "word",
       "root": "connected",
@@ -826,6 +1176,20 @@
       },
       "description_i18n": {
         "ko": "서비스 또는 시스템과의 연결 상태"
+      }
+    },
+    {
+      "id": "connecteds",
+      "source": "word",
+      "root": "connected",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "connected",
+        "ko": "연결됨",
+        "ja": "接続されています",
+        "zh_hans": "已连接"
       }
     },
     {
@@ -861,6 +1225,20 @@
       }
     },
     {
+      "id": "cryptocurrencies",
+      "source": "word",
+      "root": "crypto",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "cryptocurrency",
+        "ko": "코인거래",
+        "ja": "暗号通貨",
+        "zh_hans": "加密货币"
+      }
+    },
+    {
       "id": "daily",
       "source": "word",
       "root": "daily",
@@ -893,6 +1271,20 @@
       }
     },
     {
+      "id": "dashboards",
+      "source": "word",
+      "root": "dashboard",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "dashboard",
+        "ko": "대시보드",
+        "ja": "ダッシュボード",
+        "zh_hans": "仪表板"
+      }
+    },
+    {
       "id": "db",
       "source": "word",
       "root": "db",
@@ -906,6 +1298,20 @@
       },
       "description_i18n": {
         "ko": "데이터베이스 접두사"
+      }
+    },
+    {
+      "id": "dbs",
+      "source": "word",
+      "root": "db",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "db",
+        "ko": "데이터베이스",
+        "ja": "データベース",
+        "zh_hans": "数据库"
       }
     },
     {
@@ -941,6 +1347,20 @@
       }
     },
     {
+      "id": "directions",
+      "source": "word",
+      "root": "direction",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "direction",
+        "ko": "방향",
+        "ja": "方向",
+        "zh_hans": "方向"
+      }
+    },
+    {
       "id": "disabled",
       "source": "word",
       "root": "disabled",
@@ -957,11 +1377,11 @@
       }
     },
     {
-      "id": "OFF",
+      "id": "disableds",
       "source": "word",
       "root": "disabled",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "disabled",
@@ -984,6 +1404,20 @@
       },
       "description_i18n": {
         "ko": "Database Source Name"
+      }
+    },
+    {
+      "id": "dsns",
+      "source": "word",
+      "root": "dsn",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "dsn",
+        "ko": "접속 문자열",
+        "ja": "DSN",
+        "zh_hans": "域名"
       }
     },
     {
@@ -1019,11 +1453,11 @@
       }
     },
     {
-      "id": "ON",
+      "id": "enableds",
       "source": "word",
       "root": "enabled",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "enabled",
@@ -1049,6 +1483,20 @@
       }
     },
     {
+      "id": "ends",
+      "source": "word",
+      "root": "end",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "end",
+        "ko": "종료",
+        "ja": "終わり",
+        "zh_hans": "结尾"
+      }
+    },
+    {
       "id": "engine",
       "source": "word",
       "root": "engine",
@@ -1062,6 +1510,20 @@
       },
       "description_i18n": {
         "ko": "시스템의 핵심 처리 로직을 담당하는 부분"
+      }
+    },
+    {
+      "id": "engines",
+      "source": "word",
+      "root": "engine",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "engine",
+        "ko": "엔진",
+        "ja": "エンジン",
+        "zh_hans": "引擎"
       }
     },
     {
@@ -1081,11 +1543,11 @@
       }
     },
     {
-      "id": "ENT",
+      "id": "entries",
       "source": "word",
       "root": "entry",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "entry",
@@ -1111,6 +1573,20 @@
       }
     },
     {
+      "id": "envs",
+      "source": "word",
+      "root": "env",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "env",
+        "ko": "환경변수",
+        "ja": "環境",
+        "zh_hans": "环境"
+      }
+    },
+    {
       "id": "eod",
       "source": "word",
       "root": "eod",
@@ -1124,6 +1600,20 @@
       },
       "description_i18n": {
         "ko": "End of Day 장 마감 시점"
+      }
+    },
+    {
+      "id": "eods",
+      "source": "word",
+      "root": "eod",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "eod",
+        "ko": "장마감",
+        "ja": "イード",
+        "zh_hans": "爆炸物"
       }
     },
     {
@@ -1143,6 +1633,20 @@
       }
     },
     {
+      "id": "equities",
+      "source": "word",
+      "root": "equity",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "equity",
+        "ko": "자본",
+        "ja": "資本",
+        "zh_hans": "公平"
+      }
+    },
+    {
       "id": "error",
       "source": "word",
       "root": "error",
@@ -1159,11 +1663,11 @@
       }
     },
     {
-      "id": "ERR",
+      "id": "errors",
       "source": "word",
       "root": "error",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "error",
@@ -1189,6 +1693,20 @@
       }
     },
     {
+      "id": "events",
+      "source": "word",
+      "root": "event",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "event",
+        "ko": "이벤트",
+        "ja": "イベント",
+        "zh_hans": "事件"
+      }
+    },
+    {
       "id": "exchange",
       "source": "word",
       "root": "exchange",
@@ -1202,6 +1720,20 @@
       },
       "description_i18n": {
         "ko": "거래가 이루어지는 금융 거래소"
+      }
+    },
+    {
+      "id": "exchanges",
+      "source": "word",
+      "root": "exchange",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "exchange",
+        "ko": "거래소",
+        "ja": "交換",
+        "zh_hans": "交换"
       }
     },
     {
@@ -1221,6 +1753,20 @@
       }
     },
     {
+      "id": "execs",
+      "source": "word",
+      "root": "exec",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "exec",
+        "ko": "실행",
+        "ja": "実行する",
+        "zh_hans": "执行"
+      }
+    },
+    {
       "id": "execution",
       "source": "word",
       "root": "execution",
@@ -1234,6 +1780,20 @@
       },
       "description_i18n": {
         "ko": "주문 실행 및 관리 관련 시스템"
+      }
+    },
+    {
+      "id": "executions",
+      "source": "word",
+      "root": "execution",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "execution",
+        "ko": "실행",
+        "ja": "実行",
+        "zh_hans": "执行"
       }
     },
     {
@@ -1253,11 +1813,11 @@
       }
     },
     {
-      "id": "EXIT",
+      "id": "exits",
       "source": "word",
       "root": "exit",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "exit",
@@ -1299,11 +1859,11 @@
       }
     },
     {
-      "id": "FAIL",
+      "id": "faileds",
       "source": "word",
       "root": "failed",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "failed",
@@ -1329,11 +1889,11 @@
       }
     },
     {
-      "id": "FILL",
+      "id": "fills",
       "source": "word",
       "root": "fill",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "fill",
@@ -1359,11 +1919,11 @@
       }
     },
     {
-      "id": "FLLD",
+      "id": "filleds",
       "source": "word",
       "root": "filled",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "filled",
@@ -1389,6 +1949,20 @@
       }
     },
     {
+      "id": "filters",
+      "source": "word",
+      "root": "filter",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "filter",
+        "ko": "필터",
+        "ja": "フィルター",
+        "zh_hans": "筛选"
+      }
+    },
+    {
       "id": "flat",
       "source": "word",
       "root": "flat",
@@ -1405,11 +1979,11 @@
       }
     },
     {
-      "id": "FLAT",
+      "id": "flats",
       "source": "word",
       "root": "flat",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "flat",
@@ -1467,6 +2041,20 @@
       }
     },
     {
+      "id": "futureses",
+      "source": "word",
+      "root": "futures",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "futures",
+        "ko": "선물",
+        "ja": "先物",
+        "zh_hans": "期货"
+      }
+    },
+    {
       "id": "fx",
       "source": "word",
       "root": "fx",
@@ -1499,6 +2087,20 @@
       }
     },
     {
+      "id": "generators",
+      "source": "word",
+      "root": "generator",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "generator",
+        "ko": "생성기",
+        "ja": "ジェネレータ",
+        "zh_hans": "发电机"
+      }
+    },
+    {
       "id": "goldenkey",
       "source": "word",
       "root": "goldenkey",
@@ -1512,6 +2114,20 @@
       },
       "description_i18n": {
         "ko": "특정 종목 선정 기준 또는 신호"
+      }
+    },
+    {
+      "id": "goldenkeys",
+      "source": "word",
+      "root": "goldenkey",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "goldenkey",
+        "ko": "골든키",
+        "ja": "ゴールデンキー",
+        "zh_hans": "金钥匙"
       }
     },
     {
@@ -1531,6 +2147,20 @@
       }
     },
     {
+      "id": "guards",
+      "source": "word",
+      "root": "guard",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "guard",
+        "ko": "가드",
+        "ja": "ガード",
+        "zh_hans": "警卫"
+      }
+    },
+    {
       "id": "halted",
       "source": "word",
       "root": "halted",
@@ -1544,6 +2174,20 @@
       },
       "description_i18n": {
         "ko": "거래 또는 시스템이 일시적으로 중단된 상태"
+      }
+    },
+    {
+      "id": "halteds",
+      "source": "word",
+      "root": "halted",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "halted",
+        "ko": "중단됨",
+        "ja": "停止した",
+        "zh_hans": "停止了"
       }
     },
     {
@@ -1593,6 +2237,20 @@
       }
     },
     {
+      "id": "healths",
+      "source": "word",
+      "root": "health",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "health",
+        "ko": "상태",
+        "ja": "健康",
+        "zh_hans": "健康"
+      }
+    },
+    {
       "id": "heartbeat",
       "source": "word",
       "root": "heartbeat",
@@ -1609,11 +2267,11 @@
       }
     },
     {
-      "id": "HB",
+      "id": "heartbeats",
       "source": "word",
       "root": "heartbeat",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "infra",
       "lang": {
         "en": "heartbeat",
@@ -1639,6 +2297,20 @@
       }
     },
     {
+      "id": "histories",
+      "source": "word",
+      "root": "history",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "history",
+        "ko": "히스토리",
+        "ja": "歴史",
+        "zh_hans": "历史"
+      }
+    },
+    {
       "id": "id",
       "source": "word",
       "root": "id",
@@ -1652,6 +2324,20 @@
       },
       "description_i18n": {
         "ko": "고유 식별자"
+      }
+    },
+    {
+      "id": "ids",
+      "source": "word",
+      "root": "id",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "id",
+        "ko": "식별자",
+        "ja": "ID",
+        "zh_hans": "ID"
       }
     },
     {
@@ -1687,6 +2373,20 @@
       }
     },
     {
+      "id": "infos",
+      "source": "word",
+      "root": "info",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "info",
+        "ko": "정보",
+        "ja": "情報",
+        "zh_hans": "信息"
+      }
+    },
+    {
       "id": "intent",
       "source": "word",
       "root": "intent",
@@ -1700,6 +2400,20 @@
       },
       "description_i18n": {
         "ko": "실행 전 주문 의사결정 객체"
+      }
+    },
+    {
+      "id": "intents",
+      "source": "word",
+      "root": "intent",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "intent",
+        "ko": "의도",
+        "ja": "意図",
+        "zh_hans": "意图"
       }
     },
     {
@@ -1719,6 +2433,20 @@
       }
     },
     {
+      "id": "intervals",
+      "source": "word",
+      "root": "interval",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "interval",
+        "ko": "간격",
+        "ja": "間隔",
+        "zh_hans": "间隔"
+      }
+    },
+    {
       "id": "intraday",
       "source": "word",
       "root": "intraday",
@@ -1735,11 +2463,11 @@
       }
     },
     {
-      "id": "INTRA",
+      "id": "intradays",
       "source": "word",
       "root": "intraday",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "intraday",
@@ -1762,6 +2490,20 @@
       },
       "description_i18n": {
         "ko": "인증 키"
+      }
+    },
+    {
+      "id": "keys",
+      "source": "word",
+      "root": "key",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "key",
+        "ko": "키",
+        "ja": "鍵",
+        "zh_hans": "钥匙"
       }
     },
     {
@@ -1797,11 +2539,11 @@
       }
     },
     {
-      "id": "KIS",
+      "id": "kises",
       "source": "word",
       "root": "kis",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "infra",
       "lang": {
         "en": "korea investment & securities api",
@@ -1827,6 +2569,20 @@
       }
     },
     {
+      "id": "kosdaqs",
+      "source": "word",
+      "root": "kosdaq",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "kosdaq",
+        "ko": "코스닥",
+        "ja": "コスダック",
+        "zh_hans": "科斯达克"
+      }
+    },
+    {
       "id": "kospi",
       "source": "word",
       "root": "kospi",
@@ -1843,11 +2599,11 @@
       }
     },
     {
-      "id": "KOSPI",
+      "id": "kospis",
       "source": "word",
       "root": "kospi",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "market",
       "lang": {
         "en": "kospi",
@@ -1889,6 +2645,20 @@
       }
     },
     {
+      "id": "leaders",
+      "source": "word",
+      "root": "leader",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "leader",
+        "ko": "대장",
+        "ja": "リーダー",
+        "zh_hans": "领导者"
+      }
+    },
+    {
       "id": "limit",
       "source": "word",
       "root": "limit",
@@ -1902,6 +2672,20 @@
       },
       "description_i18n": {
         "ko": "가격 제한 또는 지정가 주문"
+      }
+    },
+    {
+      "id": "limits",
+      "source": "word",
+      "root": "limit",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "limit",
+        "ko": "한도/지정가",
+        "ja": "限界",
+        "zh_hans": "限制"
       }
     },
     {
@@ -1953,6 +2737,20 @@
       }
     },
     {
+      "id": "logs",
+      "source": "word",
+      "root": "log",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "log",
+        "ko": "로그",
+        "ja": "ログ",
+        "zh_hans": "日志"
+      }
+    },
+    {
       "id": "long",
       "source": "word",
       "root": "long",
@@ -1969,11 +2767,11 @@
       }
     },
     {
-      "id": "LONG",
+      "id": "longs",
       "source": "word",
       "root": "long",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "long",
@@ -1996,6 +2794,20 @@
       },
       "description_i18n": {
         "ko": "거래에서 발생한 손실"
+      }
+    },
+    {
+      "id": "losses",
+      "source": "word",
+      "root": "loss",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "loss",
+        "ko": "손실",
+        "ja": "損失",
+        "zh_hans": "损失"
       }
     },
     {
@@ -2029,11 +2841,11 @@
       "description_i18n": {}
     },
     {
-      "id": "MAIN",
+      "id": "mains",
       "source": "word",
       "root": "main",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "main execution",
@@ -2057,6 +2869,20 @@
       "description_i18n": {}
     },
     {
+      "id": "managers",
+      "source": "word",
+      "root": "manager",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "manager",
+        "ko": "관리자",
+        "ja": "マネージャー",
+        "zh_hans": "经理"
+      }
+    },
+    {
       "id": "manual",
       "source": "word",
       "root": "manual",
@@ -2069,6 +2895,20 @@
         "zh_hans": "手动的"
       },
       "description_i18n": {}
+    },
+    {
+      "id": "manuals",
+      "source": "word",
+      "root": "manual",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "manual",
+        "ko": "수동",
+        "ja": "マニュアル",
+        "zh_hans": "手动的"
+      }
     },
     {
       "id": "margin",
@@ -2084,6 +2924,20 @@
       },
       "description_i18n": {
         "ko": "포지션 유지를 위한 담보금"
+      }
+    },
+    {
+      "id": "margins",
+      "source": "word",
+      "root": "margin",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "margin",
+        "ko": "증거금",
+        "ja": "マージン",
+        "zh_hans": "利润"
       }
     },
     {
@@ -2103,6 +2957,20 @@
       }
     },
     {
+      "id": "markets",
+      "source": "word",
+      "root": "market",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "market",
+        "ko": "시장",
+        "ja": "市場",
+        "zh_hans": "市场"
+      }
+    },
+    {
       "id": "master",
       "source": "word",
       "root": "master",
@@ -2116,6 +2984,20 @@
       },
       "description_i18n": {
         "ko": "기준 데이터 테이블"
+      }
+    },
+    {
+      "id": "masters",
+      "source": "word",
+      "root": "master",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "master",
+        "ko": "마스터",
+        "ja": "マスター",
+        "zh_hans": "掌握"
       }
     },
     {
@@ -2149,11 +3031,11 @@
       "description_i18n": {}
     },
     {
-      "id": "META",
+      "id": "metas",
       "source": "word",
       "root": "meta",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "market",
       "lang": {
         "en": "meta information",
@@ -2175,6 +3057,20 @@
         "zh_hans": "方法"
       },
       "description_i18n": {}
+    },
+    {
+      "id": "methods",
+      "source": "word",
+      "root": "method",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "method",
+        "ko": "방법",
+        "ja": "方法",
+        "zh_hans": "方法"
+      }
     },
     {
       "id": "mock",
@@ -2209,6 +3105,20 @@
       }
     },
     {
+      "id": "mods",
+      "source": "word",
+      "root": "mod",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "mod",
+        "ko": "모듈",
+        "ja": "モッド",
+        "zh_hans": "模组"
+      }
+    },
+    {
       "id": "module",
       "source": "word",
       "root": "module",
@@ -2222,6 +3132,20 @@
       },
       "description_i18n": {
         "ko": "특정 책임을 캡슐화한 코드 단위"
+      }
+    },
+    {
+      "id": "modules",
+      "source": "word",
+      "root": "module",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "module",
+        "ko": "모듈",
+        "ja": "モジュール",
+        "zh_hans": "模块"
       }
     },
     {
@@ -2241,6 +3165,20 @@
       }
     },
     {
+      "id": "momentums",
+      "source": "word",
+      "root": "momentum",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "momentum",
+        "ko": "모멘텀",
+        "ja": "勢い",
+        "zh_hans": "势头"
+      }
+    },
+    {
       "id": "mt5",
       "source": "word",
       "root": "mt5",
@@ -2257,11 +3195,11 @@
       }
     },
     {
-      "id": "MT5",
+      "id": "mt5s",
       "source": "word",
       "root": "mt5",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "infra",
       "lang": {
         "en": "metatrader 5",
@@ -2287,6 +3225,20 @@
       }
     },
     {
+      "id": "names",
+      "source": "word",
+      "root": "name",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "name",
+        "ko": "이름",
+        "ja": "名前",
+        "zh_hans": "姓名"
+      }
+    },
+    {
       "id": "no",
       "source": "word",
       "root": "no",
@@ -2300,6 +3252,34 @@
       },
       "description_i18n": {
         "ko": "부정 또는 금지를 나타내는 접두사"
+      }
+    },
+    {
+      "id": "noes",
+      "source": "word",
+      "root": "no",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "no",
+        "ko": "금지",
+        "ja": "いいえ",
+        "zh_hans": "不"
+      }
+    },
+    {
+      "id": "nos",
+      "source": "word",
+      "root": "no",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "no",
+        "ko": "금지",
+        "ja": "いいえ",
+        "zh_hans": "不"
       }
     },
     {
@@ -2319,6 +3299,20 @@
       }
     },
     {
+      "id": "nodes",
+      "source": "word",
+      "root": "node",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "node",
+        "ko": "노드",
+        "ja": "ノード",
+        "zh_hans": "节点"
+      }
+    },
+    {
       "id": "notification",
       "source": "word",
       "root": "notification",
@@ -2332,6 +3326,20 @@
       },
       "description_i18n": {
         "ko": "시스템 이벤트를 외부로 전달하는 알림"
+      }
+    },
+    {
+      "id": "notifications",
+      "source": "word",
+      "root": "notification",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "notification",
+        "ko": "알림",
+        "ja": "通知",
+        "zh_hans": "通知"
       }
     },
     {
@@ -2351,6 +3359,20 @@
       }
     },
     {
+      "id": "notifiers",
+      "source": "word",
+      "root": "notifier",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "notifier",
+        "ko": "알리미",
+        "ja": "通知者",
+        "zh_hans": "通知者"
+      }
+    },
+    {
       "id": "offline",
       "source": "word",
       "root": "offline",
@@ -2367,11 +3389,11 @@
       }
     },
     {
-      "id": "OFLN",
+      "id": "offlines",
       "source": "word",
       "root": "offline",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "offline",
@@ -2397,11 +3419,11 @@
       }
     },
     {
-      "id": "ONLN",
+      "id": "onlines",
       "source": "word",
       "root": "online",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "online",
@@ -2427,6 +3449,20 @@
       }
     },
     {
+      "id": "opens",
+      "source": "word",
+      "root": "open",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "open",
+        "ko": "시가",
+        "ja": "開ける",
+        "zh_hans": "打开"
+      }
+    },
+    {
       "id": "orchestrator",
       "source": "word",
       "root": "orchestrator",
@@ -2443,11 +3479,11 @@
       }
     },
     {
-      "id": "ORCH",
+      "id": "orchestrators",
       "source": "word",
       "root": "orchestrator",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "infra",
       "lang": {
         "en": "orchestrator",
@@ -2473,11 +3509,11 @@
       }
     },
     {
-      "id": "ORD",
+      "id": "orders",
       "source": "word",
       "root": "order",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "order",
@@ -2503,11 +3539,11 @@
       }
     },
     {
-      "id": "OB",
+      "id": "orderbooks",
       "source": "word",
       "root": "orderbook",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "orderbook",
@@ -2533,11 +3569,11 @@
       }
     },
     {
-      "id": "OVNT",
+      "id": "overnights",
       "source": "word",
       "root": "overnight",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "overnight",
@@ -2579,11 +3615,11 @@
       }
     },
     {
-      "id": "PEND",
+      "id": "pendings",
       "source": "word",
       "root": "pending",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "pending",
@@ -2609,6 +3645,20 @@
       }
     },
     {
+      "id": "personalities",
+      "source": "word",
+      "root": "personality",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "personality",
+        "ko": "성격",
+        "ja": "人格",
+        "zh_hans": "性格"
+      }
+    },
+    {
       "id": "pg",
       "source": "word",
       "root": "pg",
@@ -2622,6 +3672,20 @@
       },
       "description_i18n": {
         "ko": "PostgreSQL 데이터베이스"
+      }
+    },
+    {
+      "id": "pgs",
+      "source": "word",
+      "root": "pg",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "pg",
+        "ko": "PostgreSQL",
+        "ja": "ページ",
+        "zh_hans": "PG"
       }
     },
     {
@@ -2641,6 +3705,20 @@
       }
     },
     {
+      "id": "pnls",
+      "source": "word",
+      "root": "pnl",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "pnl",
+        "ko": "손익",
+        "ja": "損益計算書",
+        "zh_hans": "PNL"
+      }
+    },
+    {
       "id": "port",
       "source": "word",
       "root": "port",
@@ -2654,6 +3732,20 @@
       },
       "description_i18n": {
         "ko": "네트워크 포트 번호"
+      }
+    },
+    {
+      "id": "ports",
+      "source": "word",
+      "root": "port",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "port",
+        "ko": "포트",
+        "ja": "ポート",
+        "zh_hans": "港口"
       }
     },
     {
@@ -2673,11 +3765,11 @@
       }
     },
     {
-      "id": "POS",
+      "id": "positions",
       "source": "word",
       "root": "position",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "position",
@@ -2703,6 +3795,20 @@
       }
     },
     {
+      "id": "postgresqls",
+      "source": "word",
+      "root": "postgresql",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "postgresql",
+        "ko": "PostgreSQL",
+        "ja": "ポストグレSQL",
+        "zh_hans": "PostgreSQL"
+      }
+    },
+    {
       "id": "process",
       "source": "word",
       "root": "process",
@@ -2716,6 +3822,20 @@
       },
       "description_i18n": {
         "ko": "실행 중인 프로그램"
+      }
+    },
+    {
+      "id": "processes",
+      "source": "word",
+      "root": "process",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "process",
+        "ko": "프로세스",
+        "ja": "プロセス",
+        "zh_hans": "过程"
       }
     },
     {
@@ -2735,6 +3855,20 @@
       }
     },
     {
+      "id": "profits",
+      "source": "word",
+      "root": "profit",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "profit",
+        "ko": "수익",
+        "ja": "利益",
+        "zh_hans": "利润"
+      }
+    },
+    {
       "id": "project",
       "source": "word",
       "root": "project",
@@ -2748,6 +3882,20 @@
       },
       "description_i18n": {
         "ko": "프로젝트 루트"
+      }
+    },
+    {
+      "id": "projects",
+      "source": "word",
+      "root": "project",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "project",
+        "ko": "프로젝트",
+        "ja": "プロジェクト",
+        "zh_hans": "项目"
       }
     },
     {
@@ -2767,6 +3915,20 @@
       }
     },
     {
+      "id": "proxies",
+      "source": "word",
+      "root": "proxy",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "proxy",
+        "ko": "프록시",
+        "ja": "プロキシ",
+        "zh_hans": "代理人"
+      }
+    },
+    {
       "id": "pullback",
       "source": "word",
       "root": "pullback",
@@ -2783,11 +3945,11 @@
       }
     },
     {
-      "id": "PB",
+      "id": "pullbacks",
       "source": "word",
       "root": "pullback",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "pullback",
@@ -2813,6 +3975,20 @@
       }
     },
     {
+      "id": "rankers",
+      "source": "word",
+      "root": "ranker",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "ranker",
+        "ko": "랭커",
+        "ja": "ランカー",
+        "zh_hans": "排名者"
+      }
+    },
+    {
       "id": "ranking",
       "source": "word",
       "root": "ranking",
@@ -2826,6 +4002,20 @@
       },
       "description_i18n": {
         "ko": "순위 결과"
+      }
+    },
+    {
+      "id": "rankings",
+      "source": "word",
+      "root": "ranking",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "ranking",
+        "ko": "랭킹",
+        "ja": "ランキング",
+        "zh_hans": "排行"
       }
     },
     {
@@ -2877,6 +4067,20 @@
       }
     },
     {
+      "id": "reboots",
+      "source": "word",
+      "root": "reboot",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "reboot",
+        "ko": "재시작",
+        "ja": "リブート",
+        "zh_hans": "重新启动"
+      }
+    },
+    {
       "id": "record",
       "source": "word",
       "root": "record",
@@ -2890,6 +4094,20 @@
       },
       "description_i18n": {
         "ko": "개별 거래 이력"
+      }
+    },
+    {
+      "id": "records",
+      "source": "word",
+      "root": "record",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "record",
+        "ko": "기록",
+        "ja": "記録",
+        "zh_hans": "记录"
       }
     },
     {
@@ -2909,11 +4127,11 @@
       }
     },
     {
-      "id": "REDIS",
+      "id": "redises",
       "source": "word",
       "root": "redis",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "infra",
       "lang": {
         "en": "redis",
@@ -2939,6 +4157,20 @@
       }
     },
     {
+      "id": "registries",
+      "source": "word",
+      "root": "registry",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "registry",
+        "ko": "레지스트리",
+        "ja": "レジストリ",
+        "zh_hans": "注册表"
+      }
+    },
+    {
       "id": "reentry",
       "source": "word",
       "root": "reentry",
@@ -2952,6 +4184,20 @@
       },
       "description_i18n": {
         "ko": "거래에서 재진입할 수 있는지 여부를 결정하는 설정."
+      }
+    },
+    {
+      "id": "re-entries",
+      "source": "word",
+      "root": "reentry",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "re-entry",
+        "ko": "재진입",
+        "ja": "再入国",
+        "zh_hans": "再入"
       }
     },
     {
@@ -2971,11 +4217,11 @@
       }
     },
     {
-      "id": "RJCT",
+      "id": "rejecteds",
       "source": "word",
       "root": "rejected",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "rejected",
@@ -3001,6 +4247,20 @@
       }
     },
     {
+      "id": "relaxeds",
+      "source": "word",
+      "root": "relaxed",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "relaxed",
+        "ko": "완화된",
+        "ja": "リラックスした",
+        "zh_hans": "轻松"
+      }
+    },
+    {
       "id": "replay",
       "source": "word",
       "root": "replay",
@@ -3014,6 +4274,20 @@
       },
       "description_i18n": {
         "ko": "과거 데이터 재생 시뮬레이션"
+      }
+    },
+    {
+      "id": "replays",
+      "source": "word",
+      "root": "replay",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "replay",
+        "ko": "리플레이",
+        "ja": "リプレイ",
+        "zh_hans": "重播"
       }
     },
     {
@@ -3033,6 +4307,20 @@
       }
     },
     {
+      "id": "premiums",
+      "source": "word",
+      "root": "premium",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "premium",
+        "ko": "프리미엄",
+        "ja": "プレミアム",
+        "zh_hans": "优质的"
+      }
+    },
+    {
       "id": "protocol",
       "source": "word",
       "root": "protocol",
@@ -3046,6 +4334,20 @@
       },
       "description_i18n": {
         "ko": "모듈 간 동작 계약(인터페이스) 규약"
+      }
+    },
+    {
+      "id": "protocols",
+      "source": "word",
+      "root": "protocol",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "protocol",
+        "ko": "프로토콜",
+        "ja": "プロトコル",
+        "zh_hans": "协议"
       }
     },
     {
@@ -3065,6 +4367,20 @@
       }
     },
     {
+      "id": "reports",
+      "source": "word",
+      "root": "report",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "report",
+        "ko": "리포트",
+        "ja": "報告",
+        "zh_hans": "报告"
+      }
+    },
+    {
       "id": "reporting",
       "source": "word",
       "root": "reporting",
@@ -3078,6 +4394,20 @@
       },
       "description_i18n": {
         "ko": "보고서 생성 설정"
+      }
+    },
+    {
+      "id": "reportings",
+      "source": "word",
+      "root": "reporting",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "reporting",
+        "ko": "리포팅",
+        "ja": "報告",
+        "zh_hans": "报告"
       }
     },
     {
@@ -3097,6 +4427,20 @@
       }
     },
     {
+      "id": "risks",
+      "source": "word",
+      "root": "risk",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "risk",
+        "ko": "리스크",
+        "ja": "リスク",
+        "zh_hans": "风险"
+      }
+    },
+    {
       "id": "role",
       "source": "word",
       "root": "role",
@@ -3113,11 +4457,11 @@
       }
     },
     {
-      "id": "ROLE",
+      "id": "roles",
       "source": "word",
       "root": "role",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "role",
@@ -3140,6 +4484,20 @@
       },
       "description_i18n": {
         "ko": "최상위 경로"
+      }
+    },
+    {
+      "id": "roots",
+      "source": "word",
+      "root": "root",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "root",
+        "ko": "루트",
+        "ja": "根",
+        "zh_hans": "根"
       }
     },
     {
@@ -3175,11 +4533,11 @@
       }
     },
     {
-      "id": "RUN",
+      "id": "runnings",
       "source": "word",
       "root": "running",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "running",
@@ -3205,6 +4563,20 @@
       }
     },
     {
+      "id": "runtimes",
+      "source": "word",
+      "root": "runtime",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "runtime",
+        "ko": "런타임",
+        "ja": "ランタイム",
+        "zh_hans": "运行时"
+      }
+    },
+    {
       "id": "scanner",
       "source": "word",
       "root": "scanner",
@@ -3218,6 +4590,20 @@
       },
       "description_i18n": {
         "ko": "시장이나 종목을 탐색하고 분석하는 모듈 또는 기능."
+      }
+    },
+    {
+      "id": "scanners",
+      "source": "word",
+      "root": "scanner",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "scanner",
+        "ko": "스캐너",
+        "ja": "スキャナー",
+        "zh_hans": "扫描器"
       }
     },
     {
@@ -3237,6 +4623,20 @@
       }
     },
     {
+      "id": "schedulers",
+      "source": "word",
+      "root": "scheduler",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "scheduler",
+        "ko": "스케줄러",
+        "ja": "スケジューラ",
+        "zh_hans": "调度程序"
+      }
+    },
+    {
       "id": "scope",
       "source": "word",
       "root": "scope",
@@ -3253,11 +4653,11 @@
       }
     },
     {
-      "id": "SCOPE",
+      "id": "scopes",
       "source": "word",
       "root": "scope",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "scope",
@@ -3283,6 +4683,20 @@
       }
     },
     {
+      "id": "scores",
+      "source": "word",
+      "root": "score",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "score",
+        "ko": "점수",
+        "ja": "スコア",
+        "zh_hans": "分数"
+      }
+    },
+    {
       "id": "scorer",
       "source": "word",
       "root": "scorer",
@@ -3296,6 +4710,20 @@
       },
       "description_i18n": {
         "ko": "종목 또는 신호에 점수를 부여하는 모듈."
+      }
+    },
+    {
+      "id": "scorers",
+      "source": "word",
+      "root": "scorer",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "scorer",
+        "ko": "스코어러",
+        "ja": "スコアラー",
+        "zh_hans": "得分手"
       }
     },
     {
@@ -3315,6 +4743,20 @@
       }
     },
     {
+      "id": "scorings",
+      "source": "word",
+      "root": "scoring",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "scoring",
+        "ko": "스코어링",
+        "ja": "得点",
+        "zh_hans": "得分"
+      }
+    },
+    {
       "id": "secret",
       "source": "word",
       "root": "secret",
@@ -3328,6 +4770,20 @@
       },
       "description_i18n": {
         "ko": "비밀 인증 키"
+      }
+    },
+    {
+      "id": "secrets",
+      "source": "word",
+      "root": "secret",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "secret",
+        "ko": "시크릿",
+        "ja": "秘密",
+        "zh_hans": "秘密"
       }
     },
     {
@@ -3347,6 +4803,20 @@
       }
     },
     {
+      "id": "sectors",
+      "source": "word",
+      "root": "sector",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "sector",
+        "ko": "섹터",
+        "ja": "セクタ",
+        "zh_hans": "部门"
+      }
+    },
+    {
       "id": "selector",
       "source": "word",
       "root": "selector",
@@ -3360,6 +4830,20 @@
       },
       "description_i18n": {
         "ko": "종목 선정 컴포넌트"
+      }
+    },
+    {
+      "id": "selectors",
+      "source": "word",
+      "root": "selector",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "selector",
+        "ko": "셀렉터",
+        "ja": "セレクタ",
+        "zh_hans": "选择器"
       }
     },
     {
@@ -3379,11 +4863,11 @@
       }
     },
     {
-      "id": "SELL",
+      "id": "sells",
       "source": "word",
       "root": "sell",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "sell",
@@ -3409,6 +4893,20 @@
       }
     },
     {
+      "id": "servers",
+      "source": "word",
+      "root": "server",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "server",
+        "ko": "서버",
+        "ja": "サーバ",
+        "zh_hans": "服务器"
+      }
+    },
+    {
       "id": "service",
       "source": "word",
       "root": "service",
@@ -3422,6 +4920,20 @@
       },
       "description_i18n": {
         "ko": "독립적으로 실행되는 프로세스"
+      }
+    },
+    {
+      "id": "services",
+      "source": "word",
+      "root": "service",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "service",
+        "ko": "서비스",
+        "ja": "サービス",
+        "zh_hans": "服务"
       }
     },
     {
@@ -3501,11 +5013,11 @@
       }
     },
     {
-      "id": "SHORT",
+      "id": "shorts",
       "source": "word",
       "root": "short",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "short",
@@ -3531,6 +5043,20 @@
       }
     },
     {
+      "id": "sides",
+      "source": "word",
+      "root": "side",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "side",
+        "ko": "방향",
+        "ja": "側",
+        "zh_hans": "边"
+      }
+    },
+    {
       "id": "signal",
       "source": "word",
       "root": "signal",
@@ -3547,11 +5073,11 @@
       }
     },
     {
-      "id": "SIG",
+      "id": "signals",
       "source": "word",
       "root": "signal",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "signal",
@@ -3577,6 +5103,20 @@
       }
     },
     {
+      "id": "sizes",
+      "source": "word",
+      "root": "size",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "general",
+      "lang": {
+        "en": "size",
+        "ko": "크기",
+        "ja": "サイズ",
+        "zh_hans": "尺寸"
+      }
+    },
+    {
       "id": "slippage",
       "source": "word",
       "root": "slippage",
@@ -3593,11 +5133,11 @@
       }
     },
     {
-      "id": "SLIP",
+      "id": "slippages",
       "source": "word",
       "root": "slippage",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "slippage",
@@ -3620,6 +5160,20 @@
       },
       "description_i18n": {
         "ko": "특정 시점의 상태 저장본"
+      }
+    },
+    {
+      "id": "snapshots",
+      "source": "word",
+      "root": "snapshot",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "snapshot",
+        "ko": "스냅샷",
+        "ja": "スナップショット",
+        "zh_hans": "快照"
       }
     },
     {
@@ -3655,6 +5209,20 @@
       }
     },
     {
+      "id": "starts",
+      "source": "word",
+      "root": "start",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "start",
+        "ko": "시작",
+        "ja": "始める",
+        "zh_hans": "开始"
+      }
+    },
+    {
       "id": "starting",
       "source": "word",
       "root": "starting",
@@ -3668,6 +5236,20 @@
       },
       "description_i18n": {
         "ko": "서비스 시작 중 (초기화 진행 중)"
+      }
+    },
+    {
+      "id": "startings",
+      "source": "word",
+      "root": "starting",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "starting",
+        "ko": "시작 중",
+        "ja": "起動",
+        "zh_hans": "开始"
       }
     },
     {
@@ -3687,6 +5269,20 @@
       }
     },
     {
+      "id": "statuses",
+      "source": "word",
+      "root": "status",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "status",
+        "ko": "상태",
+        "ja": "状態",
+        "zh_hans": "地位"
+      }
+    },
+    {
       "id": "stock",
       "source": "word",
       "root": "stock",
@@ -3700,6 +5296,20 @@
       },
       "description_i18n": {
         "ko": "주식 종목"
+      }
+    },
+    {
+      "id": "stocks",
+      "source": "word",
+      "root": "stock",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "stock",
+        "ko": "주식",
+        "ja": "ストック",
+        "zh_hans": "库存"
       }
     },
     {
@@ -3719,6 +5329,20 @@
       }
     },
     {
+      "id": "stops",
+      "source": "word",
+      "root": "stop",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "stop",
+        "ko": "정지/손절",
+        "ja": "停止",
+        "zh_hans": "停止"
+      }
+    },
+    {
       "id": "stopped",
       "source": "word",
       "root": "stopped",
@@ -3732,6 +5356,20 @@
       },
       "description_i18n": {
         "ko": "서비스 중지 상태"
+      }
+    },
+    {
+      "id": "stoppeds",
+      "source": "word",
+      "root": "stopped",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "stopped",
+        "ko": "중지",
+        "ja": "止まった",
+        "zh_hans": "停止了"
       }
     },
     {
@@ -3751,6 +5389,20 @@
       }
     },
     {
+      "id": "storages",
+      "source": "word",
+      "root": "storage",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "storage",
+        "ko": "저장소",
+        "ja": "ストレージ",
+        "zh_hans": "贮存"
+      }
+    },
+    {
       "id": "strategy",
       "source": "word",
       "root": "strategy",
@@ -3764,6 +5416,20 @@
       },
       "description_i18n": {
         "ko": "매매 전략 설정"
+      }
+    },
+    {
+      "id": "strategies",
+      "source": "word",
+      "root": "strategy",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "strategy",
+        "ko": "전략",
+        "ja": "戦略",
+        "zh_hans": "战略"
       }
     },
     {
@@ -3783,6 +5449,20 @@
       }
     },
     {
+      "id": "strengths",
+      "source": "word",
+      "root": "strength",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "strength",
+        "ko": "강도",
+        "ja": "強さ",
+        "zh_hans": "力量"
+      }
+    },
+    {
       "id": "submitted",
       "source": "word",
       "root": "submitted",
@@ -3799,11 +5479,11 @@
       }
     },
     {
-      "id": "SUBM",
+      "id": "submitteds",
       "source": "word",
       "root": "submitted",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "submitted",
@@ -3829,6 +5509,20 @@
       }
     },
     {
+      "id": "swings",
+      "source": "word",
+      "root": "swing",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "swing",
+        "ko": "스윙",
+        "ja": "スイング",
+        "zh_hans": "摇摆"
+      }
+    },
+    {
       "id": "switch",
       "source": "word",
       "root": "switch",
@@ -3842,6 +5536,20 @@
       },
       "description_i18n": {
         "ko": "기능 활성화/비활성화 제어"
+      }
+    },
+    {
+      "id": "switches",
+      "source": "word",
+      "root": "switch",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "switch",
+        "ko": "스위치",
+        "ja": "スイッチ",
+        "zh_hans": "转变"
       }
     },
     {
@@ -3861,6 +5569,20 @@
       }
     },
     {
+      "id": "symbols",
+      "source": "word",
+      "root": "symbol",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "symbol",
+        "ko": "종목",
+        "ja": "シンボル",
+        "zh_hans": "象征"
+      }
+    },
+    {
       "id": "system",
       "source": "word",
       "root": "system",
@@ -3874,6 +5596,20 @@
       },
       "description_i18n": {
         "ko": "전체 소프트웨어 시스템"
+      }
+    },
+    {
+      "id": "systems",
+      "source": "word",
+      "root": "system",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "system",
+        "ko": "시스템",
+        "ja": "システム",
+        "zh_hans": "系统"
       }
     },
     {
@@ -3909,6 +5645,20 @@
       }
     },
     {
+      "id": "tasks",
+      "source": "word",
+      "root": "task",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "task",
+        "ko": "작업",
+        "ja": "タスク",
+        "zh_hans": "任务"
+      }
+    },
+    {
       "id": "telegram",
       "source": "word",
       "root": "telegram",
@@ -3922,6 +5672,20 @@
       },
       "description_i18n": {
         "ko": "텔레그램 메시징 서비스"
+      }
+    },
+    {
+      "id": "telegrams",
+      "source": "word",
+      "root": "telegram",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "telegram",
+        "ko": "텔레그램",
+        "ja": "電報",
+        "zh_hans": "电报"
       }
     },
     {
@@ -3941,6 +5705,20 @@
       }
     },
     {
+      "id": "themes",
+      "source": "word",
+      "root": "theme",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "theme",
+        "ko": "테마",
+        "ja": "テーマ",
+        "zh_hans": "主题"
+      }
+    },
+    {
       "id": "tick",
       "source": "word",
       "root": "tick",
@@ -3957,11 +5735,11 @@
       }
     },
     {
-      "id": "TK",
+      "id": "ticks",
       "source": "word",
       "root": "tick",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "tick",
@@ -3987,6 +5765,20 @@
       }
     },
     {
+      "id": "times",
+      "source": "word",
+      "root": "time",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "time",
+        "ko": "시각",
+        "ja": "時間",
+        "zh_hans": "时间"
+      }
+    },
+    {
       "id": "timeframe",
       "source": "word",
       "root": "timeframe",
@@ -4000,6 +5792,20 @@
       },
       "description_i18n": {
         "ko": "차트 또는 데이터 분석에서 사용되는 시간 단위 (예: 1분, 5분, 1시간)."
+      }
+    },
+    {
+      "id": "timeframes",
+      "source": "word",
+      "root": "timeframe",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "timeframe",
+        "ko": "타임프레임",
+        "ja": "時間枠",
+        "zh_hans": "大体时间"
       }
     },
     {
@@ -4019,6 +5825,20 @@
       }
     },
     {
+      "id": "timezones",
+      "source": "word",
+      "root": "timezone",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "timezone",
+        "ko": "시간대",
+        "ja": "タイムゾーン",
+        "zh_hans": "时区"
+      }
+    },
+    {
       "id": "token",
       "source": "word",
       "root": "token",
@@ -4035,11 +5855,11 @@
       }
     },
     {
-      "id": "TOKEN",
+      "id": "tokens",
       "source": "word",
       "root": "token",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "token",
@@ -4065,11 +5885,11 @@
       }
     },
     {
-      "id": "M",
+      "id": "ms",
       "source": "word",
       "root": "m",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "market",
       "lang": {
         "en": "m",
@@ -4111,6 +5931,20 @@
       }
     },
     {
+      "id": "trackings",
+      "source": "word",
+      "root": "tracking",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "tracking",
+        "ko": "추적",
+        "ja": "トラッキング",
+        "zh_hans": "追踪"
+      }
+    },
+    {
       "id": "tradability",
       "source": "word",
       "root": "tradability",
@@ -4124,6 +5958,20 @@
       },
       "description_i18n": {
         "ko": "종목이나 상품의 거래 가능 여부 또는 수준을 나타내는 지표입니다."
+      }
+    },
+    {
+      "id": "tradabilities",
+      "source": "word",
+      "root": "tradability",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "tradability",
+        "ko": "거래 가능성",
+        "ja": "貿易性",
+        "zh_hans": "可交易性"
       }
     },
     {
@@ -4143,6 +5991,20 @@
       }
     },
     {
+      "id": "trades",
+      "source": "word",
+      "root": "trade",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "trade",
+        "ko": "거래",
+        "ja": "貿易",
+        "zh_hans": "贸易"
+      }
+    },
+    {
       "id": "trading",
       "source": "word",
       "root": "trading",
@@ -4156,6 +6018,20 @@
       },
       "description_i18n": {
         "ko": "매매 거래 행위 또는 거래 관련"
+      }
+    },
+    {
+      "id": "tradings",
+      "source": "word",
+      "root": "trading",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "trading",
+        "ko": "거래",
+        "ja": "トレーディング",
+        "zh_hans": "贸易"
       }
     },
     {
@@ -4191,6 +6067,20 @@
       }
     },
     {
+      "id": "transactions",
+      "source": "word",
+      "root": "transaction",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "transaction",
+        "ko": "거래 ID",
+        "ja": "取引",
+        "zh_hans": "交易"
+      }
+    },
+    {
       "id": "transition",
       "source": "word",
       "root": "transition",
@@ -4204,6 +6094,20 @@
       },
       "description_i18n": {
         "ko": "상태 머신 등에서 한 상태에서 다른 상태로의 변화를 나타냅니다."
+      }
+    },
+    {
+      "id": "transitions",
+      "source": "word",
+      "root": "transition",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "transition",
+        "ko": "전환",
+        "ja": "遷移",
+        "zh_hans": "过渡"
       }
     },
     {
@@ -4223,11 +6127,11 @@
       }
     },
     {
-      "id": "TREND",
+      "id": "trends",
       "source": "word",
       "root": "trend",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "trend",
@@ -4253,6 +6157,20 @@
       }
     },
     {
+      "id": "types",
+      "source": "word",
+      "root": "type",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "type",
+        "ko": "유형",
+        "ja": "タイプ",
+        "zh_hans": "类型"
+      }
+    },
+    {
       "id": "universe",
       "source": "word",
       "root": "universe",
@@ -4266,6 +6184,20 @@
       },
       "description_i18n": {
         "ko": "거래 대상이 되는 종목 또는 자산의 집합입니다."
+      }
+    },
+    {
+      "id": "universes",
+      "source": "word",
+      "root": "universe",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "universe",
+        "ko": "유니버스",
+        "ja": "宇宙",
+        "zh_hans": "宇宙"
       }
     },
     {
@@ -4301,11 +6233,11 @@
       }
     },
     {
-      "id": "UPBIT",
+      "id": "upbits",
       "source": "word",
       "root": "upbit",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "infra",
       "lang": {
         "en": "upbit",
@@ -4344,6 +6276,20 @@
       },
       "description_i18n": {
         "ko": "Uniform Resource Locator"
+      }
+    },
+    {
+      "id": "urls",
+      "source": "word",
+      "root": "url",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "url",
+        "ko": "URL",
+        "ja": "URL",
+        "zh_hans": "网址"
       }
     },
     {
@@ -4395,6 +6341,20 @@
       }
     },
     {
+      "id": "values",
+      "source": "word",
+      "root": "value",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "value",
+        "ko": "거래대금",
+        "ja": "価値",
+        "zh_hans": "价值"
+      }
+    },
+    {
       "id": "var",
       "source": "word",
       "root": "var",
@@ -4408,6 +6368,20 @@
       },
       "description_i18n": {
         "ko": "환경변수"
+      }
+    },
+    {
+      "id": "vars",
+      "source": "word",
+      "root": "var",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "var",
+        "ko": "변수",
+        "ja": "変数",
+        "zh_hans": "变量"
       }
     },
     {
@@ -4427,6 +6401,20 @@
       }
     },
     {
+      "id": "volatilities",
+      "source": "word",
+      "root": "volatility",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "volatility",
+        "ko": "변동성",
+        "ja": "ボラティリティ",
+        "zh_hans": "挥发性"
+      }
+    },
+    {
       "id": "vwap",
       "source": "word",
       "root": "vwap",
@@ -4443,11 +6431,11 @@
       }
     },
     {
-      "id": "VWAP",
+      "id": "vwaps",
       "source": "word",
       "root": "vwap",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "trading",
       "lang": {
         "en": "vwap",
@@ -4473,11 +6461,11 @@
       }
     },
     {
-      "id": "WDG",
+      "id": "watchdogs",
       "source": "word",
       "root": "watchdog",
       "term_type": "variant",
-      "variant_type": "abbreviation",
+      "variant_type": "plural",
       "domain": "infra",
       "lang": {
         "en": "watchdog",
@@ -4503,6 +6491,20 @@
       }
     },
     {
+      "id": "wicks",
+      "source": "word",
+      "root": "wick",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "market",
+      "lang": {
+        "en": "wick",
+        "ko": "꼬리",
+        "ja": "芯",
+        "zh_hans": "灯芯"
+      }
+    },
+    {
       "id": "table",
       "source": "word",
       "root": "table",
@@ -4516,6 +6518,20 @@
       },
       "description_i18n": {
         "ko": "DB 테이블 또는 데이터 구조"
+      }
+    },
+    {
+      "id": "tables",
+      "source": "word",
+      "root": "table",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "infra",
+      "lang": {
+        "en": "table",
+        "ko": "테이블",
+        "ja": "テーブル",
+        "zh_hans": "桌子"
       }
     },
     {
@@ -4535,6 +6551,20 @@
       }
     },
     {
+      "id": "contracts",
+      "source": "word",
+      "root": "contract",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "contract",
+        "ko": "계약",
+        "ja": "契約",
+        "zh_hans": "合同"
+      }
+    },
+    {
       "id": "work",
       "source": "word",
       "root": "work",
@@ -4548,6 +6578,20 @@
       },
       "description_i18n": {
         "ko": "일과 시작"
+      }
+    },
+    {
+      "id": "works",
+      "source": "word",
+      "root": "work",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "work",
+        "ko": "작업",
+        "ja": "仕事",
+        "zh_hans": "工作"
       }
     },
     {
@@ -8531,5 +10575,5 @@
       }
     }
   ],
-  "checksum": "sha256:a94958ed792015436c9f9e9aabe7ce1fb01ff5b5f58133fbfa402a553bf9f4d9"
+  "checksum": "sha256:4cc4c8ad772c2ed4260b1bcc3bdbc593780e36dfa02b288bc563b046275b4874"
 }

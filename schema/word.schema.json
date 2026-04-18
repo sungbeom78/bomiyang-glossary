@@ -86,6 +86,25 @@
         "en": { "type": "string" }
       }
     },
+    "source_urls": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "from": {
+      "type": "string"
+    },
+    "synonyms": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "antonyms": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "derived_terms": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
     "not": {
       "type": "array",
       "items": { "type": "string" }

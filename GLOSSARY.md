@@ -2,7 +2,7 @@
 
 > 자동 생성 파일. 수동 편집 금지.
 > 원본: `words.json` + `compounds.json` + `banned.json`
-> 생성: 2026-04-16 11:46
+> 생성: 2026-04-17 09:16
 
 ## 통계
 - 단어: 234개
@@ -17,248 +17,248 @@
 
 | 단어 | 한글 | 약어 | 품사 | 복수형 | 설명 |
 |------|------|------|------|--------|------|
-| `account` | 계좌 | — | noun | auto | 투자 계좌 정보 |
+| `account` | 계좌 | — | noun | accounts | 투자 계좌 정보 |
 | `active` | 활성 | — | adj | — | 현재 진행 중이거나 활성화된 상태 |
-| `balance` | 잔고 | — | noun | auto | 계좌의 현재 자산 잔고 |
-| `bar` | 봉 | BAR | noun | auto | OHLCV 캔들(봉) 데이터. M1 기준. |
-| `bounce` | 반등 | — | noun | auto | 하락 후 일시적 상승 |
-| `breakout` | 돌파 | BRK | noun | auto | 직전 N봉 고가를 현재가가 상향 돌파하는 진입 패턴 |
-| `buy` | 매수 | BUY | noun | auto | 매수 주문 |
-| `capital` | 자본금 | — | noun | auto | 투자 시스템의 총 자본금 |
-| `classify` | 분류 | — | noun | auto | 데이터를 분류하는 기능 |
-| `commission` | 수수료 | COMM | noun | auto | 거래 수수료 (거래당 비용) |
-| `condition` | 조건 | — | noun | auto | 매매 진입/청산 또는 필터링에 사용되는 조건 |
+| `balance` | 잔고 | — | noun | balances | 계좌의 현재 자산 잔고 |
+| `bar` | 봉 | — | noun | bars | OHLCV 캔들(봉) 데이터. M1 기준. |
+| `bounce` | 반등 | — | noun | bounces | 하락 후 일시적 상승 |
+| `breakout` | 돌파 | — | noun | breakouts | 직전 N봉 고가를 현재가가 상향 돌파하는 진입 패턴 |
+| `buy` | 매수 | — | noun | buys | 매수 주문 |
+| `capital` | 자본금 | — | noun | capitals | 투자 시스템의 총 자본금 |
+| `classify` | 분류 | — | noun | classifies | 데이터를 분류하는 기능 |
+| `commission` | 수수료 | — | noun | commissions | 거래 수수료 (거래당 비용) |
+| `condition` | 조건 | — | noun | conditions | 매매 진입/청산 또는 필터링에 사용되는 조건 |
 | `consecutive` | 연속 | — | adj | — | 연속으로 발생하는 |
-| `contract` | 계약 | — | noun | auto | 선물 계약 단위 |
-| `entry` | 진입 | ENT | noun | auto | 포지션 진입 (매수/매도 시작) |
-| `eod` | 장마감 | — | noun | auto | End of Day 장 마감 시점 |
-| `equity` | 자본 | — | noun | auto | 계좌의 현재 자본 값 |
-| `exec` | 실행 | — | noun | auto | 실행 또는 체결 강도 |
-| `execution` | 실행 | — | noun | auto | 주문 실행 및 관리 관련 시스템 |
-| `exit` | 청산 | EXIT | noun | auto | 포지션 청산 (반대매매로 종료) |
-| `fill` | 체결 | FILL | noun | auto | 주문이 실제 체결된 결과 (가격·수량·시간 포함) |
-| `flat` | 플랫 | FLAT | noun | auto | 포지션 없음 (현금 보유 상태) |
+| `contract` | 계약 | — | noun | contracts | 선물 계약 단위 |
+| `entry` | 진입 | — | noun | entries | 포지션 진입 (매수/매도 시작) |
+| `eod` | 장마감 | — | noun | eods | End of Day 장 마감 시점 |
+| `equity` | 자본 | — | noun | equities | 계좌의 현재 자본 값 |
+| `exec` | 실행 | — | noun | execs | 실행 또는 체결 강도 |
+| `execution` | 실행 | — | noun | executions | 주문 실행 및 관리 관련 시스템 |
+| `exit` | 청산 | — | noun | exits | 포지션 청산 (반대매매로 종료) |
+| `fill` | 체결 | — | noun | fills | 주문이 실제 체결된 결과 (가격·수량·시간 포함) |
+| `flat` | 플랫 | — | noun | flats | 포지션 없음 (현금 보유 상태) |
 | `flatten` | 청산 | — | verb | — | 모든 포지션을 닫는 행위 |
-| `goldenkey` | 골든키 | — | noun | auto | 특정 종목 선정 기준 또는 신호 |
-| `intraday` | 당일 거래 | INTRA | noun | auto | 당일 내 진입·청산을 완료하는 거래 (데이트레이딩) |
-| `leader` | 대장 | — | noun | auto | 섹터를 주도하는 종목 |
-| `limit` | 한도/지정가 | — | noun | auto | 가격 제한 또는 지정가 주문 |
+| `goldenkey` | 골든키 | — | noun | goldenkeys | 특정 종목 선정 기준 또는 신호 |
+| `intraday` | 당일 거래 | — | noun | intradays | 당일 내 진입·청산을 완료하는 거래 (데이트레이딩) |
+| `leader` | 대장 | — | noun | leaders | 섹터를 주도하는 종목 |
+| `limit` | 한도/지정가 | — | noun | limits | 가격 제한 또는 지정가 주문 |
 | `live` | 실전 | — | adj | — | 실제 자금으로 진행하는 |
-| `long` | 롱 | LONG | noun | auto | 매수 포지션 방향 (가격 상승 기대) |
-| `loss` | 손실 | — | noun | auto | 거래에서 발생한 손실 |
-| `margin` | 증거금 | — | noun | auto | 포지션 유지를 위한 담보금 |
+| `long` | 롱 | — | noun | longs | 매수 포지션 방향 (가격 상승 기대) |
+| `loss` | 손실 | — | noun | losses | 거래에서 발생한 손실 |
+| `margin` | 증거금 | — | noun | margins | 포지션 유지를 위한 담보금 |
 | `mock` | 모의 | — | adj | — | 실제 자금 없이 시뮬레이션하는 |
-| `momentum` | 모멘텀 | — | noun | auto | 가격 추세의 강도 |
-| `order` | 주문 | ORD | noun | auto | 브로커에 전송된 실제 주문 객체 |
-| `orderbook` | 호가 | OB | noun | auto | 매수·매도 호가창 스냅샷 |
-| `overnight` | 오버나이트 | OVNT | noun | auto | 당일 청산하지 않고 다음날까지 보유하는 거래 |
+| `momentum` | 모멘텀 | — | noun | momentums | 가격 추세의 강도 |
+| `order` | 주문 | — | noun | orders | 브로커에 전송된 실제 주문 객체 |
+| `orderbook` | 호가 | — | noun | orderbooks | 매수·매도 호가창 스냅샷 |
+| `overnight` | 오버나이트 | — | noun | overnights | 당일 청산하지 않고 다음날까지 보유하는 거래 |
 | `partial` | 부분 | — | adj | — | 전체 중 일부만 처리된 |
-| `pnl` | 손익 | — | noun | auto | Profit and Loss 손익 |
-| `position` | 포지션 | POS | noun | auto | 현재 보유 중인 종목/계약 상태 (수량, 평균단가, 미실현손익) |
-| `premium` | 프리미엄 | — | noun | auto | 프리미엄 가격/가치 |
-| `profit` | 수익 | — | noun | auto | 거래에서 발생한 이익 |
-| `pullback` | 눌림 | PB | noun | auto | 상승 추세 중 일시적으로 되돌리는 구간에서 진입하는 패턴 |
+| `pnl` | 손익 | — | noun | pnls | Profit and Loss 손익 |
+| `position` | 포지션 | — | noun | positions | 현재 보유 중인 종목/계약 상태 (수량, 평균단가, 미실현손익) |
+| `premium` | 프리미엄 | — | noun | premiums | 프리미엄 가격/가치 |
+| `profit` | 수익 | — | noun | profits | 거래에서 발생한 이익 |
+| `pullback` | 눌림 | — | noun | pullbacks | 상승 추세 중 일시적으로 되돌리는 구간에서 진입하는 패턴 |
 | `realized` | 실현 | — | adj | — | 청산 완료되어 확정된 |
-| `reentry` | 재진입 | — | noun | auto | 거래에서 재진입할 수 있는지 여부를 결정하는 설정. |
-| `risk` | 리스크 | — | noun | auto | 손실 가능성 또는 위험도 |
-| `sell` | 매도 | SELL | noun | auto | 매도 주문 |
-| `short` | 숏 | SHORT | noun | auto | 매도 포지션 방향 (가격 하락 기대) |
-| `signal` | 시그널 | SIG | noun | auto | 진입 또는 청산 판단 결과. signals 모듈만 생성 가능. |
-| `slippage` | 슬리피지 | SLIP | noun | auto | 주문 가격과 실제 체결 가격의 차이 |
+| `reentry` | 재진입 | — | noun | re-entries | 거래에서 재진입할 수 있는지 여부를 결정하는 설정. |
+| `risk` | 리스크 | — | noun | risks | 손실 가능성 또는 위험도 |
+| `sell` | 매도 | — | noun | sells | 매도 주문 |
+| `short` | 숏 | — | noun | shorts | 매도 포지션 방향 (가격 하락 기대) |
+| `signal` | 시그널 | — | noun | signals | 진입 또는 청산 판단 결과. signals 모듈만 생성 가능. |
+| `slippage` | 슬리피지 | — | noun | slippages | 주문 가격과 실제 체결 가격의 차이 |
 | `split` | 분할 | — | verb | — | 수량을 여러 번에 나눠 처리 |
-| `stop` | 정지/손절 | — | noun | auto | 손실 한도 도달 시 포지션 청산 |
-| `swing` | 스윙 | — | noun | auto | 수일~수주에 걸친 중기 매매 |
+| `stop` | 정지/손절 | — | noun | stops | 손실 한도 도달 시 포지션 청산 |
+| `swing` | 스윙 | — | noun | swings | 수일~수주에 걸친 중기 매매 |
 | `take` | 취득 | — | verb | — | 목표 수익을 달성하여 청산 |
-| `tick` | 틱 | TK | noun | auto | 최소 가격 변동 단위 또는 실시간 시세 스트림 |
-| `trade` | 거래 | — | noun | auto | 개별 매매 거래 |
-| `trading` | 거래 | — | noun | auto | 매매 거래 행위 또는 거래 관련 |
+| `tick` | 틱 | — | noun | ticks | 최소 가격 변동 단위 또는 실시간 시세 스트림 |
+| `trade` | 거래 | — | noun | trades | 개별 매매 거래 |
+| `trading` | 거래 | — | noun | tradings | 매매 거래 행위 또는 거래 관련 |
 | `trailing` | 추적 | — | adj | — | 수익에 따라 이동하는 |
-| `universe` | 유니버스 | — | noun | auto | 거래 대상이 되는 종목 또는 자산의 집합입니다. |
+| `universe` | 유니버스 | — | noun | universes | 거래 대상이 되는 종목 또는 자산의 집합입니다. |
 | `unrealized` | 미실현 | — | adj | — | 아직 청산되지 않은 |
-| `volatility` | 변동성 | — | noun | auto | 가격 변동의 폭 |
-| `vwap` | 거래량 가중 평균가 | VWAP | noun | auto | Volume Weighted Average Price. 시가총액 가중 평균 체결가. |
+| `volatility` | 변동성 | — | noun | volatilities | 가격 변동의 폭 |
+| `vwap` | 거래량 가중 평균가 | — | noun | vwaps | Volume Weighted Average Price. 시가총액 가중 평균 체결가. |
 
 ### market
 
 | 단어 | 한글 | 약어 | 품사 | 복수형 | 설명 |
 |------|------|------|------|--------|------|
-| `candle` | 캔들 | — | noun | auto | 캔들스틱 차트 봉 |
+| `candle` | 캔들 | — | noun | candles | 캔들스틱 차트 봉 |
 | `category` | 분류 | — | noun | categories | 종목 또는 테마의 분류 정보 |
-| `classification` | 분류 | — | noun | auto | 종목 또는 시장 상황에 대한 분류 결과 |
-| `close` | 종가 | — | noun | auto | 봉의 마지막 가격 |
-| `code` | 코드 | CODE | noun | auto | 종목 코드 또는 기타 식별 코드 |
-| `crypto` | 코인거래 | — | noun | auto | 암호화폐 거래 시장 (업비트 KRW 마켓) |
-| `direction` | 방향 | — | noun | auto | 시그널의 매수/매도 방향 |
-| `exchange` | 거래소 | — | noun | auto | 거래가 이루어지는 금융 거래소 |
-| `futures` | 선물 | — | noun | auto | 선물 상품 |
+| `classification` | 분류 | — | noun | classifications | 종목 또는 시장 상황에 대한 분류 결과 |
+| `close` | 종가 | — | noun | closes | 봉의 마지막 가격 |
+| `code` | 코드 | — | noun | codes | 종목 코드 또는 기타 식별 코드 |
+| `crypto` | 코인거래 | — | noun | cryptocurrencies | 암호화폐 거래 시장 (업비트 KRW 마켓) |
+| `direction` | 방향 | — | noun | directions | 시그널의 매수/매도 방향 |
+| `exchange` | 거래소 | — | noun | exchanges | 거래가 이루어지는 금융 거래소 |
+| `futures` | 선물 | — | noun | futureses | 선물 상품 |
 | `fx` | 외환 | — | prefix | — | 외환 시장 prefix |
-| `history` | 히스토리 | — | noun | auto | 과거 데이터 또는 이벤트 기록 |
-| `kosdaq` | 코스닥 | — | noun | auto | 한국 코스닥 시장 |
-| `kospi` | 코스피 | KOSPI | noun | auto | 한국 종합주가지수 (Korea Composite Stock Price Index) |
+| `history` | 히스토리 | — | noun | histories | 과거 데이터 또는 이벤트 기록 |
+| `kosdaq` | 코스닥 | — | noun | kosdaqs | 한국 코스닥 시장 |
+| `kospi` | 코스피 | — | noun | kospis | 한국 종합주가지수 (Korea Composite Stock Price Index) |
 | `kr` | 한국 | — | prefix | — | 한국 시장 prefix |
 | `lower` | 아래 | — | adj | — | 아래쪽에 위치한 |
-| `m` | 분 | M | suffix | — | 분 단위 시간 접미사 (1m, 5m 등) |
-| `market` | 시장 | — | noun | auto | 거래가 이루어지는 시장 |
-| `meta` | 메타 정보 | META | noun | auto |  |
-| `open` | 시가 | — | noun | auto | 봉의 시작 가격 |
-| `personality` | 성격 | — | noun | auto | 봉의 형태적 특성 |
-| `ranking` | 랭킹 | — | noun | auto | 순위 결과 |
+| `m` | 분 | — | suffix | — | 분 단위 시간 접미사 (1m, 5m 등) |
+| `market` | 시장 | — | noun | markets | 거래가 이루어지는 시장 |
+| `meta` | 메타 정보 | — | noun | metas |  |
+| `open` | 시가 | — | noun | opens | 봉의 시작 가격 |
+| `personality` | 성격 | — | noun | personalities | 봉의 형태적 특성 |
+| `ranking` | 랭킹 | — | noun | rankings | 순위 결과 |
 | `realtime` | 실시간 | — | adj | — | 실시간으로 처리되는 |
-| `score` | 점수 | — | noun | auto | 특정 지표의 수치화 결과 |
-| `sector` | 섹터 | — | noun | auto | 산업 분류 업종 |
-| `stock` | 주식 | — | noun | auto | 주식 종목 |
-| `strength` | 강도 | — | noun | auto | 시장 또는 종목의 상승/하락 강도 |
-| `symbol` | 종목 | — | noun | auto | 거래 종목 코드 |
-| `theme` | 테마 | — | noun | auto | 종목 분류 테마 (테마주) |
+| `score` | 점수 | — | noun | scores | 특정 지표의 수치화 결과 |
+| `sector` | 섹터 | — | noun | sectors | 산업 분류 업종 |
+| `stock` | 주식 | — | noun | stocks | 주식 종목 |
+| `strength` | 강도 | — | noun | strengths | 시장 또는 종목의 상승/하락 강도 |
+| `symbol` | 종목 | — | noun | symbols | 거래 종목 코드 |
+| `theme` | 테마 | — | noun | themes | 종목 분류 테마 (테마주) |
 | `upper` | 위 | — | adj | — | 위쪽에 위치한 |
 | `us` | 미국 | — | prefix | — | 미국 시장 prefix |
-| `value` | 거래대금 | — | noun | auto | 가격×수량의 거래 금액 |
-| `wick` | 꼬리 | — | noun | auto | 캔들의 몸통 밖 선 |
+| `value` | 거래대금 | — | noun | values | 가격×수량의 거래 금액 |
+| `wick` | 꼬리 | — | noun | wicks | 캔들의 몸통 밖 선 |
 
 ### system
 
 | 단어 | 한글 | 약어 | 품사 | 복수형 | 설명 |
 |------|------|------|------|--------|------|
 | `after` | 이후 | — | adv | — | 특정 시각 이후 |
-| `backtest` | 백테스트 | — | noun | auto | 과거 데이터 기반 전략 검증 |
-| `cancelled` | 취소 | CNCL | noun | auto | 주문 취소됨 |
-| `chart` | 차트 | CHART | noun | auto | 시각화를 위한 차트 설정 |
-| `closed` | 종료됨 | — | noun | auto | 주문, 거래 또는 프로세스가 종료되었음을 나타내는 상태 |
-| `cluster` | 클러스터 | — | noun | auto | 데이터 클러스터링 결과 또는 구조 |
-| `clustering` | 클러스터링 | — | noun | auto | 데이터를 클러스터로 그룹화하는 설정 |
-| `collector` | 수집기 | — | noun | auto | 데이터를 수집하는 컴포넌트 |
+| `backtest` | 백테스트 | — | noun | backtests | 과거 데이터 기반 전략 검증 |
+| `cancelled` | 취소 | — | noun | cancelleds | 주문 취소됨 |
+| `chart` | 차트 | — | noun | charts | 시각화를 위한 차트 설정 |
+| `closed` | 종료됨 | — | noun | closeds | 주문, 거래 또는 프로세스가 종료되었음을 나타내는 상태 |
+| `cluster` | 클러스터 | — | noun | clusters | 데이터 클러스터링 결과 또는 구조 |
+| `clustering` | 클러스터링 | — | noun | clusterings | 데이터를 클러스터로 그룹화하는 설정 |
+| `collector` | 수집기 | — | noun | collectors | 데이터를 수집하는 컴포넌트 |
 | `color` | 색상 | — | noun | colors | UI 또는 보고서에 사용되는 색상 설정 |
-| `command` | 명령어 | — | noun | auto | 시스템 제어를 위한 명령어 설정 |
-| `complete` | 완료 | — | noun | auto | 작업 또는 프로세스가 완료되었음을 나타내는 상태 |
-| `completed` | 완료됨 | — | noun | auto | 주문, 작업 또는 프로세스가 완료되었음을 나타내는 상태 |
-| `confidence` | 신뢰도 | — | noun | auto | 신호 또는 예측의 신뢰 수준 |
-| `config` | 설정 | cfg | noun | auto | 시스템 설정값 |
-| `confirmed` | 확인됨 | — | noun | auto | 어떤 이벤트나 상태가 최종적으로 확인되었음을 나타내는 플래그 |
-| `connected` | 연결됨 | — | noun | auto | 서비스 또는 시스템과의 연결 상태 |
-| `core` | 코어 | — | noun | auto | 공통 흐름의 중심 역할을 담당하는 핵심 구성요소 |
+| `command` | 명령어 | — | noun | commands | 시스템 제어를 위한 명령어 설정 |
+| `complete` | 완료 | — | noun | completes | 작업 또는 프로세스가 완료되었음을 나타내는 상태 |
+| `completed` | 완료됨 | — | noun | completeds | 주문, 작업 또는 프로세스가 완료되었음을 나타내는 상태 |
+| `confidence` | 신뢰도 | — | noun | confidences | 신호 또는 예측의 신뢰 수준 |
+| `config` | 설정 | — | noun | configs | 시스템 설정값 |
+| `confirmed` | 확인됨 | — | noun | confirmeds | 어떤 이벤트나 상태가 최종적으로 확인되었음을 나타내는 플래그 |
+| `connected` | 연결됨 | — | noun | connecteds | 서비스 또는 시스템과의 연결 상태 |
+| `core` | 코어 | — | noun | cores | 공통 흐름의 중심 역할을 담당하는 핵심 구성요소 |
 | `deny` | 거부 | — | verb | — | 진입 조건 불충족으로 거부 |
-| `disabled` | 비활성화 | OFF | noun | auto | 기능 비활성화 상태 |
-| `enabled` | 활성화 | ON | noun | auto | 기능 활성화 상태 |
-| `end` | 종료 | — | noun | auto | 종료 시각 또는 동작 |
-| `engine` | 엔진 | — | noun | auto | 시스템의 핵심 처리 로직을 담당하는 부분 |
-| `error` | 오류 | ERR | noun | auto | 오류 발생 상태 |
-| `event` | 이벤트 | — | noun | auto | 시스템 내 발생 사건 |
+| `disabled` | 비활성화 | — | noun | disableds | 기능 비활성화 상태 |
+| `enabled` | 활성화 | — | noun | enableds | 기능 활성화 상태 |
+| `end` | 종료 | — | noun | ends | 종료 시각 또는 동작 |
+| `engine` | 엔진 | — | noun | engines | 시스템의 핵심 처리 로직을 담당하는 부분 |
+| `error` | 오류 | — | noun | errors | 오류 발생 상태 |
+| `event` | 이벤트 | — | noun | events | 시스템 내 발생 사건 |
 | `extended` | 확장 | — | adj | — | 기본 범위를 넘어 확장된 |
-| `failed` | 실패 | FAIL | noun | auto | 시스템 오류로 처리 실패 |
-| `filled` | 체결 완료 | FLLD | noun | auto | 주문 전량 체결 완료 |
-| `filter` | 필터 | — | noun | auto | 조건에 맞게 거르는 컴포넌트 |
-| `generator` | 생성기 | — | noun | auto | 결과물을 생성하는 컴포넌트 |
-| `guard` | 가드 | — | noun | auto | 프로세스 보호 컴포넌트 |
-| `halted` | 중단됨 | — | noun | auto | 거래 또는 시스템이 일시적으로 중단된 상태 |
+| `failed` | 실패 | — | noun | faileds | 시스템 오류로 처리 실패 |
+| `filled` | 체결 완료 | — | noun | filleds | 주문 전량 체결 완료 |
+| `filter` | 필터 | — | noun | filters | 조건에 맞게 거르는 컴포넌트 |
+| `generator` | 생성기 | — | noun | generators | 결과물을 생성하는 컴포넌트 |
+| `guard` | 가드 | — | noun | guards | 프로세스 보호 컴포넌트 |
+| `halted` | 중단됨 | — | noun | halteds | 거래 또는 시스템이 일시적으로 중단된 상태 |
 | `handler` | 핸들러 | — | noun | handlers | 특정 이벤트를 처리하는 객체 또는 함수들의 집합 |
-| `health` | 상태 | — | noun | auto | 시스템 컴포넌트의 정상 작동 여부 (헬스 체크) |
-| `info` | 정보 | — | noun | auto | 메타 정보 |
-| `intent` | 의도 | — | noun | auto | 실행 전 주문 의사결정 객체 |
-| `interval` | 간격 | — | noun | auto | 데이터 수집, 분석 또는 작업 실행 간격 |
+| `health` | 상태 | — | noun | healths | 시스템 컴포넌트의 정상 작동 여부 (헬스 체크) |
+| `info` | 정보 | — | noun | infos | 메타 정보 |
+| `intent` | 의도 | — | noun | intents | 실행 전 주문 의사결정 객체 |
+| `interval` | 간격 | — | noun | intervals | 데이터 수집, 분석 또는 작업 실행 간격 |
 | `kill` | 킬 | — | verb | — | 강제 종료 또는 비활성화 |
 | `local` | 로컬 | — | adj | — | 원격이 아닌 로컬 환경 |
-| `log` | 로그 | — | noun | auto | 시스템 이벤트 기록 |
-| `main` | 메인 실행 | MAIN | noun | auto |  |
-| `manager` | 관리자 | — | noun | auto |  |
-| `manual` | 수동 | — | noun | auto |  |
-| `method` | 방법 | — | noun | auto |  |
-| `module` | 모듈 | — | noun | auto | 특정 책임을 캡슐화한 코드 단위 |
+| `log` | 로그 | — | noun | logs | 시스템 이벤트 기록 |
+| `main` | 메인 실행 | — | noun | mains |  |
+| `manager` | 관리자 | — | noun | managers |  |
+| `manual` | 수동 | — | noun | manuals |  |
+| `method` | 방법 | — | noun | methods |  |
+| `module` | 모듈 | — | noun | modules | 특정 책임을 캡슐화한 코드 단위 |
 | `no` | 금지 | — | prefix | — | 부정 또는 금지를 나타내는 접두사 |
-| `node` | 노드 | — | noun | auto | 분산 환경의 개별 머신/컨테이너 |
-| `notifier` | 알리미 | — | noun | auto | 알림 발송 컴포넌트 |
-| `offline` | 오프라인 | OFLN | noun | auto | 네트워크/서비스 미연결 상태 |
-| `online` | 온라인 | ONLN | noun | auto | 네트워크/서비스 연결 상태 |
-| `pending` | 대기 | PEND | noun | auto | 주문 생성 후 브로커 전송 전 대기 상태 |
-| `process` | 프로세스 | — | noun | auto | 실행 중인 프로그램 |
-| `protocol` | 프로토콜 | — | noun | auto | 모듈 간 동작 계약(인터페이스) 규약 |
-| `ranker` | 랭커 | — | noun | auto | 순위를 산정하는 컴포넌트 |
-| `reboot` | 재시작 | — | noun | auto | 시스템 정기 재시작 |
-| `record` | 기록 | — | noun | auto | 개별 거래 이력 |
-| `registry` | 레지스트리 | — | noun | auto | 마켓별 모듈을 등록하고 조회하는 매핑 저장소 |
-| `rejected` | 거절 | RJCT | noun | auto | 브로커에 의해 주문 거절됨 |
-| `relaxed` | 완화된 | — | noun | auto | 특정 조건을 완화하여 적용하는 설정. |
-| `replay` | 리플레이 | — | noun | auto | 과거 데이터 재생 시뮬레이션 |
-| `report` | 리포트 | — | noun | auto | 보고서 |
-| `reporting` | 리포팅 | — | noun | auto | 보고서 생성 설정 |
-| `role` | 역할 | ROLE | noun | auto | 서비스 또는 노드의 역할 (primary/replica 등) |
-| `runner` | 실행기 | — | noun | auto | 작업을 실행하는 컴포넌트 |
-| `running` | 실행 중 | RUN | noun | auto | 서비스 실행 중 상태 |
-| `runtime` | 런타임 | — | noun | auto | 프로그램이 실행되는 환경 또는 시간. |
-| `scanner` | 스캐너 | — | noun | auto | 시장이나 종목을 탐색하고 분석하는 모듈 또는 기능. |
-| `scheduler` | 스케줄러 | — | noun | auto | 작업 예약 및 관리를 담당하는 시스템 컴포넌트 또는 설정. |
-| `scope` | 범위 | SCOPE | noun | auto | 설정이나 작업이 적용되는 범위를 정의하는 설정. |
-| `scorer` | 스코어러 | — | noun | auto | 종목 또는 신호에 점수를 부여하는 모듈. |
-| `scoring` | 스코어링 | — | noun | auto | 점수 산정 로직 |
-| `selector` | 셀렉터 | — | noun | auto | 종목 선정 컴포넌트 |
-| `server` | 서버 | — | noun | auto | 서버 프로세스 |
-| `service` | 서비스 | — | noun | auto | 독립적으로 실행되는 프로세스 |
+| `node` | 노드 | — | noun | nodes | 분산 환경의 개별 머신/컨테이너 |
+| `notifier` | 알리미 | — | noun | notifiers | 알림 발송 컴포넌트 |
+| `offline` | 오프라인 | — | noun | offlines | 네트워크/서비스 미연결 상태 |
+| `online` | 온라인 | — | noun | onlines | 네트워크/서비스 연결 상태 |
+| `pending` | 대기 | — | noun | pendings | 주문 생성 후 브로커 전송 전 대기 상태 |
+| `process` | 프로세스 | — | noun | processes | 실행 중인 프로그램 |
+| `protocol` | 프로토콜 | — | noun | protocols | 모듈 간 동작 계약(인터페이스) 규약 |
+| `ranker` | 랭커 | — | noun | rankers | 순위를 산정하는 컴포넌트 |
+| `reboot` | 재시작 | — | noun | reboots | 시스템 정기 재시작 |
+| `record` | 기록 | — | noun | records | 개별 거래 이력 |
+| `registry` | 레지스트리 | — | noun | registries | 마켓별 모듈을 등록하고 조회하는 매핑 저장소 |
+| `rejected` | 거절 | — | noun | rejecteds | 브로커에 의해 주문 거절됨 |
+| `relaxed` | 완화된 | — | noun | relaxeds | 특정 조건을 완화하여 적용하는 설정. |
+| `replay` | 리플레이 | — | noun | replays | 과거 데이터 재생 시뮬레이션 |
+| `report` | 리포트 | — | noun | reports | 보고서 |
+| `reporting` | 리포팅 | — | noun | reportings | 보고서 생성 설정 |
+| `role` | 역할 | — | noun | roles | 서비스 또는 노드의 역할 (primary/replica 등) |
+| `runner` | 실행기 | — | noun | replays | 작업을 실행하는 컴포넌트 |
+| `running` | 실행 중 | — | noun | runnings | 서비스 실행 중 상태 |
+| `runtime` | 런타임 | — | noun | runtimes | 프로그램이 실행되는 환경 또는 시간. |
+| `scanner` | 스캐너 | — | noun | scanners | 시장이나 종목을 탐색하고 분석하는 모듈 또는 기능. |
+| `scheduler` | 스케줄러 | — | noun | schedulers | 작업 예약 및 관리를 담당하는 시스템 컴포넌트 또는 설정. |
+| `scope` | 범위 | — | noun | scopes | 설정이나 작업이 적용되는 범위를 정의하는 설정. |
+| `scorer` | 스코어러 | — | noun | scorers | 종목 또는 신호에 점수를 부여하는 모듈. |
+| `scoring` | 스코어링 | — | noun | scorings | 점수 산정 로직 |
+| `selector` | 셀렉터 | — | noun | selectors | 종목 선정 컴포넌트 |
+| `server` | 서버 | — | noun | servers | 서버 프로세스 |
+| `service` | 서비스 | — | noun | services | 독립적으로 실행되는 프로세스 |
 | `session` | 세션 | — | noun | sessions | 시장 세션 설정 모음 |
 | `setting` | 설정 | — | noun | settings | 시스템 설정값 모음 |
-| `side` | 방향 | — | noun | auto | 매수/매도 방향 |
-| `snapshot` | 스냅샷 | — | noun | auto | 특정 시점의 상태 저장본 |
-| `start` | 시작 | — | noun | auto | 시작 시각 또는 동작 |
-| `starting` | 시작 중 | — | noun | auto | 서비스 시작 중 (초기화 진행 중) |
-| `status` | 상태 | — | noun | auto | 현재 처리 상태 |
-| `stopped` | 중지 | — | noun | auto | 서비스 중지 상태 |
-| `strategy` | 전략 | — | noun | auto | 매매 전략 설정 |
-| `submitted` | 접수 | SUBM | noun | auto | 브로커에 주문 전송 완료 |
-| `switch` | 스위치 | — | noun | auto | 기능 활성화/비활성화 제어 |
-| `system` | 시스템 | — | noun | auto | 전체 소프트웨어 시스템 |
-| `task` | 작업 | — | noun | auto | 스케줄링되는 실행 단위 |
-| `time` | 시각 | — | noun | auto | 특정 시점 |
-| `timeframe` | 타임프레임 | — | noun | auto | 차트 또는 데이터 분석에서 사용되는 시간 단위 (예: 1분, 5분, 1시간). |
-| `timezone` | 시간대 | — | noun | auto | 시스템 또는 특정 작업에서 사용되는 표준 시간대 설정입니다. |
-| `token` | 토큰 | TOKEN | noun | auto | 인증 또는 세션 관리에 사용되는 보안 토큰입니다. |
-| `tracking` | 추적 | — | noun | auto | 종목 모니터링 시작 시각 |
-| `tradability` | 거래 가능성 | — | noun | auto | 종목이나 상품의 거래 가능 여부 또는 수준을 나타내는 지표입니다. |
-| `transaction` | 거래 ID | — | noun | auto | API 요청 식별자 |
-| `transition` | 전환 | — | noun | auto | 상태 머신 등에서 한 상태에서 다른 상태로의 변화를 나타냅니다. |
-| `trend` | 추세 | TREND | noun | auto | 시장 가격의 전반적인 방향성을 나타냅니다. |
-| `type` | 유형 | — | noun | auto | 분류 유형 |
+| `side` | 방향 | — | noun | sides | 매수/매도 방향 |
+| `snapshot` | 스냅샷 | — | noun | snapshots | 특정 시점의 상태 저장본 |
+| `start` | 시작 | — | noun | starts | 시작 시각 또는 동작 |
+| `starting` | 시작 중 | — | noun | startings | 서비스 시작 중 (초기화 진행 중) |
+| `status` | 상태 | — | noun | statuses | 현재 처리 상태 |
+| `stopped` | 중지 | — | noun | stoppeds | 서비스 중지 상태 |
+| `strategy` | 전략 | — | noun | strategies | 매매 전략 설정 |
+| `submitted` | 접수 | — | noun | submitteds | 브로커에 주문 전송 완료 |
+| `switch` | 스위치 | — | noun | switches | 기능 활성화/비활성화 제어 |
+| `system` | 시스템 | — | noun | systems | 전체 소프트웨어 시스템 |
+| `task` | 작업 | — | noun | tasks | 스케줄링되는 실행 단위 |
+| `time` | 시각 | — | noun | times | 특정 시점 |
+| `timeframe` | 타임프레임 | — | noun | timeframes | 차트 또는 데이터 분석에서 사용되는 시간 단위 (예: 1분, 5분, 1시간). |
+| `timezone` | 시간대 | — | noun | timezones | 시스템 또는 특정 작업에서 사용되는 표준 시간대 설정입니다. |
+| `token` | 토큰 | — | noun | tokens | 인증 또는 세션 관리에 사용되는 보안 토큰입니다. |
+| `tracking` | 추적 | — | noun | trackings | 종목 모니터링 시작 시각 |
+| `tradability` | 거래 가능성 | — | noun | tradabilities | 종목이나 상품의 거래 가능 여부 또는 수준을 나타내는 지표입니다. |
+| `transaction` | 거래 ID | — | noun | transactions | API 요청 식별자 |
+| `transition` | 전환 | — | noun | transitions | 상태 머신 등에서 한 상태에서 다른 상태로의 변화를 나타냅니다. |
+| `trend` | 추세 | — | noun | trends | 시장 가격의 전반적인 방향성을 나타냅니다. |
+| `type` | 유형 | — | noun | types | 분류 유형 |
 | `used` | 사용됨 | — | adj | — | 현재 사용 중인 |
-| `var` | 변수 | — | noun | auto | 환경변수 |
-| `work` | 작업 | — | noun | auto | 일과 시작 |
+| `var` | 변수 | — | noun | vars | 환경변수 |
+| `work` | 작업 | — | noun | works | 일과 시작 |
 
 ### infra
 
 | 단어 | 한글 | 약어 | 품사 | 복수형 | 설명 |
 |------|------|------|------|--------|------|
-| `adapter` | 어댑터 | — | noun | auto | 외부 API 연결 어댑터 |
-| `app` | 앱 | — | noun | auto | 애플리케이션 키 |
-| `auth` | 인증 | AUTH | noun | auto | 브로커 API 인증 토큰 발급·갱신 (KIS OAuth, Upbit JWT 등) |
-| `bot` | 봇 | — | noun | auto | 자동화 프로그램 |
-| `bridge` | 브릿지 | — | noun | auto | 두 시스템을 연결하는 컴포넌트 |
-| `cls` | 클래스 | — | noun | auto | 클래스 정의 접두사 |
+| `adapter` | 어댑터 | — | noun | adapters | 외부 API 연결 어댑터 |
+| `app` | 앱 | — | noun | apps | 애플리케이션 키 |
+| `auth` | 인증 | — | noun | authentications | 브로커 API 인증 토큰 발급·갱신 (KIS OAuth, Upbit JWT 등) |
+| `bot` | 봇 | — | noun | bots | 자동화 프로그램 |
+| `bridge` | 브릿지 | — | noun | bridges | 두 시스템을 연결하는 컴포넌트 |
+| `cls` | 클래스 | — | noun | clses | 클래스 정의 접두사 |
 | `common` | 공통 | — | adj | — | 전 모듈 공유 공통 코드 |
-| `dashboard` | 대시보드 | — | noun | auto | 모니터링 UI |
-| `db` | 데이터베이스 | — | noun | auto | 데이터베이스 접두사 |
-| `dsn` | 접속 문자열 | — | noun | auto | Database Source Name |
+| `dashboard` | 대시보드 | — | noun | dashboards | 모니터링 UI |
+| `db` | 데이터베이스 | — | noun | dbs | 데이터베이스 접두사 |
+| `dsn` | 접속 문자열 | — | noun | dsns | Database Source Name |
 | `enable` | 활성화 | — | verb | — | 기능을 켜는 설정 |
-| `env` | 환경변수 | — | noun | auto | 환경변수 접두사 |
-| `heartbeat` | 하트비트 | HB | noun | auto | 시스템 생존 신호. 주기적으로 Telegram system 봇에 전송. |
-| `id` | 식별자 | — | noun | auto | 고유 식별자 |
-| `key` | 키 | — | noun | auto | 인증 키 |
-| `kis` | KIS API | KIS | noun | auto | 한국투자증권 REST API. 한국주식·미국주식 주문/시세 브로커. |
-| `master` | 마스터 | — | noun | auto | 기준 데이터 테이블 |
-| `mod` | 모듈 | — | noun | auto | 모듈/폴더 접두사 |
-| `mt5` | MT5 | MT5 | noun | auto | 해외선물 접근 플랫폼. Windows 전용. 시장명이 아닌 툴명. |
-| `name` | 이름 | — | noun | auto | 식별 이름 |
-| `notification` | 알림 | — | noun | auto | 시스템 이벤트를 외부로 전달하는 알림 |
-| `orchestrator` | 오케스트레이터 | ORCH | noun | auto | 전체 거래 루프를 조율하는 최상위 실행 컨트롤러 |
+| `env` | 환경변수 | — | noun | envs | 환경변수 접두사 |
+| `heartbeat` | 하트비트 | — | noun | heartbeats | 시스템 생존 신호. 주기적으로 Telegram system 봇에 전송. |
+| `id` | 식별자 | — | noun | ids | 고유 식별자 |
+| `key` | 키 | — | noun | keys | 인증 키 |
+| `kis` | KIS API | — | noun | kises | 한국투자증권 REST API. 한국주식·미국주식 주문/시세 브로커. |
+| `master` | 마스터 | — | noun | masters | 기준 데이터 테이블 |
+| `mod` | 모듈 | — | noun | mods | 모듈/폴더 접두사 |
+| `mt5` | MT5 | — | noun | mt5s | 해외선물 접근 플랫폼. Windows 전용. 시장명이 아닌 툴명. |
+| `name` | 이름 | — | noun | names | 식별 이름 |
+| `notification` | 알림 | — | noun | notifications | 시스템 이벤트를 외부로 전달하는 알림 |
+| `orchestrator` | 오케스트레이터 | — | noun | orchestrators | 전체 거래 루프를 조율하는 최상위 실행 컨트롤러 |
 | `pg` | PostgreSQL | — | proper | — | PostgreSQL 데이터베이스 |
-| `port` | 포트 | — | noun | auto | 네트워크 포트 번호 |
-| `postgresql` | PostgreSQL | — | noun | auto | System of Record. 모든 거래·시세·계좌 데이터의 최종 진실 저장소. |
-| `project` | 프로젝트 | — | noun | auto | 프로젝트 루트 |
-| `proxy` | 프록시 | — | noun | auto | 통신을 중계하는 서버 |
-| `redis` | Redis | REDIS | noun | auto | 실시간 캐시 + 이벤트 스트림. DB가 원본이며 Redis는 파생값. |
-| `root` | 루트 | — | noun | auto | 최상위 경로 |
-| `secret` | 시크릿 | — | noun | auto | 비밀 인증 키 |
-| `storage` | 저장소 | — | noun | auto | 데이터 저장 추상화 레이어 |
-| `table` | 테이블 | — | noun | auto | DB 테이블 또는 데이터 구조 |
+| `port` | 포트 | — | noun | ports | 네트워크 포트 번호 |
+| `postgresql` | PostgreSQL | — | noun | postgresqls | System of Record. 모든 거래·시세·계좌 데이터의 최종 진실 저장소. |
+| `project` | 프로젝트 | — | noun | projects | 프로젝트 루트 |
+| `proxy` | 프록시 | — | noun | proxies | 통신을 중계하는 서버 |
+| `redis` | Redis | — | noun | redises | 실시간 캐시 + 이벤트 스트림. DB가 원본이며 Redis는 파생값. |
+| `root` | 루트 | — | noun | roots | 최상위 경로 |
+| `secret` | 시크릿 | — | noun | secrets | 비밀 인증 키 |
+| `storage` | 저장소 | — | noun | storages | 데이터 저장 추상화 레이어 |
+| `table` | 테이블 | — | noun | tables | DB 테이블 또는 데이터 구조 |
 | `telegram` | 텔레그램 | — | proper | — | 텔레그램 메시징 서비스 |
-| `upbit` | 업비트 | UPBIT | noun | auto | 암호화폐 거래소. crypto 마켓의 브로커. |
-| `url` | URL | — | noun | auto | Uniform Resource Locator |
-| `watchdog` | 워치독 | WDG | noun | auto | 서비스 비정상 종료 감지 및 자동 재시작 |
+| `upbit` | 업비트 | — | noun | upbits | 암호화폐 거래소. crypto 마켓의 브로커. |
+| `url` | URL | — | noun | urls | Uniform Resource Locator |
+| `watchdog` | 워치독 | — | noun | watchdogs | 서비스 비정상 종료 감지 및 자동 재시작 |
 
 ### general
 
@@ -269,7 +269,7 @@
 | `force` | 강제 | — | verb | — | 조건과 무관하게 강제 실행 |
 | `in` | 내에서 | — | adv | — | 시간 내, 범위 내 |
 | `max` | 최대 | — | adj | — | 최대값 |
-| `size` | 크기 | — | noun | auto | 수량 또는 비중 |
+| `size` | 크기 | — | noun | sizes | 수량 또는 비중 |
 | `top` | 상위 | — | adj | — | 순위/값 기준 상위 |
 
 ---

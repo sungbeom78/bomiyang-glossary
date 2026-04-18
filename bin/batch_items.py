@@ -159,50 +159,99 @@ def process_safety(candidates: list, env: dict, max_tokens: int, prog_cb) -> lis
         time.sleep(1)
     return results
 
-def process_auto(candidates: list, prog_cb) -> list:
+def process_auto(candidates: list, env: dict, max_tokens: int, prog_cb) -> list:
+    # v1.2: Wiktionary single source + AI pipeline + Hard Gate  (통일된 경로)
+    # Migration(migrate_v1_1.py)과 동일한 fetch_and_process() 사용.
+    # variants 추출 기준, from 규칙, Hard Gate 모두 동일.
+    # dictionaryapi.dev 완전 제거됨.
     results = []
-    # rate limit rule: max 450 req / 5 min roughly. So we do bulk requests with delays.
-    # We will process 5 words, then delay 1s. If > 100 total, delay 3s between batches of 10.
     batch_size = 10
     total = len(candidates)
-    
+
+    from wikt_sense import fetch_and_process as _fetch_and_process
+
     for i in range(0, total, batch_size):
         chunk = candidates[i:i+batch_size]
-        prog_cb(i//batch_size, f"Auto Dict {i}/{total}", len(chunk), len(chunk), "진행중")
+        prog_cb(i//batch_size, f"Auto Wikt {i}/{total}", len(chunk), len(chunk), "진행중")
         for c in chunk:
             w = c["word"]
-            # Exclude words < 3 length
-            if len(w) < 3:
+            if len(w) < 2:
                 c["recommended"] = False
-                c["reason"] = "길이 부족 (<3)"
+                c["reason"] = "길이 부족 (<2)"
                 results.append(c)
                 continue
-                
+
             try:
-                meanings = _http_get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{w}")
-                if len(meanings) > 0:
-                    pos = [m["partOfSpeech"] for m in meanings[0].get("meanings", [])]
-                    if "noun" in pos or "verb" in pos:
-                        c["recommended"] = True
-                        c["reason"] = "사전 확인"
-                    else:
-                        c["recommended"] = False
-                        c["reason"] = "사전에 있으나 명사/동사 아님"
-                else:
+                # Build temporary word entry for pipeline
+                _tmp_word = {
+                    "id": w,
+                    "canonical_pos": "noun",  # default; AI will correct
+                    "domain": "general",
+                    "lang": {"en": w},
+                    "variants": [],
+                }
+
+                url, pipe_result = _fetch_and_process(w, _tmp_word, ai_env=env)
+
+                if pipe_result is None:
                     c["recommended"] = False
-                    c["reason"] = "사전 검색 결과 없음"
+                    c["reason"] = "Wiktionary fetch 실패"
+                    results.append(c)
+                    continue
+
+                if pipe_result.status == "rejected":
+                    c["recommended"] = False
+                    reason = pipe_result.rejection_reason or "Hard Gate 실패"
+                    c["reason"] = f"Gate 차단: {reason}"
+                    results.append(c)
+                    continue
+
+                if pipe_result.status == "error":
+                    c["recommended"] = False
+                    c["reason"] = f"파이프라인 오류: {pipe_result.rejection_reason or 'unknown'}"
+                    results.append(c)
+                    continue
+
+                # Pipeline passed -> recommended
+                c["recommended"] = True
+                c["reason"] = "AI+Wikt 검증 완료"
+                c["enriched"] = {
+                    "canonical_pos":    pipe_result.selected_pos or "noun",
+                    "description_i18n": {"en": pipe_result.description_en} if pipe_result.description_en else {},
+                    "source_urls":      [url] if url else [],
+                    "variants":         pipe_result.variants,
+                    "from":             pipe_result.from_word,
+                }
             except Exception as e:
                 c["recommended"] = False
-                c["reason"] = f"사전 API 오류: {str(e)}"
-            
+                c["reason"] = f"처리 오류: {str(e)}"
+
             results.append(c)
-            time.sleep(0.5) # small delay per word
-        
-        prog_cb(i//batch_size, f"Auto Dict {i}/{total}", len(chunk), len(chunk), "완료")
-        
+            time.sleep(1.0)  # API rate limit
+
+        # Batch Translate EN -> KO (for Korean labels)
+        words_to_translate = [c["word"] for c in chunk if "enriched" in c]
+        if words_to_translate:
+            prompt = "Return a brief Korean translation (1-2 words) for the following English words in JSON array format: [{\"word\": \"...\", \"ko\": \"...\"}]. Words: " + ", ".join(words_to_translate)
+            try:
+                resp = call_api(prompt, env, max_tokens)
+                parsed = _parse_llm_json(resp)
+                ko_lookup = {p.get("word"): p.get("ko") for p in parsed if isinstance(p, dict)}
+                for c in results:
+                    if "enriched" in c and c["word"] in ko_lookup:
+                        if "description_i18n" not in c["enriched"]:
+                            c["enriched"]["description_i18n"] = {}
+                        ko_txt = ko_lookup[c["word"]]
+                        c["enriched"]["description_i18n"]["ko"] = ko_txt
+                        c["lang"] = {"en": c["word"], "ko": ko_txt}
+            except Exception:
+                pass
+
+        prog_cb(i//batch_size, f"Auto Wikt {i}/{total}", len(chunk), len(chunk), "완료")
+
         if total > 50 and i + batch_size < total:
-            time.sleep(3) # Heavy throttling required by criteria
-            
+            time.sleep(3)
+
     return results
 
 def process_normal(candidates: list, prog_cb) -> list:
@@ -234,18 +283,31 @@ def _apply_to_words_json(approved_items: list):
     
     for item in approved_items:
         w = item["word"]
-        if w in existing_ids: continue
+        if w in existing_ids:
+            continue
+        enriched = item.get("enriched") or {}
+        # Ko label: prefer from LLM translation, else the word itself
+        ko_label = enriched.get("description_i18n", {}).get("ko") or w
+        en_label  = (item.get("lang") or {}).get("en") or w
         new_w = {
             "id": w,
-            "lang": {"en": w, "ko": w},
+            "lang": {"en": en_label, "ko": ko_label},
             "domain": "general",
-            "canonical_pos": "noun",
+            "canonical_pos": enriched.get("canonical_pos") or "noun",
+            "description_i18n": enriched.get("description_i18n") or {},
+            "source_urls": enriched.get("source_urls") or [],
             "status": "auto_registered" if item.get("reason") == "사전 확인" else "active",
             "created_at": now,
-            "updated_at": now
+            "updated_at": now,
         }
+        # Apply enriched variants (already pos-filtered and deduped)
+        if enriched.get("variants"):
+            new_w["variants"] = enriched["variants"]
+        # Apply enriched from (already quality-filtered)
+        if enriched.get("from"):
+            new_w["from"] = enriched["from"]
         data["words"].append(new_w)
-        
+
     words_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
 
 def main():
@@ -291,7 +353,7 @@ def main():
 
     print(f"\n[2/3] 모드({args.register_mode}) 처리 시작")
     if args.register_mode == "auto":
-        processed = process_auto(candidates, prog)
+        processed = process_auto(candidates, env, max_tokens, prog)
     elif args.register_mode == "safety":
         processed = process_safety(candidates, env, max_tokens, prog)
     else:

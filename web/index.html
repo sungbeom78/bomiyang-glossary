@@ -493,12 +493,12 @@ async function selectBatchFile(fname){
   document.getElementById('merge-actions').style.display='none';
   
   const d=await(await fetch(`/api/batch/preview?file=${encodeURIComponent(fname)}`)).json();
-  if(!d.ok||!d.terms?.length){
+  if(!d.ok||!(d.items && d.items.length)){
     container.innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">없음</div>';
     return;
   }
   
-  _batchTerms=d.terms;
+  _batchTerms=d.items;
   const total = _batchTerms.length;
   let current = 0;
   const chunkSize = 40; 
@@ -516,14 +516,33 @@ async function selectBatchFile(fname){
       const t = _batchTerms[i];
       let isRec = (t.recommended || t.recommended === undefined) ? 'checked' : '';
       
-      chunkHtml += `<div class="merge-item" style="padding-bottom:10px;border-bottom:1px solid var(--ln);margin-bottom:8px;">
-         <div style="display:flex;">
+      let enr = t.enriched || {};
+      let posInfo = enr.canonical_pos ? `<span class="c-pos">${escapeHtml(enr.canonical_pos)}</span>` : '';
+      let descKo = enr.description_i18n && enr.description_i18n.ko ? escapeHtml(enr.description_i18n.ko) : '';
+      let descEn = enr.description_i18n && enr.description_i18n.en ? escapeHtml(enr.description_i18n.en) : '';
+      let detailsHtml = '';
+      if(enr.description_i18n || (enr.source_urls && enr.source_urls.length>0)) {
+        let lines = [];
+        if(descKo) lines.push(`<span style="color:var(--ye)">KO:</span> ${descKo}`);
+        if(descEn) lines.push(`<span style="color:var(--tx)">EN:</span> ${descEn}`);
+        if(enr.source_urls && enr.source_urls.length>0) lines.push(`<span style="color:var(--ac)">URL:</span> <a href="${escapeHtml(enr.source_urls[0])}" target="_blank" style="color:var(--ac);text-decoration:none">${escapeHtml(enr.source_urls[0])}</a>`);
+        detailsHtml = `<div style="margin-top:8px;margin-left:24px;font-size:10px;color:var(--tx2);padding:6px 10px;background:var(--s1);border:1px solid var(--ln);border-radius:4px;display:none;line-height:1.6;" id="det${i}">${lines.join('<br>')}</div>`;
+      }
+      
+      let miniDesc = descKo || descEn || '';
+      
+      chunkHtml += `<div class="merge-item" style="padding-bottom:10px;border-bottom:1px solid var(--ln);margin-bottom:8px;flex-direction:column;align-items:stretch">
+         <div style="display:flex;align-items:center;width:100%">
            <input type="checkbox" id="mc${i}" ${isRec}>
-           <div style="flex:1;margin-left:6px">
-             <span style="font-weight:600">${escapeHtml(t.word)}</span>
-             <span style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-left:8px">발견: ${t.count}회</span>
+           <div style="flex:1;margin-left:8px;display:flex;align-items:center;">
+             <span style="font-weight:600;min-width:110px;display:inline-block">${escapeHtml(t.word)}</span>
+             ${posInfo}
+             <span style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-left:12px;white-space:nowrap;">발견: ${t.count}회</span>
+             <span style="margin-left:16px;font-size:11px;color:var(--ye);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${miniDesc}</span>
+             ${detailsHtml ? `<button class="btn btn-gh" style="margin-left:8px;padding:3px 7px;font-size:9px" onclick="const e=document.getElementById('det${i}'); e.style.display=e.style.display==='none'?'block':'none'">상세▼</button>` : ''}
            </div>
          </div>
+         ${detailsHtml}
       </div>`;
     }
     
@@ -559,13 +578,20 @@ async function doMergeProcessed(){
        return;
     }
     
-    appW.push({
+    let wordBody = {
       id: t.word,
       lang: {en: t.word, ko: t.word},
       canonical_pos: "noun",
       domain: "general",
       status: t.reason === "사전 확인" ? "auto_registered" : "active"
-    });
+    };
+    if (t.enriched) {
+       if (t.enriched.canonical_pos) wordBody.canonical_pos = t.enriched.canonical_pos;
+       if (t.enriched.description_i18n) wordBody.description_i18n = t.enriched.description_i18n;
+       if (t.enriched.source_urls) wordBody.source_urls = t.enriched.source_urls;
+       if (t.enriched.variants && t.enriched.variants.length > 0) wordBody.variants = t.enriched.variants;
+    }
+    appW.push(wordBody);
   });
 
   if (!appW.length && !appC.length && !rej.length) {

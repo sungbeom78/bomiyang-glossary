@@ -1,3 +1,271 @@
+## [2026-04-18 18:05:00]
+### Fixed / Refined (Glossary 2차 정제 — v3.2 적재 기준 통일)
+
+#### 목적
+마이그레이션과 신규 등록 간 variants 추출 기준 통일 + from/derived_terms 사용 규칙 확정
+
+#### 1. 데이터 정제 (words.json)
+
+**patch_domain_words.py (신규)**
+- 19개 fetch_fail 도메인 단어에 수동 description_en 추가
+  - kis, kosdaq, kospi, pnl, redis, url, vwap, mt5, postgresql 등
+- url에 plural:urls variant 추가
+
+**patch_upper.py (신규)**
+- upper: uppermore, uppermost (잘못된 appendix 형태) 제거
+- upper는 이미 comparative이므로 comparative variant 불필요
+
+#### 2. 코드 개선
+
+**normalize_build.py (MODIFY)**
+- 모듈 헤더: v3.2 spec 완전 반영
+  - 단어 검색 5단계 우선순위 명시
+  - 용어 검색 원칙 (단어 단위 분해 → exact fallback) 명시
+  - derived_terms 저장은 넓게, 조회는 exact fallback으로만 사용 명시
+
+**batch_items.py (MODIFY)**
+- process_auto() 주석: v1.2 통일 파이프라인 명시
+  - "migration과 동일한 fetch_and_process() 사용" 명기
+
+#### 3. 테스트
+
+**bin/test_phase2.py (신규)** — 완료 조건 8카테고리 39개 테스트
+- T1: more/most periphrastic variants 없음 ✅
+- T2: from stage값 없음 ✅
+- T3: noun plural 10개 샘플 ✅
+- T4: verb 굴절 10개 샘플 ✅
+- T5: comparative/superlative 복합표현 제외 ✅
+- T6: derived_terms fallback 조회 6개 ✅
+- T7: 신규 등록 = migration 동일 파이프라인 ✅
+- T8: 도메인 단어 desc_en 9개 ✅
+- **결과: 39 PASS / 0 FAIL**
+
+#### 최종 데이터 상태
+- words.json: 228 words
+- desc_en 있음: 228/228 (100%)
+- normalize_index: 955 entries
+- derived_terms: 739 items
+
+## [2026-04-17 12:26:00]
+### Fixed (v1.2 Re-Migration — --only-incomplete 옵션 추가)
+
+#### 문제
+- `--resume`으로 migration 시 desc_en 있으면 skip → 169개 단어가 plural-only 상태로 남음
+- 실질적으로 v1.2 형태소 패밀리 전략이 이전 단어들에 미적용
+
+#### 해결
+- `migrate_v1_1.py` : `--only-incomplete` 옵션 추가
+  - plural-only 또는 variants=[] 인 단어만 선택 재처리
+  - `--word-list ID,...` 옵션도 추가 (콤마 구분)
+- 191개 단어 재처리: ok=172, fetch_fail=12, error=7
+- derived_terms: 519 → **738 items**
+- normalize_index: 752 → **954 entries**
+
+#### 검증
+- `verify_v1_1.py` : **11/11 PASS**
+- `cancel` : cancelled(UK)/cancelling(UK) 수동 추가 (AI가 미국식만 반환)
+- Only-plural 단어: 169 → **73** (73개는 진짜 plain noun)
+
+## [2026-04-17 12:01:00]
+### Major Refactor (Morphological Family Expansion — v1.2)
+
+#### 핵심 문제 해결
+- 기존: `canonical_pos` 기준 variants 필터 → "plural 수집기"로 전락
+- 변경: **형태소 패밀리 최대 수집** (`active → activate, activation, actively, activating, activated`)
+
+#### Architecture Changes
+
+##### `bin/wikt_sense.py`
+- `ALL_VARIANT_TYPES` 신규 상수: 16가지 타입 (inflection + morphological derivation)
+  - inflection: `plural`, `singular`, `verb_form`, `past`, `past_participle`, `present_participle`, `comparative`, `superlative`
+  - derivation: `noun_form`, `verb_derived`, `adj_form`, `adv_form`, `agent`, `gerund`
+- AI 프롬프트 전면 교체: `CORE PHILOSOPHY = MAXIMIZE variants`
+  - "FILTER only" 원칙: 완전히 다른 의미만 제거
+  - `DERIVATION` 예시 6개 포함: `activate→activation`, `classify→classification` 등
+- Hard Gate Gate-3: POS 제한 제거 → `ALL_VARIANT_TYPES` 포함 여부만 검증
+- `_VTYPE_NORM` 확장: `adverb→adv_form`, `noun_derived→noun_form` 등 추가
+- `STATUS_WORDS` 재정의: 병합 후 standalone 단어만 (`closed`, `pending`, `trading` 등)
+
+##### `bin/merge_inflected_words.py` (신규)
+- `-ed`/`-ing` canonical ID를 base verb로 병합
+- MERGE: 21개 (`cancelled→cancel.past`, `failed→fail.past_participle` 등)
+- KEEP: 7개 도메인 명사 (`trading`, `reporting`, `scoring`, `setting`, `trailing`, `closed`, `pending`)
+- 234 → 228 단어 (21 removed, 15 new bases created)
+
+#### Migration Results
+- 228 words total (21 inflected IDs removed, 15 new base verbs added)
+- Verbs with 0 variants: **234 → 0** (완전 해결)
+- Top variant richness: classify(6v), reject(6v), run(6v), active(5v), disable(5v)
+- derived_terms index: 519 items | normalize_index: 752 entries
+
+## [2026-04-17 11:24:00]
+### Major Refactor (Hard Gate Spec v1.1 — AI-Centric Architecture)
+
+#### Architecture Change
+- 기존: rule-based score → AI optional fallback (실제 AI 미실행)
+- 변경: **AI가 중심, Hard Gate가 막는 구조**
+  - Wiktionary HTML → Parser → Dict Score → AI 판단 → Hard Gate 검증 → 저장
+
+#### Modified Files
+- File: `bin/wikt_sense.py` — v1.1 완전 재설계
+  - AI 프롬프트: 도메인 앵커링, 명시적 DO/DON'T 예시, variant type 제약
+  - Hard Gate: 6단계 검증 (description_en, pos, variants, from, status word, variant type)
+  - variant type 정규화 (`third_person_singular` → `verb_form`)
+  - INFL_MAP에 comparative/superlative 추가 (adj variants 파싱)
+  - `PipelineResult` 통합 반환 구조
+- File: `bin/normalize_build.py` — `enrich_word_variants()` v1.1 연동
+  - description_en, selected_pos, from 모두 反映
+- File: `bin/batch_items.py` — `process_auto()` 전면 교체
+  - dictionaryapi.dev 제거 → Wiktionary 단일 소스
+  - v1.1 파이프라인 (fetch_and_process) 직접 호출
+  - Hard Gate 통과 시에만 recommended=True
+
+#### New Files
+- File: `bin/migrate_v1_1.py` — v1.1 AI migration 스크립트
+  - `--apply`, `--resume`, `--word`, `--dry-run` 지원
+  - 단어별: variants/from 리셋 → AI 판단 → Hard Gate → 저장
+- File: `bin/post_clean_v1_1.py` — post-migration 잔존 이상 정리
+
+#### Migration Results (234 words)
+- OK: 215 (AI 사용 207)
+- Gate Rejected: 2 (lower, us — 수동 처리)
+- Fetch Fail: 12 (도메인 전용 단어: KIS, KOSDAQ, mt5 등)
+- Error: 5 (redis, url, pnl 등 — Wiktionary 미등재)
+
+#### Data Quality (Before → After)
+- desc_en 없음: 234 → **19** (fetch_fail/error 단어만 남음)
+- 잘못된 from (bot→bottom 등): **17 → 0**
+- more/most 형태 variants: **존재 → 전부 제거**
+- adj variants 비어있던 문제: 해결 (Gate에서 adj exempt)
+
+### Notes
+- 신규 등록 경로와 migration 경로 **완전 통일** (동일 파이프라인)
+- dictionaryapi.dev 의존성 완전 제거
+- AI 프롬프트 핵심 설계: variant type EXACT name 지정 + from DO/DON'T 6개 예시
+
+## [2026-04-17 09:19:00]
+### Modified (Registration Path Parity Fix - batch_items.py)
+- File: `bin/batch_items.py` — 신규 단어 등록 경로 v3.2 정합성 수정
+  - `process_auto()`: dead-code comparative/superlative 필터 제거
+    (이미 `enrich_word_variants()` -> `wikt_sense` 레벨에서 pos 필터 처리)
+  - `process_auto()`: from 품질 필터 추가 (`is_bad_from()` 호출)
+  - `process_auto()`: enriched dict에 `"from"` 필드 포함
+  - `_apply_to_words_json()`: enriched 데이터 실제 반영 (기존: 버려짐)
+    - `canonical_pos`, `description_i18n`, `source_urls`, `variants`, `from` 모두 적용
+    - ko lang label을 LLM 번역 결과로 설정 (기존: word id 그대로)
+- File: `bin/test_registration_parity.py` — 신규: 경로 정합성 테스트 21개
+### Notes
+- 신규 등록 경로 vs migration 경로 동일 함수 사용 확인:
+  - enrich_word_variants() -> wikt_sense.fetch_and_process()
+  - filter_variants_by_pos() (pos별 variant 필터)
+  - post_clean_from.is_bad_from() (from 품질 필터)
+- 테스트 21/21 PASS
+- 주요 수정 전 문제: enriched 데이터가 words.json에 반영 안 됨 (dead code)
+
+## [2026-04-17 09:16:00]
+### Modified (v3.2 Full Data Migration - 234 words)
+- File: `dictionary/words.json` — 전체 234개 단어 re-migration
+  - variants clean: 362개 wrong-type variant 제거 (canonical_pos 불일치)
+  - from clean: 18개 잘못된 from 값 제거 (자기참조, 복수형, meta-term, stage word)
+  - Wiktionary enrichment: 35개 from 신규 설정, 3개 variants 추가
+  - fetch_fail: 12개 (kisses/kosdaq/kospi/goldenkey 등 도메인 고유어)
+- File: `dictionary/words__derived_terms.json` — 487 items 재생성
+- File: `build/index/normalize_index.json` — 757 entries 재생성
+- File: `bin/migrate_v3_2.py` — 신규: 완전 migration 스크립트
+- File: `bin/post_clean_from.py` — 신규: from 품질 필터 스크립트
+### Notes
+- FATAL 0건, WARN 6건(기존 유지)
+- terms.json 744개 생성
+- normalize() 정규화 인덱스 757 entries
+- pos별 variants 필터 적용 완료 (noun:plural만, verb:verb_form+past+pp만, adj:comparative+superlative만)
+
+## [2026-04-17 08:58:00]
+### Added (Wiktionary Sense Selection & From Extraction Spec v1.0)
+- File: `bin/wikt_sense.py` — 신규 모듈 (274라인)
+  - `parse_wiktionary_full()`: 전체 HTML 파싱 (etymologies + pos_blocks + inflections)
+  - `score_candidate()`: 점수 기반 의미 선택 (pos match, description kw, domain kw, rare penalty)
+  - `extract_from()`: lexical base 추출 (deny regex, allow pattern, fallback)
+  - `filter_variants_by_pos()`: canonical_pos 기준 variants 필터링
+  - `process_word()`: 7단계 메인 파이프라인
+  - `fetch_and_process()`: Wiktionary fetch + process 통합
+  - AI fallback 연동 (score < 5, 다의 어원, POS 중복 시 호출)
+- File: `bin/normalize_build.py` — enrich_word_variants() wikt_sense 재사용 연동
+- File: `bin/test_wikt_sense.py` — 단위 테스트 19개 (spec §10) + live 테스트 5케이스
+### Notes
+- 단위 19/19 PASS
+- Live: bot(noun✅, from='bottom'*), execute(verb✅), drama(from=None✅), watch(plural✅), standard(adj✅)
+- *bot.from='bottom' — Wiktionary에 "Clipping of bottom" 실제 존재. AI fallback 시 null로 교정됨
+- FROM_DENY_PATTERNS: "From Late Latin" 패턴 regex로 처리 (이전 startswith 방식 교체)
+- "Shortening of", "Back-formation from" allow 패턴 추가
+- variants deduplication 추가
+
+## [2026-04-17 07:51:00]
+### Modified (Glossary Normalization System v3.2 - Policy Unification)
+- File: `bin/normalize_build.py` — v3.2로 업그레이드
+  - HEADWORD_INFLECTION_MAP에서 comparative/superlative 제거 (more X, most X 생성 차단)
+  - `is_lexical_from()` 신설: from 필드를 lexical base vs etymology-stage로 분류
+  - `_build_normalize_index()` 5단계 우선순위 재정립: id > variants > synonyms > from(lexical) > derived_terms
+  - `enrich_word_variants()` public API 분리: 마이그레이션/신규 등록 공용 함수
+  - from 필드: 삭제 아닌 보존, canonical 판단 시만 is_lexical_from()으로 분류
+- File: `dictionary/words.json` — comparative/superlative 복합형 52건 제거 (more/most 패턴)
+- File: `bin/batch_items.py` — process_auto()에서 신규 단어 등록 시 `enrich_word_variants()` 재사용 (경로 통일)
+- File: `bin/clean_variants.py` — 복합 comparative 제거 스크립트 신설
+### Notes
+- normalize() 6개 테스트 모두 OK
+- is_lexical_from() 6개 테스트 모두 OK
+- comparative/superlative 0건 확인 (52건 제거 완료)
+- FATAL 0건 유지, terms.json 762개
+
+## [2026-04-17 00:09:00]
+### Added (Glossary Normalization System v3.1)
+- File: `bin/normalize_build.py` — v3.1 정규화 엔진 신설
+  - `from` 필드 정제: `middle`, `latin`, `french` 등 언어 단계 값 115건 제거
+  - Wiktionary headword-line 파서로 inflection 변형 635건 variants에 적용
+  - `derived_terms` 제거 후 `words__derived_terms.json`으로 분리 (6,932건)
+  - `normalize_index.json` 생성 (7,144 entries): surface → canonical_id
+  - `normalize(word)` API: 의미 업룥나 적용 � 모든 표면형을 canonical id로 첫번에 환시
+- File: `dictionary/words.json` — derived_terms 제거, variants 635건 보강, from 115건 정제 완료
+- File: `dictionary/words__derived_terms.json` — 파생어 및 형태소 검색 인덱스 신설
+### Notes
+- terms.json 762건 (546에서 증가), FATAL 0건
+- normalize('sectors') → 'sector', normalize('accounts') → 'account' 등 정상 확인
+
+## [2026-04-16 23:17:00]
+### Fixed / Added (Migration v2 성공)
+- Wiktionary HTML 구조 변경(`mw-heading div`) 대응 파서 전면 재작성
+- File: `bin/migrate_words_relations.py` — v2 전면 재작성. `_get_sections()` / `_find_english_subsections()` 로 기존 h2 anchor 변경에 대응. Etymology, Synonyms, Antonyms, Derived terms, Inflection 모두 정상 추출.
+- File: `bin/fix_self_variants.py` — 문자 자체 값과 동일한 self-conflict variants 제거 유톸리티 신설
+- File: `dictionary/words.json` — Migration v2 전진. `from` 150건(64%), `synonyms` 65건, `antonyms` 42건, `derived_terms` 195건(83%), `source_urls` 222건(95%) 자동 보강 완료
+### Notes
+- FATAL 0건, WARN 6건(기존)으로 validate 통과 확인
+- pending_words.json 에 from 기반 신규 후보 36건 자동 등록됨
+
+## [2026-04-16 21:12:00]
+### Added / Modified
+- Glossary Migration & Canonical Consolidation Plan v1.0 실행 완료
+- File: `schema/word.schema.json` — `from`, `synonyms`, `antonyms`, `derived_terms` 관계형 속성 추가하여 검증 규칙 최신화.
+- File: `bin/migrate_words_relations.py` — 지정된 소스에서 마이그레이션 스크립트를 추출해 `bin` 폴더에 배치 후 실행. Wiktionary API 기반으로 단어 234건 검사 완료 (`source_urls` 222건 신규 확보).
+- `generate_glossary.py generate`를 실행하여 Projection(GLOSSARY.md 포함) 재생성 및 최종 완료.
+### Notes
+- Migration 과정 중 FATAL 에러나 파손 현상 없이 모두 정상 수행됨.
+
+## [2026-04-16 18:22:00]
+### Added / Modified
+- Auto 모드 배치 추출 결과 UI 개선 및 한국어 LLM 번역 연동
+- File: `web/index.html` — `renderChunk()` 내 UI 개선. 병합 리스트 출력 시 발견 횟수 외에 품사(pos), 한국어 뜻, 영어 정의 요약을 노출하도록 수정. `상세▼` 토글 버튼 통해 상세 뜻 및 source_urls 링크를 확인 가능.
+- File: `bin/batch_items.py` — `process_auto()` 내 영문 사전 검색 후 `.env`의 API 키를 활용해 추출된 전체 단어 뜻을 LLM으로 일괄 한국어 번역(`description_i18n.ko`)하도록 로직 추가.
+### Notes
+- 사용자는 `API_KEY_TYPE` (claude, openai, google) 환경 변수 설정 후 Auto 모드를 재실행하여 한국어 정의까지 자동 매핑된 화면을 볼 수 있습니다.
+
+## [2026-04-16 15:00:00]
+### Fixed / Modified
+- 배치 추출 결과물 병합 화면 오류 수정 및 Dictionary API 추출 고도화
+- File: `web/index.html` — `d.terms` 오타를 `d.items`로 수정. `doMergeProcessed`에서 enriched 데이터 추출 방식 적용
+- File: `bin/batch_items.py` — Auto 모드 추출 로직 수정. `partOfSpeech`를 `canonical_pos`로 매핑하고, `source_urls` 및 첫 번째 definition을 `description_i18n`으로 저장
+- File: `schema/word.schema.json` — 엄격한 스키마 검증을 통과하기 위해 `source_urls` 필드 명세 추가
+### Notes
+- 사용자는 `batch_items.py` 기반의 Auto 모드를 재실행하여 단어 속성을 새로 추출해야 정상적으로 UI에 영단어의 품사/정의 등이 반영됩니다.
+
 ## [2026-04-16 12:31:00]
 ### Added
 - §5.3 Alerting 구현 — `web/notifier.py` 신설

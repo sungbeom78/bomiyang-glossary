@@ -1,3 +1,544 @@
 {
-  "pending": []
+  "words": [
+    {
+      "id": "middle",
+      "domain": "trading",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "middle"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:09:11Z",
+      "updated_at": "2026-04-16T14:09:11Z"
+    },
+    {
+      "id": "adapt",
+      "domain": "infra",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "adapt"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:09:14Z",
+      "updated_at": "2026-04-16T14:09:14Z"
+    },
+    {
+      "id": "authenticate",
+      "domain": "infra",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "authenticate"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:09:25Z",
+      "updated_at": "2026-04-16T14:09:25Z"
+    },
+    {
+      "id": "back",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "back"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:09:26Z",
+      "updated_at": "2026-04-16T14:09:26Z"
+    },
+    {
+      "id": "bottom",
+      "domain": "infra",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "bottom"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:09:41Z",
+      "updated_at": "2026-04-16T14:09:41Z"
+    },
+    {
+      "id": "latin",
+      "domain": "general",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "latin"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:09:53Z",
+      "updated_at": "2026-04-16T14:09:53Z"
+    },
+    {
+      "id": "french",
+      "domain": "trading",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "french"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:10:06Z",
+      "updated_at": "2026-04-16T14:10:06Z"
+    },
+    {
+      "id": "dash",
+      "domain": "infra",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "dash"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:10:50Z",
+      "updated_at": "2026-04-16T14:10:50Z"
+    },
+    {
+      "id": "disable",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "disable"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:10:56Z",
+      "updated_at": "2026-04-16T14:10:56Z"
+    },
+    {
+      "id": "old",
+      "domain": "trading",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "old"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:11:16Z",
+      "updated_at": "2026-04-16T14:11:16Z"
+    },
+    {
+      "id": "middle_english",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "middle_english"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:11:58Z",
+      "updated_at": "2026-04-16T14:11:58Z"
+    },
+    {
+      "id": "heart",
+      "domain": "infra",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "heart"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:11:59Z",
+      "updated_at": "2026-04-16T14:11:59Z"
+    },
+    {
+      "id": "new",
+      "domain": "infra",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "new"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:12:01Z",
+      "updated_at": "2026-04-16T14:12:01Z"
+    },
+    {
+      "id": "intra",
+      "domain": "trading",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "intra"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:12:08Z",
+      "updated_at": "2026-04-16T14:12:08Z"
+    },
+    {
+      "id": "low",
+      "domain": "market",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "low"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:12:43Z",
+      "updated_at": "2026-04-16T14:12:43Z"
+    },
+    {
+      "id": "manage",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "manage"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:12:46Z",
+      "updated_at": "2026-04-16T14:12:46Z"
+    },
+    {
+      "id": "notify",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "notify"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:13:16Z",
+      "updated_at": "2026-04-16T14:13:16Z"
+    },
+    {
+      "id": "off",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "off"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:13:17Z",
+      "updated_at": "2026-04-16T14:13:17Z"
+    },
+    {
+      "id": "orchestrate",
+      "domain": "infra",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "orchestrate"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:13:32Z",
+      "updated_at": "2026-04-16T14:13:32Z"
+    },
+    {
+      "id": "rank",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "rank"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:14:10Z",
+      "updated_at": "2026-04-16T14:14:10Z"
+    },
+    {
+      "id": "real",
+      "domain": "market",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "real"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:14:12Z",
+      "updated_at": "2026-04-16T14:14:12Z"
+    },
+    {
+      "id": "re",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "re"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:14:13Z",
+      "updated_at": "2026-04-16T14:14:13Z"
+    },
+    {
+      "id": "relax",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "relax"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:14:18Z",
+      "updated_at": "2026-04-16T14:14:18Z"
+    },
+    {
+      "id": "earlier",
+      "domain": "trading",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "earlier"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:14:24Z",
+      "updated_at": "2026-04-16T14:14:24Z"
+    },
+    {
+      "id": "scan",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "scan"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:14:33Z",
+      "updated_at": "2026-04-16T14:14:33Z"
+    },
+    {
+      "id": "schedule",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "schedule"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:14:33Z",
+      "updated_at": "2026-04-16T14:14:33Z"
+    },
+    {
+      "id": "italian",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "italian"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:14:34Z",
+      "updated_at": "2026-04-16T14:14:34Z"
+    },
+    {
+      "id": "select",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "select"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:14:41Z",
+      "updated_at": "2026-04-16T14:14:41Z"
+    },
+    {
+      "id": "slip",
+      "domain": "trading",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "slip"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:15:05Z",
+      "updated_at": "2026-04-16T14:15:05Z"
+    },
+    {
+      "id": "snap",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "snap"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:15:06Z",
+      "updated_at": "2026-04-16T14:15:06Z"
+    },
+    {
+      "id": "store",
+      "domain": "infra",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "store"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:15:26Z",
+      "updated_at": "2026-04-16T14:15:26Z"
+    },
+    {
+      "id": "ancient_greek",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "ancient_greek"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:15:29Z",
+      "updated_at": "2026-04-16T14:15:29Z"
+    },
+    {
+      "id": "tele",
+      "domain": "infra",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "tele"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:15:39Z",
+      "updated_at": "2026-04-16T14:15:39Z"
+    },
+    {
+      "id": "un",
+      "domain": "trading",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "un"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:16:13Z",
+      "updated_at": "2026-04-16T14:16:13Z"
+    },
+    {
+      "id": "volatile",
+      "domain": "trading",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "volatile"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:16:33Z",
+      "updated_at": "2026-04-16T14:16:33Z"
+    },
+    {
+      "id": "watch",
+      "domain": "infra",
+      "status": "active",
+      "canonical_pos": "mixed",
+      "lang": {
+        "en": "watch"
+      },
+      "description_i18n": {
+        "ko": "from 관계 보강을 위해 생성된 pending canonical 후보"
+      },
+      "reason": "auto-created: missing 'from' base during glossary migration v1.0",
+      "created_at": "2026-04-16T14:16:37Z",
+      "updated_at": "2026-04-16T14:16:37Z"
+    }
+  ]
 }
