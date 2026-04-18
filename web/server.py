@@ -162,11 +162,23 @@ def save_terms(data: dict):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 # ── v2: words / compounds / banned / drafts ─────────────────────────
+# mtime-based in-memory cache: avoids re-reading large JSON files on every GET
+_cache: dict = {}
+
 def _load_json(path: Path, key: str) -> dict:
     if not path.exists():
         return {key: []}
+    mtime = path.stat().st_mtime
+    entry = _cache.get(str(path))
+    if entry and entry['mtime'] == mtime:
+        return entry['data']
     with open(path, encoding='utf-8') as f:
-        return json.load(f)
+        data = json.load(f)
+    _cache[str(path)] = {'mtime': mtime, 'data': data}
+    return data
+
+def _invalidate_cache(path: Path):
+    _cache.pop(str(path), None)
 
 def load_drafts() -> dict:
     return _load_json(DICT_DIR / "drafts.json", "drafts")
@@ -174,10 +186,12 @@ def load_drafts() -> dict:
 def save_drafts(data: dict):
     with open(DICT_DIR / "drafts.json", 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+    _invalidate_cache(DICT_DIR / "drafts.json")
 
 def _save_json(path: Path, data: dict):
     with open(path, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+    _invalidate_cache(path)
 
 def load_words()     -> dict: return _load_json(WORDS_PATH,     "words")
 def load_compounds() -> dict: return _load_json(COMPOUNDS_PATH, "compounds")
@@ -340,7 +354,18 @@ def get_categories():
 
 @app.route("/api/words", methods=["GET"])
 def get_words():
-    return jsonify(load_words())
+    import hashlib
+    data = load_words()
+    etag = hashlib.md5(
+        json.dumps(data, ensure_ascii=False, sort_keys=True).encode('utf-8')
+    ).hexdigest()
+    if request.headers.get('If-None-Match') == etag:
+        from flask import Response
+        return Response(status=304)
+    resp = jsonify(data)
+    resp.headers['ETag'] = etag
+    resp.headers['Cache-Control'] = 'no-cache'
+    return resp
 
 @app.route("/api/words", methods=["POST"])
 def add_word():

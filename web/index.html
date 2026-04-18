@@ -37,12 +37,17 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
 <div id="app">
 <header id="topbar">
   <div class="logo">BOM_TS <em>glossary</em></div>
-  <select id="tz-sel" onchange="updateAllTimestamps()" style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:2px 6px;color:var(--tx3);font-family:var(--mono);font-size:10px"><option value="KST">KST</option><option value="UTC">UTC</option></select><div id="tb-stats"></div>
+  <select id="tz-sel" onchange="updateAllTimestamps()" style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:2px 6px;color:var(--tx3);font-family:var(--mono);font-size:10px"><option value="KST">KST</option><option value="UTC">UTC</option></select>
+  <select id="lang-sel" onchange="changeLang(this.value)" title="표시 언어" style="background:var(--s2);border:1px solid var(--ln);border-radius:var(--r);padding:2px 6px;color:var(--tx3);font-family:var(--mono);font-size:10px">
+    <option value="ko">한국어</option><option value="en">English</option><option value="ja">日本語</option><option value="zh_hans">中文</option>
+  </select>
+  <div id="tb-stats"></div>
   <div id="tb-branch"><span class="dot"></span><span id="br-nm">—</span></div>
   <div class="tbsp"></div>
   <button class="btn btn-gh" onclick="openCheckId()" title="식별자 단어 분해">⊙ check-id</button>
   <button class="btn btn-gh" onclick="openLogModal()">📋 log</button>
   <button class="btn btn-gh" onclick="openBatchModal()">⚙ batch</button>
+  <button class="btn btn-gh" onclick="openSettings()" title="환경설정">⚙ 설정</button>
   <button class="btn btn-gr" id="git-btn" onclick="openGit()">⎇ commit &amp; push</button>
 </header>
 <div id="tabs">
@@ -131,16 +136,28 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
 </div>
 
 <!-- WORD FORM -->
-<div class="ov" id="word-ov"><div class="modal" style="width:540px">
+<div class="ov" id="word-ov"><div class="modal" style="width:640px">
   <div class="mh"><div class="mt" id="word-title">단어 추가</div><button class="ico" onclick="closeOv('word-ov')">✕</button></div>
-  <div class="mb" style="padding:16px">
-    <div class="fg2"><div class="fg"><div class="fl">id <span class="req">*</span></div><input class="fi" id="wf-id" placeholder="kill"></div><div class="fg"><div class="fl">english <span class="req">*</span></div><input class="fi" id="wf-en" placeholder="kill"></div></div>
-    <div class="fg2"><div class="fg"><div class="fl">한글 <span class="req">*</span></div><input class="fi" id="wf-ko" placeholder="킬"></div><div class="fg"><div class="fl">abbr (2-5자 대문자)</div><input class="fi" id="wf-abbr" placeholder="KL"></div></div>
-    <div class="fg2">
-      <div class="fg"><div class="fl">pos <span class="req">*</span></div><select class="fsel" id="wf-pos"><option value="noun">noun</option><option value="verb">verb</option><option value="adj">adj</option><option value="adv">adv</option><option value="prefix">prefix</option><option value="suffix">suffix</option><option value="proper">proper</option></select></div>
-      <div class="fg"><div class="fl">status</div><select class="fsel" id="wf-status"><option value="active">active</option><option value="deprecated">deprecated</option></select></div><div class="fg"><div class="fl">status</div><select class="fsel" id="cf-status"><option value="active">active</option><option value="deprecated">deprecated</option></select></div><div class="fg"><div class="fl">domain <span class="req">*</span></div><select class="fsel" id="wf-domain"><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select></div>
-    </div>
-    <div class="fg"><div class="fl">설명 <span class="req">*</span></div><textarea class="fta" id="wf-desc" placeholder="이 프로젝트에서의 의미"></textarea></div>
+  <div class="mb" style="padding:16px;max-height:72vh;overflow-y:auto">
+    <!-- 기본 -->
+    <div style="font-family:var(--mono);font-size:9px;color:var(--ac);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--ln)">기본 정보</div>
+    <div class="fg2"><div class="fg"><div class="fl">id <span class="req">*</span></div><input class="fi" id="wf-id" placeholder="kill"></div><div class="fg"><div class="fl">pos <span class="req">*</span></div><select class="fsel" id="wf-pos"><option value="noun">noun</option><option value="verb">verb</option><option value="adj">adj</option><option value="adv">adv</option><option value="prefix">prefix</option><option value="suffix">suffix</option><option value="proper">proper</option></select></div></div>
+    <div class="fg2"><div class="fg"><div class="fl">status</div><select class="fsel" id="wf-status"><option value="active">active</option><option value="deprecated">deprecated</option></select></div><div class="fg"><div class="fl">domain <span class="req">*</span></div><select class="fsel" id="wf-domain"><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select></div></div>
+    <!-- 다국어 -->
+    <div style="font-family:var(--mono);font-size:9px;color:var(--ac);letter-spacing:.08em;text-transform:uppercase;margin:12px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--ln)">다국어 번역</div>
+    <div class="fg2"><div class="fg"><div class="fl">english <span class="req">*</span></div><input class="fi" id="wf-en" placeholder="kill"></div><div class="fg"><div class="fl">한글 <span class="req">*</span></div><input class="fi" id="wf-ko" placeholder="킬"></div></div>
+    <div class="fg2"><div class="fg"><div class="fl">일본어 (ja)</div><input class="fi" id="wf-ja" placeholder="キル"></div><div class="fg"><div class="fl">중국어 간체 (zh_hans)</div><input class="fi" id="wf-zh" placeholder="杀"></div></div>
+    <!-- 설명 -->
+    <div style="font-family:var(--mono);font-size:9px;color:var(--ac);letter-spacing:.08em;text-transform:uppercase;margin:12px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--ln)">설명</div>
+    <div class="fg"><div class="fl">설명 (한국어) <span class="req">*</span></div><textarea class="fta" id="wf-desc" placeholder="이 프로젝트에서의 의미"></textarea></div>
+    <div class="fg"><div class="fl">설명 (English)</div><textarea class="fta" id="wf-desc-en" placeholder="Description in English"></textarea></div>
+    <!-- 형태소 -->
+    <div style="font-family:var(--mono);font-size:9px;color:var(--ac);letter-spacing:.08em;text-transform:uppercase;margin:12px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--ln)">형태소 / 관계어</div>
+    <div class="fg"><div class="fl">약어 (ABBR, 2-5자 대문자)</div><input class="fi" id="wf-abbr" placeholder="KL"></div>
+    <div class="fg"><div class="fl">어원 (from)</div><input class="fi" id="wf-from" placeholder="예: robot → bot"></div>
+    <div class="fg"><div class="fl">variants <span style="color:var(--tx3);font-weight:400">(type:value 줄바꿈 구분, 예: plural:kills)</span></div><textarea class="fta" id="wf-variants" style="min-height:72px;font-family:var(--mono);font-size:11px" placeholder="plural:kills&#10;present_participle:killing&#10;past:killed"></textarea></div>
+    <div class="fg2"><div class="fg"><div class="fl">synonyms (쉼표 구분)</div><input class="fi" id="wf-synonyms" placeholder="terminate, stop"></div><div class="fg"><div class="fl">antonyms (쉼표 구분)</div><input class="fi" id="wf-antonyms" placeholder="create, start"></div></div>
+    <div class="fg"><div class="fl">source_urls (줄바꿈 구분)</div><textarea class="fta" id="wf-urls" style="min-height:48px;font-family:var(--mono);font-size:11px" placeholder="https://en.wiktionary.org/wiki/kill"></textarea></div>
     <div class="fg"><div class="fl">NOT (쉼표 구분)</div><input class="fi" id="wf-not" placeholder="금지 표현들"></div>
   </div>
   <div class="mf"><button class="btn btn-gh" onclick="closeOv('word-ov')">취소</button><button class="btn btn-re" id="wf-del-btn" style="display:none" onclick="delWord()">🗑 삭제</button><button class="btn btn-ac" onclick="saveWord()">저장</button></div>
@@ -154,7 +171,7 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
     <div class="fg2"><div class="fg"><div class="fl">한글 <span class="req">*</span></div><input class="fi" id="cf-ko" placeholder="킬스위치"></div><div class="fg"><div class="fl">english <span class="req">*</span></div><input class="fi" id="cf-en" placeholder="Kill Switch"></div></div>
     <div class="fg2"><div class="fg"><div class="fl">abbr_long <span class="req">*</span></div><input class="fi" id="cf-long" placeholder="killSwitch"></div><div class="fg"><div class="fl">abbr_short <span class="req">*</span></div><input class="fi" id="cf-short" placeholder="KSW"></div></div>
     <div class="fg2">
-      <div class="fg"><div class="fl">status</div><select class="fsel" id="wf-status"><option value="active">active</option><option value="deprecated">deprecated</option></select></div><div class="fg"><div class="fl">status</div><select class="fsel" id="cf-status"><option value="active">active</option><option value="deprecated">deprecated</option></select></div><div class="fg"><div class="fl">domain <span class="req">*</span></div><select class="fsel" id="cf-domain"><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select></div>
+      <div class="fg"><div class="fl">status</div><select class="fsel" id="cf-status"><option value="active">active</option><option value="deprecated">deprecated</option></select></div><div class="fg"><div class="fl">domain <span class="req">*</span></div><select class="fsel" id="cf-domain"><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select></div>
       <div class="fg"><div class="fl">등록 사유 <span class="req">*</span></div><select class="fsel" id="cf-reason"><option value="의미 비합산">의미 비합산</option><option value="공인 약어">공인 약어</option><option value="혼동 방지">혼동 방지</option><option value="시스템 객체">시스템 객체</option><option value="고유명사">고유명사</option></select></div>
     </div>
     <div class="fg"><div class="fl">설명 <span class="req">*</span></div><textarea class="fta" id="cf-desc" placeholder="한 줄 설명"></textarea></div>
@@ -194,6 +211,28 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
   <div class="mh"><div class="mt">⎇ commit &amp; push</div><button class="ico" onclick="closeOv('git-ov')">✕</button></div>
   <div class="mb" id="git-body" style="padding:0"></div>
   <div class="mf" id="git-ft"><button class="btn btn-gh" onclick="closeOv('git-ov')">닫기</button><button class="btn btn-gr" id="cbtn" onclick="doCommit()">commit + push</button></div>
+</div></div>
+
+<!-- SETTINGS -->
+<div class="ov" id="settings-ov"><div class="modal" style="width:420px">
+  <div class="mh"><div class="mt">⚙ 환경설정</div><button class="ico" onclick="closeOv('settings-ov')">✕</button></div>
+  <div class="mb" style="padding:18px">
+    <div class="fg"><div class="fl">기본 표시 언어</div>
+      <select class="fsel" id="pref-lang">
+        <option value="ko">한국어</option><option value="en">English</option><option value="ja">日本語</option><option value="zh_hans">中文 (简体)</option>
+      </select>
+    </div>
+    <div class="fg" style="margin-top:12px"><div class="fl">기본 시간대</div>
+      <select class="fsel" id="pref-tz">
+        <option value="KST">KST (UTC+9)</option><option value="UTC">UTC</option>
+      </select>
+    </div>
+    <div style="margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--tx3);line-height:1.7">
+      설정은 브라우저 로컬 스토리지에 저장됩니다.<br>
+      변경 시 즉시 적용됩니다.
+    </div>
+  </div>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('settings-ov')">닫기</button><button class="btn btn-ac" onclick="saveSettings()">저장</button></div>
 </div></div>
 
 <!-- RUN -->
@@ -302,18 +341,37 @@ function getVariantLong(variants) {
 function cAbbrShort(c) { return getVariantShort(c.variants) || c.abbr?.short || ''; }
 function cAbbrLong(c)  { return getVariantLong(c.variants)  || c.abbr?.long  || ''; }
 
+// words ETag cache for reload optimization
+let _wordsETag = '';
 async function boot(){
+  // 언어/시간대 초기화
+  const savedLang = localStorage.getItem('glossary_lang') || 'ko';
+  const savedTz   = localStorage.getItem('glossary_tz')   || 'KST';
+  window.LANG = savedLang;
+  const langSel = document.getElementById('lang-sel');
+  if (langSel) langSel.value = savedLang;
+  const tzSel = document.getElementById('tz-sel');
+  if (tzSel) tzSel.value = savedTz;
   try{
-    const[wd,cd,bd,dd]=await Promise.all([
-      fetch('/api/words').then(r=>r.json()),
-      fetch('/api/compounds').then(r=>r.json()),
-      fetch('/api/banned').then(r=>r.json()),
-      fetch('/api/drafts').then(r=>r.json())
+    // words를 먼저 로드하여 첫 번째 페인트를 앞당김
+    const wd = await fetch('/api/words').then(r => {
+      _wordsETag = r.headers.get('ETag') || '';
+      return r.json();
+    });
+    WORDS = wd.words || [];
+    wFlt = [...WORDS];
+    renderWords();
+    updateStats();
+    // 나머지는 병렬로 처리
+    const [cd, bd, dd] = await Promise.all([
+      fetch('/api/compounds').then(r => r.json()),
+      fetch('/api/banned').then(r => r.json()),
+      fetch('/api/drafts').then(r => r.json())
     ]);
-    WORDS=wd.words||[];COMPOUNDS=cd.compounds||[];BANNED=bd.banned||[];DRAFTS=dd.drafts||[];
-    wFlt=[...WORDS];cFlt=[...COMPOUNDS];bFlt=[...BANNED];dFlt=[...DRAFTS];
-    renderWords();renderCompounds();renderBanned();renderDrafts();updateStats();loadBranch();
-  }catch(e){toast('서버 연결 실패','ter');}
+    COMPOUNDS = cd.compounds || []; BANNED = bd.banned || []; DRAFTS = dd.drafts || [];
+    cFlt = [...COMPOUNDS]; bFlt = [...BANNED]; dFlt = [...DRAFTS];
+    renderCompounds(); renderBanned(); renderDrafts(); updateStats(); loadBranch();
+  } catch(e) { toast('서버 연결 실패', 'ter'); }
 }
 
 function updateStats(){
@@ -379,28 +437,113 @@ function wFilter(){
   wFlt=WORDS.filter(w=>{if(dm&&w.domain!==dm)return false;if(ps&&w.canonical_pos!==ps)return false;
     if(!q)return true;return[w.id,w.lang?.en,w.lang?.ko,getVariantShort(w.variants),w.description_i18n?.ko].some(v=>v&&v.toLowerCase().includes(q));});
   wFlt.sort((a,b)=>{const av=(a[wSort.col]||'').toLowerCase(),bv=(b[wSort.col]||'').toLowerCase();return av<bv?-wSort.dir:av>bv?wSort.dir:0;});
-  document.getElementById('w-cnt').textContent=wFlt.length===WORDS.length?`${WORDS.length}개`:`${wFlt.length}/${WORDS.length}개`;
   renderWords();
 }
 
 function renderWords(){
-  const tb=document.getElementById('w-body');tb.innerHTML='';
-  wFlt.forEach(w=>{
-    const isExp=w.id===wExpId;
-    const tr=document.createElement('tr');if(isExp)tr.classList.add('sel');tr.dataset.id=w.id;
-    const desc=x(w.description_i18n?.ko||''), en=x(w.lang?.en||''), ko=x(w.lang?.ko||''), abbr=getVariantShort(w.variants);
-    tr.innerHTML=`<td class="c-id">${w.status==="deprecated"?`<span style="color:var(--re);margin-right:4px">[DEP]</span>`:""}${x(w.id)}</td><td class="c-en">${en}</td><td class="c-ko">${ko}</td><td>${abbr?`<span class="c-abbr">${x(abbr)}</span>`:'—'}</td><td><span class="c-pos">${x(w.canonical_pos)}</span></td><td><span class="c-domain ${DC[w.domain]||'d-general'}">${x(w.domain)}</span></td><td class="c-desc" title="${desc}">${desc}</td><td style="text-align:center"><button class="del-btn" onclick="event.stopPropagation();confirmDel(()=>doDeleteWord('${x(w.id)}'),'${ko}')">🗑</button></td>`;
-    tr.addEventListener('click',()=>toggleWExp(w.id));
-    tr.addEventListener('dblclick',e=>{e.preventDefault();openWordForm(w);});
-    tb.appendChild(tr);
-    if(isExp){const xr=document.createElement('tr');xr.className='xrow';
-      const nots=(w.not||[]).map(n=>`<span class="not-chip">${x(n)}</span>`).join(' ');
-      xr.innerHTML=`<td colspan="8"><div class="xi"><div class="xf"><label>id</label><div class="xv" style="font-family:var(--mono);color:var(--tx3)">${x(w.id)}</div></div><div class="xf"><label>status</label><div class="xv">${x(w.status||`active`)}</div></div><div class="xf"><label>created_at</label><div class="xv dt-val" data-dt="${x(w.created_at||``)}" style="font-family:var(--mono);font-size:9px">${fmtDT(w.created_at)}</div></div><div class="xf"><label>updated_at</label><div class="xv dt-val" data-dt="${x(w.updated_at||``)}" style="font-family:var(--mono);font-size:9px">${fmtDT(w.updated_at)}</div></div><div class="xf"><label>pos</label><div class="xv"><span class="c-pos">${x(w.canonical_pos)}</span></div></div><div class="xf"><label>domain</label><div class="xv"><span class="c-domain ${DC[w.domain]||''}">${x(w.domain)}</span></div></div><div class="xf full"><label>description</label><div class="xv">${desc}</div></div>${w.not?.length?`<div class="xf full"><label>NOT</label><div class="xv">${nots}</div></div>`:''}<div class="xf full"><span class="edit-link" onclick="openWordForm(WORDS.find(w=>w.id==='${x(w.id)}'))">✏ 수정</span></div></div></td>`;
-      tb.appendChild(xr);}
-  });
-  document.getElementById('w-cnt').textContent=wFlt.length===WORDS.length?`${WORDS.length}개`:`${wFlt.length}/${WORDS.length}개`;
+  const tb = document.getElementById('w-body');
+  const frag = document.createDocumentFragment();
+  const n = wFlt.length;
+  const lang = window.LANG || 'ko';
+  for (let i = 0; i < n; i++) {
+    const w = wFlt[i];
+    const isExp = w.id === wExpId;
+    const tr = document.createElement('tr');
+    if (isExp) tr.classList.add('sel');
+    tr.dataset.id = w.id;
+    const en   = w.lang && w.lang.en   ? w.lang.en   : '';
+    const ko   = w.lang && w.lang.ko   ? w.lang.ko   : '';
+    const displayLang = (w.lang && w.lang[lang]) ? w.lang[lang] : (en || ko);
+    const desc = (w.description_i18n && w.description_i18n[lang])
+                 ? w.description_i18n[lang]
+                 : (w.description_i18n && w.description_i18n.ko ? w.description_i18n.ko : '');
+    const abbr = getVariantShort(w.variants);
+    const depBadge = w.status === 'deprecated'
+      ? '<span style="color:var(--re);margin-right:4px">[DEP]</span>' : '';
+    const abbrHtml = abbr ? '<span class="c-abbr">' + x(abbr) + '</span>' : '—';
+    tr.innerHTML = (
+      '<td class="c-id">' + depBadge + x(w.id) + '</td>' +
+      '<td class="c-en">' + x(en) + '</td>' +
+      '<td class="c-ko">' + x(lang === 'ko' ? ko : displayLang) + '</td>' +
+      '<td>' + abbrHtml + '</td>' +
+      '<td><span class="c-pos">' + x(w.canonical_pos) + '</span></td>' +
+      '<td><span class="c-domain ' + (DC[w.domain] || 'd-general') + '">' + x(w.domain) + '</span></td>' +
+      '<td class="c-desc" title="' + x(desc) + '">' + x(desc) + '</td>' +
+      '<td style="text-align:center"><button class="del-btn" data-del-word="' + x(w.id) + '" data-del-ko="' + x(ko) + '">&#x1F5D1;</button></td>'
+    );
+    frag.appendChild(tr);
+    if (isExp) {
+      const xr = document.createElement('tr');
+      xr.className = 'xrow';
+      const nots = (w.not || []).map(function(n){ return '<span class="not-chip">' + x(n) + '</span>'; }).join(' ');
+      const wid = x(w.id);
+      const varHtml = (w.variants || []).filter(function(v){ return v && v.type !== 'abbreviation'; })
+        .map(function(v){
+          return '<span class="c-word-chip">' + x(v.type) + ':<b style="color:var(--tx)">' + x(v.value || v.short || '') + '</b></span>';
+        }).join(' ');
+      const synHtml = (w.synonyms || []).map(function(s){ return '<span class="c-word-chip">' + x(s) + '</span>'; }).join(' ');
+      const antHtml = (w.antonyms || []).map(function(s){ return '<span class="not-chip">' + x(s) + '</span>'; }).join(' ');
+      const urlHtml = (w.source_urls || []).map(function(u){
+        return '<a href="' + x(u) + '" target="_blank" style="color:var(--ac);font-family:var(--mono);font-size:9px;word-break:break-all">' + x(u) + '</a>';
+      }).join('<br>');
+      const jaVal  = w.lang && w.lang.ja      ? w.lang.ja      : '—';
+      const zhVal  = w.lang && w.lang.zh_hans ? w.lang.zh_hans : '—';
+      const descKo = w.description_i18n && w.description_i18n.ko ? w.description_i18n.ko : '';
+      const descEn = w.description_i18n && w.description_i18n.en ? w.description_i18n.en : '';
+      let xi = (
+        '<td colspan="8"><div class="xi">' +
+        '<div class="xf"><label>id</label><div class="xv" style="font-family:var(--mono);color:var(--tx3)">' + wid + '</div></div>' +
+        '<div class="xf"><label>status</label><div class="xv">' + x(w.status || 'active') + '</div></div>' +
+        '<div class="xf"><label>created_at</label><div class="xv dt-val" data-dt="' + x(w.created_at || '') + '" style="font-family:var(--mono);font-size:9px">' + fmtDT(w.created_at) + '</div></div>' +
+        '<div class="xf"><label>updated_at</label><div class="xv dt-val" data-dt="' + x(w.updated_at || '') + '" style="font-family:var(--mono);font-size:9px">' + fmtDT(w.updated_at) + '</div></div>' +
+        '<div class="xf"><label>pos</label><div class="xv"><span class="c-pos">' + x(w.canonical_pos) + '</span></div></div>' +
+        '<div class="xf"><label>domain</label><div class="xv"><span class="c-domain ' + (DC[w.domain] || '') + '">' + x(w.domain) + '</span></div></div>' +
+        '<div class="xf"><label>lang.ja</label><div class="xv">' + x(jaVal) + '</div></div>' +
+        '<div class="xf"><label>lang.zh_hans</label><div class="xv">' + x(zhVal) + '</div></div>' +
+        '<div class="xf full"><label>description (ko)</label><div class="xv">' + x(descKo) + '</div></div>'
+      );
+      if (descEn) xi += '<div class="xf full"><label>description (en)</label><div class="xv" style="color:var(--tx3)">' + x(descEn) + '</div></div>';
+      if (w.from) xi += '<div class="xf"><label>from</label><div class="xv" style="font-family:var(--mono);color:var(--ye)">' + x(w.from) + '</div></div>';
+      if (varHtml) xi += '<div class="xf full"><label>variants</label><div class="xv">' + varHtml + '</div></div>';
+      if (synHtml) xi += '<div class="xf full"><label>synonyms</label><div class="xv">' + synHtml + '</div></div>';
+      if (antHtml) xi += '<div class="xf full"><label>antonyms</label><div class="xv">' + antHtml + '</div></div>';
+      if (urlHtml) xi += '<div class="xf full"><label>source_urls</label><div class="xv">' + urlHtml + '</div></div>';
+      if (w.not && w.not.length) xi += '<div class="xf full"><label>NOT</label><div class="xv">' + nots + '</div></div>';
+      xi += '<div class="xf full"><span class="edit-link" data-edit-word="' + wid + '">&#x270F; &#xC218;&#xC815;</span></div>';
+      xi += '</div></td>';
+      xr.innerHTML = xi;
+      frag.appendChild(xr);
+    }
+  }
+  tb.innerHTML = '';
+  tb.appendChild(frag);
+  const cntEl = document.getElementById('w-cnt');
+  cntEl.textContent = wFlt.length === WORDS.length
+    ? wFlt.length + '개'
+    : wFlt.length + '/' + WORDS.length + '개';
 }
-function toggleWExp(id){wExpId=(wExpId===id)?null:id;renderWords();}
+function toggleWExp(id){ wExpId = (wExpId === id) ? null : id; renderWords(); }
+document.getElementById('w-body').addEventListener('click', e => {
+  const delBtn = e.target.closest('[data-del-word]');
+  if (delBtn) {
+    e.stopPropagation();
+    const wid = delBtn.dataset.delWord;
+    const ko  = delBtn.dataset.delKo;
+    confirmDel(() => doDeleteWord(wid), ko);
+    return;
+  }
+  const editLink = e.target.closest('[data-edit-word]');
+  if (editLink) {
+    openWordForm(WORDS.find(w => w.id === editLink.dataset.editWord));
+    return;
+  }
+  const tr = e.target.closest('tr[data-id]');
+  if (tr) toggleWExp(tr.dataset.id);
+});
+document.getElementById('w-body').addEventListener('dblclick', e => {
+  const tr = e.target.closest('tr[data-id]');
+  if (tr) { e.preventDefault(); openWordForm(WORDS.find(w => w.id === tr.dataset.id)); }
+});
 document.querySelectorAll('#w-tbl th.srt').forEach(th=>{th.addEventListener('click',()=>{const col=th.dataset.col;wSort.dir=(wSort.col===col)?-wSort.dir:1;wSort.col=col;document.querySelectorAll('#w-tbl th').forEach(h=>h.classList.remove('sa','sd'));th.classList.add(wSort.dir===1?'sa':'sd');wFilter();});});
 
 // ── COMPOUNDS ──
@@ -433,11 +576,114 @@ function bFilter(){const q=document.getElementById('b-search').value.toLowerCase
 function renderBanned(){const tb=document.getElementById('b-body');tb.innerHTML='';bFlt.forEach(b=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${b.status==="deprecated"?`<span style="color:var(--re);margin-right:4px;font-size:9px">[DEP]</span>`:""}<code class="c-expr">${x(b.expression)}</code></td><td class="c-desc">${x(b.context)}</td><td><code class="c-correct">${x(b.correct)}</code></td><td class="c-desc">${x(b.reason)}</td><td style="text-align:center"><button class="del-btn" onclick="event.stopPropagation();confirmDel(()=>doDeleteBanned('${x(b.expression)}'),'${x(b.expression)}')">🗑</button></td>`;tr.addEventListener('dblclick',e=>{e.preventDefault();openBannedForm(b);});tb.appendChild(tr);});document.getElementById('b-cnt').textContent=`${bFlt.length}개`;}
 
 // ── WORD FORM ──
-function openWordForm(w){editWordId=w?w.id:null;document.getElementById('word-title').textContent=w?'단어 수정':'단어 추가';document.getElementById('wf-id').value=w?.id||'';document.getElementById('wf-id').disabled=!!w;document.getElementById('wf-en').value=w?.lang?.en||'';document.getElementById('wf-ko').value=w?.lang?.ko||'';document.getElementById('wf-abbr').value=getVariantShort(w?.variants)||'';document.getElementById('wf-pos').value=w?.canonical_pos||'noun';document.getElementById('wf-domain').value=w?.domain||'general';document.getElementById('wf-status').value=w?.status||'active';document.getElementById('wf-desc').value=w?.description_i18n?.ko||'';document.getElementById('wf-not').value=(w?.not||[]).join(', ');document.getElementById('wf-del-btn').style.display=w?'':'none';openOv('word-ov');}
-async function saveWord(){const id=document.getElementById('wf-id').value.trim(),en=document.getElementById('wf-en').value.trim(),ko=document.getElementById('wf-ko').value.trim(),abbr=document.getElementById('wf-abbr').value.trim()||null,pos=document.getElementById('wf-pos').value,dom=document.getElementById('wf-domain').value,desc=document.getElementById('wf-desc').value.trim(),notV=document.getElementById('wf-not').value.trim();if(!id||!en||!ko||!desc){toast('필수 항목 누락','ter');return;}let body={id,domain:dom,status:document.getElementById('wf-status').value,canonical_pos:pos,lang:{en,ko}};if(abbr)body.variants=[{type:'abbreviation',short:abbr}];if(desc)body.description_i18n={ko:desc};if(notV)body.not=notV.split(',').map(s=>s.trim()).filter(Boolean);const isAdd=!editWordId;const res=await fetch(isAdd?'/api/words':`/api/words/${editWordId}`,{method:isAdd?'POST':'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const d=await res.json();if(!res.ok){toast(d.error||'저장 실패','ter');return;}toast(isAdd?'추가 완료':'수정 완료','tok');closeOv('word-ov');await reloadWords();}
+// variants 배열 → textarea 포맷 변환 (abbreviation type 제외)
+function variantsToText(variants) {
+  if (!Array.isArray(variants)) return '';
+  return variants
+    .filter(v => v && v.type !== 'abbreviation')
+    .map(v => `${v.type}:${v.value || v.short || ''}`)
+    .join('\n');
+}
+// textarea 텍스트 → variants 배열 변환
+function textToVariants(text, abbr) {
+  const result = [];
+  if (abbr) result.push({type: 'abbreviation', short: abbr});
+  if (text.trim()) {
+    text.split('\n').forEach(line => {
+      const p = line.trim();
+      if (!p) return;
+      const colon = p.indexOf(':');
+      if (colon > 0) {
+        result.push({type: p.slice(0, colon).trim(), value: p.slice(colon+1).trim()});
+      }
+    });
+  }
+  return result;
+}
+function openWordForm(w) {
+  editWordId = w ? w.id : null;
+  document.getElementById('word-title').textContent = w ? '단어 수정' : '단어 추가';
+  document.getElementById('wf-id').value        = w?.id || '';
+  document.getElementById('wf-id').disabled     = !!w;
+  document.getElementById('wf-pos').value       = w?.canonical_pos || 'noun';
+  document.getElementById('wf-status').value    = w?.status || 'active';
+  document.getElementById('wf-domain').value    = w?.domain || 'general';
+  // 다국어
+  document.getElementById('wf-en').value        = w?.lang?.en || '';
+  document.getElementById('wf-ko').value        = w?.lang?.ko || '';
+  document.getElementById('wf-ja').value        = w?.lang?.ja || '';
+  document.getElementById('wf-zh').value        = w?.lang?.zh_hans || '';
+  // 설명
+  document.getElementById('wf-desc').value      = w?.description_i18n?.ko || '';
+  document.getElementById('wf-desc-en').value   = w?.description_i18n?.en || '';
+  // 형태소
+  document.getElementById('wf-abbr').value      = getVariantShort(w?.variants) || '';
+  document.getElementById('wf-from').value      = w?.from || '';
+  document.getElementById('wf-variants').value  = variantsToText(w?.variants);
+  document.getElementById('wf-synonyms').value  = (w?.synonyms || []).join(', ');
+  document.getElementById('wf-antonyms').value  = (w?.antonyms || []).join(', ');
+  document.getElementById('wf-urls').value      = (w?.source_urls || []).join('\n');
+  document.getElementById('wf-not').value       = (w?.not || []).join(', ');
+  document.getElementById('wf-del-btn').style.display = w ? '' : 'none';
+  openOv('word-ov');
+}
+async function saveWord() {
+  const id     = document.getElementById('wf-id').value.trim();
+  const en     = document.getElementById('wf-en').value.trim();
+  const ko     = document.getElementById('wf-ko').value.trim();
+  const ja     = document.getElementById('wf-ja').value.trim();
+  const zh     = document.getElementById('wf-zh').value.trim();
+  const abbr   = document.getElementById('wf-abbr').value.trim() || null;
+  const pos    = document.getElementById('wf-pos').value;
+  const dom    = document.getElementById('wf-domain').value;
+  const desc   = document.getElementById('wf-desc').value.trim();
+  const descEn = document.getElementById('wf-desc-en').value.trim();
+  const fromV  = document.getElementById('wf-from').value.trim();
+  const varTxt = document.getElementById('wf-variants').value;
+  const synTxt = document.getElementById('wf-synonyms').value.trim();
+  const antTxt = document.getElementById('wf-antonyms').value.trim();
+  const urlTxt = document.getElementById('wf-urls').value.trim();
+  const notV   = document.getElementById('wf-not').value.trim();
+  if (!id || !en || !ko || !desc) { toast('필수 항목 누락 (id, english, 한글, 설명)', 'ter'); return; }
+  const langObj = {en, ko};
+  if (ja) langObj.ja = ja;
+  if (zh) langObj.zh_hans = zh;
+  const descObj = {ko: desc};
+  if (descEn) descObj.en = descEn;
+  const variants = textToVariants(varTxt, abbr);
+  let body = {
+    id, domain: dom,
+    status: document.getElementById('wf-status').value,
+    canonical_pos: pos,
+    lang: langObj,
+    description_i18n: descObj,
+  };
+  if (variants.length) body.variants = variants;
+  else if (abbr) body.variants = [{type:'abbreviation', short: abbr}];
+  if (fromV) body.from = fromV;
+  if (synTxt) body.synonyms = synTxt.split(',').map(s => s.trim()).filter(Boolean);
+  if (antTxt) body.antonyms = antTxt.split(',').map(s => s.trim()).filter(Boolean);
+  if (urlTxt) body.source_urls = urlTxt.split('\n').map(s => s.trim()).filter(Boolean);
+  if (notV)   body.not = notV.split(',').map(s => s.trim()).filter(Boolean);
+  const isAdd = !editWordId;
+  const res = await fetch(isAdd ? '/api/words' : `/api/words/${editWordId}`,
+    {method: isAdd ? 'POST' : 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body)});
+  const d = await res.json();
+  if (!res.ok) { toast(d.error || '저장 실패', 'ter'); return; }
+  toast(isAdd ? '추가 완료' : '수정 완료', 'tok');
+  closeOv('word-ov');
+  await reloadWords();
+}
 async function doDeleteWord(id){const res=await fetch(`/api/words/${id}`,{method:'DELETE'});if(!res.ok){toast('삭제 실패','ter');return;}toast('삭제 완료','tok');closeOv('del-ov');closeOv('word-ov');await reloadWords();}
 function delWord(){confirmDel(()=>doDeleteWord(editWordId),editWordId);}
-async function reloadWords(){const d=await(await fetch('/api/words')).json();WORDS=d.words||[];wFlt=[...WORDS];wFilter();updateStats();}
+async function reloadWords(){
+  const headers = _wordsETag ? {'If-None-Match': _wordsETag} : {};
+  const resp = await fetch('/api/words', {headers});
+  if (resp.status === 304) { wFlt = [...WORDS]; wFilter(); updateStats(); return; }
+  _wordsETag = resp.headers.get('ETag') || '';
+  const d = await resp.json();
+  WORDS = d.words || []; wFlt = [...WORDS]; wFilter(); updateStats();
+}
 
 // ── COMPOUND FORM ──
 function openCompoundForm(c){editCompoundId=c?c.id:null;document.getElementById('compound-title').textContent=c?'복합어 수정':'복합어 추가';document.getElementById('cf-id').value=c?.id||'';document.getElementById('cf-id').disabled=!!c;document.getElementById('cf-words').value=(c?.words||[]).join(', ');document.getElementById('cf-ko').value=c?.lang?.ko||'';document.getElementById('cf-en').value=c?.lang?.en||'';document.getElementById('cf-long').value=cAbbrLong(c)||'';document.getElementById('cf-short').value=cAbbrShort(c)||'';document.getElementById('cf-domain').value=c?.domain||'system';document.getElementById('cf-status').value=c?.status||'active';document.getElementById('cf-reason').value=c?.reason||'의미 비합산';document.getElementById('cf-desc').value=c?.description_i18n?.ko||'';document.getElementById('cf-not').value=(c?.not||[]).join(', ');document.getElementById('cf-del-btn').style.display=c?'':'none';openOv('compound-ov');}
@@ -627,7 +873,31 @@ function openOv(id){document.getElementById(id).classList.add('open');}
 function closeOv(id){document.getElementById(id).classList.remove('open');}
 document.querySelectorAll('.ov').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
 function toast(msg,cls='tin',ms=3200){const c=document.getElementById('toasts'),d=document.createElement('div');d.className=`toast ${cls}`;d.textContent=msg;c.appendChild(d);setTimeout(()=>d.remove(),ms);}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){['word-ov','compound-ov','banned-ov','checkid-ov','git-ov','run-ov','log-ov','batch-ov','del-ov'].forEach(closeOv);}if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();const cur=document.querySelector('.view.active .search-inp');if(cur)cur.focus();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){['word-ov','compound-ov','banned-ov','checkid-ov','git-ov','settings-ov','run-ov','log-ov','batch-ov','del-ov'].forEach(closeOv);}if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();const cur=document.querySelector('.view.active .search-inp');if(cur)cur.focus();}});
+
+// ── LANG & SETTINGS ──
+function changeLang(lang) {
+  window.LANG = lang;
+  localStorage.setItem('glossary_lang', lang);
+  document.getElementById('lang-sel').value = lang;
+  renderWords();
+}
+function openSettings() {
+  document.getElementById('pref-lang').value = window.LANG || 'ko';
+  document.getElementById('pref-tz').value   = document.getElementById('tz-sel').value || 'KST';
+  openOv('settings-ov');
+}
+function saveSettings() {
+  const lang = document.getElementById('pref-lang').value;
+  const tz   = document.getElementById('pref-tz').value;
+  document.getElementById('tz-sel').value = tz;
+  localStorage.setItem('glossary_tz', tz);
+  changeLang(lang);
+  updateAllTimestamps();
+  closeOv('settings-ov');
+  toast('설정 저장됨', 'tok', 2000);
+}
+
 boot();
 </script>
 </body>
