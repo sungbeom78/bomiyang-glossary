@@ -1,3 +1,8 @@
+# 테스트 작성
+python3.10 generate_glossary.py antigravity/terms.json antigravity/GLOSSARY.md --verbose --check-file GLOSSARY.md
+python3.10 generate_glossary.py antigravity/terms.json antigravity/GLOSSARY.md
+python3.10 validate.py antigravity/GLOSSARY.md
+
 # Git & Git Submodule 사용 가이드
 ## — glossary 레포를 여러 프로젝트에서 공유하는 방법
 
