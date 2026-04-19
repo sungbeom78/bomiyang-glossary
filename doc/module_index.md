@@ -1,4 +1,4 @@
-# Module Index
+## Module Index
 
 ## generate_glossary.py
 - Path: generate_glossary.py
@@ -30,6 +30,10 @@
 - Entry Point: `main()`
 - Related Modules: `batch_items`
 - Config: `.env`
+- Notes (v1.1):
+  - `load_existing_words_and_tokens()`: variants를 `list[{type,value|short}]`로 올바르게 처리
+  - `words__derived_terms.json` surface도 exclusion token에 포함 (underscore 없는 것만)
+  - exclusion 토큰: ~228개(v1.0) → ~900+개(v1.1)
 
 ## enrich_items.py
 - Path: bin/enrich_items.py
@@ -39,10 +43,54 @@
 - Related Modules: N/A
 - Config: N/A
 
+## clean_derived_terms.py
+- Path: bin/clean_derived_terms.py
+- Classes: N/A
+- Responsibility: `words__derived_terms.json` synonym 품질 정제
+  - synonym 중 words.id/variants 충돌 제거
+  - underscore/공백 포함 비자연어 표현 제거
+  - 도메인 무관 동의어 제거
+- Entry Point: `clean_derived_terms()`, `__main__`
+- Related Modules: `dictionary/words__derived_terms.json`
+- Config: N/A
+
+## fix_missing_words.py
+- Path: bin/fix_missing_words.py
+- Classes: N/A
+- Responsibility: V-104 FATAL 해결용 — compounds가 참조하지만 words.json에 없는 단어 추가
+  - 대상: ranking, realized, tracking, extended, used
+- Entry Point: `fix_missing_words()`, `__main__`
+- Related Modules: `dictionary/words.json`
+- Config: N/A
+- Notes: 1회성 마이그레이션 스크립트. 이후 재실행해도 skip 처리됨.
+
 ## web/server.py
 - Path: web/server.py
 - Classes: N/A
 - Responsibility: glossary 웹 UI API를 제공하고 `generate_glossary.py`를 호출해 validate/generate/check-id 흐름을 노출
 - Entry Point: `main()`
-- Related Modules: `generate_glossary.py`, `web/index.html`
+- Related Modules: `generate_glossary.py`, `web/index.html`, `core/writer.py`
 - Config: `.env`
+- Notes: words/compounds write API는 GlossaryWriter 경유 (직접 write 금지)
+
+## core/writer.py
+- Path: core/writer.py
+- Classes: GlossaryWriter
+- Responsibility: words.json / compounds.json 의 단일 저장 진입점. 직접 write 금지 정책 시행.
+- Entry Point: add_word(), add_compound(), update_word(), remove_word(), save(), validate()
+- Related Modules: generate_glossary.py (validate 호출), web/server.py (write API), bin/apply_pending_words.py
+- Config: dictionary/words.json, dictionary/compounds.json
+- Notes:
+  - context manager 지원 (with GlossaryWriter() as gw:)
+  - save() 시 자동 backup 생성 (build/backup/)
+  - rollback() 으로 스냅샷 기반 복원 가능
+  - validate() 로 저장 전 FATAL 오류 확인 가능
+
+## generate_glossary.py (Projection)
+- Path: generate_glossary.py
+- Responsibility: words.json + compounds.json → terms.json / variant_map.json / word_min.json 등 빌드 산출물 생성 및 validate
+- Entry Point: cmd_generate(), cmd_validate(), cmd_check_id()
+- Key Config:
+  - PROJECTION_VARIANT_TYPES: variant_map에 포함할 타입 목록
+    (abbreviation, alias, plural, misspelling + 굴절형 + 파생형 전체 — §4.4 확장)
+  - PROJECTION_EXCLUDE_TYPES: variant_map 제외 타입 목록

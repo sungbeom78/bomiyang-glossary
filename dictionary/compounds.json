@@ -4,61 +4,2780 @@
   "description": "BOM_TS 복합어 사전",
   "compounds": [
     {
-      "id": "kr_stock",
+      "id": "[n]m",
       "words": [
-        "kr",
-        "stock"
+        "m"
       ],
-      "domain": "market",
+      "domain": [
+        "market"
+      ],
       "status": "active",
       "lang": {
-        "en": "Korean Stock",
-        "ko": "한국주식"
+        "en": "[n] minute",
+        "ko": "n분봉"
       },
       "description_i18n": {
-        "ko": "한국 주식 시장 (KRX)"
+        "ko": "[N]분 단위 캔들/봉 데이터. [N]은 임의의 자연수(>0). 실제 사용: 1m, 5m, 10m, 15m, 60m 등"
       },
-      "not": [
-        "KIS",
-        "KOSPI",
-        "KOSDAQ"
-      ],
-      "reason": "혼동 방지",
+      "reason": "숫자+단위 조합 패턴. 개별 등록 시 무한 증식",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KR_STOCK",
-          "long": "krStock"
-        }
-      ]
+      "variants": []
     },
     {
-      "id": "us_stock",
+      "id": "abstract_syntax_tree",
       "words": [
-        "us",
-        "stock"
+        "abstract",
+        "syntax",
+        "tree"
       ],
-      "domain": "market",
+      "domain": [
+        "general"
+      ],
       "status": "active",
       "lang": {
-        "en": "US Stock",
-        "ko": "미국주식"
+        "en": "ast",
+        "ko": "추상 구문 트리",
+        "ja": "抽象構文木",
+        "zh_hans": "抽象语法树"
       },
       "description_i18n": {
-        "ko": "미국 주식 시장 (NYSE, NASDAQ 등)"
+        "ko": "프로그래밍 언어로 작성된 소스 코드의 문법적 구조를 노드(Node) 간의 연결 관계를 통해 트리 형태로 표현한 데이터 구조.",
+        "en": "프로그래밍 언어로 작성된 소스 코드의 문법적 구조를 노드(Node) 간의 연결 관계를 통해 트리 형태로 표현한 데이터 구조."
+      },
+      "created_at": "2026-04-19T03:22:28Z",
+      "updated_at": "2026-04-19T03:22:28Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "ast",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "account_snapshot",
+      "words": [
+        "account",
+        "snapshot"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "account snapshot",
+        "ko": "계좌 스냅샷"
+      },
+      "description_i18n": {
+        "ko": "특정 시점의 계좌 잔고·포지션 상태 스냅샷"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "asnap",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "active_trade",
+      "words": [
+        "active",
+        "trade"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "active trade",
+        "ko": "활성 거래"
+      },
+      "description_i18n": {
+        "ko": "현재 보유 중인 거래 (OPEN 상태). TradeJournal의 SoT."
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "at",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "advanced_encryption_standard",
+      "words": [
+        "advance",
+        "encryption",
+        "standard"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "advanced encryption standard",
+        "ko": "고급 암호화 표준"
+      },
+      "description_i18n": {
+        "ko": "미국 표준 기술 연구소에서 표준으로 지정한 암호화 체계 방식",
+        "en": "미국 표준 기술 연구소에서 표준으로 지정한 암호화 체계 방식"
+      },
+      "created_at": "2026-04-19T03:22:27Z",
+      "updated_at": "2026-04-19T03:22:27Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "aes",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "application_key",
+      "words": [
+        "apply",
+        "key"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "appkey",
+        "ko": "appkey"
+      },
+      "description_i18n": {
+        "ko": "특정 소프트웨어 어플리케이션이 특정 서비스(API, 플랫폼 등)에 접근할 때, 자신이 누구인지 증명하기 위해 사용하는 \"어플리케이션 전용 신분증\"",
+        "en": "특정 소프트웨어 어플리케이션이 특정 서비스(API, 플랫폼 등)에 접근할 때, 자신이 누구인지 증명하기 위해 사용하는 \"어플리케이션 전용 신분증\""
+      },
+      "created_at": "2026-04-19T03:22:28Z",
+      "updated_at": "2026-04-19T03:22:28Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "appkey",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "application_program_interface",
+      "words": [
+        "apply",
+        "program",
+        "interface"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "api",
+        "ko": "api"
+      },
+      "description_i18n": {
+        "ko": "서로 다른 소프트웨어 애플리케이션들이 데이터를 주고받거나 기능을 공유할 수 있도록 연결해 주는 규칙이자 중계 계층",
+        "en": "서로 다른 소프트웨어 애플리케이션들이 데이터를 주고받거나 기능을 공유할 수 있도록 연결해 주는 규칙이자 중계 계층"
+      },
+      "created_at": "2026-04-19T03:22:27Z",
+      "updated_at": "2026-04-19T03:22:27Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "api",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "automatic_data_exchange",
+      "words": [
+        "automatic",
+        "data",
+        "exchange"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "average directional index",
+        "ko": "평균 방향성 지표",
+        "ja": "平均方向性指数",
+        "zh_hans": "平均趋向指标"
+      },
+      "description_i18n": {
+        "ko": "시장의 상승 또는 하락 방향과 관계없이, 현재 진행 중인 추세가 얼마나 강력한지를 0에서 100 사이의 수치로 나타내는 지표.",
+        "en": "시장의 상승 또는 하락 방향과 관계없이, 현재 진행 중인 추세가 얼마나 강력한지를 0에서 100 사이의 수치로 나타내는 지표."
+      },
+      "created_at": "2026-04-19T03:22:27Z",
+      "updated_at": "2026-04-19T03:22:27Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "adx",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "average_true_range",
+      "words": [
+        "average",
+        "true",
+        "range"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "average true range",
+        "ko": "평균 실질 변동 폭",
+        "ja": "平均真の範囲",
+        "zh_hans": "平均真实波幅"
+      },
+      "description_i18n": {
+        "ko": "당일의 고가·저가, 그리고 전일 종가와의 갭(Gap)까지 포함하여 시장의 진짜 변동 폭을 계산",
+        "en": "당일의 고가·저가, 그리고 전일 종가와의 갭(Gap)까지 포함하여 시장의 진짜 변동 폭을 계산"
+      },
+      "created_at": "2026-04-19T03:22:28Z",
+      "updated_at": "2026-04-19T03:22:28Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "atr",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "bollinger_bands",
+      "words": [
+        "bands"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "bollinger bands",
+        "ko": "볼린저 밴드",
+        "ja": "ボリンジャーバンド",
+        "zh_hans": "布林线"
+      },
+      "description_i18n": {
+        "ko": "주가의 이동평균선을 중심으로 표준편차 범위를 계산하여, 가격이 움직일 수 있는 변동성 범위를 상·하단 밴드로 표시한 기술적 지표",
+        "en": "주가의 이동평균선을 중심으로 표준편차 범위를 계산하여, 가격이 움직일 수 있는 변동성 범위를 상·하단 밴드로 표시한 기술적 지표"
+      },
+      "created_at": "2026-04-19T04:13:33Z",
+      "updated_at": "2026-04-19T04:13:33Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "bollinger",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "bomiyang_trading_system",
+      "words": [
+        "bomiyang",
+        "trade",
+        "system"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "bomiyang's trading system",
+        "ko": "봄이양의 거래 시스템",
+        "ja": "ボミちゃんのトレードシステム",
+        "zh_hans": "春儿姑娘的交易系统"
+      },
+      "description_i18n": {
+        "ko": "개발자 '범이'님의 아이덴티티인 캐릭터명 '봄이양'을 브랜드화하여, 독창성과 애착을 담아 구축한 개인용 자동 매매 시스템.",
+        "en": "개발자 '범이'님의 아이덴티티인 캐릭터명 '봄이양'을 브랜드화하여, 독창성과 애착을 담아 구축한 개인용 자동 매매 시스템."
+      },
+      "created_at": "2026-04-19T03:22:28Z",
+      "updated_at": "2026-04-19T03:22:28Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "bomts",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "book_value_per_share",
+      "words": [
+        "book",
+        "value",
+        "per",
+        "share"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "book value per share",
+        "ko": "주당 순자산 가치",
+        "ja": "1株当たり純資産",
+        "zh_hans": "每股净资产"
+      },
+      "description_i18n": {
+        "ko": "기업의 총자산에서 부채를 뺀 '순자산'을 발행 주식 수로 나눈 것으로, 기업이 활동을 중단하고 청산할 때 주주가 1주당 받을 수 있는 자산 가치.",
+        "en": "기업의 총자산에서 부채를 뺀 '순자산'을 발행 주식 수로 나눈 것으로, 기업이 활동을 중단하고 청산할 때 주주가 1주당 받을 수 있는 자산 가치."
+      },
+      "created_at": "2026-04-19T04:13:33Z",
+      "updated_at": "2026-04-19T04:13:33Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "bps",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "candle_personality",
+      "words": [
+        "candle",
+        "personality"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "candle personality",
+        "ko": "캔들 성격"
+      },
+      "description_i18n": {
+        "ko": "캔들 형태 분석 점수 (윗꼬리·아랫꼬리 비율 기반)"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "cp",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cascading_style_sheets",
+      "words": [
+        "cascading",
+        "style",
+        "sheets"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "cascading style sheets",
+        "ko": "종속형 시트 / 스타일 시트",
+        "ja": "スタイルシート",
+        "zh_hans": "层叠样式表"
+      },
+      "description_i18n": {
+        "ko": "HTML이나 XML로 작성된 문서의 구조에 디자인(색상, 글꼴, 레이아웃 등)을 입혀 시각적으로 표현하는 스타일 규칙 언어",
+        "en": "HTML이나 XML로 작성된 문서의 구조에 디자인(색상, 글꼴, 레이아웃 등)을 입혀 시각적으로 표현하는 스타일 규칙 언어"
+      },
+      "created_at": "2026-04-19T04:13:33Z",
+      "updated_at": "2026-04-19T04:13:33Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "css",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cfg_backtest",
+      "words": [
+        "config",
+        "backtest"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "backtest config",
+        "ko": "백테스트 설정"
+      },
+      "description_i18n": {
+        "ko": "settings.yaml > backtest 섹션"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "bt",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cfg_entry_deny",
+      "words": [
+        "config",
+        "entry",
+        "deny"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "entry deny config",
+        "ko": "진입 차단 설정"
+      },
+      "description_i18n": {
+        "ko": "settings.yaml > entry_deny 섹션 (진입 차단 조건)"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "ed",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cfg_kr_selector",
+      "words": [
+        "config",
+        "kr",
+        "select"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "kr selector config",
+        "ko": "kr 셀렉터 설정"
+      },
+      "description_i18n": {
+        "ko": "settings.yaml > kr_selector 섹션"
       },
       "reason": "의미 비합산",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kr_sel",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cfg_kr_strategy",
+      "words": [
+        "config",
+        "kr",
+        "strategy"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "kr strategy config",
+        "ko": "kr 전략 설정"
+      },
+      "description_i18n": {
+        "ko": "settings.yaml > kr_strategy 섹션"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kr_str",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cfg_reporting",
+      "words": [
+        "config",
+        "report"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "reporting config",
+        "ko": "리포트 설정"
+      },
+      "description_i18n": {
+        "ko": "settings.yaml > reporting 섹션"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "rpt_cfg",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cfg_scoring",
+      "words": [
+        "config",
+        "score"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "scoring config",
+        "ko": "스코어링 설정"
+      },
+      "description_i18n": {
+        "ko": "settings.yaml > scoring 섹션 (가중치 파라미터)"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "scr_cfg",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cfg_session",
+      "words": [
+        "config",
+        "session"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "sessions config",
+        "ko": "세션 설정"
+      },
+      "description_i18n": {
+        "ko": "settings.yaml > sessions 섹션 (마켓별 시간)"
+      },
+      "reason": "공인 약어",
       "variants": [
         {
-          "type": "abbreviation",
-          "short": "US_STOCK",
-          "long": "usStock"
+          "types": [
+            "plural"
+          ],
+          "value": "cfg_sessions"
         }
-      ]
+      ],
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "abbreviation": {
+        "short": "sess",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cfg_system",
+      "words": [
+        "config",
+        "system"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "system config",
+        "ko": "시스템 설정"
+      },
+      "description_i18n": {
+        "ko": "settings.yaml > system 섹션"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sys",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "chinese_yuan",
+      "words": [
+        "chinese",
+        "yuan"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "chinese yuan",
+        "ko": "중국 위안 / 인민폐",
+        "ja": "中国人民元",
+        "zh_hans": "人民币"
+      },
+      "description_i18n": {
+        "ko": "중국 인민은행에서 발행하는 중국 본토의 공식 통화 단위로, 국제 표준 코드(ISO 4217) 명칭은 CNY이며 현지에서는 '인민폐(RMB)'라고도 불림",
+        "en": "중국 인민은행에서 발행하는 중국 본토의 공식 통화 단위로, 국제 표준 코드(ISO 4217) 명칭은 CNY이며 현지에서는 '인민폐(RMB)'라고도 불림"
+      },
+      "created_at": "2026-04-19T04:13:33Z",
+      "updated_at": "2026-04-19T04:13:33Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "cny",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "closed_trade",
+      "words": [
+        "close",
+        "trade"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "closed trade",
+        "ko": "청산 거래"
+      },
+      "description_i18n": {
+        "ko": "청산 완료된 거래. 손익이 확정된 상태."
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "ct",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_account_snapshot",
+      "words": [
+        "cls",
+        "account",
+        "snapshot"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "accountsnapshot",
+        "ko": "계좌 스냅샷 모델"
+      },
+      "description_i18n": {
+        "ko": "계좌 상태 스냅샷 Pydantic 모델"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "asnap_c",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_crypto_risk_manager",
+      "words": [
+        "cls",
+        "crypto",
+        "risk",
+        "manage"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "cryptoriskmanager",
+        "ko": "코인 리스크 매니저"
+      },
+      "description_i18n": {
+        "ko": "코인 전용 리스크 관리 (연속손절·재진입 제한·일손 한도)"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "cry_rm",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_crypto_signal_engine",
+      "words": [
+        "cls",
+        "crypto",
+        "signal",
+        "engine"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "cryptosignalengine",
+        "ko": "크립토 시그널 엔진"
+      },
+      "description_i18n": {
+        "ko": "암호화폐 추세 돌파 시그널 엔진 (2단계 진입)"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "cry_sig",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_db_engine",
+      "words": [
+        "cls",
+        "db",
+        "engine"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "dbengine",
+        "ko": "db 엔진"
+      },
+      "description_i18n": {
+        "ko": "PostgreSQL 연결 풀 및 ORM 세션 관리"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "dba",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_execution_engine",
+      "words": [
+        "cls",
+        "execute",
+        "engine"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "executionengine",
+        "ko": "실행 엔진"
+      },
+      "description_i18n": {
+        "ko": "주문 실행 담당 엔진 (OrderIntent → 브로커 API 호출)"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "exec_eng",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_fx_signal_engine",
+      "words": [
+        "cls",
+        "fx",
+        "signal",
+        "engine"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "fxsignalengine",
+        "ko": "fx 시그널 엔진"
+      },
+      "description_i18n": {
+        "ko": "외환선물 진입·청산 시그널 생성 엔진"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "fx_sig",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_kis_adapter",
+      "words": [
+        "cls",
+        "kis",
+        "adapter"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "kisadapter",
+        "ko": "kis 어댑터"
+      },
+      "description_i18n": {
+        "ko": "한국주식 KIS API 연동 어댑터 (이중 계좌: 실전 데이터 + 모의 매매)"
+      },
+      "reason": "시스템 객체, 고유명사",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kis_adp",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_kis_auth",
+      "words": [
+        "cls",
+        "kis",
+        "auth"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "kisauth",
+        "ko": "kis 인증 클래스"
+      },
+      "description_i18n": {
+        "ko": "KIS OAuth2 토큰 발급·갱신·캐싱"
+      },
+      "reason": "시스템 객체, 고유명사",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kis_auth",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_kis_mock_auth",
+      "words": [
+        "cls",
+        "kis",
+        "mock",
+        "auth"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "kismockauth",
+        "ko": "kis 모의 인증 클래스"
+      },
+      "description_i18n": {
+        "ko": "KIS 모의투자 전용 인증 클래스"
+      },
+      "reason": "시스템 객체, 고유명사",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kis_mauth",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_kis_us_adapter",
+      "words": [
+        "cls",
+        "kis",
+        "us",
+        "adapter"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "kisusadapter",
+        "ko": "kis 미국주식 어댑터"
+      },
+      "description_i18n": {
+        "ko": "미국주식 KIS API 어댑터 (이중계좌: 실전 데이터 + 모의 매매)"
+      },
+      "reason": "시스템 객체, 고유명사",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kis_us_adp",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_kr_orderbook_filter",
+      "words": [
+        "cls",
+        "kr",
+        "orderbook",
+        "filter"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "krorderbookfilter",
+        "ko": "kr 호가 필터"
+      },
+      "description_i18n": {
+        "ko": "KR 호가 기반 진입 정합성·매도 위험 점수 산출"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kr_obf",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_kr_signal_engine",
+      "words": [
+        "cls",
+        "kr",
+        "signal",
+        "engine"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "krsignalengine",
+        "ko": "kr 시그널 엔진"
+      },
+      "description_i18n": {
+        "ko": "한국주식 진입·청산 시그널 생성 엔진"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kr_sig",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_market",
+      "words": [
+        "cls",
+        "market"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "market enum",
+        "ko": "market 열거형"
+      },
+      "description_i18n": {
+        "ko": "거래 마켓 열거형 (KR_STOCK, US_STOCK, FX_FUT, CRYPTO)"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "mkt",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_mt5_bridge",
+      "words": [
+        "cls",
+        "mt5",
+        "bridge"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "mt5bridge",
+        "ko": "mt5 브릿지 클래스"
+      },
+      "description_i18n": {
+        "ko": "WSL → Windows MT5 RPC 클라이언트 클래스"
+      },
+      "reason": "공인 약어, 시스템 객체, 고유명사",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "mt5b_c",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_mt5_local_adapter",
+      "words": [
+        "cls",
+        "mt5",
+        "local",
+        "adapter"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "mt5localadapter",
+        "ko": "mt5 로컬 어댑터"
+      },
+      "description_i18n": {
+        "ko": "로컬 MT5 어댑터 (BaseBrokerAdapter 구현, run.py 통합용)"
+      },
+      "reason": "시스템 객체, 고유명사",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "mt5_adp",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_mt5_proxy_server",
+      "words": [
+        "cls",
+        "mt5",
+        "proxy",
+        "server"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "mt5proxyserver",
+        "ko": "mt5 프록시 서버"
+      },
+      "description_i18n": {
+        "ko": "Windows에서 실행되는 FastAPI 기반 MT5 프록시 서버"
+      },
+      "reason": "공인 약어, 시스템 객체, 고유명사",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "mt5ps",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_order_intent",
+      "words": [
+        "cls",
+        "order",
+        "intent"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "orderintent",
+        "ko": "주문 의도 모델"
+      },
+      "description_i18n": {
+        "ko": "실행 전 주문 의도 Pydantic 모델. execution 모듈만 생성 가능."
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "oi_c",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_order_side",
+      "words": [
+        "cls",
+        "order",
+        "side"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "orderside enum",
+        "ko": "주문 방향 열거형"
+      },
+      "description_i18n": {
+        "ko": "BUY / SELL"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "oside",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_order_status",
+      "words": [
+        "cls",
+        "order",
+        "status"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "orderstatus enum",
+        "ko": "주문 상태 열거형"
+      },
+      "description_i18n": {
+        "ko": "PENDING / SUBMITTED / PARTIAL_FILL / FILLED / CANCELLED / REJECTED / FAILED"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "os_c",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_order_type",
+      "words": [
+        "cls",
+        "order",
+        "type"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "ordertype enum",
+        "ko": "주문 유형 열거형"
+      },
+      "description_i18n": {
+        "ko": "MARKET / LIMIT"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "ot",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_replay_runner",
+      "words": [
+        "cls",
+        "replay",
+        "runner"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "replayrunner",
+        "ko": "리플레이 러너"
+      },
+      "description_i18n": {
+        "ko": "과거 데이터 기반 백테스트 실행 클래스"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "rpl_run",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_report_generator",
+      "words": [
+        "cls",
+        "report",
+        "generate"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "reportgenerator",
+        "ko": "리포트 생성기"
+      },
+      "description_i18n": {
+        "ko": "일간/주간/월간 거래 리포트 생성 클래스"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "rpt_gen",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_sector_ranker",
+      "words": [
+        "cls",
+        "sector",
+        "ranker"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "sectorranker",
+        "ko": "섹터 랭커"
+      },
+      "description_i18n": {
+        "ko": "섹터 강도 랭킹 계산 클래스"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sec_rnk_c",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_service_info",
+      "words": [
+        "cls",
+        "service",
+        "info"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "serviceinfo",
+        "ko": "서비스 정보 모델"
+      },
+      "description_i18n": {
+        "ko": "서비스 상태·메타데이터 Pydantic 모델"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "svc_i",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_service_status",
+      "words": [
+        "cls",
+        "service",
+        "status"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "servicestatus enum",
+        "ko": "서비스 상태 열거형"
+      },
+      "description_i18n": {
+        "ko": "RUNNING / STOPPED / STARTING / ERROR"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "svc_s",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_service_type",
+      "words": [
+        "cls",
+        "service",
+        "type"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "servicetype enum",
+        "ko": "서비스 유형 열거형"
+      },
+      "description_i18n": {
+        "ko": "DB / LOG / FX / KR / US / CRYPTO / TEST"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "svc_t",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_setting",
+      "words": [
+        "cls",
+        "setting"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "settings",
+        "ko": "설정 클래스"
+      },
+      "description_i18n": {
+        "ko": "settings.yaml + .env 통합 설정 싱글턴"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "variants": [
+        {
+          "types": [
+            "plural"
+          ],
+          "value": "cls_settings"
+        }
+      ],
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "abbreviation": {
+        "short": "cfg_c",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_signal_direction",
+      "words": [
+        "cls",
+        "signal",
+        "direction"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "signaldirection enum",
+        "ko": "시그널 방향 열거형"
+      },
+      "description_i18n": {
+        "ko": "LONG / SHORT / FLAT"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "dir_c",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_signal_event",
+      "words": [
+        "cls",
+        "signal",
+        "event"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "signalevent",
+        "ko": "시그널 이벤트"
+      },
+      "description_i18n": {
+        "ko": "시그널 엔진 출력 모델. signals 모듈만 생성 가능."
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sig_evt",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_symbol_ranker",
+      "words": [
+        "cls",
+        "symbol",
+        "ranker"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "symbolranker",
+        "ko": "종목 랭커"
+      },
+      "description_i18n": {
+        "ko": "종목 점수 랭킹 계산 클래스"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sym_rnk_c",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_telegram_bot",
+      "words": [
+        "cls",
+        "telegram",
+        "bot"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "telegrambot",
+        "ko": "텔레그램 봇 클래스"
+      },
+      "description_i18n": {
+        "ko": "Telegram 봇 기반 클래스 (system/test/market 공통)"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "tg_bot_c",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_time_in_force",
+      "words": [
+        "cls",
+        "time",
+        "in",
+        "force"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "timeinforce enum",
+        "ko": "주문 유효 기간 열거형"
+      },
+      "description_i18n": {
+        "ko": "GTC / IOC / DAY"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "tif",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_trade_record",
+      "words": [
+        "cls",
+        "trade",
+        "record"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "traderecord",
+        "ko": "거래 기록 모델"
+      },
+      "description_i18n": {
+        "ko": "거래 생명주기 전체(진입→청산) Pydantic 모델"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "tr",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_trading_orchestrator",
+      "words": [
+        "cls",
+        "trade",
+        "orchestrator"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "tradingorchestrator",
+        "ko": "트레이딩 오케스트레이터"
+      },
+      "description_i18n": {
+        "ko": "전체 거래 루프를 조율하는 최상위 클래스"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "t_orch",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_upbit_adapter",
+      "words": [
+        "cls",
+        "upbit",
+        "adapter"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "upbitadapter",
+        "ko": "업비트 어댑터"
+      },
+      "description_i18n": {
+        "ko": "업비트 REST API 어댑터 (잔고/캔들/주문/레이트리밋)"
+      },
+      "reason": "시스템 객체, 고유명사",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "upb_adp",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_upbit_auth",
+      "words": [
+        "cls",
+        "upbit",
+        "auth"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "upbitauth",
+        "ko": "업비트 인증"
+      },
+      "description_i18n": {
+        "ko": "업비트 JWT 인증/서명 (PyJWT + SHA512)"
+      },
+      "reason": "시스템 객체, 고유명사",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "upb_auth",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "cls_us_swing_signal_engine",
+      "words": [
+        "cls",
+        "us",
+        "swing",
+        "signal",
+        "engine"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "usswingsignalengine",
+        "ko": "us 스윙 시그널 엔진"
+      },
+      "description_i18n": {
+        "ko": "미국주식 스윙 시그널 엔진 (눌림/돌파 진입, 5단계 청산)"
+      },
+      "reason": "시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "us_sig",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "comma_separated_values",
+      "words": [
+        "comma",
+        "separated",
+        "value"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "comma separated values",
+        "ko": "쉼표로 구분된 값 / 콤마 구분값",
+        "ja": "カンマ区切りテキスト",
+        "zh_hans": "逗号分隔值"
+      },
+      "description_i18n": {
+        "ko": "표 형태의 데이터를 저장하기 위해 각각의 항목을 쉼표(,)로 구분하여 텍스트 형식으로 기록한 범용 데이터 파일 형식",
+        "en": "표 형태의 데이터를 저장하기 위해 각각의 항목을 쉼표(,)로 구분하여 텍스트 형식으로 기록한 범용 데이터 파일 형식"
+      },
+      "created_at": "2026-04-19T04:13:33Z",
+      "updated_at": "2026-04-19T04:13:33Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "csv",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "consecutive_stops",
+      "words": [
+        "consecutive",
+        "stop"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "consecutive stops",
+        "ko": "연속 손절 횟수"
+      },
+      "description_i18n": {
+        "ko": "연속 손절 한도. 도달 시 당일 진입 차단."
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "cs",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "content_delivery_network",
+      "words": [
+        "content",
+        "delivery",
+        "network"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "content delivery network",
+        "ko": "콘텐츠 전송 네트워크",
+        "ja": "コンテンツ配信ネットワーク",
+        "zh_hans": "内容分发网络"
+      },
+      "description_i18n": {
+        "ko": "지리적으로 분산된 여러 개의 서버에 콘텐츠를 복제해 두어, 사용자가 자신과 가장 가까운 서버로부터 데이터를 전송받게 함으로써 웹 속도를 높이는 기술.",
+        "en": "지리적으로 분산된 여러 개의 서버에 콘텐츠를 복제해 두어, 사용자가 자신과 가장 가까운 서버로부터 데이터를 전송받게 함으로써 웹 속도를 높이는 기술."
+      },
+      "created_at": "2026-04-19T04:13:33Z",
+      "updated_at": "2026-04-19T04:13:33Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "cdn",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "db_account_snapshots",
+      "words": [
+        "db",
+        "account",
+        "snapshot"
+      ],
+      "domain": [
+        "market"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "account snapshots table",
+        "ko": "계좌 스냅샷 테이블"
+      },
+      "description_i18n": {
+        "ko": "DB 계좌 스냅샷 이력"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "asnap_db",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "db_bars_1m",
+      "words": [
+        "db",
+        "bar"
+      ],
+      "domain": [
+        "market"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "1-minute bars table",
+        "ko": "1분봉 테이블"
+      },
+      "description_i18n": {
+        "ko": "DB 1분 OHLCV 봉 데이터"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "bar1m",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "db_fills",
+      "words": [
+        "db",
+        "fill"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "fills table",
+        "ko": "체결 테이블"
+      },
+      "description_i18n": {
+        "ko": "DB 체결 이력 테이블"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "fill_db",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "db_kr_orderbook_snapshot",
+      "words": [
+        "db",
+        "kr",
+        "orderbook",
+        "snapshot"
+      ],
+      "domain": [
+        "market"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "kr orderbook snapshot table",
+        "ko": "kr 호가 스냅샷 테이블"
+      },
+      "description_i18n": {
+        "ko": "DB KR 주식 호가 스냅샷 (1초 주기)"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kr_ob_db",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "db_orders",
+      "words": [
+        "db",
+        "order"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "orders table",
+        "ko": "주문 테이블"
+      },
+      "description_i18n": {
+        "ko": "DB 주문 이력 테이블"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "ord_db",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "db_risk_events",
+      "words": [
+        "db",
+        "risk",
+        "event"
+      ],
+      "domain": [
+        "market"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "risk events table",
+        "ko": "리스크 이벤트 테이블"
+      },
+      "description_i18n": {
+        "ko": "DB 리스크 이벤트 이력 (킬스위치·일손 등)"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "revt",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "db_sector_master",
+      "words": [
+        "db",
+        "sector",
+        "master"
+      ],
+      "domain": [
+        "market"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "sector master table",
+        "ko": "섹터 마스터 테이블"
+      },
+      "description_i18n": {
+        "ko": "DB 섹터 마스터 (섹터코드·이름)"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sec_mst",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "db_sector_rankings",
+      "words": [
+        "db",
+        "sector",
+        "ranking"
+      ],
+      "domain": [
+        "market"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "sector rankings table",
+        "ko": "섹터 랭킹 테이블"
+      },
+      "description_i18n": {
+        "ko": "DB 섹터 랭킹 스냅샷"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sec_rnk_db",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "db_signals",
+      "words": [
+        "db",
+        "signal"
+      ],
+      "domain": [
+        "market"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "signals table",
+        "ko": "시그널 테이블"
+      },
+      "description_i18n": {
+        "ko": "DB 시그널 이력 저장 테이블"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sig_db",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "db_stock_master",
+      "words": [
+        "db",
+        "stock",
+        "master"
+      ],
+      "domain": [
+        "market"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "stock master table",
+        "ko": "주식 마스터 테이블"
+      },
+      "description_i18n": {
+        "ko": "DB 한국주식 종목 마스터"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "stk_mst",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "db_symbols",
+      "words": [
+        "db",
+        "symbol"
+      ],
+      "domain": [
+        "market"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "symbols table",
+        "ko": "종목 마스터 테이블"
+      },
+      "description_i18n": {
+        "ko": "DB 종목 마스터 (코드·이름·마켓)"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sym",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "db_ticks",
+      "words": [
+        "db",
+        "tick"
+      ],
+      "domain": [
+        "market"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "ticks table",
+        "ko": "틱 테이블"
+      },
+      "description_i18n": {
+        "ko": "DB 실시간 틱 데이터"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "tk_db",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_dashboard_port",
+      "words": [
+        "env",
+        "dashboard",
+        "port"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "dashboard port env",
+        "ko": "대시보드 포트"
+      },
+      "description_i18n": {
+        "ko": ".env > DASH_P — 대시보드 웹서버 포트"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "dash_p",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_enable_fx",
+      "words": [
+        "env",
+        "enable",
+        "fx"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "enable fx market env",
+        "ko": "fx 마켓 활성화"
+      },
+      "description_i18n": {
+        "ko": ".env > E_FX — 외환선물 마켓 활성화 여부"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "e_fx",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_enable_kr",
+      "words": [
+        "env",
+        "enable",
+        "kr"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "enable kr market env",
+        "ko": "kr 마켓 활성화"
+      },
+      "description_i18n": {
+        "ko": ".env > E_KR — 한국주식 마켓 활성화 여부"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "e_kr",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_enable_us",
+      "words": [
+        "env",
+        "enable",
+        "us"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "enable us market env",
+        "ko": "us 마켓 활성화"
+      },
+      "description_i18n": {
+        "ko": ".env > E_US — 미국주식 마켓 활성화 여부"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "e_us",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_kis_account_no",
+      "words": [
+        "env",
+        "kis",
+        "account",
+        "no"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "kis account no env",
+        "ko": "kis 계좌번호"
+      },
+      "description_i18n": {
+        "ko": ".env > KIS_ACCT — KIS 실전 계좌번호"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kis_acct",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_kis_app_key",
+      "words": [
+        "env",
+        "kis",
+        "app",
+        "key"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "kis app key env",
+        "ko": "kis 앱키"
+      },
+      "description_i18n": {
+        "ko": ".env > KIS_AK — KIS API 앱키"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kis_ak",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_kis_app_secret",
+      "words": [
+        "env",
+        "kis",
+        "app",
+        "secret"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "kis app secret env",
+        "ko": "kis 앱시크릿"
+      },
+      "description_i18n": {
+        "ko": ".env > KIS_AS — KIS API 앱시크릿"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kis_as",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_kis_mock_app_key",
+      "words": [
+        "env",
+        "kis",
+        "mock",
+        "app",
+        "key"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "kis mock app key env",
+        "ko": "kis 모의 앱키"
+      },
+      "description_i18n": {
+        "ko": ".env > KIS_MAK — KIS 모의투자 앱키"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "kis_mak",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_mt5_proxy_url",
+      "words": [
+        "env",
+        "mt5",
+        "proxy",
+        "url"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "mt5 proxy url env",
+        "ko": "mt5 프록시 url"
+      },
+      "description_i18n": {
+        "ko": ".env > MT5P — MT5 프록시 서버 URL (툴 접속 설정이므로 MT5 유지)"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "mt5p_e",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_node_name",
+      "words": [
+        "env",
+        "node",
+        "name"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "node name env",
+        "ko": "노드명 환경변수"
+      },
+      "description_i18n": {
+        "ko": ".env > NODE_NAME"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "node_e",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_pg_dsn",
+      "words": [
+        "env",
+        "pg",
+        "dsn"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "postgresql dsn env",
+        "ko": "postgresql dsn"
+      },
+      "description_i18n": {
+        "ko": ".env > PG_DSN — PostgreSQL 접속 문자열"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "pg_dsn",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_project_root",
+      "words": [
+        "env",
+        "project",
+        "root"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "project root env",
+        "ko": "프로젝트 루트"
+      },
+      "description_i18n": {
+        "ko": ".env > PROJECT_ROOT — 프로젝트 절대 경로 기준"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "project_root",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_redis_url",
+      "words": [
+        "env",
+        "redis",
+        "url"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "redis url env",
+        "ko": "redis url"
+      },
+      "description_i18n": {
+        "ko": ".env > REDIS_URL — Redis 접속 URL"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "redis_url",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "env_var",
+      "words": [
+        "env",
+        "var"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "environment variable",
+        "ko": "환경변수"
+      },
+      "description_i18n": {
+        "ko": ".env 파일 환경변수 총칭"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "env_e",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "eod_flatten",
+      "words": [
+        "eod",
+        "flatten"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "end-of-day flatten",
+        "ko": "장 종료 전량 청산"
+      },
+      "description_i18n": {
+        "ko": "세션 종료 시각에 모든 포지션을 강제 청산"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "eodf",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "exec_strength",
+      "words": [
+        "exec",
+        "strength"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "execution strength",
+        "ko": "체결 강도"
+      },
+      "description_i18n": {
+        "ko": "실시간 매수/매도 체결 강도 원본값"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "es",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "exec_strength_score",
+      "words": [
+        "exec",
+        "strength",
+        "score"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "execution strength score",
+        "ko": "체결 강도 점수"
+      },
+      "description_i18n": {
+        "ko": "매수 체결 강도 점수 (매수강도/매도강도 비율)"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "ess",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "extended_market_end",
+      "words": [
+        "extend",
+        "market",
+        "end"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "extended market end",
+        "ko": "시간외 종료"
+      },
+      "description_i18n": {
+        "ko": "시간외 거래 종료 시각"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "ext_end",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "extended_market_start",
+      "words": [
+        "extend",
+        "market",
+        "start"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "extended market start",
+        "ko": "시간외 시작"
+      },
+      "description_i18n": {
+        "ko": "시간외 거래 시작 시각"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "ext_st",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "fx_futures",
@@ -66,10 +2785,12 @@
         "fx",
         "futures"
       ],
-      "domain": "market",
+      "domain": [
+        "market"
+      ],
       "status": "active",
       "lang": {
-        "en": "FX Futures",
+        "en": "fx futures",
         "ko": "외환선물"
       },
       "description_i18n": {
@@ -83,658 +2804,13 @@
       "reason": "혼동 방지",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "FX_FUT",
-          "long": "fxFutures"
-        }
-      ]
-    },
-    {
-      "id": "[N]m",
-      "words": [
-        "m"
-      ],
-      "domain": "market",
-      "status": "active",
-      "lang": {
-        "en": "[N] Minute",
-        "ko": "N분봉"
-      },
-      "description_i18n": {
-        "ko": "[N]분 단위 캔들/봉 데이터. [N]은 임의의 자연수(>0). 실제 사용: 1m, 5m, 10m, 15m, 60m 등"
-      },
-      "reason": "숫자+단위 조합 패턴. 개별 등록 시 무한 증식",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "[N]M",
-          "long": "[N]m"
-        }
-      ]
-    },
-    {
-      "id": "top[N]",
-      "words": [
-        "top"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Top [N]",
-        "ko": "상위 N개"
-      },
-      "description_i18n": {
-        "ko": "상위 N개 항목 선택/필터링. [N]은 임의의 자연수(>0). 실제 사용: top3, top5, top10, top100 등"
-      },
-      "not": [
-        "top_n"
-      ],
-      "reason": "숫자 파라미터 패턴. 개별 등록 시 무한 증식",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "TOP[N]",
-          "long": "top[N]"
-        }
-      ]
-    },
-    {
-      "id": "mt5_proxy",
-      "words": [
-        "mt5",
-        "proxy"
-      ],
-      "domain": "infra",
-      "status": "active",
-      "lang": {
-        "en": "MT5 Proxy",
-        "ko": "MT5 프록시"
-      },
-      "description_i18n": {
-        "ko": "WSL Python → Windows MT5 연결을 중계하는 FastAPI 서버"
-      },
-      "reason": "공인 약어, 고유명사",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MT5P",
-          "long": "mt5Proxy"
-        }
-      ]
-    },
-    {
-      "id": "mt5_bridge",
-      "words": [
-        "mt5",
-        "bridge"
-      ],
-      "domain": "infra",
-      "status": "active",
-      "lang": {
-        "en": "MT5 Bridge",
-        "ko": "MT5 브릿지"
-      },
-      "description_i18n": {
-        "ko": "WSL에서 MT5 프록시로 RPC 호출하는 클라이언트 모듈"
-      },
-      "reason": "공인 약어, 고유명사",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MT5B",
-          "long": "mt5Bridge"
-        }
-      ]
-    },
-    {
-      "id": "service_manager",
-      "words": [
-        "service",
-        "manager"
-      ],
-      "domain": "infra",
-      "status": "active",
-      "lang": {
-        "en": "Service Manager",
-        "ko": "서비스 매니저"
-      },
-      "description_i18n": {
-        "ko": "멀티서비스(DB/LOG/FX/KR/US/Crypto) 시작·중지·상태 관리"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SVC_MGR",
-          "long": "serviceManager"
-        }
-      ]
-    },
-    {
-      "id": "process_guard",
-      "words": [
-        "process",
-        "guard"
-      ],
-      "domain": "infra",
-      "status": "active",
-      "lang": {
-        "en": "Process Guard",
-        "ko": "프로세스 가드"
-      },
-      "description_i18n": {
-        "ko": "중복 프로세스 실행 방지 (PID 파일 기반)"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "PGD",
-          "long": "processGuard"
-        }
-      ]
-    },
-    {
-      "id": "node_name",
-      "words": [
-        "node",
-        "name"
-      ],
-      "domain": "infra",
-      "status": "active",
-      "lang": {
-        "en": "Node Name",
-        "ko": "노드명"
-      },
-      "description_i18n": {
-        "ko": "서버 식별자. 멀티노드 배포 시 노드 구분에 사용."
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z"
-    },
-    {
-      "id": "task_scheduler",
-      "words": [
-        "task",
-        "scheduler"
-      ],
-      "domain": "infra",
-      "status": "active",
-      "lang": {
-        "en": "Task Scheduler",
-        "ko": "태스크 스케줄러"
-      },
-      "description_i18n": {
-        "ko": "일별/시간별 예약 작업 실행 (리부트, 리포트 생성 등)"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SCHED",
-          "long": "taskScheduler"
-        }
-      ]
-    },
-    {
-      "id": "order_intent",
-      "words": [
-        "order",
-        "intent"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Order Intent",
-        "ko": "주문 의도"
-      },
-      "description_i18n": {
-        "ko": "주문 실행 전 의사결정 내용. execution이 생성하여 adapter에 전달."
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "OI",
-          "long": "orderIntent"
-        }
-      ]
-    },
-    {
-      "id": "market_order",
-      "words": [
-        "market",
-        "order"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Market Order",
-        "ko": "시장가 주문"
-      },
-      "description_i18n": {
-        "ko": "현재 시장가로 즉시 체결되는 주문"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MKT_ORD",
-          "long": "marketOrder"
-        }
-      ]
-    },
-    {
-      "id": "limit_order",
-      "words": [
-        "limit",
-        "order"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Limit Order",
-        "ko": "지정가 주문"
-      },
-      "description_i18n": {
-        "ko": "지정 가격 이하(매수) 또는 이상(매도)에서만 체결되는 주문"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "LMT",
-          "long": "limitOrder"
-        }
-      ]
-    },
-    {
-      "id": "split_buy",
-      "words": [
-        "split",
-        "buy"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Split Buy",
-        "ko": "분할 매수"
-      },
-      "description_i18n": {
-        "ko": "분할 매수 (여러 번 나눠서 진입)"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SBUY",
-          "long": "splitBuy"
-        }
-      ]
-    },
-    {
-      "id": "split_sell",
-      "words": [
-        "split",
-        "sell"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Split Sell",
-        "ko": "분할 매도"
-      },
-      "description_i18n": {
-        "ko": "분할 매도 (여러 번 나눠서 청산)"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SSELL",
-          "long": "splitSell"
-        }
-      ]
-    },
-    {
-      "id": "eod_flatten",
-      "words": [
-        "eod",
-        "flatten"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "End-of-Day Flatten",
-        "ko": "장 종료 전량 청산"
-      },
-      "description_i18n": {
-        "ko": "세션 종료 시각에 모든 포지션을 강제 청산"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "EODF",
-          "long": "eodFlatten"
-        }
-      ]
-    },
-    {
-      "id": "active_trade",
-      "words": [
-        "active",
-        "trade"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Active Trade",
-        "ko": "활성 거래"
-      },
-      "description_i18n": {
-        "ko": "현재 보유 중인 거래 (OPEN 상태). TradeJournal의 SoT."
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "AT",
-          "long": "activeTrade"
-        }
-      ]
-    },
-    {
-      "id": "closed_trade",
-      "words": [
-        "closed",
-        "trade"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Closed Trade",
-        "ko": "청산 거래"
-      },
-      "description_i18n": {
-        "ko": "청산 완료된 거래. 손익이 확정된 상태."
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "CT",
-          "long": "closedTrade"
-        }
-      ]
-    },
-    {
-      "id": "signal_direction",
-      "words": [
-        "signal",
-        "direction"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Signal Direction",
-        "ko": "시그널 방향"
-      },
-      "description_i18n": {
-        "ko": "LONG / SHORT / FLAT — 시그널이 제안하는 포지션 방향"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "DIR",
-          "long": "signalDirection"
-        }
-      ]
-    },
-    {
-      "id": "signal_engine",
-      "words": [
-        "signal",
-        "engine"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Signal Engine",
-        "ko": "시그널 엔진"
-      },
-      "description_i18n": {
-        "ko": "진입·청산 조건을 판단하는 핵심 로직 단위"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SIG_ENG",
-          "long": "signalEngine"
-        }
-      ]
-    },
-    {
-      "id": "candle_personality",
-      "words": [
-        "candle",
-        "personality"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Candle Personality",
-        "ko": "캔들 성격"
-      },
-      "description_i18n": {
-        "ko": "캔들 형태 분석 점수 (윗꼬리·아랫꼬리 비율 기반)"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "CP",
-          "long": "candlePersonality"
-        }
-      ]
-    },
-    {
-      "id": "upper_wick",
-      "words": [
-        "upper",
-        "wick"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Upper Wick",
-        "ko": "윗꼬리"
-      },
-      "description_i18n": {
-        "ko": "캔들 고가에서 몸통까지의 꼬리 (매도 압력 지표)"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "UW",
-          "long": "upperWick"
-        }
-      ]
-    },
-    {
-      "id": "lower_wick",
-      "words": [
-        "lower",
-        "wick"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Lower Wick",
-        "ko": "아랫꼬리"
-      },
-      "description_i18n": {
-        "ko": "캔들 저가에서 몸통까지의 꼬리 (매수 지지 지표)"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "LW",
-          "long": "lowerWick"
-        }
-      ]
-    },
-    {
-      "id": "stop_loss",
-      "words": [
-        "stop",
-        "loss"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Stop Loss",
-        "ko": "손절"
-      },
-      "description_i18n": {
-        "ko": "손실 한도 도달 시 강제 청산. Hard Stop."
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SL",
-          "long": "stopLoss"
-        }
-      ]
-    },
-    {
-      "id": "take_profit",
-      "words": [
-        "take",
-        "profit"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Take Profit",
-        "ko": "익절"
-      },
-      "description_i18n": {
-        "ko": "목표 수익 도달 시 청산"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "TP",
-          "long": "takeProfit"
-        }
-      ]
-    },
-    {
-      "id": "trailing_stop",
-      "words": [
-        "trailing",
-        "stop"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Trailing Stop",
-        "ko": "트레일링 스탑"
-      },
-      "description_i18n": {
-        "ko": "진입 후 최고가 대비 일정 % 이하로 하락 시 청산. 수익 보호."
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "TSL",
-          "long": "trailingStop"
-        }
-      ]
-    },
-    {
-      "id": "no_bounce_exit",
-      "words": [
-        "no",
-        "bounce",
-        "exit"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "No Bounce Exit",
-        "ko": "반등 불발 청산"
-      },
-      "description_i18n": {
-        "ko": "반등 신호 없이 일정 시간 경과 시 청산"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "NBE",
-          "long": "noBounceExit"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "fx_fut",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "kill_switch",
@@ -742,10 +2818,12 @@
         "kill",
         "switch"
       ],
-      "domain": "trading",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Kill Switch",
+        "en": "kill switch",
         "ko": "킬스위치"
       },
       "description_i18n": {
@@ -754,197 +2832,40 @@
       "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KSW",
-          "long": "killSwitch"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "ksw",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "risk_manager",
+      "id": "kr_stock",
       "words": [
-        "risk",
-        "manager"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Risk Manager",
-        "ko": "리스크 매니저"
-      },
-      "description_i18n": {
-        "ko": "일일 손실 한도, 포지션 한도, 킬스위치 판단 담당"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "RM",
-          "long": "riskManager"
-        }
-      ]
-    },
-    {
-      "id": "max_daily_loss",
-      "words": [
-        "max",
-        "daily",
-        "loss"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Max Daily Loss",
-        "ko": "일일 최대 손실"
-      },
-      "description_i18n": {
-        "ko": "당일 허용 최대 손실액. 도달 시 전량 청산 + 진입 차단."
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MDL",
-          "long": "maxDailyLoss"
-        }
-      ]
-    },
-    {
-      "id": "consecutive_stops",
-      "words": [
-        "consecutive",
-        "stop"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Consecutive Stops",
-        "ko": "연속 손절 횟수"
-      },
-      "description_i18n": {
-        "ko": "연속 손절 한도. 도달 시 당일 진입 차단."
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "CS",
-          "long": "consecutiveStops"
-        }
-      ]
-    },
-    {
-      "id": "max_open_positions",
-      "words": [
-        "max",
-        "open",
-        "position"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Max Open Positions",
-        "ko": "최대 동시 보유 수"
-      },
-      "description_i18n": {
-        "ko": "동시에 보유 가능한 최대 포지션 수"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MOP",
-          "long": "maxOpenPositions"
-        }
-      ]
-    },
-    {
-      "id": "position_size",
-      "words": [
-        "position",
-        "size"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Position Size",
-        "ko": "포지션 크기"
-      },
-      "description_i18n": {
-        "ko": "1회 진입 시 투입 금액 또는 계약 수"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "PSIZ",
-          "long": "positionSize"
-        }
-      ]
-    },
-    {
-      "id": "margin_used",
-      "words": [
-        "margin",
-        "used"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Margin Used",
-        "ko": "사용 증거금"
-      },
-      "description_i18n": {
-        "ko": "현재 포지션 유지에 사용 중인 증거금"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MRG",
-          "long": "marginUsed"
-        }
-      ]
-    },
-    {
-      "id": "leader_stock",
-      "words": [
-        "leader",
+        "kr",
         "stock"
       ],
-      "domain": "trading",
+      "domain": [
+        "market"
+      ],
       "status": "active",
       "lang": {
-        "en": "Leader Stock",
-        "ko": "대장주"
+        "en": "korean stock",
+        "ko": "한국주식"
       },
       "description_i18n": {
-        "ko": "섹터를 이끄는 핵심 종목. 조건식 기반 스캔으로 선정."
+        "ko": "한국 주식 시장 (KRX)"
       },
-      "reason": "공인 약어",
+      "not": [
+        "KIS",
+        "KOSPI",
+        "KOSDAQ"
+      ],
+      "reason": "혼동 방지",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "LEAD",
-          "long": "leaderStock"
-        }
-      ]
+      "variants": []
     },
     {
       "id": "leader_candidate",
@@ -952,10 +2873,12 @@
         "leader",
         "candidate"
       ],
-      "domain": "trading",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Leader Candidates",
+        "en": "leader candidates",
         "ko": "대장주 후보"
       },
       "description_i18n": {
@@ -964,518 +2887,89 @@
       "reason": "공인 약어",
       "variants": [
         {
-          "type": "abbreviation",
-          "short": "LCAND",
-          "long": "leaderCandidates"
-        },
-        {
-          "type": "plural",
+          "types": [
+            "plural"
+          ],
           "value": "leader_candidates"
         }
       ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z"
-    },
-    {
-      "id": "market_scanner",
-      "words": [
-        "market",
-        "scanner"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Market Scanner",
-        "ko": "마켓 스캐너"
-      },
-      "description_i18n": {
-        "ko": "조건식 기반 대장주 스캔 실행 모듈"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SCAN",
-          "long": "marketScanner"
-        }
-      ]
+      "abbreviation": {
+        "short": "lcand",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "sector_ranking",
+      "id": "leader_stock",
       "words": [
-        "sector",
-        "ranking"
+        "leader",
+        "stock"
       ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Sector Ranking",
-        "ko": "섹터 랭킹"
-      },
-      "description_i18n": {
-        "ko": "섹터별 강도 점수 순위"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SEC_RNK",
-          "long": "sectorRanking"
-        }
-      ]
-    },
-    {
-      "id": "symbol_ranking",
-      "words": [
-        "symbol",
-        "ranking"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Symbol Ranking",
-        "ko": "종목 랭킹"
-      },
-      "description_i18n": {
-        "ko": "종목별 점수 순위"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SYM_RNK",
-          "long": "symbolRanking"
-        }
-      ]
-    },
-    {
-      "id": "market_strength",
-      "words": [
-        "market",
-        "strength"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Market Strength",
-        "ko": "시장 강도"
-      },
-      "description_i18n": {
-        "ko": "전체 시장(코스피·코스닥) 상승/하락 강도 지표"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MS",
-          "long": "marketStrength"
-        }
-      ]
-    },
-    {
-      "id": "sector_score",
-      "words": [
-        "sector",
-        "score"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Sector Score",
-        "ko": "섹터 점수"
-      },
-      "description_i18n": {
-        "ko": "섹터 강도를 수치화한 점수"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SS",
-          "long": "sectorScore"
-        }
-      ]
-    },
-    {
-      "id": "stock_score",
-      "words": [
-        "stock",
-        "score"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Stock Score",
-        "ko": "종목 점수"
-      },
-      "description_i18n": {
-        "ko": "개별 종목 강도를 수치화한 점수"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "STS",
-          "long": "stockScore"
-        }
-      ]
-    },
-    {
-      "id": "momentum_score",
-      "words": [
-        "momentum",
-        "score"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Momentum Score",
-        "ko": "모멘텀 점수"
-      },
-      "description_i18n": {
-        "ko": "가격 모멘텀(추세 강도) 점수"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MOM",
-          "long": "momentumScore"
-        }
-      ]
-    },
-    {
-      "id": "trading_value_score",
-      "words": [
-        "trading",
-        "value",
-        "score"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Trading Value Score",
-        "ko": "거래대금 점수"
-      },
-      "description_i18n": {
-        "ko": "거래대금 기반 유동성 점수"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "TVS",
-          "long": "tradingValueScore"
-        }
-      ]
-    },
-    {
-      "id": "exec_strength_score",
-      "words": [
-        "exec",
-        "strength",
-        "score"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Execution Strength Score",
-        "ko": "체결 강도 점수"
-      },
-      "description_i18n": {
-        "ko": "매수 체결 강도 점수 (매수강도/매도강도 비율)"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "ESS",
-          "long": "execStrengthScore"
-        }
-      ]
-    },
-    {
-      "id": "sector_strength_score",
-      "words": [
-        "sector",
-        "strength",
-        "score"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Sector Strength Score",
-        "ko": "섹터 강도 점수"
-      },
-      "description_i18n": {
-        "ko": "섹터 내 비교 강도 점수"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SSS",
-          "long": "sectorStrengthScore"
-        }
-      ]
-    },
-    {
-      "id": "volatility_score",
-      "words": [
-        "volatility",
-        "score"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Volatility Score",
-        "ko": "변동성 점수"
-      },
-      "description_i18n": {
-        "ko": "가격 변동성 점수. 높을수록 리스크 높음."
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "VOLS",
-          "long": "volatilityScore"
-        }
-      ]
-    },
-    {
-      "id": "exec_strength",
-      "words": [
-        "exec",
-        "strength"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Execution Strength",
-        "ko": "체결 강도"
-      },
-      "description_i18n": {
-        "ko": "실시간 매수/매도 체결 강도 원본값"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "ES",
-          "long": "execStrength"
-        }
-      ]
-    },
-    {
-      "id": "realtime_log",
-      "words": [
-        "realtime",
-        "log"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Realtime Log",
-        "ko": "실시간 로그"
-      },
-      "description_i18n": {
-        "ko": "Redis 스트림 기반 실시간 이벤트 로그"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "RLOG",
-          "long": "realtimeLog"
-        }
-      ]
-    },
-    {
-      "id": "account_snapshot",
-      "words": [
-        "account",
-        "snapshot"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Account Snapshot",
-        "ko": "계좌 스냅샷"
-      },
-      "description_i18n": {
-        "ko": "특정 시점의 계좌 잔고·포지션 상태 스냅샷"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "ASNAP",
-          "long": "accountSnapshot"
-        }
-      ]
-    },
-    {
-      "id": "realized_pnl",
-      "words": [
-        "realized",
-        "pnl"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Realized PnL",
-        "ko": "실현 손익"
-      },
-      "description_i18n": {
-        "ko": "청산 완료된 거래의 확정 손익"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "RPNL",
-          "long": "realizedPnl"
-        }
-      ]
-    },
-    {
-      "id": "unrealized_pnl",
-      "words": [
-        "unrealized",
-        "pnl"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Unrealized PnL",
-        "ko": "미실현 손익"
-      },
-      "description_i18n": {
-        "ko": "현재 보유 중인 포지션의 평가 손익"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "UPNL",
-          "long": "unrealizedPnl"
-        }
-      ]
-    },
-    {
-      "id": "order_status",
-      "words": [
-        "order",
-        "status"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Order Status",
-        "ko": "주문 상태"
-      },
-      "description_i18n": {
-        "ko": "주문 생명주기 상태: pending→submitted→filled/cancelled/rejected"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "OS",
-          "long": "orderStatus"
-        }
-      ]
-    },
-    {
-      "id": "partial_fill",
-      "words": [
-        "partial",
-        "fill"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Partial Fill",
-        "ko": "부분 체결"
-      },
-      "description_i18n": {
-        "ko": "주문 수량의 일부만 체결된 상태"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "PART",
-          "long": "partialFill"
-        }
-      ]
-    },
-    {
-      "id": "mock_trading",
-      "words": [
-        "mock",
+      "domain": [
         "trading"
       ],
-      "domain": "trading",
       "status": "active",
       "lang": {
-        "en": "Mock Trading",
-        "ko": "모의 거래"
+        "en": "leader stock",
+        "ko": "대장주"
       },
       "description_i18n": {
-        "ko": "실제 자금 없이 시뮬레이션으로 진행하는 거래"
+        "ko": "섹터를 이끄는 핵심 종목. 조건식 기반 스캔으로 선정."
       },
       "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z"
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "lead",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "limit_order",
+      "words": [
+        "limit",
+        "order"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "limit order",
+        "ko": "지정가 주문"
+      },
+      "description_i18n": {
+        "ko": "지정 가격 이하(매수) 또는 이상(매도)에서만 체결되는 주문"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "lmt",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "live_trading",
       "words": [
         "live",
+        "trade"
+      ],
+      "domain": [
         "trading"
       ],
-      "domain": "trading",
       "status": "active",
       "lang": {
-        "en": "Live Trading",
+        "en": "live trading",
         "ko": "실전 거래"
       },
       "description_i18n": {
@@ -1486,30 +2980,60 @@
       "updated_at": "2026-04-15T04:29:45Z"
     },
     {
-      "id": "market_open",
+      "id": "lower_wick",
       "words": [
-        "market",
-        "open"
+        "low",
+        "wick"
       ],
-      "domain": "trading",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Market Open",
-        "ko": "장 시작"
+        "en": "lower wick",
+        "ko": "아랫꼬리"
       },
       "description_i18n": {
-        "ko": "해당 마켓의 거래 시작 시각"
+        "ko": "캔들 저가에서 몸통까지의 꼬리 (매수 지지 지표)"
       },
       "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MO",
-          "long": "marketOpen"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "lw",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "margin_used",
+      "words": [
+        "margin",
+        "use"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "margin used",
+        "ko": "사용 증거금"
+      },
+      "description_i18n": {
+        "ko": "현재 포지션 유지에 사용 중인 증거금"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "mrg",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "market_close",
@@ -1517,10 +3041,12 @@
         "market",
         "close"
       ],
-      "domain": "trading",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Market Close",
+        "en": "market close",
         "ko": "장 종료"
       },
       "description_i18n": {
@@ -1529,1315 +3055,198 @@
       "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MC",
-          "long": "marketClose"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "mc",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "no_entry_after",
+      "id": "market_open",
       "words": [
-        "no",
-        "entry",
-        "after"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "No Entry After",
-        "ko": "진입 차단 시각"
-      },
-      "description_i18n": {
-        "ko": "이 시각 이후 신규 진입 차단"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "NEA",
-          "long": "noEntryAfter"
-        }
-      ]
-    },
-    {
-      "id": "tracking_start",
-      "words": [
-        "tracking",
-        "start"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Tracking Start",
-        "ko": "트래킹 시작"
-      },
-      "description_i18n": {
-        "ko": "시세 추적 및 신호 감지 시작 시각"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "TRK_ST",
-          "long": "trackingStart"
-        }
-      ]
-    },
-    {
-      "id": "reboot_time",
-      "words": [
-        "reboot",
-        "time"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Reboot Time",
-        "ko": "리부트 시각"
-      },
-      "description_i18n": {
-        "ko": "일일 정기 프로세스 재시작 시각"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "RBT",
-          "long": "rebootTime"
-        }
-      ]
-    },
-    {
-      "id": "work_start",
-      "words": [
-        "work",
-        "start"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Work Start",
-        "ko": "업무 시작"
-      },
-      "description_i18n": {
-        "ko": "일일 업무 시작 시각 (사전 준비 포함)"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "WS",
-          "long": "workStart"
-        }
-      ]
-    },
-    {
-      "id": "extended_market_start",
-      "words": [
-        "extended",
         "market",
-        "start"
+        "open"
       ],
-      "domain": "trading",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Extended Market Start",
-        "ko": "시간외 시작"
+        "en": "market open",
+        "ko": "장 시작"
       },
       "description_i18n": {
-        "ko": "시간외 거래 시작 시각"
+        "ko": "해당 마켓의 거래 시작 시각"
       },
-      "reason": "의미 비합산",
+      "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "EXT_ST",
-          "long": "extendedMarketStart"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "mo",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "extended_market_end",
+      "id": "market_order",
       "words": [
-        "extended",
         "market",
-        "end"
+        "order"
       ],
-      "domain": "trading",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Extended Market End",
-        "ko": "시간외 종료"
+        "en": "market order",
+        "ko": "시장가 주문"
       },
       "description_i18n": {
-        "ko": "시간외 거래 종료 시각"
+        "ko": "현재 시장가로 즉시 체결되는 주문"
       },
       "reason": "의미 비합산",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "EXT_END",
-          "long": "extendedMarketEnd"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "mkt_ord",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "system_notifier",
+      "id": "market_scanner",
       "words": [
-        "system",
-        "notifier"
+        "market",
+        "scan"
       ],
-      "domain": "system",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "System Notifier",
-        "ko": "시스템 알림"
+        "en": "market scanner",
+        "ko": "마켓 스캐너"
       },
       "description_i18n": {
-        "ko": "시스템 이벤트(장애·시작·종료)를 Telegram system 봇으로 발송"
+        "ko": "조건식 기반 대장주 스캔 실행 모듈"
       },
-      "reason": "의미 비합산",
+      "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SYS_NTF",
-          "long": "systemNotifier"
-        }
-      ]
+      "variants": []
     },
     {
-      "id": "trade_notifier",
+      "id": "market_strength",
       "words": [
-        "trade",
-        "notifier"
+        "market",
+        "strength"
       ],
-      "domain": "trading",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Trade Notifier",
-        "ko": "거래 알림"
+        "en": "market strength",
+        "ko": "시장 강도"
       },
       "description_i18n": {
-        "ko": "체결·청산 이벤트를 Telegram market 봇으로 발송"
+        "ko": "전체 시장(코스피·코스닥) 상승/하락 강도 지표"
       },
-      "reason": "의미 비합산",
+      "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "TRD_NTF",
-          "long": "tradeNotifier"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "ms",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "transaction_id",
+      "id": "max_daily_loss",
       "words": [
-        "transaction",
-        "id"
+        "max",
+        "daily",
+        "loss"
       ],
-      "domain": "trading",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Transaction ID",
-        "ko": "트랜잭션 ID"
+        "en": "max daily loss",
+        "ko": "일일 최대 손실"
       },
       "description_i18n": {
-        "ko": "주문-체결-청산을 연결하는 고유 식별자"
+        "ko": "당일 허용 최대 손실액. 도달 시 전량 청산 + 진입 차단."
       },
-      "reason": "의미 비합산",
+      "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "TR_ID",
-          "long": "transactionId"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "mdl",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "telegram_bot",
+      "id": "max_open_positions",
       "words": [
-        "telegram",
-        "bot"
+        "max",
+        "open",
+        "position"
       ],
-      "domain": "ui",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Telegram Bot",
-        "ko": "텔레그램 봇"
+        "en": "max open positions",
+        "ko": "최대 동시 보유 수"
       },
       "description_i18n": {
-        "ko": "Telegram 알림·명령 처리 봇 (system/test/market 3종)"
+        "ko": "동시에 보유 가능한 최대 포지션 수"
       },
-      "reason": "의미 비합산",
+      "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "TG_BOT",
-          "long": "telegramBot"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "mop",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "cls_market",
+      "id": "mock_trading",
       "words": [
-        "cls",
-        "market"
+        "mock",
+        "trade"
       ],
-      "domain": "system",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Market Enum",
-        "ko": "Market 열거형"
+        "en": "mock trading",
+        "ko": "모의 거래"
       },
       "description_i18n": {
-        "ko": "거래 마켓 열거형 (KR_STOCK, US_STOCK, FX_FUT, CRYPTO)"
+        "ko": "실제 자금 없이 시뮬레이션으로 진행하는 거래"
       },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MKT",
-          "long": "Market"
-        }
-      ]
-    },
-    {
-      "id": "cls_order_side",
-      "words": [
-        "cls",
-        "order",
-        "side"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "OrderSide Enum",
-        "ko": "주문 방향 열거형"
-      },
-      "description_i18n": {
-        "ko": "BUY / SELL"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "OSIDE",
-          "long": "OrderSide"
-        }
-      ]
-    },
-    {
-      "id": "cls_order_type",
-      "words": [
-        "cls",
-        "order",
-        "type"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "OrderType Enum",
-        "ko": "주문 유형 열거형"
-      },
-      "description_i18n": {
-        "ko": "MARKET / LIMIT"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "OT",
-          "long": "OrderType"
-        }
-      ]
-    },
-    {
-      "id": "cls_order_status",
-      "words": [
-        "cls",
-        "order",
-        "status"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "OrderStatus Enum",
-        "ko": "주문 상태 열거형"
-      },
-      "description_i18n": {
-        "ko": "PENDING / SUBMITTED / PARTIAL_FILL / FILLED / CANCELLED / REJECTED / FAILED"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "OS_C",
-          "long": "OrderStatus"
-        }
-      ]
-    },
-    {
-      "id": "cls_signal_direction",
-      "words": [
-        "cls",
-        "signal",
-        "direction"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "SignalDirection Enum",
-        "ko": "시그널 방향 열거형"
-      },
-      "description_i18n": {
-        "ko": "LONG / SHORT / FLAT"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "DIR_C",
-          "long": "SignalDirection"
-        }
-      ]
-    },
-    {
-      "id": "cls_time_in_force",
-      "words": [
-        "cls",
-        "time",
-        "in",
-        "force"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "TimeInForce Enum",
-        "ko": "주문 유효 기간 열거형"
-      },
-      "description_i18n": {
-        "ko": "GTC / IOC / DAY"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "TIF",
-          "long": "TimeInForce"
-        }
-      ]
-    },
-    {
-      "id": "cls_signal_event",
-      "words": [
-        "cls",
-        "signal",
-        "event"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "SignalEvent",
-        "ko": "시그널 이벤트"
-      },
-      "description_i18n": {
-        "ko": "시그널 엔진 출력 모델. signals 모듈만 생성 가능."
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SIG_EVT",
-          "long": "SignalEvent"
-        }
-      ]
-    },
-    {
-      "id": "cls_order_intent",
-      "words": [
-        "cls",
-        "order",
-        "intent"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "OrderIntent",
-        "ko": "주문 의도 모델"
-      },
-      "description_i18n": {
-        "ko": "실행 전 주문 의도 Pydantic 모델. execution 모듈만 생성 가능."
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "OI_C",
-          "long": "OrderIntent"
-        }
-      ]
-    },
-    {
-      "id": "cls_account_snapshot",
-      "words": [
-        "cls",
-        "account",
-        "snapshot"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "AccountSnapshot",
-        "ko": "계좌 스냅샷 모델"
-      },
-      "description_i18n": {
-        "ko": "계좌 상태 스냅샷 Pydantic 모델"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "ASNAP_C",
-          "long": "AccountSnapshot"
-        }
-      ]
-    },
-    {
-      "id": "cls_setting",
-      "words": [
-        "cls",
-        "setting"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Settings",
-        "ko": "설정 클래스"
-      },
-      "description_i18n": {
-        "ko": "settings.yaml + .env 통합 설정 싱글턴"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "CFG_C",
-          "long": "Settings"
-        },
-        {
-          "type": "plural",
-          "value": "cls_settings"
-        }
-      ],
+      "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z"
-    },
-    {
-      "id": "cls_service_type",
-      "words": [
-        "cls",
-        "service",
-        "type"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "ServiceType Enum",
-        "ko": "서비스 유형 열거형"
-      },
-      "description_i18n": {
-        "ko": "DB / LOG / FX / KR / US / CRYPTO / TEST"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SVC_T",
-          "long": "ServiceType"
-        }
-      ]
-    },
-    {
-      "id": "cls_service_status",
-      "words": [
-        "cls",
-        "service",
-        "status"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "ServiceStatus Enum",
-        "ko": "서비스 상태 열거형"
-      },
-      "description_i18n": {
-        "ko": "RUNNING / STOPPED / STARTING / ERROR"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SVC_S",
-          "long": "ServiceStatus"
-        }
-      ]
-    },
-    {
-      "id": "cls_service_info",
-      "words": [
-        "cls",
-        "service",
-        "info"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "ServiceInfo",
-        "ko": "서비스 정보 모델"
-      },
-      "description_i18n": {
-        "ko": "서비스 상태·메타데이터 Pydantic 모델"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SVC_I",
-          "long": "ServiceInfo"
-        }
-      ]
-    },
-    {
-      "id": "cls_kis_auth",
-      "words": [
-        "cls",
-        "kis",
-        "auth"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "KisAuth",
-        "ko": "KIS 인증 클래스"
-      },
-      "description_i18n": {
-        "ko": "KIS OAuth2 토큰 발급·갱신·캐싱"
-      },
-      "reason": "시스템 객체, 고유명사",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KIS_AUTH",
-          "long": "KisAuth"
-        }
-      ]
-    },
-    {
-      "id": "cls_kis_mock_auth",
-      "words": [
-        "cls",
-        "kis",
-        "mock",
-        "auth"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "KisMockAuth",
-        "ko": "KIS 모의 인증 클래스"
-      },
-      "description_i18n": {
-        "ko": "KIS 모의투자 전용 인증 클래스"
-      },
-      "reason": "시스템 객체, 고유명사",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KIS_MAUTH",
-          "long": "KisMockAuth"
-        }
-      ]
-    },
-    {
-      "id": "cls_kis_adapter",
-      "words": [
-        "cls",
-        "kis",
-        "adapter"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "KisAdapter",
-        "ko": "KIS 어댑터"
-      },
-      "description_i18n": {
-        "ko": "한국주식 KIS API 연동 어댑터 (이중 계좌: 실전 데이터 + 모의 매매)"
-      },
-      "reason": "시스템 객체, 고유명사",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KIS_ADP",
-          "long": "KisAdapter"
-        }
-      ]
-    },
-    {
-      "id": "cls_kis_us_adapter",
-      "words": [
-        "cls",
-        "kis",
-        "us",
-        "adapter"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "KisUsAdapter",
-        "ko": "KIS 미국주식 어댑터"
-      },
-      "description_i18n": {
-        "ko": "미국주식 KIS API 어댑터 (이중계좌: 실전 데이터 + 모의 매매)"
-      },
-      "reason": "시스템 객체, 고유명사",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KIS_US_ADP",
-          "long": "KisUsAdapter"
-        }
-      ]
-    },
-    {
-      "id": "cls_upbit_auth",
-      "words": [
-        "cls",
-        "upbit",
-        "auth"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "UpbitAuth",
-        "ko": "업비트 인증"
-      },
-      "description_i18n": {
-        "ko": "업비트 JWT 인증/서명 (PyJWT + SHA512)"
-      },
-      "reason": "시스템 객체, 고유명사",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "UPB_AUTH",
-          "long": "UpbitAuth"
-        }
-      ]
-    },
-    {
-      "id": "cls_upbit_adapter",
-      "words": [
-        "cls",
-        "upbit",
-        "adapter"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "UpbitAdapter",
-        "ko": "업비트 어댑터"
-      },
-      "description_i18n": {
-        "ko": "업비트 REST API 어댑터 (잔고/캔들/주문/레이트리밋)"
-      },
-      "reason": "시스템 객체, 고유명사",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "UPB_ADP",
-          "long": "UpbitAdapter"
-        }
-      ]
-    },
-    {
-      "id": "cls_mt5_bridge",
-      "words": [
-        "cls",
-        "mt5",
-        "bridge"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "MT5Bridge",
-        "ko": "MT5 브릿지 클래스"
-      },
-      "description_i18n": {
-        "ko": "WSL → Windows MT5 RPC 클라이언트 클래스"
-      },
-      "reason": "공인 약어, 시스템 객체, 고유명사",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MT5B_C",
-          "long": "MT5Bridge"
-        }
-      ]
-    },
-    {
-      "id": "cls_mt5_proxy_server",
-      "words": [
-        "cls",
-        "mt5",
-        "proxy",
-        "server"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "MT5ProxyServer",
-        "ko": "MT5 프록시 서버"
-      },
-      "description_i18n": {
-        "ko": "Windows에서 실행되는 FastAPI 기반 MT5 프록시 서버"
-      },
-      "reason": "공인 약어, 시스템 객체, 고유명사",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MT5PS",
-          "long": "MT5ProxyServer"
-        }
-      ]
-    },
-    {
-      "id": "cls_mt5_local_adapter",
-      "words": [
-        "cls",
-        "mt5",
-        "local",
-        "adapter"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "MT5LocalAdapter",
-        "ko": "MT5 로컬 어댑터"
-      },
-      "description_i18n": {
-        "ko": "로컬 MT5 어댑터 (BaseBrokerAdapter 구현, run.py 통합용)"
-      },
-      "reason": "시스템 객체, 고유명사",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MT5_ADP",
-          "long": "MT5LocalAdapter"
-        }
-      ]
-    },
-    {
-      "id": "cls_sector_ranker",
-      "words": [
-        "cls",
-        "sector",
-        "ranker"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "SectorRanker",
-        "ko": "섹터 랭커"
-      },
-      "description_i18n": {
-        "ko": "섹터 강도 랭킹 계산 클래스"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SEC_RNK_C",
-          "long": "SectorRanker"
-        }
-      ]
-    },
-    {
-      "id": "cls_symbol_ranker",
-      "words": [
-        "cls",
-        "symbol",
-        "ranker"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "SymbolRanker",
-        "ko": "종목 랭커"
-      },
-      "description_i18n": {
-        "ko": "종목 점수 랭킹 계산 클래스"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SYM_RNK_C",
-          "long": "SymbolRanker"
-        }
-      ]
-    },
-    {
-      "id": "cls_kr_signal_engine",
-      "words": [
-        "cls",
-        "kr",
-        "signal",
-        "engine"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "KrSignalEngine",
-        "ko": "KR 시그널 엔진"
-      },
-      "description_i18n": {
-        "ko": "한국주식 진입·청산 시그널 생성 엔진"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KR_SIG",
-          "long": "KrSignalEngine"
-        }
-      ]
-    },
-    {
-      "id": "cls_fx_signal_engine",
-      "words": [
-        "cls",
-        "fx",
-        "signal",
-        "engine"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "FxSignalEngine",
-        "ko": "FX 시그널 엔진"
-      },
-      "description_i18n": {
-        "ko": "외환선물 진입·청산 시그널 생성 엔진"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "FX_SIG",
-          "long": "FxSignalEngine"
-        }
-      ]
-    },
-    {
-      "id": "cls_crypto_signal_engine",
-      "words": [
-        "cls",
-        "crypto",
-        "signal",
-        "engine"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "CryptoSignalEngine",
-        "ko": "크립토 시그널 엔진"
-      },
-      "description_i18n": {
-        "ko": "암호화폐 추세 돌파 시그널 엔진 (2단계 진입)"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "CRY_SIG",
-          "long": "CryptoSignalEngine"
-        }
-      ]
-    },
-    {
-      "id": "cls_us_swing_signal_engine",
-      "words": [
-        "cls",
-        "us",
-        "swing",
-        "signal",
-        "engine"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "UsSwingSignalEngine",
-        "ko": "US 스윙 시그널 엔진"
-      },
-      "description_i18n": {
-        "ko": "미국주식 스윙 시그널 엔진 (눌림/돌파 진입, 5단계 청산)"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "US_SIG",
-          "long": "UsSwingSignalEngine"
-        }
-      ]
-    },
-    {
-      "id": "cls_kr_orderbook_filter",
-      "words": [
-        "cls",
-        "kr",
-        "orderbook",
-        "filter"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "KrOrderbookFilter",
-        "ko": "KR 호가 필터"
-      },
-      "description_i18n": {
-        "ko": "KR 호가 기반 진입 정합성·매도 위험 점수 산출"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KR_OBF",
-          "long": "KrOrderbookFilter"
-        }
-      ]
-    },
-    {
-      "id": "cls_execution_engine",
-      "words": [
-        "cls",
-        "execution",
-        "engine"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "ExecutionEngine",
-        "ko": "실행 엔진"
-      },
-      "description_i18n": {
-        "ko": "주문 실행 담당 엔진 (OrderIntent → 브로커 API 호출)"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "EXEC_ENG",
-          "long": "ExecutionEngine"
-        }
-      ]
-    },
-    {
-      "id": "cls_trading_orchestrator",
-      "words": [
-        "cls",
-        "trading",
-        "orchestrator"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "TradingOrchestrator",
-        "ko": "트레이딩 오케스트레이터"
-      },
-      "description_i18n": {
-        "ko": "전체 거래 루프를 조율하는 최상위 클래스"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "T_ORCH",
-          "long": "TradingOrchestrator"
-        }
-      ]
-    },
-    {
-      "id": "cls_trade_record",
-      "words": [
-        "cls",
-        "trade",
-        "record"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "TradeRecord",
-        "ko": "거래 기록 모델"
-      },
-      "description_i18n": {
-        "ko": "거래 생명주기 전체(진입→청산) Pydantic 모델"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "TR",
-          "long": "TradeRecord"
-        }
-      ]
-    },
-    {
-      "id": "cls_replay_runner",
-      "words": [
-        "cls",
-        "replay",
-        "runner"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "ReplayRunner",
-        "ko": "리플레이 러너"
-      },
-      "description_i18n": {
-        "ko": "과거 데이터 기반 백테스트 실행 클래스"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "RPL_RUN",
-          "long": "ReplayRunner"
-        }
-      ]
-    },
-    {
-      "id": "cls_report_generator",
-      "words": [
-        "cls",
-        "report",
-        "generator"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "ReportGenerator",
-        "ko": "리포트 생성기"
-      },
-      "description_i18n": {
-        "ko": "일간/주간/월간 거래 리포트 생성 클래스"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "RPT_GEN",
-          "long": "ReportGenerator"
-        }
-      ]
-    },
-    {
-      "id": "cls_telegram_bot",
-      "words": [
-        "cls",
-        "telegram",
-        "bot"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "TelegramBot",
-        "ko": "텔레그램 봇 클래스"
-      },
-      "description_i18n": {
-        "ko": "Telegram 봇 기반 클래스 (system/test/market 공통)"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "TG_BOT_C",
-          "long": "TelegramBot"
-        }
-      ]
-    },
-    {
-      "id": "cls_db_engine",
-      "words": [
-        "cls",
-        "db",
-        "engine"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "DBEngine",
-        "ko": "DB 엔진"
-      },
-      "description_i18n": {
-        "ko": "PostgreSQL 연결 풀 및 ORM 세션 관리"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "DBA",
-          "long": "DBEngine"
-        }
-      ]
-    },
-    {
-      "id": "cls_crypto_risk_manager",
-      "words": [
-        "cls",
-        "crypto",
-        "risk",
-        "manager"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "CryptoRiskManager",
-        "ko": "코인 리스크 매니저"
-      },
-      "description_i18n": {
-        "ko": "코인 전용 리스크 관리 (연속손절·재진입 제한·일손 한도)"
-      },
-      "reason": "시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "CRY_RM",
-          "long": "CryptoRiskManager"
-        }
-      ]
-    },
-    {
-      "id": "mod_common",
-      "words": [
-        "mod",
-        "common"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Common Module",
-        "ko": "공통 모듈"
-      },
-      "description_i18n": {
-        "ko": "src/common/ — 모델, 설정, 로깅, 예외, 유틸"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "CMN",
-          "long": "common"
-        }
-      ]
     },
     {
       "id": "mod_adapters",
@@ -2845,10 +3254,12 @@
         "mod",
         "adapter"
       ],
-      "domain": "system",
+      "domain": [
+        "system"
+      ],
       "status": "active",
       "lang": {
-        "en": "Adapters Module",
+        "en": "adapters module",
         "ko": "어댑터 모듈"
       },
       "description_i18n": {
@@ -2857,24 +3268,26 @@
       "reason": "공인 약어, 시스템 객체",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "ADP",
-          "long": "adapters"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "adp",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "mod_collectors",
       "words": [
         "mod",
-        "collector"
+        "collect"
       ],
-      "domain": "system",
+      "domain": [
+        "system"
+      ],
       "status": "active",
       "lang": {
-        "en": "Collectors Module",
+        "en": "collectors module",
         "ko": "수집기 모듈"
       },
       "description_i18n": {
@@ -2883,102 +3296,110 @@
       "reason": "공인 약어, 시스템 객체",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "COL",
-          "long": "collectors"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "col",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "mod_selector",
+      "id": "mod_common",
       "words": [
         "mod",
-        "selector"
+        "common"
       ],
-      "domain": "system",
+      "domain": [
+        "system"
+      ],
       "status": "active",
       "lang": {
-        "en": "Selector Module",
-        "ko": "셀렉터 모듈"
+        "en": "common module",
+        "ko": "공통 모듈"
       },
       "description_i18n": {
-        "ko": "src/selector/ — 섹터·종목 선정"
+        "ko": "src/common/ — 모델, 설정, 로깅, 예외, 유틸"
       },
       "reason": "공인 약어, 시스템 객체",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SEL",
-          "long": "selector"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "cmn",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "mod_signals",
+      "id": "mod_config",
       "words": [
         "mod",
-        "signal"
+        "config"
       ],
-      "domain": "system",
+      "domain": [
+        "system"
+      ],
       "status": "active",
       "lang": {
-        "en": "Signals Module",
-        "ko": "시그널 모듈"
+        "en": "config module",
+        "ko": "설정 모듈"
       },
       "description_i18n": {
-        "ko": "src/signals/ — 진입/청산 시그널"
+        "ko": "src/common/config.py — Settings 싱글턴 모듈"
       },
       "reason": "공인 약어, 시스템 객체",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SIG_M",
-          "long": "signals"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "cfg_m",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "mod_risk",
+      "id": "mod_env",
       "words": [
         "mod",
-        "risk"
+        "env"
       ],
-      "domain": "system",
+      "domain": [
+        "system"
+      ],
       "status": "active",
       "lang": {
-        "en": "Risk Module",
-        "ko": "리스크 모듈"
+        "en": "env module",
+        "ko": "환경변수 모듈"
       },
       "description_i18n": {
-        "ko": "src/risk/ — 리스크 관리"
+        "ko": ".env 파일 로더 모듈"
       },
       "reason": "공인 약어, 시스템 객체",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "RSK",
-          "long": "risk"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "env_m",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "mod_execution",
       "words": [
         "mod",
-        "execution"
+        "execute"
       ],
-      "domain": "system",
+      "domain": [
+        "system"
+      ],
       "status": "active",
       "lang": {
-        "en": "Execution Module",
+        "en": "execution module",
         "ko": "실행 모듈"
       },
       "description_i18n": {
@@ -2989,171 +3410,17 @@
       "updated_at": "2026-04-15T04:29:45Z"
     },
     {
-      "id": "mod_replay",
-      "words": [
-        "mod",
-        "replay"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Replay Module",
-        "ko": "리플레이 모듈"
-      },
-      "description_i18n": {
-        "ko": "src/replay/ — 백테스트"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "RPL",
-          "long": "replay"
-        }
-      ]
-    },
-    {
-      "id": "mod_report",
-      "words": [
-        "mod",
-        "report"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Report Module",
-        "ko": "리포트 모듈"
-      },
-      "description_i18n": {
-        "ko": "src/report/ — 리포트, 대시보드"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "RPT",
-          "long": "report"
-        }
-      ]
-    },
-    {
-      "id": "mod_storage",
-      "words": [
-        "mod",
-        "storage"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Storage Module",
-        "ko": "스토리지 모듈"
-      },
-      "description_i18n": {
-        "ko": "src/storage/ — DB ORM, Redis 클라이언트"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "STG",
-          "long": "storage"
-        }
-      ]
-    },
-    {
-      "id": "mod_notifications",
-      "words": [
-        "mod",
-        "notification"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Notifications Module",
-        "ko": "알림 모듈"
-      },
-      "description_i18n": {
-        "ko": "src/notifications/ — Telegram 봇"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "NTF",
-          "long": "notifications"
-        }
-      ]
-    },
-    {
-      "id": "mod_config",
-      "words": [
-        "mod",
-        "config"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Config Module",
-        "ko": "설정 모듈"
-      },
-      "description_i18n": {
-        "ko": "src/common/config.py — Settings 싱글턴 모듈"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "CFG_M",
-          "long": "config"
-        }
-      ]
-    },
-    {
-      "id": "mod_env",
-      "words": [
-        "mod",
-        "env"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Env Module",
-        "ko": "환경변수 모듈"
-      },
-      "description_i18n": {
-        "ko": ".env 파일 로더 모듈"
-      },
-      "reason": "공인 약어, 시스템 객체",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "ENV_M",
-          "long": "env"
-        }
-      ]
-    },
-    {
       "id": "mod_logs",
       "words": [
         "mod",
         "log"
       ],
-      "domain": "system",
+      "domain": [
+        "system"
+      ],
       "status": "active",
       "lang": {
-        "en": "Logs Directory",
+        "en": "logs directory",
         "ko": "로그 디렉토리"
       },
       "description_i18n": {
@@ -3164,921 +3431,1335 @@
       "updated_at": "2026-04-15T04:29:45Z"
     },
     {
-      "id": "db_symbols",
+      "id": "mod_notifications",
       "words": [
-        "db",
-        "symbol"
+        "mod",
+        "notify"
       ],
-      "domain": "market",
-      "status": "active",
-      "lang": {
-        "en": "Symbols Table",
-        "ko": "종목 마스터 테이블"
-      },
-      "description_i18n": {
-        "ko": "DB 종목 마스터 (코드·이름·마켓)"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SYM",
-          "long": "symbols"
-        }
-      ]
-    },
-    {
-      "id": "db_stock_master",
-      "words": [
-        "db",
-        "stock",
-        "master"
-      ],
-      "domain": "market",
-      "status": "active",
-      "lang": {
-        "en": "Stock Master Table",
-        "ko": "주식 마스터 테이블"
-      },
-      "description_i18n": {
-        "ko": "DB 한국주식 종목 마스터"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "STK_MST",
-          "long": "stockMaster"
-        }
-      ]
-    },
-    {
-      "id": "db_sector_master",
-      "words": [
-        "db",
-        "sector",
-        "master"
-      ],
-      "domain": "market",
-      "status": "active",
-      "lang": {
-        "en": "Sector Master Table",
-        "ko": "섹터 마스터 테이블"
-      },
-      "description_i18n": {
-        "ko": "DB 섹터 마스터 (섹터코드·이름)"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SEC_MST",
-          "long": "sectorMaster"
-        }
-      ]
-    },
-    {
-      "id": "db_bars_1m",
-      "words": [
-        "db",
-        "bar"
-      ],
-      "domain": "market",
-      "status": "active",
-      "lang": {
-        "en": "1-Minute Bars Table",
-        "ko": "1분봉 테이블"
-      },
-      "description_i18n": {
-        "ko": "DB 1분 OHLCV 봉 데이터"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "BAR1M",
-          "long": "bars1m"
-        }
-      ]
-    },
-    {
-      "id": "db_ticks",
-      "words": [
-        "db",
-        "tick"
-      ],
-      "domain": "market",
-      "status": "active",
-      "lang": {
-        "en": "Ticks Table",
-        "ko": "틱 테이블"
-      },
-      "description_i18n": {
-        "ko": "DB 실시간 틱 데이터"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "TK_DB",
-          "long": "ticks"
-        }
-      ]
-    },
-    {
-      "id": "db_sector_rankings",
-      "words": [
-        "db",
-        "sector",
-        "ranking"
-      ],
-      "domain": "market",
-      "status": "active",
-      "lang": {
-        "en": "Sector Rankings Table",
-        "ko": "섹터 랭킹 테이블"
-      },
-      "description_i18n": {
-        "ko": "DB 섹터 랭킹 스냅샷"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SEC_RNK_DB",
-          "long": "sectorRankings"
-        }
-      ]
-    },
-    {
-      "id": "db_signals",
-      "words": [
-        "db",
-        "signal"
-      ],
-      "domain": "market",
-      "status": "active",
-      "lang": {
-        "en": "Signals Table",
-        "ko": "시그널 테이블"
-      },
-      "description_i18n": {
-        "ko": "DB 시그널 이력 저장 테이블"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SIG_DB",
-          "long": "dbSignals"
-        }
-      ]
-    },
-    {
-      "id": "db_orders",
-      "words": [
-        "db",
-        "order"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Orders Table",
-        "ko": "주문 테이블"
-      },
-      "description_i18n": {
-        "ko": "DB 주문 이력 테이블"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "ORD_DB",
-          "long": "dbOrders"
-        }
-      ]
-    },
-    {
-      "id": "db_fills",
-      "words": [
-        "db",
-        "fill"
-      ],
-      "domain": "trading",
-      "status": "active",
-      "lang": {
-        "en": "Fills Table",
-        "ko": "체결 테이블"
-      },
-      "description_i18n": {
-        "ko": "DB 체결 이력 테이블"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "FILL_DB",
-          "long": "dbFills"
-        }
-      ]
-    },
-    {
-      "id": "db_account_snapshots",
-      "words": [
-        "db",
-        "account",
-        "snapshot"
-      ],
-      "domain": "market",
-      "status": "active",
-      "lang": {
-        "en": "Account Snapshots Table",
-        "ko": "계좌 스냅샷 테이블"
-      },
-      "description_i18n": {
-        "ko": "DB 계좌 스냅샷 이력"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "ASNAP_DB",
-          "long": "accountSnapshots"
-        }
-      ]
-    },
-    {
-      "id": "db_risk_events",
-      "words": [
-        "db",
-        "risk",
-        "event"
-      ],
-      "domain": "market",
-      "status": "active",
-      "lang": {
-        "en": "Risk Events Table",
-        "ko": "리스크 이벤트 테이블"
-      },
-      "description_i18n": {
-        "ko": "DB 리스크 이벤트 이력 (킬스위치·일손 등)"
-      },
-      "reason": "공인 약어",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "REVT",
-          "long": "riskEvents"
-        }
-      ]
-    },
-    {
-      "id": "db_kr_orderbook_snapshot",
-      "words": [
-        "db",
-        "kr",
-        "orderbook",
-        "snapshot"
-      ],
-      "domain": "market",
-      "status": "active",
-      "lang": {
-        "en": "KR Orderbook Snapshot Table",
-        "ko": "KR 호가 스냅샷 테이블"
-      },
-      "description_i18n": {
-        "ko": "DB KR 주식 호가 스냅샷 (1초 주기)"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KR_OB_DB",
-          "long": "krOrderbookSnapshot"
-        }
-      ]
-    },
-    {
-      "id": "cfg_system",
-      "words": [
-        "config",
+      "domain": [
         "system"
       ],
-      "domain": "system",
       "status": "active",
       "lang": {
-        "en": "System Config",
-        "ko": "시스템 설정"
+        "en": "notifications module",
+        "ko": "알림 모듈"
       },
       "description_i18n": {
-        "ko": "settings.yaml > system 섹션"
+        "ko": "src/notifications/ — Telegram 봇"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "ntf",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "mod_replay",
+      "words": [
+        "mod",
+        "replay"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "replay module",
+        "ko": "리플레이 모듈"
+      },
+      "description_i18n": {
+        "ko": "src/replay/ — 백테스트"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "rpl",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "mod_report",
+      "words": [
+        "mod",
+        "report"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "report module",
+        "ko": "리포트 모듈"
+      },
+      "description_i18n": {
+        "ko": "src/report/ — 리포트, 대시보드"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "rpt",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "mod_risk",
+      "words": [
+        "mod",
+        "risk"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "risk module",
+        "ko": "리스크 모듈"
+      },
+      "description_i18n": {
+        "ko": "src/risk/ — 리스크 관리"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "rsk",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "mod_selector",
+      "words": [
+        "mod",
+        "select"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "selector module",
+        "ko": "셀렉터 모듈"
+      },
+      "description_i18n": {
+        "ko": "src/selector/ — 섹터·종목 선정"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sel",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "mod_signals",
+      "words": [
+        "mod",
+        "signal"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "signals module",
+        "ko": "시그널 모듈"
+      },
+      "description_i18n": {
+        "ko": "src/signals/ — 진입/청산 시그널"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sig_m",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "mod_storage",
+      "words": [
+        "mod",
+        "store"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "storage module",
+        "ko": "스토리지 모듈"
+      },
+      "description_i18n": {
+        "ko": "src/storage/ — DB ORM, Redis 클라이언트"
+      },
+      "reason": "공인 약어, 시스템 객체",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "stg",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "momentum_score",
+      "words": [
+        "momentum",
+        "score"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "momentum score",
+        "ko": "모멘텀 점수"
+      },
+      "description_i18n": {
+        "ko": "가격 모멘텀(추세 강도) 점수"
       },
       "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SYS",
-          "long": "system"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "mom",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "cfg_session",
+      "id": "mt5_bridge",
       "words": [
-        "config",
-        "session"
+        "mt5",
+        "bridge"
       ],
-      "domain": "system",
+      "domain": [
+        "infra"
+      ],
       "status": "active",
       "lang": {
-        "en": "Sessions Config",
-        "ko": "세션 설정"
+        "en": "mt5 bridge",
+        "ko": "mt5 브릿지"
       },
       "description_i18n": {
-        "ko": "settings.yaml > sessions 섹션 (마켓별 시간)"
+        "ko": "WSL에서 MT5 프록시로 RPC 호출하는 클라이언트 모듈"
+      },
+      "reason": "공인 약어, 고유명사",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "mt5b",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "mt5_proxy",
+      "words": [
+        "mt5",
+        "proxy"
+      ],
+      "domain": [
+        "infra"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "mt5 proxy",
+        "ko": "mt5 프록시"
+      },
+      "description_i18n": {
+        "ko": "WSL Python → Windows MT5 연결을 중계하는 FastAPI 서버"
+      },
+      "reason": "공인 약어, 고유명사",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "mt5p",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "no_bounce_exit",
+      "words": [
+        "no",
+        "bounce",
+        "exit"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "no bounce exit",
+        "ko": "반등 불발 청산"
+      },
+      "description_i18n": {
+        "ko": "반등 신호 없이 일정 시간 경과 시 청산"
       },
       "reason": "공인 약어",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SESS",
-          "long": "sessions"
-        },
-        {
-          "type": "plural",
-          "value": "cfg_sessions"
-        }
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "nbe",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "no_entry_after",
+      "words": [
+        "no",
+        "entry",
+        "after"
       ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "no entry after",
+        "ko": "진입 차단 시각"
+      },
+      "description_i18n": {
+        "ko": "이 시각 이후 신규 진입 차단"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "nea",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "node_name",
+      "words": [
+        "node",
+        "name"
+      ],
+      "domain": [
+        "infra"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "node name",
+        "ko": "노드명"
+      },
+      "description_i18n": {
+        "ko": "서버 식별자. 멀티노드 배포 시 노드 구분에 사용."
+      },
+      "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z"
     },
     {
-      "id": "cfg_kr_strategy",
+      "id": "order_intent",
       "words": [
-        "config",
-        "kr",
-        "strategy"
+        "order",
+        "intent"
       ],
-      "domain": "system",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "KR Strategy Config",
-        "ko": "KR 전략 설정"
+        "en": "order intent",
+        "ko": "주문 의도"
       },
       "description_i18n": {
-        "ko": "settings.yaml > kr_strategy 섹션"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KR_STR",
-          "long": "krStrategy"
-        }
-      ]
-    },
-    {
-      "id": "cfg_kr_selector",
-      "words": [
-        "config",
-        "kr",
-        "selector"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "KR Selector Config",
-        "ko": "KR 셀렉터 설정"
-      },
-      "description_i18n": {
-        "ko": "settings.yaml > kr_selector 섹션"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KR_SEL",
-          "long": "krSelector"
-        }
-      ]
-    },
-    {
-      "id": "cfg_entry_deny",
-      "words": [
-        "config",
-        "entry",
-        "deny"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Entry Deny Config",
-        "ko": "진입 차단 설정"
-      },
-      "description_i18n": {
-        "ko": "settings.yaml > entry_deny 섹션 (진입 차단 조건)"
+        "ko": "주문 실행 전 의사결정 내용. execution이 생성하여 adapter에 전달."
       },
       "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "ED",
-          "long": "entryDeny"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "oi",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "cfg_scoring",
+      "id": "order_status",
       "words": [
-        "config",
-        "scoring"
+        "order",
+        "status"
       ],
-      "domain": "system",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Scoring Config",
-        "ko": "스코어링 설정"
+        "en": "order status",
+        "ko": "주문 상태"
       },
       "description_i18n": {
-        "ko": "settings.yaml > scoring 섹션 (가중치 파라미터)"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SCR_CFG",
-          "long": "scoring"
-        }
-      ]
-    },
-    {
-      "id": "cfg_backtest",
-      "words": [
-        "config",
-        "backtest"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Backtest Config",
-        "ko": "백테스트 설정"
-      },
-      "description_i18n": {
-        "ko": "settings.yaml > backtest 섹션"
+        "ko": "주문 생명주기 상태: pending→submitted→filled/cancelled/rejected"
       },
       "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "BT",
-          "long": "backtest"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "os",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "cfg_reporting",
+      "id": "partial_fill",
       "words": [
-        "config",
-        "reporting"
+        "partial",
+        "fill"
       ],
-      "domain": "system",
+      "domain": [
+        "system"
+      ],
       "status": "active",
       "lang": {
-        "en": "Reporting Config",
-        "ko": "리포트 설정"
+        "en": "partial fill",
+        "ko": "부분 체결"
       },
       "description_i18n": {
-        "ko": "settings.yaml > reporting 섹션"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "RPT_CFG",
-          "long": "reporting"
-        }
-      ]
-    },
-    {
-      "id": "env_var",
-      "words": [
-        "env",
-        "var"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Environment Variable",
-        "ko": "환경변수"
-      },
-      "description_i18n": {
-        "ko": ".env 파일 환경변수 총칭"
+        "ko": "주문 수량의 일부만 체결된 상태"
       },
       "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "ENV_E",
-          "long": "envVar"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "part",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "env_node_name",
+      "id": "position_size",
       "words": [
-        "env",
-        "node",
-        "name"
+        "position",
+        "size"
       ],
-      "domain": "system",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Node Name Env",
-        "ko": "노드명 환경변수"
+        "en": "position size",
+        "ko": "포지션 크기"
       },
       "description_i18n": {
-        "ko": ".env > NODE_NAME"
+        "ko": "1회 진입 시 투입 금액 또는 계약 수"
       },
       "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "NODE_E",
-          "long": "nodeNameEnv"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "psiz",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "env_pg_dsn",
+      "id": "process_guard",
       "words": [
-        "env",
-        "pg",
-        "dsn"
+        "process",
+        "guard"
       ],
-      "domain": "system",
+      "domain": [
+        "infra"
+      ],
       "status": "active",
       "lang": {
-        "en": "PostgreSQL DSN Env",
-        "ko": "PostgreSQL DSN"
+        "en": "process guard",
+        "ko": "프로세스 가드"
       },
       "description_i18n": {
-        "ko": ".env > PG_DSN — PostgreSQL 접속 문자열"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "PG_DSN",
-          "long": "pgDsn"
-        }
-      ]
-    },
-    {
-      "id": "env_redis_url",
-      "words": [
-        "env",
-        "redis",
-        "url"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Redis URL Env",
-        "ko": "Redis URL"
-      },
-      "description_i18n": {
-        "ko": ".env > REDIS_URL — Redis 접속 URL"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "REDIS_URL",
-          "long": "redisUrl"
-        }
-      ]
-    },
-    {
-      "id": "env_enable_kr",
-      "words": [
-        "env",
-        "enable",
-        "kr"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Enable KR Market Env",
-        "ko": "KR 마켓 활성화"
-      },
-      "description_i18n": {
-        "ko": ".env > E_KR — 한국주식 마켓 활성화 여부"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "E_KR",
-          "long": "enableKr"
-        }
-      ]
-    },
-    {
-      "id": "env_enable_us",
-      "words": [
-        "env",
-        "enable",
-        "us"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Enable US Market Env",
-        "ko": "US 마켓 활성화"
-      },
-      "description_i18n": {
-        "ko": ".env > E_US — 미국주식 마켓 활성화 여부"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "E_US",
-          "long": "enableUs"
-        }
-      ]
-    },
-    {
-      "id": "env_enable_fx",
-      "words": [
-        "env",
-        "enable",
-        "fx"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "Enable FX Market Env",
-        "ko": "FX 마켓 활성화"
-      },
-      "description_i18n": {
-        "ko": ".env > E_FX — 외환선물 마켓 활성화 여부"
-      },
-      "reason": "의미 비합산",
-      "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "E_FX",
-          "long": "enableFx"
-        }
-      ]
-    },
-    {
-      "id": "env_mt5_proxy_url",
-      "words": [
-        "env",
-        "mt5",
-        "proxy",
-        "url"
-      ],
-      "domain": "system",
-      "status": "active",
-      "lang": {
-        "en": "MT5 Proxy URL Env",
-        "ko": "MT5 프록시 URL"
-      },
-      "description_i18n": {
-        "ko": ".env > MT5P — MT5 프록시 서버 URL (툴 접속 설정이므로 MT5 유지)"
+        "ko": "중복 프로세스 실행 방지 (PID 파일 기반)"
       },
       "reason": "공인 약어",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "MT5P_E",
-          "long": "mt5ProxyUrl"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "pgd",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "env_kis_app_key",
+      "id": "realized_pnl",
       "words": [
-        "env",
-        "kis",
-        "app",
-        "key"
+        "realize",
+        "pnl"
       ],
-      "domain": "system",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "KIS App Key Env",
-        "ko": "KIS 앱키"
+        "en": "realized pnl",
+        "ko": "실현 손익"
       },
       "description_i18n": {
-        "ko": ".env > KIS_AK — KIS API 앱키"
+        "ko": "청산 완료된 거래의 확정 손익"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "rpnl",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "realtime_log",
+      "words": [
+        "realtime",
+        "log"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "realtime log",
+        "ko": "실시간 로그"
+      },
+      "description_i18n": {
+        "ko": "Redis 스트림 기반 실시간 이벤트 로그"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "rlog",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "reboot_time",
+      "words": [
+        "reboot",
+        "time"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "reboot time",
+        "ko": "리부트 시각"
+      },
+      "description_i18n": {
+        "ko": "일일 정기 프로세스 재시작 시각"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "rbt",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "risk_manager",
+      "words": [
+        "risk",
+        "manage"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "risk manager",
+        "ko": "리스크 매니저"
+      },
+      "description_i18n": {
+        "ko": "일일 손실 한도, 포지션 한도, 킬스위치 판단 담당"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "rm",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "sector_ranking",
+      "words": [
+        "sector",
+        "ranking"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "sector ranking",
+        "ko": "섹터 랭킹"
+      },
+      "description_i18n": {
+        "ko": "섹터별 강도 점수 순위"
       },
       "reason": "의미 비합산",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KIS_AK",
-          "long": "kisAppKey"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "sec_rnk",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "env_kis_app_secret",
+      "id": "sector_score",
       "words": [
-        "env",
-        "kis",
-        "app",
-        "secret"
+        "sector",
+        "score"
       ],
-      "domain": "system",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "KIS App Secret Env",
-        "ko": "KIS 앱시크릿"
+        "en": "sector score",
+        "ko": "섹터 점수"
       },
       "description_i18n": {
-        "ko": ".env > KIS_AS — KIS API 앱시크릿"
+        "ko": "섹터 강도를 수치화한 점수"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "ss",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "sector_strength_score",
+      "words": [
+        "sector",
+        "strength",
+        "score"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "sector strength score",
+        "ko": "섹터 강도 점수"
+      },
+      "description_i18n": {
+        "ko": "섹터 내 비교 강도 점수"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sss",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "service_manager",
+      "words": [
+        "service",
+        "manage"
+      ],
+      "domain": [
+        "infra"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "service manager",
+        "ko": "서비스 매니저"
+      },
+      "description_i18n": {
+        "ko": "멀티서비스(DB/LOG/FX/KR/US/Crypto) 시작·중지·상태 관리"
       },
       "reason": "의미 비합산",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KIS_AS",
-          "long": "kisAppSecret"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "svc_mgr",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "env_kis_account_no",
+      "id": "signal_direction",
       "words": [
-        "env",
-        "kis",
-        "account",
-        "no"
+        "signal",
+        "direction"
       ],
-      "domain": "system",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "KIS Account No Env",
-        "ko": "KIS 계좌번호"
+        "en": "signal direction",
+        "ko": "시그널 방향"
       },
       "description_i18n": {
-        "ko": ".env > KIS_ACCT — KIS 실전 계좌번호"
+        "ko": "LONG / SHORT / FLAT — 시그널이 제안하는 포지션 방향"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "dir",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "signal_engine",
+      "words": [
+        "signal",
+        "engine"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "signal engine",
+        "ko": "시그널 엔진"
+      },
+      "description_i18n": {
+        "ko": "진입·청산 조건을 판단하는 핵심 로직 단위"
       },
       "reason": "의미 비합산",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KIS_ACCT",
-          "long": "kisAccountNo"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "sig_eng",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "env_kis_mock_app_key",
+      "id": "split_buy",
       "words": [
-        "env",
-        "kis",
-        "mock",
-        "app",
-        "key"
+        "split",
+        "buy"
       ],
-      "domain": "system",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "KIS Mock App Key Env",
-        "ko": "KIS 모의 앱키"
+        "en": "split buy",
+        "ko": "분할 매수"
       },
       "description_i18n": {
-        "ko": ".env > KIS_MAK — KIS 모의투자 앱키"
+        "ko": "분할 매수 (여러 번 나눠서 진입)"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sbuy",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "split_sell",
+      "words": [
+        "split",
+        "sell"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "split sell",
+        "ko": "분할 매도"
+      },
+      "description_i18n": {
+        "ko": "분할 매도 (여러 번 나눠서 청산)"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "ssell",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "stock_score",
+      "words": [
+        "stock",
+        "score"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "stock score",
+        "ko": "종목 점수"
+      },
+      "description_i18n": {
+        "ko": "개별 종목 강도를 수치화한 점수"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sts",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "stop_loss",
+      "words": [
+        "stop",
+        "loss"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "stop loss",
+        "ko": "손절"
+      },
+      "description_i18n": {
+        "ko": "손실 한도 도달 시 강제 청산. Hard Stop."
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sl",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "symbol_ranking",
+      "words": [
+        "symbol",
+        "ranking"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "symbol ranking",
+        "ko": "종목 랭킹"
+      },
+      "description_i18n": {
+        "ko": "종목별 점수 순위"
       },
       "reason": "의미 비합산",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KIS_MAK",
-          "long": "kisMockAppKey"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "sym_rnk",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "env_dashboard_port",
+      "id": "system_notifier",
       "words": [
-        "env",
-        "dashboard",
-        "port"
+        "system",
+        "notify"
       ],
-      "domain": "system",
+      "domain": [
+        "system"
+      ],
       "status": "active",
       "lang": {
-        "en": "Dashboard Port Env",
-        "ko": "대시보드 포트"
+        "en": "system notifier",
+        "ko": "시스템 알림"
       },
       "description_i18n": {
-        "ko": ".env > DASH_P — 대시보드 웹서버 포트"
+        "ko": "시스템 이벤트(장애·시작·종료)를 Telegram system 봇으로 발송"
       },
       "reason": "의미 비합산",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "DASH_P",
-          "long": "dashboardPort"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "sys_ntf",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
-      "id": "env_project_root",
+      "id": "take_profit",
       "words": [
-        "env",
-        "project",
-        "root"
+        "take",
+        "profit"
       ],
-      "domain": "system",
+      "domain": [
+        "trading"
+      ],
       "status": "active",
       "lang": {
-        "en": "Project Root Env",
-        "ko": "프로젝트 루트"
+        "en": "take profit",
+        "ko": "익절"
       },
       "description_i18n": {
-        "ko": ".env > PROJECT_ROOT — 프로젝트 절대 경로 기준"
+        "ko": "목표 수익 도달 시 청산"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "tp",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "task_scheduler",
+      "words": [
+        "task",
+        "scheduler"
+      ],
+      "domain": [
+        "infra"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "task scheduler",
+        "ko": "태스크 스케줄러"
+      },
+      "description_i18n": {
+        "ko": "일별/시간별 예약 작업 실행 (리부트, 리포트 생성 등)"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "sched",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "telegram_bot",
+      "words": [
+        "telegram",
+        "bot"
+      ],
+      "domain": [
+        "ui"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "telegram bot",
+        "ko": "텔레그램 봇"
+      },
+      "description_i18n": {
+        "ko": "Telegram 알림·명령 처리 봇 (system/test/market 3종)"
       },
       "reason": "의미 비합산",
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-15T04:29:45Z",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "PROJECT_ROOT",
-          "long": "projectRoot"
-        }
-      ]
+      "variants": [],
+      "abbreviation": {
+        "short": "tg_bot",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "top[n]",
+      "words": [
+        "top"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "top [n]",
+        "ko": "상위 n개"
+      },
+      "description_i18n": {
+        "ko": "상위 N개 항목 선택/필터링. [N]은 임의의 자연수(>0). 실제 사용: top3, top5, top10, top100 등"
+      },
+      "not": [
+        "top_n"
+      ],
+      "reason": "숫자 파라미터 패턴. 개별 등록 시 무한 증식",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": []
+    },
+    {
+      "id": "tracking_start",
+      "words": [
+        "tracker",
+        "start"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "tracking start",
+        "ko": "트래킹 시작"
+      },
+      "description_i18n": {
+        "ko": "시세 추적 및 신호 감지 시작 시각"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "trk_st",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "trade_notifier",
+      "words": [
+        "trade",
+        "notify"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "trade notifier",
+        "ko": "거래 알림"
+      },
+      "description_i18n": {
+        "ko": "체결·청산 이벤트를 Telegram market 봇으로 발송"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "trd_ntf",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "trading_value_score",
+      "words": [
+        "trade",
+        "value",
+        "score"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "trading value score",
+        "ko": "거래대금 점수"
+      },
+      "description_i18n": {
+        "ko": "거래대금 기반 유동성 점수"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "tvs",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "trailing_stop",
+      "words": [
+        "trailing",
+        "stop"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "trailing stop",
+        "ko": "트레일링 스탑"
+      },
+      "description_i18n": {
+        "ko": "진입 후 최고가 대비 일정 % 이하로 하락 시 청산. 수익 보호."
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "tsl",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "transaction_id",
+      "words": [
+        "transaction",
+        "id"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "transaction id",
+        "ko": "트랜잭션 id"
+      },
+      "description_i18n": {
+        "ko": "주문-체결-청산을 연결하는 고유 식별자"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "tr_id",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "unrealized_pnl",
+      "words": [
+        "unrealized",
+        "pnl"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "unrealized pnl",
+        "ko": "미실현 손익"
+      },
+      "description_i18n": {
+        "ko": "현재 보유 중인 포지션의 평가 손익"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "upnl",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "upper_wick",
+      "words": [
+        "upper",
+        "wick"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "upper wick",
+        "ko": "윗꼬리"
+      },
+      "description_i18n": {
+        "ko": "캔들 고가에서 몸통까지의 꼬리 (매도 압력 지표)"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "uw",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "us_stock",
+      "words": [
+        "us",
+        "stock"
+      ],
+      "domain": [
+        "market"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "us stock",
+        "ko": "미국주식"
+      },
+      "description_i18n": {
+        "ko": "미국 주식 시장 (NYSE, NASDAQ 등)"
+      },
+      "reason": "의미 비합산",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": []
+    },
+    {
+      "id": "volatility_score",
+      "words": [
+        "volatile",
+        "score"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "volatility score",
+        "ko": "변동성 점수"
+      },
+      "description_i18n": {
+        "ko": "가격 변동성 점수. 높을수록 리스크 높음."
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "vols",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "id": "work_start",
+      "words": [
+        "work",
+        "start"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "work start",
+        "ko": "업무 시작"
+      },
+      "description_i18n": {
+        "ko": "일일 업무 시작 시각 (사전 준비 포함)"
+      },
+      "reason": "공인 약어",
+      "created_at": "2026-04-14T13:05:05Z",
+      "updated_at": "2026-04-15T04:29:45Z",
+      "variants": [],
+      "abbreviation": {
+        "short": "ws",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     }
   ]
 }

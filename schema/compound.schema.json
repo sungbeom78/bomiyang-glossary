@@ -23,8 +23,10 @@
       "minItems": 1
     },
     "domain": {
-      "type": "string",
-      "enum": ["trading", "market", "system", "infra", "ui", "general", "proper"]
+      "anyOf": [
+        { "type": "string", "enum": ["trading", "market", "system", "infra", "ui", "general", "proper"] },
+        { "type": "array", "items": { "type": "string", "enum": ["trading", "market", "system", "infra", "ui", "general", "proper"] } }
+      ]
     },
     "status": {
       "type": "string",
@@ -46,7 +48,6 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["type"],
         "properties": {
           "type": {
             "type": "string",
@@ -56,6 +57,18 @@
               "noun_form", "verb_form", "present_participle",
               "past", "past_participle", "agent", "pos_forms", "deprecated"
             ]
+          },
+          "types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "plural", "singular", "abbreviation", "alias",
+                "misspelling", "adjective", "adverb", "verb",
+                "noun_form", "verb_form", "present_participle",
+                "past", "past_participle", "agent", "pos_forms", "deprecated"
+              ]
+            }
           },
           "value":  { "type": "string" },
           "short":  { "type": "string" },
@@ -74,6 +87,10 @@
             }
           }
         },
+        "anyOf": [
+          { "required": ["type"] },
+          { "required": ["types"] }
+        ],
         "oneOf": [
           { "required": ["value"] },
           { "required": ["short"] }
@@ -97,6 +114,18 @@
     },
     "created_at":    { "type": "string", "format": "date-time" },
     "updated_at":    { "type": "string", "format": "date-time" },
+    "abbreviation": {
+      "type": "object",
+      "properties": {
+        "short":          { "type": "string",  "description": "약어 표기 (예: BOMTS)" },
+        "long":           { "type": "string",  "description": "풀네임 compound id (예: bomiyang_trading_system)" },
+        "case_sensitive": { "type": "boolean", "default": false },
+        "confidence":     { "type": "string",  "enum": ["high", "medium", "low"] },
+        "ambiguity":      { "type": "string",  "enum": ["low", "medium", "high"] }
+      },
+      "required": ["short"],
+      "additionalProperties": false
+    },
     "deprecated_at": { "type": "string", "format": "date-time" }
   },
   "additionalProperties": false

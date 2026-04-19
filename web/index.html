@@ -142,7 +142,8 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
     <!-- 기본 -->
     <div style="font-family:var(--mono);font-size:9px;color:var(--ac);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--ln)">기본 정보</div>
     <div class="fg2"><div class="fg"><div class="fl">id <span class="req">*</span></div><input class="fi" id="wf-id" placeholder="kill"></div><div class="fg"><div class="fl">pos <span class="req">*</span></div><select class="fsel" id="wf-pos"><option value="noun">noun</option><option value="verb">verb</option><option value="adj">adj</option><option value="adv">adv</option><option value="prefix">prefix</option><option value="suffix">suffix</option><option value="proper">proper</option></select></div></div>
-    <div class="fg2"><div class="fg"><div class="fl">status</div><select class="fsel" id="wf-status"><option value="active">active</option><option value="deprecated">deprecated</option></select></div><div class="fg"><div class="fl">domain <span class="req">*</span></div><select class="fsel" id="wf-domain"><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select></div></div>
+    <datalist id="domain-list"><option value="trading"></option><option value="market"></option><option value="system"></option><option value="infra"></option><option value="ui"></option><option value="general"></option><option value="proper"></option></datalist>
+<div class="fg2"><div class="fg"><div class="fl">status</div><select class="fsel" id="wf-status"><option value="active">active</option><option value="deprecated">deprecated</option></select></div><div class="fg"><div class="fl">domain <span class="req">*</span></div><div class="fsel" id="wf-domain" style="min-height:24px;padding:2px 4px;cursor:text"></div></div></div>
     <!-- 다국어 -->
     <div style="font-family:var(--mono);font-size:9px;color:var(--ac);letter-spacing:.08em;text-transform:uppercase;margin:12px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--ln)">다국어 번역</div>
     <div class="fg2"><div class="fg"><div class="fl">english <span class="req">*</span></div><input class="fi" id="wf-en" placeholder="kill"></div><div class="fg"><div class="fl">한글 <span class="req">*</span></div><input class="fi" id="wf-ko" placeholder="킬"></div></div>
@@ -171,7 +172,7 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
     <div class="fg2"><div class="fg"><div class="fl">한글 <span class="req">*</span></div><input class="fi" id="cf-ko" placeholder="킬스위치"></div><div class="fg"><div class="fl">english <span class="req">*</span></div><input class="fi" id="cf-en" placeholder="Kill Switch"></div></div>
     <div class="fg2"><div class="fg"><div class="fl">abbr_long <span class="req">*</span></div><input class="fi" id="cf-long" placeholder="killSwitch"></div><div class="fg"><div class="fl">abbr_short <span class="req">*</span></div><input class="fi" id="cf-short" placeholder="KSW"></div></div>
     <div class="fg2">
-      <div class="fg"><div class="fl">status</div><select class="fsel" id="cf-status"><option value="active">active</option><option value="deprecated">deprecated</option></select></div><div class="fg"><div class="fl">domain <span class="req">*</span></div><select class="fsel" id="cf-domain"><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select></div>
+      <div class="fg"><div class="fl">status</div><select class="fsel" id="cf-status"><option value="active">active</option><option value="deprecated">deprecated</option></select></div><div class="fg"><div class="fl">domain <span class="req">*</span></div><div class="fsel" id="cf-domain" style="min-height:24px;padding:2px 4px;cursor:text"></div></div>
       <div class="fg"><div class="fl">등록 사유 <span class="req">*</span></div><select class="fsel" id="cf-reason"><option value="의미 비합산">의미 비합산</option><option value="공인 약어">공인 약어</option><option value="혼동 방지">혼동 방지</option><option value="시스템 객체">시스템 객체</option><option value="고유명사">고유명사</option></select></div>
     </div>
     <div class="fg"><div class="fl">설명 <span class="req">*</span></div><textarea class="fta" id="cf-desc" placeholder="한 줄 설명"></textarea></div>
@@ -295,6 +296,89 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
 
 <script>
 
+function initMultiInput(containerId, initialValues, datalistId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML = '';
+    
+    container.style.display = 'flex';
+    container.style.flexWrap = 'wrap';
+    container.style.gap = '4px';
+    container.style.alignItems = 'center';
+    container.style.cursor = 'text';
+    
+    let values = Array.isArray(initialValues) ? [...initialValues] : (initialValues ? String(initialValues).split(',').map(s=>s.trim()).filter(Boolean) : []);
+    
+    function render() {
+        container.innerHTML = '';
+        values.forEach((val, idx) => {
+            const tag = document.createElement('div');
+            tag.style.cssText = 'background:var(--ac);color:#000;border-radius:2px;padding:1px 5px;font-size:10px;display:flex;align-items:center;gap:4px;';
+            tag.innerHTML = `<span style="font-family:var(--mono);font-weight:600">${escapeHtml(val)}</span>`;
+            
+            const btn = document.createElement('span');
+            btn.textContent = '×';
+            btn.style.cssText = 'cursor:pointer;font-weight:bold;color:rgba(0,0,0,0.5);margin-left:2px;';
+            btn.onmouseenter = () => btn.style.color = '#000';
+            btn.onmouseleave = () => btn.style.color = 'rgba(0,0,0,0.5)';
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                values.splice(idx, 1);
+                updateValue();
+                render();
+            };
+            tag.appendChild(btn);
+            container.appendChild(tag);
+        });
+        
+        const input = document.createElement('input');
+        input.type = 'text';
+        if(datalistId) input.setAttribute('list', datalistId);
+        input.style.cssText = 'border:none;outline:none;background:transparent;color:var(--tx);flex:1;min-width:70px;padding:0;font-size:10px;font-family:inherit;';
+        
+        input.onkeydown = (e) => {
+            if(e.key === 'Enter' || e.key === ',') {
+                e.preventDefault();
+                const v = input.value.trim().replace(/,/g, '');
+                if(v && !values.includes(v)) {
+                    values.push(v);
+                    updateValue();
+                    render();
+                    setTimeout(() => { const i = container.querySelector('input'); if(i) i.focus(); }, 0);
+                }
+            } else if(e.key === 'Backspace' && input.value === '' && values.length > 0) {
+                values.pop();
+                updateValue();
+                render();
+                setTimeout(() => { const i = container.querySelector('input'); if(i) i.focus(); }, 0);
+            }
+        };
+        input.onblur = () => {
+            const v = input.value.trim().replace(/,/g, '');
+            if(v && !values.includes(v)) {
+                values.push(v);
+                updateValue();
+                render();
+            }
+        };
+        container.appendChild(input);
+        container.onclick = () => input.focus();
+    }
+    
+    function updateValue() {
+        container.dataset.value = JSON.stringify(values);
+    }
+    
+    updateValue();
+    render();
+}
+
+function getMultiInputValue(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container || !container.dataset.value) return [];
+    try { return JSON.parse(container.dataset.value); } catch(e) { return []; }
+}
+
 function fmtDT(iso){
   if(!iso) return '';
   const d = new Date(iso);
@@ -338,8 +422,8 @@ function getVariantLong(variants) {
   return '';
 }
 // compound의 abbreviation short/long 추출 (variants array 또는 구 bbr 하위호환)
-function cAbbrShort(c) { return getVariantShort(c.variants) || c.abbr?.short || ''; }
-function cAbbrLong(c)  { return getVariantLong(c.variants)  || c.abbr?.long  || ''; }
+function cAbbrShort(c) { return getVariantShort(c.variants) || c.abbreviation?.short || ''; }
+function cAbbrLong(c)  { return getVariantLong(c.variants)  || c.abbreviation?.long  || ''; }
 
 // words ETag cache for reload optimization
 let _wordsETag = '';
@@ -434,8 +518,8 @@ switchTab('words');
 function wFilter(){
   const q=document.getElementById('w-search').value.toLowerCase().trim();
   const dm=document.getElementById('w-domain').value,ps=document.getElementById('w-pos').value;
-  wFlt=WORDS.filter(w=>{if(dm&&w.domain!==dm)return false;if(ps&&w.canonical_pos!==ps)return false;
-    if(!q)return true;return[w.id,w.lang?.en,w.lang?.ko,getVariantShort(w.variants),w.description_i18n?.ko].some(v=>v&&v.toLowerCase().includes(q));});
+  wFlt=WORDS.filter(w=>{if(dm&&(!Array.isArray(w.domain)?w.domain!==dm:!w.domain.includes(dm)))return false;if(ps&&w.canonical_pos!==ps)return false;
+    if(!q)return true;return[w.id,w.lang?.en,w.lang?.ko,w.abbreviation?.short,w.abbreviation?.long,getVariantShort(w.variants),w.description_i18n?.ko].some(v=>v&&v.toLowerCase().includes(q));});
   wFlt.sort((a,b)=>{const av=(a[wSort.col]||'').toLowerCase(),bv=(b[wSort.col]||'').toLowerCase();return av<bv?-wSort.dir:av>bv?wSort.dir:0;});
   renderWords();
 }
@@ -467,7 +551,7 @@ function renderWords(){
       '<td class="c-ko">' + x(lang === 'ko' ? ko : displayLang) + '</td>' +
       '<td>' + abbrHtml + '</td>' +
       '<td><span class="c-pos">' + x(w.canonical_pos) + '</span></td>' +
-      '<td><span class="c-domain ' + (DC[w.domain] || 'd-general') + '">' + x(w.domain) + '</span></td>' +
+      '<td><span class="c-domain ' + (DC[Array.isArray(w.domain)?w.domain[0]:w.domain] || 'd-general') + '">' + x(Array.isArray(w.domain)?w.domain[0]:w.domain) + '</span></td>' +
       '<td class="c-desc" title="' + x(desc) + '">' + x(desc) + '</td>' +
       '<td style="text-align:center"><button class="del-btn" data-del-word="' + x(w.id) + '" data-del-ko="' + x(ko) + '">&#x1F5D1;</button></td>'
     );
@@ -497,7 +581,7 @@ function renderWords(){
         '<div class="xf"><label>created_at</label><div class="xv dt-val" data-dt="' + x(w.created_at || '') + '" style="font-family:var(--mono);font-size:9px">' + fmtDT(w.created_at) + '</div></div>' +
         '<div class="xf"><label>updated_at</label><div class="xv dt-val" data-dt="' + x(w.updated_at || '') + '" style="font-family:var(--mono);font-size:9px">' + fmtDT(w.updated_at) + '</div></div>' +
         '<div class="xf"><label>pos</label><div class="xv"><span class="c-pos">' + x(w.canonical_pos) + '</span></div></div>' +
-        '<div class="xf"><label>domain</label><div class="xv"><span class="c-domain ' + (DC[w.domain] || '') + '">' + x(w.domain) + '</span></div></div>' +
+        '<div class="xf"><label>domain</label><div class="xv"><span class="c-domain ' + (DC[Array.isArray(w.domain)?w.domain[0]:w.domain] || '') + '">' + x(Array.isArray(w.domain)?w.domain[0]:w.domain) + '</span></div></div>' +
         '<div class="xf"><label>lang.ja</label><div class="xv">' + x(jaVal) + '</div></div>' +
         '<div class="xf"><label>lang.zh_hans</label><div class="xv">' + x(zhVal) + '</div></div>' +
         '<div class="xf full"><label>description (ko)</label><div class="xv">' + x(descKo) + '</div></div>'
@@ -550,7 +634,7 @@ document.querySelectorAll('#w-tbl th.srt').forEach(th=>{th.addEventListener('cli
 function cFilter(){
   const q=document.getElementById('c-search').value.toLowerCase().trim();
   const dm=document.getElementById('c-domain').value;
-  cFlt=COMPOUNDS.filter(c=>{if(dm&&c.domain!==dm)return false;if(!q)return true;
+  cFlt=COMPOUNDS.filter(c=>{if(dm&&(!Array.isArray(c.domain)?c.domain!==dm:!c.domain.includes(dm)))return false;if(!q)return true;
     return[c.id,c.lang?.ko,c.lang?.en,cAbbrLong(c),cAbbrShort(c),(c.words||[]).join(' '),c.description_i18n?.ko].some(v=>v&&v.toLowerCase().includes(q));});
   cFlt.sort((a,b)=>{const av=(a[cSort.col]||'').toLowerCase(),bv=(b[cSort.col]||'').toLowerCase();return av<bv?-cSort.dir:av>bv?cSort.dir:0;});
   renderCompounds();
@@ -572,8 +656,8 @@ function toggleCExp(id){cExpId=(cExpId===id)?null:id;renderCompounds();}
 document.querySelectorAll('#c-tbl th.srt').forEach(th=>{th.addEventListener('click',()=>{const col=th.dataset.col;cSort.dir=(cSort.col===col)?-cSort.dir:1;cSort.col=col;document.querySelectorAll('#c-tbl th').forEach(h=>h.classList.remove('sa','sd'));th.classList.add(cSort.dir===1?'sa':'sd');cFilter();});});
 
 // ── BANNED ──
-function bFilter(){const q=document.getElementById('b-search').value.toLowerCase().trim();bFlt=BANNED.filter(b=>{if(!q)return true;return[b.expression,b.context,b.correct,b.reason].some(v=>v&&v.toLowerCase().includes(q));});renderBanned();}
-function renderBanned(){const tb=document.getElementById('b-body');tb.innerHTML='';bFlt.forEach(b=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${b.status==="deprecated"?`<span style="color:var(--re);margin-right:4px;font-size:9px">[DEP]</span>`:""}<code class="c-expr">${x(b.expression)}</code></td><td class="c-desc">${x(b.context)}</td><td><code class="c-correct">${x(b.correct)}</code></td><td class="c-desc">${x(b.reason)}</td><td style="text-align:center"><button class="del-btn" onclick="event.stopPropagation();confirmDel(()=>doDeleteBanned('${x(b.expression)}'),'${x(b.expression)}')">🗑</button></td>`;tr.addEventListener('dblclick',e=>{e.preventDefault();openBannedForm(b);});tb.appendChild(tr);});document.getElementById('b-cnt').textContent=`${bFlt.length}개`;}
+function bFilter(){const q=document.getElementById('b-search').value.toLowerCase().trim();bFlt=BANNED.filter(b=>{if(!q)return true;const cv=typeof b.correct==='object'?(b.correct?.value||''):String(b.correct||'');const reason=b.reason_i18n?.(window.LANG)||b.reason_i18n?.ko||b.reason||'';return[b.expression,b.context,cv,reason].some(v=>v&&v.toLowerCase().includes(q));});renderBanned();}
+function renderBanned(){const tb=document.getElementById('b-body');tb.innerHTML='';bFlt.forEach(b=>{const tr=document.createElement('tr');const cv=typeof b.correct==='object'?(b.correct?.value||''):String(b.correct||'');const reason=b.reason_i18n?.(window.LANG)||b.reason_i18n?.ko||b.reason||'';const ctx=b.context||'';tr.innerHTML=`<td>${b.status==="deprecated"?`<span style="color:var(--re);margin-right:4px;font-size:9px">[DEP]</span>`:""}<code class="c-expr">${x(b.expression)}</code></td><td class="c-desc">${x(ctx)}</td><td><code class="c-correct">${x(cv)}</code></td><td class="c-desc">${x(reason)}</td><td style="text-align:center"><button class="del-btn" onclick="event.stopPropagation();confirmDel(()=>doDeleteBanned('${x(b.expression)}'),'${x(b.expression)}')">🗑</button></td>`;tr.addEventListener('dblclick',e=>{e.preventDefault();openBannedForm(b);});tb.appendChild(tr);});document.getElementById('b-cnt').textContent=`${bFlt.length}개`;}
 
 // ── WORD FORM ──
 // variants 배열 → textarea 포맷 변환 (abbreviation type 제외)
@@ -607,7 +691,7 @@ function openWordForm(w) {
   document.getElementById('wf-id').disabled     = !!w;
   document.getElementById('wf-pos').value       = w?.canonical_pos || 'noun';
   document.getElementById('wf-status').value    = w?.status || 'active';
-  document.getElementById('wf-domain').value    = w?.domain || 'general';
+  initMultiInput('wf-domain', w?.domain || ['general'], 'domain-list');
   // 다국어
   document.getElementById('wf-en').value        = w?.lang?.en || '';
   document.getElementById('wf-ko').value        = w?.lang?.ko || '';
@@ -635,7 +719,7 @@ async function saveWord() {
   const zh     = document.getElementById('wf-zh').value.trim();
   const abbr   = document.getElementById('wf-abbr').value.trim() || null;
   const pos    = document.getElementById('wf-pos').value;
-  const dom    = document.getElementById('wf-domain').value;
+  const dom    = getMultiInputValue('wf-domain');
   const desc   = document.getElementById('wf-desc').value.trim();
   const descEn = document.getElementById('wf-desc-en').value.trim();
   const fromV  = document.getElementById('wf-from').value.trim();
@@ -686,15 +770,15 @@ async function reloadWords(){
 }
 
 // ── COMPOUND FORM ──
-function openCompoundForm(c){editCompoundId=c?c.id:null;document.getElementById('compound-title').textContent=c?'복합어 수정':'복합어 추가';document.getElementById('cf-id').value=c?.id||'';document.getElementById('cf-id').disabled=!!c;document.getElementById('cf-words').value=(c?.words||[]).join(', ');document.getElementById('cf-ko').value=c?.lang?.ko||'';document.getElementById('cf-en').value=c?.lang?.en||'';document.getElementById('cf-long').value=cAbbrLong(c)||'';document.getElementById('cf-short').value=cAbbrShort(c)||'';document.getElementById('cf-domain').value=c?.domain||'system';document.getElementById('cf-status').value=c?.status||'active';document.getElementById('cf-reason').value=c?.reason||'의미 비합산';document.getElementById('cf-desc').value=c?.description_i18n?.ko||'';document.getElementById('cf-not').value=(c?.not||[]).join(', ');document.getElementById('cf-del-btn').style.display=c?'':'none';openOv('compound-ov');}
-async function saveCompound(){const id=document.getElementById('cf-id').value.trim(),words=document.getElementById('cf-words').value.split(',').map(s=>s.trim()).filter(Boolean),ko=document.getElementById('cf-ko').value.trim(),en=document.getElementById('cf-en').value.trim(),long=document.getElementById('cf-long').value.trim(),short=document.getElementById('cf-short').value.trim(),dom=document.getElementById('cf-domain').value,reason=document.getElementById('cf-reason').value,desc=document.getElementById('cf-desc').value.trim(),notV=document.getElementById('cf-not').value.trim();if(!id||!words.length||!ko||!en||!long||!short||!desc){toast('필수 항목 누락','ter');return;}const abbrVariant={type:'abbreviation',short};if(long)abbrVariant.long=long;let body={id,words,domain:dom,status:document.getElementById('cf-status').value,lang:{en,ko},variants:[abbrVariant],reason};if(desc)body.description_i18n={ko:desc};if(notV)body.not=notV.split(',').map(s=>s.trim()).filter(Boolean);const isAdd=!editCompoundId;const res=await fetch(isAdd?'/api/compounds':`/api/compounds/${editCompoundId||id}`,{method:isAdd?'POST':'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const d=await res.json();if(!res.ok){toast(d.error||'저장 실패','ter');return;}toast(isAdd?'추가 완료':'수정 완료','tok');closeOv('compound-ov');await reloadCompounds();}
+function openCompoundForm(c){editCompoundId=c?c.id:null;document.getElementById('compound-title').textContent=c?'복합어 수정':'복합어 추가';document.getElementById('cf-id').value=c?.id||'';document.getElementById('cf-id').disabled=!!c;document.getElementById('cf-words').value=(c?.words||[]).join(', ');document.getElementById('cf-ko').value=c?.lang?.ko||'';document.getElementById('cf-en').value=c?.lang?.en||'';document.getElementById('cf-long').value=cAbbrLong(c)||'';document.getElementById('cf-short').value=cAbbrShort(c)||'';initMultiInput('cf-domain', c?.domain || ['system'], 'domain-list');document.getElementById('cf-status').value=c?.status||'active';document.getElementById('cf-reason').value=c?.reason||'의미 비합산';document.getElementById('cf-desc').value=c?.description_i18n?.ko||'';document.getElementById('cf-not').value=(c?.not||[]).join(', ');document.getElementById('cf-del-btn').style.display=c?'':'none';openOv('compound-ov');}
+async function saveCompound(){const id=document.getElementById('cf-id').value.trim(),words=document.getElementById('cf-words').value.split(',').map(s=>s.trim()).filter(Boolean),ko=document.getElementById('cf-ko').value.trim(),en=document.getElementById('cf-en').value.trim(),long=document.getElementById('cf-long').value.trim(),short=document.getElementById('cf-short').value.trim(),dom=getMultiInputValue('cf-domain'),reason=document.getElementById('cf-reason').value,desc=document.getElementById('cf-desc').value.trim(),notV=document.getElementById('cf-not').value.trim();if(!id||!words.length||!ko||!en||!long||!short||!desc){toast('필수 항목 누락','ter');return;}const abbrVariant={type:'abbreviation',short};if(long)abbrVariant.long=long;let body={id,words,domain:dom,status:document.getElementById('cf-status').value,lang:{en,ko},variants:[abbrVariant],reason};if(desc)body.description_i18n={ko:desc};if(notV)body.not=notV.split(',').map(s=>s.trim()).filter(Boolean);const isAdd=!editCompoundId;const res=await fetch(isAdd?'/api/compounds':`/api/compounds/${editCompoundId||id}`,{method:isAdd?'POST':'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const d=await res.json();if(!res.ok){toast(d.error||'저장 실패','ter');return;}toast(isAdd?'추가 완료':'수정 완료','tok');closeOv('compound-ov');await reloadCompounds();}
 async function doDeleteCompound(id){const res=await fetch(`/api/compounds/${id}`,{method:'DELETE'});if(!res.ok){toast('삭제 실패','ter');return;}toast('삭제 완료','tok');closeOv('del-ov');closeOv('compound-ov');await reloadCompounds();}
 function delCompound(){confirmDel(()=>doDeleteCompound(editCompoundId),editCompoundId);}
 async function reloadCompounds(){const d=await(await fetch('/api/compounds')).json();COMPOUNDS=d.compounds||[];cFlt=[...COMPOUNDS];cFilter();updateStats();}
 
 // ── BANNED FORM ──
-function openBannedForm(b){editBannedExpr=b?b.expression:null;document.getElementById('banned-title').textContent=b?'금지표현 수정':'금지표현 추가';document.getElementById('bf-expr').value=b?.expression||'';document.getElementById('bf-expr').disabled=!!b;document.getElementById('bf-ctx').value=b?.context||'';document.getElementById('bf-correct').value=b?.correct||'';document.getElementById('bf-reason').value=b?.reason||'';document.getElementById('bf-status').value=b?.status||'active';document.getElementById('bf-del-btn').style.display=b?'':'none';openOv('banned-ov');}
-async function saveBanned(){const expr=document.getElementById('bf-expr').value.trim(),context=document.getElementById('bf-ctx').value.trim(),correct=document.getElementById('bf-correct').value.trim(),reason=document.getElementById('bf-reason').value.trim();if(!expr||!context||!correct||!reason){toast('필수 항목 누락','ter');return;}const body={expression:expr,context,correct,reason,status:document.getElementById('bf-status').value};const isAdd=!editBannedExpr;const encoded=encodeURIComponent(editBannedExpr||'');const res=await fetch(isAdd?'/api/banned':`/api/banned/${encoded}`,{method:isAdd?'POST':'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const d=await res.json();if(!res.ok){toast(d.error||'저장 실패','ter');return;}toast(isAdd?'추가 완료':'수정 완료','tok');closeOv('banned-ov');await reloadBanned();}
+function openBannedForm(b){editBannedExpr=b?b.expression:null;document.getElementById('banned-title').textContent=b?'금지표현 수정':'금지표현 추가';document.getElementById('bf-expr').value=b?.expression||'';document.getElementById('bf-expr').disabled=!!b;document.getElementById('bf-ctx').value=b?.context||'';const cv=typeof b?.correct==='object'?(b?.correct?.value||''):String(b?.correct||'');document.getElementById('bf-correct').value=cv;const reason=b?.reason_i18n?.ko||b?.reason||'';document.getElementById('bf-reason').value=reason;document.getElementById('bf-status').value=b?.status||'active';document.getElementById('bf-del-btn').style.display=b?'':'none';openOv('banned-ov');}
+async function saveBanned(){const expr=document.getElementById('bf-expr').value.trim(),context=document.getElementById('bf-ctx').value.trim(),correct_val=document.getElementById('bf-correct').value.trim(),reason=document.getElementById('bf-reason').value.trim();if(!expr||!correct_val||!reason){toast('필수 항목 누락','ter');return;}const body={expression:expr,context,correct:{type:'id',value:correct_val},reason_i18n:{ko:reason,en:reason},status:document.getElementById('bf-status').value};const isAdd=!editBannedExpr;const encoded=encodeURIComponent(editBannedExpr||'');const res=await fetch(isAdd?'/api/banned':`/api/banned/${encoded}`,{method:isAdd?'POST':'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const d=await res.json();if(!res.ok){toast(d.error||'저장 실패','ter');return;}toast(isAdd?'추가 완료':'수정 완료','tok');closeOv('banned-ov');await reloadBanned();}
 async function doDeleteBanned(expr){const res=await fetch(`/api/banned/${encodeURIComponent(expr)}`,{method:'DELETE'});if(!res.ok){toast('삭제 실패','ter');return;}toast('삭제 완료','tok');closeOv('del-ov');closeOv('banned-ov');await reloadBanned();}
 function delBanned(){confirmDel(()=>doDeleteBanned(editBannedExpr),editBannedExpr);}
 async function reloadBanned(){const d=await(await fetch('/api/banned')).json();BANNED=d.banned||[];bFlt=[...BANNED];bFilter();updateStats();}
@@ -766,17 +850,129 @@ async function selectBatchFile(fname){
       let posInfo = enr.canonical_pos ? `<span class="c-pos">${escapeHtml(enr.canonical_pos)}</span>` : '';
       let descKo = enr.description_i18n && enr.description_i18n.ko ? escapeHtml(enr.description_i18n.ko) : '';
       let descEn = enr.description_i18n && enr.description_i18n.en ? escapeHtml(enr.description_i18n.en) : '';
-      let detailsHtml = '';
-      if(enr.description_i18n || (enr.source_urls && enr.source_urls.length>0)) {
-        let lines = [];
-        if(descKo) lines.push(`<span style="color:var(--ye)">KO:</span> ${descKo}`);
-        if(descEn) lines.push(`<span style="color:var(--tx)">EN:</span> ${descEn}`);
-        if(enr.source_urls && enr.source_urls.length>0) lines.push(`<span style="color:var(--ac)">URL:</span> <a href="${escapeHtml(enr.source_urls[0])}" target="_blank" style="color:var(--ac);text-decoration:none">${escapeHtml(enr.source_urls[0])}</a>`);
-        detailsHtml = `<div style="margin-top:8px;margin-left:24px;font-size:10px;color:var(--tx2);padding:6px 10px;background:var(--s1);border:1px solid var(--ln);border-radius:4px;display:none;line-height:1.6;" id="det${i}">${lines.join('<br>')}</div>`;
-      }
-      
       let miniDesc = descKo || descEn || '';
-      
+
+      // 상세 패널 — 모든 enriched + lang + sources 정보 표시
+      let detailsHtml = '';
+      {
+        let lines = [];
+
+        // 1. 다국어 이름 (lang)
+        let langObj = t.lang || {};
+        let langParts = [];
+        if(langObj.ko)      langParts.push(`KO: ${escapeHtml(langObj.ko)}`);
+        if(langObj.ja)      langParts.push(`JA: ${escapeHtml(langObj.ja)}`);
+        if(langObj.zh_hans) langParts.push(`ZH: ${escapeHtml(langObj.zh_hans)}`);
+        if(langParts.length) lines.push(`<span style="color:var(--ac)">언어:</span> ${langParts.join(' &nbsp;|&nbsp; ')}`);
+
+        // 2. 설명
+        if(descKo) lines.push(`<span style="color:var(--ye)">KO 설명:</span> ${descKo}`);
+        if(descEn) lines.push(`<span style="color:var(--tx)">EN 설명:</span> ${descEn}`);
+
+        // 3. 어원 (from)
+        if(enr.from) lines.push(`<span style="color:var(--pu)">from:</span> ${escapeHtml(String(enr.from))}`);
+
+        // 4. variants
+        if(enr.variants && enr.variants.length > 0) {
+          let varParts = enr.variants.map(v => {
+            let val = v.value || v.short || '';
+            return `<span style="color:var(--gr);font-family:var(--mono)">${escapeHtml(val)}</span><span style="color:var(--tx3);font-size:9px">(${escapeHtml(v.type||'')})</span>`;
+          }).join(' &nbsp; ');
+          lines.push(`<span style="color:var(--ac)">variants:</span> ${varParts}`);
+        }
+
+        // 5. 출처 URL
+        if(enr.source_urls && enr.source_urls.length > 0) {
+          let urlLinks = enr.source_urls.map(u =>
+            `<a href="${escapeHtml(u)}" target="_blank" style="color:var(--ac);text-decoration:none">${escapeHtml(u)}</a>`
+          ).join('<br>');
+          lines.push(`<span style="color:var(--ac)">URL:</span> ${urlLinks}`);
+        }
+
+        // 6. AI 판정 이유
+        if(t.reason) lines.push(`<span style="color:var(--tx3)">판정:</span> ${escapeHtml(t.reason)}`);
+
+        // 7. 발견 위치 (sources)
+        if(t.sources && t.sources.length > 0) {
+          let uniqueSrc = [...new Set(t.sources)];
+          let srcHtml = uniqueSrc.map(s => `<span style="font-family:var(--mono);color:var(--tx3)">${escapeHtml(s)}</span>`).join('<br>');
+          lines.push(`<span style="color:var(--tx3)">발견 위치 (${t.count}회):</span><br>${srcHtml}`);
+        }
+
+        // 8. 편집 섹션 (관련 단어 / 참고 URL)
+        const editSection = `
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--ln)">
+            <div style="color:var(--ac);font-weight:600;margin-bottom:6px;font-size:10px">✏ 등록 전 수정</div>
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <div style="display:flex;align-items:center;gap:6px">
+                <label style="min-width:70px;color:var(--tx3)">관련 단어/<br>합성어:</label>
+                <input id="edit-rel-${i}" type="text" placeholder="단어(예: annotation) 또는 합성어(예: automatic data exchange)" value="${escapeHtml((t.user_edit&&t.user_edit.related_input)||enr.from||'')}"
+                  style="flex:1;background:var(--bg);border:1px solid var(--ln);border-radius:3px;color:var(--tx);padding:3px 7px;font-size:10px;font-family:var(--mono)">
+              </div>
+              <div style="display:flex;align-items:center;gap:6px">
+                <label style="min-width:70px;color:var(--tx3)">참고 URL:</label>
+                <input id="edit-url-${i}" type="text" placeholder="https://... (생략 가능)" value="${escapeHtml((t.user_edit&&t.user_edit.ref_url)||'')}"
+                  style="flex:1;background:var(--bg);border:1px solid var(--ln);border-radius:3px;color:var(--tx);padding:3px 7px;font-size:10px;font-family:var(--mono)">
+              </div>
+              <div style="display:flex;align-items:center;gap:6px">
+                <label style="min-width:70px;color:var(--tx3)">도메인:</label>
+                <div id="edit-domain-${i}" data-dom="${escapeHtml(JSON.stringify((t.user_edit&&t.user_edit.domain)||(enr.domain||[])))}"
+                  style="flex:1;background:var(--s1);border:1px solid var(--ln);border-radius:3px;color:var(--tx);font-size:10px;font-family:var(--mono);min-height:24px;cursor:text"></div>
+              </div>
+              <!-- 명칭 섹션 -->
+              <div style="border-top:1px solid var(--ln);margin-top:6px;padding-top:6px">
+                <div style="color:var(--pu);font-size:9px;margin-bottom:4px">🌐 명칭 (선택)</div>
+                <div style="display:grid;grid-template-columns:2fr 2fr;gap:4px">
+                  <div style="display:flex;align-items:center;gap:4px">
+                    <label style="min-width:24px;color:var(--tx3);font-size:9px">EN:</label>
+                    <input id="edit-name-en-${i}" type="text" placeholder="English name" value="${escapeHtml((t.user_edit&&t.user_edit.lang_custom&&t.user_edit.lang_custom.en)||enr.lang&&enr.lang.en||t.word||'')}"
+                      style="flex:1;background:var(--bg);border:1px solid var(--ln);border-radius:3px;color:var(--tx);padding:2px 6px;font-size:9px;font-family:var(--mono)">
+                  </div>
+                  <div style="display:flex;align-items:center;gap:4px">
+                    <label style="min-width:24px;color:var(--tx3);font-size:9px">KO:</label>
+                    <input id="edit-name-ko-${i}" type="text" placeholder="한글 명칭" value="${escapeHtml((t.user_edit&&t.user_edit.lang_custom&&t.user_edit.lang_custom.ko)||enr.lang&&enr.lang.ko||enr.description_i18n&&enr.description_i18n.ko||'')}"
+                      style="flex:1;background:var(--bg);border:1px solid var(--ln);border-radius:3px;color:var(--tx);padding:2px 6px;font-size:9px;font-family:var(--mono)">
+                  </div>
+                  <div style="display:flex;align-items:center;gap:4px">
+                    <label style="min-width:24px;color:var(--tx3);font-size:9px">JA:</label>
+                    <input id="edit-name-ja-${i}" type="text" placeholder="日本語名" value="${escapeHtml((t.user_edit&&t.user_edit.lang_custom&&t.user_edit.lang_custom.ja)||enr.lang&&enr.lang.ja||'')}"
+                      style="flex:1;background:var(--bg);border:1px solid var(--ln);border-radius:3px;color:var(--tx);padding:2px 6px;font-size:9px;font-family:var(--mono)">
+                  </div>
+                  <div style="display:flex;align-items:center;gap:4px">
+                    <label style="min-width:24px;color:var(--tx3);font-size:9px">ZH:</label>
+                    <input id="edit-name-zh-${i}" type="text" placeholder="中文名称" value="${escapeHtml((t.user_edit&&t.user_edit.lang_custom&&t.user_edit.lang_custom.zh_hans)||enr.lang&&enr.lang.zh_hans||'')}"
+                      style="flex:1;background:var(--bg);border:1px solid var(--ln);border-radius:3px;color:var(--tx);padding:2px 6px;font-size:9px;font-family:var(--mono)">
+                  </div>
+                </div>
+              </div>
+              <!-- 설명 섹션 -->
+              <div style="border-top:1px solid var(--ln);margin-top:6px;padding-top:6px">
+                <div style="color:var(--pu);font-size:9px;margin-bottom:4px">📝 설명 (선택 — 한글만 입력 시 영문으로 복사, 반대도 동일)</div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <div style="display:flex;align-items:flex-start;gap:4px">
+                    <label style="min-width:24px;color:var(--tx3);font-size:9px;padding-top:3px">KO:</label>
+                    <textarea id="edit-desc-ko-${i}" rows="2" placeholder="한글 설명 (선택)" style="flex:1;background:var(--bg);border:1px solid var(--ln);border-radius:3px;color:var(--tx);padding:3px 6px;font-size:9px;resize:vertical;font-family:var(--mono)">${escapeHtml((t.user_edit&&t.user_edit.desc_custom&&t.user_edit.desc_custom.ko)||enr.description_i18n&&enr.description_i18n.ko||'')}</textarea>
+                  </div>
+                  <div style="display:flex;align-items:flex-start;gap:4px">
+                    <label style="min-width:24px;color:var(--tx3);font-size:9px;padding-top:3px">EN:</label>
+                    <textarea id="edit-desc-en-${i}" rows="2" placeholder="English description (optional)" style="flex:1;background:var(--bg);border:1px solid var(--ln);border-radius:3px;color:var(--tx);padding:3px 6px;font-size:9px;resize:vertical;font-family:var(--mono)">${escapeHtml((t.user_edit&&t.user_edit.desc_custom&&t.user_edit.desc_custom.en)||enr.description_i18n&&enr.description_i18n.en||'')}</textarea>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:flex-end;margin-top:6px">
+                <button class="btn" style="padding:3px 10px;font-size:9px;background:var(--ac);color:#000;border:none;border-radius:3px;cursor:pointer"
+                  onclick="applyUserEdit(${i})">적용</button>
+              </div>
+            </div>
+          </div>`;
+
+        if(lines.length > 0) {
+          detailsHtml = `<div style="margin-top:8px;margin-left:24px;font-size:10px;color:var(--tx2);padding:8px 12px;background:var(--s1);border:1px solid var(--ln);border-radius:4px;display:none;line-height:1.9;" id="det${i}">${lines.join('<br>')}${editSection}</div>`;
+        } else {
+          detailsHtml = `<div style="margin-top:8px;margin-left:24px;font-size:10px;color:var(--tx2);padding:8px 12px;background:var(--s1);border:1px solid var(--ln);border-radius:4px;display:none;line-height:1.9;" id="det${i}">${editSection}</div>`;
+        }
+      }
+
       chunkHtml += `<div class="merge-item" style="padding-bottom:10px;border-bottom:1px solid var(--ln);margin-bottom:8px;flex-direction:column;align-items:stretch">
          <div style="display:flex;align-items:center;width:100%">
            <input type="checkbox" id="mc${i}" ${isRec}>
@@ -785,14 +981,24 @@ async function selectBatchFile(fname){
              ${posInfo}
              <span style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-left:12px;white-space:nowrap;">발견: ${t.count}회</span>
              <span style="margin-left:16px;font-size:11px;color:var(--ye);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${miniDesc}</span>
-             ${detailsHtml ? `<button class="btn btn-gh" style="margin-left:8px;padding:3px 7px;font-size:9px" onclick="const e=document.getElementById('det${i}'); e.style.display=e.style.display==='none'?'block':'none'">상세▼</button>` : ''}
+             ${detailsHtml ? `<button class="btn btn-gh" style="margin-left:8px;padding:3px 7px;font-size:9px" onclick="const e=document.getElementById('det${i}'); const open2=e.style.display==='none';e.style.display=open2?'block':'none';if(open2){const c=document.getElementById('merge-preview');if(c)setTimeout(()=>{const top=e.getBoundingClientRect().top-c.getBoundingClientRect().top;c.scrollBy({top:top-20,behavior:'smooth'})},50)}">상세▼</button>` : ''}
            </div>
          </div>
          ${detailsHtml}
       </div>`;
+
     }
     
     wrap.insertAdjacentHTML('beforeend', chunkHtml);
+    for(let i=current; i<end; i++) {
+        const el = document.getElementById(`edit-domain-${i}`);
+        if(el && el.dataset.dom) {
+            let arr = [];
+            const dec = (html) => { const x = document.createElement('textarea'); x.innerHTML = html; return x.value; };
+            try { arr = JSON.parse(dec(el.dataset.dom)); } catch(e){}
+            initMultiInput(`edit-domain-${i}`, arr, 'domain-list');
+        }
+    }
     current = end;
     
     if(current < total) {
@@ -809,11 +1015,80 @@ async function selectBatchFile(fname){
   requestAnimationFrame(renderChunk);
 }
 
+// ── 사용자 편집 적용 (관련 단어/합성어 / 참고 URL) ──
+function applyUserEdit(i) {
+  const t = _batchTerms[i];
+  if (!t) return;
+  const relInput = (document.getElementById(`edit-rel-${i}`)?.value || '').trim();
+  const refUrl   = (document.getElementById(`edit-url-${i}`)?.value || '').trim();
+  const refDomain = getMultiInputValue(`edit-domain-${i}`);
+  const isCompound = relInput.includes(' ');
+  // 명칭 (lang) 수집
+  const nameEn = (document.getElementById(`edit-name-en-${i}`)?.value || '').trim();
+  const nameKo = (document.getElementById(`edit-name-ko-${i}`)?.value || '').trim();
+  const nameJa = (document.getElementById(`edit-name-ja-${i}`)?.value || '').trim();
+  const nameZh = (document.getElementById(`edit-name-zh-${i}`)?.value || '').trim();
+  // 설명 수집 + 단방향 auto-copy 규칙
+  let descKo = (document.getElementById(`edit-desc-ko-${i}`)?.value || '').trim();
+  let descEn = (document.getElementById(`edit-desc-en-${i}`)?.value || '').trim();
+  if (descKo && !descEn) { descEn = descKo; }   // KO만 있으면 EN에 복사 (번역 대체)
+  if (descEn && !descKo) { descKo = descEn; }   // EN만 있으면 KO에 복사
+
+  const langCustom = {};
+  if (nameEn) langCustom.en = nameEn;
+  if (nameKo) langCustom.ko = nameKo;
+  if (nameJa) langCustom.ja = nameJa;
+  if (nameZh) langCustom.zh_hans = nameZh;
+
+  const descCustom = {};
+  if (descKo) descCustom.ko = descKo;
+  if (descEn) descCustom.en = descEn;
+
+  t.user_edit = {
+    related_input: relInput, ref_url: refUrl, domain: refDomain.length ? refDomain : null, is_compound: isCompound,
+    lang_custom: Object.keys(langCustom).length ? langCustom : null,
+    desc_custom: Object.keys(descCustom).length ? descCustom : null,
+  };
+
+  // 시각 피드백: 적용 버튼 ✓
+  const det = document.getElementById(`det${i}`);
+  const btns = det ? det.querySelectorAll('button') : [];
+  const applyBtn = btns[btns.length - 1];
+  if(applyBtn) { applyBtn.textContent='✓ 적용됨'; applyBtn.style.background='var(--gr)';
+    setTimeout(()=>{applyBtn.textContent='적용';applyBtn.style.background='var(--ac)';},1800); }
+
+  // 시각 피드백: "상세" 버튼 보라색으로 강조
+  if(det && det.previousElementSibling) {
+    const detailBtn = Array.from(det.previousElementSibling.querySelectorAll('button')).find(b => b.textContent && b.textContent.includes('상세'));
+    if(detailBtn) {
+      detailBtn.style.background = 'rgba(130, 80, 255, 0.15)';
+      detailBtn.style.color = 'var(--pu)';
+      detailBtn.style.border = '1px solid rgba(130, 80, 255, 0.6)';
+    }
+  }
+
+  // 상세 패널 상단에 미리보기 행 표시
+  if(det && relInput) {
+    let relRow = det.querySelector('.user-rel-row');
+    if(!relRow) {
+      relRow = document.createElement('div');
+      relRow.className = 'user-rel-row';
+      relRow.style.cssText = 'color:var(--pu);margin-top:4px;margin-bottom:4px;padding:4px 6px;background:rgba(130,80,255,0.1);border-radius:3px';
+      det.insertBefore(relRow, det.firstChild);
+    }
+    const typeTag = isCompound
+      ? `<span style="font-size:9px;background:var(--ac);color:#000;padding:1px 5px;border-radius:3px;margin-left:4px">합성어</span>`
+      : `<span style="font-size:9px;background:var(--pu);color:#fff;padding:1px 5px;border-radius:3px;margin-left:4px">단어</span>`;
+    relRow.innerHTML = `<span style="color:var(--pu)">관련 (사용자):</span> <b>${escapeHtml(relInput)}</b>${typeTag}`;
+  }
+}
+
 async function doMergeProcessed(){
   const sts=document.getElementById('merge-status');
   sts.textContent='처리 중…';
   
   let appW = [], appC = [], rej = [];
+  let _compoundRequests = [];
   
   _batchTerms.forEach((t, i) => {
     const cb = document.getElementById(`mc${i}`);
@@ -834,10 +1109,52 @@ async function doMergeProcessed(){
     if (t.enriched) {
        if (t.enriched.canonical_pos) wordBody.canonical_pos = t.enriched.canonical_pos;
        if (t.enriched.description_i18n) wordBody.description_i18n = t.enriched.description_i18n;
-       if (t.enriched.source_urls) wordBody.source_urls = t.enriched.source_urls;
        if (t.enriched.variants && t.enriched.variants.length > 0) wordBody.variants = t.enriched.variants;
+       // source_urls: enriched 기본 + 사용자 참고 URL 병합
+       let srcUrls = t.enriched.source_urls ? [...t.enriched.source_urls] : [];
+       if (t.user_edit && t.user_edit.ref_url) srcUrls.unshift(t.user_edit.ref_url);
+       if (srcUrls.length) wordBody.source_urls = srcUrls;
+       // from: enriched.from 또는 사용자 관련 단어
+       if (t.enriched.from) wordBody.from = t.enriched.from;
+    }
+    // 사용자 편집 반영
+    if (t.user_edit) {
+       const ui = t.user_edit;
+       if (!ui.is_compound) {
+         // 단어 → from 필드로 사용
+         if (ui.related_input) wordBody.from = ui.related_input;
+       }
+       // ref_url: source_urls 맨 앞 삽입
+       if (ui.ref_url) {
+         wordBody.source_urls = wordBody.source_urls || [];
+         if (!wordBody.source_urls.includes(ui.ref_url))
+           wordBody.source_urls.unshift(ui.ref_url);
+       }
+    }
+    // lang: enriched lang이 있으면 우선 적용 (user_edit이 최우선)
+    if (t.lang && (t.lang.ko || t.lang.ja)) {
+       wordBody.lang = { en: t.word, ...t.lang };
+    }
+    // user_edit.lang_custom 최우선 덮어쓰기
+    if (t.user_edit && t.user_edit.lang_custom) {
+       wordBody.lang = { ...wordBody.lang, ...t.user_edit.lang_custom };
+    }
+    // user_edit.desc_custom: 설명 덮어쓰기
+    if (t.user_edit && t.user_edit.desc_custom && Object.keys(t.user_edit.desc_custom).length) {
+       wordBody.description_i18n = { ...(wordBody.description_i18n || {}), ...t.user_edit.desc_custom };
     }
     appW.push(wordBody);
+    
+    // 합성어인 경우: register_compound API 별도 호출 목록에 추가
+    if (t.user_edit && t.user_edit.is_compound) {
+      _compoundRequests.push({
+        abbrev:       t.word,
+        phrase:       t.user_edit.related_input,
+        ref_url:      t.user_edit.ref_url || '',
+        lang_custom:  t.user_edit.lang_custom  || null,
+        desc_custom:  t.user_edit.desc_custom  || null,
+      });
+    }
   });
 
   if (!appW.length && !appC.length && !rej.length) {
@@ -857,8 +1174,35 @@ async function doMergeProcessed(){
   
   const d = await res.json();
   if(!d.ok){ toast(d.error||'실패', 'ter'); sts.textContent=''; return; }
-  
-  sts.textContent=`성공: ${d.added}개 승인, ${rej.length}개 보류`;
+
+  // ── 합성어 등록 처리 ──
+  let compSummary = '';
+  if(_compoundRequests.length > 0) {
+    let totalFound=0, totalAsVar=0, totalNewWord=0, totalComp=0;
+    for(const req of _compoundRequests) {
+      try {
+        const cr = await fetch('/api/batch/register_compound', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(req)
+        });
+        const cd = await cr.json();
+        if(cd.ok) {
+          totalFound   += (cd.words_found      || []).length;
+          totalAsVar   += (cd.words_as_variant  || []).length;
+          totalNewWord += (cd.words_new         || []).length;
+          totalComp    += cd.compound_added ? 1 : 0;
+        } else {
+          const rolled = cd.rolled_back ? ' (rollback 완료)' : '';
+          toast(`합성어 등록 실패 (${req.abbrev}): ${cd.error||''}${rolled}`, 'ter');
+        }
+      } catch(e) { toast(`합성어 API 오류: ${e.message}`, 'ter'); }
+    }
+    compSummary = ` | 합성어 ${totalComp}개 등록, 단어 ${totalFound}개 확인, 신규 ${totalNewWord}개 words 등록, 형태소 ${totalAsVar}개 이미 포함`;
+    if(totalNewWord > 0) toast(`합성어 처리 완료 — ${totalNewWord}개 단어가 words.json에 자동 등록되었습니다.`, 'tin', 5000);
+    await reloadCompounds();
+  }
+
+  sts.textContent=`성공: ${d.added}개 승인, ${rej.length}개 보류${compSummary}`;
   toast('병합 및 보류 이동 처리 완료', 'tok');
   await reloadWords(); 
   await reloadCompounds();

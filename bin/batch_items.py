@@ -271,44 +271,48 @@ def _save_tmp(data: list, proj_root: Path):
     }, ensure_ascii=False, indent=2), encoding='utf-8')
     return path
 
-def _apply_to_words_json(approved_items: list):
-    words_path = GLOSSARY_DIR / "dictionary" / "words.json"
-    if not words_path.exists():
-        data = {"words": []}
-    else:
-        data = json.loads(words_path.read_text(encoding='utf-8'))
-        
-    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-    existing_ids = {w["id"] for w in data["words"]}
-    
-    for item in approved_items:
-        w = item["word"]
-        if w in existing_ids:
-            continue
-        enriched = item.get("enriched") or {}
-        # Ko label: prefer from LLM translation, else the word itself
-        ko_label = enriched.get("description_i18n", {}).get("ko") or w
-        en_label  = (item.get("lang") or {}).get("en") or w
-        new_w = {
-            "id": w,
-            "lang": {"en": en_label, "ko": ko_label},
-            "domain": "general",
-            "canonical_pos": enriched.get("canonical_pos") or "noun",
-            "description_i18n": enriched.get("description_i18n") or {},
-            "source_urls": enriched.get("source_urls") or [],
-            "status": "auto_registered" if item.get("reason") == "사전 확인" else "active",
-            "created_at": now,
-            "updated_at": now,
-        }
-        # Apply enriched variants (already pos-filtered and deduped)
-        if enriched.get("variants"):
-            new_w["variants"] = enriched["variants"]
-        # Apply enriched from (already quality-filtered)
-        if enriched.get("from"):
-            new_w["from"] = enriched["from"]
-        data["words"].append(new_w)
+def _apply_to_words_json(approved_items: list) -> int:
+    """
+    승인된 단어 목록을 words.json에 추가.
+    GlossaryWriter를 통해 저장 (backup 자동 생성, validate 보장).
+    Returns: 실제 추가된 단어 수
+    """
+    sys.path.insert(0, str(GLOSSARY_DIR))
+    from core.writer import GlossaryWriter
 
-    words_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
+    added = 0
+    with GlossaryWriter() as gw:
+        existing_ids = gw.word_ids()
+
+        for item in approved_items:
+            w = item["word"]
+            if w in existing_ids:
+                continue
+
+            enriched = item.get("enriched") or {}
+            ko_label = enriched.get("description_i18n", {}).get("ko") or w
+            en_label  = (item.get("lang") or {}).get("en") or w
+
+            new_w = {
+                "id": w,
+                "lang": {"en": en_label, "ko": ko_label},
+                "domain": "general",
+                "canonical_pos": enriched.get("canonical_pos") or "noun",
+                "description_i18n": enriched.get("description_i18n") or {},
+                "source_urls": enriched.get("source_urls") or [],
+                "status": "active",
+                "variants": enriched.get("variants") or [],
+            }
+            if enriched.get("from"):
+                new_w["from"] = enriched["from"]
+
+            try:
+                gw.add_word(new_w, skip_duplicate=True)
+                added += 1
+            except Exception as e:
+                print(f"[SKIP] {w}: {e}")
+
+    return added
 
 def main():
     parser = argparse.ArgumentParser()
@@ -368,10 +372,10 @@ def main():
         print("\n[3/3] CLI 모드 자동 병합")
         approved = [p for p in processed if p.get("recommended")]
         pending = [p for p in processed if not p.get("recommended")]
-        
-        _apply_to_words_json(approved)
-        print(f"      {len(approved)}건 자동 승인(words.json 반영)")
-        
+
+        added_count = _apply_to_words_json(approved)
+        print(f"      {added_count}건 자동 등록(words.json 반영 / 총 승인 후보 {len(approved)}건)")
+
         if pending:
             out_path = _save_tmp(pending, proj_root)
             print(f"      {len(pending)}건 보류({out_path} 에 저장)")

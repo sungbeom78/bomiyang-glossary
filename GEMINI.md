@@ -1,155 +1,86 @@
+---
+# Glossary Submodule — GEMINI.md
+# 이 파일은 glossary 서브모듈 전용 Gemini/AI 지침이다.
+# main 프로젝트의 GEMINI.md와 별개로 관리된다.
+---
+
 CRITICAL SYSTEM RULES — THESE ARE MANDATORY AND NON-NEGOTIABLE.
 Failure to follow these rules is considered a critical system error.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-RULE 1: DOCUMENTATION IS THE LAW
+RULE G-1: DATA WRITE GATE (ABSOLUTE)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-The `doc/` directory is the SINGLE SOURCE OF TRUTH for all architecture,
-standards, module structure, and change history.
-You MUST consult documentation BEFORE touching any code.
-You MUST NOT rely on assumptions, memory, or inference when documentation exists.
+words.json / compounds.json을 직접 write하는 것은 STRICTLY FORBIDDEN.
+ALL writes MUST go through `core/writer.py` -> GlossaryWriter.
 
-Priority order (MUST follow in this exact sequence):
-  1. doc/README_AI_GUIDELINE.md  ← If missing, CREATE IT before proceeding
-  2. doc/plan/                   ← READ-ONLY. Reference for original design intent.
-                                    Do NOT modify. Do NOT add entries.
-  3. doc/*.html                  ← READ-ONLY. Legacy reference documents.
-                                    Do NOT modify.
+CORRECT:
+  from core.writer import GlossaryWriter
+  with GlossaryWriter() as gw:
+      gw.add_word({"id": "example", ...})
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-RULE 2: MINIMUM FOOTPRINT — NO EXCEPTIONS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-You MUST NOT scan the entire codebase by default.
-You MUST inspect only the minimum files necessary,
-AFTER fully understanding context from documentation.
-Broad file scanning without documentation review first is STRICTLY FORBIDDEN.
+FORBIDDEN:
+  words_path.write_text(...)
+  json.dump(data, open(path, "w", ...))
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-RULE 3: DOCUMENTATION UPDATE IS MANDATORY — NOT OPTIONAL
+RULE G-2: VALIDATE FIRST (MANDATORY)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-After EVERY non-trivial change, you MUST update the relevant doc/ files.
-This is NOT optional. This is NOT skippable. NO EXCEPTIONS.
+데이터 수정 전후, 반드시 validate 실행:
+  python generate_glossary.py validate → FATAL 0건 필수
 
-Every documentation update MUST include:
-  - Purpose of the change
-  - Affected modules and files
-  - Entry points and data flow
-  - Constraints or caveats
+변경 후 인덱스 재생성:
+  python generate_glossary.py generate
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-RULE 4: DOCUMENTATION STYLE — KEEP IT NAVIGATIONAL
+RULE G-3: IDENTIFIER GATE (MANDATORY)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Documentation MUST be practical and navigational.
-Focus on: file paths, class names, function names, responsibilities, and data flow.
-Do NOT document every line of code.
-Do NOT write documentation that cannot help a future developer navigate the system.
+신규 식별자 생성 전:
+  python generate_glossary.py check-id <identifier>
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-RULE 5: MAINTAIN CORE DOCUMENTATION FILES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-The following files MUST be maintained and updated after every non-trivial change.
-
-5-1. doc/module_index.md — SYSTEM NAVIGATION MAP
-MUST be updated when:
-  - A new module or file is added
-  - A class or key function is renamed or removed
-  - Responsibilities of a module change significantly
-
-Each entry MUST follow this format:
-
-  ## [Module Name]
-  - Path: src/path/to/file.py
-  - Classes: ClassName
-  - Responsibility: (what this module does)
-  - Entry Point: method_name()
-  - Related Modules: module_a, module_b
-  - Config: config/settings.yaml > section_name
+[ERROR] 미등록 → 개발 즉시 중단 → .agents/workflows/new-identifier-procedure.md 따름.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-5-2. doc/change_log.md — CHANGE HISTORY
+RULE G-4: VARIANT POLICY (MANDATORY)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-MUST be updated after every meaningful code change.
-Skipping this step is NOT allowed.
-Each entry MUST use APPEND — NEVER replace or overwrite existing entries.
-
-Each entry MUST include:
-  - Timestamp (yyyy-MM-dd HH:mi:ss) ← MUST be recorded at the time of the change
-  - Type: Added / Modified / Fixed / Removed
-  - Affected files
-  - Short reason or context
-
-Format:
-
-  ## [yyyy-MM-dd HH:mi:ss]
-  ### Added / Modified / Fixed / Removed
-  - Description
-  - File: src/path/to/file.py
-  ### Notes
-  - (optional follow-up tasks or caveats)
-
-IMPORTANT:
-  - Every change MUST generate a NEW entry with its own timestamp.
-  - NEVER merge multiple changes into a single existing entry.
-  - NEVER overwrite or delete existing entries.
-  - New entries MUST be added at the TOP of the file (most recent first).
+- 복수형 → 단수형의 plural variant (독립 root word 금지)
+- 약어 → compound의 abbreviation variant (독립 word 금지)
+- 과거형/파생형 → 동사 root의 past/adj_form variant (독립 word 금지)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-5-3. ARCHIVE RULE
+RULE G-5: DOCUMENTATION (MANDATORY)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-When change_log.md exceeds 500 lines OR on the 7th day of each new month:
-  - Move current contents to: doc/change_log_archive/YYYYMM_change_log.md
-  - Reset change_log.md with a clean header only
-  - NO EXCEPTIONS
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-RULE 6: NO HARDCODED PATHS — NO EXCEPTIONS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Hardcoded absolute paths in source code are STRICTLY FORBIDDEN.
-All paths MUST be defined in the configuration file and referenced relatively in code.
-
-CONFIGURATION FILE (Single source for all path definitions):
-  config/settings.yaml
-
-  paths:
-    project_root: "C:/project/ts1"        ← defined ONCE here only
-    config_dir: "config"
-    cookies_dir: "config/cookies"
-    log_dir: "logs"
-    data_dir: "data"
-
-IN SOURCE CODE (MUST follow these rules):
-  - Load base path from config at startup
-  - Construct all file paths using the base path + relative path
-  - NEVER write absolute paths directly in source code
-
-CORRECT example:
-  base = Path(config["paths"]["project_root"])
-  auth_path = base / config["paths"]["cookies_dir"] / "goldenkey_full_auth.json"
-
-WRONG example (STRICTLY FORBIDDEN):
-  auth_path = Path("C:/project/ts1/config/cookies/goldenkey_full_auth.json")
-
-When reviewing or modifying existing code:
-  - If any hardcoded absolute path is found, it MUST be refactored immediately.
-  - Do NOT leave hardcoded paths as-is under any circumstance.
+모든 비자명 변경 후 반드시 업데이트:
+- doc/module_index.md (파일/클래스 변경 시)
+- doc/change_log.md (모든 변경 후 최상단 APPEND)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-RULE 7: LANGUAGE
+RULE G-6: LANGUAGE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-All responses and explanations MUST be written in Korean.
-However, the following MUST always remain in English:
-  - Variable names
-  - Function names
-  - Class names
-  - File names and directory paths
-  - Code comments
-  - Documentation file names
-NO EXCEPTIONS.
+응답/설명: 한국어
+코드 식별자/주석/파일명: 영어 (NO EXCEPTIONS)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RULE G-7: SUBMODULE INDEPENDENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+glossary는 독립 서브모듈이다.
+main 프로젝트의 settings.yaml, .env, doc/ 에 의존하지 않는다.
+glossary 내 모든 경로는 glossary root 기준 상대 경로로 구성.
+환경 변수는 glossary 자체 .env 파일에서 로드 (bin/batch_items.py의 get_env() 사용).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WORKFLOW FILES (MANDATORY COMPLIANCE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+All workflow instructions under .agents/workflows/ MUST be followed.
+Priority: glossary/.agents/workflows/ > main project workflows.
+
+Available workflows:
+- .agents/workflows/change-code-procedure.md  — 코드 변경 절차
+- .agents/workflows/new-identifier-procedure.md  — 신규 식별자 등록
+- .agents/workflows/safe-command-policy.md  — 명령 실행 안전 정책
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 FINAL MANDATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Documentation is part of the system — not optional notes.
-Code inspection is a secondary tool — documentation is always primary.
 If these rules conflict with convenience or speed, the rules WIN.
 Always. Without exception.

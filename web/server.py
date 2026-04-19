@@ -30,6 +30,14 @@ if hasattr(sys.stderr, 'buffer') and sys.stderr.encoding.lower() not in ('utf-8'
 WEB_DIR   = Path(__file__).parent.resolve()   # glossary/web/
 REPO_ROOT = WEB_DIR.parent.resolve()          # glossary/
 BIN_DIR   = REPO_ROOT / "bin"
+
+# ── GlossaryWriter 로드 ────────────────────────────────────────────────
+# words.json / compounds.json write는 GlossaryWriter를 통해서만 수행.
+sys.path.insert(0, str(REPO_ROOT))
+try:
+    from core.writer import GlossaryWriter as _GlossaryWriter
+except ImportError:
+    _GlossaryWriter = None  # fallback: 직접 write (하위 호환)
 LOG_DIR   = REPO_ROOT / "log"
 LOG_FILE  = LOG_DIR / "glossary.log"
 RUN_PY    = BIN_DIR / "run.py"
@@ -39,6 +47,7 @@ TERMS_PATH    = DICT_DIR / "terms.json"
 WORDS_PATH    = DICT_DIR / "words.json"
 COMPOUNDS_PATH = DICT_DIR / "compounds.json"
 BANNED_PATH   = DICT_DIR / "banned.json"
+PENDING_PATH  = DICT_DIR / "pending_words.json"
 GLOSSARY_PATH = REPO_ROOT / "GLOSSARY.md"
 GITIGNORE     = REPO_ROOT / ".gitignore"
 
@@ -201,6 +210,9 @@ def save_words(d):     _save_json(WORDS_PATH,     d)
 def save_compounds(d): _save_json(COMPOUNDS_PATH, d)
 def save_banned(d):    _save_json(BANNED_PATH,    d)
 
+def load_pending_words() -> dict: return _load_json(PENDING_PATH, "words")
+def save_pending_words(d): _save_json(PENDING_PATH, d)
+
 def _run_generate():
     """generate_glossary.py generate 실행 → terms.json + GLOSSARY.md 재생성."""
     if GENERATE_PY.exists():
@@ -274,6 +286,29 @@ def _inject_metadata(new_item, old_item=None):
     from datetime import datetime, timezone
     now_str = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     new_item['status'] = new_item.get('status', 'active')
+    
+    # Enforce lowercase for id
+    if 'id' in new_item and isinstance(new_item['id'], str):
+        new_item['id'] = new_item['id'].strip().lower()
+
+    # Enforce lowercase for lang
+    if 'lang' in new_item and isinstance(new_item['lang'], dict):
+        for k, v in new_item['lang'].items():
+            if isinstance(v, str):
+                new_item['lang'][k] = v.strip().lower()
+
+    # Enforce lowercase for variants value
+    if 'variants' in new_item and isinstance(new_item['variants'], list):
+        for v in new_item['variants']:
+            if isinstance(v, dict) and 'value' in v and isinstance(v['value'], str):
+                v['value'] = v['value'].strip().lower()
+
+    # Enforce lowercase for abbreviation
+    if 'abbreviation' in new_item and isinstance(new_item['abbreviation'], dict):
+        if 'short' in new_item['abbreviation'] and isinstance(new_item['abbreviation']['short'], str):
+            new_item['abbreviation']['short'] = new_item['abbreviation']['short'].strip().lower()
+        if 'long' in new_item['abbreviation'] and isinstance(new_item['abbreviation']['long'], str):
+            new_item['abbreviation']['long'] = new_item['abbreviation']['long'].strip().lower()
     
     if old_item:
         new_item['created_at'] = old_item.get('created_at', now_str)
@@ -371,13 +406,24 @@ def get_words():
 def add_word():
     w = request.get_json()
     if not w: return jsonify({"error": "요청 본문 없음"}), 400
-    data = load_words()
-    if any(x["id"] == w.get("id") for x in data["words"]):
-        return jsonify({"error": f"이미 존재하는 id: {w.get('id')}"}), 409
-    _inject_metadata(w)
-    data["words"].append(w)
-    data["words"].sort(key=lambda x: x["id"])
-    save_words(data)
+    if _GlossaryWriter:
+        try:
+            gw = _GlossaryWriter()
+            if not gw.add_word(w, skip_duplicate=False):
+                return jsonify({"error": f"이미 존재하는 id: {w.get('id')}"}), 409
+            gw.save()
+            _invalidate_cache(WORDS_PATH)
+        except ValueError as e:
+            return jsonify({"error": str(e)}), 409
+    else:
+        # fallback (GlossaryWriter 없을 때)
+        data = load_words()
+        if any(x["id"] == w.get("id") for x in data["words"]):
+            return jsonify({"error": f"이미 존재하는 id: {w.get('id')}"}), 409
+        _inject_metadata(w)
+        data["words"].append(w)
+        data["words"].sort(key=lambda x: x["id"])
+        save_words(data)
     log.info(f"[word:add] id={w.get('id')}")
     return jsonify({"ok": True, "word": w}), 201
 
@@ -385,23 +431,37 @@ def add_word():
 def update_word(word_id):
     updated = request.get_json()
     if not updated: return jsonify({"error": "요청 본문 없음"}), 400
-    data = load_words()
-    idx = next((i for i,x in enumerate(data["words"]) if x["id"] == word_id), None)
-    if idx is None: return jsonify({"error": f"미존재: {word_id}"}), 404
-    _inject_metadata(updated, data["words"][idx])
-    data["words"][idx] = updated
-    save_words(data)
+    if _GlossaryWriter:
+        gw = _GlossaryWriter()
+        if not gw.update_word(word_id, updated):
+            return jsonify({"error": f"미존재: {word_id}"}), 404
+        gw.save()
+        _invalidate_cache(WORDS_PATH)
+    else:
+        data = load_words()
+        idx = next((i for i,x in enumerate(data["words"]) if x["id"] == word_id), None)
+        if idx is None: return jsonify({"error": f"미존재: {word_id}"}), 404
+        _inject_metadata(updated, data["words"][idx])
+        data["words"][idx] = updated
+        save_words(data)
     log.info(f"[word:update] id={word_id}")
     return jsonify({"ok": True, "word": updated})
 
 @app.route("/api/words/<word_id>", methods=["DELETE"])
 def delete_word(word_id):
-    data = load_words()
-    before = len(data["words"])
-    data["words"] = [x for x in data["words"] if x["id"] != word_id]
-    if len(data["words"]) == before:
-        return jsonify({"error": f"미존재: {word_id}"}), 404
-    save_words(data)
+    if _GlossaryWriter:
+        gw = _GlossaryWriter()
+        if not gw.remove_word(word_id):
+            return jsonify({"error": f"미존재: {word_id}"}), 404
+        gw.save()
+        _invalidate_cache(WORDS_PATH)
+    else:
+        data = load_words()
+        before = len(data["words"])
+        data["words"] = [x for x in data["words"] if x["id"] != word_id]
+        if len(data["words"]) == before:
+            return jsonify({"error": f"미존재: {word_id}"}), 404
+        save_words(data)
     log.info(f"[word:delete] id={word_id}")
     return jsonify({"ok": True})
 
@@ -418,13 +478,23 @@ def get_compounds():
 def add_compound():
     c = request.get_json()
     if not c: return jsonify({"error": "요청 본문 없음"}), 400
-    data = load_compounds()
-    if any(x["id"] == c.get("id") for x in data["compounds"]):
-        return jsonify({"error": f"이미 존재하는 id: {c.get('id')}"}), 409
-    _inject_metadata(c)
-    data["compounds"].append(c)
-    data["compounds"].sort(key=lambda x: x["id"])
-    save_compounds(data)
+    if _GlossaryWriter:
+        try:
+            gw = _GlossaryWriter()
+            if not gw.add_compound(c, skip_duplicate=False):
+                return jsonify({"error": f"이미 존재하는 id: {c.get('id')}"}), 409
+            gw.save()
+            _invalidate_cache(COMPOUNDS_PATH)
+        except ValueError as e:
+            return jsonify({"error": str(e)}), 409
+    else:
+        data = load_compounds()
+        if any(x["id"] == c.get("id") for x in data["compounds"]):
+            return jsonify({"error": f"이미 존재하는 id: {c.get('id')}"}), 409
+        _inject_metadata(c)
+        data["compounds"].append(c)
+        data["compounds"].sort(key=lambda x: x["id"])
+        save_compounds(data)
     log.info(f"[compound:add] id={c.get('id')}")
     return jsonify({"ok": True, "compound": c}), 201
 
@@ -432,23 +502,37 @@ def add_compound():
 def update_compound(cid):
     updated = request.get_json()
     if not updated: return jsonify({"error": "요청 본문 없음"}), 400
-    data = load_compounds()
-    idx = next((i for i,x in enumerate(data["compounds"]) if x["id"] == cid), None)
-    if idx is None: return jsonify({"error": f"미존재: {cid}"}), 404
-    _inject_metadata(updated, data["compounds"][idx])
-    data["compounds"][idx] = updated
-    save_compounds(data)
+    if _GlossaryWriter:
+        gw = _GlossaryWriter()
+        if not gw.update_compound(cid, updated):
+            return jsonify({"error": f"미존재: {cid}"}), 404
+        gw.save()
+        _invalidate_cache(COMPOUNDS_PATH)
+    else:
+        data = load_compounds()
+        idx = next((i for i,x in enumerate(data["compounds"]) if x["id"] == cid), None)
+        if idx is None: return jsonify({"error": f"미존재: {cid}"}), 404
+        _inject_metadata(updated, data["compounds"][idx])
+        data["compounds"][idx] = updated
+        save_compounds(data)
     log.info(f"[compound:update] id={cid}")
     return jsonify({"ok": True, "compound": updated})
 
 @app.route("/api/compounds/<cid>", methods=["DELETE"])
 def delete_compound(cid):
-    data = load_compounds()
-    before = len(data["compounds"])
-    data["compounds"] = [x for x in data["compounds"] if x["id"] != cid]
-    if len(data["compounds"]) == before:
-        return jsonify({"error": f"미존재: {cid}"}), 404
-    save_compounds(data)
+    if _GlossaryWriter:
+        gw = _GlossaryWriter()
+        if not gw.remove_compound(cid):
+            return jsonify({"error": f"미존재: {cid}"}), 404
+        gw.save()
+        _invalidate_cache(COMPOUNDS_PATH)
+    else:
+        data = load_compounds()
+        before = len(data["compounds"])
+        data["compounds"] = [x for x in data["compounds"] if x["id"] != cid]
+        if len(data["compounds"]) == before:
+            return jsonify({"error": f"미존재: {cid}"}), 404
+        save_compounds(data)
     log.info(f"[compound:delete] id={cid}")
     return jsonify({"ok": True})
 
@@ -924,6 +1008,154 @@ def batch_preview():
 def api_get_drafts():
     """BOM_TS drafts 보류 용어 조회"""
     return jsonify(load_drafts())
+
+
+@app.route("/api/batch/register_compound", methods=["POST"])
+def batch_register_compound():
+    """
+    합성어 구문(예: 'automatic data exchange')을 단일 트랜잭션으로 처리:
+      1. 단어별로 words.json에서 검색 (id 또는 variants.value 기준)
+      2. 미등록 단어를 words.json에 먼저 등록 (id/형태소 중복 제외)
+      3. 합성어(compound)를 compounds.json에 등록 (약어 = abbrev_id.upper())
+      실패 시 words.json / compounds.json 원본으로 rollback.
+    """
+    import copy
+    from datetime import datetime, timezone
+
+    body      = request.get_json() or {}
+    abbrev_id   = body.get("abbrev", "").strip().lower()   # 현재 단어 id (예: adx)
+    phrase      = body.get("phrase", "").strip()            # 전체 구문 (예: automatic data exchange)
+    ref_url     = body.get("ref_url", "").strip()
+    lang_custom = body.get("lang_custom") or {}             # {en, ko, ja, zh_hans} — 사용자 입력 명칭
+    desc_custom = body.get("desc_custom") or {}             # {ko, en} — 사용자 입력 설명
+
+    if not abbrev_id or not phrase:
+        return jsonify({"ok": False, "error": "abbrev, phrase 필수"})
+
+    now_str      = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    phrase_words = [w.lower() for w in phrase.split() if w.strip()]
+    compound_id  = "_".join(phrase_words)
+
+    try:
+        wd = load_words()
+        cd = load_compounds()
+
+        # ── 스냅샷 (rollback용) ──────────────────────────────────────
+        wd_snapshot = copy.deepcopy(wd)
+        cd_snapshot = copy.deepcopy(cd)
+
+        existing_comp_ids = {c["id"] for c in cd.get("compounds", [])}
+
+        # ── 단어 존재 여부 판별 ──────────────────────────────────────
+        # id로 직접 등록된 단어 집합
+        existing_word_ids = {w["id"] for w in wd.get("words", [])}
+        # variants.value 로 이미 포함된 단어 집합 (형태소로 등록된 경우)
+        variant_values: set = set()
+        for w in wd.get("words", []):
+            for v in w.get("variants", []):
+                val = (v.get("value") or v.get("short") or "").lower()
+                if val:
+                    variant_values.add(val)
+
+        words_found   = []   # words.json id로 이미 있는 단어
+        words_as_var  = []   # id는 없지만 variant value로 이미 포함된 단어
+        words_new     = []   # 완전히 새로 등록 필요한 단어
+
+        for pw in phrase_words:
+            if pw in existing_word_ids:
+                words_found.append(pw)
+            elif pw in variant_values:
+                words_as_var.append(pw)
+            else:
+                words_new.append(pw)
+
+        # ── Step 1: 미등록 단어 → words.json 먼저 등록 ──────────────
+        newly_added_words = []
+        for w in words_new:
+            # 약어 단어 자체(abbrev_id)는 lang_custom/desc_custom 적용, 나머지는 기본값
+            is_abbrev = (w == abbrev_id)
+            w_lang = dict(lang_custom) if is_abbrev and lang_custom else {"en": w, "ko": ""}
+            if "en" not in w_lang:
+                w_lang["en"] = w
+            w_desc = dict(desc_custom) if is_abbrev and desc_custom else {"en": w, "ko": ""}
+            entry = {
+                "id": w,
+                "domain": "general",
+                "status": "active",
+                "lang": w_lang,
+                "description_i18n": w_desc,
+                "canonical_pos": "noun",
+                "created_at": now_str,
+                "updated_at": now_str,
+                "variants": [],
+                "note": f"Auto-registered from compound: {compound_id}"
+            }
+            wd.setdefault("words", []).append(entry)
+            existing_word_ids.add(w)
+            newly_added_words.append(w)
+
+        if newly_added_words:
+            wd["words"].sort(key=lambda x: x["id"])
+            save_words(wd)
+
+        # ── Step 2: compound → compounds.json 등록 ──────────────────
+        compound_added = False
+        if compound_id not in existing_comp_ids:
+            # compound lang: lang_custom 있으면 우선, 없으면 phrase 기반 기본값
+            comp_lang = {"en": " ".join(w.title() for w in phrase_words), "ko": phrase}
+            if lang_custom:
+                comp_lang = {**comp_lang, **lang_custom}
+            # compound description: desc_custom 있으면 사용, 없으면 간단 설명
+            comp_desc: dict = {}
+            if desc_custom:
+                comp_desc = dict(desc_custom)
+            else:
+                comp_desc = {"ko": f"{phrase}의 약어", "en": phrase}
+            compound_entry = {
+                "id": compound_id,
+                "words": phrase_words,
+                "domain": "general",
+                "status": "active",
+                "lang": comp_lang,
+                "description_i18n": comp_desc,
+                "created_at": now_str,
+                "updated_at": now_str,
+                "variants": [
+                    {"type": "abbreviation", "short": abbrev_id.upper(), "long": abbrev_id}
+                ],
+            }
+            if ref_url:
+                compound_entry["source_urls"] = [ref_url]
+            cd.setdefault("compounds", []).append(compound_entry)
+            cd["compounds"].sort(key=lambda x: x["id"])
+            save_compounds(cd)
+            compound_added = True
+
+        log.info(
+            f"[batch] register_compound: {compound_id} | abbrev={abbrev_id} | "
+            f"found={words_found} | as_variant={words_as_var} | new={newly_added_words} | "
+            f"compound_added={compound_added}"
+        )
+        return jsonify({
+            "ok": True,
+            "compound_id": compound_id,
+            "compound_added": compound_added,
+            "words_found": words_found,
+            "words_as_variant": words_as_var,
+            "words_new": newly_added_words,
+            "total_words_registered": len(newly_added_words),
+        })
+
+    except Exception as e:
+        # ── Rollback ──────────────────────────────────────────────────
+        log.error(f"[batch] register_compound 실패, rollback 수행: {e}")
+        try:
+            save_words(wd_snapshot)
+            save_compounds(cd_snapshot)
+            log.info("[batch] rollback 완료")
+        except Exception as rb_err:
+            log.error(f"[batch] rollback 실패: {rb_err}")
+        return jsonify({"ok": False, "error": str(e), "rolled_back": True})
 
 
 @app.route("/api/batch/merge", methods=["POST"])

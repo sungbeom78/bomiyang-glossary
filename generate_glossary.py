@@ -47,9 +47,21 @@ DOMAINS = ["trading","market","system","infra","ui","general","proper"]
 POS_LIST = ["noun","verb","adj","adv","prefix","suffix","proper"]
 
 # Projection에 포함하는 variant type 목록 (§4.4)
-PROJECTION_VARIANT_TYPES = {"abbreviation", "alias", "plural", "misspelling"}
+# §4.4 확장: 형태론적 파생형(past/adj_form 등)도 variant_map에 포함하여
+# check-id에서 reached→reach, reachable→reach 등이 올바르게 인식되도록 함.
+PROJECTION_VARIANT_TYPES = {
+    # 기존 (abbreviation/alias 계열)
+    "abbreviation", "alias", "plural", "misspelling",
+    # 굴절형 (inflection)
+    "singular", "verb_form", "past", "past_participle",
+    "present_participle", "comparative", "superlative",
+    # 형태론적 파생형 (morphological derivation)
+    "noun_form", "verb_derived", "adj_form", "adv_form",
+    "agent", "gerund", "prefix", "suffix",
+}
 # Projection에서 제외하는 variant type 목록 (§4.5)
 PROJECTION_EXCLUDE_TYPES = {"pos_forms", "deprecated", "adjective", "adverb"}
+
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -269,6 +281,60 @@ def validate(words, compounds, banned, silent=False, skip_checksum=False) -> tup
             W("V-402", f"domain 없음: '{c['id']}'")
 
     word_lookup = {w["id"]: w for w in words}
+
+    # V-460: 도메인 내 약어(short) 유일성 검사 및 약어 식별자 금지
+    abbr_registry = {}  # (domain, short.lower()) -> source_id
+    
+    def _check_abbr_uniqueness(item, item_type):
+        abbr_field = item.get("abbreviation")
+        if not abbr_field or not isinstance(abbr_field, dict):
+            return
+        short_val = abbr_field.get("short", "").strip()
+        if not short_val:
+            return
+            
+        # 약어가 id와 동일하면 안 됨
+        if item["id"].lower() == short_val.lower():
+            F("V-460", f"약어({short_val})가 {item_type} 식별자(id)로 사용됨: '{item['id']}'")
+            
+        domains = item.get("domain", ["general"])
+        if isinstance(domains, str):
+            domains = [domains]
+            
+        for d in domains:
+            key = (d, short_val.lower())
+            if key in abbr_registry:
+                W("V-460", f"[{d}] 도메인 내 약어 충돌 발생: '{short_val}' ({abbr_registry[key]} vs {item['id']})")
+            else:
+                abbr_registry[key] = item["id"]
+
+    for w in words: _check_abbr_uniqueness(w, "words")
+    for c in compounds: _check_abbr_uniqueness(c, "compounds")
+
+    # V-450: top-level abbreviation 필드 정합성 검증
+    for w in words:
+        abbr = w.get("abbreviation")
+        if not abbr or not isinstance(abbr, dict):
+            continue
+        short = abbr.get("short", "").strip()
+        long_ = abbr.get("long", "").strip()
+        # V-450-A: abbreviation.long이 존재하지만 words에 미등록
+        if long_ and long_ not in word_id_set:
+            W("V-450", f"words['{w['id']}'].abbreviation.long='{long_}' 이 words에 미등록 (등록 권장)")
+        # V-451: abbreviation.short가 독립 word로도 존재할 때 일관성 확인
+        # → 해당 word의 canonical_pos가 'prefix'/'suffix'거나 'from' 필드 있어야 함
+        if short and short.lower() in word_id_set:
+            short_word = word_lookup.get(short.lower())
+            if short_word:
+                pos_s = short_word.get("canonical_pos", "")
+                from_s = short_word.get("from", "")
+                if pos_s not in ("prefix", "suffix") and not from_s:
+                    W("V-451", (
+                        f"abbreviation.short='{short}'이 독립 word로 존재하지만 "
+                        f"canonical_pos='prefix'/'suffix' 또는 'from' 필드 없음 "
+                        f"(root: '{w['id']}')"
+                    ))
+
     for w in words:
         wid = w["id"]
         pos = w.get("canonical_pos") or w.get("pos", "noun")
@@ -358,36 +424,41 @@ def verify_checksum(data: dict) -> tuple:
 # terms.json 생성 (Projection — §4)
 # ════════════════════════════════════════════════════════════════════
 
+def _parse_variant_list(vlist):
+    res = []
+    for v in vlist:
+        if not isinstance(v, dict): continue
+        vtypes = v.get("types", [])
+        if not vtypes and "type" in v: vtypes = [v["type"]]
+        
+        val = v.get("value", "")
+        if "abbreviation" in vtypes:
+            val = v.get("short") or val
+        if not val or not isinstance(val, str): continue
+        
+        for vtype in vtypes:
+            if vtype in PROJECTION_EXCLUDE_TYPES or vtype not in PROJECTION_VARIANT_TYPES: continue
+            res.append((vtype, val.strip()))
+    return res
+
 def _extract_word_variants(w: dict) -> list:
     """
     word의 variants(array 또는 object)에서 projection 포함 대상 항목만 추출.
     반환: [(variant_type, value), ...]
-    §4.4 포함: abbreviation, alias, plural, misspelling
+    §4.4 포함: abbreviation, alias, plural, misspelling + 굴절형 + 파생형 전체 (확장)
     §4.5 제외: pos_forms, deprecated, adjective, adverb
+    §4.6 top-level abbreviation 필드: word.abbreviation.short → 약어 resolve 지원
     2단계: variants array 형식 지원
     """
     variants_field = w.get("variants")
+    result = []
 
     # — Array 형식 (§2단계 이후)
     if isinstance(variants_field, list):
-        result = []
-        for v in variants_field:
-            if not isinstance(v, dict):
-                continue
-            vtype = v.get("type", "")
-            if vtype in PROJECTION_EXCLUDE_TYPES or vtype not in PROJECTION_VARIANT_TYPES:
-                continue
-            if vtype == "abbreviation":
-                val = v.get("short") or v.get("value", "")
-            else:
-                val = v.get("value", "")
-            if val and isinstance(val, str):
-                result.append((vtype, val.strip()))
-        return result
+        result.extend(_parse_variant_list(variants_field))
 
     # — Object 형식 (하위호환 — 이론상 마이그레이션 후 발생 안 함)
-    if isinstance(variants_field, dict):
-        result = []
+    elif isinstance(variants_field, dict):
         for vtype, vval in variants_field.items():
             if vtype in PROJECTION_EXCLUDE_TYPES:
                 continue
@@ -399,9 +470,16 @@ def _extract_word_variants(w: dict) -> list:
                         result.append((vtype, v.strip()))
             elif isinstance(vval, str) and vval.strip():
                 result.append((vtype, vval.strip()))
-        return result
 
-    return []
+    # §4.6 — top-level abbreviation 필드 처리 (단어 단위 약어, 선택 필드)
+    # 예: automatic.abbreviation.short = "auto" → variant_map["auto"] = {root:"automatic", type:"abbreviation"}
+    abbr_field = w.get("abbreviation")
+    if isinstance(abbr_field, dict):
+        short = abbr_field.get("short", "").strip()
+        if short:
+            result.append(("abbreviation", short))
+
+    return result
 
 
 def build_terms_json(words, compounds) -> tuple:
@@ -421,107 +499,113 @@ def build_terms_json(words, compounds) -> tuple:
     seen_ids = {}      # id 충돌 감지 (§4.7)
 
     def _register_term(entry: dict, source_desc: str) -> bool:
-        """중복 id 검사 후 terms 리스트에 추가. 충돌 시 skipped에 기록."""
-        eid = entry["id"]
-        if eid in seen_ids:
+        """id + domain 조합 검사 후 terms 리스트에 추가."""
+        term_id = entry["id"]
+        term_domain = entry["domain"]
+        key = f"{term_id}@{term_domain}"
+        if key in seen_ids:
             skipped.append({
-                "id": eid,
+                "id": term_id,
                 "reason": "id_conflict",
-                "detail": f"{source_desc} vs {seen_ids[eid]}",
+                "detail": f"{source_desc} vs {seen_ids[key]}",
             })
             return False
-        seen_ids[eid] = source_desc
+        seen_ids[key] = source_desc
         return True
+
+    def _unroll_domains(item: dict) -> list:
+        ds = item.get("domain", ["general"])
+        if isinstance(ds, str):
+            return [ds]
+        return list(set(ds)) if isinstance(ds, list) else ["general"]
 
     for w in words:
         wid = w["id"]
         lang = w.get("lang", {})
         desc_i18n = w.get("description_i18n", {})
-        domain = w.get("domain", "general")
         status = w.get("status", "active")
-
-        base_entry = {
-            "id": wid,
-            "source": "word",
-            "root": wid,
-            "term_type": "base",
-            "domain": domain,
-            "lang": lang,
-            "description_i18n": desc_i18n,
-        }
-
-        if status == "deprecated":
-            # §4.8: deprecated → legacy
-            base_entry["deprecated_at"] = w.get("deprecated_at", "")
-            legacy_terms.append(base_entry)
-            continue
-
-        if _register_term(base_entry, f"word:{wid}:base"):
-            active_terms.append(base_entry)
-
-        # §4.4 variant projection: abbreviation > alias > plural > misspelling
-        for vtype, vval in _extract_word_variants(w):
-            ambiguity = None
-            # abbreviation_meta 확인 (high ambiguity → §4.7 제외)
-            if vtype == "abbreviation":
-                # variants가 object 형식인 경우 meta는 별도 필드에 없으므로 기본 허용
-                pass
-            entry = {
-                "id": vval,
+        
+        for domain in _unroll_domains(w):
+            base_entry = {
+                "id": wid,
                 "source": "word",
                 "root": wid,
-                "term_type": "variant",
-                "variant_type": vtype,
+                "term_type": "base",
                 "domain": domain,
                 "lang": lang,
+                "description_i18n": desc_i18n,
             }
-            if _register_term(entry, f"word:{wid}:{vtype}"):
-                active_terms.append(entry)
+
+            if status == "deprecated":
+                base_entry["deprecated_at"] = w.get("deprecated_at", "")
+                legacy_terms.append(base_entry)
+                continue
+
+            if _register_term(base_entry, f"word:{wid}:{domain}:base"):
+                active_terms.append(base_entry)
+
+            for vtype, vval in _extract_word_variants(w):
+                entry = {
+                    "id": vval,
+                    "source": "word",
+                    "root": wid,
+                    "term_type": "variant",
+                    "variant_type": vtype,
+                    "domain": domain,
+                    "lang": lang,
+                }
+                if _register_term(entry, f"word:{wid}:{domain}:{vtype}"):
+                    active_terms.append(entry)
 
     for c in compounds:
         cid = c["id"]
         lang = c.get("lang", {})
         desc_i18n = c.get("description_i18n", {})
-        domain = c.get("domain", "general")
         status = c.get("status", "active")
 
-        base_entry = {
-            "id": cid,
-            "source": "compound",
-            "root": cid,
-            "term_type": "base",
-            "domain": domain,
-            "lang": lang,
-            "description_i18n": desc_i18n,
-        }
-
-        if status == "deprecated":
-            base_entry["deprecated_at"] = c.get("deprecated_at", "")
-            legacy_terms.append(base_entry)
-            continue
-
-        if _register_term(base_entry, f"compound:{cid}:base"):
-            active_terms.append(base_entry)
-
-        # compound variants projection (§4.4) — array + object 하위호환
+        # compounds 도 top-level abbreviation을 가짐 (words와 동일)
+        c_variants = []
         c_variants_field = c.get("variants")
         if isinstance(c_variants_field, list):
-            # §2단계 array 형식
-            for v in c_variants_field:
-                if not isinstance(v, dict):
-                    continue
-                vtype = v.get("type", "")
-                if vtype in PROJECTION_EXCLUDE_TYPES or vtype not in PROJECTION_VARIANT_TYPES:
-                    continue
-                # abbreviation: short 값이 id
-                if vtype == "abbreviation":
-                    val = v.get("short") or v.get("value", "")
-                else:
-                    val = v.get("value", "")
-                if not val:
-                    continue
+            c_variants.extend(_parse_variant_list(c_variants_field))
+        elif isinstance(c_variants_field, dict):
+            # 하위호환 (구)
+            abbr_short_legacy = c_variants_field.get("abbr", {}).get("short")
+            if abbr_short_legacy: c_variants.append(("abbreviation", abbr_short_legacy.strip()))
+            for vtype, vval in c_variants_field.items():
+                if vtype in PROJECTION_EXCLUDE_TYPES or vtype not in PROJECTION_VARIANT_TYPES: continue
+                vals = [vval] if isinstance(vval, str) else (vval if isinstance(vval, list) else [])
+                for v in vals:
+                    if v: c_variants.append((vtype, v.strip()))
+                    
+        abbr_field = c.get("abbreviation")
+        if isinstance(abbr_field, dict):
+            short = abbr_field.get("short", "").strip()
+            if short: c_variants.append(("abbreviation", short))
+
+        for domain in _unroll_domains(c):
+            base_entry = {
+                "id": cid,
+                "source": "compound",
+                "root": cid,
+                "term_type": "base",
+                "domain": domain,
+                "lang": lang,
+                "description_i18n": desc_i18n,
+            }
+
+            if status == "deprecated":
+                base_entry["deprecated_at"] = c.get("deprecated_at", "")
+                legacy_terms.append(base_entry)
+                continue
+
+            if _register_term(base_entry, f"compound:{cid}:{domain}:base"):
+                active_terms.append(base_entry)
+
+            for vtype, vval in c_variants:
+                if not vval: continue
                 entry = {
-                    "id": val,
+                    "id": vval,
                     "source": "compound",
                     "root": cid,
                     "term_type": "variant",
@@ -529,42 +613,8 @@ def build_terms_json(words, compounds) -> tuple:
                     "domain": domain,
                     "lang": lang,
                 }
-                if _register_term(entry, f"compound:{cid}:{vtype}"):
+                if _register_term(entry, f"compound:{cid}:{domain}:{vtype}"):
                     active_terms.append(entry)
-        elif isinstance(c_variants_field, dict):
-            # §1단계 object 형식 하위호환
-            # compound abbr.short (구형 필드 — 마이그레이션 후 사라짐)
-            abbr_short_legacy = c.get("abbr", {}).get("short")
-            if abbr_short_legacy:
-                entry = {
-                    "id": abbr_short_legacy,
-                    "source": "compound",
-                    "root": cid,
-                    "term_type": "variant",
-                    "variant_type": "abbreviation",
-                    "domain": domain,
-                    "lang": lang,
-                }
-                if _register_term(entry, f"compound:{cid}:abbreviation"):
-                    active_terms.append(entry)
-            for vtype, vval in c_variants_field.items():
-                if vtype in PROJECTION_EXCLUDE_TYPES or vtype not in PROJECTION_VARIANT_TYPES:
-                    continue
-                vals = [vval] if isinstance(vval, str) else (vval if isinstance(vval, list) else [])
-                for v in vals:
-                    if not v:
-                        continue
-                    entry = {
-                        "id": v,
-                        "source": "compound",
-                        "root": cid,
-                        "term_type": "variant",
-                        "variant_type": vtype,
-                        "domain": domain,
-                        "lang": lang,
-                    }
-                    if _register_term(entry, f"compound:{cid}:{vtype}"):
-                        active_terms.append(entry)
 
     # §4.9 checksum 계산
     generated_at = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -736,15 +786,98 @@ def build_glossary_md(words, compounds, banned) -> str:
 
 
 # ════════════════════════════════════════════════════════════════════
-# 식별자 단어 분해 헬퍼
-# ════════════════════════════════════════════════════════════════════
+# Prepositions and articles that carry no naming semantics — always removed from tokens.
+_STOP_WORDS: frozenset[str] = frozenset({
+    "a", "an", "the",
+    "at", "by", "for", "from", "in", "of", "on", "to", "with",
+})
+
+
+def _strip_numeric_suffix(tokens: list) -> list:
+    """
+    같은 알파 접두사에 숫자만 다른 토큰이 2개 이상 존재하면
+    숫자 부분을 제거하고 알파 부분만 남긴다.
+
+    예) ['stage', '1'], ['stage', '2'], ['stage', '3']  →  ['stage']
+        ['scenario', '1'], ['scenario', '2']              →  ['scenario']
+        ['phase', '1']  (단 1개)                           →  ['phase', '1']  (제거 안 함)
+
+    처리 대상: 순수 숫자 토큰이 바로 앞 알파 토큰과 짝을 이루는 경우만.
+    이는 tokenize() 내부에서 이미 분리된 토큰 목록에 적용한다.
+    """
+    from collections import defaultdict
+    # [alpha_prefix → list[numeric_token]] 집계
+    prefix_nums: dict[str, list[str]] = defaultdict(list)
+    i = 0
+    # (alpha, digit) 인접 쌍을 수집
+    while i < len(tokens) - 1:
+        alpha = tokens[i]
+        digit = tokens[i + 1]
+        if alpha.isalpha() and digit.isdigit():
+            prefix_nums[alpha].append(digit)
+        i += 1
+
+    # 2개 이상의 숫자 변형이 있는 접두사만 대상으로 삼음
+    remove_pairs: set[tuple[str, str]] = set()
+    for alpha, nums in prefix_nums.items():
+        if len(nums) >= 2:
+            for n in nums:
+                remove_pairs.add((alpha, n))
+
+    if not remove_pairs:
+        return tokens
+
+    # remove_pairs에 해당하는 (alpha, digit) 인접 쌍에서 digit 제거
+    result: list[str] = []
+    i = 0
+    while i < len(tokens):
+        if i < len(tokens) - 1:
+            pair = (tokens[i], tokens[i + 1])
+            if pair in remove_pairs:
+                result.append(tokens[i])
+                i += 2  # digit 건너뜀
+                continue
+        result.append(tokens[i])
+        i += 1
+    return result
+
 
 def tokenize(identifier: str) -> list:
-    s = identifier.replace('-', '_')
-    # camelCase 분해
-    s = re.sub(r'([a-z])([A-Z])', r'\1_\2', s)
-    s = re.sub(r'([A-Z]+)([A-Z][a-z])', r'\1_\2', s)
-    return [t.lower() for t in s.split('_') if t]
+    """
+    식별자를 소문자 단어 토큰 목록으로 분해한다.
+
+    처리 순서:
+    1. 특수문자(하이픈, 슬래시, 괄호, 점 등)를 밑줄 구분자로 치환
+    2. camelCase / PascalCase → snake_case 분해
+    3. 알파/숫자 경계에서 추가 분리 (sma5 → sma, 5)
+    4. 순수 숫자만인 토큰은 유지 (뒤에서 숫자 패턴 처리)
+    5. 전치사/관사(stop words) 제거
+    6. 복수 숫자 변형(stage1/stage2/...) 패턴에서 숫자 부분 제거
+    """
+    # Step 1: 공백 및 특수문자(하이픈, 슬래시, 괄호 등)를 밑줄로 치환
+    s = re.sub(r"[\s\-/\\.()\[\]{}<>:,;!?@#$%^&*+=|~`'\"]", "_", identifier)
+
+    # Step 2: camelCase 분해
+    s = re.sub(r"([a-z])([A-Z])", r"\1_\2", s)
+    s = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1_\2", s)
+
+    # Step 3: 알파/숫자 경계 분리 (예: stage1 → stage, 1)
+    s = re.sub(r"([A-Za-z])(\d)", r"\1_\2", s)
+    s = re.sub(r"(\d)([A-Za-z])", r"\1_\2", s)
+
+    # 기본 분해
+    raw_tokens = [t.lower() for t in s.split("_") if t]
+
+    # Step 4: 빈 문자열 제거
+    raw_tokens = [t for t in raw_tokens if t]
+
+    # Step 5: 전치사/관사(stop words) 제거
+    filtered = [t for t in raw_tokens if t not in _STOP_WORDS]
+
+    # Step 6: 복수 숫자 변형 패턴에서 숫자 제거 (stage1/stage2 → stage)
+    filtered = _strip_numeric_suffix(filtered)
+
+    return filtered
 
 
 def build_n_pattern_regexes(compounds: list) -> list:
@@ -1031,6 +1164,11 @@ def cmd_check_id(identifier: str):
     variant_list = []
 
     for tok in tokens:
+        # 순수 숫자 토큰: [N] 패턴 매칭 후 통과 처리
+        if tok.isdigit():
+            normalized_list.append(tok)
+            print(f"  {tok:<20} → [OK]  numeric literal (skip glossary check)")
+            continue
         # Check variant specifically
         if tok in variant_map_lower:
             v_info = variant_map_lower[tok]
@@ -1121,7 +1259,8 @@ def cmd_suggest(identifier: str):
     tokens = tokenize(identifier)
     missing = [
         t for t in tokens
-        if t not in word_ids
+        if not t.isdigit()
+        and t not in word_ids
         and not match_n_pattern(t, n_patterns)
         and not find_singular_token(t, word_lookup)
     ]

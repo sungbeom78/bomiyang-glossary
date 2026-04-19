@@ -1,0 +1,15 @@
+# .scan_list — 스캔 대상 폴더 및 파일 목록
+# 형식:
+#   dir:<폴더명>       → 하위 전체 스캔
+#   root:<패턴>        → 프로젝트 루트(/)에서 해당 glob 패턴에 맞는 파일만 포함
+#
+# 주의: 제외 규칙(.scan_ignore)이 항상 이 목록보다 우선 적용된다.
+
+# 스캔 대상 폴더
+dir:config
+dir:script
+dir:src
+
+# 루트(/) 경로에서 포함할 파일 패턴
+root:.env*
+root:run*.py
