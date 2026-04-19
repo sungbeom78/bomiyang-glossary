@@ -54,14 +54,14 @@
 | 시스템 공식 | `BOM_TS` | 문서, 로그, 커밋 메시지 |
 | 공개 브랜드 | `Bomiyang's Trade System` | 웹페이지 타이틀, 헤더 |
 
-### 현황 (v2)
+### 현황 (v3)
 
 | 항목 | 수치 |
 |------|------|
-| 단어 (words.json) | 227개 |
-| 복합어 (compounds.json) | 152개 |
+| 단어 (words.json) | 784개 |
+| 복합어 (compounds.json) | 167개 |
 | 금지표현 (banned.json) | 8개 |
-| 하위호환 terms.json | 379개 (자동 생성) |
+| 하위호환 terms.json | 2,900개 (자동 생성) |
 
 ---
 
@@ -588,18 +588,16 @@ BATCH_CHUNK_SIZE=300             # 청크당 후보 수
 MAX_OUTPUT_TOKENS=8192           # 응답 최대 토큰
 ```
 
-### 스캔 제외 설정
+### 스캔 포함/제외 설정 (.scan_list / .scan_ignore)
 
-```ini
-# 완전 제외 (내용도 파일명도 안 봄)
-EXCLUDE_DIRS=backup,data,test,lib_test,tmp,glossary,.git,__pycache__,node_modules,.venv,venv
+과거의 `.env` 패턴을 대체하는 독립적인 디렉토리/파일 스캔 설정입니다:
 
-# 파일명만 보는 폴더 (내용 스캔 안 함)
-EXCLUDE_FILE_CONTENT=cache,log
+- **`.scan_list`**: 필수적으로 스캔할 대상 (명시적 화이트리스트).
+  - 예: `dir:src`, `dir:config`, `root:run*.py`
+- **`.scan_ignore`**: 무시할 대상 (블랙리스트, 화이트리스트보다 항상 우선함).
+  - 예: `dir:__pycache__`, `ext:.md`, `pattern:.git*`
 
-# 확장자 제외
-EXCLUDE_EXTENSIONS=.md,.txt,.log,.csv,.tsv,.png,.jpg,.jpeg,.gif,.pdf,.ico,.svg,.zip,.tar
-```
+명시적으로 제외된 경로는 내용을 절대 스캔하지 않습니다.
 
 ### 스캔 대상 (소스별)
 
@@ -660,11 +658,6 @@ OPENAI_API_KEY=
 
 # ── 경로 ─────────────────────────────────────────
 PROJ_ROOT=                    # 프로젝트 루트 (비워두면 glossary 상위 자동감지)
-
-# ── 스캔 제외 ─────────────────────────────────────
-EXCLUDE_DIRS=backup,data,test,lib_test,tmp,glossary,.git,__pycache__,node_modules,.venv,venv
-EXCLUDE_FILE_CONTENT=cache,log
-EXCLUDE_EXTENSIONS=.md,.txt,.log,.csv,.tsv,.png,.jpg,.jpeg,.gif,.pdf,.ico,.svg,.zip,.tar
 
 # ── 배치 설정 ─────────────────────────────────────
 BATCH_CHUNK_SIZE=300
@@ -751,5 +744,5 @@ A. `tmp/items/items_날짜.json` 파일을 열어 API 응답 원문을 확인하
 
 ---
 
-*이 문서는 BOM_TS Glossary v2 기준입니다.*
-*문서 버전: 2026-04-10*
+*이 문서는 BOM_TS Glossary v3 기준입니다.*
+*문서 버전: 2026-04-19*
