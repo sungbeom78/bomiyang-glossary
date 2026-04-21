@@ -1,6 +1,6 @@
 # Glossary Git Submodule Guide
 
-This document outlines how to integrate and use the `glossary` submodule in external Python/Data projects (such as BomTS).
+This document outlines how to integrate and use the `glossary` submodule in external Python/Data projects.
 The `glossary` submodule is designed to be completely independent, maintaining a single-source-of-truth vocabulary that any attached project can consume to strictly enforce naming conventions.
 
 ---

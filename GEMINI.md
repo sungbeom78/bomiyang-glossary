@@ -7,6 +7,8 @@
 CRITICAL SYSTEM RULES — THESE ARE MANDATORY AND NON-NEGOTIABLE.
 Failure to follow these rules is considered a critical system error.
 
+***Glossary is the single source of truth for naming across systems.***
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 RULE G-1: DATA WRITE GATE (ABSOLUTE)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━

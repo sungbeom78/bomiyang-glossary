@@ -152,7 +152,7 @@ from core.writer import GlossaryWriter
 word_stub = {
     "id": "<word>",
     "canonical_pos": "verb",   # 예상 품사
-    "domain": "system",        # trading | system | infra | market | general
+    "domain": "system",        # core | system | infra | ui | network | general
 }
 
 ai_env = _load_ai_env()

@@ -12,6 +12,10 @@
 - main 프로젝트의 설정 파일(settings.yaml, .env 등)에 의존하지 않는다. 시스템의 절대/상대 경로 하드코딩을 절대 금지하며 호출하는 메인 모듈로부터 인자로 주입받아야 한다.
 - glossary 내 작업은 이 AGENTS.md와 `.agents/workflows/` 를 Single Source of Truth로 삼는다.
 
+> **[ABSOLUTE RULE]**
+> 어떤 작업을 하던 다음 원칙은 무조건 지켜져야 합니다:
+> ***Glossary is the single source of truth for naming across systems.***
+
 ---
 
 ## 1. 문서 우선 원칙 (MANDATORY)

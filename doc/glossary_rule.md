@@ -1,7 +1,7 @@
-# glossary_rule.md — BOM_TS Glossary 서브모듈 이용 지침
+# glossary_rule.md — Glossary 서브모듈 이용 지침
 
 > 위치: `glossary/glossary_rule.md`
-> 대상: BOM_TS 프로젝트에 참여하는 개발자 및 AI 에이전트
+> 대상: 프로젝트에 참여하는 개발자 및 AI 에이전트
 > 상위 지침: `AGENTS.md Rule 8-B`, `doc/guidelines/06_glossary_rules.md`
 
 ---
@@ -246,11 +246,10 @@ fx_futures    = fx + futures       (혼동 방지 — MT5_FUT 금지)
 
 | 금지 표현 | 문맥 | 올바른 표현 | 이유 |
 |-----------|------|------------|------|
-| `MT5_FUT` | 마켓 식별자 | `FX_FUT` | MT5는 플랫폼, 마켓 아님 |
-| `mt5Futures` | 변수명 | `fxFutures` | 동일 |
-| `KIS` | 한국주식 마켓 의미 | `KR_STOCK` | KIS는 브로커명 |
-| `MT5` | 외환선물 마켓 의미 | `FX_FUT` | MT5는 MetaTrader5 플랫폼명 |
-| `VOL` | 변동성(volatility) 단독 | `VOLS` 또는 context 명시 | volume과 혼동 |
+| `usrId` | 변수명 | `user_id` | 임의의 축약어 사용 금지 |
+| `dbConn` | 변수명 | `db_connection` | 임의의 축약어 사용 금지 |
+| `INFO` | 상태 식별자 | `SYSTEM_INFO` 등 | 너무 범용적인 단어 단독 사용 금지 |
+| `VOL` | 볼륨 단독 | `VOLS` 또는 context 명시 | volume과 혼동 |
 | `TS` | trailing/tracking 단독 | 문맥에 따라 명시 | 두 개념 혼동 |
 
 ---
@@ -263,14 +262,13 @@ fx_futures    = fx + futures       (혼동 방지 — MT5_FUT 금지)
 | 환경변수명 | `abbr_short` (UPPER_SNAKE) | `KIS_AK`, `KR_STOCK` |
 | 설정 파일 키 | `abbr_short` (snake_case) | `kr_strategy` |
 
-### 마켓별 약어
+### 도메인별 약어 예시
 
-| 마켓 | abbr_long | abbr_short | 금지 |
+| 도메인 | abbr_long | abbr_short | 금지 |
 |------|-----------|------------|------|
-| 한국주식 | `krStock` | `KR_STOCK` | `KIS`, `KOSPI` |
-| 미국주식 | `usStock` | `US_STOCK` | — |
-| 외환선물 | `fxFutures` | `FX_FUT` | `MT5`, `MT5_FUT` |
-| 암호화폐 | `crypto` | `CRYPTO` | `coin`, `virtual` |
+| 데이터베이스 | `database` | `DB` | `dbConn` |
+| 응용프로그램 인터페이스 | `api` | `API` | `Api` |
+| 사용자 인터페이스 | `userInterface` | `UI` | `gui` |
 
 ---
 
@@ -355,13 +353,12 @@ chore:    generate 재실행, 자동 생성 업데이트
 
 | domain | 대상 영역 | 예시 단어 |
 |--------|-----------|-----------|
-| `trading` | 매매·주문·포지션·리스크 | order, fill, stop, loss, profit, position |
-| `market` | 시장·종목·가격·데이터 | bar, tick, candle, volume, sector, stock |
+| `core` | 핵심 비즈니스 로직·엔티티 | user, account, order, product, service |
 | `system` | 시스템 운영·상태·설정 | config, kill, switch, log, guard, status |
 | `infra` | 외부 서비스·DB·인증 | redis, api, token, auth, proxy, bridge |
-| `ui` | 대시보드·리포트·표시 | dashboard, chart, report, display |
-| `general` | 범용 영어 단어 | get, set, max, min, daily, count |
-| `proper` | 고유명사 | kis, mt5, upbit, telegram, gemini |
+| `ui` | 대시보드·화면 요소 | dashboard, chart, button, display |
+| `network` | 네트워크 통신·프로토콜 | http, socket, request, response, port |
+| `general` | 특정 도메인에 속하지 않는 범용 기본 단어 (Fallback) | get, set, max, min, daily, count |
 
 ---
 
@@ -426,4 +423,4 @@ chore:    generate 재실행, 자동 생성 업데이트
 
 ---
 
-*BOM_TS Glossary v2 | 2026-04-15*
+*Glossary Submodule | 2026-04*
