@@ -561,18 +561,20 @@ def _call_ai(
         user_prompt = _build_ai_user_prompt(word_entry, wikt_data, dict_score)
 
         # Build the full prompt with system instructions
+        ai_system = _AI_SYSTEM_PROMPT
+        if ai_env:
+            proj = ai_env.get("GLOSSARY_PROJ_NAME", "BOM_TS")
+            domain = ai_env.get("GLOSSARY_PROJ_DOMAIN", "an automated stock/FX trading system")
+            ai_system = _AI_SYSTEM_PROMPT.replace("BOM_TS", proj).replace("an automated stock/FX trading system", domain)
+
         api_type = ai_env.get("API_KEY_TYPE", "google").lower()
 
         if api_type == "google":
             # Google API: system prompt goes as prefix to the content
-            full_prompt = _AI_SYSTEM_PROMPT + "\n\n---\n\n" + user_prompt
+            full_prompt = ai_system + "\n\n---\n\n" + user_prompt
         else:
-            full_prompt = user_prompt
-
-        # Override the system prompt in batch_items callers
-        # For google: already embedded.  For claude/openai: we need to patch.
-        # Simplest approach: combine system + user as one prompt for all backends.
-        full_prompt = _AI_SYSTEM_PROMPT + "\n\n---\n\n" + user_prompt
+            # Simplest approach: combine system + user as one prompt for all backends.
+            full_prompt = ai_system + "\n\n---\n\n" + user_prompt
 
         resp = _raw_call_api(full_prompt, ai_env, max_tokens=600)
 

@@ -1,0 +1,19 @@
+{
+  "id": "extracted",
+  "lang": {
+    "en": "extract",
+    "ko": "추출 / 발췌",
+    "ja": "抽出",
+    "zh_hans": "提取"
+  },
+  "canonical_pos": "noun",
+  "domain": "general",
+  "status": "active",
+  "from": "extract",
+  "description_i18n": {
+    "ko": "한 줄 설명: 전체 소스 코드나 데이터 중에서 특정 목적에 부합하는 요소만을 선택적으로 뽑아내어 분리하는 행위",
+    "en": "한 줄 설명: 전체 소스 코드나 데이터 중에서 특정 목적에 부합하는 요소만을 선택적으로 뽑아내어 분리하는 행위"
+  },
+  "created_at": "2026-04-20T00:23:28Z",
+  "updated_at": "2026-04-20T00:23:28Z"
+}

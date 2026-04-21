@@ -1,99 +1,3 @@
-from __future__ import annotations
-import re
-import json
-from pathlib import Path
-from dataclasses import dataclass
-
-import sys
-GLOSSARY_ROOT = Path(__file__).resolve().parent.parent
-
-# Inject glossary root to import specific glossary modules if not already
-if str(GLOSSARY_ROOT) not in sys.path:
-    sys.path.insert(0, str(GLOSSARY_ROOT))
-
-try:
-    from generate_glossary import tokenize, match_n_pattern, find_singular_token, build_n_pattern_regexes
-except ImportError:
-    pass
-
-LOCAL_VAR_EXCLUDE = {"i", "j", "k", "tmp", "res", "ret", "e", "ex"}
-
-EXTERNAL_LIB_TOKENS = {
-    "flask",
-    "redis",
-    "pandas",
-    "numpy",
-    "sqlalchemy",
-    "fastapi",
-    "pydantic",
-    "uvicorn",
-    "requests",
-    "pytest",
-}
-
-_STOP_WORDS_AUDIT: frozenset[str] = frozenset({
-    "a", "an", "the",
-    "at", "by", "for", "from", "in", "of", "on", "to", "with",
-})
-
-class GlossaryAuditor:
-    def __init__(self):
-        self.words, self.compounds, self.variant_map, self.banned, self.n_patterns, self.pending_ids = self.load_glossary()
-
-    def load_glossary(self) -> tuple[dict, dict, dict, list[dict], list[re.Pattern], set]:
-        words, compounds, variant_map, banned, pending_ids = {}, {}, {}, [], set()
-        n_patterns = []
-        
-        WORDS_PATH = GLOSSARY_ROOT / "dictionary" / "words.json"
-        COMPOUNDS_PATH = GLOSSARY_ROOT / "dictionary" / "compounds.json"
-        BANNED_PATH = GLOSSARY_ROOT / "dictionary" / "banned.json"
-        PENDING_PATH = GLOSSARY_ROOT / "dictionary" / "pending_words.json"
-        INDEX_WORD_MIN = GLOSSARY_ROOT / "build" / "index" / "word_min.json"
-        INDEX_COMPOUND_MIN = GLOSSARY_ROOT / "build" / "index" / "compound_min.json"
-        INDEX_VARIANT_MAP = GLOSSARY_ROOT / "build" / "index" / "variant_map.json"
-
-        if INDEX_WORD_MIN.exists():
-            data = json.loads(INDEX_WORD_MIN.read_text(encoding="utf-8"))
-            words = {normalize_term(w.get("id", "")): w for w in data if w.get("id")}
-        
-        if INDEX_COMPOUND_MIN.exists():
-            data = json.loads(INDEX_COMPOUND_MIN.read_text(encoding="utf-8"))
-            compounds = {normalize_term(c.get("id", "")): c for c in data if c.get("id")}
-            n_patterns_tuples = build_n_pattern_regexes(data) if "build_n_pattern_regexes" in globals() else []
-            n_patterns = [c_re for cid, c_re in n_patterns_tuples]
-            
-        if INDEX_VARIANT_MAP.exists():
-            data = json.loads(INDEX_VARIANT_MAP.read_text(encoding="utf-8"))
-            variant_map = {normalize_term(k): v for k, v in data.items()}
-
-        if BANNED_PATH.exists():
-            banned = json.loads(BANNED_PATH.read_text(encoding="utf-8")).get("banned", [])
-            
-        if PENDING_PATH.exists():
-            try:
-                pending_data = json.loads(PENDING_PATH.read_text(encoding="utf-8")).get("pending", [])
-                pending_ids = {normalize_term(p) if isinstance(p, str) else normalize_term(p.get("id", "")) for p in pending_data}
-            except Exception:
-                pass
-
-        return words, compounds, variant_map, banned, n_patterns, pending_ids
-        
-    def audit_identifier(self, identifier: str, kind: str, source: str) -> list[AuditIssue]:
-        issues = []
-        issues.extend(check_formatting(identifier, kind, source))
-        banned_issue = check_banned(identifier, kind, source, self.banned)
-        if banned_issue:
-            issues.append(banned_issue)
-            
-        if kind != "file":
-            issues.extend(check_glossary(identifier, kind, source, self.words, self.compounds, self.variant_map, self.n_patterns, self.pending_ids))
-            
-        issues.extend(check_singular(identifier, kind, source))
-        issues.extend(check_collection_semantic(identifier, kind, source))
-        issues.extend(check_numeric_pattern(identifier, kind, source, self.n_patterns))
-        return issues
-
-
 SNAKE_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 
 PASCAL_RE = re.compile(r"^[A-Z][A-Za-z0-9]*$")
@@ -110,13 +14,15 @@ BANNED_STRICT_KINDS = {"folder", "db_table", "module", "env_key", "config_key"}
 
 VARIABLE_KINDS = {"module_var", "class_attr", "self_attr", "param", "model_field"}
 
-# Abbreviation-style naming is common in runtime code (`__init__`, `ttl`, `maxlen`).
-# Keep strict gating for configuration surfaces and avoid noisy warnings for code-layer identifiers.
-ABBREVIATION_WARN_KINDS = {"module", "class", "db_table", "db_column", "env_key", "config_key"}
-
 NUMERIC_PATTERN_KINDS = {
     "module",
     "class",
+    "function",
+    "module_var",
+    "class_attr",
+    "self_attr",
+    "param",
+    "model_field",
     "db_table",
     "db_column",
     "config_key",
@@ -167,7 +73,6 @@ SCALAR_HINT_TOKENS = {
     "level",
 }
 
-@dataclass
 class AuditIssue:
     severity: str
     code: str
@@ -289,8 +194,6 @@ def check_glossary(
             v_type = variant_map[tok]["type"]
             root_id = variant_map[tok]["root"]
             if v_type == "abbreviation":
-                if kind not in ABBREVIATION_WARN_KINDS:
-                    continue
                 issues.append(
                     AuditIssue(
                         severity="WARN" if kind not in STRICT_GLOSSARY_KINDS else "ERROR",
@@ -475,9 +378,7 @@ def check_singular(identifier: str, kind: str, source: str) -> list[AuditIssue]:
     ]
 
 def check_collection_semantic(identifier: str, kind: str, source: str) -> list[AuditIssue]:
-    # Existing runtime code contains many legacy collection-hint names; keep this check disabled
-    # for current parser kinds to avoid non-actionable WARN noise in targeted audits.
-    if kind not in {"variable"}:
+    if kind not in VARIABLE_KINDS:
         return []
     tokens = [t for t in normalize_identifier(identifier) if t and not t.isdigit()]
     if not tokens:

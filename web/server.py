@@ -1009,6 +1009,11 @@ def api_get_drafts():
     """BOM_TS drafts 보류 용어 조회"""
     return jsonify(load_drafts())
 
+@app.route("/api/drafts/clear", methods=["POST"])
+def clear_drafts():
+    save_drafts({"drafts": []})
+    return jsonify({"ok": True})
+
 
 @app.route("/api/batch/register_compound", methods=["POST"])
 def batch_register_compound():
@@ -1028,6 +1033,7 @@ def batch_register_compound():
     ref_url     = body.get("ref_url", "").strip()
     lang_custom = body.get("lang_custom") or {}             # {en, ko, ja, zh_hans} — 사용자 입력 명칭
     desc_custom = body.get("desc_custom") or {}             # {ko, en} — 사용자 입력 설명
+    domain_custom = body.get("domain") or ["general"]       # 사용자 입력 도메인 배열
 
     if not abbrev_id or not phrase:
         return jsonify({"ok": False, "error": "abbrev, phrase 필수"})
@@ -1080,7 +1086,7 @@ def batch_register_compound():
             w_desc = dict(desc_custom) if is_abbrev and desc_custom else {"en": w, "ko": ""}
             entry = {
                 "id": w,
-                "domain": "general",
+                "domain": domain_custom,
                 "status": "active",
                 "lang": w_lang,
                 "description_i18n": w_desc,
@@ -1114,7 +1120,7 @@ def batch_register_compound():
             compound_entry = {
                 "id": compound_id,
                 "words": phrase_words,
-                "domain": "general",
+                "domain": domain_custom,
                 "status": "active",
                 "lang": comp_lang,
                 "description_i18n": comp_desc,
@@ -1158,6 +1164,168 @@ def batch_register_compound():
         return jsonify({"ok": False, "error": str(e), "rolled_back": True})
 
 
+@app.route("/api/batch/ai_draft", methods=["POST"])
+def batch_ai_draft():
+    """
+    단어/구문 하나를 받아 AI를 통해 다국어 명칭 + 발음 + 한 줄 설명을 반환.
+    기존 .env 의 API_KEY_TYPE / API_MODEL / *_API_KEY 를 그대로 사용.
+
+    Request body:
+        { "word": "fifo", "api_type": "claude" (optional), "model": "" (optional) }
+
+    Response:
+        {
+            "ok": true,
+            "en":  "First-In, First-Out",
+            "ko":  "선입선출(先入先出)",
+            "ja":  "先入れ先出し",
+            "zh":  "先进先出",
+            "pronunciation": { "en": "퍼스트 인 퍼스트 아웃", "ko": "선입선출", ... },
+            "description_ko": "먼저 들어온 데이터가...",
+            "description_en": "A method where the first..."
+        }
+    """
+    import os
+
+    body     = request.get_json() or {}
+    word     = body.get("word", "").strip()
+    api_type = body.get("api_type", "").strip() or os.environ.get("API_KEY_TYPE", "claude")
+    model    = body.get("model",    "").strip() or os.environ.get("API_MODEL",    "")
+    sources  = body.get("sources", [])
+
+    if not word:
+        return jsonify({"ok": False, "error": "word 파라미터 필요"}), 400
+
+    context_str = ""
+    if isinstance(sources, list) and sources:
+        context_str = f"Found in codebase context: {', '.join(sources[:5])}\n"
+    elif isinstance(sources, str):
+        context_str = f"Found in codebase context: {sources}\n"
+
+    proj_name   = os.environ.get("GLOSSARY_PROJ_NAME", "BOM_TS")
+    proj_domain = os.environ.get("GLOSSARY_PROJ_DOMAIN", "trading system and software architecture")
+
+    prompt = (
+        f"[단어]\n{word}\n\n"
+        f"[소스]\n{context_str}\n\n"
+        f"아래 내용을 출력해 줘\n"
+        f"* 도메인 (domain)\n"
+        f"** 다음 중 가장 적합한 하나를 선택: trading, market, system, infra, ui, general, proper\n"
+        f"* 간단 설명 (short_description)\n"
+        f"* 기본 단어 형태 (base_form)\n"
+        f"** 단어 원형 원칙: 복수형(-s/-es), 과거분사(-ed), 진행형(-ing) 등의 파생 형태를 제거하고, 해당 단어의 사전적 기본형(Singular/Present Tense)을 출력할 것\n"
+        f"** 도메인 관례 유지: 단, 트레이딩이나 IT 도메인에서 고유명사처럼 굳어진 약어(예: GTC, GICS)는 예외로 하되, 일반 명사는 반드시 단수형 원형을 우선할 것\n"
+        f"* 다국어 번역\n"
+        f"** 한글명(ko), 영문명(en), 일본어(ja), 중국어 간체(zh)\n"
+        f"* 설명\n"
+        f"** 한글/영어 한 줄 설명 작성해 줘. 한글, 영어 언급은 명시하지 말 것. 마침표 찍지 말 것\n"
+        f"* 형태소 및 관계어 (없으면 빈 값 또는 빈 배열)\n"
+        f"** 약어 (abbr): 2-5자 대문자\n"
+        f"** 어원 (from): 파생된 원래 형태 (예: robot -> bot 인 경우 robot)\n"
+        f"** 변형/파생어 (variants): 배열 형태 (예: type: plural, value: kills)\n"
+        f"** 유의어 (synonyms): 관련된 영문 유의어 배열\n"
+        f"** 반의어 (antonyms): 관련된 영문 반의어 배열\n"
+        f"** 출처 (source_urls): wiktionary 등 참고 URL 배열\n"
+        f"** 금지 표현 (not): 사용을 지양해야 할 표현 배열\n\n"
+        f"결과는 반드시 아래 JSON 형식으로만 응답할 것 (다른 텍스트 금지):\n"
+        f"{{\n"
+        f'  "domain": "...",\n'
+        f'  "short_description": "...",\n'
+        f'  "base_form": "...",\n'
+        f'  "ko": "...",\n'
+        f'  "en": "...",\n'
+        f'  "ja": "...",\n'
+        f'  "zh": "...",\n'
+        f'  "description_ko": "...",\n'
+        f'  "description_en": "...",\n'
+        f'  "abbr": "...",\n'
+        f'  "from": "...",\n'
+        f'  "variants": [{{"type": "plural", "value": "..."}}],\n'
+        f'  "synonyms": ["..."],\n'
+        f'  "antonyms": ["..."],\n'
+        f'  "source_urls": ["..."],\n'
+        f'  "not": ["..."]\n'
+        f"}}"
+    )
+
+    try:
+        raw_json = _call_ai_api(api_type, model, prompt)
+        data     = json.loads(raw_json)
+        data["ok"] = True
+        log.info(f"[ai_draft] word={word} api={api_type} ok=True")
+        return jsonify(data)
+    except json.JSONDecodeError as je:
+        log.warning(f"[ai_draft] JSON 파싱 실패 word={word}: {je}")
+        return jsonify({"ok": False, "error": f"AI 응답 JSON 파싱 실패: {je}"}), 502
+    except Exception as e:
+        log.warning(f"[ai_draft] 실패 word={word}: {e}")
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+def _call_ai_api(api_type: str, model: str, prompt: str) -> str:
+    """
+    api_type(claude|openai|google)에 따라 AI API를 호출하고 응답 텍스트를 반환.
+    키는 모두 .env / 환경변수에서 로드한다.
+    """
+    import os, re
+
+    def _extract_json(text: str) -> str:
+        """마크다운 코드블록에 싸인 경우 JSON 추출."""
+        m = re.search(r'```(?:json)?\s*([\s\S]*?)```', text, re.IGNORECASE)
+        if m:
+            return m.group(1).strip()
+        # 중괄호로 감싼 부분만 추출
+        m2 = re.search(r'(\{[\s\S]*\})', text)
+        if m2:
+            return m2.group(1).strip()
+        return text.strip()
+
+    if api_type == "claude" or api_type == "anthropic":
+        import anthropic
+        key = os.environ.get("ANTHROPIC_API_KEY", "")
+        if not key:
+            raise ValueError("ANTHROPIC_API_KEY 환경변수 미설정")
+        mdl = model or "claude-haiku-4-5-20251001"
+        client = anthropic.Anthropic(api_key=key)
+        msg = client.messages.create(
+            model=mdl,
+            max_tokens=512,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = msg.content[0].text if msg.content else ""
+        return _extract_json(raw)
+
+    elif api_type == "openai":
+        import openai as _openai
+        key = os.environ.get("OPENAI_API_KEY", "")
+        if not key:
+            raise ValueError("OPENAI_API_KEY 환경변수 미설정")
+        mdl = model or "gpt-4o-mini"
+        client = _openai.OpenAI(api_key=key)
+        resp = client.chat.completions.create(
+            model=mdl,
+            max_tokens=512,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = resp.choices[0].message.content if resp.choices else ""
+        return _extract_json(raw)
+
+    elif api_type == "google":
+        import google.generativeai as genai
+        key = os.environ.get("GOOGLE_API_KEY", "")
+        if not key:
+            raise ValueError("GOOGLE_API_KEY 환경변수 미설정")
+        mdl = model or "gemini-2.0-flash"
+        genai.configure(api_key=key)
+        gmodel = genai.GenerativeModel(mdl)
+        resp = gmodel.generate_content(prompt)
+        raw  = resp.text if hasattr(resp, "text") else ""
+        return _extract_json(raw)
+
+    else:
+        raise ValueError(f"지원하지 않는 api_type: {api_type!r}. claude|openai|google 중 선택")
+
+
 @app.route("/api/batch/merge", methods=["POST"])
 def batch_merge():
     """
@@ -1180,14 +1348,34 @@ def batch_merge():
         words_added = 0
         comps_added = 0
 
-        # 단일 단어 추가
+        # 새 단어 추가
         for w in approved_words:
             wid = w.get("id")
-            if wid and wid not in existing_word_ids:
+            if not wid: continue
+            if wid not in existing_word_ids:
                 _inject_metadata(w)
                 wd["words"].append(w)
                 existing_word_ids.add(wid)
                 words_added += 1
+            else:
+                # 이미 존재하는 ID인 경우: variants 정보만 병합 시도
+                existing_w = next((x for x in wd["words"] if x["id"] == wid), None)
+                if existing_w and w.get("variants"):
+                    evars = existing_w.setdefault("variants", [])
+                    changed = False
+                    for nv in w.get("variants"):
+                        vtype = nv.get("type")
+                        if vtype == "abbreviation":
+                            if not any(ev.get("type") == "abbreviation" and (ev.get("short") or "").lower() == (nv.get("short") or "").lower() for ev in evars):
+                                evars.append(nv)
+                                changed = True
+                        else:
+                            if not any((ev.get("value") or "").lower() == (nv.get("value") or "").lower() for ev in evars):
+                                evars.append(nv)
+                                changed = True
+                    if changed:
+                        existing_w["updated_at"] = w.get("updated_at") or existing_w.get("updated_at")
+                        words_added += 1
 
         # 복합어 추가
         for c in approved_comps:
@@ -1198,12 +1386,9 @@ def batch_merge():
                 existing_comp_ids.add(cid)
                 comps_added += 1
 
-        # 거부된/선택받지 못한 항목 Drafts 추가
-        if rejected:
-            # Add to top, keep 100
-            new_drafts = rejected + dd.get("drafts", [])
-            dd["drafts"] = new_drafts[:100]
-            save_drafts(dd)
+        # 거부된/선택받지 못한 항목 Drafts 덮어쓰기 (가장 마지막 스캔 기준)
+        dd["drafts"] = rejected
+        save_drafts(dd)
 
         if words_added > 0:
             wd["words"].sort(key=lambda x: x["id"])

@@ -1,514 +1,620 @@
-## [2026-04-18 18:05:00]
-### Fixed / Refined (Glossary 2차 정제 — v3.2 적재 기준 통일)
+# Glossary Change Log
 
-#### 목적
-마이그레이션과 신규 등록 간 variants 추출 기준 통일 + from/derived_terms 사용 규칙 확정
+## 2026-04-19 15:30:00
+### Added / Modified / Fixed - 작업 통합 검토 및 dictionary migration
 
-#### 1. 데이터 정제 (words.json)
+**Task 1 — 최근 3개 대화 작업 반영 검토**
+- ✅ PROJECTION_VARIANT_TYPES 확장 (굴절형/파생형 포함)
+- ✅ abbreviation top-level 필드 + _extract_word_variants §4.6
+- ✅ GlossaryWriter 단일 저장 진입점
+- ✅ server.py write APIs → GlossaryWriter 사용
+- ✅ apply_pending_words.py → GlossaryWriter 사용
 
-**patch_domain_words.py (신규)**
-- 19개 fetch_fail 도메인 단어에 수동 description_en 추가
-  - kis, kosdaq, kospi, pnl, redis, url, vwap, mt5, postgresql 등
-- url에 plural:urls variant 추가
+**Task 2/3 — migration/new word 경로 불일치 및 중복 수정**
+- ❌→✅ `bin/batch_items.py`:
+  - `_apply_to_words_json()` 함수를 GlossaryWriter 기반으로 전환
+  - 직접 `words_path.write_text()` 제거 → `gw.add_word(skip_duplicate=True)` 사용
+  - backup 자동 생성 보장
+  - 반환값으로 실제 추가된 단어 수 표시로 개선
+- 유지 레거시 (점진적 전환 대상): bin/fix_*.py, bin/migrate_*.py, bin/clean_*.py
 
-**patch_upper.py (신규)**
-- upper: uppermore, uppermost (잘못된 appendix 형태) 제거
-- upper는 이미 comparative이므로 comparative variant 불필요
+**Task 4 — dictionary migration**
+- schema V-011: `canonical_pos='prep'` 비표준 → `adv`로 수정
+  - 대상: `with`, `without` (2개)
+- `lang.ko` 미등록 단어 기본값 채우기 (21개)
+  - abstract/average/bomiyang/cascading/chinese/comma/content/delivery/encryption/
+    interface/network/program/separated/share/sheets/standard/style/syntax/tree/true/yuan
+- 총 23건 수정 (GlossaryWriter, backup 자동 생성)
 
-#### 2. 코드 개선
+### Verification
+- `python generate_glossary.py validate` → FATAL 0건 OK
+- `python generate_glossary.py generate` → terms.json 2888개 OK
+- dict_audit.py:
+  - POS: noun/adj/verb/adv/prefix (prep 0개)
+  - lang.ko 없음: 0개
+  - auto_registered status: 0개
 
-**normalize_build.py (MODIFY)**
-- 모듈 헤더: v3.2 spec 완전 반영
-  - 단어 검색 5단계 우선순위 명시
-  - 용어 검색 원칙 (단어 단위 분해 → exact fallback) 명시
-  - derived_terms 저장은 넓게, 조회는 exact fallback으로만 사용 명시
+---
 
-**batch_items.py (MODIFY)**
-- process_auto() 주석: v1.2 통일 파이프라인 명시
-  - "migration과 동일한 fetch_and_process() 사용" 명기
+### Added / Modified - words.json top-level abbreviation 필드 구현
 
-#### 3. 테스트
+**사유**: 단어 단위 약어(auto, KR 등)를 words.json에서 관리할 수 없어
+  check-id에서 약어 resolve가 불가했던 문제 해결.
 
-**bin/test_phase2.py (신규)** — 완료 조건 8카테고리 39개 테스트
-- T1: more/most periphrastic variants 없음 ✅
-- T2: from stage값 없음 ✅
-- T3: noun plural 10개 샘플 ✅
-- T4: verb 굴절 10개 샘플 ✅
-- T5: comparative/superlative 복합표현 제외 ✅
-- T6: derived_terms fallback 조회 6개 ✅
-- T7: 신규 등록 = migration 동일 파이프라인 ✅
-- T8: 도메인 단어 desc_en 9개 ✅
-- **결과: 39 PASS / 0 FAIL**
-
-#### 최종 데이터 상태
-- words.json: 228 words
-- desc_en 있음: 228/228 (100%)
-- normalize_index: 955 entries
-- derived_terms: 739 items
-
-## [2026-04-17 12:26:00]
-### Fixed (v1.2 Re-Migration — --only-incomplete 옵션 추가)
-
-#### 문제
-- `--resume`으로 migration 시 desc_en 있으면 skip → 169개 단어가 plural-only 상태로 남음
-- 실질적으로 v1.2 형태소 패밀리 전략이 이전 단어들에 미적용
-
-#### 해결
-- `migrate_v1_1.py` : `--only-incomplete` 옵션 추가
-  - plural-only 또는 variants=[] 인 단어만 선택 재처리
-  - `--word-list ID,...` 옵션도 추가 (콤마 구분)
-- 191개 단어 재처리: ok=172, fetch_fail=12, error=7
-- derived_terms: 519 → **738 items**
-- normalize_index: 752 → **954 entries**
-
-#### 검증
-- `verify_v1_1.py` : **11/11 PASS**
-- `cancel` : cancelled(UK)/cancelling(UK) 수동 추가 (AI가 미국식만 반환)
-- Only-plural 단어: 169 → **73** (73개는 진짜 plain noun)
-
-## [2026-04-17 12:01:00]
-### Major Refactor (Morphological Family Expansion — v1.2)
-
-#### 핵심 문제 해결
-- 기존: `canonical_pos` 기준 variants 필터 → "plural 수집기"로 전락
-- 변경: **형태소 패밀리 최대 수집** (`active → activate, activation, actively, activating, activated`)
-
-#### Architecture Changes
-
-##### `bin/wikt_sense.py`
-- `ALL_VARIANT_TYPES` 신규 상수: 16가지 타입 (inflection + morphological derivation)
-  - inflection: `plural`, `singular`, `verb_form`, `past`, `past_participle`, `present_participle`, `comparative`, `superlative`
-  - derivation: `noun_form`, `verb_derived`, `adj_form`, `adv_form`, `agent`, `gerund`
-- AI 프롬프트 전면 교체: `CORE PHILOSOPHY = MAXIMIZE variants`
-  - "FILTER only" 원칙: 완전히 다른 의미만 제거
-  - `DERIVATION` 예시 6개 포함: `activate→activation`, `classify→classification` 등
-- Hard Gate Gate-3: POS 제한 제거 → `ALL_VARIANT_TYPES` 포함 여부만 검증
-- `_VTYPE_NORM` 확장: `adverb→adv_form`, `noun_derived→noun_form` 등 추가
-- `STATUS_WORDS` 재정의: 병합 후 standalone 단어만 (`closed`, `pending`, `trading` 등)
-
-##### `bin/merge_inflected_words.py` (신규)
-- `-ed`/`-ing` canonical ID를 base verb로 병합
-- MERGE: 21개 (`cancelled→cancel.past`, `failed→fail.past_participle` 등)
-- KEEP: 7개 도메인 명사 (`trading`, `reporting`, `scoring`, `setting`, `trailing`, `closed`, `pending`)
-- 234 → 228 단어 (21 removed, 15 new bases created)
-
-#### Migration Results
-- 228 words total (21 inflected IDs removed, 15 new base verbs added)
-- Verbs with 0 variants: **234 → 0** (완전 해결)
-- Top variant richness: classify(6v), reject(6v), run(6v), active(5v), disable(5v)
-- derived_terms index: 519 items | normalize_index: 752 entries
-
-## [2026-04-17 11:24:00]
-### Major Refactor (Hard Gate Spec v1.1 — AI-Centric Architecture)
-
-#### Architecture Change
-- 기존: rule-based score → AI optional fallback (실제 AI 미실행)
-- 변경: **AI가 중심, Hard Gate가 막는 구조**
-  - Wiktionary HTML → Parser → Dict Score → AI 판단 → Hard Gate 검증 → 저장
-
-#### Modified Files
-- File: `bin/wikt_sense.py` — v1.1 완전 재설계
-  - AI 프롬프트: 도메인 앵커링, 명시적 DO/DON'T 예시, variant type 제약
-  - Hard Gate: 6단계 검증 (description_en, pos, variants, from, status word, variant type)
-  - variant type 정규화 (`third_person_singular` → `verb_form`)
-  - INFL_MAP에 comparative/superlative 추가 (adj variants 파싱)
-  - `PipelineResult` 통합 반환 구조
-- File: `bin/normalize_build.py` — `enrich_word_variants()` v1.1 연동
-  - description_en, selected_pos, from 모두 反映
-- File: `bin/batch_items.py` — `process_auto()` 전면 교체
-  - dictionaryapi.dev 제거 → Wiktionary 단일 소스
-  - v1.1 파이프라인 (fetch_and_process) 직접 호출
-  - Hard Gate 통과 시에만 recommended=True
-
-#### New Files
-- File: `bin/migrate_v1_1.py` — v1.1 AI migration 스크립트
-  - `--apply`, `--resume`, `--word`, `--dry-run` 지원
-  - 단어별: variants/from 리셋 → AI 판단 → Hard Gate → 저장
-- File: `bin/post_clean_v1_1.py` — post-migration 잔존 이상 정리
-
-#### Migration Results (234 words)
-- OK: 215 (AI 사용 207)
-- Gate Rejected: 2 (lower, us — 수동 처리)
-- Fetch Fail: 12 (도메인 전용 단어: KIS, KOSDAQ, mt5 등)
-- Error: 5 (redis, url, pnl 등 — Wiktionary 미등재)
-
-#### Data Quality (Before → After)
-- desc_en 없음: 234 → **19** (fetch_fail/error 단어만 남음)
-- 잘못된 from (bot→bottom 등): **17 → 0**
-- more/most 형태 variants: **존재 → 전부 제거**
-- adj variants 비어있던 문제: 해결 (Gate에서 adj exempt)
-
-### Notes
-- 신규 등록 경로와 migration 경로 **완전 통일** (동일 파이프라인)
-- dictionaryapi.dev 의존성 완전 제거
-- AI 프롬프트 핵심 설계: variant type EXACT name 지정 + from DO/DON'T 6개 예시
-
-## [2026-04-17 09:19:00]
-### Modified (Registration Path Parity Fix - batch_items.py)
-- File: `bin/batch_items.py` — 신규 단어 등록 경로 v3.2 정합성 수정
-  - `process_auto()`: dead-code comparative/superlative 필터 제거
-    (이미 `enrich_word_variants()` -> `wikt_sense` 레벨에서 pos 필터 처리)
-  - `process_auto()`: from 품질 필터 추가 (`is_bad_from()` 호출)
-  - `process_auto()`: enriched dict에 `"from"` 필드 포함
-  - `_apply_to_words_json()`: enriched 데이터 실제 반영 (기존: 버려짐)
-    - `canonical_pos`, `description_i18n`, `source_urls`, `variants`, `from` 모두 적용
-    - ko lang label을 LLM 번역 결과로 설정 (기존: word id 그대로)
-- File: `bin/test_registration_parity.py` — 신규: 경로 정합성 테스트 21개
-### Notes
-- 신규 등록 경로 vs migration 경로 동일 함수 사용 확인:
-  - enrich_word_variants() -> wikt_sense.fetch_and_process()
-  - filter_variants_by_pos() (pos별 variant 필터)
-  - post_clean_from.is_bad_from() (from 품질 필터)
-- 테스트 21/21 PASS
-- 주요 수정 전 문제: enriched 데이터가 words.json에 반영 안 됨 (dead code)
-
-## [2026-04-17 09:16:00]
-### Modified (v3.2 Full Data Migration - 234 words)
-- File: `dictionary/words.json` — 전체 234개 단어 re-migration
-  - variants clean: 362개 wrong-type variant 제거 (canonical_pos 불일치)
-  - from clean: 18개 잘못된 from 값 제거 (자기참조, 복수형, meta-term, stage word)
-  - Wiktionary enrichment: 35개 from 신규 설정, 3개 variants 추가
-  - fetch_fail: 12개 (kisses/kosdaq/kospi/goldenkey 등 도메인 고유어)
-- File: `dictionary/words__derived_terms.json` — 487 items 재생성
-- File: `build/index/normalize_index.json` — 757 entries 재생성
-- File: `bin/migrate_v3_2.py` — 신규: 완전 migration 스크립트
-- File: `bin/post_clean_from.py` — 신규: from 품질 필터 스크립트
-### Notes
-- FATAL 0건, WARN 6건(기존 유지)
-- terms.json 744개 생성
-- normalize() 정규화 인덱스 757 entries
-- pos별 variants 필터 적용 완료 (noun:plural만, verb:verb_form+past+pp만, adj:comparative+superlative만)
-
-## [2026-04-17 08:58:00]
-### Added (Wiktionary Sense Selection & From Extraction Spec v1.0)
-- File: `bin/wikt_sense.py` — 신규 모듈 (274라인)
-  - `parse_wiktionary_full()`: 전체 HTML 파싱 (etymologies + pos_blocks + inflections)
-  - `score_candidate()`: 점수 기반 의미 선택 (pos match, description kw, domain kw, rare penalty)
-  - `extract_from()`: lexical base 추출 (deny regex, allow pattern, fallback)
-  - `filter_variants_by_pos()`: canonical_pos 기준 variants 필터링
-  - `process_word()`: 7단계 메인 파이프라인
-  - `fetch_and_process()`: Wiktionary fetch + process 통합
-  - AI fallback 연동 (score < 5, 다의 어원, POS 중복 시 호출)
-- File: `bin/normalize_build.py` — enrich_word_variants() wikt_sense 재사용 연동
-- File: `bin/test_wikt_sense.py` — 단위 테스트 19개 (spec §10) + live 테스트 5케이스
-### Notes
-- 단위 19/19 PASS
-- Live: bot(noun✅, from='bottom'*), execute(verb✅), drama(from=None✅), watch(plural✅), standard(adj✅)
-- *bot.from='bottom' — Wiktionary에 "Clipping of bottom" 실제 존재. AI fallback 시 null로 교정됨
-- FROM_DENY_PATTERNS: "From Late Latin" 패턴 regex로 처리 (이전 startswith 방식 교체)
-- "Shortening of", "Back-formation from" allow 패턴 추가
-- variants deduplication 추가
-
-## [2026-04-17 07:51:00]
-### Modified (Glossary Normalization System v3.2 - Policy Unification)
-- File: `bin/normalize_build.py` — v3.2로 업그레이드
-  - HEADWORD_INFLECTION_MAP에서 comparative/superlative 제거 (more X, most X 생성 차단)
-  - `is_lexical_from()` 신설: from 필드를 lexical base vs etymology-stage로 분류
-  - `_build_normalize_index()` 5단계 우선순위 재정립: id > variants > synonyms > from(lexical) > derived_terms
-  - `enrich_word_variants()` public API 분리: 마이그레이션/신규 등록 공용 함수
-  - from 필드: 삭제 아닌 보존, canonical 판단 시만 is_lexical_from()으로 분류
-- File: `dictionary/words.json` — comparative/superlative 복합형 52건 제거 (more/most 패턴)
-- File: `bin/batch_items.py` — process_auto()에서 신규 단어 등록 시 `enrich_word_variants()` 재사용 (경로 통일)
-- File: `bin/clean_variants.py` — 복합 comparative 제거 스크립트 신설
-### Notes
-- normalize() 6개 테스트 모두 OK
-- is_lexical_from() 6개 테스트 모두 OK
-- comparative/superlative 0건 확인 (52건 제거 완료)
-- FATAL 0건 유지, terms.json 762개
-
-## [2026-04-17 00:09:00]
-### Added (Glossary Normalization System v3.1)
-- File: `bin/normalize_build.py` — v3.1 정규화 엔진 신설
-  - `from` 필드 정제: `middle`, `latin`, `french` 등 언어 단계 값 115건 제거
-  - Wiktionary headword-line 파서로 inflection 변형 635건 variants에 적용
-  - `derived_terms` 제거 후 `words__derived_terms.json`으로 분리 (6,932건)
-  - `normalize_index.json` 생성 (7,144 entries): surface → canonical_id
-  - `normalize(word)` API: 의미 업룥나 적용 � 모든 표면형을 canonical id로 첫번에 환시
-- File: `dictionary/words.json` — derived_terms 제거, variants 635건 보강, from 115건 정제 완료
-- File: `dictionary/words__derived_terms.json` — 파생어 및 형태소 검색 인덱스 신설
-### Notes
-- terms.json 762건 (546에서 증가), FATAL 0건
-- normalize('sectors') → 'sector', normalize('accounts') → 'account' 등 정상 확인
-
-## [2026-04-16 23:17:00]
-### Fixed / Added (Migration v2 성공)
-- Wiktionary HTML 구조 변경(`mw-heading div`) 대응 파서 전면 재작성
-- File: `bin/migrate_words_relations.py` — v2 전면 재작성. `_get_sections()` / `_find_english_subsections()` 로 기존 h2 anchor 변경에 대응. Etymology, Synonyms, Antonyms, Derived terms, Inflection 모두 정상 추출.
-- File: `bin/fix_self_variants.py` — 문자 자체 값과 동일한 self-conflict variants 제거 유톸리티 신설
-- File: `dictionary/words.json` — Migration v2 전진. `from` 150건(64%), `synonyms` 65건, `antonyms` 42건, `derived_terms` 195건(83%), `source_urls` 222건(95%) 자동 보강 완료
-### Notes
-- FATAL 0건, WARN 6건(기존)으로 validate 통과 확인
-- pending_words.json 에 from 기반 신규 후보 36건 자동 등록됨
-
-## [2026-04-16 21:12:00]
-### Added / Modified
-- Glossary Migration & Canonical Consolidation Plan v1.0 실행 완료
-- File: `schema/word.schema.json` — `from`, `synonyms`, `antonyms`, `derived_terms` 관계형 속성 추가하여 검증 규칙 최신화.
-- File: `bin/migrate_words_relations.py` — 지정된 소스에서 마이그레이션 스크립트를 추출해 `bin` 폴더에 배치 후 실행. Wiktionary API 기반으로 단어 234건 검사 완료 (`source_urls` 222건 신규 확보).
-- `generate_glossary.py generate`를 실행하여 Projection(GLOSSARY.md 포함) 재생성 및 최종 완료.
-### Notes
-- Migration 과정 중 FATAL 에러나 파손 현상 없이 모두 정상 수행됨.
-
-## [2026-04-16 18:22:00]
-### Added / Modified
-- Auto 모드 배치 추출 결과 UI 개선 및 한국어 LLM 번역 연동
-- File: `web/index.html` — `renderChunk()` 내 UI 개선. 병합 리스트 출력 시 발견 횟수 외에 품사(pos), 한국어 뜻, 영어 정의 요약을 노출하도록 수정. `상세▼` 토글 버튼 통해 상세 뜻 및 source_urls 링크를 확인 가능.
-- File: `bin/batch_items.py` — `process_auto()` 내 영문 사전 검색 후 `.env`의 API 키를 활용해 추출된 전체 단어 뜻을 LLM으로 일괄 한국어 번역(`description_i18n.ko`)하도록 로직 추가.
-### Notes
-- 사용자는 `API_KEY_TYPE` (claude, openai, google) 환경 변수 설정 후 Auto 모드를 재실행하여 한국어 정의까지 자동 매핑된 화면을 볼 수 있습니다.
-
-## [2026-04-16 15:00:00]
-### Fixed / Modified
-- 배치 추출 결과물 병합 화면 오류 수정 및 Dictionary API 추출 고도화
-- File: `web/index.html` — `d.terms` 오타를 `d.items`로 수정. `doMergeProcessed`에서 enriched 데이터 추출 방식 적용
-- File: `bin/batch_items.py` — Auto 모드 추출 로직 수정. `partOfSpeech`를 `canonical_pos`로 매핑하고, `source_urls` 및 첫 번째 definition을 `description_i18n`으로 저장
-- File: `schema/word.schema.json` — 엄격한 스키마 검증을 통과하기 위해 `source_urls` 필드 명세 추가
-### Notes
-- 사용자는 `batch_items.py` 기반의 Auto 모드를 재실행하여 단어 속성을 새로 추출해야 정상적으로 UI에 영단어의 품사/정의 등이 반영됩니다.
-
-## [2026-04-16 12:31:00]
 ### Added
-- §5.3 Alerting 구현 — `web/notifier.py` 신설
-  - Telegram: `TELEGRAM_SYSTEM_TOKEN` + `TELEGRAM_DEFAULT_CHAT_ID` (.env)
-  - Slack 방식 1 (권장): `SLACK_WEBHOOK_URL` (Incoming Webhook)
-  - Slack 방식 2: `SLACK_BOT_TOKEN` + `SLACK_DEFAULT_CHAT_ID` (xoxb- 필수)
-  - `notify_info()` / `notify_warning()` / `notify_critical()` 편의 함수 제공
-  - `notify()` 통합 함수: Telegram + Slack 동시 발송
-- §1.3 Trading Freeze 구현 — `web/trading_freeze.py` 신설
-  - `is_trading_freeze()` → (bool, reason) 반환
-  - `check_freeze_or_raise()` → Flask 응답 dict 반환 (server.py 연동용)
-  - `get_freeze_status()` → `/api/trading-freeze/status` 응답용
-  - 차단 시간대: 한국 주식 09:00–15:30 / 해외 FX 21:00–02:00 / 코인 옵션
-- `web/server.py` 연동 수정
-  - `api_generate()`: Trading Freeze 게이트 추가 + generate 완료/실패 알림
-  - `api_validate()`: FATAL 발생 시 `notify_critical()` 알림
-  - `git_commit_push()`: Trading Freeze 게이트 추가 + commit 완료 알림
-  - `GET /api/trading-freeze/status` 신규 엔드포인트 추가
-  - `main()`: 서버 시작 시 Trading Freeze 상태 출력 (🔴/🟢 표시)
-- `.env.example` 신규 키 추가: TELEGRAM_SYSTEM_TOKEN, TELEGRAM_DEFAULT_CHAT_ID,
-  SLACK_WEBHOOK_URL, SLACK_BOT_TOKEN, SLACK_DEFAULT_CHAT_ID,
-  TRADING_FREEZE_ENABLED, TRADING_FREEZE_CRYPTO
-- File: web/notifier.py [NEW]
-- File: web/trading_freeze.py [NEW]
-- File: web/server.py
-- File: .env.example
-- File: doc/plan/Glossary Consolidation & Refactoring Plan v2.5.1 task.md (§5.3, §1.3 [x] 완료)
-### Notes
-- Telegram 전송: telegram=True 확인 완료 (2026-04-16 12:35 KST)
-- Slack: 제공된 SLACK_SYSTEM_TOKEN이 Telegram 형식으로 Slack 사용 불가.
-  SLACK_WEBHOOK_URL 또는 xoxb- Bot Token 발급 후 .env 설정 필요.
-- Trading Freeze: 현재 KST 12:35 → "한국 주식 시장 운영 중" FREEZE 정상 감지 확인
-
-## [2026-04-16 12:25:00]
-### Modified
-- Plan v2.5.1 task.md 상태 최신화
-- 현재 상태 테이블에 build/report/, build/index/, bin/test_*.py, rollout_rollback_plan.md 항목 추가
-- 잔여 검토 사항 → Plan §8 Migration 완료 현황으로 재구성
-- Step 6~10 모두 [x] 완료 처리 (이전 [ ] 상태에서 갱신)
-- File: doc/plan/Glossary Consolidation & Refactoring Plan v2.5.1 task.md
-### Notes
-- Step 7 (16/16 PASS), Step 8 (19/19 PASS), Step 9~10 (rollout_rollback_plan.md) 모두 완료 반영
-- §5.3 Alerting, §1.3 Trading Freeze 는 범위 외 별도 작업으로 유지
-
-## [2026-04-16 11:41:00]
-### Modified
-- Plan v2.5.1 §8 Step 7–10 대응 파일 수정 — Windows 호환성 및 경로 정확성 개선
-- bin/test_regression.py: Windows cp949 터미널 UnicodeEncodeError 방지 위해 `sys.stdout.reconfigure(encoding='utf-8')` 추가, tc_08/tc_09 내 `import io as _io` alias 불일치 버그 수정
-- bin/test_db_compat.py: 동일한 Windows stdout UTF-8 처리 추가, dc_05 JSON 왕복 테스트에서 `len(words_obj)` 가 dict 키 수를 반환하던 오류를 `_unwrap()` 적용 후 항목 수 계산으로 수정 (words:234개, compounds:154개 정상 표시)
-- bin/rollout_rollback_plan.md: 모든 Linux 전용 명령어(bash/sh) → PowerShell 명령어로 대체
-  - `cp -r` → `Copy-Item -Recurse`
-  - `ln -sfn` → `Rename-Item` 기반 교체 절차 (mklink 주석 안내)
-  - `date +%Y%m%d` → `Get-Date -Format 'yyyyMMdd'`
-  - `cd glossary` / `cd ..` → `Push-Location ..` / `Pop-Location`
-  - `cat` → `Get-Content`
-  - git commit 문자열 내 이중 따옴표 → 단일 따옴표 (PowerShell 파싱 안전)
-  - 코드 블럭 언어 태그 `bash` → `powershell`
-  - 모든 명령 블럭에 실행 위치 주석(`# 실행 위치: glossary/ 루트`) 추가
-- File: bin/test_regression.py
-- File: bin/test_db_compat.py
-- File: bin/rollout_rollback_plan.md
-### Notes
-- test_regression.py: 16/16 PASS (PYTHONIOENCODING 환경변수 없이도 정상 실행)
-- test_db_compat.py: 19/19 PASS (words:234, compounds:154, terms:598 정상 표시)
-
-## [2026-04-15 13:42:12]
-### Added / Modified
-- Plan v2.5.1 2단계 구현 완료 — variants Array 전환
-- bin/migrate_variants.py 신설: words.json/compounds.json의 variants object → array 마이그레이션 (dry-run 지원)
-- generate_glossary.py: `build_terms_json()` 내 compound variants projection을 array+object 하위호환으로 전환
-- generate_glossary.py: `cmd_generate()` 내 `variant_map` 생성 로직을 array+object 하위호환으로 전환
-- schema/word.schema.json: variants를 type-based array 형식으로 완전 재정의 (§3.3, oneOf[value|short])
-- schema/compound.schema.json: variants array 형식 + abbr 객체 제거 (abbreviation type으로 통합)
-- web/index.html:
-  - `getVariantShort(variants)`, `getVariantLong(variants)`, `cAbbrShort(c)`, `cAbbrLong(c)` 헬퍼 추가
-  - wFilter, renderWords, cFilter, renderCompounds → 헬퍼 사용으로 전환
-  - openWordForm, saveWord → variants array [{type:'abbreviation',short}] 형식으로 저장
-  - openCompoundForm, saveCompound → variants array [{type:'abbreviation',short,long}] 형식으로 저장
-- words.json: 234개 단어 variants object → array 마이그레이션 완료
-- compounds.json: 154개 복합어 variants object → array 마이그레이션 완료
-- File: generate_glossary.py
-- File: schema/word.schema.json
-- File: schema/compound.schema.json
-- File: bin/migrate_variants.py
-- File: web/index.html
-### Notes
-- generate FATAL 없음, WARN 6건(V-401 기존 단어 4개 description 미등록, V-352 1건)
-- terms.json 598개 checksum 포함 재생성 완료
-
-## [2026-04-15 13:28:00]
-### Added / Modified
-- Plan v2.5.1 1단계 구현 완료 (Glossary Consolidation & Refactoring Plan v2.5.1)
-- terms.json에 sha256 checksum 필드 추가 (`compute_checksum`, `verify_checksum` 함수 신설)
-- V-010 (checksum CRITICAL), V-011 (schema ERROR), V-013 (banned exact-match ERROR) 검증 추가
-- `validate()` 함수에 `skip_checksum` 파라미터 추가 — generate 전 호출 시 기존 terms.json checksum 검증 스킵
-- deprecated 항목 → `dictionary/terms_legacy.json` 자동 분리 생성
-- Projection 보강: alias / misspelling variant도 terms.json에 포함 (`PROJECTION_VARIANT_TYPES` 상수 신설)
-- `_extract_word_variants()` 헬퍼 추가 — §4.4/§4.5 포함/제외 규칙 집중 처리
-- `build_terms_json()` 반환 시그니처 변경: dict → tuple(active_data, legacy_data, skipped)
-- `_register_term()` 내부 함수 추가 — id 충돌 시 skipped 기록 (§4.7)
-- 운영 산출물 4종 자동 생성 (§11): `build/report/dependency_missing.json`, `projection_skipped.json`, `merge_candidates.json`, `banned_autofix_report.json`
-- `REPORT_DIR`, `TERMS_LEGACY_PATH` 경로 상수 추가
-- `PROJECTION_VARIANT_TYPES`, `PROJECTION_EXCLUDE_TYPES` 상수 추가 (§4.4, §4.5)
-- `cmd_stats()` 내 `w["pos"]` → `w.get("canonical_pos")` 수정 (v1.2 스키마 정합)
-- `doc/module_index.md` 갱신 — generate_glossary.py 산출물 및 Validation Gate 명시
-- File: generate_glossary.py
-- File: doc/module_index.md
-### Notes
-- V-010은 standalone `validate` 명령에서만 기존 terms.json 체크섬 검증. `generate` 전에는 skip_checksum=True로 우회.
-- V-013은 case-sensitive exact match 적용 — KIS(banned)↔kis(id) 오탐 방지.
-- WARN 6건 (V-401×5, V-352×1)은 기존 데이터 품질 이슈로 1단계 범위 외.
-
-## [2026-04-14 20:01:59]
+- `schema/word.schema.json`: `abbreviation` top-level 필드 추가 (optional)
+  - fields: short(필수), long, case_sensitive, confidence, ambiguity
+  - `note` 필드 추가 (auto-registered 등 메타 주석)
+- `generate_glossary.py`:
+  - `_extract_word_variants()` §4.6 확장: top-level abbreviation.short를 variant_map에 포함
+  - V-450 검증: abbreviation.long 미등록 단어 참조 시 WARN
+  - V-451 검증: abbreviation.short 독립 word 존재 시 canonical_pos 일관성 확인
+- `core/writer.py`:
+  - `add_word_abbreviation(word_id, short, long, case_sensitive, confidence, ambiguity)` 추가
 
 ### Modified
-- V-351 경고 규칙을 Sparse JSON 원칙에 맞게 정리 (명사 plural 미정의 일괄 WARN 제거)
-- File: generate_glossary.py
-### Notes
-- 기존 V-351은 noun + plural 미정의 전체를 경고해 대부분 단어가 WARN으로 출력되는 과경고 상태였음
-- v0.4의 Sparse 원칙(값 없는 필드 생략 허용)에 맞게 `variants.plural`이 "명시되어 있는데 비어 있는 경우"에만 V-351 경고를 발생하도록 조정
-- plural root 금지(V-301), self-conflict 금지(V-303), check-id 정규화 동작에는 영향 없음
+- `dictionary/words.json`:
+  - `automatic`: canonical_pos noun→adj, lang 보완(ko/ja/zh_hans),
+    variants(adv_form/noun_form/verb_derived/agent) 추가,
+    abbreviation: {short:"auto", long:"automatic", confidence:"high", ambiguity:"low"} 추가
+  - `auto`: canonical_pos noun→prefix, from:"automatic" 추가,
+    description_i18n 접두사 역할 반영
+- `core/__init__.py`: 절대 import → 상대 import 수정
 
-## [2026-04-14 18:28:48]
+### Verification
+- `python generate_glossary.py validate` → FATAL 0건 OK
+- `python generate_glossary.py generate` → terms.json 2888개 생성 OK
+- `python generate_glossary.py check-id auto` → [WARN] abbreviation (root: automatic) OK
+- `python generate_glossary.py check-id auto_trade` → automatic + trade resolve OK
+
+---
+
+### Added - glossary 서브모듈 자체 완결형 지침 분리 구축
+
+**사유**: glossary가 Git submodule로 관리되므로 main 프로젝트에 종속된 지침을
+  glossary 내부로 완전히 분리. 어떤 main 프로젝트에 연결해도 독립적으로 동작 가능.
+
+### Added
+- AGENTS.md 전면 재작성 — glossary 자체 완결형 지침 (서브모듈 독립 원칙 명시)
+- GEMINI.md 전면 재작성 — glossary 전용 AI 규칙 (G-1~G-7)
+- .agents/workflows/change-code-procedure.md 신설
+  - §DATA (GlossaryWriter 사용 의무)
+  - §VALIDATE (validate/generate 검증)
+  - §IDENTIFIER (check-id 절차)
+  - §DOCS (문서 업데이트 의무)
+  - §FAILURE (실패 처리)
+- .agents/workflows/new-identifier-procedure.md 신설
+  - Wiktionary + AI 파이프라인 사용법 포함 (wikt_sense.fetch_and_process)
+- .agents/workflows/safe-command-policy.md 신설
+  - Grade A (자동 허용): validate, generate, check-id
+  - Grade B (조건부): GlossaryWriter 경유 스크립트
+  - Grade C (금지): 직접 write
+
 ### Modified
-- BOM_TS Glossary Integration Final v0.4 기준으로 AI runtime index 메타데이터 정합화 및 운영 문서 보강
-- File: generate_glossary.py
-- File: doc/README_AI_GUIDELINE.md
-- File: doc/module_index.md
+- doc/README_AI_GUIDELINE.md 전면 확장
+  - 데이터 아키텍처 개요 (디렉토리 구조)
+  - validate V-코드 표 (V-104/V-202/V-301/V-303/V-352)
+  - GlossaryWriter API 전체 목록
+  - PROJECTION_VARIANT_TYPES 확장 내역 문서화
+  - 환경 설정 (.env 필수 항목)
+  - Wiktionary + AI 파이프라인 사용법
+- doc/module_index.md — core/writer.py GlossaryWriter 및 generate_glossary.py(Projection) 항목 추가
+
+### 연관 변경 (main 프로젝트)
+- .agents/workflows/change-code-procedure.md §GLOSSARY 절 → §SUBMODULE 참조 주석으로 대체
+- doc/module_index.md glossary 전용 항목 제거 (glossary/doc/module_index.md로 이동)
+> **Archive**: ?댁쟾 湲곕줉? `doc/change_log_archive/202604_change_log.md` ??蹂닿?.
+
+---
+
+## [2026-04-19 11:17:00]
+### Added ??諛곗튂 蹂묓빀 ?몄쭛 ?뱀뀡???ㅺ뎅??紐낆묶/?ㅻ챸 ?낅젰 湲곕뒫 異붽?
+
+#### ?묒뾽 ?댁슜
+
+**諛곌꼍**: 諛곗튂 蹂묓빀 ???⑥뼱瑜??깅줉?섍린 ?꾩뿉 ?쒓?쨌?곸뼱쨌?쇰낯?는룹쨷援?뼱 紐낆묶怨??쒓?/?곷Ц ?ㅻ챸??吏곸젒 ?낅젰?????덉뼱????
+`atr ??Average True Range` 媛숈씠 ?⑥뼱???⑹꽦?댁쓽 ?ㅺ뎅??紐낆묶???щ엺??紐낆떆?섍퀬???????ъ슜.
+
+**1. ?몄쭛 ?뱀뀡 UI 異붽?** (`web/index.html`)
+
+`???깅줉 ???섏젙` ?뱀뀡????媛쒖쓽 sub-?뱀뀡 異붽?:
+
+**?뙋 紐낆묶 (?좏깮)** ??2??洹몃━???덉씠?꾩썐:
+- **EN** ?낅젰: enriched data `lang.en` ?먮룞 梨꾩? (?놁쑝硫?鍮?移?
+- **KO** ?낅젰: enriched data `lang.ko` ?먮룞 梨꾩?
+- **JA** ?낅젰: enriched data `lang.ja` ?먮룞 梨꾩?
+- **ZH** ?낅젰: enriched data `lang.zh_hans` ?먮룞 梨꾩?
+
+**?뱷 ?ㅻ챸 (?좏깮)** ??2??textarea:
+- **KO** textarea: enriched `description_i18n.ko` ?먮룞 梨꾩?
+- **EN** textarea: enriched `description_i18n.en` ?먮룞 梨꾩?
+- ?ㅻ챸? ?덈궡: "?쒓?留??낅젰 ???곷Ц?쇰줈 蹂듭궗, 諛섎????숈씪"
+  - KO留??낅젰 ??EN???먮룞 蹂듭궗 (踰덉뿭 ?泥?/ ?ъ슜?먭? 吏곸젒 ?섏젙 媛??
+  - EN留??낅젰 ??KO???먮룞 蹂듭궗
+
+**2. `applyUserEdit(i)` ?섏젙** (`web/index.html`)
+- 4媛??몄뼱 ?꾨뱶 ??`lang_custom: {en, ko, ja, zh_hans}` ?????- 2媛??ㅻ챸 ?꾨뱶 ??`desc_custom: {ko, en}` ?????(auto-copy 洹쒖튃 ?곸슜)
+- `t.user_edit = { ..., lang_custom, desc_custom }`
+
+**3. `doMergeProcessed()` ?섏젙** (`web/index.html`)
+- `user_edit.lang_custom` ??`wordBody.lang` 理쒖슦????뼱?곌린
+- `user_edit.desc_custom` ??`wordBody.description_i18n` ??뼱?곌린
+- compound ?붿껌??`lang_custom`, `desc_custom` ?ы븿?섏뿬 ?쒕쾭 ?꾨떖
+
+**4. ?쒕쾭 `batch_register_compound` ?섏젙** (`web/server.py`)
+- body?먯꽌 `lang_custom`, `desc_custom` ?섏떊
+- ?쎌뼱 ?⑥뼱 ?먯껜(abbrev_id)媛 `words_new`???대떦?섎㈃ `lang_custom`/`desc_custom` ?곸슜
+- compound ?뷀듃由? `comp_lang = default_lang + lang_custom`, `comp_desc = desc_custom || default_desc`
+
+**?덉떆 (`atr`)**:
+```
+愿???⑥뼱/?⑹꽦?? average true range
+EN: Average True Range
+KO: ?됯퇏 ?ㅼ쭏 蹂????JA: 亮녑쓦?잆겗影꾢쎊
+ZH: 亮녑쓦?잌츩力℡퉭
+KO ?ㅻ챸: ?뱀씪??怨좉?쨌?媛, 洹몃━怨??꾩씪 醫낃????媛?Gap)源뚯? ?ы븿?섏뿬 ?쒖옣??吏꾩쭨 蹂????쓣 怨꾩궛
+??compounds.json: average_true_range (abbrev: ATR, lang 4媛??몄뼱, desc KO+EN)
+??words.json: average, true, range 媛곴컖 auto-?깅줉
+```
+
+#### Verification
+- UI: EN/KO/JA/ZH 紐낆묶 ?꾨뱶 + KO/EN ?ㅻ챸 textarea ?뺤긽 ?뚮뜑留???- Auto-fill: enriched ?곗씠???먮룞 梨꾩? ??- `py_compile web/server.py` ??OK ??- 釉뚮씪?곗?: `atr` ??ぉ?먯꽌 ?꾩껜 ?낅젰 ???숈옉 ?뺤씤 ??
+#### Affected Files
+- `web/index.html` (MODIFY: 紐낆묶/?ㅻ챸 ?뱀뀡 UI, applyUserEdit, doMergeProcessed)
+- `web/server.py` (MODIFY: batch_register_compound ??lang_custom/desc_custom 諛섏쁺)
+
+---
+
+## [2026-04-19 10:51:00]
+### Fixed ??register_compound ?몃옖??뀡 湲곕컲 ?ъ옉??(words ?곗꽑 ?깅줉 + rollback)
+
+#### 臾몄젣
+湲곗〈 `batch_register_compound`??誘몃벑濡??⑥뼱瑜?`pending_words.json`??異붽??섎뒗 諛⑹떇?댁뿀?쇰굹,
+??寃쎌슦 `compounds.json`???깅줉??compound媛 李몄“?섎뒗 ?⑥뼱媛 `words.json`???녿뒗 ?곹깭媛 諛쒖깮?????덉쓬.
+?먰븳 words? compounds媛 蹂꾧컻 ?묒뾽?쇰줈 ?ㅽ뻾?섏뼱 ?ㅽ뙣 ??partial state媛 ?⑤뒗 臾몄젣 議댁옱.
+
+#### ?섏젙 ?댁슜 (`web/server.py` ??`batch_register_compound`)
+
+**?깅줉 ?쒖꽌 蹂寃?(words ??compound)**:
+1. 援щЦ ?⑥뼱蹂꾨줈 `words.json` 議댁옱 ?щ? ?먮퀎:
+   - **id濡??대? ?덉쓬** ??`words_found` (?ㅽ궢)
+   - **variants.value濡??대? ?ы븿** ??`words_as_variant` (?ㅽ궢, ?뺥깭?뚯뿉 ?대? ?덉쓬)
+   - **?꾩쟾 誘몃벑濡?* ??`words_new` ??**Step 1?먯꽌 words.json??諛붾줈 ?깅줉**
+2. Step 1: `words_new` ?⑥뼱?ㅼ쓣 `words.json`??癒쇱? ?깅줉
+3. Step 2: `compounds.json`??compound ?뷀듃由??깅줉
+
+**?몃옖??뀡 泥섎━**:
+- ?쒖옉 ??`copy.deepcopy`濡?`wd_snapshot`, `cd_snapshot` ?앹꽦
+- ?덉쇅 諛쒖깮 ?? `save_words(wd_snapshot)`, `save_compounds(cd_snapshot)` ?몄텧濡??먮났
+- ?묐떟??`rolled_back: true` ?ы븿
+
+**?묐떟 援ъ“ 蹂寃?*:
+- `words_found`: id濡??대? ?덈뒗 ?⑥뼱
+- `words_as_variant`: variants???대? ?ы븿???⑥뼱 (?좉퇋 ?깅줉 遺덊븘??
+- `words_new`: ?덈줈 `words.json`???깅줉???⑥뼱 紐⑸줉
+- `total_words_registered`: ?좉퇋 ?깅줉 ??
+**?대씪?댁뼵??toast ?낅뜲?댄듃** (`web/index.html`):
+- `?⑹꽦??N媛??깅줉, ?⑥뼱 N媛??뺤씤, ?좉퇋 N媛?words ?깅줉, ?뺥깭??N媛??대? ?ы븿` ?뺤떇
+- ?ㅽ뙣 ??`rollback ?꾨즺` ?쒖떆
+
+#### Verification
+- `py_compile web/server.py` ??OK ??- `pending_words.json` ?섏〈 ?쒓굅 ??- Rollback 濡쒖쭅: deepcopy + save 蹂듭썝 ??
+#### Affected Files
+- `web/server.py` (MODIFY: batch_register_compound ?꾩쟾 ?ъ옉??
+- `web/index.html` (MODIFY: ?⑹꽦??泥섎━ ??toast 硫붿떆吏 ?낅뜲?댄듃)
+
+---
+
+## [2026-04-19 10:43:00]
+### Added ??諛곗튂 蹂묓빀 ?⑹꽦??compound) ?깅줉 湲곕뒫
+
+#### ?묒뾽 ?댁슜
+
+**諛곌꼍**: 諛곗튂 蹂묓빀?먯꽌 "愿???⑥뼱" ?낅젰???⑥씪 ?⑥뼱留?泥섎━?섏뿬, `adx ??automatic data exchange` 媛숈? ?⑹꽦???쎌뼱瑜?compounds.json???깅줉?섎뒗 湲곕뒫???놁뿀??
+
+**1. ?몄쭛 UI ?섏젙** (`web/index.html`)
+- "愿???⑥뼱:" ??"愿???⑥뼱/?⑹꽦??" ?쇰꺼 蹂寃?- placeholder: `?⑥뼱(?? annotation) ?먮뒗 ?⑹꽦???? automatic data exchange)`
+- 怨듬갚 ?ы븿 ???먮룞?쇰줈 `?⑹꽦?? ?뚮? 諛곗? ?쒖떆, ?⑥씪 ?⑥뼱 ??`?⑥뼱` 蹂대씪 諛곗?
+
+**2. `applyUserEdit(i)` ?섏젙** (`web/index.html`)
+- `is_compound = relInput.includes(' ')` ?먮룞 媛먯?
+- `t.user_edit = { related_input, ref_url, is_compound }` 援ъ“濡????
+**3. `doMergeProcessed()` ?섏젙** (`web/index.html`)
+- ?⑥뼱(`is_compound=false`): 湲곗〈 `from` ?꾨뱶 濡쒖쭅 ?좎?
+- ?⑹꽦??`is_compound=true`): `_compoundRequests` 紐⑸줉??異붽? ??蹂꾨룄 API ?몄텧
+- ?뱀씤 ?꾨즺 ??寃곌낵??`?⑹꽦??N媛??깅줉, ?⑥뼱 N媛??뺤씤, pending N媛? ?쒖떆
+
+**4. `POST /api/batch/register_compound` ?좉퇋 ?붾뱶?ъ씤??* (`web/server.py`)
+- Input: `{ abbrev, phrase, ref_url }`
+- 泥섎━:
+  1. 援щЦ???⑥뼱濡?遺꾨━ ??`compound_id = word1_word2_word3`
+  2. `words.json` 議댁옱 ?щ? ?뺤씤
+  3. 誘몃벑濡??⑥뼱 ??`pending_words.json` ?먮룞 異붽? (note: Auto-pending from compound)
+  4. `compounds.json`??compound ?뷀듃由?異붽?:
+     - `words[]`: 援ъ꽦 ?⑥뼱 ID 由ъ뒪??     - `variants`: `[{type:"abbreviation", short:"ADX", long:"adx"}]`
+     - `source_urls`: ref_url ?덉쑝硫??ы븿
+- ?묐떟: `{ compound_id, compound_added, words_found, words_pending, newly_pending, pending_count }`
+
+**5. ?ы띁 異붽?** (`web/server.py`)
+- `PENDING_PATH = DICT_DIR / "pending_words.json"`
+- `load_pending_words()`, `save_pending_words()` (罹먯떆 吏??
+
+**?숈옉 ?먮쫫 ?덉떆 (`adx`)**:
+1. ?곸꽭????愿???⑥뼱/?⑹꽦?? `automatic data exchange` ?낅젰
+2. ?먮룞?쇰줈 `?⑹꽦?? 諛곗? ?쒖떆
+3. ?곸슜 ?대┃ ??`t.user_edit.is_compound = true` ???4. ?좏깮 ?뱀씤 ?대┃ ??`/api/batch/register_compound` ?몄텧
+5. 寃곌낵:
+   - `compounds.json`??`automatic_data_exchange` 異붽? (variants.short=ADX)
+   - `automatic`, `data`, `exchange` 以?words.json 誘몃벑濡??⑥뼱 ??pending_words
+   - ?곹깭 ?쒖떆: `?⑹꽦??1媛??깅줉, ?⑥뼱 N媛??뺤씤, pending N媛?
+
+#### Verification
+- UI ?몄쭛 ?뱀뀡 蹂寃? ??label/placeholder/badge ?쒖떆
+- `applyUserEdit` is_compound 媛먯?: ??怨듬갚 ???⑹꽦??諛곗?
+- `/api/batch/register_compound` syntax: ??py_compile OK
+- 釉뚮씪?곗? ?숈옉: ??automatic data exchange + URL ?낅젰 ?뺤긽
+
+#### Affected Files
+- `web/server.py` (ADD: PENDING_PATH, load/save_pending_words, batch_register_compound endpoint)
+- `web/index.html` (MODIFY: applyUserEdit, doMergeProcessed, ?몄쭛 ?뱀뀡 UI)
+
+---
+
+## [2026-04-19 09:38:00]
+### Added ??諛곗튂 蹂묓빀 ?몃씪???몄쭛 湲곕뒫 (愿???⑥뼱 / 李멸퀬 URL)
+
+#### ?묒뾽 ?댁슜
+
+**諛곌꼍**: 諛곗튂 蹂묓빀 ??AI媛 ?섎せ 遺꾨쪟?섍굅??遺議깊븳 ?뺣낫媛 ?덈뒗 ?⑥뼱(?? `ann` ??`annotation`)瑜??깅줉 ?꾩뿉 ?щ엺??吏곸젒 蹂댁셿?????덉뼱????
+
+**1. UI 異붽?** (`web/index.html`)
+
+?곸꽭 ?⑤꼸(?곸꽭?? ?섎떒??`???깅줉 ???섏젙` ?뱀뀡 異붽?:
+- **愿???⑥뼱** ?낅젰 ?꾨뱶: ???⑥뼱媛 ?뚯깮??/ ?섎??섎뒗 ?⑥뼱 (?? `annotation`)
+  - `from` ?꾨뱶濡???????숈씪 ?섎? ?먯튃???곕씪 words.json??`from: "annotation"` ???- **李멸퀬 URL** ?낅젰 ?꾨뱶: ?좏깮??李멸퀬 臾몄꽌 URL
+- **?곸슜** 踰꾪듉: ?대┃ ??`_batchTerms[i].user_edit`????? `???곸슜?? ?쇰뱶諛??쒖떆
+- ?곸슜 吏곹썑 ?곸꽭 ?⑤꼸 ?곷떒??`愿???⑥뼱 (?ъ슜??: xxx` ???ㅼ떆媛?異붽?
+
+**2. `applyUserEdit(i)` ?⑥닔 異붽?** (`web/index.html`)
+- ?낅젰媛믪쓣 `t.user_edit = { related_word, ref_url }` ?뺥깭濡?蹂댁〈
+- ?낅젰媛믪? 紐⑤떖???レ븯?ㅺ? ?ъ뿴?대룄 ?좎?
+
+**3. `doMergeProcessed()` ?섏젙** (`web/index.html`)
+- `user_edit.related_word` ??`wordBody.from` ?쇰줈 諛섏쁺
+- `user_edit.ref_url` ??`wordBody.source_urls` 留??욎뿉 ?쎌엯 (湲곗〈 URL 蹂댁〈)
+- `t.lang` (enriched ?ㅺ뎅?대챸) ?덉쑝硫?wordBody.lang?먮룄 諛섏쁺
+
+**?숈옉 ?먮쫫 ?덉떆 (`ann` ?⑥뼱)**:
+1. ?곸꽭???대┃ ???몄쭛 ?뱀뀡 ?쒖떆
+2. 愿???⑥뼱: `annotation` ?낅젰
+3. 李멸퀬 URL: `https://pylint.pycqa.org/.../AnnAssign.html` ?낅젰
+4. ?곸슜 ??`_batchTerms[i].user_edit` ???5. ?좏깮 ?뱀씤 ?대┃ ??words.json??`{id:"ann", ..., from:"annotation", source_urls:["https://..."]}` ???
+#### Verification
+- ?몄쭛 ?뱀뀡 UI ?뚮뜑留? ??- annotation + URL ?낅젰 ???곸슜: ??(`愿???⑥뼱 (?ъ슜??: annotation` ?쒖떆)
+- 紐⑤떖 ?ъ삤?????낅젰媛??좎?: ??- `doMergeProcessed`: user_edit.from + source_urls 諛섏쁺 濡쒖쭅 異붽? ??
+#### Affected Files
+- `web/index.html` (MODIFY: applyUserEdit ?⑥닔 異붽?, ?곸꽭 ?⑤꼸 ?몄쭛 ?뱀뀡, doMergeProcessed 蹂묓빀 濡쒖쭅 媛쒖꽑)
+
+---
+
+## [2026-04-19 08:53:00]
+### Fixed ??諛곗튂 蹂묓빀 ?곸꽭 ?⑤꼸 ?뺣낫 ?꾨씫 ?섏젙
+
+#### ?묒뾽 ?댁슜
+
+**臾몄젣**: 諛곗튂 蹂묓빀(3. 蹂묓빀) ?붾㈃??"?곸꽭?? ?⑤꼸??JSON???쇰? ?뺣낫留??쒖떆?섍퀬 ?섎㉧吏 ?꾨뱶(variants, from, lang, sources)媛 ?꾨씫??
+
+**?섏젙 ?댁슜** (`web/index.html`):
+
+1. **?쒖떆 議곌굔 ?뺤옣**
+   - 湲곗〈: `enr.description_i18n || source_urls` ?덉쓣 ?뚮쭔 ?곸꽭 踰꾪듉 ?쒖떆
+   - 蹂寃? `lang`, `reason`, `sources` ???대뼡 ?꾨뱶?쇰룄 ?덉쑝硫?踰꾪듉 ??긽 ?쒖떆
+
+2. **?곸꽭 ?⑤꼸 ?쒖떆 ?꾨뱶 異붽?**
+   - **?몄뼱 (lang)**: KO / JA / ZH ?ㅺ뎅???대쫫
+   - **KO ?ㅻ챸 / EN ?ㅻ챸**: `description_i18n` (湲곗〈 ?좎?)
+   - **from**: ?댁썝 ?⑥뼱 (?좉퇋)
+   - **variants**: ?뺥깭??紐⑸줉 ??`value(type)` ?뺤떇?쇰줈 ?섏뿴 (?좉퇋)
+   - **URL**: 異쒖쿂 URL ???щ윭 媛쒖씤 寃쎌슦 紐⑤몢 ?쒖떆 (湲곗〈 1媛쒕쭔 ???꾩껜)
+   - **?먯젙**: AI ?먯젙 `reason` ?꾨뱶 (?좉퇋)
+   - **諛쒓껄 ?꾩튂**: `sources` 以묐났 ?쒓굅 ????紐⑸줉 ?쒖떆 (?좉퇋)
+
+3. **?먮룞 ?ㅽ겕濡?*
+   - ?곸꽭???대┃ ??`merge-preview` 而⑦뀒?대꼫 湲곗? ?대떦 ?⑤꼸濡?遺?쒕읇寃??ㅽ겕濡?
+#### Verification
+- `alert` (enriched ?덉쓬): ?몄뼱/?ㅻ챸/variants/URL/?먯젙/諛쒓껄 ?꾩튂 ?꾩껜 ?쒖떆 ??- `adx` (enriched ?놁쓬): ?먯젙 + 諛쒓껄 ?꾩튂 ?뺤긽 ?쒖떆 ??- ?먮룞 ?ㅽ겕濡? merge-preview 而⑦뀒?대꼫 ??smooth scroll ?숈옉 ?뺤씤 ??
+#### Affected Files
+- `web/index.html` (MODIFY: 蹂묓빀 ?곸꽭 ?⑤꼸 ?뚮뜑 濡쒖쭅 媛쒖꽑)
+
+---
+
+## [2026-04-19 00:34:00]
+### Added ??pending_words 15媛?words.json ?곸슜 + Migration
+
+#### ?묒뾽 ?댁슜
+
+**1. `bin/apply_pending_words.py` ?ㅽ뻾 (?좉퇋 ?ㅽ겕由쏀듃)**
+
+pending_words.json ?붿뿬 15媛쒕? ?꾩쟾???ㅽ궎留?lang, description_i18n, variants ?ы븿)濡?words.json??異붽?.
+
+| word | domain | 鍮꾧퀬 |
+|------|--------|------|
+| adapt | system | ?숈궗, adapter.variants?먯꽌 adapt ?쒓굅 |
+| authenticate | infra | ?숈궗, auth.variants?먯꽌 authenticate ?쒓굅 |
+| low | market | adj, lower.variants?먯꽌 low ?쒓굅 |
+| manage | system | ?숈궗 |
+| notify | system | ?숈궗 |
+| orchestrate | system | ?숈궗 |
+| real | market | adj |
+| scan | system | ?숈궗 |
+| schedule | system | ?숈궗 |
+| select | system | ?숈궗 |
+| slip | trading | 紐낆궗/?숈궗 (slippage) |
+| snap | system | ?숈궗 (snapshot) |
+| store | infra | ?숈궗 |
+| volatile | trading | adj, volatility.variants?먯꽌 volatile ?쒓굅 |
+| watch | system | ?숈궗 |
+
+**2. 異⑸룎 ?닿껐**
+
+- `adapter.variants`: adapt ?쒓굅 (1媛?
+- `auth.variants`: authenticate ?쒓굅 (1媛?
+- `lower.variants`: low ?쒓굅 (3媛? lower媛 low??variant???寃?
+- `volatility.variants`: volatile ?쒓굅 (1媛?
+- `market_scanner.variants`: SCAN abbreviation ?쒓굅 (V-202 FATAL ?닿껐)
+
+**3. Migration 寃곌낵**
+
+- validate: FATAL 0嫄???- terms.json ?ъ깮?? **718 ??733媛?* (+15)
+- words: 233 ??248媛?- pending_words: 15 ??0媛?(?꾩쟾 ?뚯쭊)
+
+#### Affected Files
+- `bin/apply_pending_words.py` (NEW)
+- `dictionary/words.json` (MODIFY: +15媛??⑥뼱, 4媛?variant ?뺣━)
+- `dictionary/compounds.json` (MODIFY: market_scanner SCAN abbreviation ?쒓굅)
+- `dictionary/pending_words.json` (MODIFY: 15 ??0媛?
+- `dictionary/terms.json` (REGENERATED: 733媛?
+- `build/index/*` (REGENERATED)
+- `GLOSSARY.md` (REGENERATED)
+
+---
+
+## [2026-04-19 00:28:00]
+### Added / Modified ??.scan_list/.scan_ignore ?꾩엯 + dictionary ?뺤젣 + Migration
+
+#### ?묒뾽 ?댁슜
+
+**1. ?ㅼ틪 ????쒖쇅 ?ㅼ젙 ?뚯씪 ?꾩엯**
+
+- `glossary/.scan_list` (NEW): ?ㅼ틪 ????대뜑/?뚯씪 ?⑦꽩 紐낆떆??愿由?  - `dir:config`, `dir:script`, `dir:src`
+  - `root:.env*`, `root:run*.py`
+- `glossary/.scan_ignore` (NEW): ?ㅼ틪 ?쒖쇅 ?대뜑/?뚯씪 ?⑦꽩 愿由?  - `dir:__pycache__`, `ext:.md`, `pattern:.git*`
+- ?쒖쇅 洹쒖튃????긽 ?ㅼ틪 ??곷낫???곗꽑 ?곸슜
+
+**2. `bin/scan_items.py` 由ы뙥?곕쭅**
+
+- `load_scan_config()` ?좉퇋 ?⑥닔: .scan_list / .scan_ignore ?뚯떛
+- `_matches_ignore_pattern()` ?좉퇋 ?⑥닔: fnmatch 湲곕컲 ?⑦꽩 留ㅼ묶
+- `ItemScanner.__init__()`: `scan_config` ?뚮씪誘명꽣 異붽?
+- `scan()`: scan_list ?덉쑝硫?`_scan_with_config()`, ?놁쑝硫?`_scan_legacy()` ?대갚
+- `_scan_with_config()`: root_patterns(glob) + scan_dirs(?ш?) 湲곕컲 ?ㅼ틪
+- `_scan_file()`: ?뺤옣?먮퀎 遺꾧린 怨듯넻 硫붿꽌??異붿텧
+- `_scan_legacy()`: 湲곗〈 exclude_dirs 湲곕컲 ?ㅼ틪 ?좎? (?섏쐞?명솚)
+- 寃利? `--count` 湲곗? 684媛??꾨낫 異붿텧 ?뺤씤
+
+**3. `dictionary/pending_words.json` ?뺤젣**
+
+- `bin/clean_pending_words.py` (NEW): pending_words ?뺤젣 ?ㅽ겕由쏀듃
+- ?쒓굅 21嫄?
+  - words.json ?대? ?깅줉: disable, rank, relax
+  - ?꾨찓??臾닿?(?몄뼱??: latin, french, italian, ancient_greek, middle_english
+  - ?묐몢??遺덉슜?? tele, re, un, intra
+  - ?쇰컲?? old, new, off, back, bottom, middle, heart, dash, earlier
+- ?붿뿬 15媛?(怨꾩냽 寃?????: adapt, authenticate, low, manage, notify, orchestrate, real, scan, schedule, select, slip, snap, store, volatile, watch
+
+**4. Migration ?ㅽ뻾**
+
+- validate: FATAL 0嫄???- terms.json ?ъ깮?? 718媛?(checksum ?ы븿)
+- GLOSSARY.md 媛깆떊
+
+#### Affected Files
+- `glossary/.scan_list` (NEW)
+- `glossary/.scan_ignore` (NEW)
+- `bin/scan_items.py` (MODIFY: scan_config 援ъ“ 異붽?)
+- `bin/clean_pending_words.py` (NEW)
+- `dictionary/pending_words.json` (MODIFY: 21媛??쒓굅)
+- `dictionary/terms.json` (REGENERATED)
+- `build/index/*` (REGENERATED)
+- `GLOSSARY.md` (REGENERATED)
+
+---
+
+## [2026-04-19 00:08:00]
+### Fixed / Modified ??words.json ?뺥빀??+ banned.json ???쒖떆 ?섏젙 + Migration
+
+#### ?묒뾽 ?댁슜
+
+**1. V-301 variant-id 異⑸룎 ?닿껐 (bin/fix_v301_conflicts.py ?좉퇋)**
+?ъ슜?먭? ?낅┰ ?⑥뼱濡?異붽?????ぉ怨?遺紐?word.variants 媛?異⑸룎 6嫄??닿껐:
+- `rank.variants`?먯꽌 `ranking` (present_participle, noun_form) ?쒓굅
+- `realize.variants`?먯꽌 `realized` (past) ?쒓굅
+- `extend.variants`?먯꽌 `extended` (past) ?쒓굅
+- `track.variants`?먯꽌 `tracking` (present_participle) ?쒓굅
+- `use.variants`?먯꽌 `used` (past) ?쒓굅
+- `run.variants`?먯꽌 `runner` (agent) ?쒓굅
+
+?ㅺ퀎 ?먯튃: ?낅┰ word濡?紐낆떆?곸쑝濡??깅줉????ぉ? 遺紐⑥쓽 ?뺥깭???뚯깮??紐⑸줉?먯꽌 ?쒓굅.
+
+**2. Migration ?ㅽ뻾 (generate)**
+- validate: FATAL 0嫄?(WARN 1嫄???candle.ko='罹붾뱾', ?덉슜)
+- terms.json ?ъ깮?? 718媛? checksum ?ы븿
+
+**3. banned.json ???쒖떆 踰꾧렇 ?섏젙 (web/index.html)**
+- ?먯씤: `correct:{type,value}` 媛앹껜瑜?`b.correct` ?⑥닚 李몄“ ??`[object Object]` ?쒖떆
+- `reason_i18n:{ko,en}` 援ъ“瑜?`b.reason` ?⑥닚 李몄“ ??鍮?媛??쒖떆
+- ?섏젙:
+  - `renderBanned()`: `correct.value`, `reason_i18n.ko` ?щ컮瑜닿쾶 異붿텧
+  - `bFilter()`: 寃?됰룄 ?숈씪 寃쎈줈濡??섏젙
+  - `openBannedForm()`: correct.value, reason_i18n.ko瑜????꾨뱶??諛붿씤??  - `saveBanned()`: `correct:{type:'id', value}`, `reason_i18n:{ko,en}` 援ъ“濡????
+**4. ?ㅼ틪 ?쒖쇅 ?대뜑 ?뺤씤**
+?꾩옱 EXCLUDE_DIRS ?ㅼ젙:
+- ?쒖쇅?? backup, data, tmp, glossary, .git, __pycache__, node_modules, .venv, venv, lib_test, tests
+- ?ㅼ틪?? cache, config, doc, log, script, src, test, tool
+
+**5. banned.json ?댁슜 寃??*
+- 8媛?紐⑤몢 ?좏슚???댁슜
+- correct.value 以?words.json???녿뒗 寃? fx_fut, fxfutures ??compounds?먯꽌???놁쓬. ?⑥닚 李몄“ id (蹂꾨룄 ?깅줉 ?꾩슂 ?놁쓬)
+- KIS ??kr_stock: words.json???뺤긽 議댁옱
+
+#### Affected Files
+- `bin/fix_v301_conflicts.py` (NEW)
+- `dictionary/words.json` (MODIFY: 6媛?variant ?쒓굅)
+- `dictionary/terms.json` (REGENERATED)
+- `build/index/*` (REGENERATED)
+- `GLOSSARY.md` (REGENERATED)
+- `web/index.html` (MODIFY: banned ?뚮뜑留??ㅽ궎留??섏젙)
+
+---
+
+## [2026-04-18 23:53:00]
+### Fixed / Modified / Added ??諛곗튂 ?뚯씠?꾨씪???뺥빀??媛쒖꽑 v1.1 + Migration
+
+#### 紐⑹쟻
+諛곗튂 ?ㅼ틪 寃곌낵(`items.json`)???뺥깭???뚯깮?뺤씠 諛섎났 ?깆옣?섎뒗 洹쇰낯 ?먯씤???쒓굅?섍퀬,
+`words__derived_terms.json` synonym ?덉쭏???뺤젣????`terms.json`???ъ깮?깊븳??
+
+---
+
+#### Step 1 ??`bin/scan_items.py` exclusion 踰꾧렇 ?섏젙
+
+**File: bin/scan_items.py (MODIFY)**
+
+`load_existing_words_and_tokens()` ?⑥닔??variants ?쎄린 濡쒖쭅??`list[dict]` 援ъ“瑜?`dict`濡??섎せ 媛꾩＜?섏뿬 variants surface媛 exclusion token???꾪? ?ы븿?섏? ?딆븯?? 寃곌낵?곸쑝濡?`accounts`, `buying`, `checks` ???뺥깭???뚯깮?뺤씠 留ㅻ쾲 諛곗튂 ?꾨낫(`items.json`)???щ벑?ν븯??臾몄젣媛 諛쒖깮?덈떎.
+
+##### 蹂寃??댁슜:
+- `variants`??`list[{type, value|short}]` 援ъ“濡??щ컮瑜닿쾶 諛섎났 泥섎━
+- `auto_plural` 濡쒖쭅: variants??`type=="plural"`???녿뒗 noun?먮쭔 ?곸슜
+- compounds.id??token?쇰줈 異붽?
+- `words__derived_terms.json`??surface(underscore/怨듬갚 ?녿뒗 寃???exclusion??異붽?
+  ???뚯깮??synonym???대? 愿怨??뚯븙??寃쎌슦 ?꾨낫?먯꽌 ?쒖쇅
+- `_add()` 硫붿꽌?? naive `t[:-1] in existing` ??텛濡??쒓굅 (?ㅽ깘 媛??
+  ??`t in self.existing` ?꾩쟾 留ㅼ묶留??ъ슜
+
+##### ?④낵:
+- ?댁쟾 exclusion ?좏겙: ~228媛?(id留?
+- ?섏젙 ??exclusion ?좏겙: ~900+媛?(id + variants + derived_terms)
+
+---
+
+#### Step 2 ??`dictionary/words__derived_terms.json` ?덉쭏 ?뺤젣
+
+**File: dictionary/words__derived_terms.json (MODIFY)**
+**File: bin/clean_derived_terms.py (NEW)**
+
+- ?먮낯 739媛????뺤젣 ??662媛?(77嫄??쒓굅)
+- ?쒓굅 湲곗?:
+  - `synonym` 以?`words.id`? 異⑸룎?섎뒗 寃?(account?뭕alance, order?뭖ommand ??
+  - `synonym` 以?`words.variants`???대? 議댁옱?섎뒗 寃?(enter, tops, err ??
+  - `synonym` 以?underscore/怨듬갚 ?ы븿 ?쒗쁽 (?먯뿰???꾨떂): 43嫄?  - ?꾨찓??臾닿? ?숈쓽??(臾쇰━쨌踰붿즲 ?⑹뼱 ??: 13嫄?
+---
+
+#### Step 3 ??`generate_glossary.py generate` Migration ?ㅽ뻾
+
+##### ?ъ쟾 泥섎━: V-104 FATAL ?닿껐
+**File: dictionary/words.json (MODIFY)**
+**File: bin/fix_missing_words.py (NEW)**
+
+compounds媛 李몄“?섏?留?words.json???녿뜕 5媛??⑥뼱 異붽?:
+- `ranking` (sector_ranking, symbol_ranking, db_sector_rankings 李몄“)
+- `realized` (realized_pnl 李몄“)
+- `tracking` (tracking_start 李몄“)
+- `extended` (extended_market_start, extended_market_end 李몄“)
+- `used` (margin_used 李몄“)
+
+words.json: 228媛???233媛?
+##### generate 寃곌낵:
+- `validate` FATAL: 8嫄???0嫄???- `terms.json` ?ъ깮?? 718媛?(checksum ?ы븿)
+- `terms_legacy.json`: 0媛?deprecated
+- `dependency_missing.json`: 0嫄?- `GLOSSARY.md` 媛깆떊
+
+---
+
+#### module_index.md ?낅뜲?댄듃 ?댁슜:
+- `bin/scan_items.py`: variants ?쎄린 諛⑹떇 諛?exclusion 踰붿쐞 蹂寃?(v1.1)
+- `bin/clean_derived_terms.py`: ?좉퇋 異붽? (synonym ?덉쭏 ?뺤젣)
+- `bin/fix_missing_words.py`: ?좉퇋 異붽? (V-104 ?꾩떆 ?섏젙??
+
+---
+
+## [2026-04-18 21:00:00]
+### Modified ??????쒕낫??湲곕뒫 ?뺤옣 (v3.4)
+
+#### 紐⑹쟻
+1. JSON???덈뒗 紐⑤뱺 ?꾨뱶瑜?UI?먯꽌 議고쉶쨌?섏젙 媛?ν븯?꾨줉 ?뺤옣
+2. ?몄뼱 ?꾪솚 踰꾪듉(??EN/JA/ZH) 異붽?
+3. ?섍꼍?ㅼ젙 紐⑤떖?먯꽌 湲곕낯 ?몄뼱쨌?쒓컙?瑜?localStorage?????
+#### 蹂寃??뚯씪
+
+**web/index.html (MODIFY)**
+- `topbar`: `lang-sel` ?쒕∼?ㅼ슫 異붽? (?쒓뎅??English/?ζ쑍沃?訝?뻼), `???ㅼ젙` 踰꾪듉 異붽?
+- ?⑥뼱 ?섏젙 紐⑤떖(`word-ov`) ?꾨㈃ 媛쒗렪
+  - **湲곕낯 ?뺣낫**: id, pos, status, domain
+  - **?ㅺ뎅??踰덉뿭**: en, ko, ja, zh_hans
+  - **?ㅻ챸**: ko (?꾩닔), en (?좏깮)
+  - **?뺥깭??愿怨꾩뼱**: abbr, from, variants (type:value 以꾨컮轅?, synonyms, antonyms, source_urls, not
+  - 以묐났 `wf-status` ?쒓굅 (湲곗〈 踰꾧렇 ?섏젙)
+  - 蹂듯빀??紐⑤떖(`compound-ov`)??以묐났 `wf-status` ?쒓굅
+- ?섍꼍?ㅼ젙 紐⑤떖(`settings-ov`) ?좉퇋 異붽?
+  - 湲곕낯 ?쒖떆 ?몄뼱, 湲곕낯 ?쒓컙? ?좏깮 ??localStorage ???- `renderWords()`:
+  - `window.LANG` 媛믪뿉 ?곕씪 踰덉뿭 ???쒓뎅???곸뼱/?쇰낯??以묎뎅?? ?숈쟻 ?꾪솚
+  - ?ㅻ챸(description) ?대룄 ?좏깮 ?몄뼱濡??먮룞 ?꾪솚
+  - ?뺤옣 ??xrow) ?꾩껜 ?꾨뱶 ?쒖떆: lang.ja, lang.zh_hans, description(en), from, variants 移? synonyms, antonyms, source_urls 留곹겕
+- `openWordForm()`: ?좉퇋 ?꾨뱶 9媛?異붽? 梨꾩?
+- `saveWord()`: ?좉퇋 ?꾨뱶瑜?JSON body???ы븿 (ja, zh_hans, descEn, from, variants, synonyms, antonyms, source_urls)
+- `variantsToText()` / `textToVariants()` ?ы띁 ?⑥닔 異붽?
+- `changeLang(lang)`, `openSettings()`, `saveSettings()` ?⑥닔 異붽?
+- `boot()`: localStorage?먯꽌 ??λ맂 ?몄뼱쨌?쒓컙? 蹂듭썝
+- Escape ?몃뱾?ъ뿉 `settings-ov` 異붽?
+
+#### 寃利?- 釉뚮씪?곗? ?뚮뜑留??뺤씤: account ?뺤옣 ?됱뿉??lang.ja(?㏂궖?╉꺍??, lang.zh_hans(躍먩댎), description(en), variants 移? source_url 留곹겕 ?뺤긽 ?쒖떆
+- ?섏젙 紐⑤떖: 9媛??좉퇋 ?꾨뱶 紐⑤몢 ?뺤긽 ?쒖떆 諛?湲곗〈 ?곗씠??梨꾩? ?뺤씤
+- ?ㅼ젙 紐⑤떖: ??????몄뼱 利됱떆 ?꾪솚, localStorage 諛섏쁺 ?뺤씤
+- 228媛??꾩껜 ?뚮뜑留??좎?
+
+---
+
+## [2026-04-18 20:09:00]
+### Modified ??????쒕낫???뚮뜑留??깅뒫 理쒖쟻??(v3.3)
+
+#### 紐⑹쟻
+228媛??꾩껜 ?⑥뼱 ??ぉ???꾩쟾??異쒕젰 蹂댁옣 諛?1珥????섏씠吏 濡쒕뵫 ?ъ꽦
+
+#### 蹂寃??댁슜
+
+**web/server.py (MODIFY)**
+- `_load_json()`: mtime 湲곕컲 ?몃찓紐⑤━ 罹먯떆 異붽?
+  - ?뚯씪 蹂寃??놁쓣 ???뚯씪 I/O ?꾩쟾 ?쒓굅 (留?GET 留덈떎 208KB JSON ?ы뙆??諛⑹?)
+  - `_cache: dict` ?꾩뿭 罹먯떆 ?뺤뀛?덈━ ?꾩엯
+  - `_invalidate_cache(path)` ??save ??罹먯떆 臾댄슚??- `/api/words` GET: ETag + If-None-Match 吏??  - md5 湲곕컲 ETag ?앹꽦 ??304 Not Modified ?묐떟?쇰줈 ?대씪?댁뼵??以묐났 ?꾩넚 諛⑹?
+
+**web/index.html (MODIFY)**
+- `boot()` ?ш뎄議고솕: words瑜?癒쇱? 濡쒕뱶??泥??섏씤?몃? ?욌떦源 (吏꾪뻾???뚮뜑)
+  - ?섎㉧吏 compounds/banned/drafts??蹂묐젹 fetch
+- `renderWords()` ?꾨㈃ 理쒖쟻??
+  - `DocumentFragment` ?ъ슜?쇰줈 DOM ?쎌엯 1?뚮줈 吏묒빟
+  - `for` 猷⑦봽濡?援먯껜 (`forEach` ??誘몄꽭 ?ㅻ쾭?ㅻ뱶 ?쒓굅)
+  - HTML 臾몄옄?댁쓣 吏㏃? ?멸렇癒쇳듃 ?곌껐濡?遺꾪븷 (媛?낆꽦 + ?붿쭊 理쒖쟻??
+  - ?대깽???꾩엫(event delegation): 媛쒕퀎 `addEventListener` 228媛??쒓굅,
+    tbody ?⑥쐞 click/dblclick ?몃뱾??1媛쒕줈 ?泥?  - ??젣 踰꾪듉: `onclick` ?몃씪????`data-del-word`, `data-del-ko` ?띿꽦?쇰줈 遺꾨━
+  - ?섏젙 留곹겕: `onclick` ?몃씪????`data-edit-word` ?띿꽦?쇰줈 遺꾨━
+- `reloadWords()`: ETag 罹먯떆 ?ㅻ뜑 吏??(304 ?묐떟 ??遺덊븘?뷀븳 JSON ?뚯떛 ?ㅽ궢)
+- `_wordsETag` ?꾩뿭 蹂??異붽?
+
+#### 寃利?寃곌낵
+- ?⑥뼱 228媛??꾩껜 ?뺤긽 ?뚮뜑留??뺤씤
+- ?섏씠吏 濡쒕뵫 1珥??대궡
+- ?쒕쾭 臾몃쾿 寃?? `py_compile` PASS
+
 ### Notes
-- `word_min.json`에 `status`, `canonical_pos`를 포함해 AI 에이전트 naming gate가 sparse index만으로 품사/상태를 참조할 수 있도록 보강
-- `compound_min.json`에도 `status`를 포함해 runtime index와 source lifecycle 정보 정합성을 맞춤
-- glossary AI guideline에 `build/index/word_min.json`, `build/index/variant_map.json` 우선 사용 규칙 추가
-- module index에 `generate_glossary.py`, `web/server.py` 책임과 생성 산출물 경로를 명시
+- 湲곗〈 change_log.md 515以???500以?珥덇낵濡?`doc/change_log_archive/202604_change_log.md` ?꾩뭅?대튃 ?섑뻾
 
-## [2026-04-14 14:44:16]
-
-## [2026-04-14 15:23:47]
-### Modified
-- Glossary_Refactoring_Plan_v1.2_extra_03.md 지침에 따라 root 단수형 정규화 및 validation 규칙 적용 완료
-- File: schema/word.schema.json
-- File: schema/compound.schema.json
-- File: dictionary/words.json
-- File: dictionary/compounds.json
-- File: generate_glossary.py
-- File: bin/scan_terms.py
-### Notes
-- 복수형이 root로 쓰이던 항목(candidates 등)을 단수형으로 치환하고 `variants.plural` 배열 구성
-- V-301 (plural root 금지), V-303 (self-conflict 금지), V-351, V-352 등의 validation 코드 반영
-- check-id 스크립트 실행 시 plural 입력을 root로 식별하고 정규화 정보 출력 지원
-- scan_terms.py에서 plural / abbreviation이 배열화된 schema 호환 처리
-
-### Modified / Removed
-- terms.json에서 자동 생성되던 abbr_short 및 abbr_long 속성 전면 삭제 (BOM_TS 구조 개선 v0.2)
-- terms.json 내 Base(source), Variant(variant_type, root) 구조 고도화 적용
-- web/index.html UI에서 잔재하던 abbr_long, abbr_short 참조 버그 픽스 (abbr.long, abbr.short 참조로 수정 적용)
-- bin/batch_terms.py, bin/scan_terms.py 내 하위호환 용 abbr 레거시 로직 제거
-- File: generate_glossary.py
-- File: web/index.html
-- File: bin/batch_terms.py
-- File: bin/scan_terms.py
-### Notes
-- 복합어 저장 및 생성 시 단일화된 abbr 객체 스키마 적용
-- 약어에 대해선 root 값 필수 포함 원칙 적용 완료
-
-
-## [2026-04-14 14:22:08]
-### Modified
-- Glossary_Refactoring_Plan_v1.2_extra_01.md 에 정의된 abbreviation (약어) 스키마 변경 및 정책 반영
-- schema 내 `variants.abbreviation` 타입을 string 배열 형태로 변경 및 기존 words.json 마이그레이션 (`cfg` 단어 제거 등)
-- `generate_glossary.py` 내 `variant_map.json` 생성 로직 추가 및 `check-id` 명령에서 약어 파싱·매핑(WARN, JSON 출력 구조 등) 정책 적용
-- 독립 word로 존재하는 단어와 약어가 겹치는 conflicts (start, stop 등) 해소
-- File: schema/word.schema.json
-- File: schema/compound.schema.json
-- File: dictionary/words.json
-- File: dictionary/compounds.json
-- File: generate_glossary.py
-### Notes
-- 약어는 필수 필드가 아니되, 존재하는 경우 variants.abbreviation(또는 abbr)으로 관리되며, check-id 시 base concept으로 자동 normalize되도록 개선됨.
-- cfg, sl, rpt 등 독립 word 배제 규칙 V-202 FATAL 검증 완료.
-
-## [2026-04-14 13:38:00]
-### Modified
-- `scan_terms.py` 스캐너가 기존 `words.json`, `compounds.json` 내 데이터를 읽을 때 v1.2 체계에 맞게 `canonical_pos`, `lang`, `variants`를 파싱하도록 수정
-- 웹 UI (`index.html`) 상의 병합 도구에서 AI가 추출한 임시 파일(`terms_*.json`)을 승인할 때, v1.2 규격의 Sparse 객체 형태로 조립되어 저장되도록 `doMergeProcessed`, `openWordForm`, `saveWord`, `wFilter`, `renderWords` 등 폼/테이블 구조 전면 교체
-- File: bin/scan_terms.py
-- File: web/index.html
-### Notes
-- 빈 객체나 배열을 보내지 않도록 강제. UI 상에서 데이터 시각화가 v1.2를 완벽하게 준수
-
-## [2026-04-14 13:08:00]
-### Added / Modified
-- `words.json` 내 전 단어를 대상으로 `ja`, `zh_hans` (일본어, 중국어 간체) 필드 번역 및 일괄 추가 완료
-- `banned.json` 및 `banned.schema.json` 파일 v1.2 체제(3.3절) 맞춤 리팩토링 (`reason_i18n` 다국어 확장, `severity` 필드 추가)
-- `generate_glossary.py` 로직이 새로운 `banned` 객체 형식 처리하도록 수정 (Context 병합)
-- File: dictionary/words.json
-- File: dictionary/banned.json
-- File: schema/word.schema.json
-- File: schema/compound.schema.json
-- File: schema/banned.schema.json
-- File: generate_glossary.py
-### Notes
-- 커스텀 번역 스크립트(`bin/translate_lang_gtx.py`) 작성을 통해 GoogleTranslate 무인증 엔드포인트를 호출하여 총 235단어 자동 번역 수행.
-- Sparse 특성 검사 및 `generate`/`validate`/`check-id` 검증 완료.
-
-## [2026-04-14 12:16:00]
-### Added / Modified
-- Glossary_Refactoring_Plan_v1.2.md에 따른 Sparse JSON 스키마 적용 및 리팩토링 진행
-- `words.json`, `compounds.json` 데이터를 v1.2 스키마에 맞게 마이그레이션하는 스크립트 작성 (lang, variants, description_i18n 분리 및 canonical_pos 적용)
-- `generate_glossary.py` 내 Index(`word_min.json`, `compound_min.json`) 생성 기능 추가 및 `check-id` 명령의 Index 기반 조회 전환
-- `generate_glossary.py` 의 V-104 검증 규칙을 강화하여 복합어 `words` 참조 검증 및 순환 참조(Circular Reference) 예방 추가
-- File: schema/word.schema.json
-- File: schema/compound.schema.json
-- File: bin/migrate_v1_2.py
-- File: generate_glossary.py
-- File: dictionary/words.json
-- File: dictionary/compounds.json
-### Notes
-- `terms.json`을 직접 의존하는 외부 스크립트(web/server.py 등)와의 하위호환을 위해 Phase 4 완료시까지 `terms.json` 자동 생성을 유지함.
-- `reason`, `not` 필드는 컴파운드의 특수한 데이터로 판단하여 삭제하지 않고 Sparse한 속성으로 유지함.
-
-## [2026-04-14 02:22:28]
-### Modified
-- 병합 대상 파일(`terms_*.json`) 파싱 시 대용량 배열의 렌더링 지연 속도를 시각화 및 최적화
-- File: web/index.html
-### Notes
-- `selectBatchFile()` 함수에 `requestAnimationFrame`을 적용하여 1,000건 이상의 용어도 브라우저 멈춤 없이 Chunk 단위(40건)로 생성하도록 수정
-- 화면 상단에 `<수치/전체수 (진행률%)>` 형식으로 "화면 생성 중" 상태를 실시간 수치화하여 표시
-
-## [2026-04-14 02:04:53]
-### Added / Modified
-- 용어 배치 추출(병합 UI)에 사용자 선택 승인(Drafts) 로직 및 AI 기반 복합어 분절 자동화 탑재
-- `dictionary/drafts.json` 데이터 계층 신설 (FIFO 100건 제한)
-- 웹 UI에 '보류 (Drafts)' 탭 신설 및 병합 모달 뷰 대규모 개편 (구성 단어의 의미/주석을 직접 입력할 수 있는 표 형태 내장)
-- `batch_terms.py`의 `SYSTEM_PROMPT` 업데이트를 통해 복합어 추출 및 누락 상태의 기본 단어 추출(plural 대응 포함) 지원
-- File: web/server.py
-- File: web/index.html
-- File: bin/batch_terms.py
-### Notes
-- 2초 이내 렌더링 성능 요건에 맞게 UI 랜더링 시 동적 AI 호출을 피하고, 배치 단계에 선제적 텍스트 완성 모델을 포함하도록 개선.
-
-## [2026-04-13 23:59:42]
-### Fixed
-- `load_existing_terms` 함수의 반환값이 3개로 변경됨에 따라 발생하는 unpacking ValueError 수정 (`n_patterns` 추가)
-- File: bin/batch_terms.py
-### Notes
-- `TermScanner` 초기화 시 `n_patterns` 옵션 전달 추가

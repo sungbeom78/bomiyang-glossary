@@ -14,3 +14,7 @@ ext:.md
 
 # 제외 파일 패턴 (glob 기반)
 pattern:.git*
+
+# 제외 폴더 (유저 요청: 테스트 방지)
+dir:test
+dir:tests
