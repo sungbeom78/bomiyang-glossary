@@ -1,5 +1,14 @@
 # Glossary Change Log
 
+## 2026-04-19 15:35:00
+### Modified - Refactored README files for generic usage
+- Removed specific project references (e.g. BomTS) to make the Glossary submodule a generic naming enforcement tool.
+- Restructured all README files (`README.md`, `README.ko.md`, `README.ja.md`, `README.zh.md`) to have a unified architecture and concepts.
+- Added latest features (GlossaryWriter, wikt_sense.py pipeline, Variants instead of isolated words).
+- Replaced legacy `.env` scan configuration instructions with `.scan_list` and `.scan_ignore`.
+- Radically simplified the Korean README (`README.ko.md`) to match the structural flow of other languages.
+- File: `README.md`, `README.ko.md`, `README.ja.md`, `README.zh.md`
+
 ## 2026-04-19 15:30:00
 ### Added / Modified / Fixed - 작업 통합 검토 및 dictionary migration
 

@@ -1,4 +1,4 @@
-# 📖 BomTS Glossary
+# 📖 Glossary Submodule
 
 > 🚀 **A self-evolving glossary system powered by AI, designed to enforce consistent naming across large-scale codebases.**
 
@@ -12,7 +12,7 @@
 
 ## ❓ What is this?
 
-**BomTS Glossary** is a structural **word-level naming system** designed to eliminate inconsistency in identifiers across large-scale systems.
+The **Glossary Submodule** is a structural **word-level naming system** designed to eliminate inconsistency in identifiers across large-scale systems.
 
 Instead of allowing arbitrary naming like:
 ```diff
@@ -23,7 +23,7 @@ Instead of allowing arbitrary naming like:
 
 You define a **single base concept**:
 ```json
-{ "word": "position" }
+{ "id": "position" }
 ```
 
 And strictly enforce consistent usage:
@@ -44,7 +44,7 @@ In real-world, large-scale systems:
 - ❌ Code navigation becomes harder.
 - ❌ Team communication breaks down.
 
-BomTS Glossary solves those problems by:
+This system solves those problems by:
 
 - 🔒 **Enforcing** a shared vocabulary (`words.json`).
 - 🤖 **Guiding** AI agents to generate consistent, deterministic code.
@@ -72,16 +72,22 @@ You probably don’t need this if:
 
 ## 🧩 Core Concept
 
-The ecosystem relies on three foundational files:
+The ecosystem relies on three foundational files and a robust editing mechanism:
 
-| File | Purpose | Editability |
+| Component | Purpose | Editability |
 | --- | --- | --- |
-| 🧱 `words.json` | Atomic building blocks. | Manual / Web UI |
-| 🧬 `compounds.json` | Special cases & official acronyms. | Manual / Web UI |
-| 📜 `terms.json` | Auto-generated standard. | **Read-only** |
+| 🧱 `words.json` | Atomic building blocks. | `GlossaryWriter` / Web UI |
+| 🧬 `compounds.json` | Special cases & official acronyms. | `GlossaryWriter` / Web UI |
+| 📜 `terms.json` | Auto-generated standard index. | **Read-only** |
 
 > [!WARNING]
-> All identifiers must be built from registered words. Do not manually edit `terms.json`.
+> **Data Integrity Rule:** Do not manually edit `words.json` or `compounds.json`. All edits MUST go through the `core/writer.py` (`GlossaryWriter`) to ensure proper validation and automatic backup generation.
+
+### Variants
+To prevent cluttering the dictionary with redundant entries, derivative forms are registered as **variants** attached to the root word, rather than as independent words. For instance:
+- **Plurals**: Registered under the singular noun (e.g., `orders` is a plural variant of `order`).
+- **Abbreviations**: Registered as part of a compound term.
+- **Verb Forms**: Past tense or adjective forms (e.g., `reached`) belong to the root verb (`reach`).
 
 ---
 
@@ -89,13 +95,14 @@ The ecosystem relies on three foundational files:
 
 ```mermaid
 flowchart TD
-    A[Source Code] -->|Extract| B(scan_items)
-    B -->|Filter & Score| C(batch_items)
+    A[Source Code] -->|Scan| B(scan_items.py)
+    B -->|Filter & Extract| C(batch_items.py)
     C -->|Review| D[Web UI]
-    D -->|Merge| E[(words.json)]
-    E --> F{generate_glossary}
-    F --> G[terms.json]
-    F --> H[GLOSSARY.md]
+    D -->|Merge| E[GlossaryWriter]
+    E --> F[(words.json / compounds.json)]
+    F --> G{generate_glossary.py}
+    G --> H[terms.json]
+    G --> I[GLOSSARY.md]
 ```
 
 ---
@@ -138,14 +145,12 @@ python glossary/web/server.py
 4. *(Optional)* **Register** compound terms for special cases.
 5. **Generate** the final glossary.
 
-> **💡 Example Workflow**
-> `New identifier` → `check-id` → `missing word detected` → `register word` → `generate glossary` → `validated identifier ready!`
-
 ---
 
-## 🧠 Auto Enrichment
+## 🧠 Auto Enrichment & Code Scanning
 
-Once words are registered, you can automatically flesh out their definitions and translations:
+### Enriching Vocabulary
+Once words are registered, you can automatically flesh out their definitions and multi-language translations using the built-in AI pipeline (`wikt_sense.py`):
 
 ```bash
 python glossary/bin/enrich_items.py
@@ -156,7 +161,12 @@ Enrichment follows a strict, safe policy:
 2. 🤖 **AI fallback:** Smart concept generation if dictionaries fail.
 3. 🛡️ **Non-destructive updates:** Existing translations/meanings are never overwritten.
 
-This ensures **minimal manual effort** while maintaining **multi-language support** and **reliable definitions**.
+### Scanning Code
+To discover unregistered words used in your project, use `.scan_list` (allowlist) and `.scan_ignore` (blocklist) to configure exactly which directories and files should be scanned.
+
+```bash
+python glossary/bin/scan_items.py
+```
 
 ---
 
@@ -167,16 +177,3 @@ This ensures **minimal manual effort** while maintaining **multi-language suppor
 * 🛡️ **Non-destructive updates:** Safe automation.
 * 📘 **Concept-based descriptions:** Define the "what", not the "how".
 * ⚖️ **Consistency over flexibility:** Strict rules create predictable systems.
-
----
-
-## 📌 Notes
-
-> [!NOTE]  
-> - **CLI `auto` mode** applies batch changes and merges immediately.
-> - **Web UI** is highly recommended for reviewing and managing large batch operations safely.
-
-<br>
-
----
-*Internal tool for the BomTS ecosystem.*
