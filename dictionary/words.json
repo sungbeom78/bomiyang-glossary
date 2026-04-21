@@ -4,6 +4,39 @@
   "description": "BOM_TS 단어 사전 — 식별자의 최소 단위",
   "words": [
     {
+      "id": "MB",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "canonical_pos": "noun",
+      "lang": {
+        "en": "Megabyte",
+        "ko": "메가바이트",
+        "ja": "メガバイト",
+        "zh_hans": "兆字节"
+      },
+      "description_i18n": {
+        "ko": "컴퓨터 저장 용량을 나타내는 단위로 100만 바이트에 해당합니다",
+        "en": "A unit of digital information storage commonly used for computer files and data, equivalent to one million bytes"
+      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "MB"
+        }
+      ],
+      "from": "Megabyte",
+      "synonyms": [
+        "megabyte"
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/MB"
+      ],
+      "updated_at": "2026-04-21T02:45:37Z",
+      "created_at": "2026-04-21T02:45:37Z"
+    },
+    {
       "id": "aborts",
       "lang": {
         "en": "aborts",
@@ -5713,31 +5746,31 @@
       },
       "status": "active",
       "created_at": "2026-04-17T03:05:18Z",
-      "updated_at": "2026-04-17T03:07:00Z",
+      "updated_at": "2026-04-21T02:44:23Z",
       "variants": [
         {
-          "types": [
-            "verb_form"
-          ],
+          "type": "abbreviation",
+          "short": "conn"
+        },
+        {
+          "type": "undefined",
           "value": "connects"
         },
         {
-          "types": [
-            "present_participle"
-          ],
+          "type": "undefined",
           "value": "connecting"
         },
         {
-          "types": [
-            "past"
-          ],
+          "type": "undefined",
           "value": "connected"
         },
         {
-          "types": [
-            "noun_form"
-          ],
+          "type": "undefined",
           "value": "connection"
+        },
+        {
+          "type": "plural",
+          "value": "connections"
         },
         {
           "type": "prefix",
@@ -8117,11 +8150,16 @@
       ],
       "status": "active",
       "description_i18n": {
-        "en": "to aim or steer something straight toward a target or destination, or to tell someone clearly what to do",
-        "ko": "목표나 방향을 똑바로 향하게 하거나, 누군가에게 무엇을 해야 할지 명확하게 말해주는 것"
+        "ko": "목표나 방향을 똑바로 향하게 하거나, 누군가에게 무엇을 해야 할지 명확하게 말해주는 것",
+        "en": "to aim or steer something straight toward a target or destination, or to tell someone clearly what to do"
       },
-      "variants": [],
-      "updated_at": "2026-04-21T01:01:24Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "di"
+        }
+      ],
+      "updated_at": "2026-04-21T02:38:15Z",
       "created_at": "2026-04-21T01:01:24Z"
     },
     {
@@ -8164,15 +8202,27 @@
         "zh_hans": "目录 / 文件夹"
       },
       "canonical_pos": "noun",
-      "domain": "general",
+      "domain": [
+        "general"
+      ],
       "status": "active",
-      "from": "Directories",
+      "from": "Directory",
       "description_i18n": {
         "ko": "컴퓨터 파일 시스템 내에서 관련 있는 파일들을 분류하고 저장하기 위해 논리적으로 구분해 놓은 폴더들의 집합",
         "en": "컴퓨터 파일 시스템 내에서 관련 있는 파일들을 분류하고 저장하기 위해 논리적으로 구분해 놓은 폴더들의 집합"
       },
       "created_at": "2026-04-19T15:44:44Z",
-      "updated_at": "2026-04-19T15:44:44Z"
+      "updated_at": "2026-04-21T02:41:30Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "dir"
+        },
+        {
+          "type": "plural",
+          "value": "directories"
+        }
+      ]
     },
     {
       "id": "dirty",
