@@ -8206,13 +8206,13 @@
         "general"
       ],
       "status": "active",
-      "from": "Directory",
+      "from": "directory",
       "description_i18n": {
         "ko": "컴퓨터 파일 시스템 내에서 관련 있는 파일들을 분류하고 저장하기 위해 논리적으로 구분해 놓은 폴더들의 집합",
         "en": "컴퓨터 파일 시스템 내에서 관련 있는 파일들을 분류하고 저장하기 위해 논리적으로 구분해 놓은 폴더들의 집합"
       },
       "created_at": "2026-04-19T15:44:44Z",
-      "updated_at": "2026-04-21T02:41:30Z",
+      "updated_at": "2026-04-21T02:58:26Z",
       "variants": [
         {
           "type": "abbreviation",
