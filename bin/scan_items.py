@@ -66,21 +66,14 @@ _NOISE_RE = re.compile(
     r'|T\d{2}[:\-]\d{2}'            # 타임스탬프
     r'|\.\d+[Zz]$'                  # .Z
     r'|^v\d+[\.\-]\d+'              # 버전
+    r'|^(?:y{2,4}|m{2}|d{2}|h{2}|s{2})+$' # 날짜/시간 포맷 문자열 (yyyymmdd, hhmmss 등)
 )
 
 MIN_LEN_TERM = 4
 MIN_LEN_WORD = 3
 
 SKIP_NAMES: set = {
-    'self','cls','args','kwargs','none','true','false',
-    'print','len','str','int','float','bool','list','dict','set','tuple',
-    'exception','valueerror','typeerror','keyerror','indexerror',
-    'path','optional','union','list','dict','any','tuple','set','callable',
-    'result','output','response','message','content','body','payload',
-    'config','params','options','headers','timeout','retry','callback',
-    'flag','mode','state','phase','stage','step','level',
-    'get','set','add','remove','delete','clear','reset','init','load',
-    'run','do','make',
+    # 향후 제외할 범용어 추가용 (유저 요청에 의해 초기화)
 }
 
 EXTERNAL_LIBS: set = {
@@ -185,7 +178,13 @@ def load_existing_words_and_tokens(glossary_dir: Path) -> set:
                     for tok in _split_tokens(cid):
                         tokens.add(tok)
                         
-                # top-level abbreviation
+                # variants: list[{type, value|short}] 구조 처리
+                for v in c.get('variants', []):
+                    val = (v.get('value') or v.get('short') or '').strip().lower()
+                    if val:
+                        tokens.add(val)
+                        
+                # top-level abbreviation (legacy)
                 if 'abbreviation' in c and isinstance(c['abbreviation'], dict):
                     abbr_short = (c['abbreviation'].get('short') or '').strip().lower()
                     if abbr_short:
@@ -489,6 +488,16 @@ class ItemScanner:
         for node in ast.walk(tree):
             if isinstance(node, ast.ClassDef):
                 self._add(node.name, f"class:{rel}")
+                # 클래스 레벨의 속성 추출 (Dataclass, Pydantic fields 등)
+                for child in node.body:
+                    if isinstance(child, ast.AnnAssign) and isinstance(child.target, ast.Name):
+                        attr = child.target.id.lstrip('_')
+                        if attr: self._add(attr, f"attr:{rel}")
+                    elif isinstance(child, ast.Assign):
+                        for tgt in child.targets:
+                            if isinstance(tgt, ast.Name):
+                                attr = tgt.id.lstrip('_')
+                                if attr: self._add(attr, f"attr:{rel}")
             elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                 if not node.name.startswith('_'): self._add(node.name, f"func:{rel}")
             elif isinstance(node, (ast.Assign, ast.AnnAssign)):

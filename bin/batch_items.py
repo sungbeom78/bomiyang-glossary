@@ -28,7 +28,7 @@ BIN_DIR = Path(__file__).parent.resolve()
 GLOSSARY_DIR = BIN_DIR.parent.resolve()
 sys.path.insert(0, str(BIN_DIR))
 
-from scan_items import load_env, resolve_proj_root, parse_list, ItemScanner, load_existing_words_and_tokens, load_existing_terms
+from scan_items import load_env, resolve_proj_root, parse_list, ItemScanner, load_existing_words_and_tokens, load_existing_terms, load_scan_config
 
 def get_env(env_arg: str = None) -> tuple:
     if env_arg:
@@ -58,11 +58,11 @@ def _http_get(url: str, headers: dict = None, timeout: int = 10) -> list:
             return []
         raise e
 
-def call_claude(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
+def call_claude(prompt: str, api_key: str, max_tokens: int, model: str, proj_name: str = "BOM_TS") -> str:
     body = {
         "model": model,
         "max_tokens": max_tokens,
-        "system": "당신은 BOM_TS 프로젝트의 용어 판단가입니다. 주어진 단어가 도메인 개념이나 일반 단어로 적합한지 판단하세요.",
+        "system": f"당신은 {proj_name} 프로젝트의 용어 판단가입니다. 주어진 단어가 도메인 개념이나 일반 단어로 적합한지 판단하세요.",
         "messages": [{"role": "user", "content": prompt}],
     }
     data = _http_post("https://api.anthropic.com/v1/messages", json.dumps(body).encode('utf-8'), {
@@ -72,12 +72,12 @@ def call_claude(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
     })
     return data["content"][0]["text"]
 
-def call_openai(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
+def call_openai(prompt: str, api_key: str, max_tokens: int, model: str, proj_name: str = "BOM_TS") -> str:
     body = {
         "model": model,
         "max_tokens": max_tokens,
         "messages": [
-            {"role": "system", "content": "당신은 BOM_TS 프로젝트의 용어 판단가입니다. 주어진 단어가 도메인 개념이나 일반 단어로 적합한지 판단하세요."},
+            {"role": "system", "content": f"당신은 {proj_name} 프로젝트의 용어 판단가입니다. 주어진 단어가 도메인 개념이나 일반 단어로 적합한지 판단하세요."},
             {"role": "user", "content": prompt},
         ],
     }
@@ -87,9 +87,9 @@ def call_openai(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
     })
     return data["choices"][0]["message"]["content"]
 
-def call_google(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
+def call_google(prompt: str, api_key: str, max_tokens: int, model: str, proj_name: str = "BOM_TS") -> str:
     body = {
-        "contents": [{"parts": [{"text": "당신은 BOM_TS 프로젝트의 용어 판단가입니다.\n" + prompt}]}],
+        "contents": [{"parts": [{"text": f"당신은 {proj_name} 프로젝트의 용어 판단가입니다.\n" + prompt}]}],
         "generationConfig": {"maxOutputTokens": max_tokens},
     }
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
@@ -99,19 +99,20 @@ def call_google(prompt: str, api_key: str, max_tokens: int, model: str) -> str:
 def call_api(prompt: str, env: dict, max_tokens: int) -> str:
     api_type = env.get("API_KEY_TYPE", "claude").lower()
     model = env.get("API_MODEL", "claude-sonnet-4-20250514")
+    proj_name = env.get("GLOSSARY_PROJ_NAME", "BOM_TS")
     
     if api_type == "claude":
         key = env.get("ANTHROPIC_API_KEY", "")
         if not key: raise ValueError("ANTHROPIC_API_KEY missing")
-        return call_claude(prompt, key, max_tokens, model)
+        return call_claude(prompt, key, max_tokens, model, proj_name)
     elif api_type == "openai":
         key = env.get("OPENAI_API_KEY", "")
         if not key: raise ValueError("OPENAI_API_KEY missing")
-        return call_openai(prompt, key, max_tokens, model)
+        return call_openai(prompt, key, max_tokens, model, proj_name)
     elif api_type == "google":
         key = env.get("GOOGLE_API_KEY", "")
         if not key: raise ValueError("GOOGLE_API_KEY missing")
-        return call_google(prompt, key, max_tokens, model)
+        return call_google(prompt, key, max_tokens, model, proj_name)
     else:
         raise ValueError(f"Unknown API_KEY_TYPE: {api_type}")
 
@@ -339,9 +340,11 @@ def main():
     else:
         existing = load_existing_terms(GLOSSARY_DIR)
 
+    scan_config = load_scan_config(GLOSSARY_DIR)
+
     prog(0, "소스 스캔", 0, 100, "진행중")
     print(f"[1/3] 소스 스캔... ({proj_root})")
-    scanner = ItemScanner(proj_root, exclude_dirs, content_skip, exclude_exts, args.mode, existing)
+    scanner = ItemScanner(proj_root, exclude_dirs, content_skip, exclude_exts, args.mode, existing, scan_config=scan_config)
     scanner.scan()
     
     candidates = []

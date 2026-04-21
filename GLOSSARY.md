@@ -2,16 +2,39 @@
 
 > 자동 생성 파일. 수동 편집 금지.
 > 원본: `words.json` + `compounds.json` + `banned.json`
-> 생성: 2026-04-19 21:41
+> 생성: 2026-04-21 10:35
 
 ## 통계
-- 단어: 784개
-- 복합어: 167개
+- 단어: 937개
+- 복합어: 184개
 - 금지 표현: 8개
 
 ---
 
 ## 단어 사전 (Words)
+
+### general
+
+| 단어 | 한글 | 약어 | 품사 | 복수형 | 설명 |
+|------|------|------|------|--------|------|
+| `applications` | 응용 프로그램, 지원, 신청 | — | noun | auto | 컴퓨터나 스마트폰에서 실행되는 프로그램 또는 어떤 것을 얻기 위한 요청서 |
+| `clustering` | 클러스터링 | — | noun | auto | 유사한 특성을 가진 항목들을 그룹화하는 과정 |
+| `density-based` | 밀도 기반 | — | noun | auto | 데이터 포인트가 집중된 영역을 식별하는 클러스터링 방법 |
+| `detection` | 탐지 / 검출 | — | noun | auto | 특정한 데이터, 상태, 패턴 또는 이상 징후의 존재 여부를 센서나 알고리즘을 통해 식별하고 찾아내는 프로세스 |
+| `dirs` | 디렉토리 / 폴더 목록 | — | noun | auto | 컴퓨터 파일 시스템 내에서 관련 있는 파일들을 분류하고 저장하기 위해 논리적으로 구분해 놓은 폴더들의 집합 |
+| `earnings` | 이익 | — | noun | auto | 사업 활동을 통해 얻은 재정적 이득 |
+| `eastern` | 동쪽의 | — | noun | auto | 동쪽 방향이나 지역과 관련된 |
+| `euro` | 유로 | eur | noun | auto | 유럽 연합(EU)의 유로존 국가들이 사용하는 공식 법정 통화로, 미국 달러(USD)에 이어 세계에서 두 번째로 거래량이 많은 핵심 기축 통화 |
+| `flag` | 상태 또는 특정 조건 표시기 | — | noun | auto | 상태 또는 특정 조건 표시기 |
+| `fund` | 펀드 | — | noun | auto | 특정 목적을 위해 모은 돈 또는 재정적 지원 |
+| `hypertext markup language` | 하이퍼텍스트 마크업 언어 | HTML | noun | auto | HTML은 웹 페이지의 구조와 내용을 정의하는 데 사용되는 표준 마크업 언어입니다. |
+| `noise` | 노이즈 | — | noun | auto | 원치 않거나 불쾌하게 들리는 소리 |
+| `of` | 의 | — | noun | auto | 무엇의 일부이거나 무언가와 관련되어 있음을 나타냄 |
+| `physical and medical rehabilitation` | 물리 및 의료 재활 | PMR | noun | auto | 신체적 기능 회복과 의학적 치료를 통해 환자의 삶의 질을 향상시키는 의료 분야입니다. |
+| `spatial` | 공간의 | — | noun | auto | 어떤 것과 관련된 위치나 영역에 대한 것 |
+| `ticket` | 티켓 (또는 거래 식별 번호) | — | noun | auto | 각각의 주문이나 거래가 발생할 때 부여되는 고유한 시스템 식별 번호 |
+| `traded` | 거래하다 | — | noun | auto | 상품, 서비스, 통화 등을 사고파는 행위를 하다 |
+| `version` | 버전 | — | noun | auto | 특정 시점에 완성된 소프트웨어의 상태 또는 단계 |
 
 ---
 
@@ -95,6 +118,9 @@
 | `db_stock_master` | db + stock + master | 주식 마스터 테이블 | `` | `` | auto | 의미 비합산 |
 | `db_symbols` | db + symbol | 종목 마스터 테이블 | `` | `` | auto | 공인 약어 |
 | `db_ticks` | db + tick | 틱 테이블 | `` | `` | auto | 공인 약어 |
+| `density-based_spatial_clustering_of_applications_with_noise` | density-based + spatial + clustering + of + applications + with + noise | 밀도 기반 노이즈 포함 공간 클러스터링 | `dbscan` | `DBSCAN` | auto |  |
+| `earnings_per_share` | earnings + per + share | 주당순이익 | `eps` | `EPS` | auto |  |
+| `eastern_standard_time` | eastern + standard + time | 미 동부 표준시 | `est` | `EST` | auto |  |
 | `env_dashboard_port` | env + dashboard + port | 대시보드 포트 | `` | `` | auto | 의미 비합산 |
 | `env_enable_fx` | env + enable + fx | fx 마켓 활성화 | `` | `` | auto | 의미 비합산 |
 | `env_enable_kr` | env + enable + kr | kr 마켓 활성화 | `` | `` | auto | 의미 비합산 |
@@ -110,12 +136,19 @@
 | `env_redis_url` | env + redis + url | redis url | `` | `` | auto | 의미 비합산 |
 | `env_var` | env + var | 환경변수 | `` | `` | auto | 공인 약어 |
 | `eod_flatten` | eod + flatten | 장 종료 전량 청산 | `` | `` | auto | 공인 약어 |
+| `exchange_traded_fund` | exchange + traded + fund | 상장지수펀드 | `etf` | `ETF` | auto |  |
 | `exec_strength` | exec + strength | 체결 강도 | `` | `` | auto | 공인 약어 |
 | `exec_strength_score` | exec + strength + score | 체결 강도 점수 | `` | `` | auto | 공인 약어 |
 | `extended_market_end` | extend + market + end | 시간외 종료 | `` | `` | auto | 의미 비합산 |
 | `extended_market_start` | extend + market + start | 시간외 시작 | `` | `` | auto | 의미 비합산 |
+| `first_in_first_out` | first + in + first + out | 선입선출법 | `fifo` | `FIFO` | auto |  |
 | `fx_futures` | fx + futures | 외환선물 | `` | `` | auto | 혼동 방지 |
+| `health_check` | health + check | 상태 점검 / 생존 확인 | `healthcheck` | `HEALTHCHECK` | auto |  |
+| `home_trading_system` | home + trading + system | 홈 트레이딩 시스템 | `hts` | `HTS` | auto |  |
+| `immediate_or_cancel` | immediate + or + cancel | 즉시 집행 및 잔량 취소 주문 | `ioc` | `IOC` | auto |  |
+| `japanese_yen` | japanese + yen | 일본 엔 | `jpy` | `JPY` | auto |  |
 | `kill_switch` | kill + switch | 킬스위치 | `` | `` | auto | 공인 약어 |
+| `korea_exchange` | korea + exchange | 한국거래소 | `krx` | `KRX` | auto |  |
 | `kr_stock` | kr + stock | 한국주식 | `` | `` | auto | 혼동 방지 |
 | `leader_candidate` | leader + candidate | 대장주 후보 | `` | `` | auto | 공인 약어 |
 | `leader_stock` | leader + stock | 대장주 | `` | `` | auto | 공인 약어 |
@@ -124,12 +157,14 @@
 | `lower_wick` | low + wick | 아랫꼬리 | `` | `` | auto | 공인 약어 |
 | `margin_used` | margin + use | 사용 증거금 | `` | `` | auto | 공인 약어 |
 | `market_close` | market + close | 장 종료 | `` | `` | auto | 공인 약어 |
+| `market_data` | market + data | 시장 데이터 | `marketdata` | `MARKETDATA` | auto |  |
 | `market_open` | market + open | 장 시작 | `` | `` | auto | 공인 약어 |
 | `market_order` | market + order | 시장가 주문 | `` | `` | auto | 의미 비합산 |
 | `market_scanner` | market + scan | 마켓 스캐너 | `` | `` | auto | 공인 약어 |
 | `market_strength` | market + strength | 시장 강도 | `` | `` | auto | 공인 약어 |
 | `max_daily_loss` | max + daily + loss | 일일 최대 손실 | `` | `` | auto | 공인 약어 |
 | `max_open_positions` | max + open + position | 최대 동시 보유 수 | `` | `` | auto | 공인 약어 |
+| `maximum_length` | maximum + length | 최대 길이 | `maxlen` | `MAXLEN` | auto |  |
 | `mock_trading` | mock + trade | 모의 거래 | `` | `` | auto | 공인 약어 |
 | `mod_adapters` | mod + adapter | 어댑터 모듈 | `` | `` | auto | 공인 약어, 시스템 객체 |
 | `mod_collectors` | mod + collect | 수집기 모듈 | `` | `` | auto | 공인 약어, 시스템 객체 |
@@ -151,14 +186,17 @@
 | `no_bounce_exit` | no + bounce + exit | 반등 불발 청산 | `` | `` | auto | 공인 약어 |
 | `no_entry_after` | no + entry + after | 진입 차단 시각 | `` | `` | auto | 공인 약어 |
 | `node_name` | node + name | 노드명 | `` | `` | auto | 공인 약어 |
+| `open_high_low_close_volume` | open + high + low + close + volume | 시고저종 및 거래량 | `ohlcv` | `OHLCV` | auto |  |
 | `order_intent` | order + intent | 주문 의도 | `` | `` | auto | 공인 약어 |
 | `order_status` | order + status | 주문 상태 | `` | `` | auto | 공인 약어 |
 | `partial_fill` | partial + fill | 부분 체결 | `` | `` | auto | 공인 약어 |
 | `position_size` | position + size | 포지션 크기 | `` | `` | auto | 공인 약어 |
 | `process_guard` | process + guard | 프로세스 가드 | `` | `` | auto | 공인 약어 |
+| `process_identifier` | process + identifier | 프로세스 식별자 | `pid` | `PID` | auto |  |
 | `realized_pnl` | realize + pnl | 실현 손익 | `` | `` | auto | 공인 약어 |
 | `realtime_log` | realtime + log | 실시간 로그 | `` | `` | auto | 공인 약어 |
 | `reboot_time` | reboot + time | 리부트 시각 | `` | `` | auto | 공인 약어 |
+| `relative_strength_index` | relative + strength + index | 상대강도지수 | `rsi` | `RSI` | auto |  |
 | `risk_manager` | risk + manage | 리스크 매니저 | `` | `` | auto | 공인 약어 |
 | `sector_ranking` | sector + ranking | 섹터 랭킹 | `` | `` | auto | 의미 비합산 |
 | `sector_score` | sector + score | 섹터 점수 | `` | `` | auto | 공인 약어 |
@@ -166,6 +204,7 @@
 | `service_manager` | service + manage | 서비스 매니저 | `` | `` | auto | 의미 비합산 |
 | `signal_direction` | signal + direction | 시그널 방향 | `` | `` | auto | 공인 약어 |
 | `signal_engine` | signal + engine | 시그널 엔진 | `` | `` | auto | 의미 비합산 |
+| `source_of_truth` | source + of + truth | 단일 진실 공급원 / 신뢰할 수 있는 원천 | `sot` | `SOT` | auto |  |
 | `split_buy` | split + buy | 분할 매수 | `` | `` | auto | 공인 약어 |
 | `split_sell` | split + sell | 분할 매도 | `` | `` | auto | 공인 약어 |
 | `stock_score` | stock + score | 종목 점수 | `` | `` | auto | 공인 약어 |
@@ -175,6 +214,7 @@
 | `take_profit` | take + profit | 익절 | `` | `` | auto | 공인 약어 |
 | `task_scheduler` | task + scheduler | 태스크 스케줄러 | `` | `` | auto | 공인 약어 |
 | `telegram_bot` | telegram + bot | 텔레그램 봇 | `` | `` | auto | 의미 비합산 |
+| `time_to_live` | time + to + live | 유효 기간 / 수명 | `ttl` | `TTL` | auto |  |
 | `top[n]` | top | 상위 n개 | `` | `` | auto | 숫자 파라미터 패턴. 개별 등록 시 무한 증식 |
 | `tracking_start` | tracker + start | 트래킹 시작 | `` | `` | auto | 의미 비합산 |
 | `trade_notifier` | trade + notify | 거래 알림 | `` | `` | auto | 의미 비합산 |

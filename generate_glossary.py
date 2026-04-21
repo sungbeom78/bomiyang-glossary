@@ -1284,6 +1284,29 @@ def cmd_suggest(identifier: str):
                 "ko": ""
             }
         }
+        
+        # AI 초안 서버 연동 (선택적)
+        try:
+            import urllib.request
+            payload = json.dumps({"word": tok}).encode('utf-8')
+            req = urllib.request.Request(
+                'http://127.0.0.1:5000/api/batch/ai_draft',
+                data=payload,
+                headers={'Content-Type': 'application/json'}
+            )
+            res = urllib.request.urlopen(req, timeout=3.0)
+            ai_data = json.loads(res.read().decode('utf-8'))
+            if ai_data.get('ok'):
+                template["lang"]["ko"] = ai_data.get('ko', "")
+                template["lang"]["en"] = ai_data.get('en', tok)
+                template["lang"]["ja"] = ai_data.get('ja', "")
+                template["lang"]["zh"] = ai_data.get('zh', "")
+                template["description_i18n"]["ko"] = ai_data.get('description_ko', "")
+                template["description_i18n"]["en"] = ai_data.get('description_en', "")
+                print(f"(* AI 자동 채움: {template['lang']['ko']})")
+        except Exception as e:
+            pass
+
         print(json.dumps(template, ensure_ascii=False, indent=2))
         print()
 

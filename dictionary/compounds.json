@@ -2226,6 +2226,97 @@
       }
     },
     {
+      "id": "density-based_spatial_clustering_of_applications_with_noise",
+      "words": [
+        "density-based",
+        "spatial",
+        "clustering",
+        "of",
+        "applications",
+        "with",
+        "noise"
+      ],
+      "domain": "general",
+      "status": "active",
+      "lang": {
+        "en": "Density-Based Spatial Clustering of Applications with Noise",
+        "ko": "밀도 기반 노이즈 포함 공간 클러스터링",
+        "ja": "密度基準空間クラスタリング",
+        "zh_hans": "基于密度的聚类算法"
+      },
+      "description_i18n": {
+        "ko": "데이터가 밀집된 정도를 기반으로 군집을 형성하며, 밀도가 낮은 데이터는 노이즈(이상치)로 분류하는 머신러닝 알고리즘",
+        "en": "데이터가 밀집된 정도를 기반으로 군집을 형성하며, 밀도가 낮은 데이터는 노이즈(이상치)로 분류하는 머신러닝 알고리즘"
+      },
+      "created_at": "2026-04-19T15:44:45Z",
+      "updated_at": "2026-04-19T15:44:45Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "DBSCAN",
+          "long": "dbscan"
+        }
+      ]
+    },
+    {
+      "id": "earnings_per_share",
+      "words": [
+        "earnings",
+        "per",
+        "share"
+      ],
+      "domain": "general",
+      "status": "active",
+      "lang": {
+        "en": "Earnings Per Share",
+        "ko": "주당순이익",
+        "ja": "1株当たり当期純利益",
+        "zh_hans": "每股收益 / 每股盈余"
+      },
+      "description_i18n": {
+        "ko": "기업이 벌어들인 순이익(당기순이익)을 발행한 총 주식 수로 나눈 값으로, 1주당 얼마만큼의 이익을 창출했는지를 나타내는 지표",
+        "en": "기업이 벌어들인 순이익(당기순이익)을 발행한 총 주식 수로 나눈 값으로, 1주당 얼마만큼의 이익을 창출했는지를 나타내는 지표"
+      },
+      "created_at": "2026-04-19T15:44:45Z",
+      "updated_at": "2026-04-19T15:44:45Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "EPS",
+          "long": "eps"
+        }
+      ]
+    },
+    {
+      "id": "eastern_standard_time",
+      "words": [
+        "eastern",
+        "standard",
+        "time"
+      ],
+      "domain": "general",
+      "status": "active",
+      "lang": {
+        "en": "Eastern Standard Time",
+        "ko": "미 동부 표준시",
+        "ja": "米国東部標準時",
+        "zh_hans": "北美东部标准时间"
+      },
+      "description_i18n": {
+        "ko": "뉴욕, 워싱턴 D.C. 등 미국 동부 지역에서 사용하는 표준 시간대로, 협정 세계시(UTC)보다 5시간 느린(UTC-5) 시간대",
+        "en": "뉴욕, 워싱턴 D.C. 등 미국 동부 지역에서 사용하는 표준 시간대로, 협정 세계시(UTC)보다 5시간 느린(UTC-5) 시간대"
+      },
+      "created_at": "2026-04-19T15:44:45Z",
+      "updated_at": "2026-04-19T15:44:45Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "EST",
+          "long": "est"
+        }
+      ]
+    },
+    {
       "id": "env_dashboard_port",
       "words": [
         "env",
@@ -2665,6 +2756,35 @@
       }
     },
     {
+      "id": "exchange_traded_fund",
+      "words": [
+        "exchange",
+        "traded",
+        "fund"
+      ],
+      "domain": "general",
+      "status": "active",
+      "lang": {
+        "en": "Exchange Traded Fund",
+        "ko": "상장지수펀드",
+        "ja": "上場投資信託",
+        "zh_hans": "交易所交易基金"
+      },
+      "description_i18n": {
+        "ko": "기초지수(코스피 200, 나스닥 100 등)의 성과를 추종하도록 설계되어, 거래소에 상장된 채 주식처럼 실시간으로 매매되는 펀드",
+        "en": "기초지수(코스피 200, 나스닥 100 등)의 성과를 추종하도록 설계되어, 거래소에 상장된 채 주식처럼 실시간으로 매매되는 펀드"
+      },
+      "created_at": "2026-04-19T15:44:45Z",
+      "updated_at": "2026-04-19T15:44:45Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "ETF",
+          "long": "etf"
+        }
+      ]
+    },
+    {
       "id": "exec_strength",
       "words": [
         "exec",
@@ -2780,6 +2900,38 @@
       }
     },
     {
+      "id": "first_in_first_out",
+      "words": [
+        "first",
+        "in",
+        "first",
+        "out"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "First-In, First-Out",
+        "ko": "선입선출법",
+        "ja": "先入れ先出し法",
+        "zh_hans": "先进先出法"
+      },
+      "description_i18n": {
+        "ko": "먼저 들어온 것이 먼저 나가는 방식으로, 재고자산의 원가 흐름을 가정하는 회계 방법입니다.",
+        "en": "This is an accounting method for cost flow assumption of inventory, where the first items to enter are the first ones to be expensed."
+      },
+      "created_at": "2026-04-20T12:03:27Z",
+      "updated_at": "2026-04-20T12:03:27Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "FIFO",
+          "long": "fifo"
+        }
+      ]
+    },
+    {
       "id": "fx_futures",
       "words": [
         "fx",
@@ -2813,6 +2965,129 @@
       }
     },
     {
+      "id": "health_check",
+      "words": [
+        "health",
+        "check"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "Health Check",
+        "ko": "상태 점검 / 생존 확인",
+        "ja": "ヘルスチェック",
+        "zh_hans": "健康检查"
+      },
+      "description_i18n": {
+        "ko": "서버, 애플리케이션 또는 특정 프로세스가 정상적으로 작동하고 있는지 주기적으로 확인하여 시스템의 가용성을 보장하는 모니터링 메커니즘",
+        "en": "서버, 애플리케이션 또는 특정 프로세스가 정상적으로 작동하고 있는지 주기적으로 확인하여 시스템의 가용성을 보장하는 모니터링 메커니즘"
+      },
+      "created_at": "2026-04-20T12:03:27Z",
+      "updated_at": "2026-04-20T12:03:27Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "HEALTHCHECK",
+          "long": "healthcheck"
+        }
+      ]
+    },
+    {
+      "id": "home_trading_system",
+      "words": [
+        "home",
+        "trading",
+        "system"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "Home Trading System",
+        "ko": "홈 트레이딩 시스템",
+        "ja": "ホームトレーディングシステム",
+        "zh_hans": "网上交易系统 / 客户端交易软件"
+      },
+      "description_i18n": {
+        "ko": "개인 투자자가 PC를 이용해 객장에 나가지 않고도 온라인으로 주식, 선물, 옵션 등 금융 상품을 실시간으로 매매하고 정보를 조회할 수 있는 시스템",
+        "en": "개인 투자자가 PC를 이용해 객장에 나가지 않고도 온라인으로 주식, 선물, 옵션 등 금융 상품을 실시간으로 매매하고 정보를 조회할 수 있는 시스템"
+      },
+      "created_at": "2026-04-20T12:03:27Z",
+      "updated_at": "2026-04-20T12:03:27Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "HTS",
+          "long": "hts"
+        }
+      ]
+    },
+    {
+      "id": "immediate_or_cancel",
+      "words": [
+        "immediate",
+        "or",
+        "cancel"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "Immediate or Cancel",
+        "ko": "즉시 집행 및 잔량 취소 주문",
+        "ja": "IOC注文 (또는 即時執行・一部取消)",
+        "zh_hans": "立即成交否则取消"
+      },
+      "description_i18n": {
+        "ko": "주문 시점의 가용 물량에 대해 즉시 체결을 시도하고 남은 수량은 즉시 소멸시키는 조건",
+        "en": "A trade order that requires all or part of the order to be executed immediately, with any unfilled portion canceled"
+      },
+      "created_at": "2026-04-21T00:39:08Z",
+      "updated_at": "2026-04-21T00:39:08Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "IOC",
+          "long": "ioc"
+        }
+      ]
+    },
+    {
+      "id": "japanese_yen",
+      "words": [
+        "japanese",
+        "yen"
+      ],
+      "domain": [
+        "market",
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "Japanese Yen",
+        "ko": "일본 엔",
+        "ja": "日本円",
+        "zh_hans": "日元"
+      },
+      "description_i18n": {
+        "ko": "JPY는 일본의 공식 통화로, 일본 경제 활동의 기본 단위입니다.",
+        "en": "JPY is the official currency of Japan, serving as the fundamental unit for economic activities within the country."
+      },
+      "created_at": "2026-04-20T12:03:27Z",
+      "updated_at": "2026-04-20T12:03:27Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "JPY",
+          "long": "jpy"
+        }
+      ]
+    },
+    {
       "id": "kill_switch",
       "words": [
         "kill",
@@ -2839,6 +3114,36 @@
         "confidence": "high",
         "ambiguity": "low"
       }
+    },
+    {
+      "id": "korea_exchange",
+      "words": [
+        "korea",
+        "exchange"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "Korea Exchange",
+        "ko": "한국거래소",
+        "ja": "韓国取引所",
+        "zh_hans": "韩国交易所"
+      },
+      "description_i18n": {
+        "ko": "주식, 파생상품 등 다양한 금융상품의 거래를 담당하는 대한민국의 증권거래소",
+        "en": "South Korea's stock market operator responsible for trading stocks, derivatives, and other financial instruments"
+      },
+      "created_at": "2026-04-21T00:39:08Z",
+      "updated_at": "2026-04-21T00:39:08Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "KRX",
+          "long": "krx"
+        }
+      ]
     },
     {
       "id": "kr_stock",
@@ -3064,6 +3369,37 @@
       }
     },
     {
+      "id": "market_data",
+      "words": [
+        "market",
+        "data"
+      ],
+      "domain": [
+        "market",
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "Market Data",
+        "ko": "시장 데이터",
+        "ja": "マーケットデータ",
+        "zh_hans": "市场数据"
+      },
+      "description_i18n": {
+        "ko": "금융 시장에서 거래되는 상품의 가격, 거래량 등과 같은 정보를 의미합니다.",
+        "en": "Information such as prices and trading volumes of financial instruments traded in the market."
+      },
+      "created_at": "2026-04-20T12:03:28Z",
+      "updated_at": "2026-04-20T12:03:28Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "MARKETDATA",
+          "long": "marketdata"
+        }
+      ]
+    },
+    {
       "id": "market_open",
       "words": [
         "market",
@@ -3226,6 +3562,36 @@
         "confidence": "high",
         "ambiguity": "low"
       }
+    },
+    {
+      "id": "maximum_length",
+      "words": [
+        "maximum",
+        "length"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "maximum length",
+        "ko": "최대 길이",
+        "ja": "最大長",
+        "zh_hans": "最大长度"
+      },
+      "description_i18n": {
+        "ko": "어떤 데이터나 입력값에 허용될 수 있는 가장 큰 크기를 나타냅니다.",
+        "en": "Indicates the largest size permitted for a particular data or input value."
+      },
+      "created_at": "2026-04-20T12:03:28Z",
+      "updated_at": "2026-04-20T12:03:28Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "MAXLEN",
+          "long": "maxlen"
+        }
+      ]
     },
     {
       "id": "mock_trading",
@@ -3790,6 +4156,39 @@
       "updated_at": "2026-04-15T04:29:45Z"
     },
     {
+      "id": "open_high_low_close_volume",
+      "words": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "Open, High, Low, Close, Volume",
+        "ko": "시고저종 및 거래량",
+        "ja": "始高安終 + 出来高",
+        "zh_hans": "开高低收 + 成交量"
+      },
+      "description_i18n": {
+        "ko": "특정 시간 범위(분, 시간, 일 등) 동안의 가격 움직임과 거래 규모를 나타내는 5가지 핵심 데이터로, 차트의 '봉(Candle)'을 구성하는 기초 정보",
+        "en": "특정 시간 범위(분, 시간, 일 등) 동안의 가격 움직임과 거래 규모를 나타내는 5가지 핵심 데이터로, 차트의 '봉(Candle)'을 구성하는 기초 정보"
+      },
+      "created_at": "2026-04-20T12:03:28Z",
+      "updated_at": "2026-04-20T12:03:28Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "OHLCV",
+          "long": "ohlcv"
+        }
+      ]
+    },
+    {
       "id": "order_intent",
       "words": [
         "order",
@@ -3930,6 +4329,36 @@
       }
     },
     {
+      "id": "process_identifier",
+      "words": [
+        "process",
+        "identifier"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "Process Identifier",
+        "ko": "프로세스 식별자",
+        "ja": "プロセス識別子",
+        "zh_hans": "进程标识符"
+      },
+      "description_i18n": {
+        "ko": "운영체제에서 실행 중인 각 프로세스를 고유하게 식별하는 번호입니다.",
+        "en": "A unique number used by an operating system to identify each running process."
+      },
+      "created_at": "2026-04-20T12:03:28Z",
+      "updated_at": "2026-04-20T12:03:28Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "PID",
+          "long": "pid"
+        }
+      ]
+    },
+    {
       "id": "realized_pnl",
       "words": [
         "realize",
@@ -4012,6 +4441,37 @@
         "confidence": "high",
         "ambiguity": "low"
       }
+    },
+    {
+      "id": "relative_strength_index",
+      "words": [
+        "relative",
+        "strength",
+        "index"
+      ],
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "Relative Strength Index",
+        "ko": "상대강도지수",
+        "ja": "相対力指数",
+        "zh_hans": "相对强弱指数"
+      },
+      "description_i18n": {
+        "ko": "주가 변화의 속도와 크기를 측정하여 현재 가격이 상승 추세인지 하락 추세인지, 혹은 과도하게 오르거나 내렸는지를 0에서 100 사이의 수치로 나타내는 지표",
+        "en": "A momentum oscillator that measures the speed and change of price movements to identify overbought or oversold conditions, ranging from 0 to 100"
+      },
+      "created_at": "2026-04-20T12:03:28Z",
+      "updated_at": "2026-04-20T12:03:28Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "RSI",
+          "long": "rsi"
+        }
+      ]
     },
     {
       "id": "risk_manager",
@@ -4209,6 +4669,37 @@
         "confidence": "high",
         "ambiguity": "low"
       }
+    },
+    {
+      "id": "source_of_truth",
+      "words": [
+        "source",
+        "of",
+        "truth"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "Source of Truth",
+        "ko": "단일 진실 공급원 / 신뢰할 수 있는 원천",
+        "ja": "信頼할 수 있는 정보원 (信頼できる情報源)",
+        "zh_hans": "单一事实来源"
+      },
+      "description_i18n": {
+        "ko": "시스템 내의 특정 데이터 요소에 대해 단 하나의 신뢰할 수 있는 공식적인 원천을 지정하여 데이터의 일관성과 정확성을 보장하는 설계 원칙",
+        "en": "A design principle that ensures data consistency and accuracy by designating a single, authoritative source for a particular data element within a system"
+      },
+      "created_at": "2026-04-20T12:03:29Z",
+      "updated_at": "2026-04-20T12:03:29Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "SOT",
+          "long": "sot"
+        }
+      ]
     },
     {
       "id": "split_buy",
@@ -4461,6 +4952,37 @@
         "confidence": "high",
         "ambiguity": "low"
       }
+    },
+    {
+      "id": "time_to_live",
+      "words": [
+        "time",
+        "to",
+        "live"
+      ],
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "Time to Live",
+        "ko": "유효 기간 / 수명",
+        "ja": "生存期間 / 有効期限",
+        "zh_hans": "生存时间 / 有效期"
+      },
+      "description_i18n": {
+        "ko": "데이터나 패킷, 또는 인증 토큰이 시스템 내에서 유효한 상태로 존재할 수 있도록 허용된 제한 시간",
+        "en": "A mechanism that limits the lifespan or period of validity for data, packets, or authentication tokens within a system"
+      },
+      "created_at": "2026-04-20T12:03:29Z",
+      "updated_at": "2026-04-20T12:03:29Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "TTL",
+          "long": "ttl"
+        }
+      ]
     },
     {
       "id": "top[n]",

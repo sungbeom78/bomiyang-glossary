@@ -47,34 +47,34 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
   <button class="btn btn-gh" onclick="openCheckId()" title="식별자 단어 분해">⊙ check-id</button>
   <button class="btn btn-gh" onclick="openLogModal()">📋 log</button>
   <button class="btn btn-gh" onclick="openBatchModal()">⚙ batch</button>
-  <button class="btn btn-gh" onclick="openSettings()" title="환경설정">⚙ 설정</button>
+  <button class="btn btn-gh" onclick="openSettings()" title="환경설정" data-i18n="btn_settings">⚙ 설정</button>
   <button class="btn btn-gr" id="git-btn" onclick="openGit()">⎇ commit &amp; push</button>
 </header>
 <div id="tabs">
-  <button class="tab active" data-tab="words"     onclick="switchTab('words')">단어<span class="badge" id="badge-words">0</span></button>
-  <button class="tab"        data-tab="compounds" onclick="switchTab('compounds')">복합어<span class="badge" id="badge-compounds">0</span></button>
-  <button class="tab"        data-tab="banned"    onclick="switchTab('banned')">금지표현<span class="badge" id="badge-banned">0</span></button>
-  <button class="tab"        data-tab="drafts"    onclick="switchTab('drafts')">보류(Drafts)<span class="badge" id="badge-drafts">0</span></button>
+  <button class="tab active" data-tab="words"     data-i18n="tab_words" onclick="switchTab('words')">단어<span class="badge" id="badge-words">0</span></button>
+  <button class="tab"        data-tab="compounds" data-i18n="tab_compounds" onclick="switchTab('compounds')">복합어<span class="badge" id="badge-compounds">0</span></button>
+  <button class="tab"        data-tab="banned"    data-i18n="tab_banned" onclick="switchTab('banned')">금지표현<span class="badge" id="badge-banned">0</span></button>
+  <button class="tab"        data-tab="drafts"    data-i18n="tab_drafts" onclick="switchTab('drafts')">보류(Drafts)<span class="badge" id="badge-drafts">0</span></button>
   <div id="tab-actions"></div>
 </div>
 <div id="content">
   <!-- WORDS -->
   <div class="view active" id="view-words">
     <div class="toolbar">
-      <div class="sw"><span class="si-s">⌕</span><input class="search-inp" id="w-search" type="text" placeholder="검색 — id, 영문, 한글, 약어…" oninput="wFilter()"></div>
+      <div class="sw"><span class="si-s">⌕</span><input class="search-inp" id="w-search" type="text" placeholder="검색 — id, 영문, 한글, 약어…" data-i18n="search_placeholder" oninput="wFilter()"></div>
       <div class="fsel-group">
-        <select class="fsel" id="w-domain" onchange="wFilter()"><option value="">전체 domain</option><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select>
-        <select class="fsel" id="w-pos" onchange="wFilter()"><option value="">전체 품사</option><option value="noun">noun</option><option value="verb">verb</option><option value="adj">adj</option><option value="adv">adv</option><option value="prefix">prefix</option><option value="suffix">suffix</option><option value="proper">proper</option></select>
+        <select class="fsel" id="w-domain" onchange="wFilter()"><option value="" data-i18n="all_domain">전체 domain</option><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select>
+        <select class="fsel" id="w-pos" onchange="wFilter()"><option value="" data-i18n="all_pos">전체 품사</option><option value="noun">noun</option><option value="verb">verb</option><option value="adj">adj</option><option value="adv">adv</option><option value="prefix">prefix</option><option value="suffix">suffix</option><option value="proper">proper</option></select>
       </div>
       <div class="row-cnt" id="w-cnt"></div>
-      <button class="btn btn-ac" onclick="openWordForm(null)">+ 단어 추가</button>
+      <button class="btn btn-ac" onclick="openWordForm(null)"><span data-i18n="btn_add_word">+ 단어 추가</span></button>
     </div>
     <div class="tw"><table id="w-tbl">
       <colgroup><col style="width:130px"><col style="width:110px"><col style="width:90px"><col style="width:60px"><col style="width:80px"><col style="width:80px"><col style="width:auto"><col style="width:40px"></colgroup>
       <thead><tr>
         <th class="srt" data-col="id">id<span class="si2"></span></th>
         <th class="srt" data-col="en">english<span class="si2"></span></th>
-        <th class="srt" data-col="ko">한글<span class="si2"></span></th>
+        <th class="srt" data-col="ko" data-i18n="th_ko">한글<span class="si2"></span></th>
         <th>abbr</th><th class="srt" data-col="pos">pos<span class="si2"></span></th>
         <th class="srt" data-col="domain">domain<span class="si2"></span></th>
         <th>설명</th><th></th>
@@ -87,7 +87,7 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
     <div class="toolbar">
       <div class="sw"><span class="si-s">⌕</span><input class="search-inp" id="c-search" type="text" placeholder="검색 — id, 한글, 영문, 약어, 구성단어…" oninput="cFilter()"></div>
       <div class="fsel-group">
-        <select class="fsel" id="c-domain" onchange="cFilter()"><option value="">전체 domain</option><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select>
+        <select class="fsel" id="c-domain" onchange="cFilter()"><option value="" data-i18n="all_domain">전체 domain</option><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select>
       </div>
       <div class="row-cnt" id="c-cnt"></div>
       <button class="btn btn-ac" onclick="openCompoundForm(null)">+ 복합어 추가</button>
@@ -96,7 +96,7 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
       <colgroup><col style="width:160px"><col style="width:160px"><col style="width:90px"><col style="width:120px"><col style="width:70px"><col style="width:80px"><col style="width:auto"><col style="width:40px"></colgroup>
       <thead><tr>
         <th class="srt" data-col="id">id<span class="si2"></span></th><th>구성 단어</th>
-        <th class="srt" data-col="ko">한글<span class="si2"></span></th>
+        <th class="srt" data-col="ko" data-i18n="th_ko">한글<span class="si2"></span></th>
         <th>abbr_long</th><th>abbr_short</th>
         <th class="srt" data-col="domain">domain<span class="si2"></span></th>
         <th>설명</th><th></th>
@@ -124,6 +124,8 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
       <div class="sw"><span class="si-s">⌕</span><input class="search-inp" id="d-search" type="text" placeholder="검색 — id, 한글…" oninput="dFilter()"></div>
       <div style="flex:1 1 0"></div>
       <div class="row-cnt" id="d-cnt"></div>
+      <button id="btn-drafts-scan" class="btn btn-gh" onclick="doDraftsScan()" style="padding:4px 8px;font-size:11px;margin-right:6px" data-i18n="btn_scan_drafts">▷ 스캔 (결과가 없을 경우 삭제)</button>
+      <button class="btn btn-ac" onclick="loadDraftsToMerge()" style="padding:4px 8px;font-size:11px;margin-right:6px">보류 목록 처리하기 (Batch Editor)</button>
       <button class="btn btn-gh" onclick="loadDrafts()" style="padding:4px 8px;font-size:11px">↺ 새로고침</button>
     </div>
     <div class="tw"><table id="d-tbl">
@@ -140,7 +142,7 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
   <div class="mh"><div class="mt" id="word-title">단어 추가</div><button class="ico" onclick="closeOv('word-ov')">✕</button></div>
   <div class="mb" style="padding:16px;max-height:72vh;overflow-y:auto">
     <!-- 기본 -->
-    <div style="font-family:var(--mono);font-size:9px;color:var(--ac);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--ln)">기본 정보</div>
+    <div style="font-family:var(--mono);font-size:9px;color:var(--ac);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--ln);display:flex;justify-content:space-between;align-items:center;"><span>기본 정보</span><button class="btn btn-sm" style="background:var(--ac);color:#0f0f13;border:none" onclick="fillWordAiDraft()">✨ AI 초안 입력</button></div>
     <div class="fg2"><div class="fg"><div class="fl">id <span class="req">*</span></div><input class="fi" id="wf-id" placeholder="kill"></div><div class="fg"><div class="fl">pos <span class="req">*</span></div><select class="fsel" id="wf-pos"><option value="noun">noun</option><option value="verb">verb</option><option value="adj">adj</option><option value="adv">adv</option><option value="prefix">prefix</option><option value="suffix">suffix</option><option value="proper">proper</option></select></div></div>
     <datalist id="domain-list"><option value="trading"></option><option value="market"></option><option value="system"></option><option value="infra"></option><option value="ui"></option><option value="general"></option><option value="proper"></option></datalist>
 <div class="fg2"><div class="fg"><div class="fl">status</div><select class="fsel" id="wf-status"><option value="active">active</option><option value="deprecated">deprecated</option></select></div><div class="fg"><div class="fl">domain <span class="req">*</span></div><div class="fsel" id="wf-domain" style="min-height:24px;padding:2px 4px;cursor:text"></div></div></div>
@@ -195,7 +197,7 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
 
 <!-- CHECK-ID -->
 <div class="ov" id="checkid-ov"><div class="modal" style="width:500px">
-  <div class="mh"><div class="mt">⊙ check-id / suggest</div><button class="ico" onclick="closeOv('checkid-ov')">✕</button></div>
+  <div class="mh"><div class="mt" data-i18n="modal_checkid">⊙ check-id / suggest</div><button class="ico" onclick="closeOv('checkid-ov')">✕</button></div>
   <div class="mb" style="padding:16px">
     <div style="display:flex;gap:8px;margin-bottom:12px">
       <input class="fi" id="ci-input" placeholder="식별자 입력 (kill_switch)" style="flex:1" onkeydown="if(event.key==='Enter')runCheckId()">
@@ -204,19 +206,19 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
     </div>
     <pre class="check-result" id="ci-result" style="min-height:80px">입력 후 실행</pre>
   </div>
-  <div class="mf"><button class="btn btn-gh" onclick="closeOv('checkid-ov')">닫기</button></div>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('checkid-ov')" data-i18n="btn_close">닫기</button></div>
 </div></div>
 
 <!-- GIT -->
 <div class="ov" id="git-ov"><div class="modal" style="width:510px">
-  <div class="mh"><div class="mt">⎇ commit &amp; push</div><button class="ico" onclick="closeOv('git-ov')">✕</button></div>
+  <div class="mh"><div class="mt" data-i18n="modal_git">⎇ commit &amp; push</div><button class="ico" onclick="closeOv('git-ov')">✕</button></div>
   <div class="mb" id="git-body" style="padding:0"></div>
-  <div class="mf" id="git-ft"><button class="btn btn-gh" onclick="closeOv('git-ov')">닫기</button><button class="btn btn-gr" id="cbtn" onclick="doCommit()">commit + push</button></div>
+  <div class="mf" id="git-ft"><button class="btn btn-gh" onclick="closeOv('git-ov')" data-i18n="btn_close">닫기</button><button class="btn btn-gr" id="cbtn" onclick="doCommit()">commit + push</button></div>
 </div></div>
 
 <!-- SETTINGS -->
 <div class="ov" id="settings-ov"><div class="modal" style="width:420px">
-  <div class="mh"><div class="mt">⚙ 환경설정</div><button class="ico" onclick="closeOv('settings-ov')">✕</button></div>
+  <div class="mh"><div class="mt" data-i18n="modal_settings">⚙ 환경설정</div><button class="ico" onclick="closeOv('settings-ov')">✕</button></div>
   <div class="mb" style="padding:18px">
     <div class="fg"><div class="fl">기본 표시 언어</div>
       <select class="fsel" id="pref-lang">
@@ -233,19 +235,19 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
       변경 시 즉시 적용됩니다.
     </div>
   </div>
-  <div class="mf"><button class="btn btn-gh" onclick="closeOv('settings-ov')">닫기</button><button class="btn btn-ac" onclick="saveSettings()">저장</button></div>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('settings-ov')" data-i18n="btn_close">닫기</button><button class="btn btn-ac" onclick="saveSettings()">저장</button></div>
 </div></div>
 
 <!-- RUN -->
 <div class="ov" id="run-ov"><div class="modal" style="width:490px">
-  <div class="mh"><div class="mt" id="run-title">실행</div><button class="ico" onclick="closeOv('run-ov')">✕</button></div>
+  <div class="mh"><div class="mt" id="run-title" data-i18n="modal_run">실행</div><button class="ico" onclick="closeOv('run-ov')">✕</button></div>
   <div class="mb" style="padding:14px"><pre class="out-pre" id="run-out"></pre></div>
-  <div class="mf"><button class="btn btn-gh" onclick="closeOv('run-ov')">닫기</button></div>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('run-ov')" data-i18n="btn_close">닫기</button></div>
 </div></div>
 
 <!-- LOG -->
 <div class="ov" id="log-ov"><div class="modal" style="width:680px;max-height:80vh">
-  <div class="mh"><div class="mt">📋 서버 로그</div>
+  <div class="mh"><div class="mt" data-i18n="modal_log">📋 서버 로그</div>
     <div style="display:flex;gap:6px;align-items:center">
       <span id="log-total" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span>
       <button class="btn btn-gh" style="padding:3px 8px;font-size:9px" onclick="loadLogs()">↺</button>
@@ -259,14 +261,14 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
     <label style="display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:10px;color:var(--tx3);cursor:pointer"><input type="checkbox" id="log-tail" checked onchange="filterLogs()"> 최신</label>
   </div>
   <pre id="log-content" style="font-family:var(--mono);font-size:10px;line-height:1.65;padding:10px 14px;margin:0;overflow:auto;max-height:460px;white-space:pre-wrap;word-break:break-all;color:var(--tx2)">로딩 중…</pre>
-  <div class="mf"><button class="btn btn-gh" onclick="closeOv('log-ov')">닫기</button></div>
+  <div class="mf"><button class="btn btn-gh" onclick="closeOv('log-ov')" data-i18n="btn_close">닫기</button></div>
 </div></div>
 
 <!-- BATCH -->
 <div class="ov" id="batch-ov"><div class="modal" style="width:660px;max-height:85vh">
   <div class="mh"><div class="mt">⚙ 용어 배치 추출</div><button class="ico" onclick="closeOv('batch-ov')">✕</button></div>
   <div class="mb" style="padding:0">
-    <div class="batch-tab-bar"><button class="btab-btn active" data-btab="scan" onclick="switchBtab('scan')">1. 스캔</button><button class="btab-btn" data-btab="result" onclick="switchBtab('result')">2. 결과 파일</button><button class="btab-btn" data-btab="merge" onclick="switchBtab('merge')">3. 병합</button></div>
+    <div class="batch-tab-bar"><button class="btab-btn active" data-btab="scan" onclick="switchBtab('scan')" data-i18n="tab_scan">1. 스캔</button><button class="btab-btn" data-btab="result" onclick="switchBtab('result')" data-i18n="tab_result">2. 결과 파일</button><button class="btab-btn" data-btab="merge" onclick="switchBtab('merge')" data-i18n="tab_merge">3. 병합</button></div>
     <div class="btab-pane active" id="btab-scan">
       <div style="display:flex;gap:8px;margin-bottom:10px"><button class="btn btn-gh" onclick="doScan()" id="scan-btn">▷ 스캔</button><span id="scan-status" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span></div>
       <pre id="scan-preview" style="font-family:var(--mono);font-size:10px;line-height:1.6;background:var(--bg);padding:10px;border-radius:4px;max-height:200px;overflow:auto;color:var(--tx2);white-space:pre-wrap;display:none"></pre>
@@ -280,7 +282,32 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
       <pre id="batch-output" style="font-family:var(--mono);font-size:10px;line-height:1.6;background:var(--bg);padding:10px;border-radius:4px;max-height:180px;overflow:auto;color:var(--tx2);white-space:pre-wrap;margin-top:10px;display:none"></pre>
     </div>
     <div class="btab-pane" id="btab-result"><div style="display:flex;justify-content:space-between;margin-bottom:10px"><span style="font-family:var(--mono);font-size:10px;color:var(--tx3)">tmp/terms/</span><button class="btn btn-gh" style="padding:3px 8px;font-size:9px" onclick="loadBatchFiles()">↺</button></div><div id="batch-file-list" style="max-height:340px;overflow-y:auto"></div></div>
-    <div class="btab-pane" id="btab-merge"><div style="margin-bottom:10px"><div style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-bottom:6px">선택 파일</div><div id="merge-fname" style="font-family:var(--mono);font-size:11px;color:var(--ac);padding:6px 10px;background:var(--bg);border-radius:4px">—</div></div><div id="merge-preview" style="max-height:280px;overflow-y:auto"></div><div id="merge-actions" style="margin-top:12px;display:none;gap:8px;align-items:center"><button class="btn btn-ac" onclick="doMergeProcessed()">선택 승인 및 나머지 보류</button><span id="merge-status" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span></div></div>
+    <div class="btab-pane" id="btab-merge"><div style="margin-bottom:10px"><div style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-bottom:6px">선택 파일</div><div id="merge-fname" style="font-family:var(--mono);font-size:11px;color:var(--ac);padding:6px 10px;background:var(--bg);border-radius:4px">—</div></div>
+    <!-- AI 초안 입력 옵션 -->
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--s2);border:1px solid var(--ln);border-radius:4px;margin-bottom:10px">
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-family:var(--mono);font-size:10px;color:var(--pu);font-weight:700;user-select:none">
+        <input type="checkbox" id="ai-draft-chk" style="accent-color:var(--pu);width:13px;height:13px;cursor:pointer">
+        🤖 AI 초안 입력
+      </label>
+      <span style="font-family:var(--mono);font-size:9px;color:var(--tx3)">파일 로드 시 EN/KO/JA/ZH 명칭·발음·설명을 AI로 자동 입력</span>
+      <div style="display:flex;flex-direction:column;gap:2px;margin-left:auto">
+        <select id="ai-draft-api" onchange="onAiDraftApiChange()" style="background:var(--s2);border:1px solid var(--ln2);border-radius:3px;padding:2px 6px;color:var(--tx);font-family:var(--mono);font-size:9px">
+          <option value="">-- .env --</option>
+          <option value="claude">Claude</option>
+          <option value="openai">OpenAI</option>
+          <option value="google">Google</option>
+        </select>
+      </div>
+      <div>
+        <select id="ai-draft-model" style="background:var(--s2);border:1px solid var(--ln2);border-radius:3px;padding:2px 6px;color:var(--tx);font-family:var(--mono);font-size:9px;min-width:150px">
+          <option value="">-- .env --</option>
+        </select>
+      </div>
+      <button id="ai-draft-run-btn" class="btn btn-ac" style="padding:3px 9px;font-size:9px;font-weight:700" onclick="runAiDraftForChecked()">▷ AI 초안 실행</button>
+    </div>
+    <!-- AI 진행 상태 표시 -->
+    <div id="ai-draft-prog" style="display:none;padding:6px 10px;font-family:var(--mono);font-size:10px;color:var(--gr);background:var(--gr-bg);border:1px solid var(--gr);border-radius:4px;margin-bottom:8px"></div>
+    <div id="merge-preview" style="max-height:280px;overflow-y:auto"></div><div id="merge-actions" style="margin-top:12px;display:none;gap:8px;align-items:center"><button class="btn btn-ac" onclick="doMergeProcessed()">선택 승인 및 나머지 보류</button><span id="merge-status" style="font-family:var(--mono);font-size:10px;color:var(--tx3)"></span></div></div>
   </div>
   <div class="mf"><button class="btn btn-gh" onclick="closeOv('batch-ov')">닫기</button></div>
 </div></div>
@@ -295,6 +322,114 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
 <div id="toasts"></div>
 
 <script>
+
+// --- I18N SYSTEM ---
+const I18N_DICT = {
+  ko: {
+    tab_words: "단어", tab_compounds: "복합어", tab_banned: "금지표현", tab_drafts: "보류(Drafts)",
+    btn_checkid: "⊙ check-id", btn_log: "📋 log", btn_batch: "⚙ batch", btn_settings: "⚙ 설정", btn_git: "⎇ commit & push",
+    btn_add_word: "+ 단어 추가",
+    search_placeholder: "검색 — id, 영문, 한글, 약어…",
+    all_domain: "전체 domain", all_pos: "전체 품사",
+    th_id: "ID", th_en: "ENGLISH", th_ko: "한글", th_abbr: "ABBR", th_pos: "POS", th_domain: "DOMAIN", th_desc: "설명",
+    stats_format: "단어 {words} · 복합어 {compounds} · 금지 {banned} · 보류 {drafts}",
+    msg_saving: "저장 중...", msg_saved: "저장 성공", msg_error: "오류 발생",
+    setting_title: "환경 설정",
+    btn_close: "닫기",
+    modal_settings: "⚙ 환경설정",
+    modal_checkid: "⊙ check-id / suggest",
+    modal_log: "📋 서버 로그",
+    modal_git: "⎇ commit & push",
+    modal_run: "실행",
+    modal_batch: "⚙ 배치 병합",
+    tab_scan: "1. 스캔",
+    tab_result: "2. 결과 파일",
+    tab_merge: "3. 병합",
+    msg_drafts_cleared: "전체 스캔 결과가 없으므로, 보류(drafts) 리스트 {n}건을 전부 삭제했습니다.",
+    msg_drafts_same: "발견된 후보와 현재 보류 건수가 동일합니다. '보류 목록 처리하기'를 진행하세요.",
+    msg_drafts_diff: "새로운 항목이 발견되었습니다. 상단의 배치(Batch) 창에서 검증 작업을 수행하세요.",
+    btn_scan_drafts: "▷ 스캔 (결과가 없을 경우 삭제)"
+  },
+  en: {
+    tab_words: "Words", tab_compounds: "Compounds", tab_banned: "Banned", tab_drafts: "Drafts",
+    btn_checkid: "⊙ check-id", btn_log: "📋 log", btn_batch: "⚙ batch", btn_settings: "⚙ Settings", btn_git: "⎇ commit & push",
+    btn_add_word: "+ Add Word",
+    search_placeholder: "Search — id, en, ko, abbr…",
+    all_domain: "All domains", all_pos: "All POS",
+    th_id: "ID", th_en: "ENGLISH", th_ko: "KOREAN", th_abbr: "ABBR", th_pos: "POS", th_domain: "DOMAIN", th_desc: "DESC",
+    stats_format: "Words {words} · Compounds {compounds} · Banned {banned} · Drafts {drafts}",
+    msg_saving: "Saving...", msg_saved: "Saved", msg_error: "Error",
+    setting_title: "Settings",
+    btn_close: "Close",
+    modal_settings: "⚙ Settings",
+    modal_checkid: "⊙ check-id / suggest",
+    modal_log: "📋 Server Logs",
+    modal_git: "⎇ commit & push",
+    modal_run: "Run",
+    modal_batch: "⚙ Batch Merge",
+    tab_scan: "1. Scan",
+    tab_result: "2. Results",
+    tab_merge: "3. Merge",
+    msg_drafts_cleared: "Since there are no scan results, all {n} draft items have been deleted.",
+    msg_drafts_same: "Scan count matches drafts. Please proceed with 'Batch Editor'.",
+    msg_drafts_diff: "New candidates found. Please run the Batch Analyzer.",
+    btn_scan_drafts: "▷ Scan (Auto-clear if 0)"
+  },
+  ja: {
+    msg_drafts_cleared: "全スキャン結果がないため、保留リストの{n}件をすべて削除しました。",
+    msg_drafts_same: "候補数と保留リストの件数が同じです。バッチ処理を進めてください。",
+    msg_drafts_diff: "新しい候補が見つかりました。バッチスキャンをやり直してください。",
+    btn_scan_drafts: "▷ スキャン (結果0件で削除)"
+  },
+  zh_hans: {
+    msg_drafts_cleared: "由于没有扫描结果，已删除全部 {n} 个候选列表项。",
+    msg_drafts_same: "扫描结果与保留列表数量相同。请继续进行批量处理。",
+    msg_drafts_diff: "发现新候选。请重新运行批量扫描作业。",
+    btn_scan_drafts: "▷ 扫描 (如果为0则删除)"
+  }
+};
+
+function t(key, args = {}) {
+  const lang = window.LANG || 'en'; // default english if not ko
+  let dict = I18N_DICT[lang];
+  // fallback to en if language dictionary doesn't exist (e.g. ja, zh_hans)
+  if (!dict) dict = I18N_DICT['en'];
+  
+  let str = dict[key] || I18N_DICT['en'][key] || key;
+  for (const k in args) {
+    str = str.replace(`{${k}}`, args[k]);
+  }
+  return str;
+}
+
+function updateI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (el.tagName === 'INPUT' && el.type === 'text') {
+      if (el.placeholder) el.placeholder = t(key);
+    } else {
+      // Keep any span badges like <span class="badge"> inside
+      let badge = el.querySelector('.badge');
+      if (badge) {
+        // Only replace text nodes to preserve child HTML
+        for (let node of el.childNodes) {
+          if (node.nodeType === 3 && node.nodeValue.trim()) {
+            node.nodeValue = t(key);
+            break;
+          }
+        }
+      } else {
+        el.textContent = t(key);
+      }
+    }
+  });
+  
+  // Custom non-declarative elements
+  if(window.renderWords) renderWords();
+}
+// -------------------
+
+
 
 function initMultiInput(containerId, initialValues, datalistId) {
     const container = document.getElementById(containerId);
@@ -432,6 +567,7 @@ async function boot(){
   const savedLang = localStorage.getItem('glossary_lang') || 'ko';
   const savedTz   = localStorage.getItem('glossary_tz')   || 'KST';
   window.LANG = savedLang;
+  updateI18n(); // 초기 다국어 적용
   const langSel = document.getElementById('lang-sel');
   if (langSel) langSel.value = savedLang;
   const tzSel = document.getElementById('tz-sel');
@@ -511,6 +647,8 @@ function switchTab(tab){
   if(tab==='words'||tab==='compounds')
     a.innerHTML=`<button class="btn btn-gh" onclick="runGenerate()">▷ generate</button><button class="btn btn-gh" onclick="runValidate()">▷ validate</button>`;
   else a.innerHTML='';
+  
+  if (tab === 'drafts') loadDrafts();
 }
 switchTab('words');
 
@@ -794,7 +932,7 @@ async function runCheckId(){const id=document.getElementById('ci-input').value.t
 async function runSuggest(){const id=document.getElementById('ci-input').value.trim();if(!id)return;document.getElementById('ci-result').textContent='제안 생성 중…';const res=await fetch('/api/suggest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});const d=await res.json();document.getElementById('ci-result').textContent=d.output||'(결과 없음)';}
 
 // ── GIT ──
-async function openGit(){openOv('git-ov');document.getElementById('git-body').innerHTML='<div style="padding:14px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';document.getElementById('git-ft').innerHTML=`<button class="btn btn-gh" onclick="closeOv('git-ov')">닫기</button><button class="btn btn-gr" id="cbtn" onclick="doCommit()">commit + push</button>`;const[sr,lr]=await Promise.all([fetch('/api/git/status'),fetch('/api/git/log?limit=5')]);const st=await sr.json(),lg=await lr.json();const fHtml=st.changed.length?st.changed.map(f=>`<div class="gfile"><span class="gflag ${f.flag}">${f.flag}</span><span class="gpath">${x(f.path)}</span></div>`).join(''):'<div class="gempty">변경 없음</div>';const lHtml=lg.entries.length?lg.entries.map(e=>`<div class="glog"><span class="gh">${x(e.hash)}</span><span class="gs">${x(e.subject)}</span><span class="gw">${x(e.when)}</span></div>`).join(''):'<div class="gempty">이력 없음</div>';const tmpls=['feat: 단어 추가','feat: 복합어 추가','fix: 약어 수정','fix: 설명 수정','chore: generate'];document.getElementById('git-body').innerHTML=`<div class="gsec">변경 파일 (${st.changed.length})</div>${fHtml}<div class="gsec" style="margin-top:8px">커밋 메시지</div><div style="padding:10px"><textarea id="cmsg" placeholder="feat: 단어 추가 (kill, switch)"></textarea><div class="tmpls">${tmpls.map(t=>`<button class="tmpl" onclick="document.getElementById('cmsg').value='${t}'">${t}</button>`).join('')}</div></div><div class="gsec" style="margin-top:6px">최근 커밋</div>${lHtml}`;document.getElementById('cbtn').disabled=!st.has_changes;}
+async function openGit(){openOv('git-ov');document.getElementById('git-body').innerHTML='<div style="padding:14px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';document.getElementById('git-ft').innerHTML=`<button class="btn btn-gh" onclick="closeOv('git-ov')" data-i18n="btn_close">닫기</button><button class="btn btn-gr" id="cbtn" onclick="doCommit()">commit + push</button>`;const[sr,lr]=await Promise.all([fetch('/api/git/status'),fetch('/api/git/log?limit=5')]);const st=await sr.json(),lg=await lr.json();const fHtml=st.changed.length?st.changed.map(f=>`<div class="gfile"><span class="gflag ${f.flag}">${f.flag}</span><span class="gpath">${x(f.path)}</span></div>`).join(''):'<div class="gempty">변경 없음</div>';const lHtml=lg.entries.length?lg.entries.map(e=>`<div class="glog"><span class="gh">${x(e.hash)}</span><span class="gs">${x(e.subject)}</span><span class="gw">${x(e.when)}</span></div>`).join(''):'<div class="gempty">이력 없음</div>';const tmpls=['feat: 단어 추가','feat: 복합어 추가','fix: 약어 수정','fix: 설명 수정','chore: generate'];document.getElementById('git-body').innerHTML=`<div class="gsec">변경 파일 (${st.changed.length})</div>${fHtml}<div class="gsec" style="margin-top:8px">커밋 메시지</div><div style="padding:10px"><textarea id="cmsg" placeholder="feat: 단어 추가 (kill, switch)"></textarea><div class="tmpls">${tmpls.map(t=>`<button class="tmpl" onclick="document.getElementById('cmsg').value='${t}'">${t}</button>`).join('')}</div></div><div class="gsec" style="margin-top:6px">최근 커밋</div>${lHtml}`;document.getElementById('cbtn').disabled=!st.has_changes;}
 
 async function doCommit(){const msg=document.getElementById('cmsg')?.value.trim();if(!msg){toast('커밋 메시지 필요','ter');return;}document.getElementById('cbtn').disabled=true;document.getElementById('git-body').innerHTML=`<div style="padding:4px 0">${STEPS.map((_,i)=>`<div class="srow" id="st${i}"><span class="sic spen">○</span><span class="snm">${STEPS[i]}</span></div>`).join('')}</div><div class="cerr" id="cerr" style="display:none"></div>`;document.getElementById('git-ft').innerHTML='<button class="btn btn-gh" onclick="closeOv(\'git-ov\')">닫기</button>';markSt(0,'run');const res=await fetch('/api/git/commit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});const d=await res.json();(d.steps||[]).forEach((s,i)=>markSt(i,s.ok?'ok':'fail'));if(!d.ok){const e=document.getElementById('cerr');e.style.display='block';e.textContent=d.error||'오류';toast('실패','ter');}else{toast('commit & push 완료','tok');loadBranch();}}
 function markSt(i,state){const el=document.getElementById('st'+i);if(!el)return;const ic=el.querySelector('.sic');ic.className=`sic ${state==='ok'?'sok':state==='fail'?'sfail':'spen'}`;ic.innerHTML=state==='ok'?'✓':state==='fail'?'✗':state==='run'?'<span class="spin">◌</span>':'○';if(state==='ok'&&i<STEPS.length-1)markSt(i+1,'run');}
@@ -810,25 +948,40 @@ const BATCH_MODELS={claude:[{v:'claude-sonnet-4-20250514',l:'Claude Sonnet 4'},{
 function openBatchModal(){openOv('batch-ov');switchBtab('scan');}
 function switchBtab(tab){document.querySelectorAll('.btab-btn').forEach(b=>b.classList.toggle('active',b.dataset.btab===tab));document.querySelectorAll('.btab-pane').forEach(p=>p.classList.toggle('active',p.id===`btab-${tab}`));if(tab==='result')loadBatchFiles();}
 function onBatchApiChange(){const t=document.getElementById('batch-api-type').value,s=document.getElementById('batch-model');s.innerHTML='<option value="">-- .env --</option>';if(t&&BATCH_MODELS[t])BATCH_MODELS[t].forEach(m=>{const o=document.createElement('option');o.value=m.v;o.textContent=m.l;s.appendChild(o);});}
-async function doScan(){const btn=document.getElementById('scan-btn'),pre=document.getElementById('scan-preview'),sts=document.getElementById('scan-status');btn.disabled=true;btn.textContent='스캔 중…';sts.textContent='';pre.style.display='none';const res=await fetch('/api/batch/scan',{method:'POST'});const d=await res.json();if(!d.ok){sts.textContent='오류: '+(d.error||'실패');}else{sts.textContent=`후보 ${d.count}개`;const lines=(d.candidates||[]).slice(0,40).map(c=>`${c.name.padEnd(32)} ${(c.sources||[])[0]||''}`);if(d.count>40)lines.push(`... 외 ${d.count-40}개`);pre.textContent=lines.join('\n');pre.style.display='block';}btn.disabled=false;btn.textContent='▷ 스캔';}
+async function __coreScanLogic(){const res=await fetch('/api/batch/scan',{method:'POST'});const d=await res.json();if(!d.ok)throw new Error(d.error||'실패');let clearedN=0;if(d.count===0&&DRAFTS&&DRAFTS.length>0){clearedN=DRAFTS.length;await fetch('/api/drafts/clear',{method:'POST'});DRAFTS=[];renderDrafts();}return{count:d.count,cands:d.candidates,clearedN:clearedN};}
+async function doScan(){const btn=document.getElementById('scan-btn'),pre=document.getElementById('scan-preview'),sts=document.getElementById('scan-status');btn.disabled=true;btn.textContent='스캔 중…';sts.textContent='';pre.style.display='none';try{const d=await __coreScanLogic();sts.textContent=`후보 ${d.count}개`;const lines=(d.cands||[]).slice(0,40).map(c=>`${c.name.padEnd(32)} ${(c.sources||[])[0]||''}`);if(d.count>40)lines.push(`... 외 ${d.count-40}개`);pre.textContent=lines.join('\\n');pre.style.display='block';if(d.clearedN>0)toast(t('msg_drafts_cleared',{n:d.clearedN}),'tok',5000);}catch(e){sts.textContent='오류: '+e.message;}finally{btn.disabled=false;btn.textContent='▷ 스캔';}}
+async function doDraftsScan(){const btn=document.getElementById('btn-drafts-scan');btn.disabled=true;btn.textContent='스캔 중...';try{const d=await __coreScanLogic();if(d.count===0){if(d.clearedN>0)alert(t('msg_drafts_cleared',{n:d.clearedN}));else toast('스캔 결과 0건','tok');}else{if(DRAFTS&&d.count===DRAFTS.length)alert(t('msg_drafts_same'));else alert(t('msg_drafts_diff'));}}catch(e){toast('오류 발생: '+e.message,'tin');}finally{btn.disabled=false;btn.textContent=t('btn_scan_drafts');updateI18n();}}
 async function doBatchDryRun(){_runBatch(true);}
 async function doBatchRun(){if(!confirm('API를 호출해 분석을 실행합니다.'))return;_runBatch(false);}
 async function _runBatch(dryRun){const outEl=document.getElementById('batch-output'),runBtn=document.getElementById('run-btn'),dryBtn=document.getElementById('dry-btn');const apiType=document.getElementById('batch-api-type')?.value||'',model=document.getElementById('batch-model')?.value||'';const regMode=document.getElementById('batch-reg-mode')?.value||'normal';outEl.style.display='block';outEl.innerHTML='';const progDiv=document.createElement('div');progDiv.style.marginBottom='15px';progDiv.style.color='var(--gr)';const logDiv=document.createElement('div');outEl.appendChild(progDiv);outEl.appendChild(logDiv);runBtn.disabled=dryBtn.disabled=true;const payload={dry_run:dryRun,register_mode:regMode};if(apiType)payload.api_type=apiType;if(model)payload.model=model;try{const res=await fetch('/api/batch/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const reader=res.body.getReader();const decoder=new TextDecoder('utf-8');let buffer='',tasks={};function renderTasks(){progDiv.innerHTML=Object.values(tasks).sort((a,b)=>a.idx-b.idx).map(t=>{let pct=t.total?Math.round((t.cur/t.total)*100):0;let ar=t.status==='완료'?'>>>>>>>':(t.status==='대기 중'?'>':'>>');return`<div>${t.idx}. ${t.name.padEnd(20,'\u00a0')} ${ar} ${String(t.cur).padStart(4,'\u00a0')}/${t.total} ${t.status} (${pct}%)</div>`;}).join('');}while(true){const{done,value}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});let lines=buffer.split('\n');buffer=lines.pop();for(let i=0;i<lines.length;i++){const line=lines[i];if(line.startsWith('PROG|')){let p=line.split('|');if(p.length>=6){tasks[parseInt(p[1])]={idx:parseInt(p[1]),name:p[2],cur:parseInt(p[3]),total:parseInt(p[4]),status:p[5]};renderTasks();}}else{logDiv.appendChild(document.createTextNode(line+'\n'));outEl.scrollTop=outEl.scrollHeight;}}}if(buffer.trim())logDiv.appendChild(document.createTextNode(buffer+'\n'));if(!dryRun&&logDiv.textContent.includes('[완료]'))toast('분석 완료','tok');}catch(e){logDiv.appendChild(document.createTextNode('\\n연결 오류: '+e));}runBtn.disabled=dryBtn.disabled=false;}
 async function loadBatchFiles(){const wrap=document.getElementById('batch-file-list');wrap.innerHTML='<div style="padding:10px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';const d=await(await fetch('/api/batch/files')).json();if(!d.files.length){wrap.innerHTML='<div style="padding:14px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--tx3)">없음</div>';return;}wrap.innerHTML=d.files.map(f=>`<div class="batch-file-row${_batchSelFile===f.name?' sel':''}" onclick="selectBatchFile('${f.name}')"><span style="font-family:var(--mono);font-size:11px;color:var(--ac);flex:1">${f.name}</span><span style="font-family:var(--mono);font-size:10px;color:var(--tx3)">${f.count}개</span><button class="btn btn-ac" style="padding:3px 9px;font-size:9px" onclick="event.stopPropagation();selectBatchFile('${f.name}');switchBtab('merge')">병합 →</button></div>`).join('');}
-async function selectBatchFile(fname){
+function onAiDraftApiChange(){
+  const t=document.getElementById('ai-draft-api')?.value;
+  const s=document.getElementById('ai-draft-model');
+  if(!s) return;
+  s.innerHTML='<option value="">-- .env --</option>';
+  if(t && BATCH_MODELS[t]) BATCH_MODELS[t].forEach(m=>{ const o=document.createElement('option'); o.value=m.v; o.textContent=m.l; s.appendChild(o); });
+}
+
+async function selectBatchFile(fname, draftData = null){
   _batchSelFile=fname;
   document.getElementById('merge-fname').textContent=fname;
   const container=document.getElementById('merge-preview');
-  container.innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">서버에서 파일 읽는 중…</div>';
+  container.innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">화면 렌더링 준비 중…</div>';
   document.getElementById('merge-actions').style.display='none';
+  document.getElementById('ai-draft-prog').style.display='none';
   
-  const d=await(await fetch(`/api/batch/preview?file=${encodeURIComponent(fname)}`)).json();
-  if(!d.ok||!(d.items && d.items.length)){
-    container.innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">없음</div>';
-    return;
+  if (draftData) {
+    _batchTerms = draftData;
+  } else {
+    container.innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">서버에서 파일 읽는 중…</div>';
+    const d=await(await fetch(`/api/batch/preview?file=${encodeURIComponent(fname)}`)).json();
+    if(!d.ok||!(d.items && d.items.length)){
+      container.innerHTML='<div style="padding:8px;font-family:var(--mono);font-size:10px;color:var(--tx3)">없음</div>';
+      return;
+    }
+    _batchTerms=d.items;
   }
-  
-  _batchTerms=d.items;
   const total = _batchTerms.length;
   let current = 0;
   const chunkSize = 40; 
@@ -891,6 +1044,9 @@ async function selectBatchFile(fname){
 
         // 6. AI 판정 이유
         if(t.reason) lines.push(`<span style="color:var(--tx3)">판정:</span> ${escapeHtml(t.reason)}`);
+        
+        // AI 초안 간단 설명 엘리먼트 (기본은 감춤)
+        lines.push(`<div id="ai-short-desc-${i}" style="color:var(--tx2);display:none;margin-top:2px;margin-bottom:2px;"></div>`);
 
         // 7. 발견 위치 (sources)
         if(t.sources && t.sources.length > 0) {
@@ -960,8 +1116,10 @@ async function selectBatchFile(fname){
                 </div>
               </div>
               <div style="display:flex;justify-content:flex-end;margin-top:6px">
-                <button class="btn" style="padding:3px 10px;font-size:9px;background:var(--ac);color:#000;border:none;border-radius:3px;cursor:pointer"
+                <button id="btn-apply-${i}" class="btn" style="margin-right:6px;padding:3px 10px;font-size:9px;background:var(--ac);color:#000;border:none;border-radius:3px;cursor:pointer"
                   onclick="applyUserEdit(${i})">적용</button>
+                <button class="btn btn-gh" style="padding:3px 10px;font-size:9px"
+                  onclick="closeDetailsScroll(${i})">상세 닫기</button>
               </div>
             </div>
           </div>`;
@@ -976,12 +1134,13 @@ async function selectBatchFile(fname){
       chunkHtml += `<div class="merge-item" style="padding-bottom:10px;border-bottom:1px solid var(--ln);margin-bottom:8px;flex-direction:column;align-items:stretch">
          <div style="display:flex;align-items:center;width:100%">
            <input type="checkbox" id="mc${i}" ${isRec}>
-           <div style="flex:1;margin-left:8px;display:flex;align-items:center;">
+           <div style="flex:1;margin-left:8px;display:flex;align-items:center;min-width:0;">
              <span style="font-weight:600;min-width:110px;display:inline-block">${escapeHtml(t.word)}</span>
              ${posInfo}
              <span style="font-family:var(--mono);font-size:10px;color:var(--tx3);margin-left:12px;white-space:nowrap;">발견: ${t.count}회</span>
-             <span style="margin-left:16px;font-size:11px;color:var(--ye);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${miniDesc}</span>
-             ${detailsHtml ? `<button class="btn btn-gh" style="margin-left:8px;padding:3px 7px;font-size:9px" onclick="const e=document.getElementById('det${i}'); const open2=e.style.display==='none';e.style.display=open2?'block':'none';if(open2){const c=document.getElementById('merge-preview');if(c)setTimeout(()=>{const top=e.getBoundingClientRect().top-c.getBoundingClientRect().top;c.scrollBy({top:top-20,behavior:'smooth'})},50)}">상세▼</button>` : ''}
+             <span id="ai-status-${i}" style="margin-left:8px;font-family:var(--mono);font-size:9px;padding:1px 7px;border-radius:10px;background:rgba(255,255,255,0.07);color:var(--tx3);white-space:nowrap;border:1px solid rgba(255,255,255,0.1)">AI 입력 보류</span>
+             <span style="margin-left:8px;font-size:11px;color:var(--ye);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;">${miniDesc}</span>
+             ${detailsHtml ? `<button class="btn btn-gh" style="margin-left:8px;padding:3px 7px;font-size:9px;flex-shrink:0" onclick="const e=document.getElementById('det${i}'); const open2=e.style.display==='none';e.style.display=open2?'block':'none';if(open2){const c=document.getElementById('merge-preview');if(c)setTimeout(()=>{const top=e.getBoundingClientRect().top-c.getBoundingClientRect().top;c.scrollBy({top:top-20,behavior:'smooth'})},50)}">상세▼</button>` : ''}
            </div>
          </div>
          ${detailsHtml}
@@ -1009,10 +1168,195 @@ async function selectBatchFile(fname){
        progEl.style.display = 'none';
        document.getElementById('merge-actions').style.display='flex';
        document.getElementById('merge-status').textContent=`총 ${_batchTerms.length}개`;
+       // 마스터 체크박스가 ON이면 모든 mc{i} 체크박스도 ON
+       const aiChk2 = document.getElementById('ai-draft-chk');
+       if (aiChk2 && aiChk2.checked) {
+         for (let j = 0; j < _batchTerms.length; j++) {
+           const cb = document.getElementById('mc' + j); if (cb) cb.checked = true;
+         }
+       }
     }
   }
   
   requestAnimationFrame(renderChunk);
+}
+
+// ai-draft-chk 마스터 체크박스: 모든 mc{i} 일괄 선택/해제
+document.addEventListener('DOMContentLoaded', () => {
+  const chk = document.getElementById('ai-draft-chk');
+  if (chk) {
+    chk.addEventListener('change', () => {
+      for (let j = 0; j < _batchTerms.length; j++) {
+        const cb = document.getElementById('mc' + j); if (cb) cb.checked = chk.checked;
+      }
+    });
+  }
+});
+
+// ── AI 초안 입력 (체크된 항목만) ──
+async function runAiDraftForChecked() {
+  if (!_batchTerms.length) { toast('먼저 파일을 로드하세요', 'ter'); return; }
+  // 체크된 mc{i} 인덱스 수집
+  const checked = [];
+  for (let i = 0; i < _batchTerms.length; i++) {
+    const cb = document.getElementById('mc' + i);
+    if (cb && cb.checked) checked.push(i);
+  }
+  if (!checked.length) { toast('체크된 항목이 없습니다', 'ter'); return; }
+
+  const apiType = document.getElementById('ai-draft-api')?.value || '';
+  const model   = document.getElementById('ai-draft-model')?.value || '';
+  const prog    = document.getElementById('ai-draft-prog');
+  const runBtn  = document.getElementById('ai-draft-run-btn');
+  if (runBtn) runBtn.disabled = true;
+  prog.style.display = 'block';
+  prog.style.background = ''; prog.style.border = ''; prog.style.color = '';
+
+  const total = checked.length;
+  let done = 0, ok = 0, fail = 0;
+
+  for (const i of checked) {
+    const t = _batchTerms[i];
+    prog.textContent = `🤖 AI 초안 입력 중… ${done}/${total} (성공 ${ok} / 실패 ${fail})`;
+    // 진행 중 상태: 배지 업데이트
+    const stEl = document.getElementById('ai-status-' + i);
+    if (stEl) { stEl.textContent = 'AI 입력 중...'; stEl.style.color='var(--ac)'; stEl.style.background='rgba(0,180,255,0.12)'; stEl.style.borderColor='rgba(0,180,255,0.4)'; }
+    try {
+      await fillAiDraft(i, t.word, apiType, model, t.sources);
+      ok++;
+    } catch(e) {
+      fail++;
+      if (stEl) { stEl.textContent = 'AI 입력 실패'; stEl.style.color='var(--re)'; stEl.style.background='rgba(255,80,80,0.12)'; stEl.style.borderColor='rgba(255,80,80,0.4)'; }
+      console.warn('[ai_draft] 실패:', t.word, e);
+    }
+    done++;
+    await new Promise(r => setTimeout(r, 150));
+  }
+
+  // 체크 안 된 항목은 '보류' 유지 (이미 기본값)
+  prog.textContent = `✅ AI 초안 완료 — ${ok}개 성공 / ${fail}개 실패 (체크 ${total}개 / 전체 ${_batchTerms.length}개)`;
+  prog.style.background = ok > 0 ? 'rgba(70,200,100,0.10)' : 'rgba(255,80,80,0.10)';
+  prog.style.border     = ok > 0 ? '1px solid var(--gr)' : '1px solid var(--re)';
+  prog.style.color      = ok > 0 ? 'var(--gr)' : 'var(--re)';
+  if (runBtn) runBtn.disabled = false;
+  toast(`AI 초안 완료 — ${ok}/${total}`, ok > 0 ? 'tok' : 'ter');
+}
+
+async function fillAiDraft(i, word, apiType, model, sources) {
+  const payload = { word };
+  if (apiType) payload.api_type = apiType;
+  if (model)   payload.model    = model;
+  if (sources) payload.sources  = sources;
+
+  const res  = await fetch('/api/batch/ai_draft', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  const data = await res.json();
+  if (!data.ok) throw new Error(data.error || 'AI 초안 실패');
+
+  // 관련/합성어(base form)와 간단명세 업데이트
+  const baseEl = document.getElementById(`edit-rel-${i}`);
+  if (baseEl && data.base_form) baseEl.value = data.base_form;
+  
+  const shortDescEl = document.getElementById(`ai-short-desc-${i}`);
+  if (shortDescEl && data.short_description) {
+    shortDescEl.innerHTML = `<span style="color:var(--tx3)">간단 설명:</span> ${escapeHtml(data.short_description)}`;
+    shortDescEl.style.display = 'block';
+  }
+
+  // EN/KO/JA/ZH 명칭 필드 채우기
+  const enEl = document.getElementById(`edit-name-en-${i}`);
+  const koEl = document.getElementById(`edit-name-ko-${i}`);
+  const jaEl = document.getElementById(`edit-name-ja-${i}`);
+  const zhEl = document.getElementById(`edit-name-zh-${i}`);
+  if (enEl && data.en) enEl.value = data.en;
+  if (koEl && data.ko) koEl.value = data.ko;
+  if (jaEl && data.ja) jaEl.value = data.ja;
+  if (zhEl && data.zh) zhEl.value = data.zh;
+
+  // 설명(KO/EN) 무조건 덮어쓰기
+  const descKoEl = document.getElementById(`edit-desc-ko-${i}`);
+  const descEnEl = document.getElementById(`edit-desc-en-${i}`);
+  const koDesc = data.description_ko || data.ko_desc || data.description || '';
+  const enDesc = data.description_en || data.en_desc || koDesc;
+  if (descKoEl && koDesc) descKoEl.value = koDesc;
+  if (descEnEl && enDesc) descEnEl.value = enDesc;
+
+  // 발음 정보를 상세 패널에 표시 (이미 열려 있는 경우에만)
+  if (data.pronunciation) {
+    const det = document.getElementById(`det${i}`);
+    if (det) {
+      let pronRow = det.querySelector('.ai-pron-row');
+      if (!pronRow) {
+        pronRow = document.createElement('div');
+        pronRow.className = 'ai-pron-row';
+        pronRow.style.cssText = 'font-size:10px;color:var(--pu);margin-bottom:6px;padding:4px 8px;background:rgba(130,80,255,0.08);border-radius:3px;line-height:1.8';
+        det.insertBefore(pronRow, det.firstChild);
+      }
+      const pr = data.pronunciation;
+      const parts = [];
+      if (pr.en) parts.push(`<b>EN</b> ${escapeHtml(pr.en)}`);
+      if (pr.ko) parts.push(`<b>KO</b> ${escapeHtml(pr.ko)}`);
+      if (pr.ja) parts.push(`<b>JA</b> ${escapeHtml(pr.ja)}`);
+      if (pr.zh) parts.push(`<b>ZH</b> ${escapeHtml(pr.zh)}`);
+      pronRow.innerHTML = '🔊 발음: ' + parts.join(' &nbsp;|&nbsp; ');
+    }
+  }
+
+  // _batchTerms 에도 lang 반영 (다음 doMergeProcessed에서 사용)
+  const t = _batchTerms[i];
+  if (!t.lang) t.lang = {};
+  if (data.en) t.lang.en = data.en;
+  if (data.ko) t.lang.ko = data.ko;
+  if (data.ja) t.lang.ja = data.ja;
+  if (data.zh) t.lang.zh_hans = data.zh;
+  // _batchTerms 설명(KO/EN) 업데이트
+  if (koDesc || enDesc) {
+    t.enriched = t.enriched || {};
+    t.enriched.description_i18n = t.enriched.description_i18n || {};
+    if (koDesc) t.enriched.description_i18n.ko = koDesc;
+    if (enDesc) t.enriched.description_i18n.en = enDesc;
+  }
+
+  // ai-status 배지: 성공 표시
+  const aiStEl = document.getElementById('ai-status-' + i);
+  if (aiStEl) {
+    aiStEl.textContent = 'AI 입력 성공';
+    aiStEl.style.color = 'var(--gr)';
+    aiStEl.style.background = 'rgba(70,200,100,0.12)';
+    aiStEl.style.borderColor = 'rgba(70,200,100,0.4)';
+  }
+
+  // 시각 피드백: 행 배경에 보라색 하이라이트
+  const mcEl = document.getElementById(`mc${i}`);
+  if (mcEl) {
+    const row = mcEl.closest('.merge-item');
+    if (row) {
+      row.style.borderLeft = '3px solid var(--pu)';
+      setTimeout(() => { row.style.borderLeft = ''; }, 2500);
+    }
+  }
+}
+
+function closeDetailsScroll(index) {
+  const panel = document.getElementById('det' + index);
+  if (!panel) return;
+  const rowHeader = panel.closest('.merge-item');
+  panel.style.display = 'none';
+  const container = document.getElementById('merge-preview');
+  if (!rowHeader || !container) return;
+  
+  const nextItem = rowHeader.nextElementSibling || rowHeader;
+  
+  const containerRect = container.getBoundingClientRect();
+  const targetTop = nextItem.getBoundingClientRect().top;
+  const containerTop = containerRect.top;
+  const targetRelativeOffset = containerRect.height * 0.5; // 화면 정중앙(1/2)에 위치하도록 조정
+  
+  const diff = targetTop - containerTop - targetRelativeOffset;
+  container.scrollBy({ top: diff, behavior: 'smooth' });
 }
 
 // ── 사용자 편집 적용 (관련 단어/합성어 / 참고 URL) ──
@@ -1052,8 +1396,7 @@ function applyUserEdit(i) {
 
   // 시각 피드백: 적용 버튼 ✓
   const det = document.getElementById(`det${i}`);
-  const btns = det ? det.querySelectorAll('button') : [];
-  const applyBtn = btns[btns.length - 1];
+  const applyBtn = document.getElementById(`btn-apply-${i}`);
   if(applyBtn) { applyBtn.textContent='✓ 적용됨'; applyBtn.style.background='var(--gr)';
     setTimeout(()=>{applyBtn.textContent='적용';applyBtn.style.background='var(--ac)';},1800); }
 
@@ -1143,6 +1486,35 @@ async function doMergeProcessed(){
     if (t.user_edit && t.user_edit.desc_custom && Object.keys(t.user_edit.desc_custom).length) {
        wordBody.description_i18n = { ...(wordBody.description_i18n || {}), ...t.user_edit.desc_custom };
     }
+    // 도메인 반영
+    if (t.user_edit && t.user_edit.domain) {
+       wordBody.domain = t.user_edit.domain;
+    }
+    
+    // [NEW] ID Swap: 사용자가 지정한 영어 명칭(lang_custom.en 또는 enrichment)이 원래 파싱된 토큰(t.word)과 다를 경우 
+    // 영어 명칭을 ID로 사용하고, 원래 토큰을 variants에 병합 (약어 또는 variant)
+    if (wordBody.lang && wordBody.lang.en && !t.user_edit?.is_compound) {
+       const userEn = wordBody.lang.en.trim().toLowerCase();
+       const originalId = t.word.trim().toLowerCase();
+       if (userEn && userEn !== originalId) {
+          wordBody.id = userEn;
+          wordBody.variants = wordBody.variants || [];
+          
+          // 길이가 짧으면 abbreviation으로 우선 판단
+          const isAbbr = originalId.length < userEn.length;
+          const varType = isAbbr ? "abbreviation" : "variant";
+          
+          const existingVar = wordBody.variants.find(v => (v.value||"").toLowerCase() === originalId || (v.short||"").toLowerCase() === originalId);
+          if (!existingVar) {
+             if (isAbbr) {
+                 wordBody.variants.push({ type: "abbreviation", short: t.word.toUpperCase(), long: wordBody.lang.en });
+             } else {
+                 wordBody.variants.push({ type: varType, value: t.word });
+             }
+          }
+       }
+    }
+
     appW.push(wordBody);
     
     // 합성어인 경우: register_compound API 별도 호출 목록에 추가
@@ -1153,6 +1525,7 @@ async function doMergeProcessed(){
         ref_url:      t.user_edit.ref_url || '',
         lang_custom:  t.user_edit.lang_custom  || null,
         desc_custom:  t.user_edit.desc_custom  || null,
+        domain:       t.user_edit.domain || null,
       });
     }
   });
@@ -1222,6 +1595,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){['word-ov','compoun
 // ── LANG & SETTINGS ──
 function changeLang(lang) {
   window.LANG = lang;
+  updateI18n();
   localStorage.setItem('glossary_lang', lang);
   document.getElementById('lang-sel').value = lang;
   renderWords();
@@ -1242,7 +1616,81 @@ function saveSettings() {
   toast('설정 저장됨', 'tok', 2000);
 }
 
+function loadDraftsToMerge() {
+  if (!DRAFTS || !DRAFTS.length) {
+    toast('보류 항목이 없습니다.', 'tin');
+    return;
+  }
+  
+  openBatchModal();
+  switchBtab('merge');
+  selectBatchFile('drafts.json', [...DRAFTS]);
+}
+
 boot();
+async function fillWordAiDraft() {
+  const word = document.getElementById('wf-id').value.trim();
+  if (!word) { alert('단어(id)를 먼저 입력해주세요.'); return; }
+  
+  const btn = event.currentTarget || event.target;
+  const originalText = btn.textContent;
+  btn.textContent = '가져오는 중...';
+  btn.disabled = true;
+  
+  try {
+    const payload = { word: word };
+    const res = await fetch('/api/batch/ai_draft', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'AI 초안 실패');
+    
+    // 기본 도메인
+    if (data.domain) {
+      document.getElementById('wf-domain').innerHTML = ''; // 초기화
+      initMultiInput('wf-domain', [data.domain], 'domain-list');
+    }
+    
+    // 번역 및 설명
+    if (data.ko) document.getElementById('wf-ko').value = data.ko;
+    if (data.en) document.getElementById('wf-en').value = data.en;
+    if (data.ja) document.getElementById('wf-ja').value = data.ja;
+    if (data.zh) document.getElementById('wf-zh').value = data.zh;
+    if (data.description_ko) document.getElementById('wf-desc').value = data.description_ko;
+    if (data.description_en) document.getElementById('wf-desc-en').value = data.description_en;
+    
+    // 형태소/관계어 (있으면 채우기)
+    if (data.abbr) document.getElementById('wf-abbr').value = data.abbr;
+    if (data.from) document.getElementById('wf-from').value = data.from;
+    
+    if (data.variants && data.variants.length > 0) {
+      document.getElementById('wf-variants').value = data.variants.map(v => `${v.type}:${v.value}`).join('\n');
+    }
+    if (data.synonyms && data.synonyms.length > 0) {
+      document.getElementById('wf-synonyms').value = data.synonyms.join(', ');
+    }
+    if (data.antonyms && data.antonyms.length > 0) {
+      document.getElementById('wf-antonyms').value = data.antonyms.join(', ');
+    }
+    if (data.source_urls && data.source_urls.length > 0) {
+      document.getElementById('wf-urls').value = data.source_urls.join('\n');
+    }
+    if (data.not_terms && data.not_terms.length > 0) {
+      document.getElementById('wf-not').value = data.not_terms.join(', ');
+    } else if (data.not && data.not.length > 0) {
+      document.getElementById('wf-not').value = data.not.join(', ');
+    }
+    
+  } catch(err) {
+    alert(err.message);
+  } finally {
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }
+}
+
 </script>
 </body>
 </html>
