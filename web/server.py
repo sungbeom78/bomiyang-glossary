@@ -287,28 +287,8 @@ def _inject_metadata(new_item, old_item=None):
     now_str = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     new_item['status'] = new_item.get('status', 'active')
     
-    # Enforce lowercase for id
-    if 'id' in new_item and isinstance(new_item['id'], str):
-        new_item['id'] = new_item['id'].strip().lower()
-
-    # Enforce lowercase for lang
-    if 'lang' in new_item and isinstance(new_item['lang'], dict):
-        for k, v in new_item['lang'].items():
-            if isinstance(v, str):
-                new_item['lang'][k] = v.strip().lower()
-
-    # Enforce lowercase for variants value
-    if 'variants' in new_item and isinstance(new_item['variants'], list):
-        for v in new_item['variants']:
-            if isinstance(v, dict) and 'value' in v and isinstance(v['value'], str):
-                v['value'] = v['value'].strip().lower()
-
-    # Enforce lowercase for abbreviation
-    if 'abbreviation' in new_item and isinstance(new_item['abbreviation'], dict):
-        if 'short' in new_item['abbreviation'] and isinstance(new_item['abbreviation']['short'], str):
-            new_item['abbreviation']['short'] = new_item['abbreviation']['short'].strip().lower()
-        if 'long' in new_item['abbreviation'] and isinstance(new_item['abbreviation']['long'], str):
-            new_item['abbreviation']['long'] = new_item['abbreviation']['long'].strip().lower()
+    # id, lang, variants, abbreviation 등의 소문자 정규화는 이제
+    # core/writer.py의 _normalize_entry() 에서 일괄 처리됩니다.
     
     if old_item:
         new_item['created_at'] = old_item.get('created_at', now_str)

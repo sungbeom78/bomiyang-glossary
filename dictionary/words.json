@@ -4,7 +4,7 @@
   "description": "BOM_TS 단어 사전 — 식별자의 최소 단위",
   "words": [
     {
-      "id": "MB",
+      "id": "mb",
       "domain": [
         "general"
       ],
@@ -23,7 +23,7 @@
       "variants": [
         {
           "type": "abbreviation",
-          "short": "MB"
+          "short": "mb"
         }
       ],
       "from": "Megabyte",

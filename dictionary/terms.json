@@ -2,8 +2,25 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-04-21T01:35:39Z",
+  "generated_at": "2026-04-21T02:54:19Z",
   "terms": [
+    {
+      "id": "mb",
+      "source": "word",
+      "root": "mb",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "Megabyte",
+        "ko": "메가바이트",
+        "ja": "メガバイト",
+        "zh_hans": "兆字节"
+      },
+      "description_i18n": {
+        "ko": "컴퓨터 저장 용량을 나타내는 단위로 100만 바이트에 해당합니다",
+        "en": "A unit of digital information storage commonly used for computer files and data, equivalent to one million bytes"
+      }
+    },
     {
       "id": "aborts",
       "source": "word",
@@ -6826,11 +6843,11 @@
       }
     },
     {
-      "id": "connects",
+      "id": "conn",
       "source": "word",
       "root": "connect",
       "term_type": "variant",
-      "variant_type": "verb_form",
+      "variant_type": "abbreviation",
       "domain": "system",
       "lang": {
         "en": "connect",
@@ -6838,35 +6855,11 @@
       }
     },
     {
-      "id": "connecting",
+      "id": "connections",
       "source": "word",
       "root": "connect",
       "term_type": "variant",
-      "variant_type": "present_participle",
-      "domain": "system",
-      "lang": {
-        "en": "connect",
-        "ko": "연결됨"
-      }
-    },
-    {
-      "id": "connected",
-      "source": "word",
-      "root": "connect",
-      "term_type": "variant",
-      "variant_type": "past",
-      "domain": "system",
-      "lang": {
-        "en": "connect",
-        "ko": "연결됨"
-      }
-    },
-    {
-      "id": "connection",
-      "source": "word",
-      "root": "connect",
-      "term_type": "variant",
-      "variant_type": "noun_form",
+      "variant_type": "plural",
       "domain": "system",
       "lang": {
         "en": "connect",
@@ -6879,18 +6872,6 @@
       "root": "connect",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "system",
-      "lang": {
-        "en": "connect",
-        "ko": "연결됨"
-      }
-    },
-    {
-      "id": "conn",
-      "source": "word",
-      "root": "connect",
-      "term_type": "variant",
-      "variant_type": "abbreviation",
       "domain": "system",
       "lang": {
         "en": "connect",
@@ -9489,8 +9470,22 @@
         "zh_hans": "直接，指导"
       },
       "description_i18n": {
-        "en": "to aim or steer something straight toward a target or destination, or to tell someone clearly what to do",
-        "ko": "목표나 방향을 똑바로 향하게 하거나, 누군가에게 무엇을 해야 할지 명확하게 말해주는 것"
+        "ko": "목표나 방향을 똑바로 향하게 하거나, 누군가에게 무엇을 해야 할지 명확하게 말해주는 것",
+        "en": "to aim or steer something straight toward a target or destination, or to tell someone clearly what to do"
+      }
+    },
+    {
+      "id": "di",
+      "source": "word",
+      "root": "direct",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "general",
+      "lang": {
+        "en": "direct, instruct",
+        "ko": "직접, 지시하다",
+        "ja": "直接、指示する",
+        "zh_hans": "直接，指导"
       }
     },
     {
@@ -9539,6 +9534,34 @@
       "description_i18n": {
         "ko": "컴퓨터 파일 시스템 내에서 관련 있는 파일들을 분류하고 저장하기 위해 논리적으로 구분해 놓은 폴더들의 집합",
         "en": "컴퓨터 파일 시스템 내에서 관련 있는 파일들을 분류하고 저장하기 위해 논리적으로 구분해 놓은 폴더들의 집합"
+      }
+    },
+    {
+      "id": "dir",
+      "source": "word",
+      "root": "dirs",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "general",
+      "lang": {
+        "en": "directories",
+        "ko": "디렉토리 / 폴더 목록",
+        "ja": "ディレクトリ / フォルダ",
+        "zh_hans": "目录 / 文件夹"
+      }
+    },
+    {
+      "id": "directories",
+      "source": "word",
+      "root": "dirs",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "general",
+      "lang": {
+        "en": "directories",
+        "ko": "디렉토리 / 폴더 목록",
+        "ja": "ディレクトリ / フォルダ",
+        "zh_hans": "目录 / 文件夹"
       }
     },
     {
@@ -42834,5 +42857,5 @@
       }
     }
   ],
-  "checksum": "sha256:60dbd4e4ddca4e08123fa83aa3316eb3f1d274e03179cb250df7c44f19dd4fbb"
+  "checksum": "sha256:0c2b0791f9faeb3eb97a21627c6b66098f3ddc9da019a40e53cb25e55c733782"
 }

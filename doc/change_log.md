@@ -1,5 +1,13 @@
 # Glossary Change Log
 
+## [2026-04-21 11:54:00]
+### Fixed / Modified
+- `web/server.py`의 `_inject_metadata` 함수에 존재하던 대소문자 정규화 로직이 fallback으로만 동작하여, `GlossaryWriter` 사용 시 정규화가 누락되는 "로직 이중화" 문제를 해결.
+- `core/writer.py`에 `_normalize_entry` 헬퍼 함수를 추가하여 모든 `add_`/`update_` 연산 시 `id`, `lang`, `variants`, `abbreviation` 등을 소문자로 일괄 정규화하도록 중앙화.
+- `web/server.py`에서 불필요하게 이중화된 소문자 정규화 로직 삭제.
+- `dictionary/words.json`에 대문자로 잘못 등록된 `MB`를 `mb`로 수정.
+- File: `core/writer.py`, `web/server.py`, `dictionary/words.json`
+
 ## 2026-04-19 15:35:00
 ### Modified - Refactored README files for generic usage
 - Removed specific project references (e.g. BomTS) to make the Glossary submodule a generic naming enforcement tool.

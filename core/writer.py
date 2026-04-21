@@ -119,6 +119,7 @@ class GlossaryWriter:
         skip_duplicate=True: 중복이면 조용히 skip (True 반환).
         Returns: 실제로 추가되었으면 True, skip되었으면 False.
         """
+        _normalize_entry(word)
         wid = word.get("id", "").strip()
         if not wid:
             raise ValueError("word.id 필드가 비어 있음")
@@ -137,6 +138,7 @@ class GlossaryWriter:
         기존 단어에 patch를 병합(overwrites matching keys).
         Returns: 업데이트 성공이면 True, 단어 미존재 시 False.
         """
+        _normalize_entry(patch)
         for i, w in enumerate(self._words):
             if w["id"] == word_id:
                 w.update(patch)
@@ -221,6 +223,7 @@ class GlossaryWriter:
 
     def add_compound(self, compound: Dict[str, Any], *, skip_duplicate: bool = False) -> bool:
         """compounds.json에 복합어 추가."""
+        _normalize_entry(compound)
         cid = compound.get("id", "").strip()
         if not cid:
             raise ValueError("compound.id 필드가 비어 있음")
@@ -236,6 +239,7 @@ class GlossaryWriter:
 
     def update_compound(self, cid: str, patch: Dict[str, Any]) -> bool:
         """복합어 업데이트."""
+        _normalize_entry(patch)
         for i, c in enumerate(self._compounds):
             if c["id"] == cid:
                 c.update(patch)
@@ -318,3 +322,26 @@ def _inject_timestamps(entry: Dict, *, update_only: bool = False) -> None:
     if not update_only:
         entry.setdefault("created_at", now)
         entry.setdefault("status", "active")
+
+
+def _normalize_entry(entry: Dict) -> None:
+    """id, lang, variants 등의 값을 소문자로 정규화."""
+    if 'id' in entry and isinstance(entry['id'], str):
+        entry['id'] = entry['id'].strip().lower()
+
+    if 'lang' in entry and isinstance(entry['lang'], dict):
+        for k, v in entry['lang'].items():
+            if isinstance(v, str):
+                entry['lang'][k] = v.strip().lower()
+
+    if 'variants' in entry and isinstance(entry['variants'], list):
+        for v in entry['variants']:
+            if isinstance(v, dict) and 'value' in v and isinstance(v['value'], str):
+                v['value'] = v['value'].strip().lower()
+
+    if 'abbreviation' in entry and isinstance(entry['abbreviation'], dict):
+        if 'short' in entry['abbreviation'] and isinstance(entry['abbreviation']['short'], str):
+            entry['abbreviation']['short'] = entry['abbreviation']['short'].strip().lower()
+        if 'long' in entry['abbreviation'] and isinstance(entry['abbreviation']['long'], str):
+            entry['abbreviation']['long'] = entry['abbreviation']['long'].strip().lower()
+
