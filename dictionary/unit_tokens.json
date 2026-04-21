@@ -1,0 +1,25 @@
+{
+  "units": [
+    {"id": "kb", "name": "Kilobyte", "meaning": "파일/메모리 크기 킬로바이트", "target": "Data Size"},
+    {"id": "mb", "name": "Megabyte", "meaning": "파일/메모리 크기 메가바이트", "target": "Data Size"},
+    {"id": "gb", "name": "Gigabyte", "meaning": "파일/메모리 크기 기가바이트", "target": "Data Size"},
+    {"id": "tb", "name": "Terabyte", "meaning": "파일/메모리 크기 테라바이트", "target": "Data Size"},
+    {"id": "pb", "name": "Petabyte", "meaning": "파일/메모리 크기 페타바이트", "target": "Data Size"},
+    {"id": "hz", "name": "Hertz", "meaning": "주파수/주기 해르츠", "target": "Frequency"},
+    {"id": "khz", "name": "Kilohertz", "meaning": "주파수 킬로해르츠", "target": "Frequency"},
+    {"id": "mhz", "name": "Megahertz", "meaning": "주파수 메가해르츠", "target": "Frequency"},
+    {"id": "ms", "name": "Millisecond", "meaning": "시간 단위 밀리초 (1/1000초)", "target": "Time Duration"},
+    {"id": "ns", "name": "Nanosecond", "meaning": "시간 단위 나노초 (1/1,000,000,000초)", "target": "Time Duration"},
+    {"id": "sec", "name": "Second", "meaning": "시간 단위 초", "target": "Time Duration"},
+    {"id": "min", "name": "Minute", "meaning": "시간 단위 분", "target": "Time Duration"},
+    {"id": "hr", "name": "Hour", "meaning": "시간 단위 시", "target": "Time Duration"},
+    {"id": "pct", "name": "Percent", "meaning": "백분율 퍼센트", "target": "Ratio"},
+    {"id": "px", "name": "Pixel", "meaning": "화면 픽셀 단위", "target": "Display Coordinate"},
+    {"id": "pt", "name": "Point", "meaning": "포인트 글꼴 크기", "target": "Font Size"},
+    {"id": "dpi", "name": "Dots Per Inch", "meaning": "밀도 단위", "target": "Screen Density"},
+    {"id": "krw", "name": "Korean Won", "meaning": "원화 통화 금액", "target": "Currency"},
+    {"id": "usd", "name": "US Dollar", "meaning": "미국 달러 통화 금액", "target": "Currency"},
+    {"id": "eur", "name": "Euro", "meaning": "유로화 통화 금액", "target": "Currency"},
+    {"id": "jpy", "name": "Japanese Yen", "meaning": "일본 엔화 통화 금액", "target": "Currency"}
+  ]
+}

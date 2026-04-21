@@ -11,6 +11,15 @@ GLOSSARY_ROOT = Path(__file__).resolve().parent.parent
 if str(GLOSSARY_ROOT) not in sys.path:
     sys.path.insert(0, str(GLOSSARY_ROOT))
 
+# Inject global token rules
+from glossary.core.token_rules import (
+    is_unit_token,
+    is_tech_abbreviation,
+    check_dictionary_api,
+    auto_draft_dictionary_word,
+    STOP_WORDS_2CHAR
+)
+
 try:
     from generate_glossary import tokenize, match_n_pattern, find_singular_token, build_n_pattern_regexes
 except ImportError:
@@ -34,7 +43,7 @@ EXTERNAL_LIB_TOKENS = {
 _STOP_WORDS_AUDIT: frozenset[str] = frozenset({
     "a", "an", "the",
     "at", "by", "for", "from", "in", "of", "on", "to", "with",
-})
+}).union(STOP_WORDS_2CHAR)
 
 class GlossaryAuditor:
     def __init__(self):
@@ -252,6 +261,9 @@ def check_glossary(
     ident_norm = normalize_term(identifier)
     
     # 1. Full matches
+    if is_unit_token(ident_norm) or is_tech_abbreviation(ident_norm):
+        return issues
+        
     if ident_norm in compounds or (ident_norm in variant_map and variant_map[ident_norm]["type"] == "abbreviation"):
         return issues
         
@@ -279,6 +291,9 @@ def check_glossary(
     
     for tok in tokens:
         if tok in EXTERNAL_LIB_TOKENS or tok in LOCAL_VAR_EXCLUDE or tok.isdigit():
+            continue
+            
+        if is_unit_token(tok) or is_tech_abbreviation(tok):
             continue
             
         if tok in pending_ids:
@@ -353,10 +368,16 @@ def check_glossary(
                     )
                 continue
                 
+        # 미등록 단어인 경우 최종적으로 Dictionary API 조회 시도
+        is_valid, meaning = check_dictionary_api(tok)
+        if is_valid:
+            auto_draft_dictionary_word(tok, meaning)
+            continue
+            
         missing.append(tok)
         
     if missing:
-        severity = "ERROR" if kind in STRICT_GLOSSARY_KINDS else "FATAL" # making it strict
+        severity = "FATAL" # 사용 금지 및 대체 강제 (안전하지 않은 미등록 단어)
         issues.append(
             AuditIssue(
                 severity=severity,
@@ -364,7 +385,7 @@ def check_glossary(
                 identifier=identifier,
                 kind=kind,
                 source=source,
-                detail=f"missing words: {', '.join(sorted(set(missing)))}",
+                detail=f"사용 금지된 알 수 없는 단어입니다. Dictionary API 조회 실패. 대체 용어로 수정하세요: {', '.join(sorted(set(missing)))}",
             )
         )
         

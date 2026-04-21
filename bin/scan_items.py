@@ -23,6 +23,20 @@ import argparse
 import io
 from pathlib import Path
 
+# Add project root to sys.path
+bin_dir = Path(__file__).resolve().parent
+proj_root = bin_dir.parent.parent
+if str(proj_root) not in sys.path:
+    sys.path.insert(0, str(proj_root))
+
+from glossary.core.token_rules import (
+    is_managed_identifier,
+    is_unit_token,
+    is_tech_abbreviation,
+    check_dictionary_api,
+    auto_draft_dictionary_word
+)
+
 # ── Windows 인코딩 ──────────────────────────────────────────────────────
 if hasattr(sys.stdout, 'buffer') and sys.stdout.encoding.lower() not in ('utf-8','utf8'):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
@@ -70,7 +84,6 @@ _NOISE_RE = re.compile(
 )
 
 MIN_LEN_TERM = 4
-MIN_LEN_WORD = 3
 
 SKIP_NAMES: set = {
     # 향후 제외할 범용어 추가용 (유저 요청에 의해 초기화)
@@ -94,7 +107,7 @@ def _split_tokens(name: str) -> list:
     tokens = []
     for t in s.split():
         for chunk in re.findall(r"[A-Za-z]+|\d+", t):
-            if len(chunk) >= MIN_LEN_WORD:
+            if chunk:
                 tokens.append(chunk.lower())
     return tokens
 
@@ -106,7 +119,6 @@ def auto_plural(word_id: str) -> str:
     return word_id + 's'
 
 def _is_noise_word(word: str) -> bool:
-    if len(word) < MIN_LEN_WORD: return True
     if word in SKIP_NAMES: return True
     if word in EXTERNAL_LIBS: return True
     if _NOISE_RE.search(word): return True
@@ -327,19 +339,29 @@ class ItemScanner:
         self.candidates_sources: dict = {}
 
     def _add(self, name: str, source: str):
+        if not is_managed_identifier(name): return
+
         if self.mode == "word":
-            # tech 접두어 제외 로직
             nl = name.lower()
             if nl.startswith(('api_', 'kis_', 'env_')): return
 
             tokens = _split_tokens(name)
             for t in tokens:
                 if _is_noise_word(t): continue
-                # existing에 완전 일치하는 토큰 제외
+                if is_unit_token(t): continue
+                if is_tech_abbreviation(t): continue
+
                 if t in self.existing: continue
-                # existing의 어떤 항목이 t로 시작하는 경우도 제외
-                # (예: 'checks'가 existing에 있으면 제외)
-                if t in self.existing: continue
+
+                # Look up dictionary
+                is_valid, meaning = check_dictionary_api(t)
+                if is_valid:
+                    auto_draft_dictionary_word(t, meaning)
+                    continue
+
+                # Not in glossary, not in dict, not a unit token -> if it's 2 chars, it's noise/excluded
+                if len(t) <= 2:
+                    continue
 
                 self.candidates_count[t] = self.candidates_count.get(t, 0) + 1
                 if t not in self.candidates_sources: self.candidates_sources[t] = []
