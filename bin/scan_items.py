@@ -347,6 +347,8 @@ class ItemScanner:
 
             tokens = _split_tokens(name)
             for t in tokens:
+                # single-char tokens are code prefixes (v_align, n_count), not domain terms
+                if len(t) <= 1: continue
                 if _is_noise_word(t): continue
                 if is_unit_token(t): continue
                 if is_tech_abbreviation(t): continue

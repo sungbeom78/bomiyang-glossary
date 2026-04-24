@@ -4,39 +4,6 @@
   "description": "BOM_TS 단어 사전 — 식별자의 최소 단위",
   "words": [
     {
-      "id": "mb",
-      "domain": [
-        "general"
-      ],
-      "status": "active",
-      "canonical_pos": "noun",
-      "lang": {
-        "en": "Megabyte",
-        "ko": "메가바이트",
-        "ja": "メガバイト",
-        "zh_hans": "兆字节"
-      },
-      "description_i18n": {
-        "ko": "컴퓨터 저장 용량을 나타내는 단위로 100만 바이트에 해당합니다",
-        "en": "A unit of digital information storage commonly used for computer files and data, equivalent to one million bytes"
-      },
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "mb"
-        }
-      ],
-      "from": "Megabyte",
-      "synonyms": [
-        "megabyte"
-      ],
-      "source_urls": [
-        "https://en.wiktionary.org/wiki/MB"
-      ],
-      "updated_at": "2026-04-21T02:45:37Z",
-      "created_at": "2026-04-21T02:45:37Z"
-    },
-    {
       "id": "aborts",
       "lang": {
         "en": "aborts",
@@ -1173,6 +1140,70 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "always",
+      "lang": {
+        "en": "always",
+        "ko": "항상",
+        "ja": "常に",
+        "zh_hans": "一直"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "언제나 변함없이",
+        "en": "at all times or on all occasions"
+      },
+      "from": "always",
+      "created_at": "2026-04-23T01:27:33Z",
+      "updated_at": "2026-04-23T01:27:33Z"
+    },
+    {
+      "id": "amount",
+      "lang": {
+        "en": "amount",
+        "ko": "양",
+        "ja": "量",
+        "zh_hans": "量"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "특정 양이나 수량",
+        "en": "A quantity or number of something"
+      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "amt",
+          "case_sensitive": false,
+          "confidence": "high",
+          "ambiguity": "low"
+        }
+      ],
+      "synonyms": [
+        "quantity",
+        "number",
+        "sum",
+        "volume",
+        "measure"
+      ],
+      "antonyms": [
+        "lack",
+        "shortage"
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/amt"
+      ],
+      "created_at": "2026-04-23T01:13:29Z",
+      "updated_at": "2026-04-23T01:13:29Z"
+    },
+    {
       "id": "and",
       "lang": {
         "en": "and",
@@ -2098,6 +2129,27 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "backoff",
+      "lang": {
+        "en": "backoff",
+        "ko": "백오프",
+        "ja": "バックオフ",
+        "zh_hans": "退避"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "시스템 과부하를 방지하기 위한 지연 메커니즘",
+        "en": "A delay mechanism to prevent overwhelming a system"
+      },
+      "from": "backoff",
+      "created_at": "2026-04-23T01:27:33Z",
+      "updated_at": "2026-04-23T01:27:33Z"
+    },
+    {
       "id": "backtest",
       "domain": [
         "system"
@@ -3012,6 +3064,32 @@
       "variants": [],
       "updated_at": "2026-04-21T01:01:24Z",
       "created_at": "2026-04-21T01:01:24Z"
+    },
+    {
+      "id": "bps",
+      "lang": {
+        "en": "bits per second",
+        "ko": "초당 비트 수",
+        "ja": "毎秒ビット数",
+        "zh_hans": "比特每秒"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "데이터 전송 속도를 나타내는 단위로, 1초 동안 전송할 수 있는 비트 수를 의미합니다",
+        "en": "A unit representing data transfer speed, indicating the number of bits that can be transmitted per second"
+      },
+      "synonyms": [
+        "bitrate"
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/bps"
+      ],
+      "created_at": "2026-04-23T01:13:29Z",
+      "updated_at": "2026-04-23T01:13:29Z"
     },
     {
       "id": "branch",
@@ -4463,6 +4541,27 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "circuit",
+      "lang": {
+        "en": "circuit",
+        "ko": "회로",
+        "ja": "回路",
+        "zh_hans": "电路"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "전류가 흐르는 완전한 경로를 나타내는 용어",
+        "en": "Refers to a complete path through which an electrical current can flow"
+      },
+      "from": "circuit",
+      "created_at": "2026-04-23T01:27:33Z",
+      "updated_at": "2026-04-23T01:27:33Z"
     },
     {
       "id": "classify",
@@ -6840,6 +6939,53 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "cut",
+      "lang": {
+        "en": "cut",
+        "ko": "자르다",
+        "ja": "切る",
+        "zh_hans": "切"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "날카로운 도구를 사용하여 조각으로 나누다",
+        "en": "divide into pieces with a sharp implement"
+      },
+      "synonyms": [
+        "sever",
+        "slice",
+        "chop",
+        "hack",
+        "gash",
+        "slash",
+        "rend",
+        "cleave",
+        "mow",
+        "reap",
+        "prune",
+        "trim"
+      ],
+      "antonyms": [
+        "join",
+        "attach",
+        "unite",
+        "mend",
+        "repair",
+        "add",
+        "increase",
+        "grow"
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/cut"
+      ],
+      "created_at": "2026-04-23T01:13:29Z",
+      "updated_at": "2026-04-23T01:13:29Z"
+    },
+    {
       "id": "cycle",
       "lang": {
         "en": "cycle",
@@ -8652,6 +8798,13 @@
             "plural"
           ],
           "value": "domains"
+        },
+        {
+          "type": "abbreviation",
+          "short": "dom",
+          "case_sensitive": false,
+          "confidence": "high",
+          "ambiguity": "low"
         }
       ],
       "source_urls": [
@@ -12886,6 +13039,27 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "half",
+      "lang": {
+        "en": "half",
+        "ko": "절반",
+        "ja": "半分",
+        "zh_hans": "一半"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "전체의 둘 중 하나의 부분",
+        "en": "one of two equal parts that together make up a whole"
+      },
+      "from": "half",
+      "created_at": "2026-04-23T01:27:33Z",
+      "updated_at": "2026-04-23T01:27:33Z"
+    },
+    {
       "id": "halt",
       "lang": {
         "en": "halt",
@@ -13394,6 +13568,40 @@
           "value": "histories"
         }
       ]
+    },
+    {
+      "id": "hit",
+      "lang": {
+        "en": "hit",
+        "ko": "치다",
+        "ja": "打つ",
+        "zh_hans": "打击"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "물리적으로 강하게 부딪히거나 때리는 행위",
+        "en": "To strike or collide with something forcefully"
+      },
+      "synonyms": [
+        "strike",
+        "beat",
+        "punch",
+        "smash",
+        "impact"
+      ],
+      "antonyms": [
+        "miss",
+        "avoid"
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/hit"
+      ],
+      "created_at": "2026-04-23T01:13:29Z",
+      "updated_at": "2026-04-23T01:13:29Z"
     },
     {
       "id": "hold",
@@ -14730,6 +14938,48 @@
       "updated_at": "2026-04-20T12:03:27Z"
     },
     {
+      "id": "job",
+      "lang": {
+        "en": "job",
+        "ko": "직업",
+        "ja": "仕事",
+        "zh_hans": "工作"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "생계를 유지하기 위해 하는 일",
+        "en": "Work that you do to earn money"
+      },
+      "variants": [
+        {
+          "type": "plural",
+          "value": "jobs"
+        }
+      ],
+      "synonyms": [
+        "work",
+        "employment",
+        "occupation",
+        "position",
+        "role",
+        "task",
+        "assignment"
+      ],
+      "antonyms": [
+        "unemployment",
+        "leisure"
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/job"
+      ],
+      "created_at": "2026-04-23T01:13:29Z",
+      "updated_at": "2026-04-23T01:13:29Z"
+    },
+    {
       "id": "journal",
       "lang": {
         "en": "journal",
@@ -14999,19 +15249,24 @@
       ],
       "status": "active",
       "lang": {
-        "en": "Korea",
+        "en": "korea",
         "ko": "한국",
         "ja": "韓国",
         "zh_hans": "韩国"
       },
       "description_i18n": {
-        "en": "A country located in East Asia",
-        "ko": "동아시아에 위치한 나라"
+        "ko": "동아시아에 위치한 나라",
+        "en": "A country located in East Asia"
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z",
-      "variants": [],
+      "updated_at": "2026-04-23T01:02:33Z",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "KR,KO"
+        }
+      ],
       "note": "Auto-registered from compound: korea_exchange"
     },
     {
@@ -17026,6 +17281,39 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "mb",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "canonical_pos": "noun",
+      "lang": {
+        "en": "Megabyte",
+        "ko": "메가바이트",
+        "ja": "メガバイト",
+        "zh_hans": "兆字节"
+      },
+      "description_i18n": {
+        "ko": "컴퓨터 저장 용량을 나타내는 단위로 100만 바이트에 해당합니다",
+        "en": "A unit of digital information storage commonly used for computer files and data, equivalent to one million bytes"
+      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "mb"
+        }
+      ],
+      "from": "Megabyte",
+      "synonyms": [
+        "megabyte"
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/MB"
+      ],
+      "updated_at": "2026-04-21T02:45:37Z",
+      "created_at": "2026-04-21T02:45:37Z"
     },
     {
       "id": "mean",
@@ -19386,6 +19674,26 @@
       "source_urls": [
         "https://en.wiktionary.org/wiki/orchestrator"
       ]
+    },
+    {
+      "id": "ord",
+      "lang": {
+        "en": "ord",
+        "ko": "ord",
+        "ja": "ord",
+        "zh_hans": "ord"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "약어 또는 코드의 한 형태",
+        "en": "A form of abbreviation or code"
+      },
+      "created_at": "2026-04-23T01:13:29Z",
+      "updated_at": "2026-04-23T01:13:29Z"
     },
     {
       "id": "order",
@@ -26337,13 +26645,17 @@
             "past_participle"
           ],
           "value": "sent"
+        },
+        {
+          "type": "prefix",
+          "value": "resend"
         }
       ],
       "source_urls": [
         "https://en.wiktionary.org/wiki/send"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-23T01:37:06Z"
     },
     {
       "id": "separated",
@@ -26364,6 +26676,42 @@
       "updated_at": "2026-04-19T06:30:11Z",
       "variants": [],
       "note": "Auto-registered from compound: comma_separated_values"
+    },
+    {
+      "id": "sequence",
+      "lang": {
+        "en": "sequence",
+        "ko": "시퀀스",
+        "ja": "シーケンス",
+        "zh_hans": "序列"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "순서대로 이어지는 것들의 목록",
+        "en": "a list of things in order"
+      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "seq",
+          "case_sensitive": false,
+          "confidence": "high",
+          "ambiguity": "low"
+        },
+        {
+          "type": "plural",
+          "value": "sequences"
+        }
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/seq"
+      ],
+      "created_at": "2026-04-23T01:13:29Z",
+      "updated_at": "2026-04-23T01:13:29Z"
     },
     {
       "id": "serialization",
@@ -26838,6 +27186,34 @@
       "source_urls": [
         "https://en.wiktionary.org/wiki/short"
       ]
+    },
+    {
+      "id": "short message service",
+      "lang": {
+        "en": "Short Message Service",
+        "ko": "단문 메시지 서비스",
+        "ja": "ショートメッセージサービス",
+        "zh_hans": "短消息服务"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "휴대폰 등으로 문자 메시지를 주고받는 통신 서비스",
+        "en": "A communication service for exchanging text messages via mobile phones"
+      },
+      "from": "sms",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "SMS",
+          "long": "Short Message Service"
+        }
+      ],
+      "created_at": "2026-04-23T01:27:33Z",
+      "updated_at": "2026-04-23T01:27:33Z"
     },
     {
       "id": "should",
@@ -28247,7 +28623,15 @@
       "canonical_pos": "noun",
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T06:30:11Z",
-      "variants": [],
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "std",
+          "case_sensitive": false,
+          "confidence": "high",
+          "ambiguity": "low"
+        }
+      ],
       "note": "Auto-registered from compound: advanced_encryption_standard"
     },
     {
@@ -29241,6 +29625,47 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "sum",
+      "lang": {
+        "en": "sum",
+        "ko": "합계",
+        "ja": "合計",
+        "zh_hans": "总和"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "모든 것을 더한 총액",
+        "en": "The total amount resulting from the addition of numbers or quantities"
+      },
+      "variants": [
+        {
+          "type": "plural",
+          "value": "sums"
+        }
+      ],
+      "synonyms": [
+        "total",
+        "aggregate",
+        "whole",
+        "amount",
+        "quantity"
+      ],
+      "antonyms": [
+        "part",
+        "portion",
+        "difference"
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/sum"
+      ],
+      "created_at": "2026-04-23T01:13:29Z",
+      "updated_at": "2026-04-23T01:13:29Z"
     },
     {
       "id": "summary",
@@ -30371,6 +30796,34 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "tic",
+      "lang": {
+        "en": "tic",
+        "ko": "틱",
+        "ja": "チック",
+        "zh_hans": "抽动"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "근육의 갑작스럽고 불수의적인 반복적인 움직임이나 발성",
+        "en": "A sudden, involuntary, and repetitive muscle movement or vocalization"
+      },
+      "synonyms": [
+        "spasm",
+        "twitch",
+        "flick"
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/tic"
+      ],
+      "created_at": "2026-04-23T01:13:29Z",
+      "updated_at": "2026-04-23T01:13:29Z"
     },
     {
       "id": "tick",
@@ -31750,6 +32203,27 @@
           "value": "unrealizing"
         }
       ]
+    },
+    {
+      "id": "unrecoverable",
+      "lang": {
+        "en": "unrecoverable",
+        "ko": "복구 불가능한",
+        "ja": "回復不能な",
+        "zh_hans": "不可恢复的"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "복원하거나 되돌릴 수 없음을 나타내는 상태",
+        "en": "A state indicating that something cannot be restored or undone"
+      },
+      "from": "unrecoverable",
+      "created_at": "2026-04-23T01:27:33Z",
+      "updated_at": "2026-04-23T01:27:33Z"
     },
     {
       "id": "until",
@@ -33718,6 +34192,33 @@
       ],
       "created_at": "2026-04-21T00:39:08Z",
       "updated_at": "2026-04-21T00:39:08Z"
+    },
+    {
+      "id": "zip",
+      "lang": {
+        "en": "zip, fastener",
+        "ko": "지퍼, 잠금 장치",
+        "ja": "ジッパー、ファスナー",
+        "zh_hans": "拉链、拉锁"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "옷이나 가방 등을 열고 닫을 때 사용하는 잠금 장치",
+        "en": "A fastener used to open and close clothing, bags, and other items"
+      },
+      "synonyms": [
+        "fastener",
+        "zipper"
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/zip"
+      ],
+      "created_at": "2026-04-23T01:13:29Z",
+      "updated_at": "2026-04-23T01:13:29Z"
     }
   ]
 }

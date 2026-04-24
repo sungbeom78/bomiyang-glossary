@@ -1058,6 +1058,12 @@ def cmd_generate():
             variant_map[vval] = {"root": w["id"], "type": vtype}
 
     for c in compounds:
+        # §1단계 object 하위호환 + top-level abbreviation
+        # compounds.json 구조에는 abbreviation이 탑레벨 필드로 존재하는 경우가 있음
+        abbr = c.get("abbreviation", {}).get("short")
+        if abbr:
+            variant_map[abbr] = {"root": c["id"], "type": "abbreviation"}
+
         c_vf = c.get("variants")
         if isinstance(c_vf, list):
             # §2단계 array 형식
@@ -1071,10 +1077,7 @@ def cmd_generate():
                 if val:
                     variant_map[val] = {"root": c["id"], "type": vtype}
         elif isinstance(c_vf, dict):
-            # §1단계 object 형식 하위호환
-            abbr = c.get("abbr", {}).get("short")
-            if abbr:
-                variant_map[abbr] = {"root": c["id"], "type": "abbreviation"}
+            # 구버전 object 방식
             for vtype, vval in c_vf.items():
                 if vtype in PROJECTION_EXCLUDE_TYPES or vtype not in PROJECTION_VARIANT_TYPES:
                     continue

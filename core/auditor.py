@@ -38,6 +38,8 @@ EXTERNAL_LIB_TOKENS = {
     "uvicorn",
     "requests",
     "pytest",
+    "fernet",
+    "cryptography",
 }
 
 _STOP_WORDS_AUDIT: frozenset[str] = frozenset({

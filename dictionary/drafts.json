@@ -1,6 +1,111 @@
 {
   "drafts": [
     {
+      "id": "catalog",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A systematic list of names, books, pictures etc.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "channels",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The physical confine of a river or slough, consisting of a bed and banks.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "wake",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The act of waking, or state of being awake.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "paper",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A sheet material used for writing on or printing on (or as a non-waterproof container), usually made by draining cellulose fibres from a suspension in water.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "respect",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "An attitude of consideration or high regard",
+      "status": "ai_draft"
+    },
+    {
+      "id": "cleared",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To remove obstructions, impediments or other unwanted items from.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "timestamp",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A variable containing the date and time at which an event occurred, often included in a log to track the sequence of events.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "drift",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "(physical) Movement; that which moves or is moved.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "attempts",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The action of trying at something.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "fixed",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To pierce; now generally replaced by transfix.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "recoverable",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Amounts of reinsurance coverage that are due from a reinsurer.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "silent",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "That which is silent; a time of silence.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "lightweight",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A particular weight class, or member of such, as prescribed by the rules, between that of the heavier welterweight and the lighter featherweight. See Wikipedia for the specifics of each sport.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "paused",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To take a temporary rest, take a break for a short period after an effort.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "thresholds",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The bottom-most part of a doorway that one crosses to enter; a sill.",
+      "status": "ai_draft"
+    },
+    {
       "id": "ma",
       "source": "dictionaryapi.dev",
       "classification": "word",
@@ -8,10 +113,227 @@
       "status": "ai_draft"
     },
     {
+      "id": "channel",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The physical confine of a river or slough, consisting of a bed and banks.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "uptime",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The period of time a computer has functioned since last requiring a reboot.",
+      "status": "ai_draft"
+    },
+    {
       "id": "py",
       "source": "dictionaryapi.dev",
       "classification": "word",
       "meaning_en": "A phonetic script or romanization system for a language spoken in the People's Republic of China.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "hourly",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Something produced each hour.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "determine",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To set the boundaries or limits of.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "reaction",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "An action or statement in response to a stimulus or other event.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "failures",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "State or condition of not meeting a desirable or intended objective, opposite of success.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "machine",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A device that directs and controls energy, often in the form of movement or electricity, to produce a certain effect.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "seed",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A fertilized and ripened ovule, containing an embryonic plant.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "seeder",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A device used to plant seeds; a seed drill",
+      "status": "ai_draft"
+    },
+    {
+      "id": "inactivity",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The quality of being inactive; idleness; passiveness.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "banner",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A flag or standard used by a military commander, monarch or nation.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "description",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A sketch or account of anything in words; a portraiture or representation in language; an enumeration of the essential qualities of a thing or species.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "drop",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A small quantity of liquid, just large enough to hold its own round shape via surface tension, especially one that falls from a source of liquid.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "rendered",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "(ditransitive) To cause to become.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "attempt",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The action of trying at something.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "n",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "North",
+      "status": "ai_draft"
+    },
+    {
+      "id": "deviation",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The act of deviating; wandering off the correct or true path or road",
+      "status": "ai_draft"
+    },
+    {
+      "id": "magic",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The application of rituals or actions, especially those based on occult knowledge, to subdue or manipulate natural or supernatural beings and forces in order to have some benefit from them",
+      "status": "ai_draft"
+    },
+    {
+      "id": "filling",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To occupy fully, to take up all of.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "v",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A shape resembling the letter v",
+      "status": "ai_draft"
+    },
+    {
+      "id": "dotted",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To cover with small spots (of some liquid).",
+      "status": "ai_draft"
+    },
+    {
+      "id": "o",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The name of the Latin-script letter O.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "h",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A powerful and addictive drug derived from opium producing intense euphoria classed as an illegal narcotic in most of the world.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "l",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Litre, liter",
+      "status": "ai_draft"
+    },
+    {
+      "id": "c",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The middle tone in either one of the sets of seven white keys on a keyboard or a set of seven strings on a stringed instrument.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "frozen",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Especially of a liquid, to become solid due to low temperature.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "combinations",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The act of combining, the state of being combined or the result of combining.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "callback",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The return of a situation to a previous position or state.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "user",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "One who uses or makes use of something, a consumer/client or an express or implied licensee (free user) or a trespasser.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "topic",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Subject; theme; a category or general area of interest.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "library",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "An institution which holds books and/or other forms of media for use by the public or qualified people often lending them out, as well as providing various other services for its users.",
       "status": "ai_draft"
     },
     {
@@ -26,20 +348,6 @@
       "source": "dictionaryapi.dev",
       "classification": "word",
       "meaning_en": "A cut or notch in the margin of anything, or a recess like a notch.",
-      "status": "ai_draft"
-    },
-    {
-      "id": "h",
-      "source": "dictionaryapi.dev",
-      "classification": "word",
-      "meaning_en": "A powerful and addictive drug derived from opium producing intense euphoria classed as an illegal narcotic in most of the world.",
-      "status": "ai_draft"
-    },
-    {
-      "id": "amount",
-      "source": "dictionaryapi.dev",
-      "classification": "word",
-      "meaning_en": "The total, aggregate or sum of material (not applicable to discrete numbers or units or items in standard English).",
       "status": "ai_draft"
     },
     {
@@ -78,17 +386,388 @@
       "status": "ai_draft"
     },
     {
-      "id": "banner",
+      "id": "q",
       "source": "dictionaryapi.dev",
       "classification": "word",
-      "meaning_en": "A flag or standard used by a military commander, monarch or nation.",
+      "meaning_en": "Conditional qualification",
       "status": "ai_draft"
     },
     {
-      "id": "js",
+      "id": "best",
       "source": "dictionaryapi.dev",
       "classification": "word",
-      "meaning_en": "A term for a marijuana cigarette ('joint').",
+      "meaning_en": "The supreme effort one can make, or has made.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "worst",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Something or someone that is the worst",
+      "status": "ai_draft"
+    },
+    {
+      "id": "threshold",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The bottom-most part of a doorway that one crosses to enter; a sill.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "grant",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The act of granting; a bestowing or conferring; concession; allowance; permission.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "cipher",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A numeric character.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "remaining",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To stay behind while others withdraw; to be left after others have been removed or destroyed; to be left after a number or quantity has been subtracted or cut off; to be left as not included or comprised.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "accept",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To receive, especially with a consent, with favour, or with approval.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "cont",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To proceed with (doing an activity); to prolong (an activity).",
+      "status": "ai_draft"
+    },
+    {
+      "id": "p",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Abbreviation of penny; pence.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "imbalance",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The property of not being in balance.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "corrected",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To make something that was wrong become right; to remove error from.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "title",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A prefix (honorific) or suffix (post-nominal) added to a person's name to signify either veneration, official position or a professional or academic qualification. See also",
+      "status": "ai_draft"
+    },
+    {
+      "id": "groups",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A number of things or persons being in some relation to one another.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "specs",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Two similar or identical things taken together; often followed by of.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "digit",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A stage of proficiency or qualification in a course of study, now especially an award bestowed by a university or, in some countries, a college, as a certification of academic achievement. (In the United States, can include secondary schools.)",
+      "status": "ai_draft"
+    },
+    {
+      "id": "s",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A weight of 1/288 of a pound, that is, twenty grains or one third of a dram, about 1.3 grams (symbol: ℈).",
+      "status": "ai_draft"
+    },
+    {
+      "id": "directory",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A list of names, addresses etc, of specific classes of people or organizations, often in alphabetical order or in some classification.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "include",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A piece of source code or other content that is dynamically retrieved for inclusion in another item.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "connection",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The act of connecting.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "incoming",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The act of coming in; arrival.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "year",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A solar year, the time it takes the Earth to complete one revolution of the Sun (between 365.24 and 365.26 days depending on the point of reference).",
+      "status": "ai_draft"
+    },
+    {
+      "id": "w",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Watt",
+      "status": "ai_draft"
+    },
+    {
+      "id": "losing",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To cause (something) to cease to be in one's possession or capability due to unfortunate or unknown circumstances, events or reasons.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "tv",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The assessed value of an asset from which the tax owing is computed.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "keywords",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Any word used as the key to a code.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "temperature",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A measure of cold or heat, often measurable with a thermometer.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "expected",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To predict or believe that something will happen",
+      "status": "ai_draft"
+    },
+    {
+      "id": "optional",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Something that is not compulsory, especially part of an academic course.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "dormant",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A crossbeam or joist.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "detected",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To discover or find by careful search, examination, or probing",
+      "status": "ai_draft"
+    },
+    {
+      "id": "bb",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A type of pellet that can be shot from a BB gun.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "kind",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A type, race or category; a group of entities that have common characteristics such that they may be grouped together.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "numerator",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The number or expression written above the line in a fraction (such as 1 in ½).",
+      "status": "ai_draft"
+    },
+    {
+      "id": "denominator",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The number or expression written below the line in a fraction (such as 2 in ½).",
+      "status": "ai_draft"
+    },
+    {
+      "id": "wall",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A rampart of earth, stones etc. built up for defensive purposes.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "fake",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Something which is not genuine, or is presented fraudulently.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "decreasing",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Of a quantity, to become smaller.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "reversal",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The state of being reversed.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "drops",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A small quantity of liquid, just large enough to hold its own round shape via surface tension, especially one that falls from a source of liquid.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "decrease",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "An amount by which a quantity is decreased.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "deleted",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To remove, get rid of or erase, especially written or printed material, or data on a computer or other device.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "parent",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "One of the two persons from whom one is immediately biologically descended; a mother or father.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "large",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "An old musical note, equal to two longas, four breves, or eight semibreves.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "listed",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To create or recite a list.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "authorization",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Permission.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "keep",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The main tower of a castle or fortress, located within the castle walls.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "orphans",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A person, especially a minor, both or (rarely) one of whose parents have died.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "group",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A number of things or persons being in some relation to one another.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "combined",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "An event in alpine skiing which combines runs on a downhill skiing course and a slalom course, for individual skiers.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "item",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A distinct physical object.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "down",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A negative aspect; a downer.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "marker",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "An object used to mark a location.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "quality",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Level of excellence.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "overall",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "A garment worn over other clothing to protect it; a coverall or boiler suit. A garment, for manual labor or for casual wear, often made of a single piece of fabric, with long legs and a bib upper, supported from the shoulders with straps, and having several large pockets and loops for carrying tools.",
       "status": "ai_draft"
     }
   ]
