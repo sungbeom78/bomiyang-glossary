@@ -769,6 +769,62 @@
       "classification": "word",
       "meaning_en": "A garment worn over other clothing to protect it; a coverall or boiler suit. A garment, for manual labor or for casual wear, often made of a single piece of fabric, with long legs and a bib upper, supported from the shoulders with straps, and having several large pockets and loops for carrying tools.",
       "status": "ai_draft"
+    },
+    {
+      "id": "options",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "One of a set of choices that can be made.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "week",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Any period of seven consecutive days.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "ko",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "(game of go) A local shape to which the ko rule applies; a ko shape.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "alignment",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "An arrangement of items in a line.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "rapid",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "(often in the plural) a rough section of a river or stream which is difficult to navigate due to the swift and turbulent motion of the water.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "listing",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To create or recite a list.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "face",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "The front part of the head of a human or other animal, featuring the eyes, nose and mouth, and the surrounding area.",
+      "status": "ai_draft"
+    },
+    {
+      "id": "zone",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "Each of the five regions of the earth's surface into which it was divided by climatic differences, namely the torrid zone (between the tropics), two temperate zones (between the tropics and the polar circles), and two frigid zones (within the polar circles).",
+      "status": "ai_draft"
     }
   ]
 }
