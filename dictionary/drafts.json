@@ -825,6 +825,13 @@
       "classification": "word",
       "meaning_en": "Each of the five regions of the earth's surface into which it was divided by climatic differences, namely the torrid zone (between the tropics), two temperate zones (between the tropics and the polar circles), and two frigid zones (within the polar circles).",
       "status": "ai_draft"
+    },
+    {
+      "id": "spawn",
+      "source": "dictionaryapi.dev",
+      "classification": "word",
+      "meaning_en": "To produce or deposit (eggs) in water.",
+      "status": "ai_draft"
     }
   ]
 }
