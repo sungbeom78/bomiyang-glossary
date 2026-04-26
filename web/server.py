@@ -994,6 +994,35 @@ def clear_drafts():
     save_drafts({"drafts": []})
     return jsonify({"ok": True})
 
+@app.route("/api/drafts/save", methods=["POST"])
+def save_drafts_from_scan():
+    """Scan candidates to drafts.json (merge, no duplicates)."""
+    body = request.get_json() or {}
+    items = body.get("items", [])
+    if not items:
+        return jsonify({"ok": False, "error": "no items"})
+
+    dd = load_drafts()
+    existing_ids = {d.get("id") for d in dd.get("drafts", [])}
+    added = 0
+    for item in items:
+        wid = item.get("name") or item.get("id", "")
+        if not wid or wid in existing_ids:
+            continue
+        dd["drafts"].append({
+            "id": wid,
+            "source": ",".join(item.get("sources", [])),
+            "classification": "word",
+            "meaning_en": "",
+            "status": "scan_candidate",
+        })
+        existing_ids.add(wid)
+        added += 1
+
+    save_drafts(dd)
+    log.info(f"[drafts] saved {added} scan candidates to drafts.json")
+    return jsonify({"ok": True, "added": added, "total": len(dd["drafts"])})
+
 
 @app.route("/api/batch/register_compound", methods=["POST"])
 def batch_register_compound():

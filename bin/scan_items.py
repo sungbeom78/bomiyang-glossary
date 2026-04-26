@@ -34,7 +34,6 @@ from glossary.core.token_rules import (
     is_unit_token,
     is_tech_abbreviation,
     check_dictionary_api,
-    auto_draft_dictionary_word
 )
 
 # ── Windows 인코딩 ──────────────────────────────────────────────────────
@@ -355,10 +354,9 @@ class ItemScanner:
 
                 if t in self.existing: continue
 
-                # Look up dictionary
+                # Look up dictionary — valid English words are excluded from candidates
                 is_valid, meaning = check_dictionary_api(t)
                 if is_valid:
-                    auto_draft_dictionary_word(t, meaning)
                     continue
 
                 # Not in glossary, not in dict, not a unit token -> if it's 2 chars, it's noise/excluded

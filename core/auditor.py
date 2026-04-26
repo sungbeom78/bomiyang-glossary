@@ -48,7 +48,8 @@ _STOP_WORDS_AUDIT: frozenset[str] = frozenset({
 }).union(STOP_WORDS_2CHAR)
 
 class GlossaryAuditor:
-    def __init__(self):
+    def __init__(self, enable_auto_draft: bool = False):
+        self.enable_auto_draft = enable_auto_draft
         self.words, self.compounds, self.variant_map, self.banned, self.n_patterns, self.pending_ids = self.load_glossary()
 
     def load_glossary(self) -> tuple[dict, dict, dict, list[dict], list[re.Pattern], set]:
@@ -97,7 +98,7 @@ class GlossaryAuditor:
             issues.append(banned_issue)
             
         if kind != "file":
-            issues.extend(check_glossary(identifier, kind, source, self.words, self.compounds, self.variant_map, self.n_patterns, self.pending_ids))
+            issues.extend(check_glossary(identifier, kind, source, self.words, self.compounds, self.variant_map, self.n_patterns, self.pending_ids, self.enable_auto_draft))
             
         issues.extend(check_singular(identifier, kind, source))
         issues.extend(check_collection_semantic(identifier, kind, source))
@@ -257,7 +258,8 @@ def check_glossary(
     compounds: dict, 
     variant_map: dict, 
     n_patterns: list[re.Pattern],
-    pending_ids: set[str]
+    pending_ids: set[str],
+    enable_auto_draft: bool = False
 ) -> list[AuditIssue]:
     issues: list[AuditIssue] = []
     ident_norm = normalize_term(identifier)
@@ -373,7 +375,8 @@ def check_glossary(
         # 미등록 단어인 경우 최종적으로 Dictionary API 조회 시도
         is_valid, meaning = check_dictionary_api(tok)
         if is_valid:
-            auto_draft_dictionary_word(tok, meaning)
+            if enable_auto_draft:
+                auto_draft_dictionary_word(tok, meaning)
             continue
             
         missing.append(tok)
