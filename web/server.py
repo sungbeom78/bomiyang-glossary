@@ -286,7 +286,11 @@ def index():
         html = re.sub(r'<!-- ADMIN_ONLY_START -->.*?<!-- ADMIN_ONLY_END -->', '', html, flags=re.DOTALL)
         html = html.replace('const IS_PUBLIC = false;', 'const IS_PUBLIC = true;')
         
-    return Response(html, mimetype='text/html')
+    resp = Response(html, mimetype='text/html')
+    resp.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    resp.headers['Pragma'] = 'no-cache'
+    resp.headers['Expires'] = '0'
+    return resp
 
 
 # ══════════════════════════════════════════════════════════════════════
