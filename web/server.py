@@ -271,6 +271,7 @@ def run_runpy(*extra_args) -> dict:
 
 @app.route("/")
 def index():
+    import os
     import re
     from flask import Response
     
