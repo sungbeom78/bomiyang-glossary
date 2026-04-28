@@ -175,6 +175,11 @@ def load_existing_words_and_tokens(glossary_dir: Path) -> set:
                     abbr_short = (w['abbreviation'].get('short') or '').strip().lower()
                     if abbr_short:
                         tokens.add(abbr_short)
+
+                # from field: derivative source word (e.g. dirs.from = "directory")
+                from_word = (w.get('from') or '').strip().lower()
+                if from_word:
+                    tokens.add(from_word)
         except Exception:
             pass
 

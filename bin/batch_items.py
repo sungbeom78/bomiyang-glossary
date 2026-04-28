@@ -320,6 +320,8 @@ def main():
     parser.add_argument("--mode", choices=["word", "term"], default="word")
     parser.add_argument("--register-mode", choices=["auto", "safety", "normal"], default="normal")
     parser.add_argument("--ui-prog", action="store_true")
+    parser.add_argument("--scan-input", type=str, default="",
+                        help="Path to scan_items.py JSON output to reuse (skip re-scan)")
     args = parser.parse_args()
 
     def prog(idx, name, current, total, status):
@@ -335,24 +337,38 @@ def main():
     content_skip = parse_list(env.get('EXCLUDE_FILE_CONTENT', 'cache,log'))
     exclude_exts = {e if e.startswith('.') else f'.{e}' for e in parse_list(env.get('EXCLUDE_EXTENSIONS', '.md,.txt,.log,.csv,.tsv,.png,.jpg,.jpeg,.gif,.pdf,.ico,.svg,.zip,.tar'))}
 
-    if args.mode == "word":
-        existing = load_existing_words_and_tokens(GLOSSARY_DIR)
+    # Reuse scan result if provided (avoids re-scanning + dictionary API inconsistency)
+    if args.scan_input and Path(args.scan_input).exists():
+        scan_data = json.loads(Path(args.scan_input).read_text(encoding="utf-8"))
+        candidates = []
+        for c in scan_data.get("candidates", scan_data.get("words", [])):
+            candidates.append({
+                "word": c.get("word") or c.get("name", ""),
+                "count": c.get("count", 1),
+                "sources": c.get("sources", [])[:3],
+            })
+        prog(0, "소스 스캔", len(candidates), len(candidates), "완료")
+        print(f"[1/3] 스캔 결과 재사용 ({args.scan_input})")
+        print(f"      후보 {len(candidates)}개")
     else:
-        existing = load_existing_terms(GLOSSARY_DIR)
+        if args.mode == "word":
+            existing = load_existing_words_and_tokens(GLOSSARY_DIR)
+        else:
+            existing = load_existing_terms(GLOSSARY_DIR)
 
-    scan_config = load_scan_config(GLOSSARY_DIR)
+        scan_config = load_scan_config(GLOSSARY_DIR)
 
-    prog(0, "소스 스캔", 0, 100, "진행중")
-    print(f"[1/3] 소스 스캔... ({proj_root})")
-    scanner = ItemScanner(proj_root, exclude_dirs, content_skip, exclude_exts, args.mode, existing, scan_config=scan_config)
-    scanner.scan()
-    
-    candidates = []
-    for k in sorted(scanner.candidates_count.keys()):
-        candidates.append({"word": k, "count": scanner.candidates_count[k], "sources": scanner.candidates_sources[k][:3]})
+        prog(0, "소스 스캔", 0, 100, "진행중")
+        print(f"[1/3] 소스 스캔... ({proj_root})")
+        scanner = ItemScanner(proj_root, exclude_dirs, content_skip, exclude_exts, args.mode, existing, scan_config=scan_config)
+        scanner.scan()
         
-    prog(0, "소스 스캔", len(candidates), len(candidates), "완료")
-    print(f"      후보 {len(candidates)}개 추출")
+        candidates = []
+        for k in sorted(scanner.candidates_count.keys()):
+            candidates.append({"word": k, "count": scanner.candidates_count[k], "sources": scanner.candidates_sources[k][:3]})
+            
+        prog(0, "소스 스캔", len(candidates), len(candidates), "완료")
+        print(f"      후보 {len(candidates)}개 추출")
     
     if not candidates:
         print("[완료] 처리할 후보가 없습니다.")

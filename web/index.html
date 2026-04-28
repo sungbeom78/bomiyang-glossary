@@ -961,16 +961,17 @@ function filterLogs(){const q=(document.getElementById('log-filter')?.value||'')
 async function clearLogs(){if(!confirm('로그 초기화?'))return;await fetch('/api/logs/clear',{method:'POST'});_allLogLines=[];document.getElementById('log-content').textContent='초기화됨';toast('로그 초기화','tok');}
 
 // ── BATCH ──
-const BATCH_MODELS={claude:[{v:'claude-sonnet-4-20250514',l:'Claude Sonnet 4'},{v:'claude-haiku-4-5-20251001',l:'Claude Haiku 4.5'}],openai:[{v:'gpt-4o',l:'GPT-4o'},{v:'gpt-4o-mini',l:'GPT-4o mini'}],google:[{v:'gemini-2.0-flash',l:'Gemini 2.0 Flash (RPD무제한)'},{v:'gemini-2.5-flash-lite',l:'Gemini 2.5 Flash Lite'},{v:'gemini-2.5-flash',l:'Gemini 2.5 Flash'},{v:'gemini-1.5-pro',l:'Gemini 1.5 Pro'}]};
+const BATCH_MODELS={claude:[{v:'claude-sonnet-4-20250514',l:'Claude Sonnet 4'},{v:'claude-haiku-4-5-20251001',l:'Claude Haiku 4.5'}],openai:[{v:'gpt-4o',l:'GPT-4o'},{v:'gpt-4o-mini',l:'GPT-4o mini'}],google:[{v:'gemini-2.5-flash-lite',l:'Gemini 2.5 Flash Lite'},{v:'gemini-2.5-flash',l:'Gemini 2.5 Flash'},{v:'gemini-2.0-flash-001',l:'Gemini 2.0 Flash'},{v:'gemini-1.5-pro',l:'Gemini 1.5 Pro'}]};
 function openBatchModal(){openOv('batch-ov');switchBtab('scan');}
 function switchBtab(tab){document.querySelectorAll('.btab-btn').forEach(b=>b.classList.toggle('active',b.dataset.btab===tab));document.querySelectorAll('.btab-pane').forEach(p=>p.classList.toggle('active',p.id===`btab-${tab}`));if(tab==='result')loadBatchFiles();}
 function onBatchApiChange(){const t=document.getElementById('batch-api-type').value,s=document.getElementById('batch-model');s.innerHTML='<option value="">-- .env --</option>';if(t&&BATCH_MODELS[t])BATCH_MODELS[t].forEach(m=>{const o=document.createElement('option');o.value=m.v;o.textContent=m.l;s.appendChild(o);});}
-async function __coreScanLogic(){const res=await fetch('/api/batch/scan',{method:'POST'});const d=await res.json();if(!d.ok)throw new Error(d.error||'실패');return{count:d.count,cands:d.candidates,clearedN:0};}
+let _lastScanCands=null;
+async function __coreScanLogic(){const res=await fetch('/api/batch/scan',{method:'POST'});const d=await res.json();if(!d.ok)throw new Error(d.error||'실패');_lastScanCands=d.candidates||[];return{count:d.count,cands:d.candidates,clearedN:0};}
 async function doScan(){const btn=document.getElementById('scan-btn'),pre=document.getElementById('scan-preview'),sts=document.getElementById('scan-status');btn.disabled=true;btn.textContent='스캔 중…';sts.textContent='';pre.style.display='none';try{const d=await __coreScanLogic();sts.textContent=`후보 ${d.count}개`;const lines=(d.cands||[]).slice(0,40).map(c=>`${c.name.padEnd(32)} ${(c.sources||[])[0]||''}`);if(d.count>40)lines.push(`... 외 ${d.count-40}개`);pre.textContent=lines.join('\\n');pre.style.display='block';if(d.clearedN>0)toast(t('msg_drafts_cleared',{n:d.clearedN}),'tok',5000);}catch(e){sts.textContent='오류: '+e.message;}finally{btn.disabled=false;btn.textContent='▷ 스캔';}}
 async function doDraftsScan(){const btn=document.getElementById('btn-drafts-scan');btn.disabled=true;btn.textContent='스캔 중...';try{const d=await __coreScanLogic();if(d.count===0){toast('스캔 결과 0건','tok');}else{const sr=await fetch('/api/drafts/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:d.cands||[]})});const srd=await sr.json();if(srd.ok){await loadDrafts();toast(`${srd.added}건 저장 (총 ${srd.total}건)`,'tok');}else{toast('저장 실패: '+(srd.error||''),'ter');}}}catch(e){toast('오류 발생: '+e.message,'tin');}finally{btn.disabled=false;btn.textContent=t('btn_scan_drafts');updateI18n();}}
 async function doBatchDryRun(){_runBatch(true);}
 async function doBatchRun(){if(!confirm('API를 호출해 분석을 실행합니다.'))return;_runBatch(false);}
-async function _runBatch(dryRun){const outEl=document.getElementById('batch-output'),runBtn=document.getElementById('run-btn'),dryBtn=document.getElementById('dry-btn');const apiType=document.getElementById('batch-api-type')?.value||'',model=document.getElementById('batch-model')?.value||'';const regMode=document.getElementById('batch-reg-mode')?.value||'normal';outEl.style.display='block';outEl.innerHTML='';const progDiv=document.createElement('div');progDiv.style.marginBottom='15px';progDiv.style.color='var(--gr)';const logDiv=document.createElement('div');outEl.appendChild(progDiv);outEl.appendChild(logDiv);runBtn.disabled=dryBtn.disabled=true;const payload={dry_run:dryRun,register_mode:regMode};if(apiType)payload.api_type=apiType;if(model)payload.model=model;try{const res=await fetch('/api/batch/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const reader=res.body.getReader();const decoder=new TextDecoder('utf-8');let buffer='',tasks={};function renderTasks(){progDiv.innerHTML=Object.values(tasks).sort((a,b)=>a.idx-b.idx).map(t=>{let pct=t.total?Math.round((t.cur/t.total)*100):0;let ar=t.status==='완료'?'>>>>>>>':(t.status==='대기 중'?'>':'>>');return`<div>${t.idx}. ${t.name.padEnd(20,'\u00a0')} ${ar} ${String(t.cur).padStart(4,'\u00a0')}/${t.total} ${t.status} (${pct}%)</div>`;}).join('');}while(true){const{done,value}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});let lines=buffer.split('\n');buffer=lines.pop();for(let i=0;i<lines.length;i++){const line=lines[i];if(line.startsWith('PROG|')){let p=line.split('|');if(p.length>=6){tasks[parseInt(p[1])]={idx:parseInt(p[1]),name:p[2],cur:parseInt(p[3]),total:parseInt(p[4]),status:p[5]};renderTasks();}}else{logDiv.appendChild(document.createTextNode(line+'\n'));outEl.scrollTop=outEl.scrollHeight;}}}if(buffer.trim())logDiv.appendChild(document.createTextNode(buffer+'\n'));if(!dryRun&&logDiv.textContent.includes('[완료]'))toast('분석 완료','tok');}catch(e){logDiv.appendChild(document.createTextNode('\\n연결 오류: '+e));}runBtn.disabled=dryBtn.disabled=false;}
+async function _runBatch(dryRun){const outEl=document.getElementById('batch-output'),runBtn=document.getElementById('run-btn'),dryBtn=document.getElementById('dry-btn');const apiType=document.getElementById('batch-api-type')?.value||'',model=document.getElementById('batch-model')?.value||'';const regMode=document.getElementById('batch-reg-mode')?.value||'normal';outEl.style.display='block';outEl.innerHTML='';const progDiv=document.createElement('div');progDiv.style.marginBottom='15px';progDiv.style.color='var(--gr)';const logDiv=document.createElement('div');outEl.appendChild(progDiv);outEl.appendChild(logDiv);runBtn.disabled=dryBtn.disabled=true;const payload={dry_run:dryRun,register_mode:regMode};if(apiType)payload.api_type=apiType;if(model)payload.model=model;if(_lastScanCands&&_lastScanCands.length>0)payload.candidates=_lastScanCands;try{const res=await fetch('/api/batch/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const reader=res.body.getReader();const decoder=new TextDecoder('utf-8');let buffer='',tasks={};function renderTasks(){progDiv.innerHTML=Object.values(tasks).sort((a,b)=>a.idx-b.idx).map(t=>{let pct=t.total?Math.round((t.cur/t.total)*100):0;let ar=t.status==='완료'?'>>>>>>>':(t.status==='대기 중'?'>':'>>');return`<div>${t.idx}. ${t.name.padEnd(20,'\u00a0')} ${ar} ${String(t.cur).padStart(4,'\u00a0')}/${t.total} ${t.status} (${pct}%)</div>`;}).join('');}while(true){const{done,value}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});let lines=buffer.split('\n');buffer=lines.pop();for(let i=0;i<lines.length;i++){const line=lines[i];if(line.startsWith('PROG|')){let p=line.split('|');if(p.length>=6){tasks[parseInt(p[1])]={idx:parseInt(p[1]),name:p[2],cur:parseInt(p[3]),total:parseInt(p[4]),status:p[5]};renderTasks();}}else{logDiv.appendChild(document.createTextNode(line+'\n'));outEl.scrollTop=outEl.scrollHeight;}}}if(buffer.trim())logDiv.appendChild(document.createTextNode(buffer+'\n'));if(!dryRun&&logDiv.textContent.includes('[완료]'))toast('분석 완료','tok');}catch(e){logDiv.appendChild(document.createTextNode('\\n연결 오류: '+e));}runBtn.disabled=dryBtn.disabled=false;}
 async function loadBatchFiles(){const wrap=document.getElementById('batch-file-list');wrap.innerHTML='<div style="padding:10px;font-family:var(--mono);font-size:10px;color:var(--tx3)">로딩 중…</div>';const d=await(await fetch('/api/batch/files')).json();if(!d.files.length){wrap.innerHTML='<div style="padding:14px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--tx3)">없음</div>';return;}wrap.innerHTML=d.files.map(f=>`<div class="batch-file-row${_batchSelFile===f.name?' sel':''}" onclick="selectBatchFile('${f.name}')"><span style="font-family:var(--mono);font-size:11px;color:var(--ac);flex:1">${f.name}</span><span style="font-family:var(--mono);font-size:10px;color:var(--tx3)">${f.count}개</span><button class="btn btn-ac" style="padding:3px 9px;font-size:9px" onclick="event.stopPropagation();selectBatchFile('${f.name}');switchBtab('merge')">병합 →</button></div>`).join('');}
 function onAiDraftApiChange(){
   const t=document.getElementById('ai-draft-api')?.value;
@@ -1532,9 +1533,39 @@ async function doMergeProcessed(){
        }
     }
 
-    appW.push(wordBody);
-    
-    // 합성어인 경우: register_compound API 별도 호출 목록에 추가
+    // 합성어인 경우: register_compound API 별도 호출 목록에 추가, appW에는 넣지 않음
+    // user_edit가 없어도 현재 필드 값을 자동 수집
+    if (!t.user_edit) {
+      const relInput = (document.getElementById(`edit-rel-${i}`)?.value || '').trim();
+      if (relInput) {
+        const refUrl = (document.getElementById(`edit-url-${i}`)?.value || '').trim();
+        const refDomain = typeof getMultiInputValue === 'function' ? getMultiInputValue(`edit-domain-${i}`) : [];
+        const nameEn = (document.getElementById(`edit-name-en-${i}`)?.value || '').trim();
+        const nameKo = (document.getElementById(`edit-name-ko-${i}`)?.value || '').trim();
+        const nameJa = (document.getElementById(`edit-name-ja-${i}`)?.value || '').trim();
+        const nameZh = (document.getElementById(`edit-name-zh-${i}`)?.value || '').trim();
+        let descKo = (document.getElementById(`edit-desc-ko-${i}`)?.value || '').trim();
+        let descEn = (document.getElementById(`edit-desc-en-${i}`)?.value || '').trim();
+        if (descKo && !descEn) descEn = descKo;
+        if (descEn && !descKo) descKo = descEn;
+        const langCustom = {};
+        if (nameEn) langCustom.en = nameEn;
+        if (nameKo) langCustom.ko = nameKo;
+        if (nameJa) langCustom.ja = nameJa;
+        if (nameZh) langCustom.zh_hans = nameZh;
+        const descCustom = {};
+        if (descKo) descCustom.ko = descKo;
+        if (descEn) descCustom.en = descEn;
+        t.user_edit = {
+          related_input: relInput, ref_url: refUrl,
+          domain: refDomain.length ? refDomain : null,
+          is_compound: relInput.includes(' '),
+          lang_custom: Object.keys(langCustom).length ? langCustom : null,
+          desc_custom: Object.keys(descCustom).length ? descCustom : null,
+        };
+      }
+    }
+
     if (t.user_edit && t.user_edit.is_compound) {
       _compoundRequests.push({
         abbrev:       t.word,
@@ -1544,10 +1575,13 @@ async function doMergeProcessed(){
         desc_custom:  t.user_edit.desc_custom  || null,
         domain:       t.user_edit.domain || null,
       });
+      // compound는 appW에 넣지 않음 — register_compound API가 별도 처리
+    } else {
+      appW.push(wordBody);
     }
   });
 
-  if (!appW.length && !appC.length && !rej.length) {
+  if (!appW.length && !appC.length && !rej.length && !_compoundRequests.length) {
     toast('처리할 대상 없음','ter'); return;
   }
   

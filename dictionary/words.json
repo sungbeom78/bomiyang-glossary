@@ -1709,6 +1709,34 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "attribute",
+      "lang": {
+        "en": "attribute",
+        "ko": "속성",
+        "ja": "属性",
+        "zh_hans": "属性"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "데이터나 객체가 가지는 특징이나 성질",
+        "en": "A characteristic or property of data or an object"
+      },
+      "from": "attribute",
+      "variants": [
+        {
+          "type": "abbreviation",
+          "short": "ATRS",
+          "long": "attribute"
+        }
+      ],
+      "created_at": "2026-04-28T04:16:23Z",
+      "updated_at": "2026-04-28T04:16:23Z"
+    },
+    {
       "id": "audit",
       "lang": {
         "en": "audit",
@@ -7027,6 +7055,48 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "daemonize",
+      "lang": {
+        "en": "daemonize",
+        "ko": "데몬화하다",
+        "ja": "デーモン化する",
+        "zh_hans": "守护化"
+      },
+      "canonical_pos": "verb",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "To configure a process to run in the background",
+        "ko": "프로세스를 백그라운드에서 실행되도록 설정하는 것"
+      },
+      "variants": [
+        {
+          "type": "verb_form",
+          "value": "daemonizes"
+        },
+        {
+          "type": "present_participle",
+          "value": "daemonizing"
+        },
+        {
+          "type": "past",
+          "value": "daemonized"
+        },
+        {
+          "type": "noun_form",
+          "value": "daemonization"
+        }
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/daemonize"
+      ],
+      "from": "daemonize",
+      "created_at": "2026-04-28T04:16:23Z",
+      "updated_at": "2026-04-28T04:16:23Z"
+    },
+    {
       "id": "daily",
       "domain": [
         "general"
@@ -8275,6 +8345,36 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "digit",
+      "lang": {
+        "en": "digit",
+        "ko": "숫자",
+        "ja": "数字",
+        "zh_hans": "数字"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "A symbol representing a number",
+        "ko": "숫자를 나타내는 기호"
+      },
+      "variants": [
+        {
+          "type": "plural",
+          "value": "digits"
+        }
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/digits"
+      ],
+      "from": "digit",
+      "created_at": "2026-04-28T04:16:23Z",
+      "updated_at": "2026-04-28T04:16:23Z"
     },
     {
       "id": "direct",
@@ -22936,6 +23036,27 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "rampup",
+      "lang": {
+        "en": "rampup",
+        "ko": "증설",
+        "ja": "増設",
+        "zh_hans": "扩容"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "시스템의 운영 또는 자원 할당을 점진적으로 늘리는 과정",
+        "en": "The process of gradually increasing system operation or resource allocation"
+      },
+      "from": "rampup",
+      "created_at": "2026-04-28T04:16:23Z",
+      "updated_at": "2026-04-28T04:16:23Z"
     },
     {
       "id": "range",

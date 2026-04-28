@@ -51,6 +51,25 @@ PENDING_PATH  = DICT_DIR / "pending_words.json"
 GLOSSARY_PATH = REPO_ROOT / "GLOSSARY.md"
 GITIGNORE     = REPO_ROOT / ".gitignore"
 
+# ── .env 자동 로드 (AI API 키 등) ──────────────────────────────────────
+def _load_dotenv():
+    """Load .env file into os.environ for AI API keys (GOOGLE_API_KEY, etc.)."""
+    import os
+    for candidate in [REPO_ROOT.parent / ".env", REPO_ROOT / ".env"]:
+        if candidate.exists():
+            for line in candidate.read_text(encoding="utf-8", errors="replace").splitlines():
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                k, v = line.split("=", 1)
+                k = k.strip()
+                v = v.strip().strip('"').strip("'")
+                if k and k not in os.environ:
+                    os.environ[k] = v
+            break
+
+_load_dotenv()
+
 LOG_DIR.mkdir(exist_ok=True)
 
 # ── 알림 / Trading Freeze 모듈 로드 ────────────────────────────
@@ -908,9 +927,24 @@ def batch_run():
     api_type = body.get("api_type", "").strip()   # UI에서 선택한 API 종류
     model    = body.get("model",    "").strip()   # UI에서 선택한 모델
 
+    # UI가 전달한 scan candidates를 파일로 저장하여 batch에 전달 (재스캔 방지)
+    scan_input_path = ""
+    ui_candidates = body.get("candidates", [])
+    if ui_candidates:
+        try:
+            scan_json = {"count": len(ui_candidates), "candidates": ui_candidates}
+            scan_tmp = REPO_ROOT.parent / "tmp" / "scan_cache.json"
+            scan_tmp.parent.mkdir(parents=True, exist_ok=True)
+            scan_tmp.write_text(json.dumps(scan_json, ensure_ascii=False), encoding="utf-8")
+            scan_input_path = str(scan_tmp)
+            log.info(f"[batch] UI scan 결과 수신: {len(ui_candidates)}개 → {scan_input_path}")
+        except Exception as e:
+            log.warning(f"[batch] UI scan 캐시 실패: {e}, fallback to re-scan")
+
     cmd_args = [sys.executable, str(BIN_DIR / "batch_items.py"), "--mode", "word", "--register-mode", reg_mode]
-    
     cmd_args.append("--ui-prog")
+    if scan_input_path:
+        cmd_args.extend(["--scan-input", scan_input_path])
 
     # UI 선택값을 환경변수로 주입 (비어있으면 .env 값 그대로 사용)
     import os
@@ -1394,6 +1428,18 @@ def batch_merge():
                 return "verb_derived"
             return "verb_derived"
 
+        # compound auto-detection helper: check if a word can be decomposed into 2 existing words
+        def _try_decompose_compound(wid: str) -> list:
+            """Try to split wid into exactly 2 existing words. Returns [w1, w2] or []."""
+            wid_lower = wid.lower()
+            # Try all split positions (min 2 chars per part)
+            for split_pos in range(2, len(wid_lower) - 1):
+                left = wid_lower[:split_pos]
+                right = wid_lower[split_pos:]
+                if left in existing_word_ids and right in existing_word_ids:
+                    return [left, right]
+            return []
+
         # 새 단어 추가
         for w in approved_words:
             wid = w.get("id")
@@ -1417,6 +1463,28 @@ def batch_merge():
                         parent_w["updated_at"] = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
                         words_added += 1
                         log.info(f"[batch] added '{wid}' as {vtype} variant of '{from_word}'")
+                    continue
+
+            # Compound auto-detection: if wid = existingWord1 + existingWord2, register as compound
+            if wid not in existing_word_ids and wid not in existing_comp_ids:
+                parts = _try_decompose_compound(wid)
+                if parts:
+                    comp_entry = {
+                        "id": wid,
+                        "words": parts,
+                        "lang": w.get("lang", {"en": wid}),
+                        "domain": w.get("domain", "general"),
+                        "canonical_pos": w.get("canonical_pos", "noun"),
+                        "description_i18n": w.get("description_i18n", {}),
+                        "source_urls": w.get("source_urls", []),
+                        "variants": w.get("variants", []),
+                        "status": "active",
+                    }
+                    _inject_metadata(comp_entry)
+                    cd["compounds"].append(comp_entry)
+                    existing_comp_ids.add(wid)
+                    comps_added += 1
+                    log.info(f"[batch] auto-compound '{wid}' → {parts}")
                     continue
 
             if wid not in existing_word_ids:
