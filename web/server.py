@@ -1482,7 +1482,7 @@ def main():
     parser = argparse.ArgumentParser(description="glossary 웹 UI 서버")
     parser.add_argument("--admin-port", type=int, default=3002)
     parser.add_argument("--public-port", type=int, default=9001)
-    parser.add_argument("--host", default="0.0.0.0")
+    parser.add_argument("--host", default="127.0.0.1")
     args = parser.parse_args()
 
     # Public Port 정보를 전역에서 알 수 있도록 설정
