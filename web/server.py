@@ -1008,6 +1008,35 @@ def clear_drafts():
     save_drafts({"drafts": []})
     return jsonify({"ok": True})
 
+@app.route("/api/drafts/save", methods=["POST"])
+def save_drafts_from_scan():
+    """Scan candidates to drafts.json (merge, no duplicates)."""
+    body = request.get_json() or {}
+    items = body.get("items", [])
+    if not items:
+        return jsonify({"ok": False, "error": "no items"})
+
+    dd = load_drafts()
+    existing_ids = {d.get("id") for d in dd.get("drafts", [])}
+    added = 0
+    for item in items:
+        wid = item.get("name") or item.get("id", "")
+        if not wid or wid in existing_ids:
+            continue
+        dd["drafts"].append({
+            "id": wid,
+            "source": ",".join(item.get("sources", [])),
+            "classification": "word",
+            "meaning_en": "",
+            "status": "scan_candidate",
+        })
+        existing_ids.add(wid)
+        added += 1
+
+    save_drafts(dd)
+    log.info(f"[drafts] saved {added} scan candidates to drafts.json")
+    return jsonify({"ok": True, "added": added, "total": len(dd["drafts"])})
+
 
 @app.route("/api/batch/register_compound", methods=["POST"])
 def batch_register_compound():
@@ -1342,10 +1371,49 @@ def batch_merge():
         words_added = 0
         comps_added = 0
 
+        # prefix detection helper
+        _KNOWN_PREFIXES = (
+            "re", "un", "pre", "dis", "mis", "over", "under",
+            "out", "non", "de", "anti", "counter", "sub", "super",
+        )
+
+        def _detect_variant_type(child_id: str, parent_id: str) -> str:
+            """Determine variant type based on relationship between child and parent word."""
+            cl = child_id.lower()
+            pl = parent_id.lower()
+            for pfx in _KNOWN_PREFIXES:
+                if cl == pfx + pl:
+                    return "prefix"
+            # suffix check (e.g., sender from send)
+            if cl.startswith(pl):
+                return "verb_derived"
+            return "verb_derived"
+
         # 새 단어 추가
         for w in approved_words:
             wid = w.get("id")
             if not wid: continue
+
+            # from 필드가 기존 단어를 가리키면: 독립 등록 대신 부모 단어의 variant로 추가
+            from_word = w.get("from", "")
+            if from_word and from_word in existing_word_ids and wid != from_word:
+                parent_w = next((x for x in wd["words"] if x["id"] == from_word), None)
+                if parent_w:
+                    evars = parent_w.setdefault("variants", [])
+                    vtype = _detect_variant_type(wid, from_word)
+                    # check duplicate
+                    already = any(
+                        (ev.get("value") or "").lower() == wid.lower()
+                        for ev in evars
+                    )
+                    if not already:
+                        evars.append({"type": vtype, "value": wid})
+                        from datetime import datetime, timezone
+                        parent_w["updated_at"] = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+                        words_added += 1
+                        log.info(f"[batch] added '{wid}' as {vtype} variant of '{from_word}'")
+                    continue
+
             if wid not in existing_word_ids:
                 _inject_metadata(w)
                 wd["words"].append(w)

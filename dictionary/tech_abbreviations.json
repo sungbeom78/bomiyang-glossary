@@ -1,77 +1,458 @@
 {
   "abbreviations": [
-    {"id": "ai", "name": "Artificial Intelligence", "meaning": "인공지능", "domain": "General IT"},
-    {"id": "api", "name": "Application Programming Interface", "meaning": "애플리케이션 인터페이스", "domain": "Software"},
-    {"id": "app", "name": "Application", "meaning": "애플리케이션 앱", "domain": "Software"},
-    {"id": "aws", "name": "Amazon Web Services", "meaning": "아마존 클라우드 서비스", "domain": "Cloud"},
-    {"id": "cd", "name": "Continuous Deployment/Delivery", "meaning": "지속적 배포", "domain": "DevOps"},
-    {"id": "ci", "name": "Continuous Integration", "meaning": "지속적 통합", "domain": "DevOps"},
-    {"id": "cpu", "name": "Central Processing Unit", "meaning": "중앙 처리 장치", "domain": "Hardware"},
-    {"id": "csv", "name": "Comma Separated Values", "meaning": "쉼표 구분 데이터 형식", "domain": "Data"},
-    {"id": "css", "name": "Cascading Style Sheets", "meaning": "스타일시트 문서", "domain": "Frontend"},
-    {"id": "d", "name": "Day", "meaning": "일 단위", "domain": "Format"},
-    {"id": "db", "name": "Database", "meaning": "데이터베이스", "domain": "Backend"},
-    {"id": "dd", "name": "Day", "meaning": "일(날짜)", "domain": "Format"},
-    {"id": "dir", "name": "Directory", "meaning": "디렉터리 폴더", "domain": "System"},
-    {"id": "dt", "name": "Datetime", "meaning": "날짜 및 시간", "domain": "System"},
-    {"id": "env", "name": "Environment", "meaning": "환경변수 및 설정", "domain": "System"},
-    {"id": "fd", "name": "File Descriptor", "meaning": "파일 기술자", "domain": "System"},
-    {"id": "fk", "name": "Foreign Key", "meaning": "외래 키", "domain": "Database"},
-    {"id": "fs", "name": "File System", "meaning": "파일 시스템", "domain": "System"},
-    {"id": "ftp", "name": "File Transfer Protocol", "meaning": "파일 전송 프로토콜", "domain": "Network"},
-    {"id": "gb", "name": "Gigabyte", "meaning": "기가바이트", "domain": "System"},
-    {"id": "gpu", "name": "Graphics Processing Unit", "meaning": "그래픽 처리 장치", "domain": "Hardware"},
-    {"id": "gui", "name": "Graphical User Interface", "meaning": "그래픽 사용자 인터페이스", "domain": "Frontend"},
-    {"id": "hh", "name": "Hour", "meaning": "시", "domain": "Format"},
-    {"id": "hloc", "name": "High Low Open Close", "meaning": "고가 저가 시가 종가", "domain": "Finance"},
-    {"id": "html", "name": "Hypertext Markup Language", "meaning": "HTML 문서", "domain": "Frontend"},
-    {"id": "http", "name": "Hypertext Transfer Protocol", "meaning": "HTTP 프로토콜", "domain": "Network"},
-    {"id": "id", "name": "Identifier", "meaning": "고유 식별자", "domain": "General IT"},
-    {"id": "idx", "name": "Index", "meaning": "인덱스", "domain": "General IT"},
-    {"id": "io", "name": "Input / Output", "meaning": "입출력", "domain": "System"},
-    {"id": "ip", "name": "Internet Protocol", "meaning": "인터넷 프로토콜 주소", "domain": "Network"},
-    {"id": "js", "name": "JavaScript", "meaning": "자바스크립트 언어", "domain": "Frontend"},
-    {"id": "json", "name": "JavaScript Object Notation", "meaning": "JSON 데이터 포맷", "domain": "Data"},
-    {"id": "kb", "name": "Kilobyte", "meaning": "킬로바이트", "domain": "System"},
-    {"id": "mb", "name": "Megabyte", "meaning": "메가바이트", "domain": "System"},
-    {"id": "md", "name": "Markdown", "meaning": "마크다운 문서", "domain": "Document"},
-    {"id": "mm", "name": "Month/Minute", "meaning": "월 또는 분", "domain": "Format"},
-    {"id": "msg", "name": "Message", "meaning": "메시지", "domain": "Communication"},
-    {"id": "obj", "name": "Object", "meaning": "객체 오브젝트", "domain": "Software"},
-    {"id": "ok", "name": "Okay", "meaning": "성공/확인", "domain": "General IT"},
-    {"id": "omp", "name": "Order Management Protocol", "meaning": "주문 관리 체계", "domain": "Finance"},
-    {"id": "os", "name": "Operating System", "meaning": "운영 체제", "domain": "System"},
-    {"id": "pdf", "name": "Portable Document Format", "meaning": "PDF 문서", "domain": "Document"},
-    {"id": "pg", "name": "Postgres", "meaning": "포스트그레스", "domain": "Database"},
-    {"id": "pid", "name": "Process ID", "meaning": "프로세스 식별자", "domain": "System"},
-    {"id": "pk", "name": "Primary Key", "meaning": "기본 키", "domain": "Database"},
-    {"id": "pr", "name": "Pull Request", "meaning": "풀 리퀘스트 코드 통합 요청", "domain": "VCS"},
-    {"id": "qa", "name": "Quality Assurance", "meaning": "품질 보증 과정", "domain": "Testing"},
-    {"id": "ram", "name": "Random Access Memory", "meaning": "주기억장치 램", "domain": "Hardware"},
-    {"id": "req", "name": "Request", "meaning": "요청", "domain": "Network"},
-    {"id": "res", "name": "Response / Result", "meaning": "응답 또는 결과", "domain": "Network"},
-    {"id": "rpc", "name": "Remote Procedure Call", "meaning": "원격 프로시저 호출", "domain": "Network"},
-    {"id": "ssh", "name": "Secure Shell", "meaning": "보안 셸 접속", "domain": "Network"},
-    {"id": "sql", "name": "Structured Query Language", "meaning": "데이터베이스 질의어", "domain": "Database"},
-    {"id": "ssl", "name": "Secure Sockets Layer", "meaning": "보안 소켓 계층", "domain": "Network"},
-    {"id": "str", "name": "String", "meaning": "문자열 자료형", "domain": "Software"},
-    {"id": "tc", "name": "Test Case", "meaning": "테스트 케이스", "domain": "Testing"},
-    {"id": "tcp", "name": "Transmission Control Protocol", "meaning": "전송 제어 프로토콜", "domain": "Network"},
-    {"id": "tls", "name": "Transport Layer Security", "meaning": "전송 계층 보안", "domain": "Network"},
-    {"id": "tmp", "name": "Temporary", "meaning": "임시 파일/영역", "domain": "System"},
-    {"id": "ts", "name": "TypeScript / Timestamp", "meaning": "타입스크립트 언어 또는 타임스탬프", "domain": "General IT"},
-    {"id": "tx", "name": "Transaction", "meaning": "트랜잭션 데이터베이스/메시지", "domain": "General IT"},
-    {"id": "ui", "name": "User Interface", "meaning": "사용자 인터페이스", "domain": "Frontend"},
-    {"id": "up", "name": "Up", "meaning": "상승 활성화 상태", "domain": "General IT"},
-    {"id": "uri", "name": "Uniform Resource Identifier", "meaning": "통합 자원 식별자", "domain": "Network"},
-    {"id": "url", "name": "Uniform Resource Locator", "meaning": "통합 자원 위치 주소", "domain": "Network"},
-    {"id": "usb", "name": "Universal Serial Bus", "meaning": "USB 버스 규격", "domain": "Hardware"},
-    {"id": "ux", "name": "User Experience", "meaning": "사용자 경험", "domain": "Frontend"},
-    {"id": "vm", "name": "Virtual Machine", "meaning": "가상 머신", "domain": "System"},
-    {"id": "ws", "name": "WebSocket", "meaning": "웹소켓 프로토콜", "domain": "Network"},
-    {"id": "xml", "name": "Extensible Markup Language", "meaning": "XML 문서", "domain": "Data"},
-    {"id": "yaml", "name": "YAML Ain't Markup Language", "meaning": "YAML 데이터 포맷", "domain": "Data"},
-    {"id": "yml", "name": "YAML File Extension", "meaning": "YAML 파일 포맷", "domain": "Data"},
-    {"id": "yy", "name": "Year", "meaning": "연", "domain": "Format"}
+    {
+      "id": "ai",
+      "name": "Artificial Intelligence",
+      "meaning": "인공지능",
+      "domain": "General IT"
+    },
+    {
+      "id": "api",
+      "name": "Application Programming Interface",
+      "meaning": "애플리케이션 인터페이스",
+      "domain": "Software"
+    },
+    {
+      "id": "app",
+      "name": "Application",
+      "meaning": "애플리케이션 앱",
+      "domain": "Software"
+    },
+    {
+      "id": "aws",
+      "name": "Amazon Web Services",
+      "meaning": "아마존 클라우드 서비스",
+      "domain": "Cloud"
+    },
+    {
+      "id": "cd",
+      "name": "Continuous Deployment/Delivery",
+      "meaning": "지속적 배포",
+      "domain": "DevOps"
+    },
+    {
+      "id": "ci",
+      "name": "Continuous Integration",
+      "meaning": "지속적 통합",
+      "domain": "DevOps"
+    },
+    {
+      "id": "coro",
+      "full": "coroutine",
+      "description": "Python asynchronous coroutine function/object abbreviation"
+    },
+    {
+      "id": "cpu",
+      "name": "Central Processing Unit",
+      "meaning": "중앙 처리 장치",
+      "domain": "Hardware"
+    },
+    {
+      "id": "css",
+      "name": "Cascading Style Sheets",
+      "meaning": "스타일시트 문서",
+      "domain": "Frontend"
+    },
+    {
+      "id": "csv",
+      "name": "Comma Separated Values",
+      "meaning": "쉼표 구분 데이터 형식",
+      "domain": "Data"
+    },
+    {
+      "id": "d",
+      "name": "Day",
+      "meaning": "일 단위",
+      "domain": "Format"
+    },
+    {
+      "id": "db",
+      "name": "Database",
+      "meaning": "데이터베이스",
+      "domain": "Backend"
+    },
+    {
+      "id": "dd",
+      "name": "Day",
+      "meaning": "일(날짜)",
+      "domain": "Format"
+    },
+    {
+      "id": "dir",
+      "name": "Directory",
+      "meaning": "디렉터리 폴더",
+      "domain": "System"
+    },
+    {
+      "id": "dt",
+      "name": "Datetime",
+      "meaning": "날짜 및 시간",
+      "domain": "System"
+    },
+    {
+      "id": "env",
+      "name": "Environment",
+      "meaning": "환경변수 및 설정",
+      "domain": "System"
+    },
+    {
+      "id": "fd",
+      "name": "File Descriptor",
+      "meaning": "파일 기술자",
+      "domain": "System"
+    },
+    {
+      "id": "fk",
+      "name": "Foreign Key",
+      "meaning": "외래 키",
+      "domain": "Database"
+    },
+    {
+      "id": "fs",
+      "name": "File System",
+      "meaning": "파일 시스템",
+      "domain": "System"
+    },
+    {
+      "id": "ftp",
+      "name": "File Transfer Protocol",
+      "meaning": "파일 전송 프로토콜",
+      "domain": "Network"
+    },
+    {
+      "id": "gb",
+      "name": "Gigabyte",
+      "meaning": "기가바이트",
+      "domain": "System"
+    },
+    {
+      "id": "gpu",
+      "name": "Graphics Processing Unit",
+      "meaning": "그래픽 처리 장치",
+      "domain": "Hardware"
+    },
+    {
+      "id": "gui",
+      "name": "Graphical User Interface",
+      "meaning": "그래픽 사용자 인터페이스",
+      "domain": "Frontend"
+    },
+    {
+      "id": "hh",
+      "name": "Hour",
+      "meaning": "시",
+      "domain": "Format"
+    },
+    {
+      "id": "hloc",
+      "name": "High Low Open Close",
+      "meaning": "고가 저가 시가 종가",
+      "domain": "Finance"
+    },
+    {
+      "id": "html",
+      "name": "Hypertext Markup Language",
+      "meaning": "HTML 문서",
+      "domain": "Frontend"
+    },
+    {
+      "id": "http",
+      "name": "Hypertext Transfer Protocol",
+      "meaning": "HTTP 프로토콜",
+      "domain": "Network"
+    },
+    {
+      "id": "id",
+      "name": "Identifier",
+      "meaning": "고유 식별자",
+      "domain": "General IT"
+    },
+    {
+      "id": "idx",
+      "name": "Index",
+      "meaning": "인덱스",
+      "domain": "General IT"
+    },
+    {
+      "id": "io",
+      "name": "Input / Output",
+      "meaning": "입출력",
+      "domain": "System"
+    },
+    {
+      "id": "ip",
+      "name": "Internet Protocol",
+      "meaning": "인터넷 프로토콜 주소",
+      "domain": "Network"
+    },
+    {
+      "id": "js",
+      "name": "JavaScript",
+      "meaning": "자바스크립트 언어",
+      "domain": "Frontend"
+    },
+    {
+      "id": "json",
+      "name": "JavaScript Object Notation",
+      "meaning": "JSON 데이터 포맷",
+      "domain": "Data"
+    },
+    {
+      "id": "kb",
+      "name": "Kilobyte",
+      "meaning": "킬로바이트",
+      "domain": "System"
+    },
+    {
+      "id": "mb",
+      "name": "Megabyte",
+      "meaning": "메가바이트",
+      "domain": "System"
+    },
+    {
+      "id": "md",
+      "name": "Markdown",
+      "meaning": "마크다운 문서",
+      "domain": "Document"
+    },
+    {
+      "id": "mm",
+      "name": "Month/Minute",
+      "meaning": "월 또는 분",
+      "domain": "Format"
+    },
+    {
+      "id": "msg",
+      "name": "Message",
+      "meaning": "메시지",
+      "domain": "Communication"
+    },
+    {
+      "id": "obj",
+      "name": "Object",
+      "meaning": "객체 오브젝트",
+      "domain": "Software"
+    },
+    {
+      "id": "ok",
+      "name": "Okay",
+      "meaning": "성공/확인",
+      "domain": "General IT"
+    },
+    {
+      "id": "omp",
+      "name": "Order Management Protocol",
+      "meaning": "주문 관리 체계",
+      "domain": "Finance"
+    },
+    {
+      "id": "os",
+      "name": "Operating System",
+      "meaning": "운영 체제",
+      "domain": "System"
+    },
+    {
+      "id": "pdf",
+      "name": "Portable Document Format",
+      "meaning": "PDF 문서",
+      "domain": "Document"
+    },
+    {
+      "id": "pg",
+      "name": "Postgres",
+      "meaning": "포스트그레스",
+      "domain": "Database"
+    },
+    {
+      "id": "pid",
+      "name": "Process ID",
+      "meaning": "프로세스 식별자",
+      "domain": "System"
+    },
+    {
+      "id": "pk",
+      "name": "Primary Key",
+      "meaning": "기본 키",
+      "domain": "Database"
+    },
+    {
+      "id": "pr",
+      "name": "Pull Request",
+      "meaning": "풀 리퀘스트 코드 통합 요청",
+      "domain": "VCS"
+    },
+    {
+      "id": "qa",
+      "name": "Quality Assurance",
+      "meaning": "품질 보증 과정",
+      "domain": "Testing"
+    },
+    {
+      "id": "ram",
+      "name": "Random Access Memory",
+      "meaning": "주기억장치 램",
+      "domain": "Hardware"
+    },
+    {
+      "id": "req",
+      "name": "Request",
+      "meaning": "요청",
+      "domain": "Network"
+    },
+    {
+      "id": "res",
+      "name": "Response / Result",
+      "meaning": "응답 또는 결과",
+      "domain": "Network"
+    },
+    {
+      "id": "rpc",
+      "name": "Remote Procedure Call",
+      "meaning": "원격 프로시저 호출",
+      "domain": "Network"
+    },
+    {
+      "id": "sql",
+      "name": "Structured Query Language",
+      "meaning": "데이터베이스 질의어",
+      "domain": "Database"
+    },
+    {
+      "id": "sse",
+      "name": "Server-Sent Events",
+      "meaning": "서버 전송 이벤트",
+      "domain": "Network"
+    },
+    {
+      "id": "ssh",
+      "name": "Secure Shell",
+      "meaning": "보안 셸 접속",
+      "domain": "Network"
+    },
+    {
+      "id": "ssl",
+      "name": "Secure Sockets Layer",
+      "meaning": "보안 소켓 계층",
+      "domain": "Network"
+    },
+    {
+      "id": "str",
+      "name": "String",
+      "meaning": "문자열 자료형",
+      "domain": "Software"
+    },
+    {
+      "id": "tc",
+      "name": "Test Case",
+      "meaning": "테스트 케이스",
+      "domain": "Testing"
+    },
+    {
+      "id": "tcp",
+      "name": "Transmission Control Protocol",
+      "meaning": "전송 제어 프로토콜",
+      "domain": "Network"
+    },
+    {
+      "id": "tls",
+      "name": "Transport Layer Security",
+      "meaning": "전송 계층 보안",
+      "domain": "Network"
+    },
+    {
+      "id": "tmp",
+      "name": "Temporary",
+      "meaning": "임시 파일/영역",
+      "domain": "System"
+    },
+    {
+      "id": "ts",
+      "name": "TypeScript / Timestamp",
+      "meaning": "타입스크립트 언어 또는 타임스탬프",
+      "domain": "General IT"
+    },
+    {
+      "id": "tx",
+      "name": "Transaction",
+      "meaning": "트랜잭션 데이터베이스/메시지",
+      "domain": "General IT"
+    },
+    {
+      "id": "ui",
+      "name": "User Interface",
+      "meaning": "사용자 인터페이스",
+      "domain": "Frontend"
+    },
+    {
+      "id": "up",
+      "name": "Up",
+      "meaning": "상승 활성화 상태",
+      "domain": "General IT"
+    },
+    {
+      "id": "uri",
+      "name": "Uniform Resource Identifier",
+      "meaning": "통합 자원 식별자",
+      "domain": "Network"
+    },
+    {
+      "id": "url",
+      "name": "Uniform Resource Locator",
+      "meaning": "통합 자원 위치 주소",
+      "domain": "Network"
+    },
+    {
+      "id": "usb",
+      "name": "Universal Serial Bus",
+      "meaning": "USB 버스 규격",
+      "domain": "Hardware"
+    },
+    {
+      "id": "ux",
+      "name": "User Experience",
+      "meaning": "사용자 경험",
+      "domain": "Frontend"
+    },
+    {
+      "id": "vm",
+      "name": "Virtual Machine",
+      "meaning": "가상 머신",
+      "domain": "System"
+    },
+    {
+      "id": "ws",
+      "name": "WebSocket",
+      "meaning": "웹소켓 프로토콜",
+      "domain": "Network"
+    },
+    {
+      "id": "xml",
+      "name": "Extensible Markup Language",
+      "meaning": "XML 문서",
+      "domain": "Data"
+    },
+    {
+      "id": "yaml",
+      "name": "YAML Ain't Markup Language",
+      "meaning": "YAML 데이터 포맷",
+      "domain": "Data"
+    },
+    {
+      "id": "ymd",
+      "full": "Year-Month-Day",
+      "description": "Date format pattern (YYYY-MM-DD)"
+    },
+    {
+      "id": "yml",
+      "name": "YAML File Extension",
+      "meaning": "YAML 파일 포맷",
+      "domain": "Data"
+    },
+    {
+      "id": "yy",
+      "name": "Year",
+      "meaning": "연",
+      "domain": "Format"
+    }
   ]
 }
