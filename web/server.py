@@ -271,7 +271,21 @@ def run_runpy(*extra_args) -> dict:
 
 @app.route("/")
 def index():
-    return send_from_directory(str(WEB_DIR), "index.html")
+    import re
+    from flask import Response
+    
+    port = request.environ.get('SERVER_PORT', '5000')
+    public_port = os.environ.get('PUBLIC_PORT', '9001')
+    is_public = str(port) == public_port
+    
+    with open(WEB_DIR / "index.html", encoding="utf-8") as f:
+        html = f.read()
+        
+    if is_public:
+        html = re.sub(r'<!-- ADMIN_ONLY_START -->.*?<!-- ADMIN_ONLY_END -->', '', html, flags=re.DOTALL)
+        html = html.replace('const IS_PUBLIC = false;', 'const IS_PUBLIC = true;')
+        
+    return Response(html, mimetype='text/html')
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -1397,25 +1411,54 @@ def batch_merge():
 
 def main():
     parser = argparse.ArgumentParser(description="glossary 웹 UI 서버")
-    parser.add_argument("--port", type=int, default=5000)
-    parser.add_argument("--host", default="127.0.0.1")
+    parser.add_argument("--admin-port", type=int, default=3002)
+    parser.add_argument("--public-port", type=int, default=9001)
+    parser.add_argument("--host", default="0.0.0.0")
     args = parser.parse_args()
+
+    # Public Port 정보를 전역에서 알 수 있도록 설정
+    import os
+    os.environ['PUBLIC_PORT'] = str(args.public_port)
 
     # Trading Freeze 상태 출력
     freeze_status = get_freeze_status()
     freeze_mark = "🔴 FREEZE" if freeze_status["is_frozen"] else "🟢 OK"
 
-    log.info(f"[server] 시작  port={args.port}  repo={REPO_ROOT}")
+    log.info(f"[server] 시작  admin_port={args.admin_port} public_port={args.public_port}  repo={REPO_ROOT}")
     print(f"\n  glossary UI 서버 시작")
     print(f"  저장소 루트  : {REPO_ROOT}")
     print(f"  로그 파일    : {LOG_FILE}")
-    print(f"  접속 주소    : http://{args.host}:{args.port}")
+    print(f"  Admin 주소   : http://{args.host}:{args.admin_port}")
+    print(f"  Public 주소  : http://{args.host}:{args.public_port}")
     print(f"  Trading Freeze: {freeze_mark}")
     if freeze_status["is_frozen"]:
         print(f"    이유: {freeze_status['reason']}")
     print(f"  종료         : Ctrl+C\n")
 
-    app.run(host=args.host, port=args.port, debug=False)
+    import threading
+    from werkzeug.serving import make_server
+
+    class ServerThread(threading.Thread):
+        def __init__(self, app, host, port):
+            threading.Thread.__init__(self)
+            self.server = make_server(host, port, app, threaded=True)
+            self.daemon = True
+
+        def run(self):
+            self.server.serve_forever()
+
+    admin_server = ServerThread(app, args.host, args.admin_port)
+    public_server = ServerThread(app, args.host, args.public_port)
+
+    admin_server.start()
+    public_server.start()
+
+    try:
+        while True:
+            import time
+            time.sleep(1)
+    except KeyboardInterrupt:
+        pass
 
 
 if __name__ == "__main__":

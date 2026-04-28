@@ -44,17 +44,21 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
   <div id="tb-stats"></div>
   <div id="tb-branch"><span class="dot"></span><span id="br-nm">—</span></div>
   <div class="tbsp"></div>
+<!-- ADMIN_ONLY_START -->
   <button class="btn btn-gh" onclick="openCheckId()" title="식별자 단어 분해">⊙ check-id</button>
   <button class="btn btn-gh" onclick="openLogModal()">📋 log</button>
   <button class="btn btn-gh" onclick="openBatchModal()">⚙ batch</button>
   <button class="btn btn-gh" onclick="openSettings()" title="환경설정" data-i18n="btn_settings">⚙ 설정</button>
   <button class="btn btn-gr" id="git-btn" onclick="openGit()">⎇ commit &amp; push</button>
+<!-- ADMIN_ONLY_END -->
 </header>
 <div id="tabs">
   <button class="tab active" data-tab="words"     data-i18n="tab_words" onclick="switchTab('words')">단어<span class="badge" id="badge-words">0</span></button>
   <button class="tab"        data-tab="compounds" data-i18n="tab_compounds" onclick="switchTab('compounds')">복합어<span class="badge" id="badge-compounds">0</span></button>
   <button class="tab"        data-tab="banned"    data-i18n="tab_banned" onclick="switchTab('banned')">금지표현<span class="badge" id="badge-banned">0</span></button>
+<!-- ADMIN_ONLY_START -->
   <button class="tab"        data-tab="drafts"    data-i18n="tab_drafts" onclick="switchTab('drafts')">보류(Drafts)<span class="badge" id="badge-drafts">0</span></button>
+<!-- ADMIN_ONLY_END -->
   <div id="tab-actions"></div>
 </div>
 <div id="content">
@@ -67,7 +71,9 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
         <select class="fsel" id="w-pos" onchange="wFilter()"><option value="" data-i18n="all_pos">전체 품사</option><option value="noun">noun</option><option value="verb">verb</option><option value="adj">adj</option><option value="adv">adv</option><option value="prefix">prefix</option><option value="suffix">suffix</option><option value="proper">proper</option></select>
       </div>
       <div class="row-cnt" id="w-cnt"></div>
+<!-- ADMIN_ONLY_START -->
       <button class="btn btn-ac" onclick="openWordForm(null)"><span data-i18n="btn_add_word">+ 단어 추가</span></button>
+<!-- ADMIN_ONLY_END -->
     </div>
     <div class="tw"><table id="w-tbl">
       <colgroup><col style="width:130px"><col style="width:110px"><col style="width:90px"><col style="width:60px"><col style="width:80px"><col style="width:80px"><col style="width:auto"><col style="width:40px"></colgroup>
@@ -90,7 +96,9 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
         <select class="fsel" id="c-domain" onchange="cFilter()"><option value="" data-i18n="all_domain">전체 domain</option><option value="trading">trading</option><option value="market">market</option><option value="system">system</option><option value="infra">infra</option><option value="ui">ui</option><option value="general">general</option><option value="proper">proper</option></select>
       </div>
       <div class="row-cnt" id="c-cnt"></div>
+<!-- ADMIN_ONLY_START -->
       <button class="btn btn-ac" onclick="openCompoundForm(null)">+ 복합어 추가</button>
+<!-- ADMIN_ONLY_END -->
     </div>
     <div class="tw"><table id="c-tbl">
       <colgroup><col style="width:160px"><col style="width:160px"><col style="width:90px"><col style="width:120px"><col style="width:70px"><col style="width:80px"><col style="width:auto"><col style="width:40px"></colgroup>
@@ -110,7 +118,9 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
       <div class="sw"><span class="si-s">⌕</span><input class="search-inp" id="b-search" type="text" placeholder="검색 — 금지표현, 올바른 표현, 사유…" oninput="bFilter()"></div>
       <div style="flex:1 1 0"></div>
       <div class="row-cnt" id="b-cnt"></div>
+<!-- ADMIN_ONLY_START -->
       <button class="btn btn-ac" onclick="openBannedForm(null)">+ 금지표현 추가</button>
+<!-- ADMIN_ONLY_END -->
     </div>
     <div class="tw"><table id="b-tbl">
       <colgroup><col style="width:140px"><col style="width:240px"><col style="width:180px"><col style="width:auto"><col style="width:40px"></colgroup>
@@ -119,6 +129,7 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
     </table></div>
   </div>
   <!-- DRAFTS -->
+<!-- ADMIN_ONLY_START -->
   <div class="view" id="view-drafts">
     <div class="toolbar">
       <div class="sw"><span class="si-s">⌕</span><input class="search-inp" id="d-search" type="text" placeholder="검색 — id, 한글…" oninput="dFilter()"></div>
@@ -134,6 +145,7 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
       <tbody id="d-body"></tbody>
     </table></div>
   </div>
+<!-- ADMIN_ONLY_END -->
 </div>
 </div>
 
@@ -322,6 +334,7 @@ tr.xrow td{padding:0;background:#111827;border-bottom:1px solid var(--ln)}.xi{pa
 <div id="toasts"></div>
 
 <script>
+const IS_PUBLIC = false;
 
 // --- I18N SYSTEM ---
 const I18N_DICT = {
@@ -645,7 +658,7 @@ function switchTab(tab){
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===`view-${tab}`));
   const a=document.getElementById('tab-actions');
   if(tab==='words'||tab==='compounds')
-    a.innerHTML=`<button class="btn btn-gh" onclick="runGenerate()">▷ generate</button><button class="btn btn-gh" onclick="runValidate()">▷ validate</button>`;
+    a.innerHTML=IS_PUBLIC ? '' : `<button class="btn btn-gh" onclick="runGenerate()">▷ generate</button><button class="btn btn-gh" onclick="runValidate()">▷ validate</button>`;
   else a.innerHTML='';
   
   if (tab === 'drafts') loadDrafts();
@@ -689,9 +702,9 @@ function renderWords(){
       '<td class="c-ko">' + x(lang === 'ko' ? ko : displayLang) + '</td>' +
       '<td>' + abbrHtml + '</td>' +
       '<td><span class="c-pos">' + x(w.canonical_pos) + '</span></td>' +
-      '<td><span class="c-domain ' + (DC[Array.isArray(w.domain)?w.domain[0]:w.domain] || 'd-general') + '">' + x(Array.isArray(w.domain)?w.domain[0]:w.domain) + '</span></td>' +
+      '<td class="c-domain ' + (DC[Array.isArray(w.domain)?w.domain[0]:w.domain] || 'd-general') + '">' + x(Array.isArray(w.domain)?w.domain[0]:w.domain) + '</span></td>' +
       '<td class="c-desc" title="' + x(desc) + '">' + x(desc) + '</td>' +
-      '<td style="text-align:center"><button class="del-btn" data-del-word="' + x(w.id) + '" data-del-ko="' + x(ko) + '">&#x1F5D1;</button></td>'
+      '<td style="text-align:center">' + (IS_PUBLIC ? '' : '<button class="del-btn" data-del-word="' + x(w.id) + '" data-del-ko="' + x(ko) + '">&#x1F5D1;</button>') + '</td>'
     );
     frag.appendChild(tr);
     if (isExp) {
@@ -731,7 +744,7 @@ function renderWords(){
       if (antHtml) xi += '<div class="xf full"><label>antonyms</label><div class="xv">' + antHtml + '</div></div>';
       if (urlHtml) xi += '<div class="xf full"><label>source_urls</label><div class="xv">' + urlHtml + '</div></div>';
       if (w.not && w.not.length) xi += '<div class="xf full"><label>NOT</label><div class="xv">' + nots + '</div></div>';
-      xi += '<div class="xf full"><span class="edit-link" data-edit-word="' + wid + '">&#x270F; &#xC218;&#xC815;</span></div>';
+      if (!IS_PUBLIC) xi += '<div class="xf full"><span class="edit-link" data-edit-word="' + wid + '">&#x270F; &#xC218;&#xC815;</span></div>';
       xi += '</div></td>';
       xr.innerHTML = xi;
       frag.appendChild(xr);
@@ -782,10 +795,10 @@ function renderCompounds(){
   cFlt.forEach(c=>{const isExp=c.id===cExpId;const tr=document.createElement('tr');if(isExp)tr.classList.add('sel');tr.dataset.id=c.id;
     const wchips=(c.words||[]).map(w=>`<span class="c-word-chip">${x(w)}</span>`).join('');
     const ko=x(c.lang?.ko||''), en=x(c.lang?.en||''), desc=x(c.description_i18n?.ko||'');
-    tr.innerHTML=`<td class="c-id">${c.status==="deprecated"?`<span style="color:var(--re);margin-right:4px">[DEP]</span>`:""}${x(c.id)}</td><td><div class="c-words">${wchips}</div></td><td class="c-ko">${ko}</td><td class="c-en" style="font-family:var(--mono);font-size:11px">${x(cAbbrLong(c))}</td><td><span class="c-abbr">${x(cAbbrShort(c))}</span></td><td><span class="c-domain ${DC[c.domain]||'d-general'}">${x(c.domain)}</span></td><td class="c-desc" title="${desc}">${desc}</td><td style="text-align:center"><button class="del-btn" onclick="event.stopPropagation();confirmDel(()=>doDeleteCompound('${x(c.id)}'),'${ko}')">🗑</button></td>`;
+    tr.innerHTML=`<td class="c-id">${c.status==="deprecated"?`<span style="color:var(--re);margin-right:4px">[DEP]</span>`:""}${x(c.id)}</td><td><div class="c-words">${wchips}</div></td><td class="c-ko">${ko}</td><td class="c-en" style="font-family:var(--mono);font-size:11px">${x(cAbbrLong(c))}</td><td><span class="c-abbr">${x(cAbbrShort(c))}</span></td><td><span class="c-domain ${DC[c.domain]||'d-general'}">${x(c.domain)}</span></td><td class="c-desc" title="${desc}">${desc}</td><td style="text-align:center">${IS_PUBLIC ? '' : `<button class="del-btn" onclick="event.stopPropagation();confirmDel(()=>doDeleteCompound('${x(c.id)}'),'${ko}')">🗑</button>`}</td>`;
     tr.addEventListener('click',()=>toggleCExp(c.id));tr.addEventListener('dblclick',e=>{e.preventDefault();openCompoundForm(c);});tb.appendChild(tr);
     if(isExp){const xr=document.createElement('tr');xr.className='xrow';const nots=(c.not||[]).map(n=>`<span class="not-chip">${x(n)}</span>`).join(' ');
-      xr.innerHTML=`<td colspan="8"><div class="xi"><div class="xf"><label>id</label><div class="xv" style="font-family:var(--mono);color:var(--tx3)">${x(c.id)}</div></div><div class="xf"><label>status</label><div class="xv">${x(c.status||`active`)}</div></div><div class="xf"><label>created_at</label><div class="xv dt-val" data-dt="${x(c.created_at||``)}" style="font-family:var(--mono);font-size:9px">${fmtDT(c.created_at)}</div></div><div class="xf"><label>updated_at</label><div class="xv dt-val" data-dt="${x(c.updated_at||``)}" style="font-family:var(--mono);font-size:9px">${fmtDT(c.updated_at)}</div></div><div class="xf"><label>abbr_long</label><div class="xv" style="font-family:var(--mono);color:var(--gr)">${x(cAbbrLong(c))}</div></div><div class="xf"><label>abbr_short</label><div class="xv"><span class="c-abbr">${x(cAbbrShort(c))}</span></div></div><div class="xf full"><label>등록 사유</label><div class="xv">${x(c.reason||'')}</div></div><div class="xf full"><label>description</label><div class="xv">${desc}</div></div>${c.not?.length?`<div class="xf full"><label>NOT</label><div class="xv">${nots}</div></div>`:''}<div class="xf full"><span class="edit-link" onclick="openCompoundForm(COMPOUNDS.find(c=>c.id==='${x(c.id)}'))">✏ 수정</span></div></div></td>`;
+      xr.innerHTML=`<td colspan="8"><div class="xi"><div class="xf"><label>id</label><div class="xv" style="font-family:var(--mono);color:var(--tx3)">${x(c.id)}</div></div><div class="xf"><label>status</label><div class="xv">${x(c.status||`active`)}</div></div><div class="xf"><label>created_at</label><div class="xv dt-val" data-dt="${x(c.created_at||``)}" style="font-family:var(--mono);font-size:9px">${fmtDT(c.created_at)}</div></div><div class="xf"><label>updated_at</label><div class="xv dt-val" data-dt="${x(c.updated_at||``)}" style="font-family:var(--mono);font-size:9px">${fmtDT(c.updated_at)}</div></div><div class="xf"><label>abbr_long</label><div class="xv" style="font-family:var(--mono);color:var(--gr)">${x(cAbbrLong(c))}</div></div><div class="xf"><label>abbr_short</label><div class="xv"><span class="c-abbr">${x(cAbbrShort(c))}</span></div></div><div class="xf full"><label>등록 사유</label><div class="xv">${x(c.reason||'')}</div></div><div class="xf full"><label>description</label><div class="xv">${desc}</div></div>${c.not?.length?`<div class="xf full"><label>NOT</label><div class="xv">${nots}</div></div>`:''}${IS_PUBLIC ? '' : `<div class="xf full"><span class="edit-link" onclick="openCompoundForm(COMPOUNDS.find(c=>c.id==='${x(c.id)}'))">✏ 수정</span></div>`}</div></td>`;
       tb.appendChild(xr);}
   });
   document.getElementById('c-cnt').textContent=cFlt.length===COMPOUNDS.length?`${COMPOUNDS.length}개`:`${cFlt.length}/${COMPOUNDS.length}개`;
@@ -795,7 +808,7 @@ document.querySelectorAll('#c-tbl th.srt').forEach(th=>{th.addEventListener('cli
 
 // ── BANNED ──
 function bFilter(){const q=document.getElementById('b-search').value.toLowerCase().trim();bFlt=BANNED.filter(b=>{if(!q)return true;const cv=typeof b.correct==='object'?(b.correct?.value||''):String(b.correct||'');const reason=b.reason_i18n?.(window.LANG)||b.reason_i18n?.ko||b.reason||'';return[b.expression,b.context,cv,reason].some(v=>v&&v.toLowerCase().includes(q));});renderBanned();}
-function renderBanned(){const tb=document.getElementById('b-body');tb.innerHTML='';bFlt.forEach(b=>{const tr=document.createElement('tr');const cv=typeof b.correct==='object'?(b.correct?.value||''):String(b.correct||'');const reason=b.reason_i18n?.(window.LANG)||b.reason_i18n?.ko||b.reason||'';const ctx=b.context||'';tr.innerHTML=`<td>${b.status==="deprecated"?`<span style="color:var(--re);margin-right:4px;font-size:9px">[DEP]</span>`:""}<code class="c-expr">${x(b.expression)}</code></td><td class="c-desc">${x(ctx)}</td><td><code class="c-correct">${x(cv)}</code></td><td class="c-desc">${x(reason)}</td><td style="text-align:center"><button class="del-btn" onclick="event.stopPropagation();confirmDel(()=>doDeleteBanned('${x(b.expression)}'),'${x(b.expression)}')">🗑</button></td>`;tr.addEventListener('dblclick',e=>{e.preventDefault();openBannedForm(b);});tb.appendChild(tr);});document.getElementById('b-cnt').textContent=`${bFlt.length}개`;}
+function renderBanned(){const tb=document.getElementById('b-body');tb.innerHTML='';bFlt.forEach(b=>{const tr=document.createElement('tr');const cv=typeof b.correct==='object'?(b.correct?.value||''):String(b.correct||'');const reason=b.reason_i18n?.(window.LANG)||b.reason_i18n?.ko||b.reason||'';const ctx=b.context||'';tr.innerHTML=`<td>${b.status==="deprecated"?`<span style="color:var(--re);margin-right:4px;font-size:9px">[DEP]</span>`:""}<code class="c-expr">${x(b.expression)}</code></td><td class="c-desc">${x(ctx)}</td><td><code class="c-correct">${x(cv)}</code></td><td class="c-desc">${x(reason)}</td><td style="text-align:center">${IS_PUBLIC ? '' : `<button class="del-btn" onclick="event.stopPropagation();confirmDel(()=>doDeleteBanned('${x(b.expression)}'),'${x(b.expression)}')">🗑</button>`}</td>`;if(!IS_PUBLIC){tr.addEventListener('dblclick',e=>{e.preventDefault();openBannedForm(b);});}tb.appendChild(tr);});document.getElementById('b-cnt').textContent=`${bFlt.length}개`;}
 
 // ── WORD FORM ──
 // variants 배열 → textarea 포맷 변환 (abbreviation type 제외)
