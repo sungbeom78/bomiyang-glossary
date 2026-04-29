@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-04-23T01:37:12Z",
+  "generated_at": "2026-04-29T02:24:22Z",
   "terms": [
     {
       "id": "aborts",
@@ -356,105 +356,21 @@
       }
     },
     {
-      "id": "activate",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "verb_derived",
-      "domain": "trading",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
-      "id": "activation",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "noun_form",
-      "domain": "trading",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
-      "id": "actively",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "adv_form",
-      "domain": "trading",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
-      "id": "activating",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "present_participle",
-      "domain": "trading",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
-      "id": "activated",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "past_participle",
-      "domain": "trading",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
-      "id": "activities",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "plural",
-      "domain": "trading",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
-      "id": "activity",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "noun_form",
-      "domain": "trading",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
       "id": "inactive",
+      "source": "word",
+      "root": "active",
+      "term_type": "variant",
+      "variant_type": "prefix",
+      "domain": "trading",
+      "lang": {
+        "en": "active",
+        "ko": "활성",
+        "ja": "アクティブ",
+        "zh_hans": "积极的"
+      }
+    },
+    {
+      "id": "inactivity",
       "source": "word",
       "root": "active",
       "term_type": "variant",
@@ -485,105 +401,21 @@
       }
     },
     {
-      "id": "activate",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "verb_derived",
-      "domain": "general",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
-      "id": "activation",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "noun_form",
-      "domain": "general",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
-      "id": "actively",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "adv_form",
-      "domain": "general",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
-      "id": "activating",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "present_participle",
-      "domain": "general",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
-      "id": "activated",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "past_participle",
-      "domain": "general",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
-      "id": "activities",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "plural",
-      "domain": "general",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
-      "id": "activity",
-      "source": "word",
-      "root": "active",
-      "term_type": "variant",
-      "variant_type": "noun_form",
-      "domain": "general",
-      "lang": {
-        "en": "active",
-        "ko": "활성",
-        "ja": "アクティブ",
-        "zh_hans": "积极的"
-      }
-    },
-    {
       "id": "inactive",
+      "source": "word",
+      "root": "active",
+      "term_type": "variant",
+      "variant_type": "prefix",
+      "domain": "general",
+      "lang": {
+        "en": "active",
+        "ko": "활성",
+        "ja": "アクティブ",
+        "zh_hans": "积极的"
+      }
+    },
+    {
+      "id": "inactivity",
       "source": "word",
       "root": "active",
       "term_type": "variant",
@@ -1557,69 +1389,6 @@
       "source": "word",
       "root": "apply",
       "term_type": "base",
-      "domain": "general",
-      "lang": {
-        "en": "apply",
-        "ko": "적용"
-      },
-      "description_i18n": {
-        "en": "To put to use or employ for a particular purpose or in a specific case, especially in a trading or computational context.",
-        "ko": "적용"
-      }
-    },
-    {
-      "id": "applies",
-      "source": "word",
-      "root": "apply",
-      "term_type": "variant",
-      "variant_type": "verb_form",
-      "domain": "general",
-      "lang": {
-        "en": "apply",
-        "ko": "적용"
-      }
-    },
-    {
-      "id": "applying",
-      "source": "word",
-      "root": "apply",
-      "term_type": "variant",
-      "variant_type": "present_participle",
-      "domain": "general",
-      "lang": {
-        "en": "apply",
-        "ko": "적용"
-      }
-    },
-    {
-      "id": "applied",
-      "source": "word",
-      "root": "apply",
-      "term_type": "variant",
-      "variant_type": "past",
-      "domain": "general",
-      "lang": {
-        "en": "apply",
-        "ko": "적용"
-      }
-    },
-    {
-      "id": "application",
-      "source": "word",
-      "root": "apply",
-      "term_type": "variant",
-      "variant_type": "noun_form",
-      "domain": "general",
-      "lang": {
-        "en": "apply",
-        "ko": "적용"
-      }
-    },
-    {
-      "id": "apply",
-      "source": "word",
-      "root": "apply",
-      "term_type": "base",
       "domain": "system",
       "lang": {
         "en": "apply",
@@ -1685,6 +1454,69 @@
       "term_type": "variant",
       "variant_type": "plural",
       "domain": "system",
+      "lang": {
+        "en": "apply",
+        "ko": "적용"
+      }
+    },
+    {
+      "id": "apply",
+      "source": "word",
+      "root": "apply",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "apply",
+        "ko": "적용"
+      },
+      "description_i18n": {
+        "en": "To put to use or employ for a particular purpose or in a specific case, especially in a trading or computational context.",
+        "ko": "적용"
+      }
+    },
+    {
+      "id": "applies",
+      "source": "word",
+      "root": "apply",
+      "term_type": "variant",
+      "variant_type": "verb_form",
+      "domain": "general",
+      "lang": {
+        "en": "apply",
+        "ko": "적용"
+      }
+    },
+    {
+      "id": "applying",
+      "source": "word",
+      "root": "apply",
+      "term_type": "variant",
+      "variant_type": "present_participle",
+      "domain": "general",
+      "lang": {
+        "en": "apply",
+        "ko": "적용"
+      }
+    },
+    {
+      "id": "applied",
+      "source": "word",
+      "root": "apply",
+      "term_type": "variant",
+      "variant_type": "past",
+      "domain": "general",
+      "lang": {
+        "en": "apply",
+        "ko": "적용"
+      }
+    },
+    {
+      "id": "application",
+      "source": "word",
+      "root": "apply",
+      "term_type": "variant",
+      "variant_type": "noun_form",
+      "domain": "general",
       "lang": {
         "en": "apply",
         "ko": "적용"
@@ -2029,6 +1861,37 @@
       "lang": {
         "en": "atomic",
         "ko": "원자"
+      }
+    },
+    {
+      "id": "attribute",
+      "source": "word",
+      "root": "attribute",
+      "term_type": "base",
+      "domain": "system",
+      "lang": {
+        "en": "attribute",
+        "ko": "속성",
+        "ja": "属性",
+        "zh_hans": "属性"
+      },
+      "description_i18n": {
+        "ko": "데이터나 객체가 가지는 특징이나 성질",
+        "en": "A characteristic or property of data or an object"
+      }
+    },
+    {
+      "id": "ATRS",
+      "source": "word",
+      "root": "attribute",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "system",
+      "lang": {
+        "en": "attribute",
+        "ko": "속성",
+        "ja": "属性",
+        "zh_hans": "属性"
       }
     },
     {
@@ -5733,33 +5596,6 @@
       }
     },
     {
-      "id": "cmd",
-      "source": "word",
-      "root": "cmd",
-      "term_type": "base",
-      "domain": "general",
-      "lang": {
-        "en": "cmd",
-        "ko": "명령"
-      },
-      "description_i18n": {
-        "en": "Abbreviation of command, referring to an instruction given to a computer or program.",
-        "ko": "명령"
-      }
-    },
-    {
-      "id": "cmds",
-      "source": "word",
-      "root": "cmd",
-      "term_type": "variant",
-      "variant_type": "plural",
-      "domain": "general",
-      "lang": {
-        "en": "cmd",
-        "ko": "명령"
-      }
-    },
-    {
       "id": "code",
       "source": "word",
       "root": "code",
@@ -5823,7 +5659,7 @@
       "source": "word",
       "root": "collect",
       "term_type": "base",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5839,7 +5675,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5851,7 +5687,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5863,7 +5699,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5875,7 +5711,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5887,7 +5723,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5899,7 +5735,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5911,7 +5747,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5922,7 +5758,7 @@
       "source": "word",
       "root": "collect",
       "term_type": "base",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5938,7 +5774,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5950,7 +5786,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5962,7 +5798,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5974,7 +5810,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5986,7 +5822,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5998,7 +5834,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -6010,7 +5846,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -6125,11 +5961,11 @@
       }
     },
     {
-      "id": "commands",
+      "id": "CMD",
       "source": "word",
       "root": "command",
       "term_type": "variant",
-      "variant_type": "plural",
+      "variant_type": "abbreviation",
       "domain": "system",
       "lang": {
         "en": "command",
@@ -6139,45 +5975,34 @@
       }
     },
     {
-      "id": "commanding",
+      "id": "command line interface",
       "source": "word",
-      "root": "command",
-      "term_type": "variant",
-      "variant_type": "present_participle",
+      "root": "command line interface",
+      "term_type": "base",
       "domain": "system",
       "lang": {
-        "en": "command",
-        "ko": "명령어",
-        "ja": "指示",
-        "zh_hans": "命令"
+        "en": "Command Line Interface",
+        "ko": "명령 줄 인터페이스",
+        "ja": "コマンドラインインターフェース",
+        "zh_hans": "命令行界面"
+      },
+      "description_i18n": {
+        "ko": "명령어 기반의 사용자 인터페이스",
+        "en": "Command-based user interface"
       }
     },
     {
-      "id": "commanded",
+      "id": "CLI",
       "source": "word",
-      "root": "command",
+      "root": "command line interface",
       "term_type": "variant",
-      "variant_type": "past",
+      "variant_type": "abbreviation",
       "domain": "system",
       "lang": {
-        "en": "command",
-        "ko": "명령어",
-        "ja": "指示",
-        "zh_hans": "命令"
-      }
-    },
-    {
-      "id": "commandment",
-      "source": "word",
-      "root": "command",
-      "term_type": "variant",
-      "variant_type": "noun_form",
-      "domain": "system",
-      "lang": {
-        "en": "command",
-        "ko": "명령어",
-        "ja": "指示",
-        "zh_hans": "命令"
+        "en": "Command Line Interface",
+        "ko": "명령 줄 인터페이스",
+        "ja": "コマンドラインインターフェース",
+        "zh_hans": "命令行界面"
       }
     },
     {
@@ -8194,6 +8019,79 @@
       }
     },
     {
+      "id": "daemonize",
+      "source": "word",
+      "root": "daemonize",
+      "term_type": "base",
+      "domain": "system",
+      "lang": {
+        "en": "daemonize",
+        "ko": "데몬화하다",
+        "ja": "デーモン化する",
+        "zh_hans": "守护化"
+      },
+      "description_i18n": {
+        "en": "To configure a process to run in the background",
+        "ko": "프로세스를 백그라운드에서 실행되도록 설정하는 것"
+      }
+    },
+    {
+      "id": "daemonizes",
+      "source": "word",
+      "root": "daemonize",
+      "term_type": "variant",
+      "variant_type": "verb_form",
+      "domain": "system",
+      "lang": {
+        "en": "daemonize",
+        "ko": "데몬화하다",
+        "ja": "デーモン化する",
+        "zh_hans": "守护化"
+      }
+    },
+    {
+      "id": "daemonizing",
+      "source": "word",
+      "root": "daemonize",
+      "term_type": "variant",
+      "variant_type": "present_participle",
+      "domain": "system",
+      "lang": {
+        "en": "daemonize",
+        "ko": "데몬화하다",
+        "ja": "デーモン化する",
+        "zh_hans": "守护化"
+      }
+    },
+    {
+      "id": "daemonized",
+      "source": "word",
+      "root": "daemonize",
+      "term_type": "variant",
+      "variant_type": "past",
+      "domain": "system",
+      "lang": {
+        "en": "daemonize",
+        "ko": "데몬화하다",
+        "ja": "デーモン化する",
+        "zh_hans": "守护化"
+      }
+    },
+    {
+      "id": "daemonization",
+      "source": "word",
+      "root": "daemonize",
+      "term_type": "variant",
+      "variant_type": "noun_form",
+      "domain": "system",
+      "lang": {
+        "en": "daemonize",
+        "ko": "데몬화하다",
+        "ja": "デーモン化する",
+        "zh_hans": "守护化"
+      }
+    },
+    {
       "id": "daily",
       "source": "word",
       "root": "daily",
@@ -9554,6 +9452,37 @@
       "lang": {
         "en": "difficulty",
         "ko": "difficulty"
+      }
+    },
+    {
+      "id": "digit",
+      "source": "word",
+      "root": "digit",
+      "term_type": "base",
+      "domain": "system",
+      "lang": {
+        "en": "digit",
+        "ko": "숫자",
+        "ja": "数字",
+        "zh_hans": "数字"
+      },
+      "description_i18n": {
+        "en": "A symbol representing a number",
+        "ko": "숫자를 나타내는 기호"
+      }
+    },
+    {
+      "id": "digits",
+      "source": "word",
+      "root": "digit",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "digit",
+        "ko": "숫자",
+        "ja": "数字",
+        "zh_hans": "数字"
       }
     },
     {
@@ -17502,7 +17431,7 @@
       "source": "word",
       "root": "level",
       "term_type": "base",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "level",
         "ja": "レベル",
@@ -17519,7 +17448,7 @@
       "source": "word",
       "root": "level",
       "term_type": "base",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "level",
         "ja": "レベル",
@@ -21127,7 +21056,7 @@
       "source": "word",
       "root": "notify",
       "term_type": "base",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21145,7 +21074,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21159,7 +21088,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21173,7 +21102,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21187,7 +21116,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21201,7 +21130,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21215,7 +21144,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21229,7 +21158,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21242,7 +21171,7 @@
       "source": "word",
       "root": "notify",
       "term_type": "base",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21260,7 +21189,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21274,7 +21203,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21288,7 +21217,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21302,7 +21231,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21316,7 +21245,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21330,7 +21259,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21344,7 +21273,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -25601,6 +25530,23 @@
       }
     },
     {
+      "id": "rampup",
+      "source": "word",
+      "root": "rampup",
+      "term_type": "base",
+      "domain": "system",
+      "lang": {
+        "en": "rampup",
+        "ko": "증설",
+        "ja": "増設",
+        "zh_hans": "扩容"
+      },
+      "description_i18n": {
+        "ko": "시스템의 운영 또는 자원 할당을 점진적으로 늘리는 과정",
+        "en": "The process of gradually increasing system operation or resource allocation"
+      }
+    },
+    {
       "id": "range",
       "source": "word",
       "root": "range",
@@ -25942,6 +25888,18 @@
       },
       "description_i18n": {
         "en": "The act of making something active again after it had been inactive.",
+        "ko": "재활성화"
+      }
+    },
+    {
+      "id": "activation",
+      "source": "word",
+      "root": "reactivation",
+      "term_type": "variant",
+      "variant_type": "noun_form",
+      "domain": "general",
+      "lang": {
+        "en": "reactivation",
         "ko": "재활성화"
       }
     },
@@ -27769,7 +27727,7 @@
       "source": "word",
       "root": "result",
       "term_type": "base",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "result",
         "ja": "結果",
@@ -27786,7 +27744,7 @@
       "source": "word",
       "root": "result",
       "term_type": "base",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "result",
         "ja": "結果",
@@ -32017,7 +31975,7 @@
       "source": "word",
       "root": "start",
       "term_type": "base",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32035,7 +31993,7 @@
       "root": "start",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32049,7 +32007,7 @@
       "root": "start",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32063,7 +32021,7 @@
       "root": "start",
       "term_type": "variant",
       "variant_type": "past_participle",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32076,7 +32034,7 @@
       "source": "word",
       "root": "start",
       "term_type": "base",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32094,7 +32052,7 @@
       "root": "start",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32108,7 +32066,7 @@
       "root": "start",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32122,7 +32080,7 @@
       "root": "start",
       "term_type": "variant",
       "variant_type": "past_participle",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32253,7 +32211,7 @@
       "source": "word",
       "root": "step",
       "term_type": "base",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "step",
         "ja": "ステップ",
@@ -32270,7 +32228,7 @@
       "source": "word",
       "root": "step",
       "term_type": "base",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "step",
         "ja": "ステップ",
@@ -38959,6 +38917,37 @@
       }
     },
     {
+      "id": "change_log",
+      "source": "compound",
+      "root": "change_log",
+      "term_type": "base",
+      "domain": "system",
+      "lang": {
+        "en": "changelog",
+        "ko": "변경 기록",
+        "ja": "変更履歴",
+        "zh_hans": "更改日志"
+      },
+      "description_i18n": {
+        "ko": "소프트웨어 또는 시스템의 변경 사항 및 업데이트 목록",
+        "en": "A list of changes and updates made to software or a system"
+      }
+    },
+    {
+      "id": "CHANGELOG",
+      "source": "compound",
+      "root": "change_log",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "system",
+      "lang": {
+        "en": "changelog",
+        "ko": "변경 기록",
+        "ja": "変更履歴",
+        "zh_hans": "更改日志"
+      }
+    },
+    {
       "id": "chinese_yuan",
       "source": "compound",
       "root": "chinese_yuan",
@@ -43247,7 +43236,21 @@
         "en": "work start",
         "ko": "업무 시작"
       }
+    },
+    {
+      "id": "changelog",
+      "source": "compound",
+      "root": "changelog",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "change log",
+        "ko": "변경 이력"
+      },
+      "description_i18n": {
+        "ko": "시스템 변경 이력을 기록하는 파일 또는 항목. doc/change_log.md 참조."
+      }
     }
   ],
-  "checksum": "sha256:499a10a520cd15dad3774e38409be6c4207fb873f5a46878851e28695fecf6b8"
+  "checksum": "sha256:98144fa8280b4922cda152d414e472214f66c6d871d46b36c5237d956e3ae82c"
 }

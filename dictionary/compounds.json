@@ -5312,6 +5312,28 @@
         "confidence": "high",
         "ambiguity": "low"
       }
+    },
+    {
+      "id": "changelog",
+      "words": [
+        "change",
+        "log"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "change log",
+        "ko": "변경 이력"
+      },
+      "description_i18n": {
+        "ko": "시스템 변경 이력을 기록하는 파일 또는 항목. doc/change_log.md 참조."
+      },
+      "reason": "change+log 복합어. doc/change_log.md 등 기존 사용처 다수.",
+      "created_at": "2026-04-29T02:24:18Z",
+      "updated_at": "2026-04-29T02:24:18Z",
+      "variants": []
     }
   ]
 }

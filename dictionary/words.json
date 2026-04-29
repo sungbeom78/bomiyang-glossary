@@ -378,57 +378,47 @@
       },
       "canonical_pos": "adj",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-17T03:05:58Z",
+      "updated_at": "2026-04-29T02:15:16Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/active",
         "https://en.wiktionary.org/wiki/inactive"
       ],
       "variants": [
         {
-          "types": [
-            "verb_derived"
-          ],
+          "type": "undefined",
           "value": "activate"
         },
         {
-          "types": [
-            "noun_form"
-          ],
+          "type": "undefined",
           "value": "activation"
         },
         {
-          "types": [
-            "adv_form"
-          ],
+          "type": "undefined",
           "value": "actively"
         },
         {
-          "types": [
-            "present_participle"
-          ],
+          "type": "undefined",
           "value": "activating"
         },
         {
-          "types": [
-            "past_participle"
-          ],
+          "type": "undefined",
           "value": "activated"
         },
         {
-          "types": [
-            "plural"
-          ],
+          "type": "undefined",
           "value": "activities"
         },
         {
-          "types": [
-            "noun_form"
-          ],
+          "type": "undefined",
           "value": "activity"
         },
         {
           "type": "prefix",
           "value": "inactive"
+        },
+        {
+          "type": "prefix",
+          "value": "inactivity"
         }
       ]
     },

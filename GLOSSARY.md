@@ -2,11 +2,11 @@
 
 > 자동 생성 파일. 수동 편집 금지.
 > 원본: `words.json` + `compounds.json` + `banned.json`
-> 생성: 2026-04-23 10:37
+> 생성: 2026-04-29 11:24
 
 ## 통계
-- 단어: 954개
-- 복합어: 184개
+- 단어: 958개
+- 복합어: 186개
 - 금지 표현: 8개
 
 ---
@@ -63,6 +63,8 @@
 | `cfg_scoring` | config + score | 스코어링 설정 | `` | `` | auto | 의미 비합산 |
 | `cfg_session` | config + session | 세션 설정 | `` | `` | auto | 공인 약어 |
 | `cfg_system` | config + system | 시스템 설정 | `` | `` | auto | 공인 약어 |
+| `change_log` | change + log | 변경 기록 | `changelog` | `CHANGELOG` | auto |  |
+| `changelog` | change + log | 변경 이력 | `` | `` | auto | change+log 복합어. doc/change_log.md 등 기존 사용처 다수. |
 | `chinese_yuan` | chinese + yuan | 중국 위안 / 인민폐 | `` | `` | auto |  |
 | `closed_trade` | close + trade | 청산 거래 | `` | `` | auto | 공인 약어 |
 | `cls_account_snapshot` | cls + account + snapshot | 계좌 스냅샷 모델 | `` | `` | auto | 공인 약어, 시스템 객체 |
