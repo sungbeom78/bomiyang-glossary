@@ -34324,6 +34324,26 @@
       ],
       "created_at": "2026-04-23T01:13:29Z",
       "updated_at": "2026-04-23T01:13:29Z"
+    },
+    {
+      "id": "stdout",
+      "lang": {
+        "en": "stdout",
+        "ko": "표준 출력"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "표준 출력",
+        "en": "Standard output stream of a process, used for normal program output."
+      },
+      "variants": [],
+      "source_urls": [],
+      "created_at": "2026-04-30T13:34:39Z",
+      "updated_at": "2026-04-30T13:34:39Z"
     }
   ]
 }
