@@ -1,0 +1,44 @@
+[
+  {
+    "word": "wb",
+    "type": "abbreviation",
+    "meaning": "Wilder Band — 이중 볼린저 밴드(Double BB) 전략의 외곽 Band 약어",
+    "location": "src/trading_signal/fx_signal_engine.py",
+    "reason": "도메인 고유 약어, band와 결합하여 wb_upper/wb_lower 형성"
+  },
+  {
+    "word": "band",
+    "type": "noun",
+    "meaning": "가격 채널 범위 (Standard BB와 구분되는 외곽 밴드)",
+    "location": "src/trading_signal/fx_signal_engine.py",
+    "reason": "기존 bollinger와 다른 개념의 밴드 경계"
+  },
+  {
+    "word": "piercing",
+    "type": "adjective",
+    "meaning": "캔들 꼬리가 두 밴드(Standard + WB) 모두를 관통하는 찌르기 패턴",
+    "location": "src/trading_signal/fx_signal_engine.py",
+    "reason": "기술적 분석 전문 용어, 대체 불가"
+  },
+  {
+    "word": "either",
+    "type": "conjunction",
+    "meaning": "OR 논리 조건을 명시하는 식별자 수식어 (require_either_divergence_or_rsi3x)",
+    "location": "src/trading_signal/fx_signal_engine.py",
+    "reason": "조건 논리를 명시적으로 표현, either_or 패턴"
+  },
+  {
+    "word": "major",
+    "type": "adjective",
+    "meaning": "주요 통화쌍 (EURUSD, GBPUSD 등 유동성 상위 7개 + 교차환율 3종)",
+    "location": "src/selector/fx_candidate_selector.py",
+    "reason": "only_major_pairs 식별자 구성, 대체어 없음"
+  },
+  {
+    "word": "crosses",
+    "type": "noun",
+    "meaning": "교차 통화쌍 (cross_currency_pairs의 복수 컬렉션 형태)",
+    "location": "src/selector/fx_candidate_selector.py",
+    "reason": "emerging_crosses 식별자 구성, 컬렉션이므로 복수 허용(8-A §3)"
+  }
+]

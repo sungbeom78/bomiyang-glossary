@@ -2334,7 +2334,12 @@
         "en": "Groups or sets of related items, often used in charting or analysis to represent ranges or boundaries.",
         "ko": "대역"
       },
-      "variants": [],
+      "variants": [
+        {
+          "type": "singular",
+          "value": "band"
+        }
+      ],
       "source_urls": [
         "https://en.wiktionary.org/wiki/bands"
       ],
@@ -34344,6 +34349,169 @@
       "source_urls": [],
       "created_at": "2026-04-30T13:34:39Z",
       "updated_at": "2026-04-30T13:34:39Z"
+    },
+    {
+      "id": "wb",
+      "lang": {
+        "en": "wb",
+        "ko": "WB(와이더 밴드)"
+      },
+      "canonical_pos": "abbreviation",
+      "domain": [
+        "trading",
+        "fx"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "Abbreviation for Wider Band — the outer Bollinger Band used in double-BB strategies for FX trading (sigma=4.0).",
+        "ko": "이중 볼린저 밴드 전략에서 외곽 밴드를 지칭하는 약어"
+      },
+      "variants": [
+        {
+          "type": "compound_prefix",
+          "value": "wb_upper"
+        },
+        {
+          "type": "compound_prefix",
+          "value": "wb_lower"
+        }
+      ],
+      "source_urls": [],
+      "created_at": "2026-05-02T17:48:37Z",
+      "updated_at": "2026-05-02T17:48:37Z"
+    },
+    {
+      "id": "piercing",
+      "lang": {
+        "en": "piercing",
+        "ko": "찌르기"
+      },
+      "canonical_pos": "adjective",
+      "domain": [
+        "trading",
+        "fx",
+        "candlestick"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "A candlestick pattern where the wick penetrates both the Standard BB and the WB outer band, signaling an extreme reversal.",
+        "ko": "캔들 꼬리가 표준 BB와 WB 외곽 밴드를 모두 관통하는 극단값 반전 신호"
+      },
+      "variants": [],
+      "source_urls": [],
+      "created_at": "2026-05-02T17:48:37Z",
+      "updated_at": "2026-05-02T17:48:37Z"
+    },
+    {
+      "id": "either",
+      "lang": {
+        "en": "either",
+        "ko": "둘 중 하나"
+      },
+      "canonical_pos": "conjunction",
+      "domain": [
+        "general",
+        "logic"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "Logical OR conjunction used in identifier naming to express an inclusive disjunction of conditions.",
+        "ko": "OR 조건을 식별자에 명시적으로 표현하는 접속사 (require_either_divergence_or_rsi3x 등)"
+      },
+      "variants": [],
+      "source_urls": [],
+      "created_at": "2026-05-02T17:48:37Z",
+      "updated_at": "2026-05-02T17:48:37Z"
+    },
+    {
+      "id": "major",
+      "lang": {
+        "en": "major",
+        "ko": "메이저"
+      },
+      "canonical_pos": "adjective",
+      "domain": [
+        "trading",
+        "fx"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "Describes the top-tier, most liquid forex currency pairs (EURUSD, GBPUSD, USDJPY, etc.).",
+        "ko": "FX 시장에서 유동성 최상위 통화쌍 (메이저 페어)"
+      },
+      "variants": [],
+      "source_urls": [],
+      "created_at": "2026-05-02T17:48:37Z",
+      "updated_at": "2026-05-02T17:48:37Z"
+    },
+    {
+      "id": "crosses",
+      "lang": {
+        "en": "crosses",
+        "ko": "교차 통화쌍(복수)"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "trading",
+        "fx"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "Plural form of cross — collection of cross currency pairs (e.g., emerging_crosses). Used as a plural identifier per Rule 8-A §3.",
+        "ko": "교차 통화쌍의 컬렉션 (복수형, 8-A §3 허용)"
+      },
+      "variants": [
+        {
+          "type": "singular",
+          "value": "cross"
+        }
+      ],
+      "source_urls": [],
+      "created_at": "2026-05-02T17:48:37Z",
+      "updated_at": "2026-05-02T17:48:37Z"
+    },
+    {
+      "id": "cfg",
+      "lang": {
+        "en": "cfg",
+        "ko": "설정(약어)"
+      },
+      "canonical_pos": "abbreviation",
+      "domain": [
+        "system",
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "Abbreviation for configuration — widely used as a variable name in Python codebases.",
+        "ko": "configuration의 약어. 설정 딕셔너리/객체를 담는 변수명으로 사용."
+      },
+      "variants": [],
+      "source_urls": [],
+      "created_at": "2026-05-02T17:50:42Z",
+      "updated_at": "2026-05-02T17:50:42Z"
+    },
+    {
+      "id": "sf",
+      "lang": {
+        "en": "sf",
+        "ko": "sf(약어)"
+      },
+      "canonical_pos": "abbreviation",
+      "domain": [
+        "trading",
+        "fx",
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "Abbreviation for session_filter or symbol_filter in FX trading context.",
+        "ko": "session_filter 또는 symbol_filter의 약어로 사용되는 로컬 변수 접두사"
+      },
+      "variants": [],
+      "source_urls": [],
+      "created_at": "2026-05-02T17:50:42Z",
+      "updated_at": "2026-05-02T17:50:42Z"
     }
   ]
 }
