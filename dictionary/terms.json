@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-04-29T02:24:22Z",
+  "generated_at": "2026-04-30T13:34:49Z",
   "terms": [
     {
       "id": "aborts",
@@ -343,7 +343,7 @@
       "source": "word",
       "root": "active",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -361,7 +361,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -375,7 +375,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -388,7 +388,7 @@
       "source": "word",
       "root": "active",
       "term_type": "base",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -406,7 +406,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -420,7 +420,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -5048,7 +5048,7 @@
       "source": "word",
       "root": "classify",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5066,7 +5066,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5080,7 +5080,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5094,7 +5094,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5108,7 +5108,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5122,7 +5122,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5136,7 +5136,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5149,7 +5149,7 @@
       "source": "word",
       "root": "classify",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5167,7 +5167,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5181,7 +5181,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5195,7 +5195,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5209,7 +5209,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5223,7 +5223,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5237,7 +5237,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -10981,7 +10981,7 @@
       "source": "word",
       "root": "entered",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "entered",
         "ja": "進入済み (しんにゅうずみ)",
@@ -10998,7 +10998,7 @@
       "source": "word",
       "root": "entered",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "entered",
         "ja": "進入済み (しんにゅうずみ)",
@@ -14294,7 +14294,7 @@
       "source": "word",
       "root": "global industry classification standard",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "global industry classification standard",
         "ja": "世界産業分類基準",
@@ -14312,7 +14312,7 @@
       "root": "global industry classification standard",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "global industry classification standard",
         "ja": "世界産業分類基準",
@@ -14325,7 +14325,7 @@
       "source": "word",
       "root": "global industry classification standard",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "global industry classification standard",
         "ja": "世界産業分類基準",
@@ -14343,7 +14343,7 @@
       "root": "global industry classification standard",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "global industry classification standard",
         "ja": "世界産業分類基準",
@@ -16590,7 +16590,7 @@
       "source": "word",
       "root": "japanese",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "Japanese",
         "ko": "일본어",
@@ -16607,7 +16607,7 @@
       "source": "word",
       "root": "japanese",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "Japanese",
         "ko": "일본어",
@@ -16999,37 +16999,6 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "trading",
-      "lang": {
-        "en": "korean standard time",
-        "ko": "한국 표준시",
-        "ja": "韓国標準時",
-        "zh_hans": "韩国标准时间"
-      },
-      "description_i18n": {
-        "ko": "한국 표준시는 대한민국에서 사용하는 공식 표준 시간대입니다.",
-        "en": "Korean Standard Time is the official time zone used in the Republic of Korea."
-      }
-    },
-    {
-      "id": "KST",
-      "source": "word",
-      "root": "korean standard time",
-      "term_type": "variant",
-      "variant_type": "abbreviation",
-      "domain": "trading",
-      "lang": {
-        "en": "korean standard time",
-        "ko": "한국 표준시",
-        "ja": "韓国標準時",
-        "zh_hans": "韩国标准时间"
-      }
-    },
-    {
-      "id": "korean standard time",
-      "source": "word",
-      "root": "korean standard time",
-      "term_type": "base",
       "domain": "system",
       "lang": {
         "en": "korean standard time",
@@ -17080,6 +17049,37 @@
       "term_type": "variant",
       "variant_type": "abbreviation",
       "domain": "market",
+      "lang": {
+        "en": "korean standard time",
+        "ko": "한국 표준시",
+        "ja": "韓国標準時",
+        "zh_hans": "韩国标准时间"
+      }
+    },
+    {
+      "id": "korean standard time",
+      "source": "word",
+      "root": "korean standard time",
+      "term_type": "base",
+      "domain": "trading",
+      "lang": {
+        "en": "korean standard time",
+        "ko": "한국 표준시",
+        "ja": "韓国標準時",
+        "zh_hans": "韩国标准时间"
+      },
+      "description_i18n": {
+        "ko": "한국 표준시는 대한민국에서 사용하는 공식 표준 시간대입니다.",
+        "en": "Korean Standard Time is the official time zone used in the Republic of Korea."
+      }
+    },
+    {
+      "id": "KST",
+      "source": "word",
+      "root": "korean standard time",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "trading",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -18325,7 +18325,7 @@
       "source": "word",
       "root": "lose",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "lose",
         "ja": "失う",
@@ -18342,7 +18342,7 @@
       "source": "word",
       "root": "lose",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "lose",
         "ja": "失う",
@@ -25296,7 +25296,7 @@
       "source": "word",
       "root": "quantity",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "quantity",
         "ja": "数量",
@@ -25313,7 +25313,7 @@
       "source": "word",
       "root": "quantity",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "quantity",
         "ja": "数量",
@@ -30431,7 +30431,7 @@
       "source": "word",
       "root": "shouting",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "shouting",
         "ko": "강력 알림 / 외치기",
@@ -30448,7 +30448,7 @@
       "source": "word",
       "root": "shouting",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "shouting",
         "ko": "강력 알림 / 외치기",
@@ -31544,7 +31544,7 @@
       "source": "word",
       "root": "south korean won",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "south korean won",
         "ko": "대한민국 원",
@@ -31562,7 +31562,7 @@
       "root": "south korean won",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "south korean won",
         "ko": "대한민국 원",
@@ -31575,7 +31575,7 @@
       "source": "word",
       "root": "south korean won",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "south korean won",
         "ko": "대한민국 원",
@@ -31593,7 +31593,7 @@
       "root": "south korean won",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "south korean won",
         "ko": "대한민국 원",
@@ -36255,7 +36255,7 @@
       "source": "word",
       "root": "use",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36271,7 +36271,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36283,7 +36283,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36295,7 +36295,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36307,7 +36307,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36318,7 +36318,7 @@
       "source": "word",
       "root": "use",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36334,7 +36334,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36346,7 +36346,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36358,7 +36358,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36370,7 +36370,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -37240,7 +37240,7 @@
       "source": "word",
       "root": "warnings",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "warnings",
         "ko": "경고",
@@ -37257,7 +37257,7 @@
       "source": "word",
       "root": "warnings",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "warnings",
         "ko": "경고",
@@ -38197,7 +38197,7 @@
       "source": "word",
       "root": "yen",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "yen",
         "ko": "엔",
@@ -38214,7 +38214,7 @@
       "source": "word",
       "root": "yen",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "yen",
         "ko": "엔",
@@ -38318,6 +38318,21 @@
       "description_i18n": {
         "ko": "옷이나 가방 등을 열고 닫을 때 사용하는 잠금 장치",
         "en": "A fastener used to open and close clothing, bags, and other items"
+      }
+    },
+    {
+      "id": "stdout",
+      "source": "word",
+      "root": "stdout",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "stdout",
+        "ko": "표준 출력"
+      },
+      "description_i18n": {
+        "ko": "표준 출력",
+        "en": "Standard output stream of a process, used for normal program output."
       }
     },
     {
@@ -41151,7 +41166,7 @@
       "source": "compound",
       "root": "japanese_yen",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "Japanese Yen",
         "ko": "일본 엔",
@@ -41169,7 +41184,7 @@
       "root": "japanese_yen",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "Japanese Yen",
         "ko": "일본 엔",
@@ -41182,7 +41197,7 @@
       "source": "compound",
       "root": "japanese_yen",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "Japanese Yen",
         "ko": "일본 엔",
@@ -41200,7 +41215,7 @@
       "root": "japanese_yen",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "Japanese Yen",
         "ko": "일본 엔",
@@ -43252,5 +43267,5 @@
       }
     }
   ],
-  "checksum": "sha256:98144fa8280b4922cda152d414e472214f66c6d871d46b36c5237d956e3ae82c"
+  "checksum": "sha256:27cb0b61c38412acdb1e80c2eda08c2b5dce30fe0f76cafc8b535b42d7232628"
 }

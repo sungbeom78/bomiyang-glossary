@@ -1,3 +1,256 @@
 {
-  "drafts": []
+  "drafts": [
+    {
+      "id": "acknowledge",
+      "source": "func:src\\execution\\fx_first_trade_guard.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "determine",
+      "source": "func:src\\execution\\health_check.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "hourly",
+      "source": "func:src\\common\\scheduler.py,func:src\\storage\\db_backup_job.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "lint",
+      "source": "py_file:src\\tool\\lint_message_keys.py,func:src\\tool\\lint_message_keys.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "listening",
+      "source": "func:src\\common\\platform.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "point",
+      "source": "attr:src\\risk\\fx_position_calculator.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "reaction",
+      "source": "func:src\\execution\\health_check.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "seeder",
+      "source": "class:src\\notification\\seed.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "spawn",
+      "source": "attr:src\\common\\runtime_bootstrap.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "anomaly",
+      "source": "yaml:config\\settings.example.yaml,yaml:config\\settings.yaml,py_file:src\\execution\\fx_anomaly_watchdog.py,class:src\\execution\\fx_anomaly_watchdog.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "attempts",
+      "source": "yaml:config\\runtime.example.yaml,yaml:config\\runtime.example.yaml,yaml:config\\runtime.example.yaml,yaml:config\\runtime.example.yaml,yaml:config\\runtime.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "caps",
+      "source": "yaml:config\\settings.example.yaml,yaml:config\\settings.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "channels",
+      "source": "yaml:config\\message_policy.yaml,yaml:config\\message_policy.yaml,yaml:config\\message_policy.yaml,yaml:config\\message_policy.yaml,yaml:config\\message_policy.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "classes",
+      "source": "yaml:config\\settings.example.yaml,yaml:config\\settings.example.yaml,yaml:config\\settings.yaml,yaml:config\\settings.yaml,attr:src\\execution\\fx_first_trade_guard.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "diag",
+      "source": "py_file:script\\diagnostic\\fx_sizing_diag.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "drift",
+      "source": "yaml:config\\runtime.example.yaml,yaml:config\\runtime.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "energy",
+      "source": "yaml:config\\trade\\fx_fut.trade.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "eurjpy",
+      "source": "py_file:script\\operation\\check_eurjpy.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "export",
+      "source": "env:.env,env:.env.example",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "failures",
+      "source": "yaml:config\\settings.example.yaml,yaml:config\\settings.yaml,attr:src\\execution\\fx_anomaly_watchdog.py,attr:src\\execution\\fx_anomaly_watchdog.py,attr:src\\execution\\fx_anomaly_watchdog.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "fixed",
+      "source": "yaml:config\\runtime.example.yaml,yaml:config\\runtime.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "fxetf",
+      "source": "py_file:script\\operation\\check_fxetf_info.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "include",
+      "source": "yaml:config\\settings.example.yaml,yaml:config\\settings.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "indices",
+      "source": "yaml:config\\settings.example.yaml,yaml:config\\settings.example.yaml,yaml:config\\settings.example.yaml,yaml:config\\settings.example.yaml,yaml:config\\settings.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "inverse",
+      "source": "yaml:config\\settings.example.yaml,yaml:config\\settings.yaml,attr:src\\risk\\fx_position_calculator.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "leverage",
+      "source": "yaml:config\\settings.example.yaml,yaml:config\\settings.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "lightweight",
+      "source": "yaml:config\\runtime.example.yaml,yaml:config\\runtime.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "metal",
+      "source": "yaml:config\\trade\\fx_fut.trade.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "metals",
+      "source": "yaml:config\\settings.example.yaml,yaml:config\\settings.example.yaml,yaml:config\\settings.example.yaml,yaml:config\\settings.example.yaml,yaml:config\\settings.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "other",
+      "source": "yaml:config\\settings.example.yaml,yaml:config\\settings.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "paper",
+      "source": "yaml:config\\runtime.example.yaml,yaml:config\\runtime.example.yaml,yaml:config\\runtime.yaml,yaml:config\\runtime.yaml,attr:src\\common\\models.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "paused",
+      "source": "yaml:config\\runtime.example.yaml,yaml:config\\runtime.yaml,attr:src\\common\\models.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "reversal",
+      "source": "yaml:config\\trade\\fx_fut.trade.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "silent",
+      "source": "yaml:config\\runtime.example.yaml,yaml:config\\runtime.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "thresholds",
+      "source": "yaml:config\\runtime.example.yaml,yaml:config\\runtime.yaml",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    },
+    {
+      "id": "wake",
+      "source": "yaml:config\\runtime.example.yaml,yaml:config\\runtime.example.yaml,yaml:config\\runtime.yaml,yaml:config\\runtime.yaml,attr:src\\common\\models.py",
+      "classification": "word",
+      "meaning_en": "",
+      "status": "scan_candidate"
+    }
+  ]
 }
