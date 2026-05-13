@@ -15,7 +15,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "중단",
+        "ko": "시스템 프로세스나 연산을 오류나 특정 조건에 의해 강제로 종료하는 행위 또는 이벤트를 의미합니다.",
         "en": "To terminate a process or operation prematurely, often due to an error or specific condition."
       },
       "variants": [
@@ -174,7 +174,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "승인",
+        "ko": "요청이나 주문이 시스템이나 거래소에 의해 정상적으로 수신되고 처리 대기 상태가 되었음을 나타냅니다.",
         "en": "Generally approved, believed, or recognized in a system or process."
       },
       "variants": [
@@ -210,7 +210,7 @@
         "zh_hans": "帐户"
       },
       "description_i18n": {
-        "ko": "투자 계좌 정보",
+        "ko": "사용자나 시스템의 인증 및 자산 관리를 위해 할당된 고유한 계정이나 식별 체계를 뜻합니다.",
         "en": "A financial record of transactions and balances for a trading entity."
       },
       "canonical_pos": "noun",
@@ -373,7 +373,7 @@
         "zh_hans": "积极的"
       },
       "description_i18n": {
-        "ko": "현재 진행 중이거나 활성화된 상태",
+        "ko": "현재 실행 중이거나 유효한 상태에 있는 프로세스, 주문, 계정 등의 상태를 나타냅니다.",
         "en": "Currently in progress or in an operational state; not passive."
       },
       "canonical_pos": "adj",
@@ -456,7 +456,7 @@
         "zh_hans": "适应"
       },
       "description_i18n": {
-        "ko": "특정 인터페이스나 환경에 맞게 구조나 동작을 변환하는 행위.",
+        "ko": "외부 환경이나 조건의 변화에 맞추어 시스템 로직이나 파라미터를 동적으로 조정하고 최적화하는 것을 의미합니다.",
         "en": "To modify or adjust a structure or behavior to fit a specific interface or environment."
       },
       "canonical_pos": "verb",
@@ -502,7 +502,7 @@
         "zh_hans": "适配器"
       },
       "description_i18n": {
-        "ko": "외부 API 연결 어댑터",
+        "ko": "서로 다른 두 시스템이나 인터페이스 간의 호환성을 제공하여 통신이나 데이터 교환을 가능하게 하는 컴포넌트입니다.",
         "en": "A component that connects two otherwise incompatible systems or devices, facilitating communication or data transfer."
       },
       "canonical_pos": "noun",
@@ -712,7 +712,7 @@
         "zh_hans": "后"
       },
       "description_i18n": {
-        "ko": "특정 시각 이후",
+        "ko": "정규 거래 시간 이후에 발생하는 시간대(After-hours) 또는 특정 이벤트나 함수가 실행된 후의 상태를 뜻합니다.",
         "en": "Occurring later in time or sequence."
       },
       "canonical_pos": "adv",
@@ -1340,7 +1340,7 @@
       "status": "active",
       "description_i18n": {
         "en": "To put to use or employ for a particular purpose or in a specific case, especially in a trading or computational context.",
-        "ko": "적용"
+        "ko": "변경된 설정이나 특정 규칙을 시스템 운영이나 로직 처리에 실제 반영하는 것을 의미합니다."
       },
       "variants": [
         {
@@ -1712,7 +1712,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "데이터나 객체가 가지는 특징이나 성질",
+        "ko": "객체나 엔티티가 가지는 고유한 성질이나 데이터를 저장하는 속성을 뜻합니다.",
         "en": "A characteristic or property of data or an object"
       },
       "from": "attribute",
@@ -2160,7 +2160,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "시스템 과부하를 방지하기 위한 지연 메커니즘",
+        "ko": "네트워크 통신이나 시스템 재시도 시, 서버 부하를 줄이기 위해 재시도 간의 대기 시간을 점진적으로 늘리는 전략입니다.",
         "en": "A delay mechanism to prevent overwhelming a system"
       },
       "from": "backoff",
@@ -2180,7 +2180,7 @@
         "zh_hans": "回测"
       },
       "description_i18n": {
-        "ko": "과거 데이터 기반 전략 검증",
+        "ko": "과거의 시장 데이터를 사용하여 특정 트레이딩 전략의 유효성과 수익성을 검증하는 시뮬레이션 과정입니다.",
         "en": "A test of a strategy, model, or system using historical data to evaluate its performance."
       },
       "canonical_pos": "noun",
@@ -2264,7 +2264,7 @@
         "zh_hans": "平衡"
       },
       "description_i18n": {
-        "ko": "계좌의 현재 자산 잔고",
+        "ko": "계좌에 보유하고 있는 총 자산, 현금 잔고 또는 거래 가능한 금액을 의미합니다.",
         "en": "The current asset value in an account."
       },
       "canonical_pos": "noun",
@@ -2397,7 +2397,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "OHLCV 캔들(봉) 데이터. M1 기준.",
+        "ko": "특정 시간 주기(분, 시간, 일 등) 동안의 시가, 고가, 저가, 종가를 하나의 막대 형태로 나타낸 차트 요소입니다.",
         "en": "A candlestick representing a period of trading activity, typically showing the open, high, low, and close prices."
       },
       "canonical_pos": "noun",
@@ -3036,7 +3036,7 @@
         "zh_hans": "弹跳"
       },
       "description_i18n": {
-        "ko": "하락 후 일시적 상승",
+        "ko": "가격이 지지선이나 저항선에 도달한 후 반등하거나 튕겨져 나오는 시장 움직임을 의미합니다.",
         "en": "A temporary increase in price after a fall, especially in a stock or currency market."
       },
       "canonical_pos": "noun",
@@ -3128,7 +3128,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "하나의 중심 흐름에서 특정 조건이나 목적에 따라 나누어지는 갈래",
+        "ko": "버전 관리 시스템에서 독립적인 개발 작업을 위해 생성된 분기점이나, 로직의 실행 경로를 나눈 것을 의미합니다.",
         "en": "A point where a single flow divides into separate paths based on specific conditions or purposes"
       },
       "from": "branch",
@@ -3186,7 +3186,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "특정 테마나 지수 내에서 움직임이 얼마나 광범위하게 퍼져 있는지 나타내는 척도",
+        "ko": "특정 테마나 지수 내에서 상승하거나 하락하는 종목의 비율을 통해 시장 움직임이 얼마나 광범위하게 퍼져 있는지 나타내는 척도입니다.",
         "en": "A measure of how widely a movement is distributed across a specific theme or index"
       },
       "from": "Breadth",
@@ -3249,7 +3249,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "직전 N봉 고가를 현재가가 상향 돌파하는 진입 패턴",
+        "ko": "자산의 가격이 설정된 지지선이나 저항선을 강하게 돌파하며 새로운 추세를 형성하는 진입 패턴입니다.",
         "en": "A trading pattern where the price moves beyond a predefined support or resistance level."
       },
       "canonical_pos": "noun",
@@ -3319,7 +3319,7 @@
       "status": "active",
       "description_i18n": {
         "en": "An intermediary who facilitates transactions between a buyer and a seller, particularly in financial markets.",
-        "ko": "중개인"
+        "ko": "트레이더와 금융 시장 간의 주문을 연결해주는 거래 중개인, 또는 분산 시스템에서 메시지를 전달하는 메시지 브로커를 의미합니다."
       },
       "variants": [
         {
@@ -3366,7 +3366,7 @@
       "status": "active",
       "description_i18n": {
         "en": "A temporary storage area for data that is being transferred between two devices or between a program and a device.",
-        "ko": "버퍼"
+        "ko": "데이터를 한 곳에서 다른 곳으로 전송하는 동안 처리 속도의 차이를 보완하기 위해 일시적으로 데이터를 보관하는 메모리 영역입니다."
       },
       "variants": [
         {
@@ -3408,7 +3408,7 @@
       "status": "active",
       "description_i18n": {
         "en": "A specific version of a software product under development.",
-        "ko": "구축"
+        "ko": "소스 코드를 컴파일하고 의존성을 결합하여 실행 가능한 애플리케이션이나 패키지 형태로 구축하는 과정입니다."
       },
       "variants": [
         {
@@ -3450,7 +3450,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Software that allows users to construct automated outputs.",
-        "ko": "빌더"
+        "ko": "복잡한 객체 생성 과정을 추상화하여 단계별로 객체를 구성(Build)할 수 있도록 돕는 소프트웨어 디자인 패턴이나 컴포넌트입니다."
       },
       "variants": [
         {
@@ -3485,7 +3485,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Characterized by rising value in financial markets; optimistic about future performance.",
-        "ko": "상승세"
+        "ko": "시장의 가격이 상승할 것이라는 강세장(상승장)의 전망이나 그러한 시장 심리를 나타내는 용어입니다."
       },
       "variants": [
         {
@@ -3556,7 +3556,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Commercial, industrial, or professional activity, often related to profit-making enterprises or an individual's occupation.",
-        "ko": "비즈니스"
+        "ko": "시스템의 기술적 구현이 아닌, 핵심 요구사항이나 트레이딩 전략, 수익 창출과 직결된 주요 도메인 논리(Business Logic)를 의미합니다."
       },
       "variants": [
         {
@@ -3607,7 +3607,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "매수 주문",
+        "ko": "자산이나 금융 상품을 매수하여 포지션을 확보하거나 자산을 취득하는 주문을 의미합니다.",
         "en": "The act or an instance of acquiring an asset in exchange for money or its equivalent."
       },
       "canonical_pos": "noun",
@@ -3872,7 +3872,7 @@
       ],
       "canonical_pos": "verb",
       "description_i18n": {
-        "ko": "주문 취소됨",
+        "ko": "이미 제출되었으나 아직 체결되지 않은 주문이나 예약된 작업을 철회하고 무효화하는 것을 의미합니다.",
         "en": "To annul or invalidate a previously placed order or instruction."
       },
       "status": "active",
@@ -4034,7 +4034,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "데이터 처리나 리소스 할당 시 허용되는 최대치의 경계값",
+        "ko": "시스템이 처리할 수 있는 최대 부하량이나 특정 전략에 투입할 수 있는 최대 자금 운용 한도를 의미합니다.",
         "en": "The maximum limit or threshold allowed for data processing or resource allocation"
       },
       "from": "Capacity",
@@ -4061,7 +4061,7 @@
         "zh_hans": "首都"
       },
       "description_i18n": {
-        "ko": "투자 시스템의 총 자본금",
+        "ko": "트레이딩 시스템에서 투자를 위해 할당된 초기 자본금 또는 운영 가능한 총 자금을 의미합니다.",
         "en": "The total amount of money in an investment system."
       },
       "canonical_pos": "noun",
@@ -4313,7 +4313,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "시각화를 위한 차트 설정",
+        "ko": "시간의 흐름에 따른 가격 변동, 거래량 등의 금융 데이터를 시각적으로 표현한 그래프 도구입니다.",
         "en": "A systematic presentation of data, often used for visualization in financial trading systems."
       },
       "canonical_pos": "noun",
@@ -4579,7 +4579,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "전류가 흐르는 완전한 경로를 나타내는 용어",
+        "ko": "비정상적인 시장 변동이나 시스템 장애 시 연쇄적인 피해를 막기 위해 일시적으로 연결이나 거래를 차단하는 기능입니다.",
         "en": "Refers to a complete path through which an electrical current can flow"
       },
       "from": "circuit",
@@ -4600,7 +4600,7 @@
         "zh_hans": "分类"
       },
       "description_i18n": {
-        "ko": "데이터를 분류하는 기능",
+        "ko": "주어진 데이터나 신호를 특정 기준에 따라 분류하거나 카테고리화하는 처리 과정을 뜻합니다.",
         "en": "To categorize data, such as financial instruments or market conditions, into predefined groups."
       },
       "canonical_pos": "verb",
@@ -4767,7 +4767,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "보관 중인 데이터나 설정된 상태값을 모두 비워 깨끗한 상태로 만듦",
+        "ko": "데이터 구조, 메모리, 화면 등의 기존 내용을 모두 지우고 초기화하는 동작을 의미합니다.",
         "en": "Removes all stored data or settings to restore the system to a clean state"
       },
       "from": "clear",
@@ -4915,7 +4915,7 @@
         "zh_hans": "簇"
       },
       "description_i18n": {
-        "ko": "데이터 클러스터링 결과 또는 구조",
+        "ko": "유사한 특징을 가지는 데이터 포인트들의 군집이나, 동일한 목적을 위해 연결된 여러 대의 서버 구성을 의미합니다.",
         "en": "A group of data points that are close to each other, often representing a pattern or segment in the data."
       },
       "canonical_pos": "noun",
@@ -5020,7 +5020,7 @@
       "status": "active",
       "description_i18n": {
         "en": "To gather or amass data, assets, or information, typically for processing or analysis.",
-        "ko": "수집"
+        "ko": "여러 데이터 소스나 시장에서 발생하는 틱 데이터, 로그, 지표 등을 중앙으로 수집하는 행위입니다."
       },
       "variants": [
         {
@@ -5085,7 +5085,7 @@
         "zh_hans": "颜色"
       },
       "description_i18n": {
-        "ko": "UI 또는 보고서에 사용되는 색상 설정",
+        "ko": "시스템 UI의 상태나 로깅에서 심각도 등을 구분하기 위해 시각적으로 사용하는 색상 코드를 의미합니다.",
         "en": "A setting for a color used in UI elements or reports."
       },
       "canonical_pos": "noun",
@@ -5138,7 +5138,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "데이터의 구조를 이루는 수직 방향의 항목 구분 단위",
+        "ko": "데이터베이스 테이블이나 데이터프레임에서 특정 속성의 데이터들이 나열되는 세로 열을 의미합니다.",
         "en": "Vertical data categories that define the structure of a table or record"
       },
       "from": "Column",
@@ -5178,7 +5178,7 @@
         "zh_hans": "命令"
       },
       "description_i18n": {
-        "ko": "시스템 제어를 위한 명령어 설정",
+        "ko": "사용자나 외부 시스템이 프로그램에 특정 작업을 수행하도록 지시하는 명령어입니다.",
         "en": "An instruction or order given to a system or program."
       },
       "canonical_pos": "noun",
@@ -5229,7 +5229,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "명령어 기반의 사용자 인터페이스",
+        "ko": "텍스트 기반의 명령어를 입력하여 시스템이나 애플리케이션과 상호작용하는 사용자 인터페이스(CLI)입니다.",
         "en": "Command-based user interface"
       },
       "from": "cli",
@@ -5325,7 +5325,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "거래 수수료 (거래당 비용)",
+        "ko": "주문 체결이나 거래 처리 시 거래소나 브로커에게 지불하는 수수료나 중개 수수료를 뜻합니다.",
         "en": "A fee charged by a broker or agent for executing a transaction."
       },
       "canonical_pos": "noun",
@@ -5372,7 +5372,7 @@
         "zh_hans": "完全的"
       },
       "description_i18n": {
-        "ko": "작업 또는 프로세스가 완료되었음을 나타내는 상태",
+        "ko": "주문 체결, 프로세스 실행, 또는 백테스트와 같은 일련의 작업이 최종적으로 완료되었음을 나타내는 상태입니다.",
         "en": "Indicates a state where a task or process has been finished and all its required steps have been executed."
       },
       "canonical_pos": "adj",
@@ -5645,7 +5645,7 @@
         "zh_hans": "状况"
       },
       "description_i18n": {
-        "ko": "매매 진입/청산 또는 필터링에 사용되는 조건",
+        "ko": "특정 로직을 실행하거나 주문을 트리거하기 위해 충족되어야 하는 논리적 조건이나 제약 사항입니다.",
         "en": "A requirement or clause that must be met for a trading action (entry, exit, or filter) to be executed."
       },
       "canonical_pos": "noun",
@@ -5693,7 +5693,7 @@
         "zh_hans": "信心"
       },
       "description_i18n": {
-        "ko": "신호 또는 예측의 신뢰 수준",
+        "ko": "머신러닝 모델이나 전략 로직이 생성한 신호나 예측 결과에 대해 부여하는 신뢰도 또는 확률 수치입니다.",
         "en": "A measure of the certainty or reliability of a signal or prediction."
       },
       "canonical_pos": "noun",
@@ -5730,7 +5730,7 @@
         "zh_hans": "配置"
       },
       "description_i18n": {
-        "ko": "시스템 설정값",
+        "ko": "애플리케이션의 동작 방식, 경로, 환경 변수 등의 설정 값들을 저장하고 있는 구성 정보입니다.",
         "en": "A set of parameters or settings that define how a system or software operates."
       },
       "canonical_pos": "noun",
@@ -5813,7 +5813,7 @@
       ],
       "canonical_pos": "adj",
       "description_i18n": {
-        "ko": "어떤 이벤트나 상태가 최종적으로 확인되었음을 나타내는 플래그",
+        "ko": "주문 접수, 상태 변경 등 중요한 시스템 동작이 정상적으로 수행되었음을 확인하고 승인하는 절차입니다.",
         "en": "Indicates that an event or state has been finally verified."
       },
       "status": "active",
@@ -5857,7 +5857,7 @@
       ],
       "canonical_pos": "verb",
       "description_i18n": {
-        "ko": "서비스 또는 시스템과의 연결 상태",
+        "ko": "데이터 소스, 브로커 API, 또는 데이터베이스 시스템과 네트워크로 연결을 맺는 과정을 뜻합니다.",
         "en": "To establish or maintain communication with a system or service."
       },
       "status": "active",
@@ -5913,7 +5913,7 @@
         "zh_hans": "连续的"
       },
       "description_i18n": {
-        "ko": "연속으로 발생하는",
+        "ko": "연속적인 손실이나 연속적인 양봉 등과 같이 특정 사건이 중간에 끊기지 않고 연달아 발생하는 상황을 의미합니다.",
         "en": "Following in succession, without interruption, in a trading or logical sequence."
       },
       "canonical_pos": "adj",
@@ -6086,7 +6086,7 @@
         "zh_hans": "合同"
       },
       "description_i18n": {
-        "ko": "선물 계약 단위",
+        "ko": "파생상품(선물, 옵션 등) 거래에서 매수자와 매도자 간의 거래 조건을 명시한 계약 단위를 뜻합니다.",
         "en": "A financial agreement between two or more parties to exchange an asset at a specified future date at a predetermined price."
       },
       "canonical_pos": "noun",
@@ -6312,7 +6312,7 @@
         "zh_hans": "核"
       },
       "description_i18n": {
-        "ko": "공통 흐름의 중심 역할을 담당하는 핵심 구성요소",
+        "ko": "트레이딩 시스템이나 프레임워크에서 가장 중요하고 기반이 되는 핵심 로직이나 모듈을 의미합니다.",
         "en": "The central or most important part of a system, process, or component."
       },
       "canonical_pos": "noun",
@@ -7064,7 +7064,7 @@
       "status": "active",
       "description_i18n": {
         "en": "To configure a process to run in the background",
-        "ko": "프로세스를 백그라운드에서 실행되도록 설정하는 것"
+        "ko": "시스템 운영에서 프로세스를 백그라운드로 전환하여 터미널이 종료되어도 계속 실행되도록 만드는 작업입니다."
       },
       "variants": [
         {
@@ -7987,7 +7987,7 @@
         "zh_hans": "否定"
       },
       "description_i18n": {
-        "ko": "진입 조건 불충족으로 거부",
+        "ko": "권한 부족, 규칙 위반 또는 위험 관리 기준 미달로 인해 요청이나 주문을 거부하는 행위입니다.",
         "en": "To reject an entry into a system or process, often due to unmet conditions."
       },
       "canonical_pos": "verb",
@@ -8295,7 +8295,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "키와 값을 쌍으로 저장하여 고유한 키를 통해 데이터를 빠르게 조회하는 자료구조",
+        "ko": "키-값 쌍으로 데이터를 저장하고 관리하는 자료구조나 용어와 의미를 정리해둔 목록을 의미합니다.",
         "en": "A data structure that stores key-value pairs for efficient data retrieval using unique keys"
       },
       "from": "Dictionary",
@@ -8356,7 +8356,7 @@
       "status": "active",
       "description_i18n": {
         "en": "A symbol representing a number",
-        "ko": "숫자를 나타내는 기호"
+        "ko": "숫자 데이터를 구성하는 개별 자릿수, 또는 가격이나 수량의 소수점 표현 정밀도를 나타냅니다."
       },
       "variants": [
         {
@@ -8516,7 +8516,7 @@
       ],
       "canonical_pos": "verb",
       "description_i18n": {
-        "ko": "기능 비활성화 상태",
+        "ko": "특정 기능, 규칙 또는 스케줄러 등을 비활성화하여 동작하지 않도록 설정하는 것입니다.",
         "en": "To deactivate or make a function or device inoperational."
       },
       "status": "active",
@@ -8650,7 +8650,7 @@
       "status": "active",
       "description_i18n": {
         "en": "The state in which a prepared message or event has been sent out to its destination",
-        "ko": "준비된 메시지나 이벤트가 정해진 목적지로 전송 완료된 상태"
+        "ko": "생성된 이벤트나 주문이 목적지인 핸들러나 브로커 API로 성공적으로 전달 및 발송되었음을 나타냅니다."
       },
       "from": "dispatch",
       "created_at": "2026-04-20T15:17:11Z",
@@ -9571,7 +9571,7 @@
         "zh_hans": "结尾"
       },
       "description_i18n": {
-        "ko": "종료 시각 또는 동작",
+        "ko": "프로세스, 데이터 스트림 또는 캔들스틱과 같은 특정 주기의 수집이 끝나는 지점이나 시간을 뜻합니다.",
         "en": "The point in time or space at which something ceases to exist or function."
       },
       "canonical_pos": "noun",
@@ -9672,7 +9672,7 @@
         "zh_hans": "引擎"
       },
       "description_i18n": {
-        "ko": "시스템의 핵심 처리 로직을 담당하는 부분",
+        "ko": "주문 처리, 규칙 평가, 백테스트 등 시스템의 핵심 동력을 제공하는 주요 처리 컴포넌트입니다.",
         "en": "The core processing logic of a system responsible for performing its primary functions."
       },
       "canonical_pos": "noun",
@@ -9806,7 +9806,7 @@
       "status": "active",
       "description_i18n": {
         "en": "The state in which a specific symbol has taken a position or has come within the monitoring range according to trading conditions",
-        "ko": "특정 종목이 거래 조건에 부합하여 포지션을 취했거나 감시 범위 내에 들어온 상태"
+        "ko": "시장 진입 조건이 충족되어 초기 매수/매도 주문이 체결되고 포지션이 생성된 상태를 의미합니다."
       },
       "from": "enter",
       "created_at": "2026-04-20T15:37:13Z",
@@ -9843,7 +9843,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "포지션 진입 (매수/매도 시작)",
+        "ko": "새로운 포지션을 구축하기 위해 시장에 진입하는 시점이나 그에 수반되는 주문 로직을 의미합니다.",
         "en": "The act of initiating a position in the market, either by buying or selling."
       },
       "canonical_pos": "noun",
@@ -9976,7 +9976,7 @@
         "zh_hans": "爆炸物"
       },
       "description_i18n": {
-        "ko": "End of Day 장 마감 시점",
+        "ko": "정규 거래 시간이 종료되는 하루의 끝(End Of Day)을 의미하며 일일 정산 및 백업이 이루어지는 시점입니다.",
         "en": "End of Day; refers to the market close time, used as a boundary for daily trading session resets."
       },
       "canonical_pos": "noun",
@@ -10029,7 +10029,7 @@
         "zh_hans": "公平"
       },
       "description_i18n": {
-        "ko": "계좌의 현재 자본 값",
+        "ko": "계좌의 현금 잔고와 현재 열려 있는 포지션의 미실현 손익을 모두 합산한 총 자산 평가액을 의미합니다.",
         "en": "The net value of an account after accounting for liabilities; the owner's stake in an asset or company."
       },
       "canonical_pos": "noun",
@@ -10074,7 +10074,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "오류 발생 상태",
+        "ko": "시스템 연산 실패, 네트워크 끊김, API 오류 등 정상적인 실행을 방해하는 예외 상황이나 오류를 뜻합니다.",
         "en": "A deviation from expected or correct behavior in a computing system, often resulting in failure or unexpected output."
       },
       "canonical_pos": "noun",
@@ -10320,7 +10320,7 @@
         "zh_hans": "事件"
       },
       "description_i18n": {
-        "ko": "시스템 내 발생 사건",
+        "ko": "시스템 내부나 외부(시장 데이터 수신 등)에서 발생하여 로직의 트리거가 되는 유의미한 상태 변화나 사건입니다.",
         "en": "An occurrence or incident that takes place within the system, often triggering subsequent actions or state changes."
       },
       "canonical_pos": "noun",
@@ -10353,7 +10353,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Represents an error or abnormal condition that occurred during an asynchronous operation",
-        "ko": "비동기 작업 중 발생한 오류 또는 비정상적인 상황을 나타냄"
+        "ko": "프로그램 실행 중 발생하는 예상치 못한 런타임 오류 상황과 이를 처리하는 메커니즘을 의미합니다."
       },
       "from": "except",
       "created_at": "2026-04-20T23:50:20Z",
@@ -10521,7 +10521,7 @@
         "zh_hans": "执行"
       },
       "description_i18n": {
-        "ko": "실행 또는 체결 강도",
+        "ko": "동적으로 코드를 실행하거나 시스템 명령어를 호출하여 프로세스를 동작시키는 것을 뜻합니다.",
         "en": "To run or execute a program, command, or trade."
       },
       "canonical_pos": "verb",
@@ -10637,7 +10637,7 @@
         "zh_hans": "执行"
       },
       "description_i18n": {
-        "ko": "주문 실행 및 관리 관련 시스템",
+        "ko": "주문 요청을 브로커에 전송하여 실제 시장에서 거래를 성사시키거나 특정 로직을 가동하는 행위입니다.",
         "en": "The process of carrying out a trading order or strategy."
       },
       "canonical_pos": "verb",
@@ -10835,7 +10835,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "포지션 청산 (반대매매로 종료)",
+        "ko": "현재 보유 중인 포지션을 청산하기 위해 시장에서 빠져나오는 로직이나 그에 따른 주문을 의미합니다.",
         "en": "The act of closing out of a trading position."
       },
       "canonical_pos": "noun",
@@ -10927,7 +10927,7 @@
       ],
       "canonical_pos": "verb",
       "description_i18n": {
-        "ko": "기본 범위를 넘어 확장된",
+        "ko": "기존 클래스나 객체의 기능을 상속받아 확장하거나, 데이터프레임 등의 배열 길이를 늘리는 연산입니다.",
         "en": "To increase in extent or duration, or to cause something to do so."
       },
       "status": "active",
@@ -11024,7 +11024,7 @@
       "status": "active",
       "from": "extract",
       "description_i18n": {
-        "ko": "한 줄 설명: 전체 소스 코드나 데이터 중에서 특정 목적에 부합하는 요소만을 선택적으로 뽑아내어 분리하는 행위",
+        "ko": "원본 데이터 소스, 로그 또는 패킷에서 분석에 필요한 특정 필드나 핵심 정보를 추출해내는 과정입니다.",
         "en": "한 줄 설명: 전체 소스 코드나 데이터 중에서 특정 목적에 부합하는 요소만을 선택적으로 뽑아내어 분리하는 행위"
       },
       "created_at": "2026-04-20T00:23:28Z",
@@ -11136,7 +11136,7 @@
       ],
       "canonical_pos": "verb",
       "description_i18n": {
-        "ko": "시스템 오류로 처리 실패",
+        "ko": "네트워크 지연이나 로직 오류로 인해 트랜잭션, 데이터 파싱, 주문 접수 등이 실패한 상태입니다.",
         "en": "Indicates that a system operation or process did not complete successfully due to an error."
       },
       "status": "active",
@@ -11236,7 +11236,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Attribute representing various functionalities or characteristics within the BOM_TS project",
-        "ko": "BOM_TS 프로젝트에서 다양한 기능 또는 특징을 나타내는 속성"
+        "ko": "시스템에 구현된 주요 기능, 또는 머신러닝에서 예측을 위해 가공 및 선택된 데이터의 입력 변수들을 의미합니다."
       },
       "from": "feature",
       "created_at": "2026-04-20T23:50:20Z",
@@ -11402,7 +11402,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "주문이 실제 체결된 결과 (가격·수량·시간 포함)",
+        "ko": "거래소에 제출된 주문 중 일부 또는 전부가 시장에서 체결되어 수량이 확보된 상태(체결)를 뜻합니다.",
         "en": "The result of an order being executed, including its price, quantity, and time."
       },
       "canonical_pos": "noun",
@@ -11435,7 +11435,7 @@
         "zh_hans": "筛选"
       },
       "description_i18n": {
-        "ko": "조건에 맞게 거르는 컴포넌트",
+        "ko": "들어오는 데이터 스트림, 이벤트, 또는 리스트에서 조건에 부합하지 않는 노이즈를 걸러내는 과정이나 모듈입니다.",
         "en": "A component that separates or isolates specific data or signals, or a process of performing such separation."
       },
       "canonical_pos": "noun",
@@ -11630,7 +11630,7 @@
       },
       "description_i18n": {
         "en": "Coming before all others in time or order",
-        "ko": "가장 먼저 일어나거나 존재하거나 오는 것"
+        "ko": "데이터 컬렉션의 첫 번째 원소이거나, 특정 주기 내에서 가장 먼저 발생한 시장 이벤트(예: 시가)를 지칭합니다."
       },
       "canonical_pos": "noun",
       "variants": [],
@@ -11652,7 +11652,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "프로그램의 특정 기능을 일관되게 검증할 수 있도록 미리 정의해 둔 고정된 입력 데이터나 시스템의 초기 상태",
+        "ko": "소프트웨어 테스트 환경에서 여러 테스트가 동일하게 사용할 수 있도록 미리 준비해둔 데이터나 객체 상태입니다.",
         "en": "프로그램의 특정 기능을 일관되게 검증할 수 있도록 미리 정의해 둔 고정된 입력 데이터나 시스템의 초기 상태"
       },
       "from": "Fixture",
@@ -11723,7 +11723,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "포지션 없음 (현금 보유 상태)",
+        "ko": "보유하고 있는 모든 포지션을 청산하여 현재 위험 노출이 전혀 없는 상태(무포지션)를 의미합니다.",
         "en": "A state of having no open positions, meaning the portfolio is entirely in cash."
       },
       "canonical_pos": "noun",
@@ -11758,7 +11758,7 @@
         "zh_hans": "压扁"
       },
       "description_i18n": {
-        "ko": "모든 포지션을 닫는 행위",
+        "ko": "계좌 내의 모든 열린 포지션을 즉시 청산(시장가 매도/매수)하여 무포지션 상태로 만드는 긴급 조치입니다.",
         "en": "To close all open positions in a trading account."
       },
       "canonical_pos": "verb",
@@ -12085,7 +12085,7 @@
       "status": "active",
       "description_i18n": {
         "en": "The act of creating a copy of the existing source code to start independent development or a parallel workflow",
-        "ko": "기존 소스 코드의 복사본을 생성하여 독립적인 개발이나 병렬적인 작업 흐름을 시작하는 행위"
+        "ko": "기존 프로세스를 복제하여 독립적인 자식 프로세스를 생성하거나, 소스 코드 저장소를 복사하여 분기하는 작업입니다."
       },
       "from": "Fork",
       "variants": [
@@ -12716,7 +12716,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "무언가를 새로 만들어내는 행위"
+        "ko": "시장 데이터로부터 신호를 만들어내거나(signal generation) 스크립트를 통해 새로운 파일을 생성하는 작업입니다."
       },
       "variants": [
         {
@@ -12820,7 +12820,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Global Industry Classification Standard, a system used to categorize companies by industry in the stock market",
-        "ko": "글로벌 산업 분류 표준으로, 주식 시장에서 기업을 산업별로 분류하는 데 사용되는 체계"
+        "ko": "기업들을 경제 섹터 및 산업 그룹으로 분류하기 위해 널리 사용되는 글로벌 산업 분류 기준(GICS)입니다."
       },
       "from": "gics",
       "variants": [
@@ -12875,7 +12875,7 @@
         "zh_hans": "金钥匙"
       },
       "description_i18n": {
-        "ko": "특정 종목 선정 기준 또는 신호",
+        "ko": "시스템 내에서 최고 권한을 우회하거나 중요 암호화 로직을 해제하기 위해 사용되는 마스터 키나 특별 권한을 뜻합니다.",
         "en": "A system-level authentication key or access token used to authorize privileged operations in the trading system."
       },
       "canonical_pos": "noun",
@@ -12905,7 +12905,7 @@
       "status": "active",
       "description_i18n": {
         "en": "A type of order that remains active in the market until it is either executed or explicitly canceled by the user",
-        "ko": "별도의 취소 요청이 있거나 거래가 완료될 때까지 기간 제한 없이 시장에 남아있는 주문 방식"
+        "ko": "주문이 체결되거나 사용자가 직접 취소하기 전까지 유효 기간 없이 시장에 계속 남아 있는 매매 주문 조건(GTC)입니다."
       },
       "from": "gtc",
       "variants": [
@@ -13050,7 +13050,7 @@
         "zh_hans": "警卫"
       },
       "description_i18n": {
-        "ko": "프로세스 보호 컴포넌트",
+        "ko": "잘못된 데이터 유입이나 비정상적인 상태 전이를 막기 위해 로직의 시작 부분에 배치하는 방어적 조건 검사입니다.",
         "en": "A component that protects a process from unauthorized access or termination."
       },
       "canonical_pos": "noun",
@@ -13159,7 +13159,7 @@
       ],
       "canonical_pos": "verb",
       "description_i18n": {
-        "ko": "거래 또는 시스템이 일시적으로 중단된 상태",
+        "ko": "심각한 장애나 위험이 감지되었을 때 추가 손실을 막기 위해 전체 시스템의 작동을 즉각적으로 중지시키는 조치입니다.",
         "en": "To stop an automated trading system or a specific process temporarily or permanently."
       },
       "status": "active",
@@ -13247,7 +13247,7 @@
         "zh_hans": "处理程序"
       },
       "description_i18n": {
-        "ko": "특정 이벤트를 처리하는 객체 또는 함수들의 집합",
+        "ko": "네트워크 요청, 시스템 이벤트, 또는 예외 발생 시 이를 넘겨받아 적절한 로직을 수행하도록 처리하는 컴포넌트입니다.",
         "en": "A subroutine or object responsible for processing a specific event or situation in a program."
       },
       "canonical_pos": "noun",
@@ -13385,7 +13385,7 @@
       "status": "active",
       "description_i18n": {
         "en": "The leading part of a data packet containing metadata and instructions for handling the content",
-        "ko": "데이터 전송 시 수신 측에서 필요한 처리 규격이나 인증 정보를 포함하는 데이터의 선두부"
+        "ko": "네트워크 통신 패킷이나 데이터 파일(CSV 등)의 최상단에 위치하여 메타데이터나 인증 정보, 컬럼명을 담는 영역입니다."
       },
       "from": "header",
       "variants": [
@@ -13410,7 +13410,7 @@
         "zh_hans": "健康"
       },
       "description_i18n": {
-        "ko": "시스템 컴포넌트의 정상 작동 여부 (헬스 체크)",
+        "ko": "시스템, 데이터베이스, 또는 외부 API가 정상적으로 응답하고 동작하는지를 주기적으로 체크하는 상태 확인 척도입니다.",
         "en": "The state of a system component's normal operation, often referred to as a health check."
       },
       "canonical_pos": "noun",
@@ -13543,7 +13543,7 @@
       },
       "description_i18n": {
         "en": "being at a level considerably above the normal or average",
-        "ko": "수준이나 정도가 매우 높은 상태"
+        "ko": "특정 시간 단위나 캔들에서 기록된 최고 가격을 나타내거나, 시스템 리소스 사용량이나 위험도가 높은 상태를 의미합니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-20T12:03:28Z",
@@ -13749,7 +13749,7 @@
       },
       "description_i18n": {
         "en": "a place where one lives, a place of rest and comfort",
-        "ko": "사람이 살고 있는 장소, 안식처"
+        "ko": "시스템이 설치된 기본 디렉토리 경로나 애플리케이션의 메인 대시보드 인터페이스를 지칭합니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-20T12:03:27Z",
@@ -13958,7 +13958,7 @@
       "status": "active",
       "description_i18n": {
         "en": "A state where no work or processing is ongoing and waiting",
-        "ko": "작업이나 처리가 진행되지 않고 대기 중인 상태"
+        "ko": "프로세스나 연결이 생성되었으나 현재 수행할 작업이 없어 대기하고 있는 유휴 상태를 의미합니다."
       },
       "from": "idle",
       "created_at": "2026-04-21T00:39:08Z",
@@ -13978,7 +13978,7 @@
       },
       "description_i18n": {
         "en": "happening or done at once",
-        "ko": "지체 없이 일어나는 바로 지금의"
+        "ko": "주문이 접수되는 즉시 시장에서 처리되어야 하며 그렇지 못할 경우 취소(IOC 등)되는 조건, 또는 지연 없는 처리를 뜻합니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-21T00:39:08Z",
@@ -14031,7 +14031,7 @@
       "status": "active",
       "description_i18n": {
         "en": "to put a decision or plan into action or effect",
-        "ko": "계획이나 아이디어를 실행에 옮기거나 실제로 적용하는 것"
+        "ko": "설계된 아키텍처나 추상화된 인터페이스 규칙에 맞추어 실제 동작하는 구체적인 코드를 작성하는 과정입니다."
       },
       "from": "implement",
       "variants": [
@@ -14276,7 +14276,7 @@
         "zh_hans": "信息"
       },
       "description_i18n": {
-        "ko": "메타 정보",
+        "ko": "시스템 로그 레벨 중 하나로, 오류는 아니지만 상태 변화나 작업 완료 등 일반적인 진행 정보를 나타냅니다.",
         "en": "Additional data or details about an entity or process."
       },
       "canonical_pos": "noun",
@@ -14478,7 +14478,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Attribute used within code to reference external resources or data",
-        "ko": "코드 내에서 외부 리소스나 데이터를 가리키는 데 사용되는 속성"
+        "ko": "사용자의 조작, 외부 시스템의 API 응답, 또는 처리할 데이터 셋 등 시스템 내부 로직으로 들어오는 데이터입니다."
       },
       "from": "input",
       "created_at": "2026-04-21T00:39:08Z",
@@ -14702,7 +14702,7 @@
         "zh_hans": "意图"
       },
       "description_i18n": {
-        "ko": "실행 전 주문 의사결정 객체",
+        "ko": "사용자나 시스템이 주문을 실행하거나 특정 상태로 전이하려는 명시적인 목적이나 초기 계획을 뜻합니다.",
         "en": "An object representing the decision to place an order before execution."
       },
       "canonical_pos": "noun",
@@ -14753,7 +14753,7 @@
         "zh_hans": "间隔"
       },
       "description_i18n": {
-        "ko": "데이터 수집, 분석 또는 작업 실행 간격",
+        "ko": "차트의 캔들 봉 주기, 폴링 주파수 또는 타이머 실행 간격 등 주기적으로 반복되는 작업의 시간 단위입니다.",
         "en": "A defined period or distance between discrete events or measurements."
       },
       "canonical_pos": "noun",
@@ -14785,7 +14785,7 @@
       },
       "variants": [],
       "description_i18n": {
-        "ko": "당일 내 진입·청산을 완료하는 거래 (데이트레이딩)",
+        "ko": "정규 시장 개장 후 종료 전까지의 하루 내를 의미하며, 당일 진입하고 당일 청산하는 데이트레이딩 전략의 시간 범위입니다.",
         "en": "Occurring or executed within a single trading day."
       },
       "canonical_pos": "adj",
@@ -14810,7 +14810,7 @@
       "status": "active",
       "description_i18n": {
         "en": "state or condition of not being in compliance with policy or rules or not being permissible",
-        "ko": "정책이나 규칙에 맞지 않거나 허용되지 않는 상태"
+        "ko": "데이터 타입 오류, 권한 없음, 또는 지원하지 않는 시장 등 시스템이 수용할 수 없는 유효하지 않은 상태나 값입니다."
       },
       "from": "invalid",
       "created_at": "2026-04-21T00:39:08Z",
@@ -14990,7 +14990,7 @@
       },
       "description_i18n": {
         "en": "Relating to Japan, its language, culture, people, or things",
-        "ko": "일본의 언어, 문화, 국민 또는 사물을 나타내는 형용사나 명사"
+        "ko": "일본의 금융 시장, 캔들스틱 차트 패턴의 기원, 또는 엔화(JPY)와 관련된 트레이딩 컨텍스트를 지칭합니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-20T12:03:27Z",
@@ -15215,7 +15215,7 @@
         "zh_hans": "杀"
       },
       "description_i18n": {
-        "ko": "강제 종료 또는 비활성화",
+        "ko": "오작동하는 백그라운드 프로세스를 강제 종료하거나, 트레이딩 시스템을 즉각적으로 멈추는 비상 스위치(Kill Switch) 작동을 뜻합니다.",
         "en": "To forcefully terminate or disable a process or system."
       },
       "canonical_pos": "verb",
@@ -15344,7 +15344,7 @@
         "zh_hans": "韩国"
       },
       "description_i18n": {
-        "ko": "동아시아에 위치한 나라",
+        "ko": "한국 주식 시장(KRX)이나 국내 금융 규제 환경, 또는 원화(KRW) 기반의 트레이딩 도메인을 의미합니다.",
         "en": "A country located in East Asia"
       },
       "canonical_pos": "noun",
@@ -15637,7 +15637,7 @@
         "zh_hans": "领导者"
       },
       "description_i18n": {
-        "ko": "섹터를 주도하는 종목",
+        "ko": "분산 시스템에서 클러스터 노드 간 조정을 담당하는 주 노드, 또는 섹터 내에서 가격 상승을 주도하는 대장 종목을 뜻합니다.",
         "en": "A stock or currency that leads its sector or market, often indicating broader market trends."
       },
       "canonical_pos": "noun",
@@ -15722,7 +15722,7 @@
       },
       "description_i18n": {
         "en": "a measurement of how long something is",
-        "ko": "물체의 늘어난 정도를 나타내는 측정값"
+        "ko": "배열, 문자열 등의 데이터 구조에 포함된 항목의 수, 또는 이동평균선(MA) 계산 등에 사용되는 과거 데이터의 관측 기간입니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-20T12:03:28Z",
@@ -15746,7 +15746,7 @@
       "status": "active",
       "description_i18n": {
         "en": "A value indicating the operational level or importance of a program",
-        "ko": "프로그램의 동작 수준이나 중요도를 나타내는 값"
+        "ko": "시장 호가창(Orderbook)의 가격 깊이 단계나, 시스템 아키텍처 및 로깅에서 구분되는 계층적 단계를 뜻합니다."
       },
       "from": "level",
       "created_at": "2026-04-21T00:39:08Z",
@@ -15883,7 +15883,7 @@
         "zh_hans": "限制"
       },
       "description_i18n": {
-        "ko": "가격 제한 또는 지정가 주문",
+        "ko": "주문 실행 시 허용 가능한 최대/최소 가격을 지정하는 지정가 주문이나, API 호출 횟수 및 리스크 노출의 상한선을 뜻합니다.",
         "en": "A boundary or constraint placed on an order, typically a price or quantity."
       },
       "canonical_pos": "noun",
@@ -16026,7 +16026,7 @@
         "zh_hans": "居住"
       },
       "description_i18n": {
-        "ko": "실제 자금으로 진행하는",
+        "ko": "모의 투자가 아닌 실제 자본금이 오고 가는 실거래 환경을 지칭하거나, 현재 시스템이 활성화되어 돌아가고 있음을 뜻합니다.",
         "en": "Referring to trading or operations conducted with real funds, as opposed to simulated or paper trading."
       },
       "canonical_pos": "adj",
@@ -16150,7 +16150,7 @@
         "zh_hans": "当地的"
       },
       "description_i18n": {
-        "ko": "원격이 아닌 로컬 환경",
+        "ko": "원격 서버가 아닌 개발자 자신의 로컬 머신 환경이나, 특정 모듈이나 함수 내에서만 유효한 변수 스코프를 의미합니다.",
         "en": "Pertaining to a specific location, as opposed to remote or distributed."
       },
       "canonical_pos": "adj",
@@ -16229,7 +16229,7 @@
         "zh_hans": "日志"
       },
       "description_i18n": {
-        "ko": "시스템 이벤트 기록",
+        "ko": "시스템의 상태 변화, 에러, 주문 처리 내역 등을 시간에 따라 기록하여 추적과 디버깅을 가능하게 하는 감사 기록입니다.",
         "en": "A chronological record of system events, actions, or data, often used for debugging and auditing."
       },
       "canonical_pos": "noun",
@@ -16411,7 +16411,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "매수 포지션 방향 (가격 상승 기대)",
+        "ko": "기초 자산의 가격 상승을 예상하고 이를 매수하여 보유하는 형태의 롱 포지션을 의미합니다.",
         "en": "In finance, an entity holding a long position in an asset, expecting its price to increase."
       },
       "canonical_pos": "noun",
@@ -16551,7 +16551,7 @@
       "status": "active",
       "description_i18n": {
         "en": "A situation in trading where assets are lost due to a lack of profit",
-        "ko": "거래에서 수익을 내지 못하고 자산을 잃는 상황"
+        "ko": "거래나 포지션에서 손실이 발생하거나 데이터 통신 중 패킷을 잃어버리는 상태를 의미합니다."
       },
       "from": "lose",
       "variants": [
@@ -16576,7 +16576,7 @@
         "zh_hans": "损失"
       },
       "description_i18n": {
-        "ko": "거래에서 발생한 손실",
+        "ko": "특정 거래나 일정 기간 동안 발생한 금전적 손해나 자산의 감소분을 뜻합니다.",
         "en": "The amount of money lost in a transaction or investment."
       },
       "canonical_pos": "noun",
@@ -16724,7 +16724,8 @@
       "created_at": "2026-04-14T13:05:05Z",
       "updated_at": "2026-04-18T09:02:35Z",
       "description_i18n": {
-        "en": "The primary entry point of a program or the main execution module."
+        "en": "The primary entry point of a program or the main execution module.",
+        "ko": "애플리케이션의 시작점이 되는 주요 진입점(Entry Point) 또는 가장 핵심이 되는 실행 흐름을 의미합니다."
       }
     },
     {
@@ -16802,7 +16803,7 @@
         "zh_hans": "管理"
       },
       "description_i18n": {
-        "ko": "자원이나 프로세스를 제어·감독하는 행위.",
+        "ko": "시스템 리소스, 사용자 계정, 포지션 등의 상태를 감독하고 제어 및 유지보수하는 행위입니다.",
         "en": "To control and oversee resources or processes."
       },
       "canonical_pos": "verb",
@@ -16876,7 +16877,8 @@
       ],
       "variants": [],
       "description_i18n": {
-        "en": "Performed or operated by human hands rather than by an automated system or machine."
+        "en": "Performed or operated by human hands rather than by an automated system or machine.",
+        "ko": "자동화된 시스템 로직이 아니라 사용자나 관리자가 직접 개입하여 수동으로 실행하거나 조작하는 것을 뜻합니다."
       }
     },
     {
@@ -16960,7 +16962,7 @@
         "zh_hans": "利润"
       },
       "description_i18n": {
-        "ko": "포지션 유지를 위한 담보금",
+        "ko": "파생상품 등 레버리지 거래를 위해 증권사나 브로커에 예치해야 하는 최소한의 증거금을 의미합니다.",
         "en": "Collateral required to open and maintain a leveraged position in a financial market."
       },
       "canonical_pos": "noun",
@@ -17334,7 +17336,7 @@
       },
       "description_i18n": {
         "en": "the greatest value in a range or set",
-        "ko": "어떤 범위나 집합에서 가장 큰 값"
+        "ko": "시스템 설정이나 전략 규칙에서 허용하는 최대 노출 한도, 포지션 수, 또는 최대 손실 제한선(Max Drawdown)을 뜻합니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-20T12:03:28Z",
@@ -17538,7 +17540,7 @@
       "status": "active",
       "description_i18n": {
         "en": "A piece of information conveyed, such as a chat, notification, or error",
-        "ko": "채팅, 알림, 오류 등 전달되는 정보 조각"
+        "ko": "시스템 컴포넌트 간, 또는 클라이언트와 서버 간에 데이터를 교환하기 위해 사용하는 정보의 패킷 단위입니다."
       },
       "from": "message",
       "created_at": "2026-04-21T00:39:08Z",
@@ -17645,7 +17647,8 @@
         }
       ],
       "description_i18n": {
-        "en": "A defined procedure or systematic way of performing a task or achieving a result, especially within a software system."
+        "en": "A defined procedure or systematic way of performing a task or achieving a result, especially within a software system.",
+        "ko": "클래스 내부에 정의되어 특정 객체의 동작이나 기능을 수행하는 함수를 의미합니다."
       }
     },
     {
@@ -17908,7 +17911,7 @@
         "zh_hans": "嘲笑"
       },
       "description_i18n": {
-        "ko": "실제 자금 없이 시뮬레이션하는",
+        "ko": "단위 테스트 환경에서 외부 API나 DB 등 실제 의존성을 대체하기 위해 생성된 가짜 객체나 스텁(Stub)을 의미합니다.",
         "en": "Simulating trading or financial operations without using real money."
       },
       "canonical_pos": "adj",
@@ -18009,7 +18012,7 @@
       "status": "active",
       "description_i18n": {
         "en": "The current operating state or configuration setting of an application",
-        "ko": "애플리케이션의 현재 운영 상태 또는 구성 설정"
+        "ko": "시스템이 현재 작동하고 있는 특정 상태나 방식(예: 라이브 모드, 페이퍼 트레이딩 모드, 디버그 모드)을 나타냅니다."
       },
       "from": "mode",
       "created_at": "2026-04-21T00:39:08Z",
@@ -18110,7 +18113,7 @@
         "zh_hans": "模块"
       },
       "description_i18n": {
-        "ko": "특정 책임을 캡슐화한 코드 단위",
+        "ko": "특정 기능이나 책임을 수행하기 위해 논리적으로 분리되고 캡슐화된 코드의 구성 단위입니다.",
         "en": "A self-contained unit of code encapsulating specific functionality or responsibility within the system."
       },
       "canonical_pos": "noun",
@@ -18141,7 +18144,7 @@
         "zh_hans": "势头"
       },
       "description_i18n": {
-        "ko": "가격 추세의 강도",
+        "ko": "가격 추세의 강도나 속도를 측정하여 현재의 움직임이 지속될 가능성을 나타내는 기술적 지표입니다.",
         "en": "The rate of price change of an asset, used in technical analysis to gauge the strength of a trend."
       },
       "canonical_pos": "noun",
@@ -18768,7 +18771,7 @@
         "zh_hans": "不"
       },
       "description_i18n": {
-        "ko": "부정 또는 금지를 나타내는 접두사",
+        "ko": "사용자 입력, 조건식 평가, 또는 시스템 설정 등에서 부정(거짓, 비활성화)을 나타내는 논리적 상태입니다.",
         "en": "A word used to indicate negation, refusal, or denial."
       },
       "canonical_pos": "adj",
@@ -18803,7 +18806,7 @@
         "zh_hans": "节点"
       },
       "description_i18n": {
-        "ko": "분산 환경의 개별 머신/컨테이너",
+        "ko": "분산 시스템 클러스터를 구성하는 개별 서버나, 네트워크 토폴로지 내의 연결 지점을 의미합니다.",
         "en": "A distinct point or entity within a distributed system, such as a machine or container."
       },
       "canonical_pos": "noun",
@@ -19051,7 +19054,7 @@
         "zh_hans": "通知"
       },
       "description_i18n": {
-        "ko": "이벤트나 상태 변경을 외부 채널(텔레그램, 이메일 등)로 전달하는 행위.",
+        "ko": "시스템 상태 변경, 오류 발생, 주문 체결 등의 중요 이벤트를 알림 채널을 통해 사용자나 관리자에게 전송하는 행위입니다.",
         "en": "To send event or status change information to an external channel (Telegram, email, etc.)."
       },
       "canonical_pos": "verb",
@@ -19280,7 +19283,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "네트워크/서비스 미연결 상태",
+        "ko": "네트워크 연결이 끊어져 브로커 API나 원격 서버와 통신할 수 없거나 의도적으로 중단시킨 상태를 의미합니다.",
         "en": "Not connected to a network or service."
       },
       "canonical_pos": "adj",
@@ -19416,7 +19419,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "네트워크/서비스 연결 상태",
+        "ko": "시스템이 정상적으로 외부 네트워크와 연결되어 데이터 수신 및 주문 전송이 즉시 가능한 상태입니다.",
         "en": "Indicates a system or service is connected to a network or active."
       },
       "canonical_pos": "adj",
@@ -19658,7 +19661,7 @@
       },
       "description_i18n": {
         "en": "used to present an alternative",
-        "ko": "둘 이상의 대안 중 하나를 선택할 때 사용"
+        "ko": "두 개 이상의 조건 중 하나라도 참이면 전체를 참으로 평가하는 논리합(OR) 연산을 뜻합니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-21T00:39:08Z",
@@ -19700,7 +19703,7 @@
         "zh_hans": "编排"
       },
       "description_i18n": {
-        "ko": "여러 모듈이나 서비스의 실행 흐름을 중앙에서 조율하는 행위.",
+        "ko": "여러 개별 서비스나 모듈의 실행 순서와 데이터 흐름을 중앙에서 조율하고 통제하는 관리 작업을 의미합니다.",
         "en": "To centrally coordinate the execution flow of multiple modules or services."
       },
       "canonical_pos": "verb",
@@ -19819,7 +19822,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "브로커에 전송된 실제 주문 객체",
+        "ko": "시장에서 자산을 매수하거나 매도하기 위해 가격, 수량, 조건 등을 명시하여 브로커에게 전달하는 거래 지시입니다.",
         "en": "A request placed with a broker for execution of a trade."
       },
       "canonical_pos": "noun",
@@ -19859,7 +19862,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "매수·매도 호가창 스냅샷",
+        "ko": "특정 자산에 대해 시장 참여자들이 제출한 매수 및 매도 호가(Limit Order)가 가격별로 나열된 대기 장부입니다.",
         "en": "A real-time list of pending buy and sell orders for a financial instrument, organized by price level."
       },
       "canonical_pos": "noun",
@@ -19957,7 +19960,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Information or data produced or processed by a computer program, system, or device",
-        "ko": "컴퓨터 프로그램, 시스템 또는 장치에 의해 생성되거나 처리된 정보 또는 데이터"
+        "ko": "시스템 로직의 처리 결과로 생성되는 데이터, 터미널 로그 메시지, 또는 외부로 반환되는 응답 값입니다."
       },
       "from": "output",
       "created_at": "2026-04-21T00:39:08Z",
@@ -20042,7 +20045,7 @@
       },
       "variants": [],
       "description_i18n": {
-        "ko": "당일 청산하지 않고 다음날까지 보유하는 거래",
+        "ko": "정규 거래 시간이 종료된 후에도 청산하지 않고 포지션을 다음 날(또는 주말)까지 보유하는 거래 전략입니다.",
         "en": "A trading position held from one trading day to the next."
       },
       "canonical_pos": "adj",
@@ -20213,7 +20216,7 @@
       "status": "active",
       "description_i18n": {
         "en": "input values that a function or method receives to perform a specific task",
-        "ko": "함수나 메서드가 특정 작업을 수행하기 위해 받는 입력값"
+        "ko": "함수 호출 시 전달되는 인수나, 시스템 설정 또는 트레이딩 모델을 튜닝하기 위해 외부에서 주입되는 변수 값입니다."
       },
       "from": "param",
       "variants": [
@@ -20322,7 +20325,7 @@
         "zh_hans": "部分的"
       },
       "description_i18n": {
-        "ko": "전체 중 일부만 처리된",
+        "ko": "제출된 주문 수량 중 전체가 아닌 일부만 체결되었거나, 작업이 부분적으로만 완료된 상태를 의미합니다.",
         "en": "Existing as a part or portion; incomplete, especially in the context of processing or data."
       },
       "canonical_pos": "adj",
@@ -20567,7 +20570,7 @@
       "status": "active",
       "description_i18n": {
         "en": "A string representation used to access files or directories within a computer system",
-        "ko": "컴퓨터 시스템 내에서 파일이나 디렉토리에 접근하기 위한 문자열 표현"
+        "ko": "파일 시스템 내에서 특정 파일이나 디렉토리가 위치한 고유한 경로, 또는 데이터의 전달 라우팅 경로를 뜻합니다."
       },
       "from": "path",
       "created_at": "2026-04-21T00:39:08Z",
@@ -20631,7 +20634,7 @@
       "status": "active",
       "description_i18n": {
         "en": "the actual data or information being transmitted or processed",
-        "ko": "전송되거나 처리될 실제 데이터 또는 정보"
+        "ko": "네트워크 요청이나 메시지 전송 시 프로토콜 헤더를 제외한 실제 데이터의 본문(Body)을 의미합니다."
       },
       "from": "payload",
       "created_at": "2026-04-21T00:39:08Z",
@@ -20748,7 +20751,7 @@
       },
       "variants": [],
       "description_i18n": {
-        "ko": "주문 생성 후 브로커 전송 전 대기 상태",
+        "ko": "주문이 거래소에 성공적으로 접수되었으나 아직 체결되지 않았거나, 처리가 완료되지 않고 대기 중인 상태입니다.",
         "en": "Awaiting a conclusion or confirmation, typically referring to an order state before it is fully processed."
       },
       "canonical_pos": "adj",
@@ -21229,7 +21232,7 @@
         "zh_hans": "pnl"
       },
       "description_i18n": {
-        "ko": "Profit and Loss 손익",
+        "ko": "수익(Profit)과 손실(Loss)을 합산하여 현재 포지션이나 특정 기간 동안의 재무적 성과를 나타내는 손익 지표입니다.",
         "en": "Profit and Loss; the net financial result of a set of trades or positions over a given period."
       },
       "canonical_pos": "noun",
@@ -21424,7 +21427,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "현재 보유 중인 종목/계약 상태 (수량, 평균단가, 미실현손익)",
+        "ko": "특정 자산을 매수(Long)하거나 매도(Short)하여 시장에 노출되어 있는 현재의 보유 상태나 계약 수량을 의미합니다.",
         "en": "The current holding status of a security or contract, including quantity, average price, and unrealized profit/loss."
       },
       "canonical_pos": "noun",
@@ -21597,7 +21600,7 @@
         "zh_hans": "优质的"
       },
       "description_i18n": {
-        "ko": "프리미엄 가격/가치",
+        "ko": "옵션 계약을 매수할 때 지불하는 가격이거나, 현물 대비 선물 가격이 더 높게 형성되어 있는 상태를 뜻합니다.",
         "en": "An amount paid in addition to a normal price or value, often as a bonus or for superior quality."
       },
       "canonical_pos": "noun",
@@ -21932,7 +21935,7 @@
         "zh_hans": "过程"
       },
       "description_i18n": {
-        "ko": "실행 중인 프로그램",
+        "ko": "운영 체제에서 실행 중인 프로그램 인스턴스이거나, 특정 입력 데이터를 가공하여 결과를 도출하는 일련의 절차입니다.",
         "en": "A running program or instance of a program being executed by an operating system."
       },
       "canonical_pos": "noun",
@@ -22136,7 +22139,7 @@
         "zh_hans": "利润"
       },
       "description_i18n": {
-        "ko": "거래에서 발생한 이익",
+        "ko": "거래 결과 매입 단가보다 매도 단가가 높아, 수수료를 제외하고 실질적으로 발생한 재무적 이익입니다.",
         "en": "The financial gain realized when the revenue generated from a transaction exceeds the expenses or costs incurred."
       },
       "canonical_pos": "noun",
@@ -22415,7 +22418,7 @@
         "zh_hans": "协议"
       },
       "description_i18n": {
-        "ko": "모듈 간 동작 계약(인터페이스) 규약",
+        "ko": "컴퓨터나 네트워크 장비 간에 데이터를 주고받기 위해 사전에 약속된 규칙, 데이터 형식, 통신 규약입니다.",
         "en": "A set of rules or conventions governing the interaction and communication between different modules or systems."
       },
       "canonical_pos": "noun",
@@ -22684,7 +22687,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "상승 추세 중 일시적으로 되돌리는 구간에서 진입하는 패턴",
+        "ko": "강한 상승이나 하락 추세 중 일시적으로 반대 방향으로 되돌아오는 가격 조정 현상을 의미합니다.",
         "en": "A temporary reduction in the price of a financial instrument after it has been rising."
       },
       "canonical_pos": "noun",
@@ -22859,7 +22862,7 @@
       "status": "active",
       "description_i18n": {
         "en": "the amount or number of something",
-        "ko": "어떤 것의 크기 또는 수를 나타내는 정도"
+        "ko": "주문 시 매수하거나 매도하려는 자산의 수량, 또는 포지션에 보유하고 있는 총 계약 수입니다."
       },
       "from": "quantity",
       "created_at": "2026-04-21T00:39:08Z",
@@ -23046,7 +23049,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "시스템의 운영 또는 자원 할당을 점진적으로 늘리는 과정",
+        "ko": "시스템이 시작될 때 캐시를 예열하거나 머신러닝 모델이 초기 데이터를 수집하며 정상 궤도에 오르기까지의 준비 단계입니다.",
         "en": "The process of gradually increasing system operation or resource allocation"
       },
       "from": "rampup",
@@ -23146,7 +23149,7 @@
         "zh_hans": "排名者"
       },
       "description_i18n": {
-        "ko": "순위를 산정하는 컴포넌트",
+        "ko": "여러 종목이나 신호를 평가하여 우선순위나 스코어를 매기고 정렬하는 책임을 가진 시스템 모듈입니다.",
         "en": "A component responsible for determining the ranking or order of items."
       },
       "canonical_pos": "noun",
@@ -23177,7 +23180,7 @@
         "zh_hans": "排名"
       },
       "description_i18n": {
-        "ko": "특정 기준에 따른 순위 또는 순위 목록.",
+        "ko": "특정 기준(수익률, 모멘텀, 거래량 등)에 따라 종목들을 상대 평가하여 우선순위를 부여한 순위 정보입니다.",
         "en": "An ordered list based on a specific criterion."
       },
       "canonical_pos": "noun",
@@ -23319,7 +23322,7 @@
       },
       "description_i18n": {
         "en": "To attain a target value or condition.",
-        "ko": "목적지, 엔드포인트 또는 특정 상태에 도달하거나 연결하는 동작."
+        "ko": "가격이 목표가(Target Price)에 도달하거나 시스템 지표가 특정 임계값에 도달하는 상황을 의미합니다."
       },
       "variants": [
         {
@@ -23546,7 +23549,7 @@
       ],
       "canonical_pos": "adj",
       "description_i18n": {
-        "ko": "청산 완료되어 확정된",
+        "ko": "미실현 상태의 포지션을 실제로 청산(매도/매수 환수)하여 장부상의 손익을 현금으로 확정 짓는 행위입니다.",
         "en": "Completed and confirmed, as in a trade settlement."
       },
       "status": "active",
@@ -23704,7 +23707,7 @@
         "zh_hans": "重新启动"
       },
       "description_i18n": {
-        "ko": "시스템 정기 재시작",
+        "ko": "운영 체제나 시스템 데몬을 완전히 종료한 후 다시 시작하여 메모리를 초기화하고 구동하는 작업입니다.",
         "en": "An instance of restarting a computing system or process, often to restore a normal state or begin anew."
       },
       "canonical_pos": "noun",
@@ -23795,7 +23798,7 @@
         "zh_hans": "记录"
       },
       "description_i18n": {
-        "ko": "개별 거래 이력",
+        "ko": "데이터베이스나 로그 파일에 저장된 하나의 데이터 행(Row) 단위, 또는 이벤트 발생 내역을 기록하는 것을 뜻합니다.",
         "en": "A distinct item of information, often related to a single transaction or entity, stored for future reference."
       },
       "canonical_pos": "noun",
@@ -24066,7 +24069,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Indicates a state of being officially recorded or added to a system",
-        "ko": "공식적으로 기록되거나 시스템에 추가된 상태를 나타냄"
+        "ko": "새로운 모듈, 이벤트 리스너, 클라이언트 등을 시스템 레지스트리에 등록하여 시스템이 인식하도록 하는 행위입니다."
       },
       "from": "register",
       "variants": [
@@ -24091,7 +24094,7 @@
         "zh_hans": "注册表"
       },
       "description_i18n": {
-        "ko": "마켓별 모듈을 등록하고 조회하는 매핑 저장소",
+        "ko": "시스템 설정, 작업 상태, 활성화된 서비스 목록 등을 중앙에서 관리하고 조회할 수 있는 저장소입니다.",
         "en": "A mapping repository for registering and querying market-specific modules."
       },
       "canonical_pos": "noun",
@@ -24139,7 +24142,7 @@
       ],
       "canonical_pos": "verb",
       "description_i18n": {
-        "ko": "브로커에 의해 주문 거절됨",
+        "ko": "거래소나 브로커가 증거금 부족, 잘못된 가격 등의 이유로 제출된 주문 접수를 거부한 상태입니다.",
         "en": "To refuse to accept, often referring to an order being declined by a broker."
       },
       "status": "active",
@@ -24214,7 +24217,7 @@
       },
       "description_i18n": {
         "en": "having a relation to something else or being comparative",
-        "ko": "둘 사이에 연관성이 있거나 비교했을 때의 상태를 나타냄"
+        "ko": "절대적인 값이 아니라 이전 데이터, 벤치마크, 또는 현재 경로를 기준으로 상대적으로 계산된 값이나 위치를 뜻합니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-20T12:03:28Z",
@@ -24237,7 +24240,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Converts a given path into a relative path based on a reference path",
-        "ko": "주어진 경로를 기준 경로를 바탕으로 상대적인 위치를 나타내는 경로로 변환하는 기능"
+        "ko": "파일 시스템의 루트 디렉토리가 아닌, 현재 실행 중인 작업 디렉토리를 기준으로 파일 위치를 나타낸 경로입니다."
       },
       "from": "relpath",
       "variants": [
@@ -24261,7 +24264,7 @@
       ],
       "canonical_pos": "adj",
       "description_i18n": {
-        "ko": "특정 조건을 완화하여 적용하는 설정.",
+        "ko": "비정상적으로 엄격하게 설정된 리스크 제한이나 매매 조건을 시장 상황에 맞게 임시로 완화하는 조치입니다.",
         "en": "A setting that allows for looser application of specific conditions."
       },
       "status": "active",
@@ -24548,7 +24551,7 @@
         "zh_hans": "重播"
       },
       "description_i18n": {
-        "ko": "과거 데이터 재생 시뮬레이션",
+        "ko": "과거의 틱 데이터나 이벤트 로그를 순차적으로 다시 재생하여 과거 시스템 상태를 복원하거나 디버깅하는 기능입니다.",
         "en": "A simulation that plays back past data, often used for testing trading strategies."
       },
       "canonical_pos": "noun",
@@ -24625,7 +24628,7 @@
         "zh_hans": "报告"
       },
       "description_i18n": {
-        "ko": "보고서",
+        "ko": "백테스트 결과, 일일 거래 내역, 오류 통계 등을 요약하여 사용자나 관리자에게 제공하는 문서 형태의 산출물입니다.",
         "en": "A document or account detailing information about an event, subject, or findings, often used for analysis or decision-making."
       },
       "canonical_pos": "noun",
@@ -24823,7 +24826,7 @@
       "status": "active",
       "description_i18n": {
         "en": "The process of returning all settings or data to their original default values",
-        "ko": "모든 설정이나 데이터를 원래의 기본값으로 되돌리는 과정"
+        "ko": "에러 복구나 일일 정산(EOD) 시, 시스템 변수나 캐시 데이터를 초기 상태로 돌려놓는 과정입니다."
       },
       "from": "reset",
       "created_at": "2026-04-21T00:39:08Z",
@@ -24915,7 +24918,7 @@
       "status": "active",
       "description_i18n": {
         "en": "content or action shown in reaction to something",
-        "ko": "어떤 행동이나 질문에 대해 전달되는 내용이나 보이는 반응"
+        "ko": "API 요청이나 네트워크 호출에 대해 서버나 브로커가 처리 결과를 담아 클라이언트에게 반환하는 응답 데이터입니다."
       },
       "from": "response",
       "created_at": "2026-04-21T00:39:08Z",
@@ -25029,7 +25032,7 @@
       "status": "active",
       "description_i18n": {
         "en": "The final output or outcome of an operation, simulation, or process",
-        "ko": "어떤 연산, 시뮬레이션 또는 작업의 최종 산출물"
+        "ko": "함수나 쿼리의 연산 종료 후 반환되는 출력 값, 또는 거래 및 백테스트 실행에 따른 최종 성과입니다."
       },
       "from": "result",
       "created_at": "2026-04-21T00:39:08Z",
@@ -25388,7 +25391,7 @@
         "zh_hans": "风险"
       },
       "description_i18n": {
-        "ko": "손실 가능성 또는 위험도",
+        "ko": "시장 가격 변동, 시스템 오류 등으로 인해 발생할 수 있는 잠재적 손실 가능성이나 위협 요소를 의미합니다.",
         "en": "The probability or magnitude of a negative outcome or loss."
       },
       "canonical_pos": "noun",
@@ -25439,7 +25442,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "서비스 또는 노드의 역할 (primary/replica 등)",
+        "ko": "사용자 계정, 인증 토큰, 또는 마이크로서비스가 시스템 내에서 수행하도록 부여된 역할과 권한의 집합입니다.",
         "en": "The function or position assigned to a system service or node, such as primary or replica."
       },
       "canonical_pos": "noun",
@@ -25689,7 +25692,7 @@
       ],
       "canonical_pos": "verb",
       "description_i18n": {
-        "ko": "서비스 실행 중 상태",
+        "ko": "작성된 프로그램 로직, 백테스트 엔진, 스크립트 등을 메모리에 적재하여 실행하는 것을 의미합니다.",
         "en": "The process or state of executing a program, service, or task."
       },
       "status": "active",
@@ -25731,7 +25734,7 @@
         "zh_hans": "重播"
       },
       "description_i18n": {
-        "ko": "작업을 실행하는 컴포넌트",
+        "ko": "특정 태스크, 작업 배치, 테스트 스위트 등을 큐에서 가져와 순차적으로 실행(Run)하는 전담 컴포넌트입니다.",
         "en": "A component responsible for executing tasks or processes."
       },
       "canonical_pos": "noun",
@@ -25778,7 +25781,7 @@
         "zh_hans": "运行时"
       },
       "description_i18n": {
-        "ko": "프로그램이 실행되는 환경 또는 시간.",
+        "ko": "프로그램이 컴파일된 이후 실제로 실행되고 있는 동안의 환경이나 프로세스 활성 상태를 나타냅니다.",
         "en": "The period during which a program is running or operating."
       },
       "canonical_pos": "noun",
@@ -25920,7 +25923,7 @@
         "zh_hans": "扫描"
       },
       "description_i18n": {
-        "ko": "소스 코드나 데이터를 순차적으로 검색·추출하는 행위.",
+        "ko": "시장 전 종목을 탐색하여 특정 조건(돌파, 거래량 급증 등)에 부합하는 종목을 찾아내는 검색 및 스크리닝 과정입니다.",
         "en": "To sequentially search through or extract items from source code or data."
       },
       "canonical_pos": "verb",
@@ -26001,7 +26004,7 @@
         "zh_hans": "计划"
       },
       "description_i18n": {
-        "ko": "특정 시간 또는 조건에 맞춰 작업을 예약·실행하는 행위.",
+        "ko": "크론(Cron) 작업이나 스케줄러를 통해 특정 시간이나 주기에 맞추어 코드가 실행되도록 예약하는 설정입니다.",
         "en": "To plan or execute tasks at a specific time or based on a condition."
       },
       "canonical_pos": "verb",
@@ -26042,7 +26045,7 @@
         "zh_hans": "调度程序"
       },
       "description_i18n": {
-        "ko": "작업 예약 및 관리를 담당하는 시스템 컴포넌트 또는 설정.",
+        "ko": "정해진 스케줄이나 이벤트 주기에 따라 예약된 작업이나 백그라운드 프로세스를 구동시키는 시스템 모듈입니다.",
         "en": "An operating system component or configuration responsible for task scheduling and management."
       },
       "canonical_pos": "noun",
@@ -26128,7 +26131,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "설정이나 작업이 적용되는 범위를 정의하는 설정.",
+        "ko": "변수나 설정이 유효한 코드 내의 영역이거나, 특정 모듈이 담당하는 책임과 영향력의 범위를 뜻합니다.",
         "en": "Defines the extent or range of applicability or relevance for a setting or operation."
       },
       "canonical_pos": "noun",
@@ -26207,7 +26210,7 @@
         "zh_hans": "得分手"
       },
       "description_i18n": {
-        "ko": "종목 또는 신호에 점수를 부여하는 모듈.",
+        "ko": "여러 가지 입력 지표나 피처 데이터를 종합하여 특정 기준에 맞춘 단일 수치 점수(Score)를 계산해 내는 로직입니다.",
         "en": "A module that assigns a score to an asset or signal."
       },
       "canonical_pos": "noun",
@@ -26552,7 +26555,7 @@
         "zh_hans": "选择"
       },
       "description_i18n": {
-        "ko": "조건에 맞는 항목을 선별·조회하는 행위.",
+        "ko": "데이터베이스에서 특정 조건에 맞는 레코드를 조회하거나, 여러 종목 중 트레이딩 대상 종목을 선택하는 연산입니다.",
         "en": "To filter or query items that meet specific conditions."
       },
       "canonical_pos": "verb",
@@ -26631,7 +26634,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "매도 주문",
+        "ko": "보유 중인 자산을 처분하거나 자산 가격 하락을 예상하고 공매도(Short) 포지션을 진입하기 위한 매도 주문입니다.",
         "en": "An act of transferring goods or providing services in exchange for money."
       },
       "canonical_pos": "noun",
@@ -26940,7 +26943,7 @@
         "zh_hans": "服务器"
       },
       "description_i18n": {
-        "ko": "서버 프로세스",
+        "ko": "클라이언트의 네트워크 요청을 대기하고 있다가 접속이 들어오면 데이터를 처리하고 응답을 제공하는 호스트 시스템입니다.",
         "en": "A program or computer that provides services to other programs or devices over a network."
       },
       "canonical_pos": "noun",
@@ -26971,7 +26974,7 @@
         "zh_hans": "服务"
       },
       "description_i18n": {
-        "ko": "독립적으로 실행되는 프로세스",
+        "ko": "마이크로서비스 아키텍처 내에서 특정 도메인 로직을 독립적으로 처리하고 API를 제공하는 구동 단위입니다.",
         "en": "An independently running process that performs a specific function."
       },
       "canonical_pos": "noun",
@@ -27287,7 +27290,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "매도 포지션 방향 (가격 하락 기대)",
+        "ko": "자산 가격이 하락할 것을 예상하고 먼저 매도한 후, 나중에 싼 가격에 매수하여 상환하는 공매도 포지션을 뜻합니다.",
         "en": "A financial position anticipating a decrease in the price of an asset; selling securities with the expectation of buying them back at a lower price."
       },
       "canonical_pos": "noun",
@@ -27311,7 +27314,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "휴대폰 등으로 문자 메시지를 주고받는 통신 서비스",
+        "ko": "휴대전화 문자 메시지 기능을 이용하여 시스템 에러 알림, 인증 번호 등을 관리자나 사용자에게 전송하는 서비스입니다.",
         "en": "A communication service for exchanging text messages via mobile phones"
       },
       "from": "sms",
@@ -27381,7 +27384,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "시스템이 포착한 특정 종목의 급격한 시세 변동이나 매매 신호를 외부 채널이나 사용자에게 즉각적이고 강조된 방식으로 전파하는 행위",
+        "ko": "시스템 모니터링에서 심각한 오류가 발생했을 때 여러 채널을 통해 긴급 경고 메시지를 반복적으로 발송하는 행위입니다.",
         "en": "The act of immediately broadcasting urgent stock price fluctuations or trading signals captured by the system to external channels or users in an emphasized manner"
       },
       "from": "Shouting",
@@ -27525,7 +27528,7 @@
         "zh_hans": "边"
       },
       "description_i18n": {
-        "ko": "매수/매도 방향",
+        "ko": "주문의 방향을 나타내는 필드로, 일반적으로 매수(Buy)인지 매도(Sell)인지를 구분합니다.",
         "en": "Indicates the direction of a trade, specifically whether it is a buy or sell order."
       },
       "canonical_pos": "noun",
@@ -27642,7 +27645,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "진입 또는 청산 판단 결과. signals 모듈만 생성 가능.",
+        "ko": "알고리즘이 가격 데이터와 보조 지표를 분석하여 시장 진입(Buy/Sell)이나 청산을 지시하는 트리거 이벤트입니다.",
         "en": "A result indicating a decision to enter or exit a trade, generated by the signals module."
       },
       "canonical_pos": "noun",
@@ -27731,7 +27734,7 @@
       "status": "active",
       "description_i18n": {
         "en": "A technical indicator that calculates the arithmetic mean of prices over a specific period to identify trends",
-        "ko": "설정한 기간 동안의 가격 산술 평균을 연결하여 가격의 흐름과 추세를 파악하는 지표"
+        "ko": "특정 기간 동안의 종가를 단순 평균하여 계산한 이동평균선(SMA)으로 추세를 확인하는 데 사용됩니다."
       },
       "from": "sma",
       "variants": [
@@ -28010,7 +28013,7 @@
         "zh_hans": "滑点"
       },
       "description_i18n": {
-        "ko": "주문 가격과 실제 체결 가격 간의 차이(슬리피지).",
+        "ko": "시장가 주문 시 유동성 부족으로 인해 주문을 넣었을 때의 호가와 실제 체결된 가격 간에 발생하는 차이입니다.",
         "en": "The difference between the intended order price and the actual fill price (slippage)."
       },
       "canonical_pos": "noun",
@@ -28058,7 +28061,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "주문 가격과 실제 체결 가격의 차이",
+        "ko": "실제 주문이 체결된 가격이 애초에 예상했던 가격과 다르게 불리한 방향으로 체결되어 발생하는 비용 손실입니다.",
         "en": "The difference between the expected price of a trade and the price at which it is actually executed."
       },
       "canonical_pos": "noun",
@@ -28083,7 +28086,7 @@
       "status": "active",
       "description_i18n": {
         "en": "the steepness of a line or surface",
-        "ko": "데이터나 그래프의 가파른 정도를 나타내는 값"
+        "ko": "이동평균선이나 추세선의 기울기를 계산하여 현재 추세가 얼마나 강하게 진행되고 있는지 나타내는 지표입니다."
       },
       "from": "slope",
       "created_at": "2026-04-21T00:39:08Z",
@@ -28172,7 +28175,7 @@
         "zh_hans": "快照"
       },
       "description_i18n": {
-        "ko": "특정 시점의 상태를 즉시 캡처하는 행위 또는 그 결과.",
+        "ko": "빠른 시장 변동이나 메모리 상의 특정 시점의 상태를 순간적으로 포착하여 기록으로 남기는 동작입니다.",
         "en": "The act of immediately capturing a state at a specific point in time, or its result."
       },
       "canonical_pos": "verb",
@@ -28212,7 +28215,7 @@
         "zh_hans": "快照"
       },
       "description_i18n": {
-        "ko": "특정 시점의 상태 저장본",
+        "ko": "데이터베이스의 특정 시점 복사본이거나, 현재 시간 기준 호가창 및 포지션 상태를 캡처한 정적 데이터 묶음입니다.",
         "en": "A capture of the state of a system or data at a specific point in time."
       },
       "canonical_pos": "noun",
@@ -28538,7 +28541,7 @@
         "zh_hans": "分裂"
       },
       "description_i18n": {
-        "ko": "수량을 여러 번에 나눠 처리",
+        "ko": "특정 조건이나 그룹 단위로 데이터셋을 분할하거나 주식의 액면 분할(Stock Split)을 나타냅니다.",
         "en": "To divide an order or a trade into multiple smaller parts to be executed at different times or prices."
       },
       "canonical_pos": "verb",
@@ -28654,7 +28657,7 @@
       "status": "active",
       "description_i18n": {
         "en": "a part of the software development lifecycle or deployment process",
-        "ko": "소프트웨어 개발 수명 주기 또는 배포 과정의 한 부분"
+        "ko": "시스템 배포 전 테스트를 수행하는 스테이징 환경이거나, 다단계 트레이딩 파이프라인 중 특정 처리 단계를 뜻합니다."
       },
       "from": "stage",
       "created_at": "2026-04-21T00:39:08Z",
@@ -28758,7 +28761,7 @@
         "zh_hans": "开始"
       },
       "description_i18n": {
-        "ko": "시작 시각 또는 동작",
+        "ko": "시스템 데몬, 백그라운드 프로세스, 백테스트 엔진 등 새로운 실행 흐름을 개시하는 동작입니다.",
         "en": "The beginning of an activity or process, such as the initiation of a trade or the start of a trading session."
       },
       "canonical_pos": "noun",
@@ -28840,7 +28843,7 @@
       "status": "active",
       "description_i18n": {
         "en": "the current condition or attribute of a program or system",
-        "ko": "프로그램이나 시스템의 현재 조건이나 속성"
+        "ko": "시스템 컴포넌트, 주문 수명 주기, 메모리 내부 객체 등이 특정 시점에 가지고 있는 데이터 값들의 현재 조건입니다."
       },
       "from": "state",
       "created_at": "2026-04-21T00:39:08Z",
@@ -28904,7 +28907,7 @@
         "zh_hans": "地位"
       },
       "description_i18n": {
-        "ko": "현재 처리 상태",
+        "ko": "주문이 Pending인지 Filled인지, 또는 시스템이 Online인지 Offline인지 나타내는 공식적인 진행 단계 값입니다.",
         "en": "Indicates the current state of a process or entity within the system."
       },
       "canonical_pos": "adj",
@@ -28960,7 +28963,7 @@
       "status": "active",
       "description_i18n": {
         "en": "a distinct part of an action or process",
-        "ko": "어떤 작업이나 과정에서 거치는 하나하나의 구별되는 부분"
+        "ko": "루프 순회나 알고리즘 실행 시마다 증가하는 반복 단위(Iteration)이거나 마이그레이션 절차의 한 단계입니다."
       },
       "from": "step",
       "created_at": "2026-04-21T00:39:08Z",
@@ -29034,7 +29037,7 @@
         "zh_hans": "停止"
       },
       "description_i18n": {
-        "ko": "손실 한도 도달 시 포지션 청산",
+        "ko": "실행 중인 프로세스를 중단시키거나, 손실을 제한하기 위해 가격이 일정 수준 이하로 떨어지면 작동하는 정지 주문(Stop Order)을 뜻합니다.",
         "en": "A pre-set limit at which a trade is automatically closed to prevent further losses."
       },
       "canonical_pos": "noun",
@@ -29161,7 +29164,7 @@
         "zh_hans": "战略"
       },
       "description_i18n": {
-        "ko": "매매 전략 설정",
+        "ko": "언제 매수하고 매도할지 진입, 청산, 자금 관리 규칙을 체계적으로 정의한 트레이딩 알고리즘 로직의 모음입니다.",
         "en": "A plan of action designed to achieve a specific goal, particularly in trading or system operation."
       },
       "canonical_pos": "noun",
@@ -29598,7 +29601,7 @@
       ],
       "canonical_pos": "verb",
       "description_i18n": {
-        "ko": "브로커에 주문 전송 완료",
+        "ko": "구성된 주문 객체(Order)를 브로커 API를 통해 거래소 시스템으로 최종 제출하는 승인 및 전송 과정입니다.",
         "en": "To transmit an order to a broker or exchange for execution."
       },
       "status": "active",
@@ -29956,7 +29959,7 @@
         "zh_hans": "摇摆"
       },
       "description_i18n": {
-        "ko": "수일~수주에 걸친 중기 매매",
+        "ko": "며칠에서 몇 주에 걸쳐 발생하는 시장의 중단기적인 가격 파동(추세)을 활용하여 수익을 내는 스윙 트레이딩 전략을 의미합니다.",
         "en": "A medium-term trading strategy holding positions for several days to weeks."
       },
       "canonical_pos": "noun",
@@ -30001,7 +30004,7 @@
         "zh_hans": "转变"
       },
       "description_i18n": {
-        "ko": "기능 활성화/비활성화 제어",
+        "ko": "실행 모드 전환(예: Live에서 Paper로), 로직의 조건 분기, 또는 장애 발생 시 예비 시스템으로 넘기는 전환 동작입니다.",
         "en": "A device used to control the activation or deactivation of a feature or function."
       },
       "canonical_pos": "noun",
@@ -30167,7 +30170,7 @@
         "zh_hans": "系统"
       },
       "description_i18n": {
-        "ko": "전체 소프트웨어 시스템",
+        "ko": "하드웨어, 소프트웨어, 네트워크 요소들이 결합하여 데이터 처리나 트레이딩 로직을 수행하는 전체 구조를 의미합니다.",
         "en": "A complex set of interconnected components or entities that work together as a unified whole."
       },
       "canonical_pos": "noun",
@@ -30254,7 +30257,7 @@
       "status": "active",
       "description_i18n": {
         "en": "An identifier or keyword that is associated with data or a resource",
-        "ko": "데이터 또는 리소스에 연결되는 식별자 또는 키워드"
+        "ko": "로그나 데이터를 검색하고 분류하기 쉽도록 부가적으로 달아놓은 짧은 식별용 키워드나 메타데이터입니다."
       },
       "from": "tag",
       "created_at": "2026-04-21T00:39:08Z",
@@ -30273,7 +30276,7 @@
         "zh_hans": "拿"
       },
       "description_i18n": {
-        "ko": "목표 수익을 달성하여 청산",
+        "ko": "현재 수익권에 있는 포지션을 청산하여 목표 수익(Take Profit)을 확보하는 행위나 관련 주문을 뜻합니다.",
         "en": "To exit a trade, typically after achieving a target profit."
       },
       "canonical_pos": "verb",
@@ -30369,7 +30372,7 @@
         "zh_hans": "任务"
       },
       "description_i18n": {
-        "ko": "스케줄링되는 실행 단위",
+        "ko": "시스템 내에서 비동기적으로 실행되거나 스케줄러에 의해 할당되어 처리되어야 하는 논리적인 작업의 기본 단위입니다.",
         "en": "A scheduled unit of execution within a system."
       },
       "canonical_pos": "noun",
@@ -30969,7 +30972,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "최소 가격 변동 단위 또는 실시간 시세 스트림",
+        "ko": "금융 시장에서 자산 가격이 변동할 수 있는 최소 호가 단위이거나 시장에서 수신된 개별 거래 체결 건을 의미합니다.",
         "en": "The smallest possible price movement in a financial market, or a stream of real-time price quotes."
       },
       "canonical_pos": "noun",
@@ -31037,7 +31040,7 @@
         "zh_hans": "时间"
       },
       "description_i18n": {
-        "ko": "특정 시점",
+        "ko": "거래가 발생한 시각, 캔들의 타임스탬프, 또는 로직 실행 주기를 계산하기 위한 시스템상의 기준 시간입니다.",
         "en": "The fundamental, unceasing, and irreversible succession of events from past through present to future."
       },
       "canonical_pos": "noun",
@@ -31089,7 +31092,7 @@
         "zh_hans": "大体时间"
       },
       "description_i18n": {
-        "ko": "차트 또는 데이터 분석에서 사용되는 시간 단위 (예: 1분, 5분, 1시간).",
+        "ko": "차트를 구성하거나 전략을 실행할 때 기준으로 삼는 1분, 5분, 1일 등 시간의 간격(Timeframe)을 의미합니다.",
         "en": "A defined period of time, often used in charting or data analysis for trading."
       },
       "canonical_pos": "noun",
@@ -31173,7 +31176,7 @@
       },
       "description_i18n": {
         "en": "Indicates movement toward a specific point or recipient, or purpose",
-        "ko": "특정 지점이나 대상에 대한 움직임, 방향, 또는 목적을 표현하는 데 사용"
+        "ko": "메시지나 데이터를 전송할 때의 최종 목적지이거나 상태 머신(State Machine)에서 다음으로 전이될 상태를 뜻합니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-20T12:03:29Z",
@@ -31449,7 +31452,7 @@
       ],
       "canonical_pos": "verb",
       "description_i18n": {
-        "ko": "종목 모니터링 시작 시각",
+        "ko": "특정 포지션의 수익률 변화, 주문의 체결 상태, 또는 이벤트의 발생 이력을 지속적으로 모니터링하고 추적하는 과정입니다.",
         "en": "To monitor or follow a financial instrument or a process over time."
       },
       "status": "active",
@@ -31568,7 +31571,7 @@
         "zh_hans": "贸易"
       },
       "description_i18n": {
-        "ko": "개별 매매 거래",
+        "ko": "매수자와 매도자 간에 시장에서 상호 합의된 가격으로 자산이 교환되는 하나의 거래 체결 건을 뜻합니다.",
         "en": "A particular instance of buying or selling, or a series of related transactions executed as a single investment."
       },
       "canonical_pos": "noun",
@@ -31688,7 +31691,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Trading activity or process.",
-        "ko": "?? ?? ?? ?? ??."
+        "ko": "금융 시장에서 자산을 매수 및 매도하여 시세 차익이나 수익을 얻기 위해 전략을 실행하는 전반적인 행위입니다."
       },
       "from": "trade",
       "variants": [],
@@ -31708,7 +31711,7 @@
         "zh_hans": "尾随"
       },
       "description_i18n": {
-        "ko": "수익에 따라 이동하는",
+        "ko": "시장 가격의 유리한 움직임을 따라 손절매(Stop Loss) 기준 가격을 지속적으로 이동시켜 수익을 보존하는 기법입니다.",
         "en": "A trailing stop-loss order is a type of stop-loss order that is set at a specific distance below the market price for a buy position, or above the market price for a sell position. As the market price moves in the favorable direction, the stop-loss price follows it, locking in profits. However, if the market price moves in the unfavorable direction, the stop-loss price remains stationary, protecting the trader from further losses."
       },
       "canonical_pos": "adj",
@@ -31736,7 +31739,7 @@
         "zh_hans": "交易"
       },
       "description_i18n": {
-        "ko": "API 요청 식별자",
+        "ko": "데이터베이스나 시스템 상태를 변경하기 위해 완전히 성공하거나 완전히 실패해야 하는 쪼갤 수 없는 작업 단위입니다.",
         "en": "An atomic operation, such as a database modification or message transfer, guaranteed to complete entirely or not at all."
       },
       "canonical_pos": "noun",
@@ -32041,7 +32044,7 @@
       },
       "description_i18n": {
         "en": "the quality or state of being true",
-        "ko": "실제 사실에 부합하는 성질이나 상태"
+        "ko": "분산 시스템에서 여러 데이터의 충돌을 방지하기 위해 유일하고 신뢰할 수 있는 데이터의 원천(Source of Truth)을 의미합니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-20T12:03:29Z",
@@ -32083,7 +32086,7 @@
         "zh_hans": "类型"
       },
       "description_i18n": {
-        "ko": "분류 유형",
+        "ko": "변수나 객체가 가지는 데이터의 형태(정수, 문자열 등)이거나 매수/매도, 지정가/시장가 등 주문의 고유 속성을 나타냅니다.",
         "en": "A classification or category used to group items or concepts based on shared characteristics."
       },
       "canonical_pos": "noun",
@@ -32284,7 +32287,7 @@
         "zh_hans": "未实现的"
       },
       "description_i18n": {
-        "ko": "아직 청산되지 않은",
+        "ko": "현재 열려있는 포지션에서 발생한 수익이나 손실이지만 아직 청산되지 않아 장부상으로만 존재하는 미실현 상태입니다.",
         "en": "In finance, a profit or loss that has not yet been converted into cash; hypothetical."
       },
       "canonical_pos": "adj",
@@ -32328,7 +32331,7 @@
       ],
       "status": "active",
       "description_i18n": {
-        "ko": "복원하거나 되돌릴 수 없음을 나타내는 상태",
+        "ko": "네트워크 단절이나 치명적 하드웨어 오류 등으로 인해 시스템이 스스로 상태를 복구하거나 작업을 재개할 수 없는 오류 수준입니다.",
         "en": "A state indicating that something cannot be restored or undone"
       },
       "from": "unrecoverable",
@@ -32580,7 +32583,7 @@
       ],
       "canonical_pos": "verb",
       "description_i18n": {
-        "ko": "현재 사용 중인",
+        "ko": "외부 라이브러리, 모듈, 또는 특정 데이터 필드를 현재 로직이나 시스템 내에서 활용하여 적용하는 행위를 뜻합니다.",
         "en": "To utilize or employ something for a particular purpose."
       },
       "status": "active",
@@ -32824,7 +32827,7 @@
         "zh_hans": "变量"
       },
       "description_i18n": {
-        "ko": "환경변수",
+        "ko": "투자로 인해 특정 확률로 발생할 수 있는 최대 예상 손실액을 통계적으로 추정한 위험 측정 지표(Value at Risk)입니다.",
         "en": "A symbolic name or identifier associated with a value that can change, typically used in programming to store data."
       },
       "canonical_pos": "noun",
@@ -33121,7 +33124,7 @@
         "zh_hans": "波动的"
       },
       "description_i18n": {
-        "ko": "가격 변동이 크고 불안정한 시장 상태.",
+        "ko": "시장의 가격 변동성이 매우 크거나, 전원이 꺼지면 데이터가 날아가는 메모리(휘발성) 속성을 의미합니다.",
         "en": "A market condition characterized by large and rapid price fluctuations."
       },
       "canonical_pos": "adj",
@@ -33198,7 +33201,7 @@
         }
       ],
       "description_i18n": {
-        "ko": "Volume Weighted Average Price. 시가총액 가중 평균 체결가.",
+        "ko": "하루 동안 거래된 모든 체결 건의 가격을 거래량으로 가중 평균하여 구한 거래량 가중 평균 가격(VWAP) 지표입니다.",
         "en": "Volume Weighted Average Price; a trading benchmark calculated as the ratio of traded value to total volume over a time period."
       },
       "canonical_pos": "noun",
@@ -33399,7 +33402,7 @@
         "zh_hans": "监控"
       },
       "description_i18n": {
-        "ko": "파일, 소켓 또는 이벤트를 지속적으로 모니터링하는 행위.",
+        "ko": "특정 자산의 가격 움직임이나 시스템의 프로세스 상태 변화를 지속적으로 감시하고 관찰하는 동작입니다.",
         "en": "To continuously monitor a file, socket, or event for changes."
       },
       "canonical_pos": "verb",
@@ -34033,7 +34036,7 @@
         "zh_hans": "工作"
       },
       "description_i18n": {
-        "ko": "일과 시작",
+        "ko": "시스템 스케줄러나 큐에 등록되어 백그라운드 워커 프로세스가 비동기적으로 처리해야 할 작업 단위를 나타냅니다.",
         "en": "The result of effort or a specific task performed."
       },
       "canonical_pos": "noun",
@@ -34219,7 +34222,7 @@
       },
       "description_i18n": {
         "en": "the official currency of Japan",
-        "ko": "일본에서 사용하는 공식 통화"
+        "ko": "일본의 공식 통화인 엔화(JPY)로 외환(FX) 트레이딩 쌍에서 주로 사용되는 자산 식별자입니다."
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-20T12:03:27Z",
@@ -34290,7 +34293,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Measures how many standard deviations a data point is from the mean",
-        "ko": "데이터가 평균에서 표준편차 단위로 얼마나 떨어져 있는지 측정"
+        "ko": "통계 분석에서 특정 데이터가 평균으로부터 표준편차의 몇 배만큼 떨어져 있는지를 나타내는 표준화된 점수입니다."
       },
       "from": "zscore",
       "variants": [
@@ -34364,7 +34367,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Abbreviation for Wider Band — the outer Bollinger Band used in double-BB strategies for FX trading (sigma=4.0).",
-        "ko": "이중 볼린저 밴드 전략에서 외곽 밴드를 지칭하는 약어"
+        "ko": "주로 외환 트레이딩이나 경제 지표에서 참고되는 세계 은행(World Bank) 등의 글로벌 기관을 지칭할 때 사용되는 약어입니다."
       },
       "variants": [
         {
@@ -34395,7 +34398,7 @@
       "status": "active",
       "description_i18n": {
         "en": "A candlestick pattern where the wick penetrates both the Standard BB and the WB outer band, signaling an extreme reversal.",
-        "ko": "캔들 꼬리가 표준 BB와 WB 외곽 밴드를 모두 관통하는 극단값 반전 신호"
+        "ko": "하락 추세 중 전일 음봉의 몸통을 현재 양봉이 강하게 관통하며 반전 상승의 신호를 주는 캔들스틱 차트 패턴입니다."
       },
       "variants": [],
       "source_urls": [],
@@ -34437,7 +34440,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Describes the top-tier, most liquid forex currency pairs (EURUSD, GBPUSD, USDJPY, etc.).",
-        "ko": "FX 시장에서 유동성 최상위 통화쌍 (메이저 페어)"
+        "ko": "시스템의 주요 버전, 가장 거래량이 많은 통화 쌍(Major Pairs), 또는 시스템 운영에 치명적인 영향을 주는 에러 레벨을 의미합니다."
       },
       "variants": [],
       "source_urls": [],
@@ -34458,7 +34461,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Plural form of cross — collection of cross currency pairs (e.g., emerging_crosses). Used as a plural identifier per Rule 8-A §3.",
-        "ko": "교차 통화쌍의 컬렉션 (복수형, 8-A §3 허용)"
+        "ko": "단기 이동평균선이 장기 이동평균선을 상향 돌파하거나 하향 돌파하는 등의 기술적 교차 현상(Cross)을 의미합니다."
       },
       "variants": [
         {
@@ -34484,7 +34487,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Abbreviation for configuration — widely used as a variable name in Python codebases.",
-        "ko": "configuration의 약어. 설정 딕셔너리/객체를 담는 변수명으로 사용."
+        "ko": "시스템이나 애플리케이션의 설정 파일(Config)을 지칭하거나 이를 저장하는 디렉토리명으로 사용되는 축약어입니다."
       },
       "variants": [],
       "source_urls": [],
@@ -34506,7 +34509,7 @@
       "status": "active",
       "description_i18n": {
         "en": "Abbreviation for session_filter or symbol_filter in FX trading context.",
-        "ko": "session_filter 또는 symbol_filter의 약어로 사용되는 로컬 변수 접두사"
+        "ko": "알려진 특정 지표(예: 스토캐스틱 패스트)나 프레임워크 내부에서 사용하는 고유 컴포넌트의 축약된 명칭입니다."
       },
       "variants": [],
       "source_urls": [],
