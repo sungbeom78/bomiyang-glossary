@@ -40,5 +40,19 @@
     "meaning": "교차 통화쌍 (cross_currency_pairs의 복수 컬렉션 형태)",
     "location": "src/selector/fx_candidate_selector.py",
     "reason": "emerging_crosses 식별자 구성, 컬렉션이므로 복수 허용(8-A §3)"
+  },
+  {
+    "word": "orig",
+    "type": "abbreviation",
+    "meaning": "original — KIS API 응답 JSON 필드 orig_order_no (원주문번호)의 약어. API 계약상 변경 불가.",
+    "location": "src/adapter/kr/kis_ws_client.py",
+    "reason": "KIS 공식 WebSocket API JSON 키. 대체 불가 (API 계약)"
+  },
+  {
+    "word": "yn",
+    "type": "abbreviation",
+    "meaning": "yes/no — KIS API 응답 JSON 필드 accept_yn, reject_yn, fill_yn의 접미어. API 계약상 변경 불가.",
+    "location": "src/adapter/kr/kis_ws_client.py",
+    "reason": "KIS 공식 WebSocket API JSON 키. 대체 불가 (API 계약)"
   }
 ]

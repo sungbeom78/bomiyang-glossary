@@ -34515,6 +34515,68 @@
       "source_urls": [],
       "created_at": "2026-05-02T17:50:42Z",
       "updated_at": "2026-05-02T17:50:42Z"
+    },
+    {
+      "id": "yn",
+      "lang": {
+        "en": "yn",
+        "ko": "yn(예/아니오 약어)"
+      },
+      "canonical_pos": "abbreviation",
+      "domain": [
+        "trading",
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "KIS API convention abbreviation for yes/no flag fields (e.g. accept_yn, reject_yn, fill_yn). Cannot be renamed — part of the official KIS WebSocket API contract.",
+        "ko": "KIS 공식 WebSocket API 응답 필드의 예/아니오 플래그 접미어 약어. API 계약상 변경 불가."
+      },
+      "variants": [],
+      "source_urls": [],
+      "created_at": "2026-05-22T00:38:00Z",
+      "updated_at": "2026-05-22T00:38:00Z"
+    },
+    {
+      "id": "orig",
+      "lang": {
+        "en": "orig",
+        "ko": "orig(original 약어)"
+      },
+      "canonical_pos": "abbreviation",
+      "domain": [
+        "trading",
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "KIS API convention abbreviation for 'original', used in orig_order_no (원주문번호). Cannot be renamed — part of the official KIS WebSocket API contract.",
+        "ko": "KIS 공식 WebSocket API 응답 필드 orig_order_no(원주문번호)의 약어. API 계약상 변경 불가."
+      },
+      "variants": [],
+      "source_urls": [],
+      "created_at": "2026-05-22T00:38:00Z",
+      "updated_at": "2026-05-22T00:38:00Z"
+    },
+    {
+      "id": "len",
+      "lang": {
+        "en": "length",
+        "ko": "길이"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "Length of a sequence, data or string. Also used as a common programming abbreviation.",
+        "ko": "시퀀스, 데이터, 또는 문자열의 길이. 일반적인 프로그래밍 약어로도 사용됨."
+      },
+      "variants": [],
+      "source_urls": [],
+      "created_at": "2026-05-22T11:38:00Z",
+      "updated_at": "2026-05-22T11:38:00Z"
     }
   ]
 }
