@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-05-22T02:38:24Z",
+  "generated_at": "2026-05-23T05:01:33Z",
   "terms": [
     {
       "id": "aborts",
@@ -10993,7 +10993,7 @@
       "source": "word",
       "root": "entered",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "entered",
         "ja": "進入済み (しんにゅうずみ)",
@@ -11010,7 +11010,7 @@
       "source": "word",
       "root": "entered",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "entered",
         "ja": "進入済み (しんにゅうずみ)",
@@ -17011,7 +17011,7 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17029,7 +17029,7 @@
       "root": "korean standard time",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17042,7 +17042,7 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17060,7 +17060,7 @@
       "root": "korean standard time",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -18337,7 +18337,7 @@
       "source": "word",
       "root": "lose",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "lose",
         "ja": "失う",
@@ -18354,7 +18354,7 @@
       "source": "word",
       "root": "lose",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "lose",
         "ja": "失う",
@@ -25311,7 +25311,7 @@
       "source": "word",
       "root": "quantity",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "quantity",
         "ja": "数量",
@@ -25328,7 +25328,7 @@
       "source": "word",
       "root": "quantity",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "quantity",
         "ja": "数量",
@@ -30446,7 +30446,7 @@
       "source": "word",
       "root": "shouting",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "shouting",
         "ko": "강력 알림 / 외치기",
@@ -30463,7 +30463,7 @@
       "source": "word",
       "root": "shouting",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "shouting",
         "ko": "강력 알림 / 외치기",
@@ -36270,7 +36270,7 @@
       "source": "word",
       "root": "use",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36286,7 +36286,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36298,7 +36298,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36310,7 +36310,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36322,7 +36322,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36333,7 +36333,7 @@
       "source": "word",
       "root": "use",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36349,7 +36349,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36361,7 +36361,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36373,7 +36373,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36385,7 +36385,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -37255,7 +37255,7 @@
       "source": "word",
       "root": "warnings",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "warnings",
         "ko": "경고",
@@ -37272,7 +37272,7 @@
       "source": "word",
       "root": "warnings",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "warnings",
         "ko": "경고",
@@ -38355,7 +38355,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -38370,7 +38370,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -38378,21 +38378,6 @@
       "description_i18n": {
         "en": "Abbreviation for Wider Band — the outer Bollinger Band used in double-BB strategies for FX trading (sigma=4.0).",
         "ko": "주로 외환 트레이딩이나 경제 지표에서 참고되는 세계 은행(World Bank) 등의 글로벌 기관을 지칭할 때 사용되는 약어입니다."
-      }
-    },
-    {
-      "id": "piercing",
-      "source": "word",
-      "root": "piercing",
-      "term_type": "base",
-      "domain": "trading",
-      "lang": {
-        "en": "piercing",
-        "ko": "찌르기"
-      },
-      "description_i18n": {
-        "en": "A candlestick pattern where the wick penetrates both the Standard BB and the WB outer band, signaling an extreme reversal.",
-        "ko": "하락 추세 중 전일 음봉의 몸통을 현재 양봉이 강하게 관통하며 반전 상승의 신호를 주는 캔들스틱 차트 패턴입니다."
       }
     },
     {
@@ -38426,18 +38411,18 @@
       }
     },
     {
-      "id": "either",
+      "id": "piercing",
       "source": "word",
-      "root": "either",
+      "root": "piercing",
       "term_type": "base",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
-        "en": "either",
-        "ko": "둘 중 하나"
+        "en": "piercing",
+        "ko": "찌르기"
       },
       "description_i18n": {
-        "en": "Logical OR conjunction used in identifier naming to express an inclusive disjunction of conditions.",
-        "ko": "OR 조건을 식별자에 명시적으로 표현하는 접속사 (require_either_divergence_or_rsi3x 등)"
+        "en": "A candlestick pattern where the wick penetrates both the Standard BB and the WB outer band, signaling an extreme reversal.",
+        "ko": "하락 추세 중 전일 음봉의 몸통을 현재 양봉이 강하게 관통하며 반전 상승의 신호를 주는 캔들스틱 차트 패턴입니다."
       }
     },
     {
@@ -38456,18 +38441,18 @@
       }
     },
     {
-      "id": "major",
+      "id": "either",
       "source": "word",
-      "root": "major",
+      "root": "either",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
-        "en": "major",
-        "ko": "메이저"
+        "en": "either",
+        "ko": "둘 중 하나"
       },
       "description_i18n": {
-        "en": "Describes the top-tier, most liquid forex currency pairs (EURUSD, GBPUSD, USDJPY, etc.).",
-        "ko": "시스템의 주요 버전, 가장 거래량이 많은 통화 쌍(Major Pairs), 또는 시스템 운영에 치명적인 영향을 주는 에러 레벨을 의미합니다."
+        "en": "Logical OR conjunction used in identifier naming to express an inclusive disjunction of conditions.",
+        "ko": "OR 조건을 식별자에 명시적으로 표현하는 접속사 (require_either_divergence_or_rsi3x 등)"
       }
     },
     {
@@ -38486,30 +38471,18 @@
       }
     },
     {
-      "id": "crosses",
+      "id": "major",
       "source": "word",
-      "root": "crosses",
+      "root": "major",
       "term_type": "base",
       "domain": "trading",
       "lang": {
-        "en": "crosses",
-        "ko": "교차 통화쌍(복수)"
+        "en": "major",
+        "ko": "메이저"
       },
       "description_i18n": {
-        "en": "Plural form of cross — collection of cross currency pairs (e.g., emerging_crosses). Used as a plural identifier per Rule 8-A §3.",
-        "ko": "단기 이동평균선이 장기 이동평균선을 상향 돌파하거나 하향 돌파하는 등의 기술적 교차 현상(Cross)을 의미합니다."
-      }
-    },
-    {
-      "id": "cross",
-      "source": "word",
-      "root": "crosses",
-      "term_type": "variant",
-      "variant_type": "singular",
-      "domain": "trading",
-      "lang": {
-        "en": "crosses",
-        "ko": "교차 통화쌍(복수)"
+        "en": "Describes the top-tier, most liquid forex currency pairs (EURUSD, GBPUSD, USDJPY, etc.).",
+        "ko": "시스템의 주요 버전, 가장 거래량이 많은 통화 쌍(Major Pairs), 또는 시스템 운영에 치명적인 영향을 주는 에러 레벨을 의미합니다."
       }
     },
     {
@@ -38534,6 +38507,33 @@
       "term_type": "variant",
       "variant_type": "singular",
       "domain": "fx",
+      "lang": {
+        "en": "crosses",
+        "ko": "교차 통화쌍(복수)"
+      }
+    },
+    {
+      "id": "crosses",
+      "source": "word",
+      "root": "crosses",
+      "term_type": "base",
+      "domain": "trading",
+      "lang": {
+        "en": "crosses",
+        "ko": "교차 통화쌍(복수)"
+      },
+      "description_i18n": {
+        "en": "Plural form of cross — collection of cross currency pairs (e.g., emerging_crosses). Used as a plural identifier per Rule 8-A §3.",
+        "ko": "단기 이동평균선이 장기 이동평균선을 상향 돌파하거나 하향 돌파하는 등의 기술적 교차 현상(Cross)을 의미합니다."
+      }
+    },
+    {
+      "id": "cross",
+      "source": "word",
+      "root": "crosses",
+      "term_type": "variant",
+      "variant_type": "singular",
+      "domain": "trading",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38574,7 +38574,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -38604,7 +38604,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -38619,7 +38619,7 @@
       "source": "word",
       "root": "yn",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "yn",
         "ko": "yn(예/아니오 약어)"
@@ -38634,7 +38634,7 @@
       "source": "word",
       "root": "yn",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "yn",
         "ko": "yn(예/아니오 약어)"
@@ -38649,7 +38649,7 @@
       "source": "word",
       "root": "orig",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "orig",
         "ko": "orig(original 약어)"
@@ -38664,7 +38664,7 @@
       "source": "word",
       "root": "orig",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "orig",
         "ko": "orig(original 약어)"
@@ -43621,5 +43621,5 @@
       }
     }
   ],
-  "checksum": "sha256:3a09588a070f42f8b537411508f3c39f3303051a7f1e459ff08e1894c3c96c23"
+  "checksum": "sha256:a2e9609e81cab210a3c92636948632de2cbb630e8aa5ed516cbb870951918cfc"
 }
