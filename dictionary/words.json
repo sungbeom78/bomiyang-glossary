@@ -34577,6 +34577,63 @@
       "source_urls": [],
       "created_at": "2026-05-22T11:38:00Z",
       "updated_at": "2026-05-22T11:38:00Z"
+    },
+    {
+      "id": "imbalance",
+      "lang": {
+        "en": "imbalance",
+        "ko": "불균형"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "A disparity between two opposing forces, quantities, or sides. In trading, commonly refers to bid-ask order imbalance — the difference in volume between buy and sell orders at a given price level.",
+        "ko": "두 대립 요소 간의 차이 또는 불균형. 트레이딩에서는 주로 매수·매도 호가 잔량 불균형(bid-ask imbalance)을 뜻한다."
+      },
+      "variants": [
+        {
+          "types": [
+            "abbreviation"
+          ],
+          "value": "imbal"
+        },
+        {
+          "types": [
+            "plural"
+          ],
+          "value": "imbalances"
+        }
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/imbalance"
+      ],
+      "created_at": "2026-06-01T03:06:09Z",
+      "updated_at": "2026-06-01T03:06:09Z"
+    },
+    {
+      "id": "both",
+      "lang": {
+        "en": "both",
+        "ko": "양쪽"
+      },
+      "canonical_pos": "adj",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "Referring to two items, conditions, or sides simultaneously; used as a prefix in compound identifiers to express that both conditions are true (e.g. both_price_drop).",
+        "ko": "두 가지 모두에 해당하는 상태. 코드에서 복합 식별자 접두어로 사용되며, 두 조건이 동시에 참임을 나타낸다 (예: both_price_drop)."
+      },
+      "variants": [],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/both"
+      ],
+      "created_at": "2026-06-01T03:06:09Z",
+      "updated_at": "2026-06-01T03:06:09Z"
     }
   ]
 }

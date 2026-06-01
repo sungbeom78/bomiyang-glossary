@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-05-23T05:01:33Z",
+  "generated_at": "2026-06-01T03:07:09Z",
   "terms": [
     {
       "id": "aborts",
@@ -10993,7 +10993,7 @@
       "source": "word",
       "root": "entered",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "entered",
         "ja": "進入済み (しんにゅうずみ)",
@@ -11010,7 +11010,7 @@
       "source": "word",
       "root": "entered",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "entered",
         "ja": "進入済み (しんにゅうずみ)",
@@ -18337,7 +18337,7 @@
       "source": "word",
       "root": "lose",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "lose",
         "ja": "失う",
@@ -18354,7 +18354,7 @@
       "source": "word",
       "root": "lose",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "lose",
         "ja": "失う",
@@ -38355,7 +38355,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -38370,7 +38370,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -38385,7 +38385,7 @@
       "source": "word",
       "root": "piercing",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "piercing",
         "ko": "찌르기"
@@ -38415,7 +38415,7 @@
       "source": "word",
       "root": "piercing",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "piercing",
         "ko": "찌르기"
@@ -38423,6 +38423,21 @@
       "description_i18n": {
         "en": "A candlestick pattern where the wick penetrates both the Standard BB and the WB outer band, signaling an extreme reversal.",
         "ko": "하락 추세 중 전일 음봉의 몸통을 현재 양봉이 강하게 관통하며 반전 상승의 신호를 주는 캔들스틱 차트 패턴입니다."
+      }
+    },
+    {
+      "id": "either",
+      "source": "word",
+      "root": "either",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "either",
+        "ko": "둘 중 하나"
+      },
+      "description_i18n": {
+        "en": "Logical OR conjunction used in identifier naming to express an inclusive disjunction of conditions.",
+        "ko": "OR 조건을 식별자에 명시적으로 표현하는 접속사 (require_either_divergence_or_rsi3x 등)"
       }
     },
     {
@@ -38441,36 +38456,6 @@
       }
     },
     {
-      "id": "either",
-      "source": "word",
-      "root": "either",
-      "term_type": "base",
-      "domain": "general",
-      "lang": {
-        "en": "either",
-        "ko": "둘 중 하나"
-      },
-      "description_i18n": {
-        "en": "Logical OR conjunction used in identifier naming to express an inclusive disjunction of conditions.",
-        "ko": "OR 조건을 식별자에 명시적으로 표현하는 접속사 (require_either_divergence_or_rsi3x 등)"
-      }
-    },
-    {
-      "id": "major",
-      "source": "word",
-      "root": "major",
-      "term_type": "base",
-      "domain": "fx",
-      "lang": {
-        "en": "major",
-        "ko": "메이저"
-      },
-      "description_i18n": {
-        "en": "Describes the top-tier, most liquid forex currency pairs (EURUSD, GBPUSD, USDJPY, etc.).",
-        "ko": "시스템의 주요 버전, 가장 거래량이 많은 통화 쌍(Major Pairs), 또는 시스템 운영에 치명적인 영향을 주는 에러 레벨을 의미합니다."
-      }
-    },
-    {
       "id": "major",
       "source": "word",
       "root": "major",
@@ -38486,30 +38471,18 @@
       }
     },
     {
-      "id": "crosses",
+      "id": "major",
       "source": "word",
-      "root": "crosses",
+      "root": "major",
       "term_type": "base",
       "domain": "fx",
       "lang": {
-        "en": "crosses",
-        "ko": "교차 통화쌍(복수)"
+        "en": "major",
+        "ko": "메이저"
       },
       "description_i18n": {
-        "en": "Plural form of cross — collection of cross currency pairs (e.g., emerging_crosses). Used as a plural identifier per Rule 8-A §3.",
-        "ko": "단기 이동평균선이 장기 이동평균선을 상향 돌파하거나 하향 돌파하는 등의 기술적 교차 현상(Cross)을 의미합니다."
-      }
-    },
-    {
-      "id": "cross",
-      "source": "word",
-      "root": "crosses",
-      "term_type": "variant",
-      "variant_type": "singular",
-      "domain": "fx",
-      "lang": {
-        "en": "crosses",
-        "ko": "교차 통화쌍(복수)"
+        "en": "Describes the top-tier, most liquid forex currency pairs (EURUSD, GBPUSD, USDJPY, etc.).",
+        "ko": "시스템의 주요 버전, 가장 거래량이 많은 통화 쌍(Major Pairs), 또는 시스템 운영에 치명적인 영향을 주는 에러 레벨을 의미합니다."
       }
     },
     {
@@ -38534,6 +38507,33 @@
       "term_type": "variant",
       "variant_type": "singular",
       "domain": "trading",
+      "lang": {
+        "en": "crosses",
+        "ko": "교차 통화쌍(복수)"
+      }
+    },
+    {
+      "id": "crosses",
+      "source": "word",
+      "root": "crosses",
+      "term_type": "base",
+      "domain": "fx",
+      "lang": {
+        "en": "crosses",
+        "ko": "교차 통화쌍(복수)"
+      },
+      "description_i18n": {
+        "en": "Plural form of cross — collection of cross currency pairs (e.g., emerging_crosses). Used as a plural identifier per Rule 8-A §3.",
+        "ko": "단기 이동평균선이 장기 이동평균선을 상향 돌파하거나 하향 돌파하는 등의 기술적 교차 현상(Cross)을 의미합니다."
+      }
+    },
+    {
+      "id": "cross",
+      "source": "word",
+      "root": "crosses",
+      "term_type": "variant",
+      "variant_type": "singular",
+      "domain": "fx",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38574,6 +38574,21 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
+      "domain": "trading",
+      "lang": {
+        "en": "sf",
+        "ko": "sf(약어)"
+      },
+      "description_i18n": {
+        "en": "Abbreviation for session_filter or symbol_filter in FX trading context.",
+        "ko": "알려진 특정 지표(예: 스토캐스틱 패스트)나 프레임워크 내부에서 사용하는 고유 컴포넌트의 축약된 명칭입니다."
+      }
+    },
+    {
+      "id": "sf",
+      "source": "word",
+      "root": "sf",
+      "term_type": "base",
       "domain": "fx",
       "lang": {
         "en": "sf",
@@ -38590,21 +38605,6 @@
       "root": "sf",
       "term_type": "base",
       "domain": "system",
-      "lang": {
-        "en": "sf",
-        "ko": "sf(약어)"
-      },
-      "description_i18n": {
-        "en": "Abbreviation for session_filter or symbol_filter in FX trading context.",
-        "ko": "알려진 특정 지표(예: 스토캐스틱 패스트)나 프레임워크 내부에서 사용하는 고유 컴포넌트의 축약된 명칭입니다."
-      }
-    },
-    {
-      "id": "sf",
-      "source": "word",
-      "root": "sf",
-      "term_type": "base",
-      "domain": "trading",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -38619,7 +38619,7 @@
       "source": "word",
       "root": "yn",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "yn",
         "ko": "yn(예/아니오 약어)"
@@ -38634,7 +38634,7 @@
       "source": "word",
       "root": "yn",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "yn",
         "ko": "yn(예/아니오 약어)"
@@ -38649,7 +38649,7 @@
       "source": "word",
       "root": "orig",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "orig",
         "ko": "orig(original 약어)"
@@ -38664,7 +38664,7 @@
       "source": "word",
       "root": "orig",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "orig",
         "ko": "orig(original 약어)"
@@ -38687,6 +38687,60 @@
       "description_i18n": {
         "en": "Length of a sequence, data or string. Also used as a common programming abbreviation.",
         "ko": "시퀀스, 데이터, 또는 문자열의 길이. 일반적인 프로그래밍 약어로도 사용됨."
+      }
+    },
+    {
+      "id": "imbalance",
+      "source": "word",
+      "root": "imbalance",
+      "term_type": "base",
+      "domain": "trading",
+      "lang": {
+        "en": "imbalance",
+        "ko": "불균형"
+      },
+      "description_i18n": {
+        "en": "A disparity between two opposing forces, quantities, or sides. In trading, commonly refers to bid-ask order imbalance — the difference in volume between buy and sell orders at a given price level.",
+        "ko": "두 대립 요소 간의 차이 또는 불균형. 트레이딩에서는 주로 매수·매도 호가 잔량 불균형(bid-ask imbalance)을 뜻한다."
+      }
+    },
+    {
+      "id": "imbal",
+      "source": "word",
+      "root": "imbalance",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "trading",
+      "lang": {
+        "en": "imbalance",
+        "ko": "불균형"
+      }
+    },
+    {
+      "id": "imbalances",
+      "source": "word",
+      "root": "imbalance",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "trading",
+      "lang": {
+        "en": "imbalance",
+        "ko": "불균형"
+      }
+    },
+    {
+      "id": "both",
+      "source": "word",
+      "root": "both",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "both",
+        "ko": "양쪽"
+      },
+      "description_i18n": {
+        "en": "Referring to two items, conditions, or sides simultaneously; used as a prefix in compound identifiers to express that both conditions are true (e.g. both_price_drop).",
+        "ko": "두 가지 모두에 해당하는 상태. 코드에서 복합 식별자 접두어로 사용되며, 두 조건이 동시에 참임을 나타낸다 (예: both_price_drop)."
       }
     },
     {
@@ -43621,5 +43675,5 @@
       }
     }
   ],
-  "checksum": "sha256:a2e9609e81cab210a3c92636948632de2cbb630e8aa5ed516cbb870951918cfc"
+  "checksum": "sha256:b05e3832e8b18906da02af8bd2a2d46f1019e5f0ec019329801f42abd47090d1"
 }
