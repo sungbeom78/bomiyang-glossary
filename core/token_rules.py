@@ -1,9 +1,11 @@
 from __future__ import annotations
+
 import json
-from pathlib import Path
-from functools import lru_cache
-import httpx
 import logging
+from functools import lru_cache
+from pathlib import Path
+
+import httpx
 
 log = logging.getLogger(__name__)
 
@@ -11,11 +13,31 @@ GLOSSARY_ROOT = Path(__file__).resolve().parent.parent
 UNIT_TOKENS_PATH = GLOSSARY_ROOT / "dictionary" / "unit_tokens.json"
 TECH_ABBREV_PATH = GLOSSARY_ROOT / "dictionary" / "tech_abbreviations.json"
 DRAFTS_PATH = GLOSSARY_ROOT / "dictionary" / "drafts.json"
+DICTIONARY_API_MAX_ATTEMPTS = 3
 
 STOP_WORDS_2CHAR = {
-    "is", "in", "if", "to", "as", "at", "on", "by", "do", "it", 
-    "of", "or", "up", "be", "he", "we", "me", "us", "am", "an"
+    "is",
+    "in",
+    "if",
+    "to",
+    "as",
+    "at",
+    "on",
+    "by",
+    "do",
+    "it",
+    "of",
+    "or",
+    "up",
+    "be",
+    "he",
+    "we",
+    "me",
+    "us",
+    "am",
+    "an",
 }
+
 
 @lru_cache(maxsize=1)
 def load_unit_tokens() -> set[str]:
@@ -28,6 +50,7 @@ def load_unit_tokens() -> set[str]:
         log.error(f"Failed to load unit_tokens.json: {e}")
         return set()
 
+
 @lru_cache(maxsize=1)
 def load_tech_abbreviations() -> set[str]:
     if not TECH_ABBREV_PATH.exists():
@@ -39,17 +62,20 @@ def load_tech_abbreviations() -> set[str]:
         log.error(f"Failed to load tech_abbreviations.json: {e}")
         return set()
 
+
 def is_managed_identifier(name: str) -> bool:
     """_ 로 시작하는 식별자는 내부 로직용이므로 관리 대상에서 일괄 제외한다."""
     return not name.startswith("_")
 
+
 def is_unit_token(token: str) -> bool:
     return token in load_unit_tokens()
+
 
 def is_tech_abbreviation(token: str) -> bool:
     return token in load_tech_abbreviations()
 
-@lru_cache(maxsize=5000)
+
 def check_dictionary_api(token: str) -> tuple[bool, str]:
     """
     web dictionary API를 조회하여 단어가 유효한 명사 혹은 동사인지 판별 (2글자 무의미 단어, 관사 등 제외)
@@ -59,10 +85,30 @@ def check_dictionary_api(token: str) -> tuple[bool, str]:
         return False, ""
 
     url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{token}"
-    try:
-        resp = httpx.get(url, timeout=3.0)
+    for attempt in range(1, DICTIONARY_API_MAX_ATTEMPTS + 1):
+        try:
+            resp = httpx.get(url, timeout=3.0)
+        except httpx.HTTPError as exc:
+            log.warning(
+                "Dictionary API request failed for %s (attempt %s/%s): %s",
+                token,
+                attempt,
+                DICTIONARY_API_MAX_ATTEMPTS,
+                exc,
+            )
+            continue
         if resp.status_code == 200:
-            data = resp.json()
+            try:
+                data = resp.json()
+            except ValueError as exc:
+                log.warning(
+                    "Dictionary API response invalid for %s (attempt %s/%s): %s",
+                    token,
+                    attempt,
+                    DICTIONARY_API_MAX_ATTEMPTS,
+                    exc,
+                )
+                continue
             for entry in data:
                 for meaning in entry.get("meanings", []):
                     pos = meaning.get("partOfSpeech", "").lower()
@@ -70,9 +116,18 @@ def check_dictionary_api(token: str) -> tuple[bool, str]:
                         defs = meaning.get("definitions", [])
                         m_en = defs[0].get("definition", "") if defs else ""
                         return True, m_en
-    except Exception:
-        pass
+            return False, ""
+        if resp.status_code == 404:
+            return False, ""
+        log.warning(
+            "Dictionary API returned status %s for %s (attempt %s/%s)",
+            resp.status_code,
+            token,
+            attempt,
+            DICTIONARY_API_MAX_ATTEMPTS,
+        )
     return False, ""
+
 
 def auto_draft_dictionary_word(token: str, meaning_en: str) -> None:
     """
@@ -87,15 +142,19 @@ def auto_draft_dictionary_word(token: str, meaning_en: str) -> None:
                 data["drafts"] = []
         except Exception:
             pass
-            
+
     if any(item.get("id") == token for item in data.get("drafts", [])):
         return
 
-    data["drafts"].append({
-        "id": token,
-        "source": "dictionaryapi.dev",
-        "classification": "word",
-        "meaning_en": meaning_en,
-        "status": "ai_draft"
-    })
-    DRAFTS_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    data["drafts"].append(
+        {
+            "id": token,
+            "source": "dictionaryapi.dev",
+            "classification": "word",
+            "meaning_en": meaning_en,
+            "status": "ai_draft",
+        }
+    )
+    DRAFTS_PATH.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )

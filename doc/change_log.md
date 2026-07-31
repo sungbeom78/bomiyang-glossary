@@ -1,5 +1,49 @@
 # Glossary Change Log
 
+## [2026-07-31 21:34:00]
+### Fixed
+- 미등록 식별자 감사가 외부 Dictionary API 상태에 따라 승인되거나 장시간 대기하던 비결정적 경로를 제거하고 로컬 glossary만 SoT로 사용.
+- `GlossaryWriter` 추가 시 기존 레거시 순서를 전체 재정렬하지 않고 삽입 지점만 결정하며, JSON 최종 LF를 보장.
+- projection generator가 `terms.json`/`terms_legacy.json` 생성 후에도 최종 LF를 보장.
+- 서브모듈 루트와 main project 루트 모두에서 test import가 동일하게 동작하도록 테스트 경로를 고정.
+- File: core/auditor.py
+- File: core/writer.py
+- File: generate_glossary.py
+- File: test/conftest.py
+- File: test/test_token_rules.py
+- File: test/test_writer.py
+
+### Verification
+- 수정 전 full identifier audit가 외부 API poll에서 3분 이상 대기함을 재현.
+- 수정 후 targeted test, validate, generate, standalone/root 테스트로 검증.
+
+## [2026-07-31 12:04:00]
+### Added
+- 사용자 승인에 따라 기존 알림 식별자 `notify_activity`가 외부 Dictionary API 가용성에 의존하지 않도록 `activity`를 system noun으로 등록.
+- `GlossaryWriter`를 통해 저장하고 projection/index를 재생성.
+- File: dictionary/words.json
+- File: dictionary/terms.json
+- File: dictionary/terms_legacy.json
+- File: GLOSSARY.md
+
+### Verification
+- `python generate_glossary.py validate` FATAL 0.
+- `python generate_glossary.py check-id notify_activity` PASS.
+
+## [2026-07-31 11:40:00]
+### Fixed
+- 외부 Dictionary API의 단일 타임아웃을 미등록 단어로 확정하고 실패 결과까지 LRU 캐시에 저장해 이후 감사가 계속 FATAL 처리되는 문제를 수정.
+- HTTP 오류, 200 응답 JSON 오류, 404 이외 상태를 최대 3회 재시도하고 네트워크 실패 결과는 캐시하지 않도록 변경.
+- 실제 404와 품사 부적합 응답은 기존처럼 미등록으로 판정해 naming gate를 약화하지 않음.
+- File: core/token_rules.py
+- File: test/test_token_rules.py
+- File: doc/module_index.md
+
+### Verification
+- 수정 전 재시도·실패 캐시 회귀 테스트 2 FAIL.
+- 수정 후 `pytest test/test_token_rules.py` 2 PASS.
+- `python generate_glossary.py validate` FATAL 0.
+
 ## [2026-04-21 11:54:00]
 ### Fixed / Modified
 - `web/server.py`의 `_inject_metadata` 함수에 존재하던 대소문자 정규화 로직이 fallback으로만 동작하여, `GlossaryWriter` 사용 시 정규화가 누락되는 "로직 이중화" 문제를 해결.

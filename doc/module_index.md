@@ -86,6 +86,30 @@
   - rollback() 으로 스냅샷 기반 복원 가능
   - validate() 로 저장 전 FATAL 오류 확인 가능
 
+## core/token_rules.py
+- Path: core/token_rules.py
+- Responsibility: 식별자 토큰의 단위·기술 약어 판정과 외부 Dictionary API 보조 검증
+- Entry Point: `check_dictionary_api()`
+- Failure Handling: HTTP 오류·비정상 상태·JSON 오류를 최대 3회 재시도하며 일시 실패 결과는 프로세스 캐시에 저장하지 않음
+- Related Modules: `core/auditor.py`, main project `script/operation/audit_identifiers.py`
+- Config: N/A
+
+## core/auditor.py
+- Path: core/auditor.py
+- Responsibility: 로컬 glossary SoT를 기준으로 식별자 토큰을 결정론적으로 감사
+- Entry Point: `GlossaryAuditor.audit_identifier()`
+- Failure Handling: 미등록 토큰은 외부 네트워크 조회 없이 `UNREGISTERED_WORD` FATAL로 즉시 반환
+- Related Modules: `core/token_rules.py`, main project `script/operation/audit_identifiers.py`
+- Config: N/A
+
+## core/writer.py
+- Path: core/writer.py
+- Responsibility: words/compounds 단일 저장 진입점, 기존 순서 보존 삽입, UTF-8 LF 종료 보장
+- Entry Point: `GlossaryWriter`
+- Failure Handling: 저장 전 validate와 snapshot rollback 제공
+- Related Modules: `generate_glossary.py`, `dictionary/words.json`, `dictionary/compounds.json`
+- Config: N/A
+
 ## generate_glossary.py (Projection)
 - Path: generate_glossary.py
 - Responsibility: words.json + compounds.json → terms.json / variant_map.json / word_min.json 등 빌드 산출물 생성 및 validate

@@ -22,6 +22,7 @@ glossary/core/writer.py — GlossaryWriter: 단일 진입점 glossary 저장 관
     else:
         gw.rollback()
 """
+
 from __future__ import annotations
 
 import json
@@ -33,15 +34,15 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 # ── 경로 설정 ──────────────────────────────────────────────────────────
-_CORE_DIR    = Path(__file__).resolve().parent
-_GLOSSARY    = _CORE_DIR.parent
-_DICT_DIR    = _GLOSSARY / "dictionary"
+_CORE_DIR = Path(__file__).resolve().parent
+_GLOSSARY = _CORE_DIR.parent
+_DICT_DIR = _GLOSSARY / "dictionary"
 _GENERATE_PY = _GLOSSARY / "generate_glossary.py"
-_BACKUP_DIR  = _GLOSSARY / "build" / "backup"
+_BACKUP_DIR = _GLOSSARY / "build" / "backup"
 
-WORDS_PATH     = _DICT_DIR / "words.json"
+WORDS_PATH = _DICT_DIR / "words.json"
 COMPOUNDS_PATH = _DICT_DIR / "compounds.json"
-PENDING_PATH   = _DICT_DIR / "pending_words.json"
+PENDING_PATH = _DICT_DIR / "pending_words.json"
 
 
 def _now() -> str:
@@ -61,7 +62,10 @@ def _save(path: Path, key: str, items: list) -> None:
     if path.exists():
         existing = json.loads(path.read_text(encoding="utf-8"))
     existing[key] = items
-    path.write_text(json.dumps(existing, ensure_ascii=False, indent=2), encoding="utf-8")
+    path.write_text(
+        json.dumps(existing, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
 
 # ── GlossaryWriter ──────────────────────────────────────────────────────
@@ -74,9 +78,9 @@ class GlossaryWriter:
     """
 
     def __init__(self) -> None:
-        self._words:     List[Dict[str, Any]] = list(_load(WORDS_PATH,     "words"))
+        self._words: List[Dict[str, Any]] = list(_load(WORDS_PATH, "words"))
         self._compounds: List[Dict[str, Any]] = list(_load(COMPOUNDS_PATH, "compounds"))
-        self._word_snap:     Optional[List[Dict]] = None
+        self._word_snap: Optional[List[Dict]] = None
         self._compound_snap: Optional[List[Dict]] = None
         self._dirty = False
         self._take_snapshot()
@@ -94,13 +98,14 @@ class GlossaryWriter:
     # ── Snapshot / Rollback ──────────────────────────────────────────────
     def _take_snapshot(self) -> None:
         import copy
-        self._word_snap     = copy.deepcopy(self._words)
+
+        self._word_snap = copy.deepcopy(self._words)
         self._compound_snap = copy.deepcopy(self._compounds)
 
     def rollback(self) -> None:
         """스냅샷으로 메모리 상태 복원 (파일은 건드리지 않음)."""
         if self._word_snap is not None:
-            self._words     = list(self._word_snap)
+            self._words = list(self._word_snap)
         if self._compound_snap is not None:
             self._compounds = list(self._compound_snap)
         self._dirty = False
@@ -128,8 +133,15 @@ class GlossaryWriter:
                 return False
             raise ValueError(f"이미 존재하는 word id: {wid!r}")
         _inject_timestamps(word)
-        self._words.append(word)
-        self._words.sort(key=lambda x: x.get("id", ""))
+        insert_index = next(
+            (
+                index
+                for index, existing_entry in enumerate(self._words)
+                if existing_entry.get("id", "") > wid
+            ),
+            len(self._words),
+        )
+        self._words.insert(insert_index, word)
         self._dirty = True
         return True
 
@@ -204,10 +216,10 @@ class GlossaryWriter:
             return False
         abbr: Dict[str, Any] = {
             "short": short.strip(),
-            "long":  (long or word_id).strip(),
+            "long": (long or word_id).strip(),
             "case_sensitive": case_sensitive,
-            "confidence":     confidence,
-            "ambiguity":      ambiguity,
+            "confidence": confidence,
+            "ambiguity": ambiguity,
         }
         w["abbreviation"] = abbr
         _inject_timestamps(w, update_only=True)
@@ -221,7 +233,9 @@ class GlossaryWriter:
     def get_compound(self, cid: str) -> Optional[Dict]:
         return next((c for c in self._compounds if c["id"] == cid), None)
 
-    def add_compound(self, compound: Dict[str, Any], *, skip_duplicate: bool = False) -> bool:
+    def add_compound(
+        self, compound: Dict[str, Any], *, skip_duplicate: bool = False
+    ) -> bool:
         """compounds.json에 복합어 추가."""
         _normalize_entry(compound)
         cid = compound.get("id", "").strip()
@@ -232,8 +246,15 @@ class GlossaryWriter:
                 return False
             raise ValueError(f"이미 존재하는 compound id: {cid!r}")
         _inject_timestamps(compound)
-        self._compounds.append(compound)
-        self._compounds.sort(key=lambda x: x.get("id", ""))
+        insert_index = next(
+            (
+                index
+                for index, existing_entry in enumerate(self._compounds)
+                if existing_entry.get("id", "") > cid
+            ),
+            len(self._compounds),
+        )
+        self._compounds.insert(insert_index, compound)
         self._dirty = True
         return True
 
@@ -293,7 +314,7 @@ class GlossaryWriter:
         """
         _BACKUP_DIR.mkdir(parents=True, exist_ok=True)
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-        shutil.copy2(WORDS_PATH,     _BACKUP_DIR / f"words_{ts}.json")
+        shutil.copy2(WORDS_PATH, _BACKUP_DIR / f"words_{ts}.json")
         shutil.copy2(COMPOUNDS_PATH, _BACKUP_DIR / f"compounds_{ts}.json")
         self._write_to_disk()
         self._dirty = False
@@ -301,7 +322,7 @@ class GlossaryWriter:
 
     def _write_to_disk(self) -> None:
         """words, compounds를 실제 파일에 저장."""
-        _save(WORDS_PATH,     "words",     self._words)
+        _save(WORDS_PATH, "words", self._words)
         _save(COMPOUNDS_PATH, "compounds", self._compounds)
 
     # ── Properties ───────────────────────────────────────────────────────
@@ -326,22 +347,29 @@ def _inject_timestamps(entry: Dict, *, update_only: bool = False) -> None:
 
 def _normalize_entry(entry: Dict) -> None:
     """id, lang, variants 등의 값을 소문자로 정규화."""
-    if 'id' in entry and isinstance(entry['id'], str):
-        entry['id'] = entry['id'].strip().lower()
+    if "id" in entry and isinstance(entry["id"], str):
+        entry["id"] = entry["id"].strip().lower()
 
-    if 'lang' in entry and isinstance(entry['lang'], dict):
-        for k, v in entry['lang'].items():
+    if "lang" in entry and isinstance(entry["lang"], dict):
+        for k, v in entry["lang"].items():
             if isinstance(v, str):
-                entry['lang'][k] = v.strip().lower()
+                entry["lang"][k] = v.strip().lower()
 
-    if 'variants' in entry and isinstance(entry['variants'], list):
-        for v in entry['variants']:
-            if isinstance(v, dict) and 'value' in v and isinstance(v['value'], str):
-                v['value'] = v['value'].strip().lower()
+    if "variants" in entry and isinstance(entry["variants"], list):
+        for v in entry["variants"]:
+            if isinstance(v, dict) and "value" in v and isinstance(v["value"], str):
+                v["value"] = v["value"].strip().lower()
 
-    if 'abbreviation' in entry and isinstance(entry['abbreviation'], dict):
-        if 'short' in entry['abbreviation'] and isinstance(entry['abbreviation']['short'], str):
-            entry['abbreviation']['short'] = entry['abbreviation']['short'].strip().lower()
-        if 'long' in entry['abbreviation'] and isinstance(entry['abbreviation']['long'], str):
-            entry['abbreviation']['long'] = entry['abbreviation']['long'].strip().lower()
-
+    if "abbreviation" in entry and isinstance(entry["abbreviation"], dict):
+        if "short" in entry["abbreviation"] and isinstance(
+            entry["abbreviation"]["short"], str
+        ):
+            entry["abbreviation"]["short"] = (
+                entry["abbreviation"]["short"].strip().lower()
+            )
+        if "long" in entry["abbreviation"] and isinstance(
+            entry["abbreviation"]["long"], str
+        ):
+            entry["abbreviation"]["long"] = (
+                entry["abbreviation"]["long"].strip().lower()
+            )

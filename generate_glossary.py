@@ -988,10 +988,16 @@ def cmd_generate():
 
     # terms.json + terms_legacy.json (§4.8, §4.9)
     active_data, legacy_data, skipped = build_terms_json(words, compounds)
-    TERMS_PATH.write_text(json.dumps(active_data, ensure_ascii=False, indent=2), encoding='utf-8')
+    TERMS_PATH.write_text(
+        json.dumps(active_data, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     print(f"[OK] terms.json 생성 ({len(active_data['terms'])}개, checksum 포함)")
 
-    TERMS_LEGACY_PATH.write_text(json.dumps(legacy_data, ensure_ascii=False, indent=2), encoding='utf-8')
+    TERMS_LEGACY_PATH.write_text(
+        json.dumps(legacy_data, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     print(f"[OK] terms_legacy.json 생성 ({len(legacy_data['terms'])}개 deprecated 항목)")
 
     # 운영 산출물 (§11)

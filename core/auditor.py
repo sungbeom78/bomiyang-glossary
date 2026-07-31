@@ -1,10 +1,11 @@
 from __future__ import annotations
-import re
-import json
-from pathlib import Path
-from dataclasses import dataclass
 
+import json
+import re
 import sys
+from dataclasses import dataclass
+from pathlib import Path
+
 GLOSSARY_ROOT = Path(__file__).resolve().parent.parent
 
 # Inject glossary root to import specific glossary modules if not already
@@ -12,16 +13,19 @@ if str(GLOSSARY_ROOT) not in sys.path:
     sys.path.insert(0, str(GLOSSARY_ROOT))
 
 # Inject global token rules
-from glossary.core.token_rules import (
-    is_unit_token,
+from glossary.core.token_rules import (  # noqa: E402 - path injection precedes import
+    STOP_WORDS_2CHAR,
     is_tech_abbreviation,
-    check_dictionary_api,
-    auto_draft_dictionary_word,
-    STOP_WORDS_2CHAR
+    is_unit_token,
 )
 
 try:
-    from generate_glossary import tokenize, match_n_pattern, find_singular_token, build_n_pattern_regexes
+    from generate_glossary import (
+        build_n_pattern_regexes,
+        find_singular_token,
+        match_n_pattern,
+        tokenize,
+    )
 except ImportError:
     pass
 
@@ -42,20 +46,42 @@ EXTERNAL_LIB_TOKENS = {
     "cryptography",
 }
 
-_STOP_WORDS_AUDIT: frozenset[str] = frozenset({
-    "a", "an", "the",
-    "at", "by", "for", "from", "in", "of", "on", "to", "with",
-}).union(STOP_WORDS_2CHAR)
+_STOP_WORDS_AUDIT: frozenset[str] = frozenset(
+    {
+        "a",
+        "an",
+        "the",
+        "at",
+        "by",
+        "for",
+        "from",
+        "in",
+        "of",
+        "on",
+        "to",
+        "with",
+    }
+).union(STOP_WORDS_2CHAR)
+
 
 class GlossaryAuditor:
     def __init__(self, enable_auto_draft: bool = False):
         self.enable_auto_draft = enable_auto_draft
-        self.words, self.compounds, self.variant_map, self.banned, self.n_patterns, self.pending_ids = self.load_glossary()
+        (
+            self.words,
+            self.compounds,
+            self.variant_map,
+            self.banned,
+            self.n_patterns,
+            self.pending_ids,
+        ) = self.load_glossary()
 
-    def load_glossary(self) -> tuple[dict, dict, dict, list[dict], list[re.Pattern], set]:
+    def load_glossary(
+        self,
+    ) -> tuple[dict, dict, dict, list[dict], list[re.Pattern], set]:
         words, compounds, variant_map, banned, pending_ids = {}, {}, {}, [], set()
         n_patterns = []
-        
+
         WORDS_PATH = GLOSSARY_ROOT / "dictionary" / "words.json"
         COMPOUNDS_PATH = GLOSSARY_ROOT / "dictionary" / "compounds.json"
         BANNED_PATH = GLOSSARY_ROOT / "dictionary" / "banned.json"
@@ -67,39 +93,68 @@ class GlossaryAuditor:
         if INDEX_WORD_MIN.exists():
             data = json.loads(INDEX_WORD_MIN.read_text(encoding="utf-8"))
             words = {normalize_term(w.get("id", "")): w for w in data if w.get("id")}
-        
+
         if INDEX_COMPOUND_MIN.exists():
             data = json.loads(INDEX_COMPOUND_MIN.read_text(encoding="utf-8"))
-            compounds = {normalize_term(c.get("id", "")): c for c in data if c.get("id")}
-            n_patterns_tuples = build_n_pattern_regexes(data) if "build_n_pattern_regexes" in globals() else []
+            compounds = {
+                normalize_term(c.get("id", "")): c for c in data if c.get("id")
+            }
+            n_patterns_tuples = (
+                build_n_pattern_regexes(data)
+                if "build_n_pattern_regexes" in globals()
+                else []
+            )
             n_patterns = [c_re for cid, c_re in n_patterns_tuples]
-            
+
         if INDEX_VARIANT_MAP.exists():
             data = json.loads(INDEX_VARIANT_MAP.read_text(encoding="utf-8"))
             variant_map = {normalize_term(k): v for k, v in data.items()}
 
         if BANNED_PATH.exists():
-            banned = json.loads(BANNED_PATH.read_text(encoding="utf-8")).get("banned", [])
-            
+            banned = json.loads(BANNED_PATH.read_text(encoding="utf-8")).get(
+                "banned", []
+            )
+
         if PENDING_PATH.exists():
             try:
-                pending_data = json.loads(PENDING_PATH.read_text(encoding="utf-8")).get("pending", [])
-                pending_ids = {normalize_term(p) if isinstance(p, str) else normalize_term(p.get("id", "")) for p in pending_data}
+                pending_data = json.loads(PENDING_PATH.read_text(encoding="utf-8")).get(
+                    "pending", []
+                )
+                pending_ids = {
+                    normalize_term(p)
+                    if isinstance(p, str)
+                    else normalize_term(p.get("id", ""))
+                    for p in pending_data
+                }
             except Exception:
                 pass
 
         return words, compounds, variant_map, banned, n_patterns, pending_ids
-        
-    def audit_identifier(self, identifier: str, kind: str, source: str) -> list[AuditIssue]:
+
+    def audit_identifier(
+        self, identifier: str, kind: str, source: str
+    ) -> list[AuditIssue]:
         issues = []
         issues.extend(check_formatting(identifier, kind, source))
         banned_issue = check_banned(identifier, kind, source, self.banned)
         if banned_issue:
             issues.append(banned_issue)
-            
+
         if kind != "file":
-            issues.extend(check_glossary(identifier, kind, source, self.words, self.compounds, self.variant_map, self.n_patterns, self.pending_ids, self.enable_auto_draft))
-            
+            issues.extend(
+                check_glossary(
+                    identifier,
+                    kind,
+                    source,
+                    self.words,
+                    self.compounds,
+                    self.variant_map,
+                    self.n_patterns,
+                    self.pending_ids,
+                    self.enable_auto_draft,
+                )
+            )
+
         issues.extend(check_singular(identifier, kind, source))
         issues.extend(check_collection_semantic(identifier, kind, source))
         issues.extend(check_numeric_pattern(identifier, kind, source, self.n_patterns))
@@ -124,7 +179,14 @@ VARIABLE_KINDS = {"module_var", "class_attr", "self_attr", "param", "model_field
 
 # Abbreviation-style naming is common in runtime code (`__init__`, `ttl`, `maxlen`).
 # Keep strict gating for configuration surfaces and avoid noisy warnings for code-layer identifiers.
-ABBREVIATION_WARN_KINDS = {"module", "class", "db_table", "db_column", "env_key", "config_key"}
+ABBREVIATION_WARN_KINDS = {
+    "module",
+    "class",
+    "db_table",
+    "db_column",
+    "env_key",
+    "config_key",
+}
 
 NUMERIC_PATTERN_KINDS = {
     "module",
@@ -179,6 +241,7 @@ SCALAR_HINT_TOKENS = {
     "level",
 }
 
+
 @dataclass
 class AuditIssue:
     severity: str
@@ -197,6 +260,7 @@ class AuditIssue:
             "source": self.source,
             "detail": self.detail,
         }
+
 
 def normalize_identifier(identifier: str) -> list[str]:
     # Step 1: 공백 및 특수문자(하이픈, 슬래시, 괄호, 점 등)를 밑줄 구분자로 치환
@@ -217,15 +281,20 @@ def normalize_identifier(identifier: str) -> list[str]:
     parts = [p for p in parts if p not in _STOP_WORDS_AUDIT]
     return parts
 
+
 def normalize_term(term: str) -> str:
     return term.strip().lower().replace("-", "_")
+
 
 def check_plural(word: str) -> bool:
     if re.match(r".*(es|s)$", word) and not re.match(r".*(ss|us|is|ics|news)$", word):
         return True
     return False
 
-def check_banned(identifier: str, kind: str, source: str, banned_rows: list[dict[str, str]]) -> list[AuditIssue]:
+
+def check_banned(
+    identifier: str, kind: str, source: str, banned_rows: list[dict[str, str]]
+) -> list[AuditIssue]:
     issues: list[AuditIssue] = []
     if kind not in BANNED_STRICT_KINDS:
         return issues
@@ -250,27 +319,30 @@ def check_banned(identifier: str, kind: str, source: str, banned_rows: list[dict
             )
     return issues
 
+
 def check_glossary(
-    identifier: str, 
-    kind: str, 
-    source: str, 
-    words: dict, 
-    compounds: dict, 
-    variant_map: dict, 
+    identifier: str,
+    kind: str,
+    source: str,
+    words: dict,
+    compounds: dict,
+    variant_map: dict,
     n_patterns: list[re.Pattern],
     pending_ids: set[str],
-    enable_auto_draft: bool = False
+    enable_auto_draft: bool = False,
 ) -> list[AuditIssue]:
     issues: list[AuditIssue] = []
     ident_norm = normalize_term(identifier)
-    
+
     # 1. Full matches
     if is_unit_token(ident_norm) or is_tech_abbreviation(ident_norm):
         return issues
-        
-    if ident_norm in compounds or (ident_norm in variant_map and variant_map[ident_norm]["type"] == "abbreviation"):
+
+    if ident_norm in compounds or (
+        ident_norm in variant_map and variant_map[ident_norm]["type"] == "abbreviation"
+    ):
         return issues
-        
+
     n_patterns_tuples = []
     if "match_n_pattern" in globals():
         # recreate tuples for match_n_pattern
@@ -280,30 +352,30 @@ def check_glossary(
         # Actually it's easier to just match the compiled patterns directly:
         if any(pat.fullmatch(ident_norm) for pat in n_patterns):
             return issues
-            
+
     # 2. Tokenization & component checks
     if "tokenize" in globals():
         tokens = tokenize(identifier)
     else:
         tokens = normalize_identifier(identifier)
-        
+
     if not tokens:
         return issues
-        
+
     missing = []
     pending_usages = []
-    
+
     for tok in tokens:
         if tok in EXTERNAL_LIB_TOKENS or tok in LOCAL_VAR_EXCLUDE or tok.isdigit():
             continue
-            
+
         if is_unit_token(tok) or is_tech_abbreviation(tok):
             continue
-            
+
         if tok in pending_ids:
             pending_usages.append(tok)
             continue
-            
+
         if tok in variant_map:
             v_type = variant_map[tok]["type"]
             root_id = variant_map[tok]["root"]
@@ -312,7 +384,9 @@ def check_glossary(
                     continue
                 issues.append(
                     AuditIssue(
-                        severity="WARN" if kind not in STRICT_GLOSSARY_KINDS else "ERROR",
+                        severity="WARN"
+                        if kind not in STRICT_GLOSSARY_KINDS
+                        else "ERROR",
                         code="VARIANT_ABBREVIATION",
                         identifier=identifier,
                         kind=kind,
@@ -322,7 +396,15 @@ def check_glossary(
                 )
             elif v_type == "plural":
                 # SEMANTIC: exempt warnings for code-layer plurals. Checked by semantic consistency instead.
-                is_semantic = kind in {"module_var", "class_attr", "self_attr", "param", "model_field", "function", "json_key"}
+                is_semantic = kind in {
+                    "module_var",
+                    "class_attr",
+                    "self_attr",
+                    "param",
+                    "model_field",
+                    "function",
+                    "json_key",
+                }
                 if not is_semantic:
                     issues.append(
                         AuditIssue(
@@ -335,13 +417,13 @@ def check_glossary(
                         )
                     )
             continue
-            
+
         if tok in words:
             continue
-            
+
         if tok in compounds:
             continue
-            
+
         matched = False
         if "match_n_pattern" in globals():
             # recreate tuples locally for match backwards compat
@@ -351,14 +433,22 @@ def check_glossary(
         else:
             if any(pat.fullmatch(tok) for pat in n_patterns):
                 matched = True
-                
+
         if matched:
             continue
-            
+
         if "find_singular_token" in globals():
             singular = find_singular_token(tok, words)
             if singular:
-                is_semantic = kind in {"module_var", "class_attr", "self_attr", "param", "model_field", "function", "json_key"}
+                is_semantic = kind in {
+                    "module_var",
+                    "class_attr",
+                    "self_attr",
+                    "param",
+                    "model_field",
+                    "function",
+                    "json_key",
+                }
                 if not is_semantic:
                     issues.append(
                         AuditIssue(
@@ -371,18 +461,14 @@ def check_glossary(
                         )
                     )
                 continue
-                
-        # 미등록 단어인 경우 최종적으로 Dictionary API 조회 시도
-        is_valid, meaning = check_dictionary_api(tok)
-        if is_valid:
-            if enable_auto_draft:
-                auto_draft_dictionary_word(tok, meaning)
-            continue
-            
+
+        # words/compounds/variant_map이 식별자 판정의 단일 SoT다.
+        # 외부 사전 가용성이 승인 gate를 우회하거나 QA 시간을
+        # 비결정적으로 만들지 않도록 미등록 토큰은 로컬에서 즉시 실패한다.
         missing.append(tok)
-        
+
     if missing:
-        severity = "FATAL" # 사용 금지 및 대체 강제 (안전하지 않은 미등록 단어)
+        severity = "FATAL"  # 사용 금지 및 대체 강제 (안전하지 않은 미등록 단어)
         issues.append(
             AuditIssue(
                 severity=severity,
@@ -390,10 +476,10 @@ def check_glossary(
                 identifier=identifier,
                 kind=kind,
                 source=source,
-                detail=f"사용 금지된 알 수 없는 단어입니다. Dictionary API 조회 실패. 대체 용어로 수정하세요: {', '.join(sorted(set(missing)))}",
+                detail=f"로컬 glossary에 미등록된 단어입니다. 대체 용어로 수정하세요: {', '.join(sorted(set(missing)))}",
             )
         )
-        
+
     if pending_usages:
         issues.append(
             AuditIssue(
@@ -407,6 +493,7 @@ def check_glossary(
         )
 
     return issues
+
 
 def check_formatting(identifier: str, kind: str, source: str) -> list[AuditIssue]:
     issues: list[AuditIssue] = []
@@ -470,7 +557,11 @@ def check_formatting(identifier: str, kind: str, source: str) -> list[AuditIssue
                 detail="must match UPPER_SNAKE_CASE",
             )
         )
-    elif kind == "file" and identifier.endswith(".py") and not PY_FILE_RE.match(identifier):
+    elif (
+        kind == "file"
+        and identifier.endswith(".py")
+        and not PY_FILE_RE.match(identifier)
+    ):
         issues.append(
             AuditIssue(
                 severity="ERROR",
@@ -482,6 +573,7 @@ def check_formatting(identifier: str, kind: str, source: str) -> list[AuditIssue
             )
         )
     return issues
+
 
 def check_singular(identifier: str, kind: str, source: str) -> list[AuditIssue]:
     if kind not in {"folder", "db_table"}:
@@ -500,7 +592,10 @@ def check_singular(identifier: str, kind: str, source: str) -> list[AuditIssue]:
         )
     ]
 
-def check_collection_semantic(identifier: str, kind: str, source: str) -> list[AuditIssue]:
+
+def check_collection_semantic(
+    identifier: str, kind: str, source: str
+) -> list[AuditIssue]:
     # Existing runtime code contains many legacy collection-hint names; keep this check disabled
     # for current parser kinds to avoid non-actionable WARN noise in targeted audits.
     if kind not in {"variable"}:
@@ -538,17 +633,24 @@ def check_collection_semantic(identifier: str, kind: str, source: str) -> list[A
         )
     return issues
 
-def check_numeric_pattern(identifier: str, kind: str, source: str, n_patterns: list[re.Pattern[str]]) -> list[AuditIssue]:
+
+def check_numeric_pattern(
+    identifier: str, kind: str, source: str, n_patterns: list[re.Pattern[str]]
+) -> list[AuditIssue]:
     if kind not in NUMERIC_PATTERN_KINDS:
         return []
     lowered = identifier.replace("-", "_").lower()
     parts = [p for p in lowered.split("_") if p]
     # 숫자+문자 조합만 [N] 대상(순수 숫자는 제외)
-    candidate_parts = [p for p in parts if re.search(r"\d", p) and re.search(r"[a-z]", p)]
+    candidate_parts = [
+        p for p in parts if re.search(r"\d", p) and re.search(r"[a-z]", p)
+    ]
     if not candidate_parts:
         return []
 
-    unmatched = [p for p in candidate_parts if not any(pat.fullmatch(p) for pat in n_patterns)]
+    unmatched = [
+        p for p in candidate_parts if not any(pat.fullmatch(p) for pat in n_patterns)
+    ]
     if not unmatched:
         return []
     return [
