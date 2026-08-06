@@ -1,5 +1,15 @@
 # Glossary Change Log
 
+## [2026-08-03 21:40:00]
+### Added
+- 사용자 승인과 G-0 유사어 검토에 따라 기존 코드 식별자 `force_threshold`의 누락 root `threshold`를 general noun으로 등록.
+- `limit`(한도/지정가), `boundary`(구간 경계), `trigger`(실행 조건)는 수치 비교 기준값과 의미가 달라 대체하지 않음.
+- `GlossaryWriter` 저장 후 projection/index를 재생성.
+
+### Verification
+- `python generate_glossary.py validate` FATAL 0.
+- `python generate_glossary.py check-id force_threshold` PASS.
+
 ## [2026-07-31 21:34:00]
 ### Fixed
 - 미등록 식별자 감사가 외부 Dictionary API 상태에 따라 승인되거나 장시간 대기하던 비결정적 경로를 제거하고 로컬 glossary만 SoT로 사용.

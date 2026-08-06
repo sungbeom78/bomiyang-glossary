@@ -30881,6 +30881,23 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "threshold",
+      "canonical_pos": "noun",
+      "domain": "general",
+      "lang": {
+        "en": "threshold",
+        "ko": "임계값"
+      },
+      "description_i18n": {
+        "en": "A numeric boundary at which a rule or state change is activated.",
+        "ko": "규칙 또는 상태 전환이 활성화되는 수치 기준값."
+      },
+      "variants": [],
+      "updated_at": "2026-08-03T12:39:47Z",
+      "created_at": "2026-08-03T12:39:47Z",
+      "status": "active"
+    },
+    {
       "id": "throttle",
       "lang": {
         "en": "throttle",
