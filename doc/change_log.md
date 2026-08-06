@@ -1,5 +1,15 @@
 # Glossary Change Log
 
+## [2026-08-06 14:45:00]
+### Added
+- 사용자 승인 범위에 따라 기존 운영 식별자 `state_machine`, `wake_up`, `notify_web_banner_alert`에서 누락됐던 root `machine`, `wake`, `up`, `banner`를 등록.
+- 동의어를 새로 만들거나 코드 식별자를 추가하지 않고, 장기간 사용 중인 아키텍처·화면 명칭과 glossary SoT의 불일치를 해소.
+- `GlossaryWriter`를 통해 저장하고 projection/index를 재생성.
+
+### Verification
+- `python generate_glossary.py validate` FATAL 0.
+- 세 기존 식별자 `check-id` 및 BomTS 대상 identifier audit PASS.
+
 ## [2026-08-03 21:40:00]
 ### Added
 - 사용자 승인과 G-0 유사어 검토에 따라 기존 코드 식별자 `force_threshold`의 누락 root `threshold`를 general noun으로 등록.

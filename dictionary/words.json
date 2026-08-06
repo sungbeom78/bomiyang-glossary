@@ -2394,6 +2394,24 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "banner",
+      "domain": "ui",
+      "status": "active",
+      "canonical_pos": "noun",
+      "plural": null,
+      "lang": {
+        "en": "banner",
+        "ko": "배너"
+      },
+      "description_i18n": {
+        "en": "A prominent interface area used to display a message or alert.",
+        "ko": "메시지나 경고를 눈에 띄게 표시하는 화면 영역."
+      },
+      "variants": [],
+      "updated_at": "2026-08-06T05:48:52Z",
+      "created_at": "2026-08-06T05:48:52Z"
+    },
+    {
       "id": "bar",
       "domain": [
         "trading"
@@ -16716,6 +16734,24 @@
       "source_urls": [
         "https://en.wiktionary.org/wiki/m"
       ]
+    },
+    {
+      "id": "machine",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "noun",
+      "plural": null,
+      "lang": {
+        "en": "machine",
+        "ko": "상태 처리 장치"
+      },
+      "description_i18n": {
+        "en": "A system component that manages transitions between states.",
+        "ko": "상태 사이의 전환을 관리하는 시스템 구성 요소."
+      },
+      "variants": [],
+      "updated_at": "2026-08-06T05:48:52Z",
+      "created_at": "2026-08-06T05:48:52Z"
     },
     {
       "id": "main",
@@ -32394,6 +32430,23 @@
       "updated_at": "2026-04-20T12:03:27Z"
     },
     {
+      "id": "up",
+      "domain": "general",
+      "status": "active",
+      "canonical_pos": "adv",
+      "lang": {
+        "en": "up",
+        "ko": "동작 상태로"
+      },
+      "description_i18n": {
+        "en": "Into an active or operational state.",
+        "ko": "활성 또는 동작 가능한 상태로."
+      },
+      "variants": [],
+      "updated_at": "2026-08-06T05:48:52Z",
+      "created_at": "2026-08-06T05:48:52Z"
+    },
+    {
       "id": "upbit",
       "domain": [
         "infra"
@@ -33283,6 +33336,23 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "wake",
+      "domain": "system",
+      "status": "active",
+      "canonical_pos": "verb",
+      "lang": {
+        "en": "wake",
+        "ko": "기동하다"
+      },
+      "description_i18n": {
+        "en": "To bring a service from an inactive state into operation.",
+        "ko": "비활성 상태의 서비스를 동작 상태로 전환하다."
+      },
+      "variants": [],
+      "updated_at": "2026-08-06T05:48:52Z",
+      "created_at": "2026-08-06T05:48:52Z"
     },
     {
       "id": "warm",

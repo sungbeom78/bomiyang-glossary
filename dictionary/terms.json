@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-08-06T05:22:30Z",
+  "generated_at": "2026-08-06T05:49:12Z",
   "terms": [
     {
       "id": "aborts",
@@ -1404,69 +1404,6 @@
       "source": "word",
       "root": "apply",
       "term_type": "base",
-      "domain": "general",
-      "lang": {
-        "en": "apply",
-        "ko": "적용"
-      },
-      "description_i18n": {
-        "en": "To put to use or employ for a particular purpose or in a specific case, especially in a trading or computational context.",
-        "ko": "변경된 설정이나 특정 규칙을 시스템 운영이나 로직 처리에 실제 반영하는 것을 의미합니다."
-      }
-    },
-    {
-      "id": "applies",
-      "source": "word",
-      "root": "apply",
-      "term_type": "variant",
-      "variant_type": "verb_form",
-      "domain": "general",
-      "lang": {
-        "en": "apply",
-        "ko": "적용"
-      }
-    },
-    {
-      "id": "applying",
-      "source": "word",
-      "root": "apply",
-      "term_type": "variant",
-      "variant_type": "present_participle",
-      "domain": "general",
-      "lang": {
-        "en": "apply",
-        "ko": "적용"
-      }
-    },
-    {
-      "id": "applied",
-      "source": "word",
-      "root": "apply",
-      "term_type": "variant",
-      "variant_type": "past",
-      "domain": "general",
-      "lang": {
-        "en": "apply",
-        "ko": "적용"
-      }
-    },
-    {
-      "id": "application",
-      "source": "word",
-      "root": "apply",
-      "term_type": "variant",
-      "variant_type": "noun_form",
-      "domain": "general",
-      "lang": {
-        "en": "apply",
-        "ko": "적용"
-      }
-    },
-    {
-      "id": "apply",
-      "source": "word",
-      "root": "apply",
-      "term_type": "base",
       "domain": "system",
       "lang": {
         "en": "apply",
@@ -1532,6 +1469,69 @@
       "term_type": "variant",
       "variant_type": "plural",
       "domain": "system",
+      "lang": {
+        "en": "apply",
+        "ko": "적용"
+      }
+    },
+    {
+      "id": "apply",
+      "source": "word",
+      "root": "apply",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "apply",
+        "ko": "적용"
+      },
+      "description_i18n": {
+        "en": "To put to use or employ for a particular purpose or in a specific case, especially in a trading or computational context.",
+        "ko": "변경된 설정이나 특정 규칙을 시스템 운영이나 로직 처리에 실제 반영하는 것을 의미합니다."
+      }
+    },
+    {
+      "id": "applies",
+      "source": "word",
+      "root": "apply",
+      "term_type": "variant",
+      "variant_type": "verb_form",
+      "domain": "general",
+      "lang": {
+        "en": "apply",
+        "ko": "적용"
+      }
+    },
+    {
+      "id": "applying",
+      "source": "word",
+      "root": "apply",
+      "term_type": "variant",
+      "variant_type": "present_participle",
+      "domain": "general",
+      "lang": {
+        "en": "apply",
+        "ko": "적용"
+      }
+    },
+    {
+      "id": "applied",
+      "source": "word",
+      "root": "apply",
+      "term_type": "variant",
+      "variant_type": "past",
+      "domain": "general",
+      "lang": {
+        "en": "apply",
+        "ko": "적용"
+      }
+    },
+    {
+      "id": "application",
+      "source": "word",
+      "root": "apply",
+      "term_type": "variant",
+      "variant_type": "noun_form",
+      "domain": "general",
       "lang": {
         "en": "apply",
         "ko": "적용"
@@ -2617,6 +2617,21 @@
       "description_i18n": {
         "en": "Prohibited or disallowed, typically by an authority or system.",
         "ko": "금지"
+      }
+    },
+    {
+      "id": "banner",
+      "source": "word",
+      "root": "banner",
+      "term_type": "base",
+      "domain": "ui",
+      "lang": {
+        "en": "banner",
+        "ko": "배너"
+      },
+      "description_i18n": {
+        "en": "A prominent interface area used to display a message or alert.",
+        "ko": "메시지나 경고를 눈에 띄게 표시하는 화면 영역."
       }
     },
     {
@@ -5686,7 +5701,7 @@
       "source": "word",
       "root": "collect",
       "term_type": "base",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5702,7 +5717,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5714,7 +5729,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5726,7 +5741,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5738,7 +5753,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5750,7 +5765,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5762,7 +5777,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5774,7 +5789,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5785,7 +5800,7 @@
       "source": "word",
       "root": "collect",
       "term_type": "base",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5801,7 +5816,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5813,7 +5828,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5825,7 +5840,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5837,7 +5852,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5849,7 +5864,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5861,7 +5876,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -5873,7 +5888,7 @@
       "root": "collect",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "collect",
         "ko": "수집"
@@ -12183,7 +12198,7 @@
       "source": "word",
       "root": "extend",
       "term_type": "base",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12199,7 +12214,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12211,7 +12226,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12223,7 +12238,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12235,7 +12250,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12247,7 +12262,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12258,7 +12273,7 @@
       "source": "word",
       "root": "extend",
       "term_type": "base",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12274,7 +12289,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12286,7 +12301,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12298,7 +12313,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12310,7 +12325,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12322,7 +12337,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -17057,7 +17072,7 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17075,7 +17090,7 @@
       "root": "korean standard time",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17088,7 +17103,7 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17106,7 +17121,7 @@
       "root": "korean standard time",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17458,7 +17473,7 @@
       "source": "word",
       "root": "level",
       "term_type": "base",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "level",
         "ja": "レベル",
@@ -17475,7 +17490,7 @@
       "source": "word",
       "root": "level",
       "term_type": "base",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "level",
         "ja": "レベル",
@@ -18527,6 +18542,21 @@
         "ko": "분",
         "ja": "メートル",
         "zh_hans": "米"
+      }
+    },
+    {
+      "id": "machine",
+      "source": "word",
+      "root": "machine",
+      "term_type": "base",
+      "domain": "system",
+      "lang": {
+        "en": "machine",
+        "ko": "상태 처리 장치"
+      },
+      "description_i18n": {
+        "en": "A system component that manages transitions between states.",
+        "ko": "상태 사이의 전환을 관리하는 시스템 구성 요소."
       }
     },
     {
@@ -21086,7 +21116,7 @@
       "source": "word",
       "root": "notify",
       "term_type": "base",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21104,7 +21134,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21118,7 +21148,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21132,7 +21162,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21146,7 +21176,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21160,7 +21190,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21174,7 +21204,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21188,7 +21218,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21201,7 +21231,7 @@
       "source": "word",
       "root": "notify",
       "term_type": "base",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21219,7 +21249,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21233,7 +21263,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21247,7 +21277,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21261,7 +21291,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21275,7 +21305,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21289,7 +21319,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21303,7 +21333,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -27757,7 +27787,7 @@
       "source": "word",
       "root": "result",
       "term_type": "base",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "result",
         "ja": "結果",
@@ -27774,7 +27804,7 @@
       "source": "word",
       "root": "result",
       "term_type": "base",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "result",
         "ja": "結果",
@@ -32005,7 +32035,7 @@
       "source": "word",
       "root": "start",
       "term_type": "base",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32023,7 +32053,7 @@
       "root": "start",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32037,7 +32067,7 @@
       "root": "start",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32051,7 +32081,7 @@
       "root": "start",
       "term_type": "variant",
       "variant_type": "past_participle",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32064,7 +32094,7 @@
       "source": "word",
       "root": "start",
       "term_type": "base",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32082,7 +32112,7 @@
       "root": "start",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32096,7 +32126,7 @@
       "root": "start",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32110,7 +32140,7 @@
       "root": "start",
       "term_type": "variant",
       "variant_type": "past_participle",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "start",
         "ko": "시작",
@@ -32241,7 +32271,7 @@
       "source": "word",
       "root": "step",
       "term_type": "base",
-      "domain": "general",
+      "domain": "system",
       "lang": {
         "en": "step",
         "ja": "ステップ",
@@ -32258,7 +32288,7 @@
       "source": "word",
       "root": "step",
       "term_type": "base",
-      "domain": "system",
+      "domain": "general",
       "lang": {
         "en": "step",
         "ja": "ステップ",
@@ -36084,6 +36114,21 @@
       }
     },
     {
+      "id": "up",
+      "source": "word",
+      "root": "up",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "up",
+        "ko": "동작 상태로"
+      },
+      "description_i18n": {
+        "en": "Into an active or operational state.",
+        "ko": "활성 또는 동작 가능한 상태로."
+      }
+    },
+    {
       "id": "upbit",
       "source": "word",
       "root": "upbit",
@@ -37149,6 +37194,21 @@
       "lang": {
         "en": "wait",
         "ko": "대기"
+      }
+    },
+    {
+      "id": "wake",
+      "source": "word",
+      "root": "wake",
+      "term_type": "base",
+      "domain": "system",
+      "lang": {
+        "en": "wake",
+        "ko": "기동하다"
+      },
+      "description_i18n": {
+        "en": "To bring a service from an inactive state into operation.",
+        "ko": "비활성 상태의 서비스를 동작 상태로 전환하다."
       }
     },
     {
@@ -38385,7 +38445,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -38400,7 +38460,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -38415,7 +38475,7 @@
       "source": "word",
       "root": "piercing",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "piercing",
         "ko": "찌르기"
@@ -38430,7 +38490,7 @@
       "source": "word",
       "root": "piercing",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "piercing",
         "ko": "찌르기"
@@ -38490,7 +38550,7 @@
       "source": "word",
       "root": "major",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "major",
         "ko": "메이저"
@@ -38505,7 +38565,7 @@
       "source": "word",
       "root": "major",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "major",
         "ko": "메이저"
@@ -38520,7 +38580,7 @@
       "source": "word",
       "root": "crosses",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38536,7 +38596,7 @@
       "root": "crosses",
       "term_type": "variant",
       "variant_type": "singular",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38547,7 +38607,7 @@
       "source": "word",
       "root": "crosses",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38563,25 +38623,10 @@
       "root": "crosses",
       "term_type": "variant",
       "variant_type": "singular",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
-      }
-    },
-    {
-      "id": "cfg",
-      "source": "word",
-      "root": "cfg",
-      "term_type": "base",
-      "domain": "general",
-      "lang": {
-        "en": "cfg",
-        "ko": "설정(약어)"
-      },
-      "description_i18n": {
-        "en": "Abbreviation for configuration — widely used as a variable name in Python codebases.",
-        "ko": "시스템이나 애플리케이션의 설정 파일(Config)을 지칭하거나 이를 저장하는 디렉토리명으로 사용되는 축약어입니다."
       }
     },
     {
@@ -38600,11 +38645,26 @@
       }
     },
     {
+      "id": "cfg",
+      "source": "word",
+      "root": "cfg",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "cfg",
+        "ko": "설정(약어)"
+      },
+      "description_i18n": {
+        "en": "Abbreviation for configuration — widely used as a variable name in Python codebases.",
+        "ko": "시스템이나 애플리케이션의 설정 파일(Config)을 지칭하거나 이를 저장하는 디렉토리명으로 사용되는 축약어입니다."
+      }
+    },
+    {
       "id": "sf",
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -38619,7 +38679,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -41919,7 +41979,7 @@
       "source": "compound",
       "root": "market_data",
       "term_type": "base",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -41937,7 +41997,7 @@
       "root": "market_data",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -41950,7 +42010,7 @@
       "source": "compound",
       "root": "market_data",
       "term_type": "base",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -41968,7 +42028,7 @@
       "root": "market_data",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -43705,5 +43765,5 @@
       }
     }
   ],
-  "checksum": "sha256:8ccba85284ae2df811dcfa60308619800de37057ee6f0c6987a4ed72c4c5c155"
+  "checksum": "sha256:885665d44115edeeed8233fdad19177b9507225bbf9cfc11f772908b33f973c7"
 }
