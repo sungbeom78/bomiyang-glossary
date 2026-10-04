@@ -10464,6 +10464,25 @@
       ]
     },
     {
+      "id": "evidence",
+      "lang": {
+        "en": "evidence",
+        "ko": "증거"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "verifiable artifact that a check actually ran against current inputs",
+        "ko": "증거"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T02:59:12Z",
+      "created_at": "2026-10-04T02:59:12Z"
+    },
+    {
       "id": "exception",
       "lang": {
         "en": "exception",
