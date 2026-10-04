@@ -5488,6 +5488,30 @@
       "created_at": "2026-04-21T01:01:24Z"
     },
     {
+      "id": "compound",
+      "lang": {
+        "en": "compound",
+        "ko": "복합어"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "a glossary term composed of several registered words",
+        "ko": "복합어"
+      },
+      "variants": [
+        {
+          "type": "plural",
+          "value": "compounds"
+        }
+      ],
+      "updated_at": "2026-10-04T02:57:22Z",
+      "created_at": "2026-10-04T02:57:22Z"
+    },
+    {
       "id": "comprehensive",
       "lang": {
         "en": "comprehensive",
