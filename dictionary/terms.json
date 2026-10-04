@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-10-04T02:57:25Z",
+  "generated_at": "2026-10-04T02:57:26Z",
   "terms": [
     {
       "id": "aborts",
@@ -343,7 +343,7 @@
       "source": "word",
       "root": "active",
       "term_type": "base",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -361,7 +361,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -375,7 +375,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -388,7 +388,7 @@
       "source": "word",
       "root": "active",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -406,7 +406,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -420,7 +420,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -12255,7 +12255,7 @@
       "source": "word",
       "root": "extend",
       "term_type": "base",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12271,7 +12271,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12283,7 +12283,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12295,7 +12295,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12307,7 +12307,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12319,7 +12319,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12330,7 +12330,7 @@
       "source": "word",
       "root": "extend",
       "term_type": "base",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12346,7 +12346,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12358,7 +12358,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12370,7 +12370,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12382,7 +12382,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12394,7 +12394,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -17113,7 +17113,7 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17131,7 +17131,7 @@
       "root": "korean standard time",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17144,7 +17144,7 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17162,7 +17162,7 @@
       "root": "korean standard time",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -29387,6 +29387,21 @@
       }
     },
     {
+      "id": "search",
+      "source": "word",
+      "root": "search",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "search",
+        "ko": "검색"
+      },
+      "description_i18n": {
+        "en": "looking up matches in a source",
+        "ko": "검색"
+      }
+    },
+    {
       "id": "sec",
       "source": "word",
       "root": "sec",
@@ -38589,7 +38604,7 @@
       "source": "word",
       "root": "piercing",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "candlestick",
       "lang": {
         "en": "piercing",
         "ko": "찌르기"
@@ -38604,7 +38619,7 @@
       "source": "word",
       "root": "piercing",
       "term_type": "base",
-      "domain": "candlestick",
+      "domain": "fx",
       "lang": {
         "en": "piercing",
         "ko": "찌르기"
@@ -42093,7 +42108,7 @@
       "source": "compound",
       "root": "market_data",
       "term_type": "base",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -42111,7 +42126,7 @@
       "root": "market_data",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -42124,7 +42139,7 @@
       "source": "compound",
       "root": "market_data",
       "term_type": "base",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -42142,7 +42157,7 @@
       "root": "market_data",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -43879,5 +43894,5 @@
       }
     }
   ],
-  "checksum": "sha256:e0f1af4b553e4042078fae4a730817caaa78b17545c9b9a0a9a68d3b7c684d07"
+  "checksum": "sha256:72ec4e0c0e3ec29422f9e46bb04df9880ea6c1916c31cc4e9b40c206a390d862"
 }
