@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-10-04T02:57:26Z",
+  "generated_at": "2026-10-04T02:57:27Z",
   "terms": [
     {
       "id": "aborts",
@@ -343,7 +343,7 @@
       "source": "word",
       "root": "active",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -361,7 +361,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -375,7 +375,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -388,7 +388,7 @@
       "source": "word",
       "root": "active",
       "term_type": "base",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -406,7 +406,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -420,7 +420,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -21215,7 +21215,7 @@
       "source": "word",
       "root": "notify",
       "term_type": "base",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21233,7 +21233,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21247,7 +21247,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21261,7 +21261,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21275,7 +21275,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21289,7 +21289,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21303,7 +21303,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21317,7 +21317,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "infra",
+      "domain": "system",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21330,7 +21330,7 @@
       "source": "word",
       "root": "notify",
       "term_type": "base",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21348,7 +21348,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21362,7 +21362,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21376,7 +21376,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21390,7 +21390,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21404,7 +21404,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21418,7 +21418,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -21432,7 +21432,7 @@
       "root": "notify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "system",
+      "domain": "infra",
       "lang": {
         "en": "notify",
         "ko": "알림",
@@ -36883,6 +36883,33 @@
       }
     },
     {
+      "id": "variant",
+      "source": "word",
+      "root": "variant",
+      "term_type": "base",
+      "domain": "system",
+      "lang": {
+        "en": "variant",
+        "ko": "변형"
+      },
+      "description_i18n": {
+        "en": "an alternate form of a glossary word (plural, abbreviation, alias)",
+        "ko": "변형"
+      }
+    },
+    {
+      "id": "variants",
+      "source": "word",
+      "root": "variant",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "variant",
+        "ko": "변형"
+      }
+    },
+    {
       "id": "verify",
       "source": "word",
       "root": "verify",
@@ -38793,7 +38820,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "system",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -38808,7 +38835,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "system",
+      "domain": "fx",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -43894,5 +43921,5 @@
       }
     }
   ],
-  "checksum": "sha256:72ec4e0c0e3ec29422f9e46bb04df9880ea6c1916c31cc4e9b40c206a390d862"
+  "checksum": "sha256:ce6d120038d1c40d896203cb93e87c702934a8468b8a44958096f502de08d1df"
 }

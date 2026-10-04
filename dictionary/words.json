@@ -33098,6 +33098,30 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "variant",
+      "lang": {
+        "en": "variant",
+        "ko": "변형"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "an alternate form of a glossary word (plural, abbreviation, alias)",
+        "ko": "변형"
+      },
+      "variants": [
+        {
+          "type": "plural",
+          "value": "variants"
+        }
+      ],
+      "updated_at": "2026-10-04T02:57:26Z",
+      "created_at": "2026-10-04T02:57:26Z"
+    },
+    {
       "id": "verify",
       "lang": {
         "en": "verify",
