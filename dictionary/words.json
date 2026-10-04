@@ -7669,6 +7669,34 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "declaration",
+      "lang": {
+        "en": "declaration",
+        "ko": "선언"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "a code statement that introduces a new identifier (def/class/assignment)",
+        "ko": "선언"
+      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "value": "decl"
+        },
+        {
+          "type": "plural",
+          "value": "declarations"
+        }
+      ],
+      "updated_at": "2026-10-04T02:59:09Z",
+      "created_at": "2026-10-04T02:59:09Z"
+    },
+    {
       "id": "decline",
       "lang": {
         "en": "decline",
