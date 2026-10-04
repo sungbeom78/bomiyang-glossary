@@ -5074,10 +5074,17 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-17T03:16:56Z",
+      "updated_at": "2026-10-04T17:26:02Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/code"
-      ]
+      ],
+      "abbreviation": {
+        "short": "cd",
+        "long": "code",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "collect",
@@ -6122,6 +6129,25 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "contact",
+      "lang": {
+        "en": "contact",
+        "ko": "연락처"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "연락 수단 (전화·이메일·주소 등)",
+        "en": "a means of communication such as phone, email or address"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T17:26:00Z",
+      "created_at": "2026-10-04T17:26:00Z"
+    },
+    {
       "id": "content",
       "domain": [
         "general"
@@ -6664,6 +6690,25 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "course",
+      "lang": {
+        "en": "course",
+        "ko": "과목"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "교과목 또는 교육 과정",
+        "en": "a unit or program of study"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T17:26:00Z",
+      "created_at": "2026-10-04T17:26:00Z"
+    },
+    {
       "id": "crash",
       "lang": {
         "en": "crash",
@@ -6752,6 +6797,25 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "credit",
+      "lang": {
+        "en": "credit",
+        "ko": "학점"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "이수 단위인 학점 (금융에서는 신용)",
+        "en": "a unit of study completed; in finance, credit"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T17:26:01Z",
+      "created_at": "2026-10-04T17:26:01Z"
     },
     {
       "id": "criteria",
@@ -8143,6 +8207,32 @@
       ]
     },
     {
+      "id": "department",
+      "lang": {
+        "en": "department",
+        "ko": "학과"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "조직의 하위 단위 (학과·부서)",
+        "en": "a division of an organization such as a school or company"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T17:25:59Z",
+      "created_at": "2026-10-04T17:25:59Z",
+      "abbreviation": {
+        "short": "dept",
+        "long": "department",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
       "id": "deploy",
       "lang": {
         "en": "deploy",
@@ -9503,8 +9593,15 @@
         "ko": "갑자기 발생하여 즉각적인 조치가 필요한 위급한 상황"
       },
       "variants": [],
-      "updated_at": "2026-04-21T01:01:24Z",
-      "created_at": "2026-04-21T01:01:24Z"
+      "updated_at": "2026-10-04T17:26:02Z",
+      "created_at": "2026-04-21T01:01:24Z",
+      "abbreviation": {
+        "short": "emerg",
+        "long": "emergency",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "emerging",
@@ -9873,6 +9970,32 @@
       "from": "enqueue",
       "created_at": "2026-04-20T15:17:11Z",
       "updated_at": "2026-04-20T15:17:11Z"
+    },
+    {
+      "id": "enrollment",
+      "lang": {
+        "en": "enrollment",
+        "ko": "수강"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "과정·과목에 등록하는 일 (수강·등록)",
+        "en": "the act of registering for a course or program"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T17:26:00Z",
+      "created_at": "2026-10-04T17:26:00Z",
+      "abbreviation": {
+        "short": "enroll",
+        "long": "enrollment",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "ensure",
@@ -13122,6 +13245,25 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "grade",
+      "lang": {
+        "en": "grade",
+        "ko": "성적"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "평가 결과의 등급 (성적·등급)",
+        "en": "a mark or level given in an assessment"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T17:26:00Z",
+      "created_at": "2026-10-04T17:26:00Z"
     },
     {
       "id": "grep",
@@ -18718,7 +18860,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-17T03:20:09Z",
+      "updated_at": "2026-10-04T17:26:02Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/name"
       ],
@@ -18745,7 +18887,14 @@
           ],
           "value": "naming"
         }
-      ]
+      ],
+      "abbreviation": {
+        "short": "nm",
+        "long": "name",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "naver corporation",
@@ -21174,6 +21323,25 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "personal",
+      "lang": {
+        "en": "personal",
+        "ko": "개인"
+      },
+      "canonical_pos": "adj",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "특정 개인에 관한",
+        "en": "relating to a particular person"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T17:26:01Z",
+      "created_at": "2026-10-04T17:26:01Z"
+    },
+    {
       "id": "personality",
       "domain": [
         "market"
@@ -22297,6 +22465,32 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "professor",
+      "lang": {
+        "en": "professor",
+        "ko": "교수"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "대학에서 가르치는 교원",
+        "en": "a teacher at a university"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T17:25:59Z",
+      "created_at": "2026-10-04T17:25:59Z",
+      "abbreviation": {
+        "short": "prof",
+        "long": "professor",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "profile",
@@ -28620,6 +28814,25 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "sort",
+      "lang": {
+        "en": "sort",
+        "ko": "순서"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "순서를 정하는 일 (정렬·표시 순서)",
+        "en": "to arrange in order; display order"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T17:26:01Z",
+      "created_at": "2026-10-04T17:26:01Z"
+    },
+    {
       "id": "source",
       "lang": {
         "en": "source",
@@ -29821,6 +30034,32 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "student",
+      "lang": {
+        "en": "student",
+        "ko": "학생"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "교육 기관에서 배우는 사람",
+        "en": "a person who studies at a school"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T17:25:59Z",
+      "created_at": "2026-10-04T17:25:59Z",
+      "abbreviation": {
+        "short": "stud",
+        "long": "student",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
       "id": "style",
       "domain": [
         "general"
@@ -29899,6 +30138,25 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "subject",
+      "lang": {
+        "en": "subject",
+        "ko": "주체"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "다루는 대상 (과목·주제·주체)",
+        "en": "the person or thing being discussed, studied or acted on"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T17:26:01Z",
+      "created_at": "2026-10-04T17:26:01Z"
     },
     {
       "id": "submit",
@@ -33121,7 +33379,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-17T03:24:29Z",
+      "updated_at": "2026-10-04T17:26:02Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/value"
       ],
@@ -33156,7 +33414,14 @@
           ],
           "value": "valuation"
         }
-      ]
+      ],
+      "abbreviation": {
+        "short": "val",
+        "long": "value",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "var",

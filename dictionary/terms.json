@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-10-04T02:59:13Z",
+  "generated_at": "2026-10-04T17:26:03Z",
   "terms": [
     {
       "id": "aborts",
@@ -343,7 +343,7 @@
       "source": "word",
       "root": "active",
       "term_type": "base",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -361,7 +361,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -375,7 +375,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -388,7 +388,7 @@
       "source": "word",
       "root": "active",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -406,7 +406,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -420,7 +420,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -5727,6 +5727,20 @@
       }
     },
     {
+      "id": "cd",
+      "source": "word",
+      "root": "code",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "market",
+      "lang": {
+        "en": "code",
+        "ko": "코드",
+        "ja": "コード",
+        "zh_hans": "代码"
+      }
+    },
+    {
       "id": "collect",
       "source": "word",
       "root": "collect",
@@ -7020,6 +7034,21 @@
       }
     },
     {
+      "id": "contact",
+      "source": "word",
+      "root": "contact",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "contact",
+        "ko": "연락처"
+      },
+      "description_i18n": {
+        "ko": "연락 수단 (전화·이메일·주소 등)",
+        "en": "a means of communication such as phone, email or address"
+      }
+    },
+    {
       "id": "content",
       "source": "word",
       "root": "content",
@@ -7627,6 +7656,21 @@
       }
     },
     {
+      "id": "course",
+      "source": "word",
+      "root": "course",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "course",
+        "ko": "과목"
+      },
+      "description_i18n": {
+        "ko": "교과목 또는 교육 과정",
+        "en": "a unit or program of study"
+      }
+    },
+    {
       "id": "crash",
       "source": "word",
       "root": "crash",
@@ -7738,6 +7782,21 @@
       "lang": {
         "en": "create",
         "ko": "생성"
+      }
+    },
+    {
+      "id": "credit",
+      "source": "word",
+      "root": "credit",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "credit",
+        "ko": "학점"
+      },
+      "description_i18n": {
+        "ko": "이수 단위인 학점 (금융에서는 신용)",
+        "en": "a unit of study completed; in finance, credit"
       }
     },
     {
@@ -9238,6 +9297,33 @@
       }
     },
     {
+      "id": "department",
+      "source": "word",
+      "root": "department",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "department",
+        "ko": "학과"
+      },
+      "description_i18n": {
+        "ko": "조직의 하위 단위 (학과·부서)",
+        "en": "a division of an organization such as a school or company"
+      }
+    },
+    {
+      "id": "dept",
+      "source": "word",
+      "root": "department",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "general",
+      "lang": {
+        "en": "department",
+        "ko": "학과"
+      }
+    },
+    {
       "id": "deploy",
       "source": "word",
       "root": "deploy",
@@ -10654,6 +10740,20 @@
       }
     },
     {
+      "id": "emerg",
+      "source": "word",
+      "root": "emergency",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "general",
+      "lang": {
+        "en": "emergency",
+        "ko": "비상",
+        "ja": "緊急事態",
+        "zh_hans": "紧急情况"
+      }
+    },
+    {
       "id": "emerging",
       "source": "word",
       "root": "emerging",
@@ -11061,6 +11161,33 @@
       "description_i18n": {
         "en": "Indicates that a task or item has been added to a queue, awaiting its turn to be processed.",
         "ko": "어떤 작업이나 항목이 순서를 기다리기 위해 대기열에 추가되었음을 의미합니다."
+      }
+    },
+    {
+      "id": "enrollment",
+      "source": "word",
+      "root": "enrollment",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "enrollment",
+        "ko": "수강"
+      },
+      "description_i18n": {
+        "ko": "과정·과목에 등록하는 일 (수강·등록)",
+        "en": "the act of registering for a course or program"
+      }
+    },
+    {
+      "id": "enroll",
+      "source": "word",
+      "root": "enrollment",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "general",
+      "lang": {
+        "en": "enrollment",
+        "ko": "수강"
       }
     },
     {
@@ -14660,6 +14787,21 @@
       }
     },
     {
+      "id": "grade",
+      "source": "word",
+      "root": "grade",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "grade",
+        "ko": "성적"
+      },
+      "description_i18n": {
+        "ko": "평가 결과의 등급 (성적·등급)",
+        "en": "a mark or level given in an assessment"
+      }
+    },
+    {
       "id": "grep",
       "source": "word",
       "root": "grep",
@@ -17240,7 +17382,7 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17258,7 +17400,7 @@
       "root": "korean standard time",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17271,7 +17413,7 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17289,7 +17431,7 @@
       "root": "korean standard time",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -20755,6 +20897,20 @@
       }
     },
     {
+      "id": "nm",
+      "source": "word",
+      "root": "name",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "infra",
+      "lang": {
+        "en": "name",
+        "ko": "이름",
+        "ja": "名前",
+        "zh_hans": "姓名"
+      }
+    },
+    {
       "id": "naver corporation",
       "source": "word",
       "root": "naver corporation",
@@ -23408,6 +23564,21 @@
       }
     },
     {
+      "id": "personal",
+      "source": "word",
+      "root": "personal",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "personal",
+        "ko": "개인"
+      },
+      "description_i18n": {
+        "ko": "특정 개인에 관한",
+        "en": "relating to a particular person"
+      }
+    },
+    {
       "id": "personality",
       "source": "word",
       "root": "personality",
@@ -24601,6 +24772,33 @@
       }
     },
     {
+      "id": "professor",
+      "source": "word",
+      "root": "professor",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "professor",
+        "ko": "교수"
+      },
+      "description_i18n": {
+        "ko": "대학에서 가르치는 교원",
+        "en": "a teacher at a university"
+      }
+    },
+    {
+      "id": "prof",
+      "source": "word",
+      "root": "professor",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "general",
+      "lang": {
+        "en": "professor",
+        "ko": "교수"
+      }
+    },
+    {
       "id": "profile",
       "source": "word",
       "root": "profile",
@@ -25551,7 +25749,7 @@
       "source": "word",
       "root": "quantity",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "quantity",
         "ja": "数量",
@@ -25568,7 +25766,7 @@
       "source": "word",
       "root": "quantity",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "quantity",
         "ja": "数量",
@@ -30743,7 +30941,7 @@
       "source": "word",
       "root": "shouting",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "shouting",
         "ko": "강력 알림 / 외치기",
@@ -30760,7 +30958,7 @@
       "source": "word",
       "root": "shouting",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "shouting",
         "ko": "강력 알림 / 외치기",
@@ -31798,6 +31996,21 @@
       "lang": {
         "en": "soft",
         "ko": "부드러운"
+      }
+    },
+    {
+      "id": "sort",
+      "source": "word",
+      "root": "sort",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "sort",
+        "ko": "순서"
+      },
+      "description_i18n": {
+        "ko": "순서를 정하는 일 (정렬·표시 순서)",
+        "en": "to arrange in order; display order"
       }
     },
     {
@@ -33173,6 +33386,33 @@
       }
     },
     {
+      "id": "student",
+      "source": "word",
+      "root": "student",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "student",
+        "ko": "학생"
+      },
+      "description_i18n": {
+        "ko": "교육 기관에서 배우는 사람",
+        "en": "a person who studies at a school"
+      }
+    },
+    {
+      "id": "stud",
+      "source": "word",
+      "root": "student",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "general",
+      "lang": {
+        "en": "student",
+        "ko": "학생"
+      }
+    },
+    {
       "id": "style",
       "source": "word",
       "root": "style",
@@ -33260,6 +33500,21 @@
       "lang": {
         "en": "sub",
         "ko": "하위"
+      }
+    },
+    {
+      "id": "subject",
+      "source": "word",
+      "root": "subject",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "subject",
+        "ko": "주체"
+      },
+      "description_i18n": {
+        "ko": "다루는 대상 (과목·주제·주체)",
+        "en": "the person or thing being discussed, studied or acted on"
       }
     },
     {
@@ -36597,7 +36852,7 @@
       "source": "word",
       "root": "use",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36613,7 +36868,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36625,7 +36880,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36637,7 +36892,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36649,7 +36904,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36660,7 +36915,7 @@
       "source": "word",
       "root": "use",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36676,7 +36931,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36688,7 +36943,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36700,7 +36955,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36712,7 +36967,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36951,6 +37206,20 @@
       "root": "value",
       "term_type": "variant",
       "variant_type": "noun_form",
+      "domain": "market",
+      "lang": {
+        "en": "value",
+        "ko": "거래대금",
+        "ja": "価値",
+        "zh_hans": "价值"
+      }
+    },
+    {
+      "id": "val",
+      "source": "word",
+      "root": "value",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
       "domain": "market",
       "lang": {
         "en": "value",
@@ -37624,7 +37893,7 @@
       "source": "word",
       "root": "warnings",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "warnings",
         "ko": "경고",
@@ -37641,7 +37910,7 @@
       "source": "word",
       "root": "warnings",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "warnings",
         "ko": "경고",
@@ -38724,7 +38993,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -38739,7 +39008,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -38747,6 +39016,21 @@
       "description_i18n": {
         "en": "Abbreviation for Wider Band — the outer Bollinger Band used in double-BB strategies for FX trading (sigma=4.0).",
         "ko": "주로 외환 트레이딩이나 경제 지표에서 참고되는 세계 은행(World Bank) 등의 글로벌 기관을 지칭할 때 사용되는 약어입니다."
+      }
+    },
+    {
+      "id": "piercing",
+      "source": "word",
+      "root": "piercing",
+      "term_type": "base",
+      "domain": "fx",
+      "lang": {
+        "en": "piercing",
+        "ko": "찌르기"
+      },
+      "description_i18n": {
+        "en": "A candlestick pattern where the wick penetrates both the Standard BB and the WB outer band, signaling an extreme reversal.",
+        "ko": "하락 추세 중 전일 음봉의 몸통을 현재 양봉이 강하게 관통하며 반전 상승의 신호를 주는 캔들스틱 차트 패턴입니다."
       }
     },
     {
@@ -38780,36 +39064,6 @@
       }
     },
     {
-      "id": "piercing",
-      "source": "word",
-      "root": "piercing",
-      "term_type": "base",
-      "domain": "fx",
-      "lang": {
-        "en": "piercing",
-        "ko": "찌르기"
-      },
-      "description_i18n": {
-        "en": "A candlestick pattern where the wick penetrates both the Standard BB and the WB outer band, signaling an extreme reversal.",
-        "ko": "하락 추세 중 전일 음봉의 몸통을 현재 양봉이 강하게 관통하며 반전 상승의 신호를 주는 캔들스틱 차트 패턴입니다."
-      }
-    },
-    {
-      "id": "either",
-      "source": "word",
-      "root": "either",
-      "term_type": "base",
-      "domain": "general",
-      "lang": {
-        "en": "either",
-        "ko": "둘 중 하나"
-      },
-      "description_i18n": {
-        "en": "Logical OR conjunction used in identifier naming to express an inclusive disjunction of conditions.",
-        "ko": "OR 조건을 식별자에 명시적으로 표현하는 접속사 (require_either_divergence_or_rsi3x 등)"
-      }
-    },
-    {
       "id": "either",
       "source": "word",
       "root": "either",
@@ -38825,18 +39079,18 @@
       }
     },
     {
-      "id": "major",
+      "id": "either",
       "source": "word",
-      "root": "major",
+      "root": "either",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
-        "en": "major",
-        "ko": "메이저"
+        "en": "either",
+        "ko": "둘 중 하나"
       },
       "description_i18n": {
-        "en": "Describes the top-tier, most liquid forex currency pairs (EURUSD, GBPUSD, USDJPY, etc.).",
-        "ko": "시스템의 주요 버전, 가장 거래량이 많은 통화 쌍(Major Pairs), 또는 시스템 운영에 치명적인 영향을 주는 에러 레벨을 의미합니다."
+        "en": "Logical OR conjunction used in identifier naming to express an inclusive disjunction of conditions.",
+        "ko": "OR 조건을 식별자에 명시적으로 표현하는 접속사 (require_either_divergence_or_rsi3x 등)"
       }
     },
     {
@@ -38855,30 +39109,18 @@
       }
     },
     {
-      "id": "crosses",
+      "id": "major",
       "source": "word",
-      "root": "crosses",
+      "root": "major",
       "term_type": "base",
       "domain": "trading",
       "lang": {
-        "en": "crosses",
-        "ko": "교차 통화쌍(복수)"
+        "en": "major",
+        "ko": "메이저"
       },
       "description_i18n": {
-        "en": "Plural form of cross — collection of cross currency pairs (e.g., emerging_crosses). Used as a plural identifier per Rule 8-A §3.",
-        "ko": "단기 이동평균선이 장기 이동평균선을 상향 돌파하거나 하향 돌파하는 등의 기술적 교차 현상(Cross)을 의미합니다."
-      }
-    },
-    {
-      "id": "cross",
-      "source": "word",
-      "root": "crosses",
-      "term_type": "variant",
-      "variant_type": "singular",
-      "domain": "trading",
-      "lang": {
-        "en": "crosses",
-        "ko": "교차 통화쌍(복수)"
+        "en": "Describes the top-tier, most liquid forex currency pairs (EURUSD, GBPUSD, USDJPY, etc.).",
+        "ko": "시스템의 주요 버전, 가장 거래량이 많은 통화 쌍(Major Pairs), 또는 시스템 운영에 치명적인 영향을 주는 에러 레벨을 의미합니다."
       }
     },
     {
@@ -38903,6 +39145,33 @@
       "term_type": "variant",
       "variant_type": "singular",
       "domain": "fx",
+      "lang": {
+        "en": "crosses",
+        "ko": "교차 통화쌍(복수)"
+      }
+    },
+    {
+      "id": "crosses",
+      "source": "word",
+      "root": "crosses",
+      "term_type": "base",
+      "domain": "trading",
+      "lang": {
+        "en": "crosses",
+        "ko": "교차 통화쌍(복수)"
+      },
+      "description_i18n": {
+        "en": "Plural form of cross — collection of cross currency pairs (e.g., emerging_crosses). Used as a plural identifier per Rule 8-A §3.",
+        "ko": "단기 이동평균선이 장기 이동평균선을 상향 돌파하거나 하향 돌파하는 등의 기술적 교차 현상(Cross)을 의미합니다."
+      }
+    },
+    {
+      "id": "cross",
+      "source": "word",
+      "root": "crosses",
+      "term_type": "variant",
+      "variant_type": "singular",
+      "domain": "trading",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38943,7 +39212,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "system",
+      "domain": "fx",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -38973,7 +39242,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "system",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -44044,5 +44313,5 @@
       }
     }
   ],
-  "checksum": "sha256:9d2acc63017fc79f3c9fb5c43ac6dea9b86bcee995e18e20e7169e7573f66cd3"
+  "checksum": "sha256:868dc67b1c7de44220a095835f3f55ccb765a444d068606972e976cbb6773ce6"
 }
