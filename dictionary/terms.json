@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-10-04T02:57:20Z",
+  "generated_at": "2026-10-04T02:57:21Z",
   "terms": [
     {
       "id": "aborts",
@@ -4214,6 +4214,21 @@
       "lang": {
         "en": "call",
         "ko": "호출"
+      }
+    },
+    {
+      "id": "camel",
+      "source": "word",
+      "root": "camel",
+      "term_type": "base",
+      "domain": "system",
+      "lang": {
+        "en": "camel",
+        "ko": "카멜 표기"
+      },
+      "description_i18n": {
+        "en": "camelCase identifier style",
+        "ko": "카멜 표기"
       }
     },
     {
@@ -38460,7 +38475,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -38475,7 +38490,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -38490,7 +38505,7 @@
       "source": "word",
       "root": "piercing",
       "term_type": "base",
-      "domain": "candlestick",
+      "domain": "fx",
       "lang": {
         "en": "piercing",
         "ko": "찌르기"
@@ -38520,7 +38535,7 @@
       "source": "word",
       "root": "piercing",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "candlestick",
       "lang": {
         "en": "piercing",
         "ko": "찌르기"
@@ -38565,7 +38580,7 @@
       "source": "word",
       "root": "major",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "major",
         "ko": "메이저"
@@ -38580,7 +38595,7 @@
       "source": "word",
       "root": "major",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "major",
         "ko": "메이저"
@@ -38595,7 +38610,7 @@
       "source": "word",
       "root": "crosses",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38611,7 +38626,7 @@
       "root": "crosses",
       "term_type": "variant",
       "variant_type": "singular",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38622,7 +38637,7 @@
       "source": "word",
       "root": "crosses",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38638,7 +38653,7 @@
       "root": "crosses",
       "term_type": "variant",
       "variant_type": "singular",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38679,7 +38694,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -38694,7 +38709,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -43780,5 +43795,5 @@
       }
     }
   ],
-  "checksum": "sha256:10394b7aea8698dfd9f856c89695924451ffa353912224397e664e9d764c86e7"
+  "checksum": "sha256:9447176228d4b173c9fb1406d68d810e6609cec055a325e792260488f528349e"
 }
