@@ -12881,6 +12881,25 @@
       "created_at": "2026-04-21T01:01:24Z"
     },
     {
+      "id": "git",
+      "lang": {
+        "en": "git",
+        "ko": "git 버전 관리"
+      },
+      "canonical_pos": "proper",
+      "domain": [
+        "infra"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "the git version control system",
+        "ko": "git 버전 관리"
+      },
+      "variants": [],
+      "updated_at": "2026-10-04T02:57:23Z",
+      "created_at": "2026-10-04T02:57:23Z"
+    },
+    {
       "id": "global",
       "lang": {
         "en": "global",
