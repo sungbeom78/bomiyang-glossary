@@ -15638,6 +15638,30 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "language",
+      "lang": {
+        "en": "language",
+        "ko": "언어"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "a natural or programming language",
+        "ko": "언어"
+      },
+      "variants": [
+        {
+          "type": "abbreviation",
+          "value": "lang"
+        }
+      ],
+      "updated_at": "2026-10-04T02:57:24Z",
+      "created_at": "2026-10-04T02:57:24Z"
+    },
+    {
       "id": "last",
       "lang": {
         "en": "last",

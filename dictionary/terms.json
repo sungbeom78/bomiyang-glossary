@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-10-04T02:57:23Z",
+  "generated_at": "2026-10-04T02:57:24Z",
   "terms": [
     {
       "id": "aborts",
@@ -12255,7 +12255,7 @@
       "source": "word",
       "root": "extend",
       "term_type": "base",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12271,7 +12271,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12283,7 +12283,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12295,7 +12295,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12307,7 +12307,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12319,7 +12319,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12330,7 +12330,7 @@
       "source": "word",
       "root": "extend",
       "term_type": "base",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12346,7 +12346,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12358,7 +12358,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12370,7 +12370,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12382,7 +12382,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12394,7 +12394,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -17113,6 +17113,37 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
+      "domain": "system",
+      "lang": {
+        "en": "korean standard time",
+        "ko": "한국 표준시",
+        "ja": "韓国標準時",
+        "zh_hans": "韩国标准时间"
+      },
+      "description_i18n": {
+        "ko": "한국 표준시는 대한민국에서 사용하는 공식 표준 시간대입니다.",
+        "en": "Korean Standard Time is the official time zone used in the Republic of Korea."
+      }
+    },
+    {
+      "id": "KST",
+      "source": "word",
+      "root": "korean standard time",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "system",
+      "lang": {
+        "en": "korean standard time",
+        "ko": "한국 표준시",
+        "ja": "韓国標準時",
+        "zh_hans": "韩国标准时间"
+      }
+    },
+    {
+      "id": "korean standard time",
+      "source": "word",
+      "root": "korean standard time",
+      "term_type": "base",
       "domain": "trading",
       "lang": {
         "en": "korean standard time",
@@ -17163,37 +17194,6 @@
       "term_type": "variant",
       "variant_type": "abbreviation",
       "domain": "market",
-      "lang": {
-        "en": "korean standard time",
-        "ko": "한국 표준시",
-        "ja": "韓国標準時",
-        "zh_hans": "韩国标准时间"
-      }
-    },
-    {
-      "id": "korean standard time",
-      "source": "word",
-      "root": "korean standard time",
-      "term_type": "base",
-      "domain": "system",
-      "lang": {
-        "en": "korean standard time",
-        "ko": "한국 표준시",
-        "ja": "韓国標準時",
-        "zh_hans": "韩国标准时间"
-      },
-      "description_i18n": {
-        "ko": "한국 표준시는 대한민국에서 사용하는 공식 표준 시간대입니다.",
-        "en": "Korean Standard Time is the official time zone used in the Republic of Korea."
-      }
-    },
-    {
-      "id": "KST",
-      "source": "word",
-      "root": "korean standard time",
-      "term_type": "variant",
-      "variant_type": "abbreviation",
-      "domain": "system",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17329,6 +17329,33 @@
       "lang": {
         "en": "label",
         "ko": "라벨"
+      }
+    },
+    {
+      "id": "language",
+      "source": "word",
+      "root": "language",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "language",
+        "ko": "언어"
+      },
+      "description_i18n": {
+        "en": "a natural or programming language",
+        "ko": "언어"
+      }
+    },
+    {
+      "id": "lang",
+      "source": "word",
+      "root": "language",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "general",
+      "lang": {
+        "en": "language",
+        "ko": "언어"
       }
     },
     {
@@ -25428,7 +25455,7 @@
       "source": "word",
       "root": "quantity",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "quantity",
         "ja": "数量",
@@ -25445,7 +25472,7 @@
       "source": "word",
       "root": "quantity",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "quantity",
         "ja": "数量",
@@ -30563,7 +30590,7 @@
       "source": "word",
       "root": "shouting",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "shouting",
         "ko": "강력 알림 / 외치기",
@@ -30580,7 +30607,7 @@
       "source": "word",
       "root": "shouting",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "shouting",
         "ko": "강력 알림 / 외치기",
@@ -36417,7 +36444,7 @@
       "source": "word",
       "root": "use",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36433,7 +36460,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36445,7 +36472,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36457,7 +36484,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36469,7 +36496,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36480,7 +36507,7 @@
       "source": "word",
       "root": "use",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36496,7 +36523,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36508,7 +36535,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36520,7 +36547,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -36532,7 +36559,7 @@
       "root": "use",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "use",
         "ko": "사용됨"
@@ -37417,7 +37444,7 @@
       "source": "word",
       "root": "warnings",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "system",
       "lang": {
         "en": "warnings",
         "ko": "경고",
@@ -37434,7 +37461,7 @@
       "source": "word",
       "root": "warnings",
       "term_type": "base",
-      "domain": "system",
+      "domain": "trading",
       "lang": {
         "en": "warnings",
         "ko": "경고",
@@ -38751,7 +38778,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "system",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -38766,7 +38793,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "system",
+      "domain": "fx",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -42051,7 +42078,7 @@
       "source": "compound",
       "root": "market_data",
       "term_type": "base",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -42069,7 +42096,7 @@
       "root": "market_data",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -42082,7 +42109,7 @@
       "source": "compound",
       "root": "market_data",
       "term_type": "base",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -42100,7 +42127,7 @@
       "root": "market_data",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -43837,5 +43864,5 @@
       }
     }
   ],
-  "checksum": "sha256:197c7583bfdaef7efca1e83bd9336c4b8401fe7dbd48a35ce550980a7605155b"
+  "checksum": "sha256:e8ea9257add024f0f18bbee4223d67b07a56e7f563fa8bbc27fde0b10f9bcf98"
 }
