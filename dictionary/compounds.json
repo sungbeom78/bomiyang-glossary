@@ -4303,6 +4303,31 @@
       }
     },
     {
+      "id": "personal_info",
+      "words": [
+        "personal",
+        "info"
+      ],
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "personal info",
+        "ko": "개인정보"
+      },
+      "description_i18n": {
+        "ko": "개인을 식별하거나 식별에 결합되는 정보",
+        "en": "information that identifies or can be linked to an individual"
+      },
+      "variants": [],
+      "abbreviation": {
+        "short": "pi"
+      },
+      "updated_at": "2026-10-04T17:26:03Z",
+      "created_at": "2026-10-04T17:26:03Z"
+    },
+    {
       "id": "position_size",
       "words": [
         "position",

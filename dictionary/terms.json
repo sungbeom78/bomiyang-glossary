@@ -5120,7 +5120,7 @@
       "source": "word",
       "root": "classify",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5138,7 +5138,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5152,7 +5152,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5166,7 +5166,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5180,7 +5180,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5194,7 +5194,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5208,7 +5208,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5221,7 +5221,7 @@
       "source": "word",
       "root": "classify",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5239,7 +5239,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5253,7 +5253,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5267,7 +5267,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "past",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5281,7 +5281,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5295,7 +5295,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -5309,7 +5309,7 @@
       "root": "classify",
       "term_type": "variant",
       "variant_type": "plural",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "classify",
         "ko": "분류",
@@ -14589,7 +14589,7 @@
       "source": "word",
       "root": "global industry classification standard",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "global industry classification standard",
         "ja": "世界産業分類基準",
@@ -14607,7 +14607,7 @@
       "root": "global industry classification standard",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "global industry classification standard",
         "ja": "世界産業分類基準",
@@ -14620,7 +14620,7 @@
       "source": "word",
       "root": "global industry classification standard",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "global industry classification standard",
         "ja": "世界産業分類基準",
@@ -14638,7 +14638,7 @@
       "root": "global industry classification standard",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "global industry classification standard",
         "ja": "世界産業分類基準",
@@ -16942,7 +16942,7 @@
       "source": "word",
       "root": "japanese",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "Japanese",
         "ko": "일본어",
@@ -16959,7 +16959,7 @@
       "source": "word",
       "root": "japanese",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "Japanese",
         "ko": "일본어",
@@ -17351,7 +17351,7 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17369,7 +17369,7 @@
       "root": "korean standard time",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17382,7 +17382,7 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17400,7 +17400,7 @@
       "root": "korean standard time",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -32069,7 +32069,7 @@
       "source": "word",
       "root": "south korean won",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "south korean won",
         "ko": "대한민국 원",
@@ -32087,7 +32087,7 @@
       "root": "south korean won",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "south korean won",
         "ko": "대한민국 원",
@@ -32100,7 +32100,7 @@
       "source": "word",
       "root": "south korean won",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "south korean won",
         "ko": "대한민국 원",
@@ -32118,7 +32118,7 @@
       "root": "south korean won",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "south korean won",
         "ko": "대한민국 원",
@@ -38850,7 +38850,7 @@
       "source": "word",
       "root": "yen",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "yen",
         "ko": "엔",
@@ -38867,7 +38867,7 @@
       "source": "word",
       "root": "yen",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "yen",
         "ko": "엔",
@@ -38993,7 +38993,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -39008,7 +39008,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -39023,7 +39023,7 @@
       "source": "word",
       "root": "piercing",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "piercing",
         "ko": "찌르기"
@@ -39053,7 +39053,7 @@
       "source": "word",
       "root": "piercing",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "piercing",
         "ko": "찌르기"
@@ -39061,21 +39061,6 @@
       "description_i18n": {
         "en": "A candlestick pattern where the wick penetrates both the Standard BB and the WB outer band, signaling an extreme reversal.",
         "ko": "하락 추세 중 전일 음봉의 몸통을 현재 양봉이 강하게 관통하며 반전 상승의 신호를 주는 캔들스틱 차트 패턴입니다."
-      }
-    },
-    {
-      "id": "either",
-      "source": "word",
-      "root": "either",
-      "term_type": "base",
-      "domain": "logic",
-      "lang": {
-        "en": "either",
-        "ko": "둘 중 하나"
-      },
-      "description_i18n": {
-        "en": "Logical OR conjunction used in identifier naming to express an inclusive disjunction of conditions.",
-        "ko": "OR 조건을 식별자에 명시적으로 표현하는 접속사 (require_either_divergence_or_rsi3x 등)"
       }
     },
     {
@@ -39094,18 +39079,18 @@
       }
     },
     {
-      "id": "major",
+      "id": "either",
       "source": "word",
-      "root": "major",
+      "root": "either",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "logic",
       "lang": {
-        "en": "major",
-        "ko": "메이저"
+        "en": "either",
+        "ko": "둘 중 하나"
       },
       "description_i18n": {
-        "en": "Describes the top-tier, most liquid forex currency pairs (EURUSD, GBPUSD, USDJPY, etc.).",
-        "ko": "시스템의 주요 버전, 가장 거래량이 많은 통화 쌍(Major Pairs), 또는 시스템 운영에 치명적인 영향을 주는 에러 레벨을 의미합니다."
+        "en": "Logical OR conjunction used in identifier naming to express an inclusive disjunction of conditions.",
+        "ko": "OR 조건을 식별자에 명시적으로 표현하는 접속사 (require_either_divergence_or_rsi3x 등)"
       }
     },
     {
@@ -39124,30 +39109,18 @@
       }
     },
     {
-      "id": "crosses",
+      "id": "major",
       "source": "word",
-      "root": "crosses",
+      "root": "major",
       "term_type": "base",
       "domain": "fx",
       "lang": {
-        "en": "crosses",
-        "ko": "교차 통화쌍(복수)"
+        "en": "major",
+        "ko": "메이저"
       },
       "description_i18n": {
-        "en": "Plural form of cross — collection of cross currency pairs (e.g., emerging_crosses). Used as a plural identifier per Rule 8-A §3.",
-        "ko": "단기 이동평균선이 장기 이동평균선을 상향 돌파하거나 하향 돌파하는 등의 기술적 교차 현상(Cross)을 의미합니다."
-      }
-    },
-    {
-      "id": "cross",
-      "source": "word",
-      "root": "crosses",
-      "term_type": "variant",
-      "variant_type": "singular",
-      "domain": "fx",
-      "lang": {
-        "en": "crosses",
-        "ko": "교차 통화쌍(복수)"
+        "en": "Describes the top-tier, most liquid forex currency pairs (EURUSD, GBPUSD, USDJPY, etc.).",
+        "ko": "시스템의 주요 버전, 가장 거래량이 많은 통화 쌍(Major Pairs), 또는 시스템 운영에 치명적인 영향을 주는 에러 레벨을 의미합니다."
       }
     },
     {
@@ -39172,6 +39145,33 @@
       "term_type": "variant",
       "variant_type": "singular",
       "domain": "trading",
+      "lang": {
+        "en": "crosses",
+        "ko": "교차 통화쌍(복수)"
+      }
+    },
+    {
+      "id": "crosses",
+      "source": "word",
+      "root": "crosses",
+      "term_type": "base",
+      "domain": "fx",
+      "lang": {
+        "en": "crosses",
+        "ko": "교차 통화쌍(복수)"
+      },
+      "description_i18n": {
+        "en": "Plural form of cross — collection of cross currency pairs (e.g., emerging_crosses). Used as a plural identifier per Rule 8-A §3.",
+        "ko": "단기 이동평균선이 장기 이동평균선을 상향 돌파하거나 하향 돌파하는 등의 기술적 교차 현상(Cross)을 의미합니다."
+      }
+    },
+    {
+      "id": "cross",
+      "source": "word",
+      "root": "crosses",
+      "term_type": "variant",
+      "variant_type": "singular",
+      "domain": "fx",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -39212,7 +39212,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -39227,7 +39227,7 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -42212,7 +42212,7 @@
       "source": "compound",
       "root": "japanese_yen",
       "term_type": "base",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "Japanese Yen",
         "ko": "일본 엔",
@@ -42230,7 +42230,7 @@
       "root": "japanese_yen",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "trading",
       "lang": {
         "en": "Japanese Yen",
         "ko": "일본 엔",
@@ -42243,7 +42243,7 @@
       "source": "compound",
       "root": "japanese_yen",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "Japanese Yen",
         "ko": "일본 엔",
@@ -42261,7 +42261,7 @@
       "root": "japanese_yen",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "trading",
+      "domain": "market",
       "lang": {
         "en": "Japanese Yen",
         "ko": "일본 엔",
@@ -43367,6 +43367,33 @@
       }
     },
     {
+      "id": "personal_info",
+      "source": "compound",
+      "root": "personal_info",
+      "term_type": "base",
+      "domain": "general",
+      "lang": {
+        "en": "personal info",
+        "ko": "개인정보"
+      },
+      "description_i18n": {
+        "ko": "개인을 식별하거나 식별에 결합되는 정보",
+        "en": "information that identifies or can be linked to an individual"
+      }
+    },
+    {
+      "id": "pi",
+      "source": "compound",
+      "root": "personal_info",
+      "term_type": "variant",
+      "variant_type": "abbreviation",
+      "domain": "general",
+      "lang": {
+        "en": "personal info",
+        "ko": "개인정보"
+      }
+    },
+    {
       "id": "position_size",
       "source": "compound",
       "root": "position_size",
@@ -44313,5 +44340,5 @@
       }
     }
   ],
-  "checksum": "sha256:868dc67b1c7de44220a095835f3f55ccb765a444d068606972e976cbb6773ce6"
+  "checksum": "sha256:d4ee92241a2efd5da8ebc8d95b70ab9d08387d5e14cefa1851b21efe1e6b7f7c"
 }

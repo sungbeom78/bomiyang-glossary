@@ -6,7 +6,7 @@
 
 ## 통계
 - 단어: 1001개
-- 복합어: 186개
+- 복합어: 187개
 - 금지 표현: 8개
 
 ---
@@ -207,6 +207,7 @@
 | `order_intent` | order + intent | 주문 의도 | `` | `` | auto | 공인 약어 |
 | `order_status` | order + status | 주문 상태 | `` | `` | auto | 공인 약어 |
 | `partial_fill` | partial + fill | 부분 체결 | `` | `` | auto | 공인 약어 |
+| `personal_info` | personal + info | 개인정보 | `` | `` | auto |  |
 | `position_size` | position + size | 포지션 크기 | `` | `` | auto | 공인 약어 |
 | `process_guard` | process + guard | 프로세스 가드 | `` | `` | auto | 공인 약어 |
 | `process_identifier` | process + identifier | 프로세스 식별자 | `pid` | `PID` | auto |  |
