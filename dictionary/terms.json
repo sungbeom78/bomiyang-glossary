@@ -2,7 +2,7 @@
   "_WARNING": "이 파일은 자동 생성됩니다. 수동 편집 금지. words.json과 compounds.json을 편집하세요.",
   "version": "3.0.0",
   "generated": true,
-  "generated_at": "2026-10-04T02:59:10Z",
+  "generated_at": "2026-10-04T02:59:11Z",
   "terms": [
     {
       "id": "aborts",
@@ -343,7 +343,7 @@
       "source": "word",
       "root": "active",
       "term_type": "base",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -361,7 +361,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -375,7 +375,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "general",
+      "domain": "trading",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -388,7 +388,7 @@
       "source": "word",
       "root": "active",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -406,7 +406,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -420,7 +420,7 @@
       "root": "active",
       "term_type": "variant",
       "variant_type": "prefix",
-      "domain": "trading",
+      "domain": "general",
       "lang": {
         "en": "active",
         "ko": "활성",
@@ -12294,7 +12294,7 @@
       "source": "word",
       "root": "extend",
       "term_type": "base",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12310,7 +12310,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12322,7 +12322,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12334,7 +12334,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12346,7 +12346,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12358,7 +12358,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12369,7 +12369,7 @@
       "source": "word",
       "root": "extend",
       "term_type": "base",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12385,7 +12385,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "verb_form",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12397,7 +12397,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "present_participle",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12409,7 +12409,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "noun_form",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12421,7 +12421,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "agent",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -12433,7 +12433,7 @@
       "root": "extend",
       "term_type": "variant",
       "variant_type": "adj_form",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "extend",
         "ko": "확장"
@@ -15774,6 +15774,33 @@
       }
     },
     {
+      "id": "incident",
+      "source": "word",
+      "root": "incident",
+      "term_type": "base",
+      "domain": "system",
+      "lang": {
+        "en": "incident",
+        "ko": "복구 사건"
+      },
+      "description_i18n": {
+        "en": "a recovery case opened on first failure with a bounded round budget",
+        "ko": "복구 사건"
+      }
+    },
+    {
+      "id": "incidents",
+      "source": "word",
+      "root": "incident",
+      "term_type": "variant",
+      "variant_type": "plural",
+      "domain": "system",
+      "lang": {
+        "en": "incident",
+        "ko": "복구 사건"
+      }
+    },
+    {
       "id": "increase",
       "source": "word",
       "root": "increase",
@@ -17183,7 +17210,7 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17201,7 +17228,7 @@
       "root": "korean standard time",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17214,7 +17241,7 @@
       "source": "word",
       "root": "korean standard time",
       "term_type": "base",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -17232,7 +17259,7 @@
       "root": "korean standard time",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "korean standard time",
         "ko": "한국 표준시",
@@ -38667,7 +38694,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -38682,7 +38709,7 @@
       "source": "word",
       "root": "wb",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "wb",
         "ko": "WB(와이더 밴드)"
@@ -38690,21 +38717,6 @@
       "description_i18n": {
         "en": "Abbreviation for Wider Band — the outer Bollinger Band used in double-BB strategies for FX trading (sigma=4.0).",
         "ko": "주로 외환 트레이딩이나 경제 지표에서 참고되는 세계 은행(World Bank) 등의 글로벌 기관을 지칭할 때 사용되는 약어입니다."
-      }
-    },
-    {
-      "id": "piercing",
-      "source": "word",
-      "root": "piercing",
-      "term_type": "base",
-      "domain": "fx",
-      "lang": {
-        "en": "piercing",
-        "ko": "찌르기"
-      },
-      "description_i18n": {
-        "en": "A candlestick pattern where the wick penetrates both the Standard BB and the WB outer band, signaling an extreme reversal.",
-        "ko": "하락 추세 중 전일 음봉의 몸통을 현재 양봉이 강하게 관통하며 반전 상승의 신호를 주는 캔들스틱 차트 패턴입니다."
       }
     },
     {
@@ -38728,6 +38740,21 @@
       "root": "piercing",
       "term_type": "base",
       "domain": "candlestick",
+      "lang": {
+        "en": "piercing",
+        "ko": "찌르기"
+      },
+      "description_i18n": {
+        "en": "A candlestick pattern where the wick penetrates both the Standard BB and the WB outer band, signaling an extreme reversal.",
+        "ko": "하락 추세 중 전일 음봉의 몸통을 현재 양봉이 강하게 관통하며 반전 상승의 신호를 주는 캔들스틱 차트 패턴입니다."
+      }
+    },
+    {
+      "id": "piercing",
+      "source": "word",
+      "root": "piercing",
+      "term_type": "base",
+      "domain": "fx",
       "lang": {
         "en": "piercing",
         "ko": "찌르기"
@@ -38772,7 +38799,7 @@
       "source": "word",
       "root": "major",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "major",
         "ko": "메이저"
@@ -38787,7 +38814,7 @@
       "source": "word",
       "root": "major",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "major",
         "ko": "메이저"
@@ -38802,7 +38829,7 @@
       "source": "word",
       "root": "crosses",
       "term_type": "base",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38818,7 +38845,7 @@
       "root": "crosses",
       "term_type": "variant",
       "variant_type": "singular",
-      "domain": "fx",
+      "domain": "trading",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38829,7 +38856,7 @@
       "source": "word",
       "root": "crosses",
       "term_type": "base",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38845,7 +38872,7 @@
       "root": "crosses",
       "term_type": "variant",
       "variant_type": "singular",
-      "domain": "trading",
+      "domain": "fx",
       "lang": {
         "en": "crosses",
         "ko": "교차 통화쌍(복수)"
@@ -38886,21 +38913,6 @@
       "source": "word",
       "root": "sf",
       "term_type": "base",
-      "domain": "fx",
-      "lang": {
-        "en": "sf",
-        "ko": "sf(약어)"
-      },
-      "description_i18n": {
-        "en": "Abbreviation for session_filter or symbol_filter in FX trading context.",
-        "ko": "알려진 특정 지표(예: 스토캐스틱 패스트)나 프레임워크 내부에서 사용하는 고유 컴포넌트의 축약된 명칭입니다."
-      }
-    },
-    {
-      "id": "sf",
-      "source": "word",
-      "root": "sf",
-      "term_type": "base",
       "domain": "trading",
       "lang": {
         "en": "sf",
@@ -38917,6 +38929,21 @@
       "root": "sf",
       "term_type": "base",
       "domain": "system",
+      "lang": {
+        "en": "sf",
+        "ko": "sf(약어)"
+      },
+      "description_i18n": {
+        "en": "Abbreviation for session_filter or symbol_filter in FX trading context.",
+        "ko": "알려진 특정 지표(예: 스토캐스틱 패스트)나 프레임워크 내부에서 사용하는 고유 컴포넌트의 축약된 명칭입니다."
+      }
+    },
+    {
+      "id": "sf",
+      "source": "word",
+      "root": "sf",
+      "term_type": "base",
+      "domain": "fx",
       "lang": {
         "en": "sf",
         "ko": "sf(약어)"
@@ -42201,7 +42228,7 @@
       "source": "compound",
       "root": "market_data",
       "term_type": "base",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -42219,7 +42246,7 @@
       "root": "market_data",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "system",
+      "domain": "market",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -42232,7 +42259,7 @@
       "source": "compound",
       "root": "market_data",
       "term_type": "base",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -42250,7 +42277,7 @@
       "root": "market_data",
       "term_type": "variant",
       "variant_type": "abbreviation",
-      "domain": "market",
+      "domain": "system",
       "lang": {
         "en": "Market Data",
         "ko": "시장 데이터",
@@ -43987,5 +44014,5 @@
       }
     }
   ],
-  "checksum": "sha256:06cd574881ac46d1110c8c5a3f2fa05b3dad573d5d3f6f6385f9b689154103f5"
+  "checksum": "sha256:d7f59f07418d910b7fa149f29a14e6c4c860a51f3325c7a785aae1e74f808ff7"
 }

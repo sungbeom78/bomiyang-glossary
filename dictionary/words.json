@@ -14250,6 +14250,30 @@
       "variants": []
     },
     {
+      "id": "incident",
+      "lang": {
+        "en": "incident",
+        "ko": "복구 사건"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "a recovery case opened on first failure with a bounded round budget",
+        "ko": "복구 사건"
+      },
+      "variants": [
+        {
+          "type": "plural",
+          "value": "incidents"
+        }
+      ],
+      "updated_at": "2026-10-04T02:59:11Z",
+      "created_at": "2026-10-04T02:59:11Z"
+    },
+    {
       "id": "increase",
       "lang": {
         "en": "increase",
