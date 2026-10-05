@@ -1491,10 +1491,12 @@ def cmd_diagnose(write: bool, include_general: bool = False):
         from core.writer import GlossaryWriter
         with GlossaryWriter() as gw:
             existing = {e["id"] for e in gw.words + gw.compounds}
+            managed = {"R2_DUP_KO", "NO_GENERAL_SENSE", "UNKNOWN_AREA", "INVALID_ID"}
             for eid in existing:
-                cur = (next((e for e in gw.words + gw.compounds if e["id"] == eid)).get("need_modify") or {}).get("issues")
-                new = issues.get(eid, [])
-                if (cur or []) != new and (cur or new):
+                cur = (next((e for e in gw.words + gw.compounds if e["id"] == eid)).get("need_modify") or {}).get("issues") or []
+                keep = [i for i in cur if i.get("code") not in managed]          # 사람이 남긴 다른 표시는 보존
+                new = keep + issues.get(eid, [])
+                if cur != new:
                     gw.set_need_modify(eid, new)
         print(f"[OK] need_modify 기록 ({len(issues)}개 항목)")
 

@@ -99,6 +99,13 @@ def diagnose(words: List[Dict[str, Any]], compounds: List[Dict[str, Any]],
             lst.append({"code": code, "detail": detail})
 
     explicit = {e["id"] for e in entries if isinstance(e.get("senses"), dict) and e.get("senses")}
+    import re as _re
+    for e in words:
+        if not only_explicit and "[n]" not in e["id"] and not _re.fullmatch(r"[a-z][a-z0-9]*", e["id"]):
+            add(e["id"], "INVALID_ID", "id 규칙 위반 (소문자 영숫자 한 단어여야 함 -- 공백·기호 불가)")
+    for e in compounds:
+        if not only_explicit and "[n]" not in e["id"] and not _re.fullmatch(r"[a-z][a-z0-9_]*", e["id"]):
+            add(e["id"], "INVALID_ID", "복합어 id 규칙 위반 (소문자 영숫자·밑줄)")
     for e in entries:
         if only_explicit and e["id"] not in explicit:
             continue
