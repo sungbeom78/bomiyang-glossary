@@ -373,6 +373,16 @@ def validate(words, compounds, banned, silent=False, skip_checksum=False) -> tup
             if singular and singular in word_lookup:
                 F("V-301", f"plural root 금지: '{wid}' (단수형 '{singular}'가 존재함)")
 
+    # 영역 규칙 (doc/glossary_area_rule.md): senses 를 가진 항목만, 경고로만. 기존 항목은 'diagnose' 로 본다
+    try:
+        from core.areas import diagnose as _area_diagnose
+        _codes = {"R2_DUP_KO": "A-102", "NO_GENERAL_SENSE": "A-105", "UNKNOWN_AREA": "A-101"}
+        for _eid, _iss in sorted(_area_diagnose(words, compounds, only_explicit=True).items()):
+            for _i in _iss:
+                warns.append(f"[{_codes.get(_i['code'], 'A-100')}] {_eid}: {_i['detail']}")
+    except Exception as _exc:  # 영역 기능 오류가 기존 검증을 막지 않게
+        warns.append(f"[A-000] area check skipped: {_exc}")
+
     if not silent:
         print(f"\n{'='*52}")
         print(f"  validate  —  {datetime.now().strftime('%H:%M:%S')}")
@@ -698,6 +708,9 @@ def build_glossary_md(words, compounds, banned) -> str:
                     pl_list = [raw_pl] if isinstance(raw_pl, str) else (raw_pl or [])
                 plural = ", ".join(pl_list) if pl_list else "auto"
             ko_val = w.get("lang", {}).get("ko") or w.get("ko", "")
+            if isinstance(w.get("senses"), dict) and w.get("senses"):
+                from core.areas import display_meaning as _dm
+                ko_val = _dm(w)
             desc = w.get("description_i18n", {}).get("ko") or w.get("description", "")
             lines.append(f"| `{w['id']}` | {ko_val} | {abbr} | {pos} | {plural} | {desc} |")
         lines.append("")
@@ -734,6 +747,9 @@ def build_glossary_md(words, compounds, banned) -> str:
             elif isinstance(raw_pl, str): c_plural_vals = [raw_pl]
         c_plural_txt = ", ".join(c_plural_vals) if c_plural_vals else "auto"
         ko_val = c.get("lang", {}).get("ko") or c.get("ko", "")
+        if isinstance(c.get("senses"), dict) and c.get("senses"):
+            from core.areas import display_meaning as _dm
+            ko_val = _dm(c)
         reason = c.get("reason", "")
         lines.append(
             f"| `{c['id']}` | {wds} | {ko_val} | `{abbr_long}` | `{abbr_short}` | {c_plural_txt} | {reason} |"
@@ -1100,6 +1116,19 @@ def cmd_generate():
         json.dumps(variant_map, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
     print(f"[OK] Index 생성 (build/index/)")
 
+    # 영역 인덱스 (새 파일만 -- 기존 인덱스 파일 내용은 바뀌지 않는다)
+    from core import areas as _areas
+    _entries = list(words) + list(compounds)
+    _area_index = {
+        "ko_index.json": _areas.ko_index(_entries),
+        "area_map.json": _areas.area_abbreviation_map(_entries),
+        "senses.json": {e["id"]: _areas.effective_senses(e) for e in _entries},
+        "areas.json": _areas.load_areas(),
+    }
+    for _name, _data in _area_index.items():
+        (INDEX_DIR / _name).write_text(json.dumps(_data, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    print(f"[OK] Area index 생성 (ko_index / area_map / senses / areas)")
+
     # GLOSSARY.md
     md = build_glossary_md(words, compounds, banned)
     GLOSSARY_PATH.write_text(md, encoding='utf-8')
@@ -1420,6 +1449,56 @@ def cmd_migrate(legacy_path: str):
 # CLI
 # ════════════════════════════════════════════════════════════════════
 
+def cmd_areas():
+    from core.areas import load_areas
+    for a in load_areas():
+        print(f"  {a['id']:<16} {a.get('name_ko', ''):<12} {','.join(a.get('tags', []))}")
+
+
+def cmd_meaning(entry_id: str, areas_arg: str | None):
+    from core.areas import meaning, display_meaning
+    words, compounds, _ = load_all()
+    e = next((x for x in list(words) + list(compounds) if x["id"] == entry_id), None)
+    if e is None:
+        print(f"[NG] 없음: {entry_id}"); sys.exit(1)
+    chain = [a.strip() for a in (areas_arg or "").split(",") if a.strip()]
+    m = meaning(e, chain or None)
+    print(f"{entry_id}: {display_meaning(e)}")
+    if m:
+        print(f"  영역 순서 {chain or '(없음)'} -> {m['area']}: {'/'.join(m['names'])}")
+
+
+def cmd_diagnose(write: bool, include_general: bool = False):
+    """영역 규칙 위반 진단. --write 면 need_modify 필드를 기록한다 (값은 고치지 않음).
+    R5(general 뜻 필수)는 새 단어 규칙이다 -- 기존 단어의 general 누락은 목록에만 보이고,
+    --include-general 일 때만 need_modify 로 기록한다 (기존 사전은 업무 분류에만 넣어 왔으므로)."""
+    from core.areas import diagnose
+    words, compounds, _ = load_all()
+    issues = diagnose(words, compounds)
+    if not include_general:
+        info = sum(1 for lst in issues.values() for i in lst if i["code"] == "NO_GENERAL_SENSE")
+        issues = {k: [i for i in v if i["code"] != "NO_GENERAL_SENSE"] for k, v in issues.items()}
+        issues = {k: v for k, v in issues.items() if v}
+        print(f"[diagnose] (참고) general 뜻 없는 기존 항목 {info}개 -- 기록 대상 아님 (--include-general)")
+    from collections import Counter
+    cnt = Counter(i["code"] for lst in issues.values() for i in lst)
+    print(f"[diagnose] 대상 {len(issues)}개 항목 -- " + ", ".join(f"{k} {v}" for k, v in sorted(cnt.items())))
+    for eid, lst in sorted(issues.items())[:40]:
+        print(f"  {eid:<24} " + " | ".join(f"{i['code']}: {i['detail']}" for i in lst)[:160])
+    if len(issues) > 40:
+        print(f"  ... 외 {len(issues) - 40}개")
+    if write:
+        from core.writer import GlossaryWriter
+        with GlossaryWriter() as gw:
+            existing = {e["id"] for e in gw.words + gw.compounds}
+            for eid in existing:
+                cur = (next((e for e in gw.words + gw.compounds if e["id"] == eid)).get("need_modify") or {}).get("issues")
+                new = issues.get(eid, [])
+                if (cur or []) != new and (cur or new):
+                    gw.set_need_modify(eid, new)
+        print(f"[OK] need_modify 기록 ({len(issues)}개 항목)")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="BOM_TS 용어 사전 생성·검증",
@@ -1440,6 +1519,13 @@ def main():
     p_migrate = sub.add_parser("migrate-from-legacy", help="기존 terms.json 마이그레이션")
     p_migrate.add_argument("legacy_path")
 
+    sub.add_parser("areas", help="용어 영역 목록 (doc/glossary_area_rule.md)")
+    p_mean = sub.add_parser("meaning", help="영역 순서에 따른 뜻")
+    p_mean.add_argument("entry_id"); p_mean.add_argument("--areas", default=None)
+    p_diag = sub.add_parser("diagnose", help="영역 규칙 위반 진단 (--write: need_modify 기록)")
+    p_diag.add_argument("--write", action="store_true")
+    p_diag.add_argument("--include-general", action="store_true", help="기존 항목의 general 누락도 need_modify 로 기록")
+
     args = parser.parse_args()
 
     if args.cmd == "generate":
@@ -1454,6 +1540,12 @@ def main():
         cmd_suggest(args.identifier)
     elif args.cmd == "migrate-from-legacy":
         cmd_migrate(args.legacy_path)
+    elif args.cmd == "areas":
+        cmd_areas()
+    elif args.cmd == "meaning":
+        cmd_meaning(args.entry_id, args.areas)
+    elif args.cmd == "diagnose":
+        cmd_diagnose(args.write, args.include_general)
 
 
 if __name__ == "__main__":

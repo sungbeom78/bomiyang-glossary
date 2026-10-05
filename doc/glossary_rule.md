@@ -424,3 +424,10 @@ chore:    generate 재실행, 자동 생성 업데이트
 ---
 
 *Glossary Submodule | 2026-04*
+
+---
+
+## 영역(areas) 규칙
+
+영문:한글 = 1:N, 한글→영문은 사전 전체에서 하나, 업무 영역별 뜻·약어, `need_modify` 표시는
+[`glossary_area_rule.md`](glossary_area_rule.md) 를 따른다. 영역을 선언하지 않은 사용처의 동작은 바뀌지 않는다.

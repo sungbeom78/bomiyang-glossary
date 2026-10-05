@@ -43,6 +43,7 @@ _BACKUP_DIR = _GLOSSARY / "build" / "backup"
 WORDS_PATH = _DICT_DIR / "words.json"
 COMPOUNDS_PATH = _DICT_DIR / "compounds.json"
 PENDING_PATH = _DICT_DIR / "pending_words.json"
+AREAS_PATH = _DICT_DIR / "areas.json"      # 용어 영역 목록 (doc/glossary_area_rule.md)
 
 
 def _now() -> str:
@@ -80,8 +81,11 @@ class GlossaryWriter:
     def __init__(self) -> None:
         self._words: List[Dict[str, Any]] = list(_load(WORDS_PATH, "words"))
         self._compounds: List[Dict[str, Any]] = list(_load(COMPOUNDS_PATH, "compounds"))
+        self._areas: List[Dict[str, Any]] = list(_load(AREAS_PATH, "areas"))
+        self._areas_dirty = False
         self._word_snap: Optional[List[Dict]] = None
         self._compound_snap: Optional[List[Dict]] = None
+        self._area_snap: Optional[List[Dict]] = None
         self._dirty = False
         self._take_snapshot()
 
@@ -101,6 +105,7 @@ class GlossaryWriter:
 
         self._word_snap = copy.deepcopy(self._words)
         self._compound_snap = copy.deepcopy(self._compounds)
+        self._area_snap = copy.deepcopy(self._areas)
 
     def rollback(self) -> None:
         """스냅샷으로 메모리 상태 복원 (파일은 건드리지 않음)."""
@@ -108,6 +113,9 @@ class GlossaryWriter:
             self._words = list(self._word_snap)
         if self._compound_snap is not None:
             self._compounds = list(self._compound_snap)
+        if self._area_snap is not None:
+            self._areas = list(self._area_snap)
+        self._areas_dirty = False
         self._dirty = False
 
     # ── Words ─────────────────────────────────────────────────────────────
@@ -306,6 +314,75 @@ class GlossaryWriter:
         except Exception as exc:
             return [f"validate 실행 오류: {exc}"]
 
+    # ── Areas (doc/glossary_area_rule.md) ────────────────────────────────
+    def area_ids(self) -> set:
+        return {a["id"] for a in self._areas}
+
+    def add_area(self, area_id: str, name_ko: str, tags: Optional[List[str]] = None,
+                 description: str = "") -> bool:
+        """영역 목록에 추가. 이미 있으면 False. id 는 소문자 영숫자·밑줄."""
+        import re as _re
+        aid = area_id.strip().lower()
+        if not _re.fullmatch(r"[a-z][a-z0-9_]*", aid):
+            raise ValueError(f"영역 id 형식 오류: {area_id!r}")
+        if aid in self.area_ids():
+            return False
+        entry: Dict[str, Any] = {"id": aid, "name_ko": name_ko, "tags": list(tags or ["area"])}
+        if description:
+            entry["description"] = description
+        self._areas.append(entry)
+        self._areas_dirty = True
+        self._dirty = True
+        return True
+
+    def _entry(self, entry_id: str) -> Dict[str, Any]:
+        e = self.get_word(entry_id) or self.get_compound(entry_id)
+        if e is None:
+            raise ValueError(f"단어/복합어 없음: {entry_id!r}")
+        return e
+
+    def _require_area(self, area: str) -> None:
+        if self._areas and area not in self.area_ids():
+            raise ValueError(f"영역 목록에 없는 영역: {area!r} (먼저 add_area)")
+
+    def add_sense(self, entry_id: str, area: str, names: List[str]) -> None:
+        """영역별 한글명 추가 (R1). senses 가 없던 기존 항목은 현재 뜻(lang.ko @ 첫 domain)을 먼저 옮겨 담아 잃지 않는다.
+        소속 영역 목록(domain)에도 area 를 추가한다. lang.ko(대표 뜻)는 바꾸지 않는다."""
+        from .areas import effective_senses
+        self._require_area(area)
+        e = self._entry(entry_id)
+        if not isinstance(e.get("senses"), dict) or not e.get("senses"):
+            e["senses"] = effective_senses(e)
+        cur = e["senses"].setdefault(area, [])
+        for n in names:
+            n = (n or "").strip()
+            if n and n not in cur:
+                cur.append(n)
+        dom = e.get("domain")
+        doms = [dom] if isinstance(dom, str) else list(dom or [])
+        if area not in doms:
+            doms.append(area)
+            e["domain"] = doms
+        if not (e.get("lang") or {}).get("ko"):
+            e.setdefault("lang", {})["ko"] = cur[0] if cur else ""
+        self._dirty = True
+
+    def set_area_abbreviation(self, entry_id: str, area: str, short: str) -> None:
+        """영역 안에서만 유효한 약어 (전역 약어와 철자가 겹쳐도 된다)."""
+        self._require_area(area)
+        e = self._entry(entry_id)
+        e.setdefault("area_abbreviations", {})[area] = short.strip().lower()
+        self._dirty = True
+
+    def set_need_modify(self, entry_id: str, issues: List[Dict[str, str]]) -> None:
+        """원칙 위반 표시 (값은 고치지 않는다). issues 가 비면 표시를 지운다."""
+        e = self._entry(entry_id)
+        if issues:
+            e["need_modify"] = {"status": "open", "issues": issues, "noted_at": _now()}
+        else:
+            e.pop("need_modify", None)
+        self._dirty = True
+
     # ── Save / Backup ─────────────────────────────────────────────────────
     def save(self) -> None:
         """
@@ -316,6 +393,8 @@ class GlossaryWriter:
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
         shutil.copy2(WORDS_PATH, _BACKUP_DIR / f"words_{ts}.json")
         shutil.copy2(COMPOUNDS_PATH, _BACKUP_DIR / f"compounds_{ts}.json")
+        if AREAS_PATH.exists():
+            shutil.copy2(AREAS_PATH, _BACKUP_DIR / f"areas_{ts}.json")
         self._write_to_disk()
         self._dirty = False
         self._take_snapshot()
@@ -324,6 +403,9 @@ class GlossaryWriter:
         """words, compounds를 실제 파일에 저장."""
         _save(WORDS_PATH, "words", self._words)
         _save(COMPOUNDS_PATH, "compounds", self._compounds)
+        if self._areas_dirty:
+            _save(AREAS_PATH, "areas", self._areas)
+            self._areas_dirty = False
 
     # ── Properties ───────────────────────────────────────────────────────
     @property

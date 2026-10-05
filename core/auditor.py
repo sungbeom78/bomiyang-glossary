@@ -65,7 +65,9 @@ _STOP_WORDS_AUDIT: frozenset[str] = frozenset(
 
 
 class GlossaryAuditor:
-    def __init__(self, enable_auto_draft: bool = False):
+    def __init__(self, enable_auto_draft: bool = False, areas: list[str] | None = None):
+        """areas: 사용처의 영역 순서 (앞=일반, 뒤=구체). 주지 않으면 영역을 쓰지 않는다 -- 기존과 완전히 같은 동작.
+        (doc/glossary_area_rule.md)"""
         self.enable_auto_draft = enable_auto_draft
         (
             self.words,
@@ -75,6 +77,49 @@ class GlossaryAuditor:
             self.n_patterns,
             self.pending_ids,
         ) = self.load_glossary()
+        self.areas = [a for a in (areas or []) if a]
+        self.senses: dict = {}
+        if self.areas:
+            self._apply_areas()
+
+    def _apply_areas(self) -> None:
+        """영역 약어를 선언 순서대로 겹쳐 적용한 variant_map 사본을 만든다 (뒤 영역이 우선).
+        전역 variant_map 원본(self._global_variant_map)은 보존한다."""
+        idx = GLOSSARY_ROOT / "build" / "index"
+        area_map = json.loads((idx / "area_map.json").read_text(encoding="utf-8")) if (idx / "area_map.json").exists() else {}
+        self.senses = json.loads((idx / "senses.json").read_text(encoding="utf-8")) if (idx / "senses.json").exists() else {}
+        self._global_variant_map = self.variant_map
+        merged = dict(self.variant_map)
+        for area in self.areas:
+            for short, root in (area_map.get(area) or {}).items():
+                merged[normalize_term(short)] = {"root": root, "type": "abbreviation", "area": area}
+        self.variant_map = merged
+
+    def meaning(self, entry_id: str) -> dict | None:
+        """선언된 영역 순서의 뒤에서부터 찾은 한글명: {"area", "names"}"""
+        senses = self.senses.get(entry_id)
+        if senses is None:
+            return None
+        for area in reversed(self.areas or []):
+            if senses.get(area):
+                return {"area": area, "names": senses[area]}
+        if senses.get("general"):
+            return {"area": "general", "names": senses["general"]}
+        k = next(iter(senses), None)
+        return {"area": k, "names": senses[k]} if k else None
+
+    def resolve(self, token: str) -> dict | None:
+        """토큰 -> {"id", "via", "area", "names"} (영역 약어 우선, 그다음 단어·전역 변형)."""
+        t = normalize_term(token)
+        v = self.variant_map.get(t)
+        if t in self.words and not (v and v.get("area")):
+            return {"id": t, "via": "word", **(self.meaning(t) or {})}
+        if t in self.compounds and not (v and v.get("area")):
+            return {"id": t, "via": "compound", **(self.meaning(t) or {})}
+        if v:
+            return {"id": v["root"], "via": v.get("type"), **(self.meaning(v["root"]) or {}),
+                    **({"area": v["area"]} if v.get("area") else {})}
+        return None
 
     def load_glossary(
         self,

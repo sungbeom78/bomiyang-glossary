@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "areas.json -- 용어 영역 목록",
+  "type": "object",
+  "required": [
+    "areas"
+  ],
+  "properties": {
+    "areas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name_ko",
+          "tags"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "name_ko": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "root",
+                "domain",
+                "area",
+                "naming",
+                "category",
+                "legacy"
+              ]
+            }
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

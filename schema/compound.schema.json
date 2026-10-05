@@ -19,29 +19,54 @@
     },
     "words": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "minItems": 1
     },
     "domain": {
+      "description": "소속 영역 목록 (dictionary/areas.json 의 id). 문자열 하나도 허용(기존 호환)",
       "anyOf": [
-        { "type": "string", "enum": ["trading", "market", "system", "infra", "ui", "general", "proper"] },
-        { "type": "array", "items": { "type": "string", "enum": ["trading", "market", "system", "infra", "ui", "general", "proper"] } }
+        {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        }
       ]
     },
     "status": {
       "type": "string",
-      "enum": ["active", "deprecated"],
+      "enum": [
+        "active",
+        "deprecated"
+      ],
       "default": "active"
     },
     "lang": {
       "type": "object",
       "properties": {
-        "en":      { "type": "string" },
-        "ko":      { "type": "string" },
-        "ja":      { "type": "string" },
-        "zh_hans": { "type": "string" }
+        "en": {
+          "type": "string"
+        },
+        "ko": {
+          "type": "string"
+        },
+        "ja": {
+          "type": "string"
+        },
+        "zh_hans": {
+          "type": "string"
+        }
       },
-      "required": ["en"]
+      "required": [
+        "en"
+      ]
     },
     "variants": {
       "description": "§3.2 지원 타입 전체. abbreviation에 long/short 포함 (구 abbr 객체 통합). §3.4 정렬: abbreviation > alias > plural > 기타",
@@ -52,10 +77,22 @@
           "type": {
             "type": "string",
             "enum": [
-              "plural", "singular", "abbreviation", "alias",
-              "misspelling", "adjective", "adverb", "verb",
-              "noun_form", "verb_form", "present_participle",
-              "past", "past_participle", "agent", "pos_forms", "deprecated"
+              "plural",
+              "singular",
+              "abbreviation",
+              "alias",
+              "misspelling",
+              "adjective",
+              "adverb",
+              "verb",
+              "noun_form",
+              "verb_form",
+              "present_participle",
+              "past",
+              "past_participle",
+              "agent",
+              "pos_forms",
+              "deprecated"
             ]
           },
           "types": {
@@ -63,45 +100,124 @@
             "items": {
               "type": "string",
               "enum": [
-                "plural", "singular", "abbreviation", "alias",
-                "misspelling", "adjective", "adverb", "verb",
-                "noun_form", "verb_form", "present_participle",
-                "past", "past_participle", "agent", "pos_forms", "deprecated"
+                "plural",
+                "singular",
+                "abbreviation",
+                "alias",
+                "misspelling",
+                "adjective",
+                "adverb",
+                "verb",
+                "noun_form",
+                "verb_form",
+                "present_participle",
+                "past",
+                "past_participle",
+                "agent",
+                "pos_forms",
+                "deprecated"
               ]
             }
           },
-          "value":  { "type": "string" },
-          "short":  { "type": "string" },
-          "long":   { "type": "string" },
-          "domain": { "type": "string" },
-          "noun":   { "type": "array", "items": { "type": "string" } },
-          "verb":   { "type": "array", "items": { "type": "string" } },
-          "adj":    { "type": "array", "items": { "type": "string" } },
-          "adv":    { "type": "array", "items": { "type": "string" } },
+          "value": {
+            "type": "string"
+          },
+          "short": {
+            "type": "string"
+          },
+          "long": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "noun": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verb": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "adj": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "adv": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "abbreviation_meta": {
             "type": "object",
             "properties": {
-              "confidence": { "enum": ["high", "medium", "low"] },
-              "source":     { "enum": ["dictionary", "api", "ai", "manual"] },
-              "ambiguity":  { "enum": ["low", "medium", "high"] }
+              "confidence": {
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "source": {
+                "enum": [
+                  "dictionary",
+                  "api",
+                  "ai",
+                  "manual"
+                ]
+              },
+              "ambiguity": {
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ]
+              }
             }
           }
         },
         "anyOf": [
-          { "required": ["type"] },
-          { "required": ["types"] }
+          {
+            "required": [
+              "type"
+            ]
+          },
+          {
+            "required": [
+              "types"
+            ]
+          }
         ],
         "oneOf": [
-          { "required": ["value"] },
-          { "required": ["short"] }
+          {
+            "required": [
+              "value"
+            ]
+          },
+          {
+            "required": [
+              "short"
+            ]
+          }
         ]
       }
     },
     "description_i18n": {
       "type": "object",
       "properties": {
-        "ko": { "type": "string" },
-        "en": { "type": "string" }
+        "ko": {
+          "type": "string"
+        },
+        "en": {
+          "type": "string"
+        }
       }
     },
     "reason": {
@@ -110,23 +226,91 @@
     },
     "not": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
-    "created_at":    { "type": "string", "format": "date-time" },
-    "updated_at":    { "type": "string", "format": "date-time" },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
     "abbreviation": {
       "type": "object",
       "properties": {
-        "short":          { "type": "string",  "description": "약어 표기 (예: BOMTS)" },
-        "long":           { "type": "string",  "description": "풀네임 compound id (예: bomiyang_trading_system)" },
-        "case_sensitive": { "type": "boolean", "default": false },
-        "confidence":     { "type": "string",  "enum": ["high", "medium", "low"] },
-        "ambiguity":      { "type": "string",  "enum": ["low", "medium", "high"] }
+        "short": {
+          "type": "string",
+          "description": "약어 표기 (예: BOMTS)"
+        },
+        "long": {
+          "type": "string",
+          "description": "풀네임 compound id (예: bomiyang_trading_system)"
+        },
+        "case_sensitive": {
+          "type": "boolean",
+          "default": false
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "ambiguity": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        }
       },
-      "required": ["short"],
+      "required": [
+        "short"
+      ],
       "additionalProperties": false
     },
-    "deprecated_at": { "type": "string", "format": "date-time" }
+    "deprecated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "senses": {
+      "description": "영역 -> 한글명 목록 (doc/glossary_area_rule.md R1)",
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "area_abbreviations": {
+      "description": "영역 -> 그 영역 안에서만 유효한 약어",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "need_modify": {
+      "description": "영역 규칙 위반 표시 (값은 고치지 않음)",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "issues": {
+          "type": "array"
+        },
+        "noted_at": {
+          "type": "string"
+        }
+      }
+    }
   },
   "additionalProperties": false
 }

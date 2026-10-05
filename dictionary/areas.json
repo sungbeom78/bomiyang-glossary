@@ -1,0 +1,92 @@
+{
+  "areas": [
+    {
+      "id": "general",
+      "name_ko": "일반",
+      "tags": [
+        "root"
+      ],
+      "description": "특정 업무에 속하지 않는 범용 뜻 (모든 단어의 기본 뜻)"
+    },
+    {
+      "id": "trading",
+      "name_ko": "매매",
+      "tags": [
+        "domain",
+        "legacy"
+      ]
+    },
+    {
+      "id": "market",
+      "name_ko": "시장",
+      "tags": [
+        "domain",
+        "legacy"
+      ]
+    },
+    {
+      "id": "fx",
+      "name_ko": "외환",
+      "tags": [
+        "domain",
+        "legacy"
+      ]
+    },
+    {
+      "id": "candlestick",
+      "name_ko": "캔들",
+      "tags": [
+        "area",
+        "legacy"
+      ]
+    },
+    {
+      "id": "system",
+      "name_ko": "시스템",
+      "tags": [
+        "category",
+        "legacy"
+      ]
+    },
+    {
+      "id": "infra",
+      "name_ko": "인프라",
+      "tags": [
+        "category",
+        "legacy"
+      ]
+    },
+    {
+      "id": "ui",
+      "name_ko": "화면",
+      "tags": [
+        "category",
+        "legacy"
+      ]
+    },
+    {
+      "id": "logic",
+      "name_ko": "로직",
+      "tags": [
+        "category",
+        "legacy"
+      ]
+    },
+    {
+      "id": "proper",
+      "name_ko": "고유명사",
+      "tags": [
+        "category",
+        "legacy"
+      ]
+    },
+    {
+      "id": "data",
+      "name_ko": "데이터 명명",
+      "tags": [
+        "naming"
+      ],
+      "description": "DB·데이터 모델 명명 규칙 영역 (분류어: 번호·명·코드·여부·시각 등)"
+    }
+  ]
+}
