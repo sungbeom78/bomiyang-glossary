@@ -2755,6 +2755,16 @@
         "case_sensitive": false,
         "confidence": "high",
         "ambiguity": "low"
+      },
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'환경변수' = env, env_var"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
       }
     },
     {

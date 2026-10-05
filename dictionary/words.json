@@ -40,7 +40,17 @@
         "https://en.wiktionary.org/wiki/aborts"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-20T12:07:51Z"
+      "updated_at": "2026-04-20T12:07:51Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'중단' = aborts, suspended"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "absent",
@@ -195,7 +205,17 @@
         "https://en.wiktionary.org/wiki/accepted"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-20T07:29:55Z"
+      "updated_at": "2026-04-20T07:29:55Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'승인' = accepted, approval"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "account",
@@ -288,7 +308,17 @@
         }
       ],
       "created_at": "2026-04-20T14:42:57Z",
-      "updated_at": "2026-04-20T14:42:57Z"
+      "updated_at": "2026-04-20T14:42:57Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'누적' = accumulation (또는 accumulated), cum, cumulative"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "ack",
@@ -336,7 +366,17 @@
       ],
       "from": "acknowledged",
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'확인' = ack, check"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "action",
@@ -665,7 +705,17 @@
       ],
       "from": "administrator",
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'관리' = admin, manage"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "advance",
@@ -741,7 +791,17 @@
       "synonyms": [
         "post"
       ],
-      "variants": []
+      "variants": [],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'이후' = after, since"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "age",
@@ -927,7 +987,17 @@
         "https://en.wiktionary.org/wiki/alert"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'경고' = alert, warnings"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "alias",
@@ -1065,7 +1135,17 @@
         "https://en.wiktionary.org/wiki/allow"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'허용' = allow, tolerance"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "alone",
@@ -1144,7 +1224,17 @@
         "https://en.wiktionary.org/wiki/alt"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'대체' = alt, fallback"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "always",
@@ -1442,7 +1532,17 @@
         "https://en.wiktionary.org/wiki/approval"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'승인' = accepted, approval"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "archive",
@@ -2038,7 +2138,17 @@
           "value": "averages"
         }
       ],
-      "note": "Auto-registered from compound: average_true_range"
+      "note": "Auto-registered from compound: average_true_range",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'평균' = average, avg, mean"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "avg",
@@ -2057,7 +2167,17 @@
         "en": "통계 및 금융 분야에서 일반적으로 사용되는 '평균(Average)'의 약어"
       },
       "created_at": "2026-04-19T04:13:32Z",
-      "updated_at": "2026-04-19T04:13:32Z"
+      "updated_at": "2026-04-19T04:13:32Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'평균' = average, avg, mean"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "back",
@@ -2410,7 +2530,17 @@
         "https://en.wiktionary.org/wiki/banned"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'금지' = banned, no"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "banner",
@@ -2512,7 +2642,17 @@
         "https://en.wiktionary.org/wiki/base"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'기본' = base, basic"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "baseline",
@@ -2583,7 +2723,17 @@
         "https://en.wiktionary.org/wiki/basic"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'기본' = base, basic"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "batch",
@@ -3187,7 +3337,17 @@
       },
       "from": "branch",
       "created_at": "2026-04-20T14:42:57Z",
-      "updated_at": "2026-04-20T14:42:57Z"
+      "updated_at": "2026-04-20T14:42:57Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'분기' = branch, divergence"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "breached",
@@ -3829,7 +3989,17 @@
         "https://en.wiktionary.org/wiki/calculate"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'계산' = calculate, compute"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "call",
@@ -4243,7 +4413,17 @@
       "updated_at": "2026-04-17T03:16:44Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/category"
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'분류' = category, classify"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "cautious",
@@ -4532,7 +4712,17 @@
         "https://en.wiktionary.org/wiki/check"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'확인' = ack, check"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "chinese",
@@ -4723,7 +4913,17 @@
           ],
           "value": "classifications"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'분류' = category, classify"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "clean",
@@ -4783,7 +4983,17 @@
         "https://en.wiktionary.org/wiki/clean"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'정리' = clean, cleanup"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "cleanup",
@@ -4824,7 +5034,17 @@
         "https://en.wiktionary.org/wiki/cleanup"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'정리' = clean, cleanup"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "clear",
@@ -5150,7 +5370,17 @@
         "https://en.wiktionary.org/wiki/collect"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'수집' = collect, gather, ingest"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "color",
@@ -5413,7 +5643,17 @@
       "updated_at": "2026-04-17T03:17:10Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/commission"
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'수수료' = commission, fee"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "common",
@@ -5471,7 +5711,17 @@
           ],
           "value": "completed"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'완료' = complete, done"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "component",
@@ -5645,7 +5895,17 @@
         "https://en.wiktionary.org/wiki/compute"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'계산' = calculate, compute"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "concentration",
@@ -5863,7 +6123,17 @@
       "source_urls": [
         "https://en.wiktionary.org/wiki/config"
       ],
-      "from": "configuration"
+      "from": "configuration",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'설정' = config, setting, setup"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "configured",
@@ -6349,7 +6619,17 @@
         "https://en.wiktionary.org/wiki/conversion"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'전환' = conversion, transition"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "cookie",
@@ -6796,7 +7076,17 @@
         "https://en.wiktionary.org/wiki/create"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'생성' = create, gen, generate"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "credit",
@@ -6943,7 +7233,17 @@
         "https://en.wiktionary.org/wiki/cum"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'누적' = accumulation (또는 accumulated), cum, cumulative"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "cumulative",
@@ -6978,7 +7278,17 @@
         "https://en.wiktionary.org/wiki/cumulative"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'누적' = accumulation (또는 accumulated), cum, cumulative"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "currency",
@@ -7605,7 +7915,17 @@
         "https://en.wiktionary.org/wiki/deal"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'거래' = deal, trade, tradeable"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "debug",
@@ -7800,7 +8120,17 @@
         "https://en.wiktionary.org/wiki/decline"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'거절' = decline, reject"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "dedupe",
@@ -8024,7 +8354,17 @@
         "https://en.wiktionary.org/wiki/del"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'삭제' = del, delete"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "delay",
@@ -8092,7 +8432,17 @@
       },
       "from": "delete",
       "created_at": "2026-04-20T14:42:57Z",
-      "updated_at": "2026-04-20T14:42:57Z"
+      "updated_at": "2026-04-20T14:42:57Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'삭제' = del, delete"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "delivery",
@@ -8277,7 +8627,17 @@
         "https://en.wiktionary.org/wiki/deploy"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'배포' = deploy, distro"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "depth",
@@ -8641,7 +9001,17 @@
           ],
           "value": "directions"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'방향' = direction, side"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "dirs",
@@ -8916,7 +9286,17 @@
         "https://en.wiktionary.org/wiki/display"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'표시' = display, mark"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "distance",
@@ -8994,7 +9374,17 @@
       ],
       "from": "distribution",
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'배포' = deploy, distro"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "divergence",
@@ -9029,7 +9419,17 @@
         "https://en.wiktionary.org/wiki/divergence"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'분기' = branch, divergence"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "do",
@@ -9136,7 +9536,17 @@
         "https://en.wiktionary.org/wiki/done"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'완료' = complete, done"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "download",
@@ -9832,7 +10242,17 @@
           ],
           "value": "ended"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'종료' = end, shutdown"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "enforce",
@@ -9879,7 +10299,17 @@
         "https://en.wiktionary.org/wiki/enforce"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'강제' = enforce, force"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "engine",
@@ -10180,7 +10610,17 @@
           ],
           "value": "envs"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'환경변수' = env, env_var"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "environment",
@@ -10823,7 +11263,17 @@
           "value": "execution"
         }
       ],
-      "from": "execute"
+      "from": "execute",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'실행' = exec, executable, execute, fire"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "executable",
@@ -10889,7 +11339,17 @@
       ],
       "from": "execute",
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'실행' = exec, executable, execute, fire"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "execute",
@@ -10941,7 +11401,17 @@
           ],
           "value": "execution"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'실행' = exec, executable, execute, fire"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "exempt",
@@ -11110,7 +11580,17 @@
       "updated_at": "2026-04-17T03:18:14Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/exit"
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'청산' = exit, flatten"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "expires",
@@ -11231,7 +11711,17 @@
           ],
           "value": "extended"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'확장' = extend, extensions"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "extensions",
@@ -11253,7 +11743,17 @@
         "https://en.wiktionary.org/wiki/extensions"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'확장' = extend, extensions"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "extra",
@@ -11464,7 +11964,17 @@
         "https://en.wiktionary.org/wiki/fallback"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'대체' = alt, fallback"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "falls",
@@ -11536,7 +12046,17 @@
         "https://en.wiktionary.org/wiki/fee"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'수수료' = commission, fee"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "fetch",
@@ -11881,7 +12401,17 @@
         "https://en.wiktionary.org/wiki/fire"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'실행' = exec, executable, execute, fire"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "first",
@@ -12053,7 +12583,17 @@
           ],
           "value": "flattened"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'청산' = exit, flatten"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "float",
@@ -12191,7 +12731,17 @@
       },
       "variants": [],
       "updated_at": "2026-04-21T01:01:24Z",
-      "created_at": "2026-04-21T01:01:24Z"
+      "created_at": "2026-04-21T01:01:24Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'함수' = fn, function"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "folder",
@@ -12306,7 +12856,17 @@
           ],
           "value": "forces"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'강제' = enforce, force"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "forex",
@@ -12335,7 +12895,17 @@
         "https://en.wiktionary.org/wiki/forex"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'외환' = forex, fx"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "fork",
@@ -12643,7 +13213,17 @@
         "https://en.wiktionary.org/wiki/function"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'함수' = fn, function"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "fund",
@@ -12692,7 +13272,17 @@
         "https://en.wiktionary.org/wiki/fut"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'선물' = fut, futures"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "futures",
@@ -12716,7 +13306,17 @@
       "source_urls": [
         "https://en.wiktionary.org/wiki/futures"
       ],
-      "variants": []
+      "variants": [],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'선물' = fut, futures"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "fx",
@@ -12747,7 +13347,17 @@
           ],
           "value": "fxes"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'외환' = forex, fx"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "gamma",
@@ -12818,7 +13428,17 @@
         "https://en.wiktionary.org/wiki/gap"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'간격' = gap, interval, spacing"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "gate",
@@ -12901,7 +13521,17 @@
         "https://en.wiktionary.org/wiki/gather"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'수집' = collect, gather, ingest"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "gemini",
@@ -12969,7 +13599,17 @@
         "https://en.wiktionary.org/wiki/gen"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'생성' = create, gen, generate"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "generate",
@@ -13001,7 +13641,17 @@
           "value": "generated"
         }
       ],
-      "created_at": "2026-04-19T11:26:24Z"
+      "created_at": "2026-04-19T11:26:24Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'생성' = create, gen, generate"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "get",
@@ -13430,7 +14080,17 @@
         "https://en.wiktionary.org/wiki/gzip"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'집' = gzip, home"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "half",
@@ -13750,7 +14410,17 @@
           ],
           "value": "healths"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'상태' = health, state, status"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "heartbeat",
@@ -14057,7 +14727,17 @@
         "https://en.wiktionary.org/wiki/hold"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'유지' = hold, retention"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "home",
@@ -14079,7 +14759,17 @@
       "created_at": "2026-04-20T12:03:27Z",
       "updated_at": "2026-04-20T12:03:27Z",
       "variants": [],
-      "note": "Auto-registered from compound: home_trading_system"
+      "note": "Auto-registered from compound: home_trading_system",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'집' = gzip, home"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "host",
@@ -14191,7 +14881,17 @@
           "value": "ids"
         }
       ],
-      "from": "identifier"
+      "from": "identifier",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'식별자' = id, identifier"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "idempotent",
@@ -14265,7 +14965,17 @@
         "https://en.wiktionary.org/wiki/identifier"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'식별자' = id, identifier"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "idle",
@@ -14689,7 +15399,17 @@
         "https://en.wiktionary.org/wiki/ingest"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'수집' = collect, gather, ingest"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "initial",
@@ -14788,7 +15508,17 @@
         "https://en.wiktionary.org/wiki/initialize"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'초기화' = initialize, reset"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "inner",
@@ -15035,7 +15765,17 @@
         "https://en.wiktionary.org/wiki/intensity"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'강도' = intensity, strength"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "intent",
@@ -15117,7 +15857,17 @@
           ],
           "value": "intervals"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'간격' = gap, interval, spacing"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "intraday",
@@ -15704,7 +16454,17 @@
           "short": "KR,KO"
         }
       ],
-      "note": "Auto-registered from compound: korea_exchange"
+      "note": "Auto-registered from compound: korea_exchange",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'한국' = korea, kr"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "korean standard time",
@@ -15820,7 +16580,17 @@
       "source_urls": [
         "https://en.wiktionary.org/wiki/kr"
       ],
-      "variants": []
+      "variants": [],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'한국' = korea, kr"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "label",
@@ -16100,7 +16870,17 @@
       "created_at": "2026-04-20T12:03:28Z",
       "updated_at": "2026-04-20T12:03:28Z",
       "variants": [],
-      "note": "Auto-registered from compound: maximum_length"
+      "note": "Auto-registered from compound: maximum_length",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'길이' = len, length"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "level",
@@ -17070,7 +17850,17 @@
       "updated_at": "2026-04-17T03:23:51Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/m"
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'분' = m, minute"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "machine",
@@ -17236,7 +18026,17 @@
           ],
           "value": "managers"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'관리' = admin, manage"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "manual",
@@ -17424,7 +18224,17 @@
         "https://en.wiktionary.org/wiki/mark"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'표시' = display, mark"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "markers",
@@ -17710,7 +18520,17 @@
           "value": "maxed"
         }
       ],
-      "from": "maximum"
+      "from": "maximum",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'최대' = max, maximum"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "maximum",
@@ -17732,7 +18552,17 @@
       "created_at": "2026-04-20T12:03:28Z",
       "updated_at": "2026-04-20T12:03:28Z",
       "variants": [],
-      "note": "Auto-registered from compound: maximum_length"
+      "note": "Auto-registered from compound: maximum_length",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'최대' = max, maximum"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "maybe",
@@ -17850,7 +18680,17 @@
         "https://en.wiktionary.org/wiki/mean"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'평균' = average, avg, mean"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "member",
@@ -17934,7 +18774,17 @@
       },
       "from": "message",
       "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
+      "updated_at": "2026-04-21T00:39:08Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'메시지' = message, msg"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "meta",
@@ -18257,7 +19107,17 @@
         "https://en.wiktionary.org/wiki/minute"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'분' = m, minute"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "missing",
@@ -18385,7 +19245,17 @@
           ],
           "value": "moderator"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'모듈' = mod, module"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "mode",
@@ -18519,7 +19389,17 @@
           ],
           "value": "modules"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'모듈' = mod, module"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "momentum",
@@ -18724,7 +19604,17 @@
         "https://en.wiktionary.org/wiki/msg"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'메시지' = message, msg"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "mt",
@@ -19188,7 +20078,17 @@
         "yea",
         "yes"
       ],
-      "variants": []
+      "variants": [],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'금지' = banned, no"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "node",
@@ -19435,7 +20335,17 @@
         "https://en.wiktionary.org/wiki/notice"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'알림' = notice, notify"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "notify",
@@ -19500,7 +20410,17 @@
           ],
           "value": "notifications"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'알림' = notice, notify"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "now",
@@ -19598,7 +20518,17 @@
         }
       ],
       "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
+      "updated_at": "2026-04-21T00:39:08Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'발생하다' = occur, occurred"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "occurred",
@@ -19619,7 +20549,17 @@
       },
       "variants": [],
       "updated_at": "2026-04-21T01:01:24Z",
-      "created_at": "2026-04-21T01:01:24Z"
+      "created_at": "2026-04-21T01:01:24Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'발생하다' = occur, occurred"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "of",
@@ -19760,7 +20700,17 @@
         "https://en.wiktionary.org/wiki/old"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'이전' = old, prev, prior"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "once",
@@ -20792,7 +21742,17 @@
         "https://en.wiktionary.org/wiki/pass"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'통과' = pass, passthrough"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "passthrough",
@@ -20821,7 +21781,17 @@
         "https://en.wiktionary.org/wiki/passthrough"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'통과' = pass, passthrough"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "password",
@@ -20868,7 +21838,17 @@
         "https://en.wiktionary.org/wiki/password"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'비밀번호' = password, pwd"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "patch",
@@ -21161,7 +22141,17 @@
         "impendent",
         "in_the_offing",
         "proximate"
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'대기' = pending, wait"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "per",
@@ -21339,7 +22329,17 @@
       },
       "variants": [],
       "updated_at": "2026-10-04T17:26:01Z",
-      "created_at": "2026-10-04T17:26:01Z"
+      "created_at": "2026-10-04T17:26:01Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'개인' = personal, private"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "personality",
@@ -21401,7 +22401,17 @@
           ],
           "value": "pgs"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'postgresql' = pg, postgresql"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "physical and medical rehabilitation",
@@ -21808,7 +22818,17 @@
       },
       "variants": [],
       "updated_at": "2026-04-21T01:01:24Z",
-      "created_at": "2026-04-21T01:01:24Z"
+      "created_at": "2026-04-21T01:01:24Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'포지션' = pos, position"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "position",
@@ -21854,7 +22874,17 @@
       ],
       "synonyms": [
         "stell"
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'포지션' = pos, position"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "post",
@@ -21903,7 +22933,17 @@
           ],
           "value": "postgresqls"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'postgresql' = pg, postgresql"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "pre",
@@ -22124,7 +23164,17 @@
         "https://en.wiktionary.org/wiki/prev"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'이전' = old, prev, prior"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "preview",
@@ -22265,7 +23315,17 @@
         "https://en.wiktionary.org/wiki/prior"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'이전' = old, prev, prior"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "priority",
@@ -22336,7 +23396,17 @@
         "https://en.wiktionary.org/wiki/private"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'개인' = personal, private"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "process",
@@ -23207,7 +24277,17 @@
         "https://en.wiktionary.org/wiki/pwd"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'비밀번호' = password, pwd"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "python",
@@ -23286,7 +24366,17 @@
         "https://en.wiktionary.org/wiki/qty"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'수량' = qty, quantity"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "quantity",
@@ -23308,7 +24398,17 @@
       },
       "from": "quantity",
       "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
+      "updated_at": "2026-04-21T00:39:08Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'수량' = qty, quantity"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "query",
@@ -23543,7 +24643,17 @@
         "https://en.wiktionary.org/wiki/range"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'범위' = range, scope"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "rank",
@@ -23978,7 +25088,17 @@
       "canonical_pos": "adj",
       "created_at": "2026-04-18T15:33:18Z",
       "updated_at": "2026-04-18T15:33:18Z",
-      "variants": []
+      "variants": [],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'실시간' = real, realtime"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "realize",
@@ -24046,7 +25166,17 @@
       "source_urls": [
         "https://en.wiktionary.org/wiki/realtime"
       ],
-      "variants": []
+      "variants": [],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'실시간' = real, realtime"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "rearm",
@@ -24402,7 +25532,17 @@
       ],
       "from": "reference",
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'참조' = ref, reference"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "reference",
@@ -24450,7 +25590,17 @@
         "https://en.wiktionary.org/wiki/reference"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'참조' = ref, reference"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "refresh",
@@ -24646,7 +25796,17 @@
           ],
           "value": "rejector"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'거절' = decline, reject"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "rel",
@@ -25079,7 +26239,17 @@
       ],
       "from": "repository",
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'저장소' = repo, repository"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "report",
@@ -25186,7 +26356,17 @@
         "https://en.wiktionary.org/wiki/repository"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'저장소' = repo, repository"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "request",
@@ -25296,7 +26476,17 @@
       },
       "from": "reset",
       "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
+      "updated_at": "2026-04-21T00:39:08Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'초기화' = initialize, reset"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "resolve",
@@ -25591,7 +26781,17 @@
         "https://en.wiktionary.org/wiki/retention"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'유지' = hold, retention"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "retries",
@@ -26025,7 +27225,17 @@
           ],
           "value": "rooted"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'루트' = root, route"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "round",
@@ -26106,7 +27316,17 @@
       },
       "variants": [],
       "updated_at": "2026-04-21T01:01:24Z",
-      "created_at": "2026-04-21T01:01:24Z"
+      "created_at": "2026-04-21T01:01:24Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'루트' = root, route"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "router",
@@ -26372,7 +27592,17 @@
         "https://en.wiktionary.org/wiki/save"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'저장' = save, store"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "sc",
@@ -26393,7 +27623,17 @@
       },
       "variants": [],
       "updated_at": "2026-04-21T01:01:24Z",
-      "created_at": "2026-04-21T01:01:24Z"
+      "created_at": "2026-04-21T01:01:24Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'주식' = sc, stock"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "scan",
@@ -26624,7 +27864,17 @@
       "updated_at": "2026-04-17T03:22:07Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/scope"
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'범위' = range, scope"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "score",
@@ -26836,7 +28086,17 @@
         "https://en.wiktionary.org/wiki/sec"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'초' = sec, second"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "second",
@@ -26884,7 +28144,17 @@
         "https://en.wiktionary.org/wiki/second"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'초' = sec, second"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "secret",
@@ -27599,7 +28869,17 @@
       "updated_at": "2026-04-17T01:59:49Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/setting"
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'설정' = config, setting, setup"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "settlement",
@@ -27649,7 +28929,17 @@
         "https://en.wiktionary.org/wiki/setup"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'설정' = config, setting, setup"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "severity",
@@ -28017,7 +29307,17 @@
         "https://en.wiktionary.org/wiki/shutdown"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'종료' = end, shutdown"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "side",
@@ -28064,7 +29364,17 @@
           ],
           "value": "sided"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'방향' = direction, side"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "sig",
@@ -28291,7 +29601,17 @@
         "https://en.wiktionary.org/wiki/since"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'이후' = after, since"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "single",
@@ -28542,7 +29862,17 @@
           ],
           "value": "slipped"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'슬리피지' = slip, slippage"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "slippage",
@@ -28573,7 +29903,17 @@
       "updated_at": "2026-04-17T03:22:52Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/slippage"
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'슬리피지' = slip, slippage"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "slope",
@@ -28704,7 +30044,17 @@
           ],
           "value": "snapped"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'스냅샷' = snap, snapshot"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "snapshot",
@@ -28747,7 +30097,17 @@
           ],
           "value": "snapshotting"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'스냅샷' = snap, snapshot"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "socket",
@@ -28941,7 +30301,17 @@
         "https://en.wiktionary.org/wiki/spacing"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'간격' = gap, interval, spacing"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "spatial",
@@ -29184,7 +30554,17 @@
       },
       "from": "stage",
       "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
+      "updated_at": "2026-04-21T00:39:08Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'단계' = stage, step"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "staged",
@@ -29370,7 +30750,17 @@
       },
       "from": "state",
       "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
+      "updated_at": "2026-04-21T00:39:08Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'상태' = health, state, status"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "states",
@@ -29439,7 +30829,17 @@
       "source_urls": [
         "https://en.wiktionary.org/wiki/status"
       ],
-      "variants": []
+      "variants": [],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'상태' = health, state, status"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "stderr",
@@ -29490,7 +30890,17 @@
       },
       "from": "step",
       "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
+      "updated_at": "2026-04-21T00:39:08Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'단계' = stage, step"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "stock",
@@ -29545,7 +30955,17 @@
           ],
           "value": "stocked"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'주식' = sc, stock"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "stop",
@@ -29672,7 +31092,17 @@
           ],
           "value": "storaged"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'저장' = save, store"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "strategy",
@@ -29796,7 +31226,17 @@
           ],
           "value": "strengthen"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'강도' = intensity, strength"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "strict",
@@ -30512,7 +31952,17 @@
         "https://en.wiktionary.org/wiki/suspended"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'중단' = aborts, suspended"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "swing",
@@ -30649,7 +32099,17 @@
           ],
           "value": "symbolism"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'종목' = symbol, tickers"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "sync",
@@ -30977,7 +32437,17 @@
           ],
           "value": "tasked"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'작업' = task, work"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "telegram",
@@ -31021,7 +32491,17 @@
           ],
           "value": "telegrammed"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'텔레그램' = telegram, tg"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "template",
@@ -31276,7 +32756,17 @@
       },
       "variants": [],
       "updated_at": "2026-04-21T01:01:24Z",
-      "created_at": "2026-04-21T01:01:24Z"
+      "created_at": "2026-04-21T01:01:24Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'텔레그램' = telegram, tg"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "theme",
@@ -31429,7 +32919,17 @@
         "https://en.wiktionary.org/wiki/thresh"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'임계값' = thresh, threshold"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "threshold",
@@ -31446,7 +32946,17 @@
       "variants": [],
       "updated_at": "2026-08-03T12:39:47Z",
       "created_at": "2026-08-03T12:39:47Z",
-      "status": "active"
+      "status": "active",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'임계값' = thresh, threshold"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "throttle",
@@ -31521,7 +33031,17 @@
         "https://en.wiktionary.org/wiki/tic"
       ],
       "created_at": "2026-04-23T01:13:29Z",
-      "updated_at": "2026-04-23T01:13:29Z"
+      "updated_at": "2026-04-23T01:13:29Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'틱' = tic, tick"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "tick",
@@ -31569,7 +33089,17 @@
       "synonyms": [
         "ticking"
       ],
-      "from": "ticket"
+      "from": "ticket",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'틱' = tic, tick"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "tickers",
@@ -31591,7 +33121,17 @@
         "https://en.wiktionary.org/wiki/tickers"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'종목' = symbol, tickers"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "ticket",
@@ -31928,7 +33468,17 @@
         "https://en.wiktionary.org/wiki/tolerance"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'허용' = allow, tolerance"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "top",
@@ -32056,7 +33606,17 @@
           ],
           "value": "tracked"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'추적' = track, trailing"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "tracker",
@@ -32186,7 +33746,17 @@
           ],
           "value": "traded"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'거래' = deal, trade, tradeable"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "tradeable",
@@ -32207,7 +33777,17 @@
         "https://en.wiktionary.org/wiki/tradeable"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'거래' = deal, trade, tradeable"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "traded",
@@ -32309,7 +33889,17 @@
         "facing",
         "leading"
       ],
-      "variants": []
+      "variants": [],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'추적' = track, trailing"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "transaction",
@@ -32384,7 +33974,17 @@
           ],
           "value": "transitioned"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'전환' = conversion, transition"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "tree",
@@ -33359,7 +34959,17 @@
         "https://en.wiktionary.org/wiki/validate"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'검증' = validate, verify"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "value",
@@ -33452,7 +35062,17 @@
           ],
           "value": "vars"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'변수' = var, variables"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "variables",
@@ -33474,7 +35094,17 @@
         "https://en.wiktionary.org/wiki/variables"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'변수' = var, variables"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "variant",
@@ -33551,7 +35181,17 @@
         "https://en.wiktionary.org/wiki/verify"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'검증' = validate, verify"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "version",
@@ -33881,7 +35521,17 @@
         "https://en.wiktionary.org/wiki/wait"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'대기' = pending, wait"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "wake",
@@ -34037,7 +35687,17 @@
       },
       "from": "Warning",
       "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
+      "updated_at": "2026-04-20T12:03:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'경고' = alert, warnings"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "watch",
@@ -34716,7 +36376,17 @@
           ],
           "value": "worked"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'작업' = task, work"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "wrap",
@@ -35226,7 +36896,17 @@
       "variants": [],
       "source_urls": [],
       "created_at": "2026-05-22T11:38:00Z",
-      "updated_at": "2026-05-22T11:38:00Z"
+      "updated_at": "2026-05-22T11:38:00Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "R2_DUP_KO",
+            "detail": "'길이' = len, length"
+          }
+        ],
+        "noted_at": "2026-10-05T02:14:38Z"
+      }
     },
     {
       "id": "imbalance",
