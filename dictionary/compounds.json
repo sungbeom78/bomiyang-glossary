@@ -2286,7 +2286,17 @@
           "short": "DBSCAN",
           "long": "dbscan"
         }
-      ]
+      ],
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "INVALID_ID",
+            "detail": "복합어 id 규칙 위반 (소문자 영숫자·밑줄)"
+          }
+        ],
+        "noted_at": "2026-10-05T05:20:15Z"
+      }
     },
     {
       "id": "earnings_per_share",

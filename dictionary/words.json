@@ -283,7 +283,7 @@
       "updated_at": "2026-04-20T14:42:57Z"
     },
     {
-      "id": "accumulation (또는 accumulated)",
+      "id": "accumulation",
       "lang": {
         "en": "accumulation (또는 accumulated)",
         "ko": "누적",
@@ -308,16 +308,17 @@
         }
       ],
       "created_at": "2026-04-20T14:42:57Z",
-      "updated_at": "2026-04-20T14:42:57Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'accumulation (또는 accumulated)' -> 'accumulation'",
       "need_modify": {
         "status": "open",
         "issues": [
           {
             "code": "R2_DUP_KO",
-            "detail": "'누적' = accumulation (또는 accumulated), cum, cumulative"
+            "detail": "'누적' = accumulation, cum, cumulative"
           }
         ],
-        "noted_at": "2026-10-05T02:14:38Z"
+        "noted_at": "2026-10-05T05:20:15Z"
       }
     },
     {
@@ -4264,7 +4265,7 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
-      "id": "cap (또는 capacity)",
+      "id": "cap",
       "lang": {
         "en": "cap (또는 capacity)",
         "ko": "제한 (또는 상한)",
@@ -4281,15 +4282,10 @@
         "en": "The maximum limit or threshold allowed for data processing or resource allocation"
       },
       "from": "Capacity",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "CAP",
-          "long": "Cap (또는 Capacity)"
-        }
-      ],
+      "variants": [],
       "created_at": "2026-04-20T14:42:57Z",
-      "updated_at": "2026-04-20T14:42:57Z"
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'cap (또는 capacity)' -> 'cap'"
     },
     {
       "id": "capital",
@@ -5068,6 +5064,29 @@
       "updated_at": "2026-04-20T14:42:57Z"
     },
     {
+      "id": "cli",
+      "lang": {
+        "en": "command line interface",
+        "ko": "명령 줄 인터페이스",
+        "ja": "コマンドラインインターフェース",
+        "zh_hans": "命令行界面"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "텍스트 기반의 명령어를 입력하여 시스템이나 애플리케이션과 상호작용하는 사용자 인터페이스(CLI)입니다.",
+        "en": "Command-based user interface"
+      },
+      "from": "cli",
+      "variants": [],
+      "created_at": "2026-04-26T00:59:26Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'command line interface' -> 'cli'"
+    },
+    {
       "id": "client",
       "lang": {
         "en": "client",
@@ -5524,34 +5543,6 @@
           "value": "commandment"
         }
       ]
-    },
-    {
-      "id": "command line interface",
-      "lang": {
-        "en": "Command Line Interface",
-        "ko": "명령 줄 인터페이스",
-        "ja": "コマンドラインインターフェース",
-        "zh_hans": "命令行界面"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "system"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "ko": "텍스트 기반의 명령어를 입력하여 시스템이나 애플리케이션과 상호작용하는 사용자 인터페이스(CLI)입니다.",
-        "en": "Command-based user interface"
-      },
-      "from": "cli",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "CLI",
-          "long": "Command Line Interface"
-        }
-      ],
-      "created_at": "2026-04-26T00:59:26Z",
-      "updated_at": "2026-04-26T00:59:26Z"
     },
     {
       "id": "comment",
@@ -7248,10 +7239,10 @@
         "issues": [
           {
             "code": "R2_DUP_KO",
-            "detail": "'누적' = accumulation (또는 accumulated), cum, cumulative"
+            "detail": "'누적' = accumulation, cum, cumulative"
           }
         ],
-        "noted_at": "2026-10-05T02:14:38Z"
+        "noted_at": "2026-10-05T05:20:15Z"
       }
     },
     {
@@ -7293,10 +7284,10 @@
         "issues": [
           {
             "code": "R2_DUP_KO",
-            "detail": "'누적' = accumulation (또는 accumulated), cum, cumulative"
+            "detail": "'누적' = accumulation, cum, cumulative"
           }
         ],
-        "noted_at": "2026-10-05T02:14:38Z"
+        "noted_at": "2026-10-05T05:20:15Z"
       }
     },
     {
@@ -8520,7 +8511,17 @@
       "created_at": "2026-04-19T15:44:45Z",
       "updated_at": "2026-04-19T15:44:45Z",
       "variants": [],
-      "note": "Auto-registered from compound: density-based_spatial_clustering_of_applications_with_noise"
+      "note": "Auto-registered from compound: density-based_spatial_clustering_of_applications_with_noise",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "INVALID_ID",
+            "detail": "id 규칙 위반 (소문자 영숫자 한 단어여야 함 -- 공백·기호 불가)"
+          }
+        ],
+        "noted_at": "2026-10-05T05:20:15Z"
+      }
     },
     {
       "id": "deny",
@@ -13710,6 +13711,30 @@
       "created_at": "2026-04-21T01:01:24Z"
     },
     {
+      "id": "gics",
+      "lang": {
+        "en": "global industry classification standard",
+        "ja": "世界産業分類基準",
+        "ko": "글로벌 산업 분류 표준",
+        "zh_hans": "全球行业分类标准"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "trading",
+        "market"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "Global Industry Classification Standard, a system used to categorize companies by industry in the stock market",
+        "ko": "기업들을 경제 섹터 및 산업 그룹으로 분류하기 위해 널리 사용되는 글로벌 산업 분류 기준(GICS)입니다."
+      },
+      "from": "gics",
+      "variants": [],
+      "created_at": "2026-04-20T23:50:20Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'global industry classification standard' -> 'gics'"
+    },
+    {
       "id": "git",
       "lang": {
         "en": "git",
@@ -13748,35 +13773,6 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
-    },
-    {
-      "id": "global industry classification standard",
-      "lang": {
-        "en": "global industry classification standard",
-        "ja": "世界産業分類基準",
-        "ko": "글로벌 산업 분류 표준",
-        "zh_hans": "全球行业分类标准"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "trading",
-        "market"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "en": "Global Industry Classification Standard, a system used to categorize companies by industry in the stock market",
-        "ko": "기업들을 경제 섹터 및 산업 그룹으로 분류하기 위해 널리 사용되는 글로벌 산업 분류 기준(GICS)입니다."
-      },
-      "from": "gics",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "GICS",
-          "long": "Global Industry Classification Standard"
-        }
-      ],
-      "created_at": "2026-04-20T23:50:20Z",
-      "updated_at": "2026-04-20T23:50:20Z"
     },
     {
       "id": "glossary",
@@ -13834,34 +13830,6 @@
           "value": "goldenkeys"
         }
       ]
-    },
-    {
-      "id": "good 'til canceled",
-      "lang": {
-        "en": "good 'til canceled",
-        "ja": "無期限注文 (또는 gtc注文)",
-        "ko": "취소 전 유효 주문",
-        "zh_hans": "撤单前有效 (chèdān qián yǒuxiào)"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "trading"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "en": "A type of order that remains active in the market until it is either executed or explicitly canceled by the user",
-        "ko": "주문이 체결되거나 사용자가 직접 취소하기 전까지 유효 기간 없이 시장에 계속 남아 있는 매매 주문 조건(GTC)입니다."
-      },
-      "from": "gtc",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "GTC",
-          "long": "Good 'Til Canceled"
-        }
-      ],
-      "created_at": "2026-04-20T23:50:20Z",
-      "updated_at": "2026-04-20T23:50:20Z"
     },
     {
       "id": "google",
@@ -14000,6 +13968,29 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "gtc",
+      "lang": {
+        "en": "good 'til canceled",
+        "ja": "無期限注文 (또는 gtc注文)",
+        "ko": "취소 전 유효 주문",
+        "zh_hans": "撤单前有效 (chèdān qián yǒuxiào)"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "A type of order that remains active in the market until it is either executed or explicitly canceled by the user",
+        "ko": "주문이 체결되거나 사용자가 직접 취소하기 전까지 유효 기간 없이 시장에 계속 남아 있는 매매 주문 조건(GTC)입니다."
+      },
+      "from": "gtc",
+      "variants": [],
+      "created_at": "2026-04-20T23:50:20Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'good 'til canceled' -> 'gtc'"
     },
     {
       "id": "guard",
@@ -14831,7 +14822,7 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
-      "id": "hypertext markup language",
+      "id": "html",
       "lang": {
         "en": "hypertext markup language",
         "ko": "하이퍼텍스트 마크업 언어",
@@ -14846,15 +14837,10 @@
         "en": "HTML is the standard markup language used to define the structure and content of web pages."
       },
       "from": "html",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "HTML",
-          "long": "Hypertext Markup Language"
-        }
-      ],
+      "variants": [],
       "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'hypertext markup language' -> 'html'"
     },
     {
       "id": "id",
@@ -16106,34 +16092,6 @@
       "note": "Auto-registered from compound: japanese_yen"
     },
     {
-      "id": "javascript object notation",
-      "lang": {
-        "en": "javascript object notation",
-        "ko": "자바스크립트 객체 표기법",
-        "ja": "javascript object notation",
-        "zh_hans": "javascript 对象表示法"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "system"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "ko": "데이터 교환을 위해 인간이 읽기 쉬운 텍스트 형식으로 설계된 경량의 데이터 교환 형식입니다.",
-        "en": "A lightweight data-interchange format designed to be easily readable by humans in a text-based format for data exchange."
-      },
-      "from": "json",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "JSON",
-          "long": "JavaScript Object Notation"
-        }
-      ],
-      "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
-    },
-    {
       "id": "job",
       "lang": {
         "en": "job",
@@ -16263,6 +16221,29 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "json",
+      "lang": {
+        "en": "javascript object notation",
+        "ko": "자바스크립트 객체 표기법",
+        "ja": "javascript object notation",
+        "zh_hans": "javascript 对象表示法"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "데이터 교환을 위해 인간이 읽기 쉬운 텍스트 형식으로 설계된 경량의 데이터 교환 형식입니다.",
+        "en": "A lightweight data-interchange format designed to be easily readable by humans in a text-based format for data exchange."
+      },
+      "from": "json",
+      "variants": [],
+      "created_at": "2026-04-20T12:03:27Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'javascript object notation' -> 'json'"
     },
     {
       "id": "key",
@@ -16411,7 +16392,7 @@
       "updated_at": "2026-04-18T09:02:35Z"
     },
     {
-      "id": "kiwoom securities",
+      "id": "kiwoom",
       "lang": {
         "en": "kiwoom securities",
         "ko": "키움증권",
@@ -16428,15 +16409,10 @@
         "en": "Kiwoom Securities is a leading online securities company in South Korea, offering a wide range of financial products and services to individual investors."
       },
       "from": "kiwoom",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KIWOOM",
-          "long": "Kiwoom Securities"
-        }
-      ],
+      "variants": [],
       "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'kiwoom securities' -> 'kiwoom'"
     },
     {
       "id": "korea",
@@ -16474,36 +16450,6 @@
         ],
         "noted_at": "2026-10-05T02:14:38Z"
       }
-    },
-    {
-      "id": "korean standard time",
-      "lang": {
-        "en": "korean standard time",
-        "ko": "한국 표준시",
-        "ja": "韓国標準時",
-        "zh_hans": "韩国标准时间"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "system",
-        "trading",
-        "market"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "ko": "한국 표준시는 대한민국에서 사용하는 공식 표준 시간대입니다.",
-        "en": "Korean Standard Time is the official time zone used in the Republic of Korea."
-      },
-      "from": "kst",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KST",
-          "long": "Korean Standard Time"
-        }
-      ],
-      "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
     },
     {
       "id": "kosdaq",
@@ -16600,6 +16546,55 @@
         ],
         "noted_at": "2026-10-05T02:14:38Z"
       }
+    },
+    {
+      "id": "krw",
+      "lang": {
+        "en": "south korean won",
+        "ko": "대한민국 원",
+        "ja": "大韓民国ウォン",
+        "zh_hans": "韩圆"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "market",
+        "trading"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "대한민국의 공식 통화 단위로, 1902년에 처음 도입되었습니다.",
+        "en": "The official currency of South Korea, first introduced in 1902."
+      },
+      "from": "krw",
+      "variants": [],
+      "created_at": "2026-04-20T12:03:27Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'south korean won' -> 'krw'"
+    },
+    {
+      "id": "kst",
+      "lang": {
+        "en": "korean standard time",
+        "ko": "한국 표준시",
+        "ja": "韓国標準時",
+        "zh_hans": "韩国标准时间"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system",
+        "trading",
+        "market"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "한국 표준시는 대한민국에서 사용하는 공식 표준 시간대입니다.",
+        "en": "Korean Standard Time is the official time zone used in the Republic of Korea."
+      },
+      "from": "kst",
+      "variants": [],
+      "created_at": "2026-04-20T12:03:27Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'korean standard time' -> 'kst'"
     },
     {
       "id": "label",
@@ -17236,7 +17231,7 @@
       ]
     },
     {
-      "id": "load, loading",
+      "id": "load",
       "lang": {
         "en": "load, loading",
         "ja": "ロード、読み込み",
@@ -17253,15 +17248,10 @@
         "ko": "프로그램이나 시스템에서 필요한 데이터나 리소스를 메모리 등으로 가져오는 과정을 의미합니다"
       },
       "from": "load",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "LOAD",
-          "long": "load, loading"
-        }
-      ],
+      "variants": [],
       "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'load, loading' -> 'load'"
     },
     {
       "id": "loader",
@@ -19796,7 +19786,7 @@
       }
     },
     {
-      "id": "naver corporation",
+      "id": "naver",
       "lang": {
         "en": "naver corporation",
         "ko": "네이버 주식회사",
@@ -19813,15 +19803,10 @@
         "en": "Naver is the largest internet search engine and IT company in South Korea."
       },
       "from": "naver",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "NAVER",
-          "long": "Naver Corporation"
-        }
-      ],
+      "variants": [],
       "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'naver corporation' -> 'naver'"
     },
     {
       "id": "near",
@@ -20571,6 +20556,29 @@
       }
     },
     {
+      "id": "ocr",
+      "lang": {
+        "en": "optical character recognition",
+        "ko": "광학 문자 인식",
+        "ja": "光学文字認識",
+        "zh_hans": "光学字符识别"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "광학 문자 인식은 이미지 속의 텍스트를 컴퓨터가 읽을 수 있는 데이터로 변환하는 기술입니다.",
+        "en": "Optical Character Recognition is a technology that converts text within images into computer-readable data."
+      },
+      "from": "ocr",
+      "variants": [],
+      "created_at": "2026-04-20T12:03:27Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'optical character recognition' -> 'ocr'"
+    },
+    {
       "id": "of",
       "domain": "general",
       "status": "active",
@@ -20921,34 +20929,6 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
-    },
-    {
-      "id": "optical character recognition",
-      "lang": {
-        "en": "optical character recognition",
-        "ko": "광학 문자 인식",
-        "ja": "光学文字認識",
-        "zh_hans": "光学字符识别"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "system"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "ko": "광학 문자 인식은 이미지 속의 텍스트를 컴퓨터가 읽을 수 있는 데이터로 변환하는 기술입니다.",
-        "en": "Optical Character Recognition is a technology that converts text within images into computer-readable data."
-      },
-      "from": "ocr",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "OCR",
-          "long": "Optical Character Recognition"
-        }
-      ],
-      "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
     },
     {
       "id": "optimize",
@@ -22445,7 +22425,17 @@
         }
       ],
       "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
+      "updated_at": "2026-04-20T12:03:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "INVALID_ID",
+            "detail": "id 규칙 위반 (소문자 영숫자 한 단어여야 함 -- 공백·기호 불가)"
+          }
+        ],
+        "noted_at": "2026-10-05T05:20:15Z"
+      }
     },
     {
       "id": "pip",
@@ -25861,34 +25851,6 @@
       "note": "Auto-registered from compound: relative_strength_index"
     },
     {
-      "id": "relative path",
-      "lang": {
-        "en": "relative path",
-        "ja": "相対パス",
-        "ko": "상대 경로",
-        "zh_hans": "相对路径"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "system"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "en": "Converts a given path into a relative path based on a reference path",
-        "ko": "파일 시스템의 루트 디렉토리가 아닌, 현재 실행 중인 작업 디렉토리를 기준으로 파일 위치를 나타낸 경로입니다."
-      },
-      "from": "relpath",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "RELPATH",
-          "long": "relative path"
-        }
-      ],
-      "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
-    },
-    {
       "id": "relax",
       "lang": {
         "en": "relax",
@@ -25967,6 +25929,29 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "relpath",
+      "lang": {
+        "en": "relative path",
+        "ja": "相対パス",
+        "ko": "상대 경로",
+        "zh_hans": "相对路径"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "Converts a given path into a relative path based on a reference path",
+        "ko": "파일 시스템의 루트 디렉토리가 아닌, 현재 실행 중인 작업 디렉토리를 기준으로 파일 위치를 나타낸 경로입니다."
+      },
+      "from": "relpath",
+      "variants": [],
+      "created_at": "2026-04-21T00:39:08Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'relative path' -> 'relpath'"
     },
     {
       "id": "remote",
@@ -29104,34 +29089,6 @@
       ]
     },
     {
-      "id": "short message service",
-      "lang": {
-        "en": "Short Message Service",
-        "ko": "단문 메시지 서비스",
-        "ja": "ショートメッセージサービス",
-        "zh_hans": "短消息服务"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "system"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "ko": "휴대전화 문자 메시지 기능을 이용하여 시스템 에러 알림, 인증 번호 등을 관리자나 사용자에게 전송하는 서비스입니다.",
-        "en": "A communication service for exchanging text messages via mobile phones"
-      },
-      "from": "sms",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SMS",
-          "long": "Short Message Service"
-        }
-      ],
-      "created_at": "2026-04-23T01:27:33Z",
-      "updated_at": "2026-04-23T01:27:33Z"
-    },
-    {
       "id": "should",
       "lang": {
         "en": "should",
@@ -29541,34 +29498,6 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
-    },
-    {
-      "id": "simple moving average",
-      "lang": {
-        "en": "simple moving average",
-        "ja": "単純移動平均 (たんじゅんいどうへいきん)",
-        "ko": "단순 이동 평균",
-        "zh_hans": "简单移动平均线"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "trading"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "en": "A technical indicator that calculates the arithmetic mean of prices over a specific period to identify trends",
-        "ko": "특정 기간 동안의 종가를 단순 평균하여 계산한 이동평균선(SMA)으로 추세를 확인하는 데 사용됩니다."
-      },
-      "from": "sma",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SMA",
-          "long": "Simple Moving Average"
-        }
-      ],
-      "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
     },
     {
       "id": "simultaneous",
@@ -29981,6 +29910,29 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "sma",
+      "lang": {
+        "en": "simple moving average",
+        "ja": "単純移動平均 (たんじゅんいどうへいきん)",
+        "ko": "단순 이동 평균",
+        "zh_hans": "简单移动平均线"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "A technical indicator that calculates the arithmetic mean of prices over a specific period to identify trends",
+        "ko": "특정 기간 동안의 종가를 단순 평균하여 계산한 이동평균선(SMA)으로 추세를 확인하는 데 사용됩니다."
+      },
+      "from": "sma",
+      "variants": [],
+      "created_at": "2026-04-21T00:39:08Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'simple moving average' -> 'sma'"
+    },
+    {
       "id": "small",
       "lang": {
         "en": "small",
@@ -30014,6 +29966,29 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "sms",
+      "lang": {
+        "en": "short message service",
+        "ko": "단문 메시지 서비스",
+        "ja": "ショートメッセージサービス",
+        "zh_hans": "短消息服务"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "휴대전화 문자 메시지 기능을 이용하여 시스템 에러 알림, 인증 번호 등을 관리자나 사용자에게 전송하는 서비스입니다.",
+        "en": "A communication service for exchanging text messages via mobile phones"
+      },
+      "from": "sms",
+      "variants": [],
+      "created_at": "2026-04-23T01:27:33Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'short message service' -> 'sms'"
     },
     {
       "id": "snap",
@@ -30247,35 +30222,6 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
-    },
-    {
-      "id": "south korean won",
-      "lang": {
-        "en": "south korean won",
-        "ko": "대한민국 원",
-        "ja": "大韓民国ウォン",
-        "zh_hans": "韩圆"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "market",
-        "trading"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "ko": "대한민국의 공식 통화 단위로, 1902년에 처음 도입되었습니다.",
-        "en": "The official currency of South Korea, first introduced in 1902."
-      },
-      "from": "krw",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "KRW",
-          "long": "South Korean Won"
-        }
-      ],
-      "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
     },
     {
       "id": "spacing",
@@ -30543,6 +30489,29 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "sql",
+      "lang": {
+        "en": "structured query language",
+        "ko": "구조화 질의 언어",
+        "ja": "構造化照会言語",
+        "zh_hans": "结构化查询语言"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "데이터베이스에서 데이터를 관리하고 조작하기 위한 표준 프로그래밍 언어입니다.",
+        "en": "It is a standard programming language used for managing and manipulating data in databases."
+      },
+      "from": "sql",
+      "variants": [],
+      "created_at": "2026-04-20T12:03:27Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'structured query language' -> 'sql'"
     },
     {
       "id": "stage",
@@ -31411,34 +31380,6 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
-    },
-    {
-      "id": "structured query language",
-      "lang": {
-        "en": "structured query language",
-        "ko": "구조화 질의 언어",
-        "ja": "構造化照会言語",
-        "zh_hans": "结构化查询语言"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "system"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "ko": "데이터베이스에서 데이터를 관리하고 조작하기 위한 표준 프로그래밍 언어입니다.",
-        "en": "It is a standard programming language used for managing and manipulating data in databases."
-      },
-      "from": "sql",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "SQL",
-          "long": "Structured Query Language"
-        }
-      ],
-      "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
     },
     {
       "id": "stub",
@@ -32581,7 +32522,17 @@
         }
       ],
       "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
+      "updated_at": "2026-04-20T12:03:27Z",
+      "need_modify": {
+        "status": "open",
+        "issues": [
+          {
+            "code": "INVALID_ID",
+            "detail": "id 규칙 위반 (소문자 영숫자 한 단어여야 함 -- 공백·기호 불가)"
+          }
+        ],
+        "noted_at": "2026-10-05T05:20:15Z"
+      }
     },
     {
       "id": "term",
@@ -34410,34 +34361,6 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
-      "id": "united states dollar",
-      "lang": {
-        "en": "united states dollar",
-        "ko": "미국 달러",
-        "ja": "アメリカ合衆国ドル",
-        "zh_hans": "美元"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "trading"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "ko": "미국 달러는 미국에서 통용되는 공식 통화이며, 세계에서 가장 널리 거래되는 통화 중 하나입니다",
-        "en": "The United States Dollar is the official currency of the United States and is one of the most widely traded currencies in the world"
-      },
-      "from": "usd",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "USD",
-          "long": "United States Dollar"
-        }
-      ],
-      "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
-    },
-    {
       "id": "universe",
       "domain": [
         "trading"
@@ -34781,6 +34704,29 @@
           "value": "uses"
         }
       ]
+    },
+    {
+      "id": "usd",
+      "lang": {
+        "en": "united states dollar",
+        "ko": "미국 달러",
+        "ja": "アメリカ合衆国ドル",
+        "zh_hans": "美元"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "미국 달러는 미국에서 통용되는 공식 통화이며, 세계에서 가장 널리 거래되는 통화 중 하나입니다",
+        "en": "The United States Dollar is the official currency of the United States and is one of the most widely traded currencies in the world"
+      },
+      "from": "usd",
+      "variants": [],
+      "created_at": "2026-04-20T12:03:27Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'united states dollar' -> 'usd'"
     },
     {
       "id": "use",
@@ -36261,34 +36207,6 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
-      "id": "windows subsystem for linux",
-      "lang": {
-        "en": "windows subsystem for linux",
-        "ko": "linux용 windows 하위 시스템",
-        "ja": "linux用windowsサブシステム",
-        "zh_hans": "适用于linux的windows子系统"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "system"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "ko": "Windows에서 Linux 바이너리 실행 파일을 직접 실행할 수 있게 해주는 호환성 계층입니다",
-        "en": "A compatibility layer that allows Windows to run Linux binary executables directly"
-      },
-      "from": "wsl",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "WSL",
-          "long": "Windows Subsystem for Linux"
-        }
-      ],
-      "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
-    },
-    {
       "id": "with",
       "lang": {
         "en": "with",
@@ -36546,30 +36464,30 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
-      "id": "yen",
-      "domain": [
-        "market",
-        "trading"
-      ],
-      "status": "active",
+      "id": "wsl",
       "lang": {
-        "en": "yen",
-        "ko": "엔",
-        "ja": "円",
-        "zh_hans": "日元"
-      },
-      "description_i18n": {
-        "en": "the official currency of Japan",
-        "ko": "일본의 공식 통화인 엔화(JPY)로 외환(FX) 트레이딩 쌍에서 주로 사용되는 자산 식별자입니다."
+        "en": "windows subsystem for linux",
+        "ko": "linux용 windows 하위 시스템",
+        "ja": "linux用windowsサブシステム",
+        "zh_hans": "适用于linux的windows子系统"
       },
       "canonical_pos": "noun",
-      "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z",
+      "domain": [
+        "system"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Windows에서 Linux 바이너리 실행 파일을 직접 실행할 수 있게 해주는 호환성 계층입니다",
+        "en": "A compatibility layer that allows Windows to run Linux binary executables directly"
+      },
+      "from": "wsl",
       "variants": [],
-      "note": "Auto-registered from compound: japanese_yen"
+      "created_at": "2026-04-20T12:03:27Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'windows subsystem for linux' -> 'wsl'"
     },
     {
-      "id": "yet another markup language",
+      "id": "yaml",
       "lang": {
         "en": "yet another markup language",
         "ko": "또 다른 마크업 언어",
@@ -36594,7 +36512,31 @@
         }
       ],
       "created_at": "2026-04-20T12:03:27Z",
-      "updated_at": "2026-04-20T12:03:27Z"
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'yet another markup language' -> 'yaml'"
+    },
+    {
+      "id": "yen",
+      "domain": [
+        "market",
+        "trading"
+      ],
+      "status": "active",
+      "lang": {
+        "en": "yen",
+        "ko": "엔",
+        "ja": "円",
+        "zh_hans": "日元"
+      },
+      "description_i18n": {
+        "en": "the official currency of Japan",
+        "ko": "일본의 공식 통화인 엔화(JPY)로 외환(FX) 트레이딩 쌍에서 주로 사용되는 자산 식별자입니다."
+      },
+      "canonical_pos": "noun",
+      "created_at": "2026-04-20T12:03:27Z",
+      "updated_at": "2026-04-20T12:03:27Z",
+      "variants": [],
+      "note": "Auto-registered from compound: japanese_yen"
     },
     {
       "id": "yuan",
@@ -36615,34 +36557,6 @@
       "updated_at": "2026-04-19T06:30:11Z",
       "variants": [],
       "note": "Auto-registered from compound: chinese_yuan"
-    },
-    {
-      "id": "z-score",
-      "lang": {
-        "en": "z-score",
-        "ja": "zスコア",
-        "ko": "z-점수",
-        "zh_hans": "z分数"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "trading"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "en": "Measures how many standard deviations a data point is from the mean",
-        "ko": "통계 분석에서 특정 데이터가 평균으로부터 표준편차의 몇 배만큼 떨어져 있는지를 나타내는 표준화된 점수입니다."
-      },
-      "from": "zscore",
-      "variants": [
-        {
-          "type": "abbreviation",
-          "short": "ZSCORE",
-          "long": "Z-score"
-        }
-      ],
-      "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
     },
     {
       "id": "zip",
@@ -36982,6 +36896,29 @@
       ],
       "created_at": "2026-06-01T03:06:09Z",
       "updated_at": "2026-06-01T03:06:09Z"
+    },
+    {
+      "id": "zscore",
+      "lang": {
+        "en": "z-score",
+        "ja": "zスコア",
+        "ko": "z-점수",
+        "zh_hans": "z分数"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "trading"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "en": "Measures how many standard deviations a data point is from the mean",
+        "ko": "통계 분석에서 특정 데이터가 평균으로부터 표준편차의 몇 배만큼 떨어져 있는지를 나타내는 표준화된 점수입니다."
+      },
+      "from": "zscore",
+      "variants": [],
+      "created_at": "2026-04-21T00:39:08Z",
+      "updated_at": "2026-10-05T05:20:05Z",
+      "note": "id 정리: 'z-score' -> 'zscore'"
     }
   ]
 }

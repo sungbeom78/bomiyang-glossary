@@ -2,7 +2,7 @@
 
 > 자동 생성 파일. 수동 편집 금지.
 > 원본: `words.json` + `compounds.json` + `banned.json`
-> 생성: 2026-10-05 02:19
+> 생성: 2026-10-05 05:20
 
 ## 통계
 - 단어: 1001개
@@ -40,7 +40,7 @@
 | `euro` | 유로 | eur | noun | auto | 유럽 연합(EU)의 유로존 국가들이 사용하는 공식 법정 통화로, 미국 달러(USD)에 이어 세계에서 두 번째로 거래량이 많은 핵심 기축 통화 |
 | `flag` | 상태 또는 특정 조건 표시기 | — | noun | auto | 상태 또는 특정 조건 표시기 |
 | `fund` | 펀드 | — | noun | auto | 특정 목적을 위해 모은 돈 또는 재정적 지원 |
-| `hypertext markup language` | 하이퍼텍스트 마크업 언어 | HTML | noun | auto | HTML은 웹 페이지의 구조와 내용을 정의하는 데 사용되는 표준 마크업 언어입니다. |
+| `html` | 하이퍼텍스트 마크업 언어 | — | noun | auto | HTML은 웹 페이지의 구조와 내용을 정의하는 데 사용되는 표준 마크업 언어입니다. |
 | `noise` | 노이즈 | — | noun | auto | 원치 않거나 불쾌하게 들리는 소리 |
 | `of` | 의 | — | noun | auto | 무엇의 일부이거나 무언가와 관련되어 있음을 나타냄 |
 | `physical and medical rehabilitation` | 물리 및 의료 재활 | PMR | noun | auto | 신체적 기능 회복과 의학적 치료를 통해 환자의 삶의 질을 향상시키는 의료 분야입니다. |
