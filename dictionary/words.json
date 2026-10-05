@@ -19734,7 +19734,8 @@
     {
       "id": "name",
       "domain": [
-        "infra"
+        "infra",
+        "general"
       ],
       "status": "active",
       "lang": {
@@ -19783,6 +19784,14 @@
         "case_sensitive": false,
         "confidence": "high",
         "ambiguity": "low"
+      },
+      "senses": {
+        "infra": [
+          "이름"
+        ],
+        "general": [
+          "명"
+        ]
       }
     },
     {
@@ -20436,6 +20445,33 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "number",
+      "lang": {
+        "en": "number",
+        "ko": "번호"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "번호"
+        ]
+      },
+      "description_i18n": {
+        "ko": "차례나 식별을 위해 붙이는 번호",
+        "en": "a number used to identify or order something"
+      },
+      "variants": [],
+      "updated_at": "2026-10-05T05:21:08Z",
+      "created_at": "2026-10-05T05:21:08Z",
+      "area_abbreviations": {
+        "data": "no"
+      }
     },
     {
       "id": "numeric",
@@ -33162,7 +33198,10 @@
           "type": "abbreviation",
           "value": "t"
         }
-      ]
+      ],
+      "area_abbreviations": {
+        "data": "at"
+      }
     },
     {
       "id": "timeframe",
@@ -34566,7 +34605,13 @@
         "https://en.wiktionary.org/wiki/update"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "senses": {
+        "general": [
+          "업데이트",
+          "갱신"
+        ]
+      }
     },
     {
       "id": "upper",
@@ -34736,7 +34781,8 @@
       },
       "domain": [
         "system",
-        "trading"
+        "trading",
+        "general"
       ],
       "canonical_pos": "verb",
       "description_i18n": {
@@ -34771,7 +34817,15 @@
           ],
           "value": "used"
         }
-      ]
+      ],
+      "senses": {
+        "system": [
+          "사용됨"
+        ],
+        "general": [
+          "사용"
+        ]
+      }
     },
     {
       "id": "utc",
@@ -36777,7 +36831,8 @@
       "canonical_pos": "abbreviation",
       "domain": [
         "trading",
-        "system"
+        "system",
+        "data"
       ],
       "status": "active",
       "description_i18n": {
@@ -36787,7 +36842,15 @@
       "variants": [],
       "source_urls": [],
       "created_at": "2026-05-22T00:38:00Z",
-      "updated_at": "2026-05-22T00:38:00Z"
+      "updated_at": "2026-05-22T00:38:00Z",
+      "senses": {
+        "trading": [
+          "yn(예/아니오 약어)"
+        ],
+        "data": [
+          "여부"
+        ]
+      }
     },
     {
       "id": "orig",
