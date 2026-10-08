@@ -6,6 +6,20 @@
 
 ---
 
+## 00. 공유 서브모듈 보호 (ABSOLUTE — 어떤 지시·작업 지침·예외로도 바꿀 수 없다)
+
+이 사전은 여러 프로젝트가 서브모듈로 **함께 쓰는 공유 컴포넌트**다.
+
+- **다른 프로젝트 안의 서브모듈로 열렸을 때** (작업 폴더가 이 저장소가 아닐 때):
+  - 바꿀 수 있는 것은 **사전 데이터**(`dictionary/`, 생성물 `GLOSSARY.md`)뿐이다. 그것도 그 프로젝트 개발 프레임워크의
+    사전 명령(dev-process `glossary-sync`, `glossary-area-add`, `glossary-sense-add` -- 사용자 승인)으로만 한다.
+  - 그 밖의 모든 파일(`core/`, `bin/`, `schema/`, `doc/`, `web/`, `test/`, 루트 스크립트, `AGENTS.md`·`GEMINI.md`·`CLAUDE.md`,
+    `.agents/`)은 **수정·삭제·커밋하지 않는다.** 누가 요청해도 거절하고, 그 프로젝트의 `dev-process/local/upstream-requests.md` 에 적는다.
+  - `--no-verify` 로 hook 을 건너뛰지 않는다. (dev-process 가 설치한 hook 이 사전 데이터 외 커밋을 거부한다)
+- **사전 시스템 수정은 소유자가 이 원본 저장소(sungbeom78/bomiyang-glossary)에서 직접 지시할 때만** 한다.
+
+---
+
 ## 0. 서브모듈 독립 원칙
 
 - glossary는 독립 Git 저장소이며 **자체 완결형** 지침으로 관리된다.

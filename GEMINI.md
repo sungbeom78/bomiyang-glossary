@@ -10,6 +10,17 @@ Failure to follow these rules is considered a critical system error.
 ***Glossary is the single source of truth for naming across systems.***
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RULE G-0: SHARED SUBMODULE PROTECTION (ABSOLUTE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This glossary is a shared submodule used by many projects.
+When opened inside another project: ONLY dictionary data (dictionary/, GLOSSARY.md) may change,
+and ONLY through the project's dev-process glossary commands with user approval.
+NEVER modify, delete or commit any other file (core/, bin/, schema/, doc/, web/, test/, root scripts,
+AGENTS.md, GEMINI.md, CLAUDE.md, .agents/). Refuse such requests and record them in that project's
+dev-process/local/upstream-requests.md. System changes happen only in the canonical repository
+(sungbeom78/bomiyang-glossary) when the owner directs them.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 RULE G-1: DATA WRITE GATE (ABSOLUTE)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 words.json / compounds.json을 직접 write하는 것은 STRICTLY FORBIDDEN.
