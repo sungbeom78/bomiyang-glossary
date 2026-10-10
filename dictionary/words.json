@@ -949,6 +949,25 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "ai",
+      "lang": {
+        "en": "ai",
+        "ko": "인공지능"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: ai",
+        "en": "ai"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:49Z",
+      "created_at": "2026-10-10T11:26:49Z"
+    },
+    {
       "id": "alert",
       "lang": {
         "en": "alert",
@@ -1359,6 +1378,25 @@
       "from": "Annotated",
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "answer",
+      "lang": {
+        "en": "answer",
+        "ko": "답변"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: answer",
+        "en": "answer"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:49Z",
+      "created_at": "2026-10-10T11:26:49Z"
     },
     {
       "id": "anthropic",
@@ -2002,6 +2040,25 @@
           "value": "authentication"
         }
       ]
+    },
+    {
+      "id": "author",
+      "lang": {
+        "en": "author",
+        "ko": "작성자"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: author",
+        "en": "author"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:50Z",
+      "created_at": "2026-10-10T11:26:50Z"
     },
     {
       "id": "authorized",
@@ -3520,6 +3577,32 @@
           "value": "bridged"
         }
       ]
+    },
+    {
+      "id": "briefing",
+      "lang": {
+        "en": "briefing",
+        "ko": "브리핑"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: briefings",
+        "en": "briefing"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:50Z",
+      "created_at": "2026-10-10T11:26:50Z",
+      "abbreviation": {
+        "short": "briefings",
+        "long": "briefing",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "broker",
@@ -7022,6 +7105,32 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "crawl",
+      "lang": {
+        "en": "crawl",
+        "ko": "크롤링"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: crawled",
+        "en": "crawl"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:50Z",
+      "created_at": "2026-10-10T11:26:50Z",
+      "abbreviation": {
+        "short": "crawled",
+        "long": "crawl",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
       "id": "create",
       "lang": {
         "en": "create",
@@ -9492,6 +9601,32 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "document",
+      "lang": {
+        "en": "document",
+        "ko": "문서"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: documents",
+        "en": "document"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:50Z",
+      "created_at": "2026-10-10T11:26:50Z",
+      "abbreviation": {
+        "short": "documents",
+        "long": "document",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
       "id": "domain",
       "lang": {
         "en": "domain",
@@ -10263,6 +10398,25 @@
         ],
         "noted_at": "2026-10-05T02:14:38Z"
       }
+    },
+    {
+      "id": "endpoint",
+      "lang": {
+        "en": "endpoint",
+        "ko": "엔드포인트"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: endpoint",
+        "en": "endpoint"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:51Z",
+      "created_at": "2026-10-10T11:26:51Z"
     },
     {
       "id": "enforce",
@@ -12067,6 +12221,25 @@
         ],
         "noted_at": "2026-10-05T02:14:38Z"
       }
+    },
+    {
+      "id": "feedback",
+      "lang": {
+        "en": "feedback",
+        "ko": "피드백"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: feedback",
+        "en": "feedback"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:51Z",
+      "created_at": "2026-10-10T11:26:51Z"
     },
     {
       "id": "fetch",
@@ -16047,6 +16220,25 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "it",
+      "lang": {
+        "en": "it",
+        "ko": "대상"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: it",
+        "en": "it"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:51Z",
+      "created_at": "2026-10-10T11:26:51Z"
+    },
+    {
       "id": "items",
       "lang": {
         "en": "items",
@@ -16452,6 +16644,25 @@
       }
     },
     {
+      "id": "korean",
+      "lang": {
+        "en": "korean",
+        "ko": "한국어"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: korean",
+        "en": "korean"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:52Z",
+      "created_at": "2026-10-10T11:26:52Z"
+    },
+    {
       "id": "kosdaq",
       "domain": [
         "market"
@@ -16750,6 +16961,25 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "latency",
+      "lang": {
+        "en": "latency",
+        "ko": "지연시간"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: latency",
+        "en": "latency"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:52Z",
+      "created_at": "2026-10-10T11:26:52Z"
+    },
+    {
       "id": "launch",
       "lang": {
         "en": "launch",
@@ -16907,6 +17137,25 @@
       "from": "level",
       "created_at": "2026-04-21T00:39:08Z",
       "updated_at": "2026-04-21T00:39:08Z"
+    },
+    {
+      "id": "license",
+      "lang": {
+        "en": "license",
+        "ko": "라이선스"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: license",
+        "en": "license"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:52Z",
+      "created_at": "2026-10-10T11:26:52Z"
     },
     {
       "id": "lifecycle",
@@ -18469,6 +18718,32 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "matter",
+      "lang": {
+        "en": "matter",
+        "ko": "중요성"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: matters",
+        "en": "matter"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:53Z",
+      "created_at": "2026-10-10T11:26:53Z",
+      "abbreviation": {
+        "short": "matters",
+        "long": "matter",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "max",
@@ -20297,6 +20572,25 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "note",
+      "lang": {
+        "en": "note",
+        "ko": "메모"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: note",
+        "en": "note"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:53Z",
+      "created_at": "2026-10-10T11:26:53Z"
     },
     {
       "id": "notice",
@@ -24414,6 +24708,25 @@
       }
     },
     {
+      "id": "quality",
+      "lang": {
+        "en": "quality",
+        "ko": "품질"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: quality",
+        "en": "quality"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:53Z",
+      "created_at": "2026-10-10T11:26:53Z"
+    },
+    {
       "id": "quantity",
       "lang": {
         "en": "quantity",
@@ -24486,6 +24799,25 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "question",
+      "lang": {
+        "en": "question",
+        "ko": "질문"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: question",
+        "en": "question"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:53Z",
+      "created_at": "2026-10-10T11:26:53Z"
     },
     {
       "id": "queue",
@@ -26857,6 +27189,25 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "retrieval",
+      "lang": {
+        "en": "retrieval",
+        "ko": "검색"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: retrieval",
+        "en": "retrieval"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:54Z",
+      "created_at": "2026-10-10T11:26:54Z"
     },
     {
       "id": "return",
@@ -31734,6 +32085,32 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "suggest",
+      "lang": {
+        "en": "suggest",
+        "ko": "제안"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: suggested",
+        "en": "suggest"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:54Z",
+      "created_at": "2026-10-10T11:26:54Z",
+      "abbreviation": {
+        "short": "suggested",
+        "long": "suggest",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
       "id": "sum",
       "lang": {
         "en": "sum",
@@ -32275,7 +32652,14 @@
       },
       "from": "tag",
       "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
+      "updated_at": "2026-10-10T11:26:54Z",
+      "abbreviation": {
+        "short": "tags",
+        "long": "tag",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "take",
@@ -33287,6 +33671,25 @@
       ]
     },
     {
+      "id": "title",
+      "lang": {
+        "en": "title",
+        "ko": "제목"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: title",
+        "en": "title"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:55Z",
+      "created_at": "2026-10-10T11:26:55Z"
+    },
+    {
       "id": "to",
       "domain": [
         "system"
@@ -33526,6 +33929,25 @@
           "value": "topped"
         }
       ]
+    },
+    {
+      "id": "topic",
+      "lang": {
+        "en": "topic",
+        "ko": "주제"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: topic",
+        "en": "topic"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:55Z",
+      "created_at": "2026-10-10T11:26:55Z"
     },
     {
       "id": "total",
@@ -36137,6 +36559,25 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "why",
+      "lang": {
+        "en": "why",
+        "ko": "이유"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "description_i18n": {
+        "ko": "Legacy physical-name token used by the current BOMTS AI schema: why",
+        "en": "why"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T11:26:55Z",
+      "created_at": "2026-10-10T11:26:55Z"
     },
     {
       "id": "wick",
