@@ -220,7 +220,8 @@
     {
       "id": "account",
       "domain": [
-        "trading"
+        "trading",
+        "general"
       ],
       "status": "active",
       "lang": {
@@ -235,7 +236,7 @@
       },
       "canonical_pos": "noun",
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-17T03:15:55Z",
+      "updated_at": "2026-10-10T16:35:56Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/account"
       ],
@@ -259,7 +260,22 @@
           ],
           "value": "accounted"
         }
-      ]
+      ],
+      "senses": {
+        "trading": [
+          "계좌"
+        ],
+        "general": [
+          "계정"
+        ]
+      },
+      "abbreviation": {
+        "short": "acct",
+        "long": "account",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "accumulated",
@@ -398,7 +414,20 @@
       },
       "from": "Action",
       "created_at": "2026-04-20T14:42:57Z",
-      "updated_at": "2026-04-20T14:42:57Z"
+      "updated_at": "2026-10-10T16:35:58Z",
+      "senses": {
+        "general": [
+          "액션",
+          "행위"
+        ]
+      },
+      "abbreviation": {
+        "short": "act",
+        "long": "action",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "active",
@@ -1422,6 +1451,30 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "api",
+      "lang": {
+        "en": "api",
+        "ko": "api"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "API"
+        ]
+      },
+      "description_i18n": {
+        "ko": "조회용 API",
+        "en": "api"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T16:35:59Z",
+      "created_at": "2026-10-10T16:35:59Z"
+    },
+    {
       "id": "app",
       "domain": [
         "infra"
@@ -1571,7 +1624,7 @@
         "https://en.wiktionary.org/wiki/approval"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z",
+      "updated_at": "2026-10-10T16:36:04Z",
       "need_modify": {
         "status": "open",
         "issues": [
@@ -1581,6 +1634,13 @@
           }
         ],
         "noted_at": "2026-10-05T02:14:38Z"
+      },
+      "abbreviation": {
+        "short": "aprv",
+        "long": "approval",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
       }
     },
     {
@@ -3969,6 +4029,30 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "byte",
+      "lang": {
+        "en": "byte",
+        "ko": "바이트"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "바이트"
+        ]
+      },
+      "description_i18n": {
+        "ko": "크기 단위",
+        "en": "byte"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T16:36:02Z",
+      "created_at": "2026-10-10T16:36:02Z"
+    },
+    {
       "id": "cache",
       "lang": {
         "en": "cache",
@@ -4489,7 +4573,7 @@
         }
       ],
       "created_at": "2026-04-14T13:05:05Z",
-      "updated_at": "2026-04-17T03:16:44Z",
+      "updated_at": "2026-10-10T16:35:57Z",
       "source_urls": [
         "https://en.wiktionary.org/wiki/category"
       ],
@@ -4502,6 +4586,13 @@
           }
         ],
         "noted_at": "2026-10-05T02:14:38Z"
+      },
+      "abbreviation": {
+        "short": "ctgr",
+        "long": "category",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
       }
     },
     {
@@ -5537,25 +5628,44 @@
       ]
     },
     {
-      "id": "columns",
+      "id": "column",
       "lang": {
-        "en": "columns",
-        "ko": "열 (또는 필드)",
-        "ja": "列 (れつ)",
-        "zh_hans": "列 (liè)"
+        "en": "column",
+        "ko": "열",
+        "ja": "列",
+        "zh_hans": "列"
       },
       "canonical_pos": "noun",
       "domain": [
         "system"
       ],
       "status": "active",
+      "senses": {
+        "general": [
+          "열",
+          "컬럼"
+        ]
+      },
       "description_i18n": {
         "ko": "데이터베이스 테이블이나 데이터프레임에서 특정 속성의 데이터들이 나열되는 세로 열을 의미합니다.",
         "en": "Vertical data categories that define the structure of a table or record"
       },
-      "from": "Column",
-      "created_at": "2026-04-20T14:42:57Z",
-      "updated_at": "2026-04-20T14:42:57Z"
+      "variants": [
+        {
+          "types": [
+            "plural"
+          ],
+          "value": "columns"
+        }
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/column"
+      ],
+      "updated_at": "2026-10-10T16:36:30Z",
+      "created_at": "2026-10-10T16:36:30Z",
+      "area_abbreviations": {
+        "general": "col"
+      }
     },
     {
       "id": "comma",
@@ -6960,7 +7070,8 @@
       },
       "canonical_pos": "verb",
       "domain": [
-        "general"
+        "general",
+        "data"
       ],
       "status": "active",
       "description_i18n": {
@@ -6992,7 +7103,22 @@
         "https://en.wiktionary.org/wiki/count"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-10-10T16:36:05Z",
+      "senses": {
+        "general": [
+          "카운트"
+        ],
+        "data": [
+          "수"
+        ]
+      },
+      "abbreviation": {
+        "short": "cnt",
+        "long": "count",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "counter",
@@ -7785,6 +7911,30 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "dataset",
+      "lang": {
+        "en": "dataset",
+        "ko": "데이터셋"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "데이터셋"
+        ]
+      },
+      "description_i18n": {
+        "ko": "레이크 저장 데이터 묶음",
+        "en": "dataset"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T16:36:02Z",
+      "created_at": "2026-10-10T16:36:02Z"
+    },
+    {
       "id": "date",
       "lang": {
         "en": "date",
@@ -8284,35 +8434,6 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
-      "id": "def",
-      "lang": {
-        "en": "def",
-        "ko": "정의"
-      },
-      "canonical_pos": "noun",
-      "domain": [
-        "general"
-      ],
-      "status": "active",
-      "description_i18n": {
-        "en": "Abbreviation for definition or deficit, used in software or finance contexts.",
-        "ko": "정의"
-      },
-      "variants": [
-        {
-          "types": [
-            "plural"
-          ],
-          "value": "defs"
-        }
-      ],
-      "source_urls": [
-        "https://en.wiktionary.org/wiki/def"
-      ],
-      "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
-    },
-    {
       "id": "default",
       "lang": {
         "en": "default",
@@ -8394,6 +8515,47 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "definition",
+      "lang": {
+        "en": "definition",
+        "ko": "정의"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "정의"
+        ]
+      },
+      "description_i18n": {
+        "en": "A statement of the exact meaning or specification of something.",
+        "ko": "뜻이나 내용을 정해 둔 것"
+      },
+      "variants": [
+        {
+          "types": [
+            "plural"
+          ],
+          "value": "definitions"
+        }
+      ],
+      "source_urls": [
+        "https://en.wiktionary.org/wiki/definition"
+      ],
+      "updated_at": "2026-10-10T16:35:17Z",
+      "created_at": "2026-10-10T16:35:17Z",
+      "abbreviation": {
+        "short": "def",
+        "long": "definition",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "degraded",
@@ -8788,6 +8950,37 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "description",
+      "lang": {
+        "en": "description",
+        "ko": "설명"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "설명"
+        ]
+      },
+      "description_i18n": {
+        "ko": "설명 문구(단독 사용 금지 — 예약어)",
+        "en": "description"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T16:36:04Z",
+      "created_at": "2026-10-10T16:36:04Z",
+      "abbreviation": {
+        "short": "desc",
+        "long": "description",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
       "id": "detail",
       "lang": {
         "en": "detail",
@@ -8833,7 +9026,14 @@
         "https://en.wiktionary.org/wiki/detail"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-10-10T16:35:58Z",
+      "abbreviation": {
+        "short": "dtl",
+        "long": "detail",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "detect",
@@ -11757,9 +11957,9 @@
       }
     },
     {
-      "id": "expires",
+      "id": "expire",
       "lang": {
-        "en": "expires",
+        "en": "expire",
         "ko": "만료"
       },
       "canonical_pos": "verb",
@@ -11767,11 +11967,22 @@
         "general"
       ],
       "status": "active",
+      "senses": {
+        "general": [
+          "만료"
+        ]
+      },
       "description_i18n": {
-        "en": "Ceases to be valid after a specific period.",
-        "ko": "만료"
+        "en": "To cease to be valid after a specific period.",
+        "ko": "효력이 끝남"
       },
       "variants": [
+        {
+          "types": [
+            "third_person"
+          ],
+          "value": "expires"
+        },
         {
           "types": [
             "past"
@@ -11792,10 +12003,10 @@
         }
       ],
       "source_urls": [
-        "https://en.wiktionary.org/wiki/expires"
+        "https://en.wiktionary.org/wiki/expire"
       ],
-      "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-10-10T16:35:17Z",
+      "created_at": "2026-10-10T16:35:17Z"
     },
     {
       "id": "exposure",
@@ -13159,7 +13370,14 @@
         "https://en.wiktionary.org/wiki/format"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-10-10T16:36:39Z",
+      "abbreviation": {
+        "short": "fmt",
+        "long": "format",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "formatter",
@@ -14063,7 +14281,37 @@
       },
       "variants": [],
       "updated_at": "2026-10-04T17:26:00Z",
-      "created_at": "2026-10-04T17:26:00Z"
+      "created_at": "2026-10-04T17:26:00Z",
+      "senses": {
+        "general": [
+          "성적",
+          "등급"
+        ]
+      }
+    },
+    {
+      "id": "grant",
+      "lang": {
+        "en": "grant",
+        "ko": "부여"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "부여"
+        ]
+      },
+      "description_i18n": {
+        "ko": "권한 부여",
+        "en": "grant"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T16:36:00Z",
+      "created_at": "2026-10-10T16:36:00Z"
     },
     {
       "id": "grep",
@@ -14497,6 +14745,30 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "hash",
+      "lang": {
+        "en": "hash",
+        "ko": "해시"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "해시"
+        ]
+      },
+      "description_i18n": {
+        "ko": "분류어: 단방향 해시값",
+        "en": "hash"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T16:36:05Z",
+      "created_at": "2026-10-10T16:36:05Z"
     },
     {
       "id": "hashkey",
@@ -16853,6 +17125,30 @@
       ],
       "created_at": "2026-04-19T03:22:27Z",
       "updated_at": "2026-04-19T03:22:27Z"
+    },
+    {
+      "id": "lake",
+      "lang": {
+        "en": "lake",
+        "ko": "레이크"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "레이크"
+        ]
+      },
+      "description_i18n": {
+        "ko": "디스크 기반 대용량 저장소",
+        "en": "lake"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T16:36:04Z",
+      "created_at": "2026-10-10T16:36:04Z"
     },
     {
       "id": "language",
@@ -19295,9 +19591,36 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
-      "id": "min",
+      "id": "millisecond",
       "lang": {
-        "en": "min",
+        "en": "millisecond",
+        "ko": "밀리초"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "밀리초"
+        ]
+      },
+      "description_i18n": {
+        "ko": "분류어: 시간(ms)",
+        "en": "millisecond"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T16:36:05Z",
+      "created_at": "2026-10-10T16:36:05Z",
+      "area_abbreviations": {
+        "data": "ms"
+      }
+    },
+    {
+      "id": "minimum",
+      "lang": {
+        "en": "minimum",
         "ko": "최소"
       },
       "canonical_pos": "noun",
@@ -19305,23 +19628,35 @@
         "general"
       ],
       "status": "active",
+      "senses": {
+        "general": [
+          "최소"
+        ]
+      },
       "description_i18n": {
-        "en": "An abbreviation or clipping for 'minute' or 'minimum'.",
-        "ko": "최소"
+        "en": "The lowest amount or limit allowed or possible.",
+        "ko": "하한"
       },
       "variants": [
         {
           "types": [
             "plural"
           ],
-          "value": "mins"
+          "value": "minimums"
         }
       ],
       "source_urls": [
-        "https://en.wiktionary.org/wiki/min"
+        "https://en.wiktionary.org/wiki/minimum"
       ],
-      "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-10-10T16:35:17Z",
+      "created_at": "2026-10-10T16:35:17Z",
+      "abbreviation": {
+        "short": "min",
+        "long": "minimum",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "minute",
@@ -20818,6 +21153,37 @@
       "created_at": "2026-04-21T01:01:24Z"
     },
     {
+      "id": "object",
+      "lang": {
+        "en": "object",
+        "ko": "객체"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "객체"
+        ]
+      },
+      "description_i18n": {
+        "ko": "DB 객체",
+        "en": "object"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T16:35:58Z",
+      "created_at": "2026-10-10T16:35:58Z",
+      "abbreviation": {
+        "short": "obj",
+        "long": "object",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
+    },
+    {
       "id": "occur",
       "lang": {
         "en": "occur",
@@ -21799,6 +22165,30 @@
       "updated_at": "2026-04-19T03:22:27Z"
     },
     {
+      "id": "owner",
+      "lang": {
+        "en": "owner",
+        "ko": "소유"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "소유"
+        ]
+      },
+      "description_i18n": {
+        "ko": "소유자",
+        "en": "owner"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T16:36:01Z",
+      "created_at": "2026-10-10T16:36:01Z"
+    },
+    {
       "id": "page",
       "lang": {
         "en": "page",
@@ -21877,7 +22267,8 @@
       },
       "canonical_pos": "noun",
       "domain": [
-        "system"
+        "system",
+        "general"
       ],
       "status": "active",
       "description_i18n": {
@@ -21893,7 +22284,18 @@
         }
       ],
       "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
+      "updated_at": "2026-04-21T00:39:08Z",
+      "senses": {
+        "system": [
+          "매개변수"
+        ],
+        "general": [
+          "파라미터"
+        ]
+      },
+      "area_abbreviations": {
+        "general": "param"
+      }
     },
     {
       "id": "parse",
@@ -22020,6 +22422,30 @@
           "value": "partials"
         }
       ]
+    },
+    {
+      "id": "partition",
+      "lang": {
+        "en": "partition",
+        "ko": "파티션"
+      },
+      "canonical_pos": "noun",
+      "domain": [
+        "general"
+      ],
+      "status": "active",
+      "senses": {
+        "general": [
+          "파티션"
+        ]
+      },
+      "description_i18n": {
+        "ko": "분할 기준",
+        "en": "partition"
+      },
+      "variants": [],
+      "updated_at": "2026-10-10T16:36:03Z",
+      "created_at": "2026-10-10T16:36:03Z"
     },
     {
       "id": "pass",
@@ -23044,8 +23470,15 @@
         "ko": "정해진 방향이나 원칙에 따라 이루어지는 조치 또는 행동 계획"
       },
       "variants": [],
-      "updated_at": "2026-04-21T01:01:24Z",
-      "created_at": "2026-04-21T01:01:24Z"
+      "updated_at": "2026-10-10T16:35:58Z",
+      "created_at": "2026-04-21T01:01:24Z",
+      "abbreviation": {
+        "short": "plcy",
+        "long": "policy",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "poll",
@@ -23328,7 +23761,13 @@
         "https://en.wiktionary.org/wiki/prefix"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "senses": {
+        "general": [
+          "접두사",
+          "접두"
+        ]
+      }
     },
     {
       "id": "preflight",
@@ -23936,7 +24375,13 @@
         "https://en.wiktionary.org/wiki/profile"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-04-19T03:22:27Z",
+      "senses": {
+        "general": [
+          "프로필",
+          "프로파일"
+        ]
+      }
     },
     {
       "id": "profiler",
@@ -30608,7 +31053,20 @@
         "https://en.wiktionary.org/wiki/source"
       ],
       "created_at": "2026-04-19T03:22:27Z",
-      "updated_at": "2026-04-19T03:22:27Z"
+      "updated_at": "2026-10-10T16:36:01Z",
+      "senses": {
+        "general": [
+          "소스",
+          "원천"
+        ]
+      },
+      "abbreviation": {
+        "short": "src",
+        "long": "source",
+        "case_sensitive": false,
+        "confidence": "high",
+        "ambiguity": "low"
+      }
     },
     {
       "id": "spacing",
@@ -30887,7 +31345,8 @@
       },
       "canonical_pos": "noun",
       "domain": [
-        "system"
+        "system",
+        "general"
       ],
       "status": "active",
       "description_i18n": {
@@ -30898,7 +31357,15 @@
       "variants": [],
       "created_at": "2026-04-20T12:03:27Z",
       "updated_at": "2026-10-05T05:20:05Z",
-      "note": "id 정리: 'structured query language' -> 'sql'"
+      "note": "id 정리: 'structured query language' -> 'sql'",
+      "senses": {
+        "system": [
+          "구조화 질의 언어"
+        ],
+        "general": [
+          "SQL"
+        ]
+      }
     },
     {
       "id": "stage",
@@ -33628,7 +34095,8 @@
       },
       "canonical_pos": "noun",
       "domain": [
-        "system"
+        "system",
+        "general"
       ],
       "status": "active",
       "description_i18n": {
@@ -33637,7 +34105,15 @@
       },
       "from": "timeout",
       "created_at": "2026-04-21T00:39:08Z",
-      "updated_at": "2026-04-21T00:39:08Z"
+      "updated_at": "2026-04-21T00:39:08Z",
+      "senses": {
+        "system": [
+          "타임아웃"
+        ],
+        "general": [
+          "제한시간"
+        ]
+      }
     },
     {
       "id": "timezone",
@@ -35113,7 +35589,8 @@
     {
       "id": "url",
       "domain": [
-        "infra"
+        "infra",
+        "general"
       ],
       "status": "active",
       "lang": {
@@ -35139,7 +35616,15 @@
           ],
           "value": "urls"
         }
-      ]
+      ],
+      "senses": {
+        "infra": [
+          "url"
+        ],
+        "general": [
+          "URL"
+        ]
+      }
     },
     {
       "id": "us",
