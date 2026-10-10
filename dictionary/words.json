@@ -25474,7 +25474,8 @@
         "ko": "랭킹"
       },
       "domain": [
-        "market"
+        "market",
+        "general"
       ],
       "canonical_pos": "verb",
       "description_i18n": {
@@ -25498,7 +25499,15 @@
           ],
           "value": "ranked"
         }
-      ]
+      ],
+      "senses": {
+        "market": [
+          "랭킹"
+        ],
+        "general": [
+          "서열"
+        ]
+      }
     },
     {
       "id": "ranker",
